@@ -1,0 +1,1567 @@
+﻿/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    overflow-x: hidden;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="select"] {
+    max-width: 280px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    .jumbotron {
+        margin-top: 20px;
+    }
+    .body-content {
+        padding: 0;
+    }
+}
+
+#NotificationsGlyphiconSpan {
+    position: relative;
+    top: 10px; 
+    left: 10px; 
+    display: block;
+    cursor: pointer;
+}   
+
+#NotificationsGlyphiconSpan {
+    text-decoration:  none;
+}
+
+#GlyphiconBell {
+    font-size: 23px;
+}
+
+.badge-notify {
+   background: red;
+   position: absolute;
+   top: -7px;
+   left: 15px;
+}
+
+.notificationsUl {
+    margin-top: 20px;
+    width: 81em;  
+}
+
+.notificationsUl li {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.notificationsUl li a {
+    white-space: unset;    
+}
+
+.notificationsUl li a:hover {
+    border-radius: 5px;
+}
+
+.notificationsUl hr {
+    border-top: 1px solid #ccc;
+    margin: 5px 20px 5px 20px;
+}
+
+.unread .notificationContentSpan, .unread .notificationDateSmall {
+    font-weight: bold;
+}
+
+.unread span {
+    font-size: 16px; 
+}
+
+.notificationDateSmall {
+    margin-top: 10px;
+    display: block;
+    font-style: italic;
+}
+
+#LatestNotificationsButtonsDiv {
+    margin: 20px 20px 10px 20px;
+}
+
+#LatestNotificationsButtonsDiv a {
+    margin-right: 5px;
+}
+
+#EmailNotConfirmedPanel {
+    position: fixed;
+    width: 450px;
+    bottom: 0px;
+    right: 10px;
+    z-index: 2;
+    border: 1px solid;
+}
+
+#EmailNotConfirmedPanel .glyphicon {
+    font-size: 18px;
+}
+
+#SiteMapPathBreadcrump {
+    display: block;
+    background: #C5027C;
+    border-radius: 5px;
+    color: #CCFFFF;
+    padding-top: 5px;
+    padding-bottom: 7px; 
+    padding-left: 17px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+#SiteMapPathBreadcrump a {
+    text-decoration: none;
+    color: #EECCFF;
+}
+
+#SiteMapPathBreadcrump a:hover {
+    text-decoration: underline;
+}
+
+#OverlayDiv {
+    width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+    background: -moz-linear-gradient(rgba(11,11,11,0.1), rgba(11,11,11,0.6)) repeat-x rgba(11,11,11,0.2);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(11,11,11,0.1)), to(rgba(11,11,11,0.6))) repeat-x rgba(11,11,11,0.2);
+	z-index: 100000;
+}
+
+#LoadingProgressDiv {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 20em;
+    height: 17em;
+    margin-top: -9em;
+    margin-left: -10em;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    color:#888;
+    text-align: center;
+}
+
+#LoadingSpan {
+    position: relative;
+    top: 100px; 
+    font-size: 16px;
+}
+
+#LoadingGif {
+    display: block;
+    margin: auto;
+    width: 200px;
+}
+
+.homeSlider {
+    width: 100%;
+    height: 550px;
+    position: absolute; 
+    top: 40px; 
+    left: 0;
+    border-radius: 10px;
+    display: block;
+}
+
+.homeSlider img {
+    height: 550px; 
+    border-radius: 10px;
+}
+
+#SearchFlightsDiv {
+    position: absolute;
+    top: 200px;
+    margin-left: 40px;
+    background-color: #F2F2F2;
+    border-radius: 5px;
+    padding: 50px;
+    width: 500px;
+    height: 370px;
+    z-index: 1;
+}
+
+#SearchFlightsDiv .fancyTextBox {
+    display: block;
+    width: 400px;
+    height: 80px;
+    text-align: left;
+}
+
+#SearchFlightsDiv .fancyTextBox label {
+    font-size: 16px;
+}
+
+#SearchFlightsDiv .fancyTextBox input[type="text"] {
+    height: 50px;
+    font-size: 20px;
+    margin-left: 9px;
+}
+
+#DepartureAirportTextBox, #DestinationAirportTextBox {
+    background-color: #F2F2F2;
+    text-transform: capitalize;
+    margin-left: 6px;
+}
+
+#SearchBtn {
+    display: block;
+    width: 400px;
+}
+
+#DepartureAirportsDiv, #DestinationAirportsDiv {
+    display: none;
+    position: absolute;
+    top: 200px;
+    margin-left: 550px;
+    overflow-y: auto;
+    width: 500px;
+    height: 370px;
+    padding: 20px;
+    background-color: #e9dddd;
+}
+
+#DepartureAirportsDiv span, #DestinationAirportsDiv span {
+    margin-left: 20px;
+    text-align: right;
+    position: relative; 
+} 
+
+.airport, #DepartureAirportsDiv span, #DestinationAirportsDiv span {
+    display: inline-block;
+    margin-top: 10px;
+    width: 200px;
+    color: #C5027C;
+}
+
+.airport {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+    .airport:hover {
+        background-color: #073886;
+        color: #fff;
+        border-radius: 10px;
+        width: 175px;
+        padding-left: 15px;
+        text-decoration: none;
+    }
+
+    .airport:active {
+        text-decoration: none;
+    }
+
+.capitalizeTextBox {
+    text-transform: capitalize;
+}
+
+#TopCheapestFlightsDiv {
+    font-weight: bold;
+    height: 180px;
+    width: 100%;
+    padding-top: 10px;
+    margin-top: 100px;
+}
+
+#TopCheapestFlightsDiv h3 {
+    margin-left: 20px;
+}
+
+.abbreviation {
+    display: block;
+    font-size: 20px;
+}
+ 
+.cheapFlightDiv {
+    color: #3E007F;
+    width: 260px;
+    margin-top: 5px;
+    margin-right: 35px;
+    padding: 10px 30px 0 10px;
+    float: left;
+}
+
+.cheapFlightDiv img {
+    width: 30px;
+    position: relative;
+    top: 10px;
+    left: 50px;
+}
+
+ a:not(:last-of-type) .cheapFlightDiv {
+    border-right: 1px solid #8F8591;
+}
+
+.cheapFlightDiv:hover {
+    -webkit-filter: grayscale(100%); 
+    filter: grayscale(100%);
+}
+
+.cheapFlightDiv:first-of-type {
+    margin-left: -10px;
+}
+
+.fromAirportInfo {
+    float: left; 
+    text-align: left;
+}
+
+.toAirportInfo {
+    float: right;
+    text-align: right;
+}
+
+.priceAndDateInfo {
+    margin-top: 30px;
+}
+
+.priceAndDateInfo .price {
+    float: left;
+}
+
+.priceAndDateInfo .date {
+    float: right;
+}
+ 
+#BackgroundImg {
+    height: auto;
+    margin: 0 auto;
+    position: absolute;
+    left: -2000px; 
+    right: -2000px;
+    top: 710px;
+    z-index: -1;
+}
+
+#LatestNewsDiv {
+    margin-top: 480px;
+}
+
+#LatestNewsDiv .airplaneBetweenAirports {
+    top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.latestArticle {
+    margin-top: 10px; 
+    width: 400px;
+    padding-top: 5px;
+    color: #3E007F;
+    text-align: justify;
+}
+
+.latestArticle a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.latestArticle:hover, .cheapFlightDiv:hover {
+    -webkit-box-shadow: 0px 0px 8px 2px #000000;
+    -moz-box-shadow: 0px 0px 8px 2px #000000;
+    box-shadow: 0px 0px 8px 2px #000000; 
+    cursor: pointer;
+}
+
+.latestArticle .title {
+    font-size: 20px;
+}
+
+.latestArticle .content, .latestArticle .date {
+    font-size: 12px; 
+}
+
+/****************** Booking/SelectFlight.aspx ******************/
+
+.airplaneFlyOutImage {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    cursor: default;
+}
+
+#FlightDetailsPanel h3 {
+    margin-left: 50px;
+}
+
+.flightDatesDiv {
+    width: 180px;
+    height: 80px;
+    text-align: center;
+    margin-left: 2px;
+    font-size: 18px;
+    display: inline-block;
+    background-color: #073886;
+    text-align: center;
+}
+
+.datesLinkButton:hover {
+    text-decoration: none;
+}
+
+.flightDatesDiv .date, .flightDatesDiv .price {
+    display: block;
+    margin-top: 10px;
+}
+
+.flightDatesDiv .date {
+    color: #ffffff;
+}
+
+.flightDatesDiv .price {
+    color: #F0CB30;
+}
+
+#SelectedFlightDate {
+    border: 3px solid black;
+}
+
+#FlightDetailsDiv {
+    display: inline-block;
+}
+
+#FlightDepartureDetailsDiv {
+    display: inline-block;
+    text-align: left;
+}
+
+    #FlightDepartureDetailsDiv span {
+        display: block;
+    }
+
+#FlightMiddleImage {
+    display: inline-block;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+    #FlightMiddleImage span {
+        display: block;
+    }
+
+        .airplaneBetweenAirports {
+            width: 30px;
+            height: 30px;
+            position: relative;
+            bottom: 15px;
+        }
+
+#FlightDestinationDetailsDeiv {
+    display: inline-block;
+    text-align: right;
+}
+
+    #FlightDestinationDetailsDeiv span {
+        display: block;
+    }
+
+#FlightNumberSpan, #FlightDurationSpan {
+    color: gray;
+    font-size: 16px;
+}
+
+#FromAirportSpan, #ToAirportSpan {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+#DepartureSpan, #ArrivalSpan {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#FlightDetailsDiv {
+    padding: 10px;
+    margin-right: 50px;
+}
+
+#SelectedFlightDetailsDiv {
+    background-color: #f6eeee;
+}
+
+#FlightDetailsPanel table {
+    float: left;
+    margin-left: 30px;
+}
+
+#FlightTravelClassesDiv {
+    display: inline-block;
+}
+
+.travelClass {
+    margin-left: 20px;
+    display: inline-block;
+    width: 200px;
+}
+
+    .travelClass:nth-child(1) {
+        border: 1px solid #1F91EA;
+    }
+
+        .travelClass:nth-child(1) .travelClassTypeSpan {
+            background-color: #1F91EA;
+        }
+
+    .travelClass:nth-child(2) {
+        border: 1px solid #073886;
+    }
+
+        .travelClass:nth-child(2) .travelClassTypeSpan {
+            background-color: #073886;
+        }
+
+    .travelClass:nth-child(3) {
+        border: 1px solid #C5027C;
+    }
+
+        .travelClass:nth-child(3) .travelClassTypeSpan {
+            background-color: #C5027C;
+        }
+
+    .travelClass span {
+        display: block;        
+        text-align: center;
+    }
+
+#EconomyClassSpan img:not(.availableIcon) {
+    display: none;
+}
+
+#BusinessClassSpan .earnMilesIcons {
+    display: none;
+}
+
+.travelClassTypeSpan {
+    padding-top: 10px;    
+    font-size: 20px;
+    font-weight: bold;
+    height: 80px;
+    color: #fff;
+}
+
+.travelClassTypeDetailsSpan img {
+    margin-top: 7px;
+    width: 20px;
+    height: 20px;
+}
+
+.tooltipDiv img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;  
+}
+
+.travelClassPriceSpan {
+    font-size: 20px;
+    height: 100px;
+}
+
+    .travelClassPriceSpan  label {
+        margin-top: 15px;
+    }
+
+    .travelClassPriceSpan input[type=radio] {
+        margin-right: 5px;
+        width: 17px;
+        height: 17px;
+    }
+
+.travelClassSeats {
+    margin-top: 10px;
+    color: #d70505;
+    font-size: 12px
+}
+
+#ContinueBookingDiv {
+    text-align: right; 
+}
+
+#ContinueBookingBtn {
+    height: 50px;
+    width: 130px;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.warningPanel, .successPanel {
+    background-color: #f6eeee;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.warningPanel h5, .successPanel h5 {
+    margin-top: 10px;
+    margin-bottom: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.successPanel h5 {
+    color: #C5027C;
+}
+
+#CreateNewAccountToContinueBtn {
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 12px;
+    text-decoration: underline;
+    color: #C5027C;
+    font-weight: bold;
+}
+
+#SignInToContinueBtn, #ContinueBookingBtn, #PayAndBookNowBtn, #GoToProfileBtn {
+    border: none;
+    background-color: #C5027C;
+    color: #fff;
+}
+
+#SignInToContinueBtn:hover, #ContinueBookingBtn:hover, #PayAndBookNowBtn:hover, #GoToProfileBtn:hover {
+    opacity: 0.7;
+}
+
+#CreateNewAccountToContinueBtn, #SignInToContinueBtn, #GoToProfileBtn {
+    width: 400px;
+    padding: 10px;
+}
+
+
+/****************** Booking/Extras.aspx ******************/
+
+#CheckedInBaggageDiv,  #CabinBaggageDiv, #OtherExtrasDiv {
+    border: 1px solid #E0E0E0;
+    border-radius: 10px;
+    height: 250px;
+} 
+
+#CheckedInBaggageDiv img {
+    width: 90px;
+    display: block;
+    position: relative;
+    left: 20px;
+}
+
+#CheckedInBaggageDiv div, #CabinBaggageDiv div {
+    text-align: center;
+}
+
+#TotalWeightDiv {
+    position: absolute;
+    top: 40px;
+    right: 10px;
+}
+
+#TotalWeightDiv input[type="button"] {
+    width: 50px;
+    height: 30px;
+    font-size: 20px;
+}
+
+#NumberOfBaggages {
+    display: inline-block;
+    width: 20px;
+    height: 30px;
+    position: relative;
+    text-align: center;
+    font-size: 20px;
+}
+
+#ExtrasDiv label {
+    border: 3px solid #E0E0E0;
+    width: 140px;
+    height: 70px; 
+    font-size: 17px;
+    font-weight: normal;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+#ExtrasDiv label:hover, #OtherExtrasDiv div:hover:not(:last-child) {
+    border-color: #CD0082;
+}
+
+#ExtrasDiv label span {
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+ }
+
+#ExtrasDiv input[type="radio"] {
+    display: none;
+}
+
+#ExtrasDiv input[type="radio"]:checked + label  {
+    border-color: #CD0082;
+    color: #CD0082;
+}
+
+#ExtrasDiv small {
+    position: relative;
+    top: -10px;
+    color: #CD0082;
+}
+
+#ExtrasDiv div {
+    display: inline-block;
+}
+
+#OtherExtrasDiv div {
+    margin-top: 10px;
+    margin-right: 20px;  
+    border: 3px solid #E0E0E0;
+    padding-top: 5px;
+    padding-left: 10px; 
+}
+
+#OtherExtrasDiv div:not(:last-child) {
+    height: 50px;
+}
+ 
+#OtherExtrasDiv label {
+    width: 240px;
+    font-weight: bold;
+    border: 0;
+    position: relative;
+    top: -5px;
+}
+
+#OtherExtrasDiv input[type="checkbox"] {
+    width: 25px;
+    height: 25px;   
+}
+
+#SelectSeatDiv {
+    width: 500px;
+    height: 100px;
+}
+
+#SelectSeatDiv img {
+    width: 50px;
+}
+
+#SelectSeatDiv span {
+    font-size: 18px;
+}
+
+#SelectSeatBtn {
+    height: 50px;
+    width: 130px;
+    margin-top: 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    border-color: #C5027C;
+    background-color: #fff;
+    color: #C5027C;
+}
+
+#SelectSeatBtn:hover {
+    background-color: #C5027C;
+    color: #fff;
+}
+ 
+
+/****************** Booking/SelectSeat.aspx ******************/
+
+#SeatSelectionDiv {
+    position: relative;
+    text-align: center;
+}
+
+#AirplaneInsideImg {
+    position: relative;
+    height: 140em;
+}
+
+#SeatsDiv {
+    position: absolute;
+    top: 160px;
+    left: 38%;
+}
+
+#SeatsDiv input[type="radio"] {
+    opacity: 0.011;
+    z-index: 100;
+}
+
+#SeatsDiv input[type="radio"]:checked + label  {
+    background-color: #CD0082;
+}
+
+ #SeatsDiv label {
+    border: 1px solid gray;
+    border-radius: 7px 7px 0 0;
+    width: 20px;
+    height: 26px;
+    margin-bottom: 28px; 
+    color: #fff;
+ }
+
+#SeatsDiv span:nth-child(6n):after  {
+    content: "\A";
+    white-space: pre;
+}
+
+#SeatsDiv span:nth-child(6n + 3)  {
+    margin-right: 21px;
+}
+
+#RowsDiv {
+    position: absolute;
+    top: 0.3%;
+    left: 50%;
+}
+
+.row {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.rowSeat {
+    margin-bottom: 35px;
+    font-weight: bold;
+}
+
+#BookingFlowDiv, #SeatInfoDiv {
+    background-color: #f6eeee;
+    border: 2px solid #C5027C;
+    border-radius: 5px;
+    position: absolute;
+    top: 10px;
+    text-align: left;
+    padding: 20px;
+}
+
+#BookingFlowDiv {
+    width: 400px;
+}
+
+#BookingFlowDiv h4 {
+    color: #073886;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+#BookingFlowDiv p {
+    font-size: 13px;
+}
+
+#BookingFlowDiv #ContinueBookingDiv {
+    text-align: center;
+}
+
+#BookingFlowDiv .airplaneBetweenAirports {
+    top: 2px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 22px;
+    height: 22px;
+}
+
+#SelectedSeatInfoDiv {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+#SeatInfoDiv {
+    right: 10px;
+    width: 200px;
+}
+
+#SeatInfoDiv label {
+    border: 1px solid gray;
+    border-radius: 7px 7px 0 0;
+    width: 20px;
+    height: 22px;
+}
+
+#SeatInfoDiv span {
+    position: relative;
+    top: -10px;
+    left: 2px;
+}
+
+.availableSeatLabel {
+    background-color: #5DA516;
+    cursor: pointer;
+}
+
+.selectedSeatLabel {
+    background-color: #CD0082;
+}
+
+.reservedSeatLabel {
+    background-color: #D6D6D6;
+}
+
+.reservedSeatLabel, .unavailableSeatLabel, .noMoreSeats {
+    cursor: not-allowed;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currentlynot supported by any browser */
+}
+
+
+#SeatsDiv hr {
+    height: 1px;
+    border-top: 1px dotted #CD0082;
+    padding: 0;
+    margin: 0px;
+    position: absolute;
+    left: 10px;
+    width: 500px; 
+}
+
+#SeatsDiv .infoSpan {
+    position: absolute;
+    left: 320px;
+    width: 150px;
+    font-size: 17px;
+    font-weight: bold;
+    text-align: left;
+}
+
+#SeatsDiv .infoSpan span {
+    font-size: 10.4px;
+    font-weight: normal;
+    display: block;
+    line-height: 1.6;
+}
+
+.upperHr {
+    top: -8px;
+}
+
+.firstClassHr {
+    top: 100px;
+}
+
+.firstClassInfoSpan {
+    top: 10px;
+}
+
+.businessClassHr {
+    top: 205px;
+}
+
+.businessClassInfoSpan {
+    top: 120px;
+}
+
+.economyClassInfoSpan {
+    top: 250px;
+}
+
+
+/****************** Booking/Payment.aspx ******************/
+#BillingDetailsDiv .fancyTextBox input[type="text"], #CreditCardDetailsDiv .fancyTextBox input[type="text"], 
+#CreditCardDetailsDiv .fancyTextBox input[type="password"] {
+    margin-left: 7px;
+}
+
+#BillingDetailsDiv, #PaymentOptionsDiv , #CreditCardDetailsDiv {
+    text-align: center;
+}
+
+#BillingDetailsDiv h3, #PaymentOptionsDiv h3 {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+#BillingDetailsDiv .fancyTextBox, #CreditCardDetailsDiv .fancyTextBox {
+    text-align: left;
+    width: 365px;
+}
+
+#BillingDetailsDiv .fancyTextBox:nth-child(-n+3), #CreditCardDetailsDiv .fancyTextBox:nth-child(n + 4) {
+    width: 170px;
+}
+
+#BillingDetailsDiv .fancyTextBox:nth-child(-n+3) input[type="text"], 
+#CreditCardDetailsDiv .fancyTextBox:nth-child(n + 4) input[type="password"] {    
+    width: 140px;
+}
+
+#BillingDetailsDiv .fancyTextBox:nth-column(-n+3) {
+    border: 3px solid red;
+}
+
+#AcceptedCardsDiv {
+    margin-bottom: 20px;
+}
+
+#AcceptedCardsSpan {
+    color: #BDBDBD;
+    font-size: 11px;
+    font-weight: bold;
+    margin-left: 70px;
+}
+
+#CardDetailsDiv .fancyTextBox {
+    display: block;
+}
+
+#AcceptedCardsImage {
+    width: 150px;
+    height: 15px;
+}
+
+#CardDateExpirationDiv label:nth-child(1) {
+    margin-right: -15px;
+}
+
+#CardDateExpirationDiv select {
+    display: inline-block;
+}
+
+#MonthsPaymentDropDown   {
+    width: 40px;
+}
+
+#YearsPaymentDropDown {
+    width: 55px;
+}
+
+#TotalPriceDiv {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 18px;
+    margin-right: 220px;
+}
+
+#SaveCreditCardDiv {
+    margin-left: 200px;
+    margin-top: -30px;
+}
+
+#SaveCreditCardDiv label {
+    font-size: 15px;
+    margin-left: 5px;
+    font-weight: normal;
+}
+
+#SaveCreditCardCheckBox {
+    width: 20px;  
+    height: 20px;
+}
+
+#PayAndBookNowDiv {
+    text-align: center;
+    margin-top: 50px;
+    margin-right: 20px;
+}
+
+#PayAndBookNowBtn {
+    width: 365px;
+    height: 50px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/****************** Administration ******************/
+.administrationGridView {
+    margin-top: 50px;
+    padding: 50px;
+    margin-bottom: 50px;
+    border-radius: 15px;
+}
+
+    .administrationGridView th, .administrationGridView td {
+        border: none;
+        text-align: center;
+        padding: 5px;
+    }
+
+.administrationAddEntityPanel {
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.administrationAddEntityPanel input[type="text"], .administrationAddEntityPanel input[type="number"], 
+.administrationAddEntityPanel select {
+    width: 200px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+/****************** Administration/ManageFlights.aspx ******************/
+#CreateFlightPanel {
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    width: 800px;
+}
+
+    #CreateFlightPanel h3 {
+        margin-bottom: 30px;
+    }
+
+    #CreateFlightPanel label {
+        display: block;
+    }
+
+    #CreateFlightPanel input[type=text] {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+#AddFlightNumberTextBox {
+     float: left; 
+     margin-right: 10px;
+}
+
+#GenerateFlightNumberBtn {
+    display: block;
+    margin-bottom: 20px;
+}
+
+
+/****************** Administration/SendMail.aspx ******************/
+
+#SendMailDiv h4 {
+    margin-top: 35px;
+}
+
+#SubjectTextBox {
+    width: 350px; 
+}
+
+#MailButtonsDiv {
+    margin-top: 20px;
+}
+
+/****************** FightInfo.aspx ******************/
+
+#SearchConcreteFlightPanel {
+    margin-top: 20px;
+    border-radius: 10px 10px 0 0;
+    background-color: #C5027C;
+    padding: 20px;
+}
+
+#SearchConcreteFlightPanel .fancyTextBox  {
+    position: relative;
+    top: 7px;
+}
+
+#SearchedFlightNumberTextBox {
+    background-color: #C5027C;
+    color: #BDBDBD;
+    margin-left: 6px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#SearchFligthNumberBtn {
+    width: 150px;
+    height: 49px;
+    color: #2D3E5C;
+    border: 0;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: #F1C933;
+    border-radius: 5px;
+    
+}
+
+#SortFlightsPanel {
+    width: 100%;
+    height: 50px;
+    background-color: #073886;
+}
+
+#SortFlightsPanel div {
+    position: relative;
+    top: 11px;
+    left: 20px;
+    font-size: 15px;
+    color: #fff;
+}
+
+#SortFlightsPanel a {
+    margin-right: 10px;
+    margin-left: 3px;
+}
+
+#SortFlightsPanel a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+#SortFlightsPanel div span {
+    margin-left: 20px;
+    font-size: 18px;    
+}
+
+#FlightInfoGridView {
+    width: 100%;
+    border: 0;
+}
+
+#FlightInfoGridView tr th, #FlightInfoGridView tr td {
+    border: 0;
+    text-align: center;
+    padding: 15px;
+}
+
+#FlightInfoGridView tr {
+    
+}
+
+#FlightInfoGridView th {
+    font-size: 18px;
+    background-color: #f6eeee;
+}   
+
+/****************** Account/Manage.aspx ******************/
+#UpcomingTripsDiv {
+    margin-top: 40px;
+    margin-bottom: 40px; 
+}
+
+#UpcomingTripsDiv h3 {
+    margin-left: 40px; 
+}
+
+#UpcomingTripsDiv .divBox {
+    margin-top: 10px;
+    width: 100%;
+    text-align: left;
+    padding-left: 20px;
+}
+
+#UpcomingTripsDiv .divBox .airplaneFlyOutImage {
+    width: 25px;
+    height: 25px;
+    left: 395px;
+}
+
+#UpcomingTripsDiv .divBox a {
+    color: #C5027C; 
+    float: right;
+    margin-right: 40px;
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+#UpcomingTripsDiv .flightNumberSpan {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#UpcomingTripsDiv .fromAirportSpan {
+    margin-right: 60px;
+}
+
+#UpcomingTripsDiv .fromAirportSpan, #UpcomingTripsDiv .toAirportSpan {
+    font-weight: bold;
+    font-size: 20px;
+    color: #3E007F;
+    position: relative;
+    left: 150px;
+}
+
+#UpcomingTripsDiv .flightDateSpan, #UpcomingTripsDiv .flightTimeSpan {
+    font-weight: bold;
+    position: relative;
+}
+
+#UpcomingTripsDiv .flightDateSpan {
+    bottom: 10px;
+    left: 400px;
+}
+
+.flightTimeSpan {
+    top: 10px;
+    left: 310px;
+}
+
+.divBox {
+    border: 2px solid #C5027C;
+    border-radius: 5px;
+    width: 250px;
+    margin-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #F2F2F2;
+    display: inline-block;
+    text-align: center;
+    color: #000;
+}
+
+.divBox:hover {
+    box-shadow: 0 4px 28px 10px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.divBox a {
+    text-decoration: none;
+    color: none;
+    cursor: auto;
+}
+
+.divBox a:link, .divBox a:visited {
+    text-decoration: none;
+    color: none;
+    cursor: auto;
+}
+
+.divBox a:hover {
+    text-decoration: none;
+}
+
+.divBox h5 {
+    font-size: 15px;
+}
+
+.divBox img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+/****************** Account/Profile.aspx ******************/
+ 
+#PersonalDetailsDiv {
+    margin-top: 20px;   
+}
+
+#ContactDetailsDiv {
+    margin-top: 30px;
+}
+
+#PersonalDetailsDiv h4, #ContactDetailsDiv h4 {
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+#FirstNameTextBox, #LastNameTextBox {
+    text-transform: capitalize;
+}
+
+.fancyTextBox {
+    margin-bottom: 30px;
+    border: 3px solid #E0E0E0;
+    border-radius: 5px;
+    width: 310px;
+    padding: 3px 0 3px 10px;
+    display: inline-block;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.fancyTextBox label {
+    font-size: 11px;
+    user-select: none;
+    color: #BDBDBD;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.fancyTextBox select {
+    margin-left: -4px;
+    cursor: pointer;
+}
+
+.fancyTextBox input[type="text"], .fancyTextBox input[type="password"], .fancyTextBox select {
+    border: 0;
+    display: block; 
+    width: 100%;
+    cursor: pointer;
+}
+
+.fancyTextBox input[type=text]:focus, .fancyTextBox input[type="password"]:focus, .fancyTextBox select:focus {
+    outline: none;
+    cursor: pointer;
+}
+
+.buttonBox {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#SavePersonalInfoDataBtn {
+    width: 120px;
+}
+
+#SavePersonalInfoDataBtn, #SearchBtn {
+    background-color: #C5027C;
+    height: 50px;
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+}
+
+#SavePersonalInfoDataBtn:hover, #SearchBtn:hover {
+    opacity: 0.7;
+} 
+
+.errorMessages {
+    padding: 20px;
+    margin-top: 20px;
+    letter-spacing: 1px;
+    color: #ca0038;     
+    border: 5px;
+    font-size: 15px;
+}
+
+
+/****************** Account/Settings.aspx ******************/
+#UserSettingsDiv .row {
+   margin-bottom: 25px;
+}
+
+.toggle.ios, .toggle-on.ios, .toggle-off.ios { 
+    border-radius: 20px; 
+}
+  .toggle.ios .toggle-handle { 
+    border-radius: 20px; 
+  }
+
+
+/****************** Account/CreditCards.aspx ******************/
+.creditCardDiv, .previousTripDiv {
+    border: 2px solid #C5027C;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.previousTripDiv:last-of-type, .creditCardDiv:last-of-type {
+    margin-bottom: 20px;  
+}
+
+.creditCardDiv p, .previousTripDiv p {
+    font-weight: bold;
+}
+
+.creditCardDiv p span, .previousTripDiv p span {
+    font-weight: normal;
+}
+ 
+
+/****************** Account/Notifications.aspx ******************/
+#AllNotificationsDiv {
+    margin-top: 30px;
+}
+
+.notificationsP a {
+    text-decoration: none;
+    color: initial;
+}
+
+.notificationsP:hover {
+    text-decoration: underline;
+}
+
+.pagerBtns, .currentPageBtn {
+    color: #666;
+    font: 14px/24px sans-serif;
+    display: inline-block;
+    padding: 0px 9px;
+    margin-right: 4px;
+    border-radius: 3px;
+    border: solid 1px #c0c0c0;
+    background: #e9e9e9;
+    box-shadow: inset 0px 1px 0px rgba(255,255,255, .8), 0px 1px 3px rgba(0,0,0, .1);
+    font-size: .875em;
+    font-weight: bold;
+    text-decoration: none;
+    color: #717171;
+    text-shadow: 0px 1px 0px rgba(255,255,255, 1);
+}
+
+.pagerBtns:hover {
+    background: #fefefe;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FEFEFE), to(#f0f0f0));
+    background: -moz-linear-gradient(0% 0% 270deg,#FEFEFE, #f0f0f0);
+}
+
+.pagerBtns:hover, .currentPageBtn:hover {
+    text-decoration: none;
+}
+
+.currentPageBtn {
+    border: none;
+    background: #616161;
+    box-shadow: inset 0px 0px 8px rgba(0,0,0, .5), 0px 1px 0px rgba(255,255,255, .8);
+    color: #f0f0f0;
+    text-shadow: 0px 0px 3px rgba(0,0,0, .5);
+}
+
+
+/****************** News.aspx ******************/
+#ShowByCategoryDiv {
+    margin: 20px;
+}
+
+#ShowByCategoryDiv select {
+    width: 120px;
+
+}
+
+.news {
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 0 20px 10px 20px;
+    width: 700px;
+    text-align: justify;
+}
+
+
+
+#NoNewsForCategoryLabel {
+    position: relative;
+    top: 20px;
+    left:20px;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+#NewsDiv a {
+    color: #000;
+}
+
+#NewsDiv a:hover {
+    text-decoration: none;   
+} 

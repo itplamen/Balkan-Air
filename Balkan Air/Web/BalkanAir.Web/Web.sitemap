@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="~/" title="Home"  description="Home Page">
+    <siteMapNode url="~/Account/Register" title="Register" description="Sign up, so you can book flights" />
+    <siteMapNode url="~/Account/Login" title="Log in" />
+    <siteMapNode url="~/Account/ForgottenPassword" title="Forgotten password" />
+    
+    <siteMapNode url="~/FlightInfo" title="Flight info" description="Information about all flights" />
+    <siteMapNode url="~/News" title="News" description="Get latest news" />
+    <siteMapNode url="~/ViewNews" title="View news" description="View selected news" />
+    <siteMapNode url="~/About" title="About" description="About Balkan Air" />
+    <siteMapNode url="~/Contact" title="Contact" description="Contact with Balkan Air" />
+    
+    <siteMapNode title="Booking" description="Book your flight">
+      <siteMapNode url="~/Booking/SelectFlight" title="Select flight" description="Select flight and travel class" />
+      <siteMapNode url="~/Booking/Extras" title="Extras" description="Add checked-in and cabin baggages, sports equipment, music equipment..." />
+      <siteMapNode url="~/Booking/SelectSeat" title="Select seat" description="Select your favourite seat, depending of your selected travel class" />
+      <siteMapNode url="~/Booking/Payment" title="Payment" description="Pay for your booking" />
+    </siteMapNode>
+    
+    <siteMapNode url="~/Administration/AdministrationHome" title="Administration" roles="Administrator">
+      <siteMapNode url="~/Administration/ManageAircraftManufacturers" title="Manage aircraft manufacturers" />
+      <siteMapNode url="~/Administration/ManageAircrafts" title="Manage aircrafts" />
+      <siteMapNode url="~/Administration/ManageAirports" title="Manage airports" />
+      <siteMapNode url="~/Administration/ManageBookings" title="Manage bookings" />
+      <siteMapNode url="~/Administration/ManageCountries" title="Manage countries" />
+      <siteMapNode url="~/Administration/ManageFlights" title="Manage flights" />
+      <siteMapNode url="~/Administration/ManageNews" title="Manage news" />
+      <siteMapNode url="~/Administration/ManageNotifications" title="Manage notifications" />
+      <siteMapNode url="~/Administration/ManageUserRoles" title="Manage user roles" />
+      <siteMapNode url="~/Administration/ManageUsers" title="Manage users" />
+      <siteMapNode url="~/Administration/SendMail" title="Send mail" />
+    </siteMapNode>
+  
+    <siteMapNode url="~/Account/Manage" title="Account">
+     <siteMapNode url="~/Account/Profile" title="Profile" />
+      <siteMapNode url="~/Account/Settings" title="Settings">
+        <siteMapNode url="~/Account/ChangePassword" title="Change password" />
+      </siteMapNode>
+      <siteMapNode url="~/Account/CreditCards" title="Credit cards" />
+      <siteMapNode url="~/Account/PreviousTrips" title="Previous trips" />
+      <siteMapNode url="~/Account/Notifications" title="Notifications" />
+      <siteMapNode url="~/Account/ManagePassword" title="Manage password" />
+      <siteMapNode url="~/Account/ResetPassword" title="Reset password" />
+    </siteMapNode>
+  
+  </siteMapNode>
+</siteMap>

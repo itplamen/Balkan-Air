@@ -1,0 +1,16 @@
+C:\Users\itplamen\Desktop\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\BalkanAir.Data.Models.dll.config
+C:\Users\itplamen\Desktop\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\BalkanAir.Data.Models.dll
+C:\Users\itplamen\Desktop\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\BalkanAir.Data.Models.pdb
+C:\Users\itplamen\Desktop\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\EntityFramework.dll
+C:\Users\itplamen\Desktop\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\itplamen\Desktop\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\itplamen\Desktop\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\itplamen\Desktop\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\EntityFramework.xml
+C:\Users\itplamen\Desktop\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\itplamen\Desktop\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\itplamen\Desktop\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\itplamen\Desktop\Balkan Air\Data\BalkanAir.Data.Models\obj\Debug\BalkanAir.Data.Models.dll
+C:\Users\itplamen\Desktop\Balkan Air\Data\BalkanAir.Data.Models\obj\Debug\BalkanAir.Data.Models.pdb
+C:\Users\itplamen\Desktop\Balkan Air\Data\BalkanAir.Data.Models\obj\Debug\BalkanAir.Data.Models.csprojResolveAssemblyReference.cache
+C:\Users\itplamen\Desktop\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\BalkanAir.Common.dll
+C:\Users\itplamen\Desktop\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\BalkanAir.Common.pdb

@@ -1,0 +1,229 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="BalkanAir.Web.SiteMaster" %>
+
+<%@ Import Namespace="System.Globalization" %>
+<%@ Import Namespace="BalkanAir.Web.Common" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Balkan Air &#174;</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="Content/jquery-ui.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="Content/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="Content/slick/slick-theme.css" />
+    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+    <style type="text/css">
+        .slider {
+            width: 90%;
+            margin: 50px auto;
+            background-color: #f6eeee;
+        }
+
+        .slick-slide {
+            margin: 0px 3px;
+        }
+
+            .slick-slide img {
+                width: 100%;
+            }
+
+        .slick-prev:before,
+        .slick-next:before {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <form runat="server">
+
+        <asp:ScriptManager runat="server" EnablePartialRendering="true">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <asp:ScriptReference Path="~/Scripts/jquery-ui.js" />
+                <asp:ScriptReference Path="~/Content/slick/slick.js" />
+                <asp:ScriptReference Path="~/Scripts/home-page.js" />
+                <asp:ScriptReference Path="~/Scripts/Booking/select-flight.js" />
+                <asp:ScriptReference Path="~/Scripts/Booking/extras.js" />
+                <asp:ScriptReference Path="~/Scripts/Booking/select-seat.js" />
+                <asp:ScriptReference Path="~/Scripts/Account/profile.js" />
+                <asp:ScriptReference Path="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" />
+                <asp:ScriptReference Path="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" runat="server" href="~/">Balkan Air</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <%--<asp:Menu ID="NavigationMenu" ClientIDMode="Static" runat="server" EnableViewState="false" 
+                            IncludeStyleBlock="false" Orientation="Horizontal" DataSourceID="SiteMapDataSource" 
+                            SkipLinkText="" StaticDisplayLevels="2" />--%>
+                    <ul class="nav navbar-nav">
+                        <li><a href="<%= Page.ResolveUrl(Pages.HOME) %>">Home</a></li>
+                        <li><a href="<%= Page.ResolveUrl(Pages.ABOUT) %>">About</a></li>
+                        <li><a href="<%= Page.ResolveUrl(Pages.NEWS) %>">News</a></li>
+                        <li><a href="<%= Page.ResolveUrl(Pages.CONTACT) %>">Contact</a></li>
+                        <li><a href="<%= Page.ResolveUrl(Pages.FLIGHT_INFO) %>">Flight Info</a></li>
+                        <li><a href="#">Developers</a></li>
+                        <li class="dropdown" runat="server" visible="false" id="AdministrationMenu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<%= Page.ResolveUrl(Pages.ADMINISTRATION_HOME) %>">Administration - Home</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_AIRCRAFT_MANUFACTURERS) %>">Manage Aircraft Manufacturers</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_AIRCRAFTS) %>">Manage Aircrafts</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_AIRPORTS) %>">Manage Airports</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_BOOKINGS) %>">Manage Bookings</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_COUNTRIES) %>">Manage Countries</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_FLIGHTS) %>">Manage Flights</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_NEWS) %>">Manage News</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_NOTIFICATIONS) %>">Manage Notifications</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_USER_ROLES) %>">Manage User Roles</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_USERS) %>">Manage Users</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.SEND_MAIL) %>">Send Mail</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                    <%--<div class="navbar-form navbar-left">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </div>--%>
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="~/Account/Register">Register</a></li>
+                                <li><a runat="server" href="~/Account/Login">Log in</a></li>
+                            </ul>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: this.GetUserInfo() %>!
+                                    </a>
+                                </li>
+                                <li>
+                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                </li>
+                                <li>
+                                    <div class="btn-group">
+                                        <span id="NotificationsGlyphiconSpan" data-toggle="dropdown" class="dropdown-toggle">
+                                            <span id="GlyphiconBell" class="glyphicon glyphicon-bell text-primary"></span>
+                                            <span id="BadgeSpan" class="badge badge-notify"><%: this.NumberOfUnreadNotifications %></span>
+                                        </span>
+
+                                        <ul class="dropdown-menu notificationsUl">
+                                            <asp:Repeater ID="LatestNotificationsRepeater" runat="server"
+                                                ItemType="BalkanAir.Data.Models.UserNotification"
+                                                SelectMethod="LatestNotificationsRepeater_GetData">
+                                                <ItemTemplate>
+                                                    <li class="<%# Item.IsRead ? "read" : "unread" %>">
+                                                        <a href="News.aspx">
+                                                            <span class="notificationContentSpan">
+                                                                <%#: Item.Notification.Content %>
+                                                                <br />
+                                                            </span>
+                                                            <small class="notificationDateSmall">Received on <%#: Item.DateReceived.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %>
+                                                                at <%#: Item.DateReceived.ToString("HH:mm", CultureInfo.InvariantCulture) %>
+                                                            </small>
+                                                        </a>
+                                                    </li>
+                                                </ItemTemplate>
+                                                <SeparatorTemplate>
+                                                    <hr />
+                                                </SeparatorTemplate>
+                                            </asp:Repeater>
+
+                                            <hr />
+                                            <div id="LatestNotificationsButtonsDiv">
+                                                <a href="<%= Page.ResolveClientUrl(Pages.NOTIFICATIONS) %>" class="btn btn-primary">See all
+                                                </a>
+
+                                                <asp:Button ID="MarkAllNotificationsAsReadBtn" runat="server" Text="Mark all as read"
+                                                    UseSubmitBehavior="false" CssClass="btn btn-default" OnClick="MarkAllNotificationsAsReadBtn_Click" />
+                                            </div>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            <asp:Panel ID="EmailNotConfirmedPanel" runat="server" Visible="false" ClientIDMode="Static" CssClass="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                Please, go to your email and confirm your account or click 
+                <asp:LinkButton ID="SendAnotherConfirmationEmailLinkButton" Text="send me another confirmation email" runat="server"
+                    OnClick="SendAnotherConfirmationEmailLinkButton_Click" />.
+            </asp:Panel>
+
+            <asp:SiteMapPath ID="SiteMapPathBreadcrump" runat="server" PathSeparator=" / " />
+
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> Balkan Air Bulgaria. All rights reserved. </p>
+            </footer>
+        </div>
+
+        <asp:HiddenField ID="SelectedUnreadNotificationIdHiddenField" runat="server" ClientIDMode="Static" />
+
+        <asp:UpdateProgress ID="UpdateProgress" runat="server" ClientIDMode="Static">
+            <ProgressTemplate>
+                <div id="OverlayDiv">
+                    <div id="LoadingProgressDiv">
+                        <span id="LoadingSpan">Loading ...</span>
+                        <img src="~/Content/Images/loading.gif" id="LoadingGif" alt="Loading gif" runat="server" />
+                    </div>
+                </div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+    </form>
+
+    <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" ShowStartingNode="false" />
+
+    <%--<script >
+        $('.searchFlightElement').click(function () {
+            $('#UpdateProgress').show();
+        });
+    </script>--%>)
+</body>
+</html>

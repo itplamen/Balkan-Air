@@ -1,0 +1,4 @@
+C:\Users\itplamen\Desktop\Balkan Air\Web\BalkanAir.Web.Common\bin\Debug\BalkanAir.Web.Common.dll
+C:\Users\itplamen\Desktop\Balkan Air\Web\BalkanAir.Web.Common\bin\Debug\BalkanAir.Web.Common.pdb
+C:\Users\itplamen\Desktop\Balkan Air\Web\BalkanAir.Web.Common\obj\Debug\BalkanAir.Web.Common.dll
+C:\Users\itplamen\Desktop\Balkan Air\Web\BalkanAir.Web.Common\obj\Debug\BalkanAir.Web.Common.pdb
