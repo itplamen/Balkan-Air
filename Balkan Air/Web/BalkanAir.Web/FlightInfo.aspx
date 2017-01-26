@@ -32,12 +32,12 @@
             <asp:BoundField DataField="Number" HeaderText="Flight No." />
             <asp:TemplateField HeaderText="From">
                 <ItemTemplate>
-                    <%#: Item.FromAirport.Name %> (<%#: Item.FromAirport.Abbreviation %>)
+                    <%#: Item.DepartureAirport.Name %> (<%#: Item.DepartureAirport.Abbreviation %>)
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="To">
                 <ItemTemplate>
-                    <%#: Item.ToAirport.Name %> (<%#: Item.ToAirport.Abbreviation %>)
+                    <%#: Item.ArrivalAirport.Name %> (<%#: Item.ArrivalAirport.Abbreviation %>)
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Departure">

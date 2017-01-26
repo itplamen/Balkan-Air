@@ -42,9 +42,15 @@
 
         public virtual Aircraft Aircraft { get; set; }
 
-        public virtual Airport FromAirport { get; set; }
+        [ForeignKey("DepartureAirport")]
+        public int DepartureAirportId { get; set; }
 
-        public virtual Airport ToAirport { get; set; }
+        public virtual Airport DepartureAirport { get; set; }
+
+        [ForeignKey("ArrivalAirport")]
+        public int ArrivalAirportId { get; set; }
+
+        public virtual Airport ArrivalAirport { get; set; }
 
         public virtual ICollection<TravelClass> TravelClasses { get; set; }
 
@@ -56,16 +62,6 @@
             get
             {
                 return this.Arrival - this.Departure;
-            }
-        }
-
-        [NotMapped]
-        public bool AreFromAndToAirportsValid
-        {
-            get
-            {
-                return this.FromAirport.Name != this.ToAirport.Name &&
-                    this.FromAirport.Abbreviation != this.ToAirport.Abbreviation;
             }
         }
 

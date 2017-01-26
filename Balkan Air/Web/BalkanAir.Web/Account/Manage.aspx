@@ -19,9 +19,9 @@
             <ItemTemplate>
                 <div class="divBox">
                     <span class="flightNumberSpan"><%#: Item.Flight.Number %></span>
-                    <span class="fromAirportSpan"><%#: Item.Flight.FromAirport.Name %></span>
+                    <span class="fromAirportSpan"><%#: Item.Flight.DepartureAirport.Name %></span>
                     <input type="image" class="airplaneFlyOutImage" alt="Airplane image" src="../Content/Images/airplane_fly_out_image.png" />
-                    <span class="toAirportSpan"><%#: Item.Flight.ToAirport.Name %></span>
+                    <span class="toAirportSpan"><%#: Item.Flight.ArrivalAirport.Name %></span>
                     <span class="flightDateSpan"><%#: Item.Flight.Departure.ToString("dddd dd, MMMM", CultureInfo.InvariantCulture) %></span>
                     <span class="flightTimeSpan"><%#: Item.Flight.Departure.ToString("HH:mm", CultureInfo.InvariantCulture) %></span>
                     <a href="#">DETAILS</a>

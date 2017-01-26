@@ -52,5 +52,28 @@
         {
             return new BalkanAirDbContext();
         }
+
+        // Use to solve the error "FOREIGN KEY constraint may cause cycles or multiple cascade paths..." 
+        // about Flight and Airport relationship.
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Use fluent api to specify the actions the error message suggests.
+            modelBuilder
+                .Entity<Airport>()
+                .HasMany(i => i.DeparturesFlights)
+                .WithRequired()
+                .WillCascadeOnDelete(false);
+
+            modelBuilder
+                .Entity<Airport>()
+                .HasMany(i => i.ArrivalsFlights)
+                .WithRequired()
+                .WillCascadeOnDelete(false);
+
+            // Another option is to remove all CASCADE DELETES.
+            // modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+        }
     }
 }

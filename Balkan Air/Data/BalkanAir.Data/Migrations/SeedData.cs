@@ -336,15 +336,15 @@
 
         private void SeedCountries()
         {
-            this.Countries.Add(new Country() { Name = "Bulgaria" });
-            this.Countries.Add(new Country() { Name = "Portugal" });
-            this.Countries.Add(new Country() { Name = "Spain" });
-            this.Countries.Add(new Country() { Name = "Italy" });
-            this.Countries.Add(new Country() { Name = "Germany" });
-            this.Countries.Add(new Country() { Name = "United Kingdom" });
-            this.Countries.Add(new Country() { Name = "France" });
-            this.Countries.Add(new Country() { Name = "Czech Republic" });
-            this.Countries.Add(new Country() { Name = "Other" });
+            this.Countries.Add(new Country() { Name = "Bulgaria", Abbreviation = "BG" });
+            this.Countries.Add(new Country() { Name = "Portugal", Abbreviation = "PT" });
+            this.Countries.Add(new Country() { Name = "Spain", Abbreviation = "ES" });
+            this.Countries.Add(new Country() { Name = "Italy", Abbreviation = "IT" });
+            this.Countries.Add(new Country() { Name = "Germany", Abbreviation = "DE" });
+            this.Countries.Add(new Country() { Name = "United Kingdom", Abbreviation = "UK" });
+            this.Countries.Add(new Country() { Name = "France", Abbreviation = "FR" });
+            this.Countries.Add(new Country() { Name = "Czech Republic", Abbreviation = "CZ" });
+            this.Countries.Add(new Country() { Name = "Other", Abbreviation = "NO" });
         }
 
         private void SeedFlightStatuses()
@@ -356,7 +356,7 @@
             this.FlightStatuses.Add(new FlightStatus() { Name = "Departed" });
             this.FlightStatuses.Add(new FlightStatus() { Name = "Taxiing" });
             this.FlightStatuses.Add(new FlightStatus() { Name = "Boarding" });
-            this.FlightStatuses.Add(new FlightStatus() { Name = "Ckeck-in" });
+            this.FlightStatuses.Add(new FlightStatus() { Name = "Check-in" });
         }
 
         private void SeedAirports()
@@ -474,8 +474,8 @@
         private void SeedFlights()
         {
             // Sofia - Madrid
-            this.AddFlight(this.Airports[0], this.Airports[5], DateTime.Now, 
-                DateTime.Now.AddHours(3), this.FlightStatuses[0], this.Aircrafts[0]);
+            this.AddFlight(this.Airports[0], this.Airports[5], new DateTime(2017, 2, 18, 11, 30, 0),
+                new DateTime(2017, 2, 18, 16, 30, 0), this.FlightStatuses[0], this.Aircrafts[0]);
 
             // Sofia - Madrid
             this.AddFlight(this.Airports[0], this.Airports[5], new DateTime(2017, 1, 18, 20, 30, 0),
@@ -490,8 +490,8 @@
                  new DateTime(2017, 2, 2, 23, 30, 0), this.FlightStatuses[1], this.Aircrafts[0]);
 
             // Sofia - Lisbon
-            this.AddFlight(this.Airports[0], this.Airports[2], DateTime.Now.AddHours(1),
-                DateTime.Now.AddHours(5), this.FlightStatuses[0], this.Aircrafts[1]);
+            this.AddFlight(this.Airports[0], this.Airports[2], new DateTime(2017, 2, 18, 10, 30, 0),
+                new DateTime(2017, 2, 14, 20, 30, 0), this.FlightStatuses[0], this.Aircrafts[1]);
 
             // Varna - Berlin
             this.AddFlight(this.Airports[1], this.Airports[12], new DateTime(2016, 12, 25, 18, 24, 0),
@@ -519,8 +519,8 @@
             this.Flights.Add(new Flight()
             {
                 Number = new FlightNumber(this.context).GetUniqueFlightNumber(),
-                FromAirport = fromAirport,
-                ToAirport = toAirport,
+                DepartureAirport = fromAirport,
+                ArrivalAirport = toAirport,
                 Departure = departure,
                 Arrival = arrival,
                 FlightStatus = flightStatus,

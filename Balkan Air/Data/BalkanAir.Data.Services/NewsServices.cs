@@ -41,7 +41,6 @@
             {
                 newsToUpdate.Title = news.Title;
                 newsToUpdate.Content = news.Content;
-                newsToUpdate.DateCreated = news.DateCreated;
                 newsToUpdate.IsDeleted = news.IsDeleted;
                 newsToUpdate.CategoryId = news.CategoryId;
 

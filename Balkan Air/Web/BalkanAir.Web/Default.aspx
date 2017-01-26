@@ -82,13 +82,13 @@
                     OnClick="OnCheapFlightLinkButtonClicked">
                     <div class="cheapFlightDiv">
                         <div class="fromAirportInfo">
-                            <span class="abbreviation"><%#: Item.FromAirport.Abbreviation %></span>
-                            <span><%#: Item.FromAirport.Name %></span>
+                            <span class="abbreviation"><%#: Item.DepartureAirport.Abbreviation %></span>
+                            <span><%#: Item.DepartureAirport.Name %></span>
                         </div>
                         <img src="Content/Images/airplane_fly_out_image.png" alt="Fly out image" />
                         <div class="toAirportInfo">
-                            <span class="abbreviation"><%#: Item.ToAirport.Abbreviation %></span>
-                            <span><%#: Item.ToAirport.Name %></span>
+                            <span class="abbreviation"><%#: Item.ArrivalAirport.Abbreviation %></span>
+                            <span><%#: Item.ArrivalAirport.Name %></span>
                         </div>
                         <div class="priceAndDateInfo">
                             <p class="price">&#8364; <%#: Item.GetCheapestPriceFromAllTravelClasses %></p>

@@ -2,3 +2,4 @@ C:\Users\itplamen\Desktop\Balkan Air\Common\BalkanAir.Common\bin\Debug\BalkanAir
 C:\Users\itplamen\Desktop\Balkan Air\Common\BalkanAir.Common\bin\Debug\BalkanAir.Common.pdb
 C:\Users\itplamen\Desktop\Balkan Air\Common\BalkanAir.Common\obj\Debug\BalkanAir.Common.dll
 C:\Users\itplamen\Desktop\Balkan Air\Common\BalkanAir.Common\obj\Debug\BalkanAir.Common.pdb
+C:\Users\itplamen\Desktop\Balkan Air\Common\BalkanAir.Common\obj\Debug\BalkanAir.Common.csprojResolveAssemblyReference.cache

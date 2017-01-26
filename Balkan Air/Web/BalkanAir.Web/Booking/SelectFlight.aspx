@@ -33,7 +33,7 @@
                             <hr />
                             <div id="FlightDepartureDetailsDiv">
                                 <span id="FlightNumberSpan"><%#: Item.Number %></span>
-                                <span id="FromAirportSpan"><%#: Item.FromAirport.Name %></span>
+                                <span id="FromAirportSpan"><%#: Item.DepartureAirport.Name %></span>
                                 <span id="DepartureSpan"><%#: Item.Departure.ToString("HH:mm") %></span>
                             </div>
                             <div id="FlightMiddleImage">
@@ -44,7 +44,7 @@
                             </div>
                             <div id="FlightDestinationDetailsDeiv">
                                 <span id="FlightDurationSpan"><%#: Item.Duration.Hours %> hr <%#: Item.Duration.Minutes %> min</span>
-                                <span id="ToAirportSpan"><%#: Item.ToAirport.Name %></span>
+                                <span id="ToAirportSpan"><%#: Item.ArrivalAirport.Name %></span>
                                 <span id="ArrivalSpan"><%#: Item.Arrival.ToString("HH:mm")  %></span>
                             </div>
                         </div>

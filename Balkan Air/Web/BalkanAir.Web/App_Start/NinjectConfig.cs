@@ -12,10 +12,11 @@ namespace BalkanAir.Web.App_Start
     using Ninject.Web.Common;
     using Ninject.Extensions.Conventions;
 
+    using BalkanAir.Common;
     using Data;
     using Data.Repositories;
     using Data.Repositories.Contracts;
-    using BalkanAir.Common;
+    using Infrastructure;
 
     public static class NinjectConfig 
     {
@@ -51,6 +52,7 @@ namespace BalkanAir.Web.App_Start
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
+                ObjectFactory.Initialize(kernel);
                 RegisterServices(kernel);
                 return kernel;
             }

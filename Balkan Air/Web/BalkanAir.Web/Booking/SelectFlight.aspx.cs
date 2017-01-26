@@ -47,7 +47,7 @@
             if (isDepartureAirprotIdValid && isDestinationAirportIdValid)
             {
                 flights = this.FlightsServices.GetAll()
-                    .Where(f => !f.IsDeleted && f.FromAirport.Id == departureAirprotId && f.ToAirport.Id == destinationAirportId)
+                    .Where(f => !f.IsDeleted && f.DepartureAirport.Id == departureAirprotId && f.ArrivalAirport.Id == destinationAirportId)
                     .OrderBy(f => f.Departure)
                     .ToList();
             }

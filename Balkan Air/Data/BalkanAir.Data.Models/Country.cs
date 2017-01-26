@@ -20,6 +20,11 @@
         [Index(IsUnique = true)]
         public string Name { get; set; }
 
+        [Required]
+        [MinLength(1)]
+        [MaxLength(2)]
+        public string Abbreviation { get; set; }
+
         public bool IsDeleted { get; set; }
 
         public virtual ICollection<Airport> Airports { get; set; }

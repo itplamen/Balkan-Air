@@ -117,8 +117,8 @@
             if (cheapFlight != null)
             {
                 int cheapFlightId = int.Parse(cheapFlight.CommandArgument);
-                string departureAirportId = this.FlightsServices.GetFlight(cheapFlightId).FromAirport.Id.ToString();
-                string destinationAirportId = this.FlightsServices.GetFlight(cheapFlightId).ToAirport.Id.ToString();
+                string departureAirportId = this.FlightsServices.GetFlight(cheapFlightId).DepartureAirport.Id.ToString();
+                string destinationAirportId = this.FlightsServices.GetFlight(cheapFlightId).ArrivalAirport.Id.ToString();
 
                 this.SearchFlight(departureAirportId, destinationAirportId);
             }
@@ -131,8 +131,8 @@
             if (selectedArticle != null)
             {
                 int articleId = int.Parse(selectedArticle.CommandArgument);
-                string departureAirportId = this.FlightsServices.GetFlight(articleId).FromAirport.Id.ToString();
-                string destinationAirportId = this.FlightsServices.GetFlight(articleId).ToAirport.Id.ToString();
+                string departureAirportId = this.FlightsServices.GetFlight(articleId).DepartureAirport.Id.ToString();
+                string destinationAirportId = this.FlightsServices.GetFlight(articleId).ArrivalAirport.Id.ToString();
 
                 this.SearchFlight(departureAirportId, destinationAirportId);
             }
@@ -148,8 +148,8 @@
         private void BindDestinationAirports(int departureAirportID)
         {
             var destinationAirports = this.FlightsServices.GetAll()
-                .Where(f => !f.IsDeleted && f.FromAirport.Id == departureAirportID)
-                .Select(f => f.ToAirport)
+                .Where(f => !f.IsDeleted && f.DepartureAirport.Id == departureAirportID)
+                .Select(f => f.ArrivalAirport)
                 .Distinct()
                 .OrderBy(a => a.Country.Name)
                 .ToList();

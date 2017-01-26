@@ -8,8 +8,8 @@
     {
         public Airport()
         {
-            this.FromFlights = new HashSet<Flight>();
-            this.ToFlights = new HashSet<Flight>();
+            this.DeparturesFlights = new HashSet<Flight>();
+            this.ArrivalsFlights = new HashSet<Flight>();
         }
 
         [Key]
@@ -32,10 +32,10 @@
 
         public virtual Country Country { get; set; }
 
-        [InverseProperty("FromAirport")]
-        public virtual ICollection<Flight> FromFlights { get; set; }
+        [InverseProperty("DepartureAirport")]
+        public virtual ICollection<Flight> DeparturesFlights { get; set; }
 
-        [InverseProperty("ToAirport")]
-        public virtual ICollection<Flight> ToFlights { get; set; }
+        [InverseProperty("ArrivalAirport")]
+        public virtual ICollection<Flight> ArrivalsFlights { get; set; }
     }
 }

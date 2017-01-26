@@ -36,8 +36,8 @@
                 else
                 {
                     this.selectedFlight = this.FlightsServices.GetFlight(booking.FlightId);
-                    this.FromAirportLabel.Text = this.selectedFlight.FromAirport.Name;
-                    this.ToAirportLabel.Text = this.selectedFlight.ToAirport.Name;
+                    this.FromAirportLabel.Text = this.selectedFlight.DepartureAirport.Name;
+                    this.ToAirportLabel.Text = this.selectedFlight.ArrivalAirport.Name;
                     this.SelectedTravelClassLabel.Text = this.selectedFlight.TravelClasses
                         .FirstOrDefault(t => t.Id == booking.TravelClassId)
                         .Type

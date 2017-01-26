@@ -593,9 +593,24 @@
     </Compile>
     <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Api\Controllers\AircraftManufacturersController.cs" />
+    <Compile Include="Areas\Api\Controllers\AircraftsController.cs" />
     <Compile Include="Areas\Api\Controllers\AirportsController.cs" />
+    <Compile Include="Areas\Api\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Api\Controllers\CountriesController.cs" />
+    <Compile Include="Areas\Api\Controllers\FlightsController.cs" />
     <Compile Include="Areas\Api\Controllers\NewsController.cs" />
-    <Compile Include="Areas\Api\Models\AirportResponseModel.cs" />
+    <Compile Include="Areas\Api\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Api\Models\AircraftManufacturers\AircraftManufacturerRequestModel.cs" />
+    <Compile Include="Areas\Api\Models\AircraftManufacturers\AircraftManufacturerResponseModel.cs" />
+    <Compile Include="Areas\Api\Models\AircraftManufacturers\AircraftManufacturerSimpleResponseModel.cs" />
+    <Compile Include="Areas\Api\Models\AircraftManufacturers\UpdateAircraftManufacturerRequestModel.cs" />
+    <Compile Include="Areas\Api\Models\Aircrafts\AircraftRequesModel.cs" />
+    <Compile Include="Areas\Api\Models\Aircrafts\AircraftResponseModel.cs" />
+    <Compile Include="Areas\Api\Models\Aircrafts\AircraftSimpleResponseModel.cs" />
+    <Compile Include="Areas\Api\Models\Aircrafts\UpdateAircraftRequestModel.cs" />
+    <Compile Include="Areas\Api\Models\Airports\AirportRequestModel.cs" />
+    <Compile Include="Areas\Api\Models\Airports\AirportResponseModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -610,7 +625,27 @@
     <Compile Include="App_Start\NinjectConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Areas\Api\Models\NewsResponceModel.cs" />
+    <Compile Include="Areas\Api\Models\Airports\AirportSimpleResponseModel.cs" />
+    <Compile Include="Areas\Api\Models\Airports\UpdateAirportRequestModel.cs" />
+    <Compile Include="Areas\Api\Models\Categories\CategoryRequestModel.cs" />
+    <Compile Include="Areas\Api\Models\Categories\CategoryResponseModel.cs" />
+    <Compile Include="Areas\Api\Models\Categories\CategorySimpleResponseModel.cs" />
+    <Compile Include="Areas\Api\Models\Categories\UpdateCategoryRequestModel.cs" />
+    <Compile Include="Areas\Api\Models\Countries\CountryRequestModel.cs" />
+    <Compile Include="Areas\Api\Models\Countries\CountryResponseModel.cs" />
+    <Compile Include="Areas\Api\Models\Countries\CountrySimpleResponseModel.cs" />
+    <Compile Include="Areas\Api\Models\Countries\UpdateCountryRequestModel.cs" />
+    <Compile Include="Areas\Api\Models\FlightStatuses\FlightStatusSimpleResponseModel.cs" />
+    <Compile Include="Areas\Api\Models\Flights\FlightRequestModel.cs" />
+    <Compile Include="Areas\Api\Models\Flights\FlightResponseModel.cs" />
+    <Compile Include="Areas\Api\Models\Flights\FlightSimpleResponseModel.cs" />
+    <Compile Include="Areas\Api\Models\News\NewsRequestModel.cs" />
+    <Compile Include="Areas\Api\Models\News\NewsResponseModel.cs" />
+    <Compile Include="Areas\Api\Models\News\NewsSimpleResponseModel.cs" />
+    <Compile Include="Areas\Api\Models\News\UpdateNewsRequestModel.cs" />
+    <Compile Include="Areas\Api\Models\TravelClasses\TravelClassRequestModel.cs" />
+    <Compile Include="Areas\Api\Models\TravelClasses\TravelClassSimpleResponseModel.cs" />
+    <Compile Include="Areas\Api\Models\Users\UsersResponseModel.cs" />
     <Compile Include="Booking\Extras.aspx.cs">
       <DependentUpon>Extras.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -658,6 +693,7 @@
     </Compile>
     <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
+    <Compile Include="Infrastructure\ObjectFactory.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Administration\ManageFlights.aspx.cs">
       <DependentUpon>ManageFlights.aspx</DependentUpon>

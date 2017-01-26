@@ -44,8 +44,8 @@
                 flightToUpdate.Arrival = flight.Arrival;
                 flightToUpdate.FlightStatusId = flight.FlightStatusId;
                 flightToUpdate.AircraftId = flight.AircraftId;
-                flightToUpdate.FromAirport.Id = flight.FromAirport.Id;
-                flightToUpdate.ToAirport.Id = flight.ToAirport.Id;
+                flightToUpdate.DepartureAirport.Id = flight.DepartureAirport.Id;
+                flightToUpdate.ArrivalAirport.Id = flight.ArrivalAirport.Id;
                 flightToUpdate.IsDeleted = flight.IsDeleted;
                 this.flights.SaveChanges();
             }

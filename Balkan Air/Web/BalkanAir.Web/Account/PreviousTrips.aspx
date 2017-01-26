@@ -19,8 +19,8 @@
         </LayoutTemplate>
         <ItemTemplate>
             <div class="previousTripDiv">
-                <p>From: <span><%#: Item.Flight.FromAirport.Name %> (<%#: Item.Flight.FromAirport.Abbreviation %>), <%#: Item.Flight.FromAirport.Country.Name %></span></p>
-                <p>To: <span><%#: Item.Flight.ToAirport.Name %> (<%#: Item.Flight.ToAirport.Abbreviation %>), <%#: Item.Flight.ToAirport.Country.Name %></span></p>
+                <p>From: <span><%#: Item.Flight.DepartureAirport.Name %> (<%#: Item.Flight.DepartureAirport.Abbreviation %>), <%#: Item.Flight.DepartureAirport.Country.Name %></span></p>
+                <p>To: <span><%#: Item.Flight.ArrivalAirport.Name %> (<%#: Item.Flight.ArrivalAirport.Abbreviation %>), <%#: Item.Flight.ArrivalAirport.Country.Name %></span></p>
                 <p>Date of trip: <span><%#: Item.Flight.Departure %></span></p>
                 <p>Date of booking: <span><%#: Item.DateOfBooking %></span></p>
                 <p>Seat: <span><%#: Item.Row %><%#: Item.SeatNumber %></span></p>

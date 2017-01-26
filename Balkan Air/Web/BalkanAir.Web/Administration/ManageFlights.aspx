@@ -41,14 +41,14 @@
                     <asp:Label ID="FromAirportLabel" Text="From" runat="server" />
                 </HeaderTemplate>
                 <ItemTemplate>
-                    <asp:Literal ID="FromAirportLiberal" Text="<%#: Item.FromAirport.Name %>" runat="server" />
+                    <asp:Literal ID="FromAirportLiberal" Text="<%#: Item.DepartureAirport.Name %>" runat="server" />
                 </ItemTemplate>
                 <EditItemTemplate>
                     <asp:DropDownList ID="FromAirportsDropDownList" runat="server"
                         ItemType="BalkanAir.Data.Models.Airport"
                         DataValueField="Id"
                         DataTextField="Name"
-                        SelectedValue="<%#: BindItem.FromAirport.Id %>"
+                        SelectedValue="<%#: BindItem.DepartureAirport.Id %>"
                         SelectMethod="AirportsDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
@@ -57,14 +57,14 @@
                     <asp:Label ID="ToAirportLabel" Text="To" runat="server" />
                 </HeaderTemplate>
                 <ItemTemplate>
-                    <asp:Literal ID="ToAirportLiberal" Text="<%#: Item.ToAirport.Name %>" runat="server" />
+                    <asp:Literal ID="ToAirportLiberal" Text="<%#: Item.ArrivalAirport.Name %>" runat="server" />
                 </ItemTemplate>
                 <EditItemTemplate>
                     <asp:DropDownList ID="ToAirportsDropDownList" runat="server"
                         ItemType="BalkanAir.Data.Models.Airport"
                         DataValueField="Id"
                         DataTextField="Name"
-                        SelectedValue="<%#: BindItem.ToAirport.Id %>"
+                        SelectedValue="<%#: BindItem.ArrivalAirport.Id %>"
                         SelectMethod="AirportsDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
