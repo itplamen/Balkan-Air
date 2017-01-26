@@ -3,3 +3,7 @@ C:\Users\itplamen\Desktop\Balkan Air\Web\BalkanAir.Web.Common\bin\Debug\BalkanAi
 C:\Users\itplamen\Desktop\Balkan Air\Web\BalkanAir.Web.Common\obj\Debug\BalkanAir.Web.Common.dll
 C:\Users\itplamen\Desktop\Balkan Air\Web\BalkanAir.Web.Common\obj\Debug\BalkanAir.Web.Common.pdb
 C:\Users\itplamen\Desktop\Balkan Air\Web\BalkanAir.Web.Common\obj\Debug\BalkanAir.Web.Common.csprojResolveAssemblyReference.cache
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web.Common\bin\Debug\BalkanAir.Web.Common.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web.Common\bin\Debug\BalkanAir.Web.Common.pdb
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web.Common\obj\Debug\BalkanAir.Web.Common.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web.Common\obj\Debug\BalkanAir.Web.Common.pdb

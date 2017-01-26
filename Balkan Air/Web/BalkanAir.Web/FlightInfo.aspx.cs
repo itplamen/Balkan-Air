@@ -12,8 +12,8 @@
     using Ninject;
 
     using BalkanAir.Data.Models;
-    using BalkanAir.Data.Services.Contracts;
-    
+    using BalkanAir.Services.Data.Contracts;
+
     public partial class FlightInfo : Page
     {
         private IDictionary<string, string> orderFlightsBy = new Dictionary<string, string>()

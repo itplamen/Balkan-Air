@@ -10,7 +10,7 @@
     using Ninject;
 
     using BalkanAir.Data.Models;
-    using BalkanAir.Data.Services.Contracts;
+    using BalkanAir.Services.Data.Contracts;
     using BalkanAir.Web.Common;
 
     public partial class _Default : Page

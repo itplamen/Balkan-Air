@@ -12,7 +12,7 @@
 
     using BalkanAir.Common;
     using Data.Models;
-    using Data.Services.Contracts;
+    using BalkanAir.Services.Data.Contracts;
     using Models.Flights;
 
     [EnableCors("*", "*", "*")]

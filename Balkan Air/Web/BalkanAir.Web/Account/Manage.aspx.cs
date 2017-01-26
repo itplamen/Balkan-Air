@@ -16,7 +16,7 @@
 
     using BalkanAir.Web.Models;
     using BalkanAir.Data.Models;
-    using BalkanAir.Data.Services.Contracts;
+    using BalkanAir.Services.Data.Contracts;
 
     public partial class Manage : Page
     {

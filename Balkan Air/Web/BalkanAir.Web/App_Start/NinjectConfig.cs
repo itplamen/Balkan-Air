@@ -72,7 +72,7 @@ namespace BalkanAir.Web.App_Start
             kernel.Bind(typeof(IBalkanAirDbContext)).To(typeof(BalkanAirDbContext));
             kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
 
-            kernel.Bind(b => b.From(Assemblies.DATA_SERVICES)
+            kernel.Bind(b => b.From(Assemblies.SERVICES_DATA)
                               .SelectAllClasses()
                               .BindDefaultInterface());
         }        

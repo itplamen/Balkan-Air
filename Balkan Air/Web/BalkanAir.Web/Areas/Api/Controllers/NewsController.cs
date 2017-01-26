@@ -10,7 +10,7 @@
     using Ninject;
 
     using BalkanAir.Common;
-    using Data.Services.Contracts;
+    using BalkanAir.Services.Data.Contracts;
     using Models.News;
 
     [EnableCors("*", "*", "*")]

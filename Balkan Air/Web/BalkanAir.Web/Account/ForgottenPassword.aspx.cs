@@ -10,8 +10,8 @@
     using Ninject;
 
     using BalkanAir.Common;
-    using Data.Services.Contracts;
-    
+    using BalkanAir.Services.Data.Contracts;
+
     public partial class ForgotPassword : Page
     {
         [Inject]

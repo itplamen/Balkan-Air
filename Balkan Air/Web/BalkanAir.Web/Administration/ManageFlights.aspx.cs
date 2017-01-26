@@ -12,7 +12,7 @@
     using BalkanAir.Data;
     using BalkanAir.Data.Helper;
     using BalkanAir.Data.Models;
-    using BalkanAir.Data.Services.Contracts;
+    using BalkanAir.Services.Data.Contracts;
 
     public partial class ManageFlights : Page
     {

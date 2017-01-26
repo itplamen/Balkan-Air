@@ -11,8 +11,8 @@
 
     using BalkanAir.Common;
     using BalkanAir.Data.Models;
-    using Data.Services.Contracts;
-    
+    using BalkanAir.Services.Data.Contracts;
+
     public partial class Register : Page
     {
         [Inject]

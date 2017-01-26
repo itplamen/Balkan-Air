@@ -11,15 +11,15 @@
 
     using BalkanAir.Common;
     using Data.Models;
-    using Data.Services.Contracts;
+    using BalkanAir.Services.Data.Contracts;
 
     public partial class AdministrationHome : Page
     {
         [Inject]
         public IUsersServices UsersServices { get; set; }
 
-        [Inject]
-        public IUserRolesServices UserRolesServices { get; set; }
+        //[Inject]
+        //public IUserRolesServices UserRolesServices { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,17 +27,20 @@
 
         public IEnumerable<User> AdministratorsRepeater_GetData()
         {
-            var administratorRole = this.UserRolesServices.GetAll()
-                .FirstOrDefault(r => r.Name.ToLower().Equals(GlobalConstants.ADMINISTRATOR_ROLE));
+            //var administratorRole = this.UserRolesServices.GetAll()
+            //    .FirstOrDefault(r => r.Name.ToLower().Equals(GlobalConstants.ADMINISTRATOR_ROLE));
 
-            if (administratorRole == null)
-            {
-                return null;
-            }
+            //if (administratorRole == null)
+            //{
+            //    return null;
+            //}
 
-            return this.UsersServices.GetAll()
-                .Where(u => u.Roles.Select(s => s.RoleId).Contains(administratorRole.Id))
-                .ToList(); ;
+
+            //return this.UsersServices.GetAll()
+            //    .Where(u => u.Roles.Select(s => s.RoleId).Contains(administratorRole.Id))
+            //    .ToList(); ;
+
+            return null;
         }
     }
 }

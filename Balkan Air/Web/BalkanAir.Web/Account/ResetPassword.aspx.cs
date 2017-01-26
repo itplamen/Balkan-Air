@@ -9,7 +9,7 @@
     using Microsoft.AspNet.Identity.Owin;
     using Ninject;
 
-    using Data.Services.Contracts;
+    using BalkanAir.Services.Data.Contracts;
 
     public partial class ResetPassword : Page
     {

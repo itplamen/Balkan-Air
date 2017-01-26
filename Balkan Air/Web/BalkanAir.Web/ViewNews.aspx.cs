@@ -8,7 +8,7 @@
     using Ninject;
 
     using BalkanAir.Web.Common;
-    using BalkanAir.Data.Services.Contracts;
+    using BalkanAir.Services.Data.Contracts;
 
     public partial class ViewNews : Page
     {

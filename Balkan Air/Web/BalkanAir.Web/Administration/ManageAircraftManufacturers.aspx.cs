@@ -6,7 +6,7 @@
 
     using Ninject;
 
-    using Data.Services.Contracts;
+    using BalkanAir.Services.Data.Contracts;
     using Data.Models;
 
     public partial class ManageAircraftManufacturers : Page

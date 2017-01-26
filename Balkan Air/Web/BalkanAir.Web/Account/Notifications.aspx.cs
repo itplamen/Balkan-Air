@@ -12,8 +12,8 @@
     using Ninject;
 
     using Data.Models;
-    using Data.Services.Contracts;
-   
+    using BalkanAir.Services.Data.Contracts;
+
     public partial class Notifications : Page
     {
         [Inject]

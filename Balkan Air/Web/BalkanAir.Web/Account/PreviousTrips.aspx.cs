@@ -8,7 +8,7 @@
     using System.Web.UI.WebControls;
 
     using BalkanAir.Data.Models;
-    using BalkanAir.Data.Services.Contracts;
+    using BalkanAir.Services.Data.Contracts;
     using Ninject;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;

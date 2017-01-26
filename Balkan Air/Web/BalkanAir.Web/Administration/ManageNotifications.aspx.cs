@@ -9,7 +9,7 @@
 
     using Ninject;
 
-    using BalkanAir.Data.Services.Contracts;
+    using BalkanAir.Services.Data.Contracts;
     using Data.Models;
 
     public partial class ManageNotifications : Page
