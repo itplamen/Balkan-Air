@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assemblies.cs" />
+    <Compile Include="ErrorMessages.cs" />
     <Compile Include="GlobalConstants.cs" />
     <Compile Include="MailSender.cs" />
     <Compile Include="NotificationSender.cs" />

@@ -55,7 +55,7 @@
         {
             if (id <= 0)
             {
-                return this.BadRequest("Invalid ID!");
+                return this.BadRequest(ErrorMessages.INVALID_ID);
             }
 
             var aircraft = this.aircraftsServices.GetAll()
@@ -75,7 +75,7 @@
         {
             if (id <= 0)
             {
-                return this.BadRequest("Invalid ID!");
+                return this.BadRequest(ErrorMessages.INVALID_ID);
             }
 
             if (!this.ModelState.IsValid)
@@ -99,7 +99,7 @@
         {
             if (id <= 0)
             {
-                return this.BadRequest("Invalid ID!");
+                return this.BadRequest(ErrorMessages.INVALID_ID);
             }
 
             var deletedAircraft = this.aircraftsServices.DeleteAircraft(id);

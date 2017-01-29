@@ -1,35 +1,35 @@
 ﻿namespace BalkanAir.Api.Tests.ControllerTests
 {
     using System.Collections.Generic;
-    using Services.Data.Contracts;
     using System.Web.Http;
     using System.Web.Http.Results;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Common;
+    using Services.Data.Contracts;
     using TestObjects;
     using Web.Areas.Api.Controllers;
-    using Web.Areas.Api.Models.Airports;
+    using Web.Areas.Api.Models.Categories;
 
     [TestClass]
-    public class AirportsControllerTests
+    public class CategoriesControllerTests
     {
-        private IAirportsServices airportsServices;
+        private ICategoriesServices categoriesServices;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.airportsServices = TestObjectFactory.GetAirportsServices();
+            this.categoriesServices = TestObjectFactory.GetCategoriesServices();
         }
 
         [TestMethod]
         public void CreateShouldValidateModelState()
         {
-            var controller = new AirportsController(this.airportsServices);
+            var controller = new CategoriesController(this.categoriesServices);
             controller.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetInvalidAirportRequesModel();
+            var model = TestObjectFactory.GetInvalidCategoryRequesModel();
             controller.Validate(model);
 
             var result = controller.Create(model);
@@ -40,10 +40,10 @@
         [TestMethod]
         public void CreateShouldReturnBadRequestWithInvalidModel()
         {
-            var controller = new AirportsController(this.airportsServices);
+            var controller = new CategoriesController(this.categoriesServices);
             controller.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetInvalidAirportRequesModel();
+            var model = TestObjectFactory.GetInvalidCategoryRequesModel();
             controller.Validate(model);
 
             var result = controller.Create(model);
@@ -54,10 +54,10 @@
         [TestMethod]
         public void CreateShouldReturnOkResultWithId()
         {
-            var controller = new AirportsController(this.airportsServices);
+            var controller = new CategoriesController(this.categoriesServices);
             controller.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetValidAirportRequesModel();
+            var model = TestObjectFactory.GetValidCategoryRequesModel();
             controller.Validate(model);
 
             var result = controller.Create(model);
@@ -70,11 +70,11 @@
         [TestMethod]
         public void GetAllShouldReturnOkResultWithData()
         {
-            var controller = new AirportsController(this.airportsServices);
-            
+            var controller = new CategoriesController(this.categoriesServices);
+
             var result = controller.All();
-            var okResult = result as OkNegotiatedContentResult<List<AirportResponseModel>>;
-           
+            var okResult = result as OkNegotiatedContentResult<List<CategoryResponseModel>>;
+
             Assert.IsNotNull(okResult);
             Assert.AreEqual(1, okResult.Content.Count);
         }
@@ -82,7 +82,7 @@
         [TestMethod]
         public void GetByIdShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var controller = new AirportsController(this.airportsServices);
+            var controller = new CategoriesController(this.categoriesServices);
 
             var result = controller.Get(0);
             var badRequestResult = result as BadRequestErrorMessageResult;
@@ -94,69 +94,69 @@
         [TestMethod]
         public void GetByIdShouldReturnNotFound()
         {
-            var controller = new AirportsController(this.airportsServices);
+            var controller = new CategoriesController(this.categoriesServices);
 
             var result = controller.Get(10);
-            
+
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
 
         [TestMethod]
         public void GetByIdShouldReturnOkResultWithData()
         {
-            var controller = new AirportsController(this.airportsServices);
+            var controller = new CategoriesController(this.categoriesServices);
 
             var result = controller.Get(1);
-            var okResult = result as OkNegotiatedContentResult<AirportResponseModel>;
+            var okResult = result as OkNegotiatedContentResult<CategoryResponseModel>;
 
             Assert.IsNotNull(okResult);
             Assert.AreEqual(1, okResult.Content.Id);
-            Assert.AreEqual("Test Name", okResult.Content.Name);
-            Assert.AreEqual("ABC", okResult.Content.Abbreviation);
+            Assert.AreEqual("Category Test", okResult.Content.Name);
         }
 
         [TestMethod]
-        public void GetByAbbreviationShouldReturnBadRequesWithInvalidAbbreviationMessage()
+        public void GetCategoryByNameShouldReturnBadRequestWithNameNotNullOrEmptyMessage()
         {
-            var controller = new AirportsController(this.airportsServices);
+            var controller = new CategoriesController(this.categoriesServices);
 
-            var result = controller.GetByAbbreviation(null);
+            var result = controller.GetCategoryByName(null);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
-            Assert.AreEqual(ErrorMessages.ABBREVIATION_CANNOT_BE_NULL_OR_EMPTY, badRequestResult.Message);
+            Assert.AreEqual(ErrorMessages.CATEGORY_NAME_CANNOT_BE_NULL_OR_EMPTY, badRequestResult.Message);
         }
 
         [TestMethod]
-        public void GetByAbbreviationShouldReturnNotFound()
+        public void GetCategoryByNameShouldReturnBadRequestWithInvalidCategoryNameMessage()
         {
-            var controller = new AirportsController(this.airportsServices);
+            var controller = new CategoriesController(this.categoriesServices);
 
-            var result = controller.GetByAbbreviation("ppp");
+            var result = controller.GetCategoryByName("Invaid Category Name");
+            var badRequestResult = result as BadRequestErrorMessageResult;
 
-            Assert.AreEqual(typeof(NotFoundResult), result.GetType());
+            Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
+            Assert.AreEqual(ErrorMessages.INVALID_CATEGORY_NAME, badRequestResult.Message);
         }
 
         [TestMethod]
-        public void GetByAbbreviationShouldReturnOkResultWithData()
+        public void GetCategoryByNameShouldReturnOkResultWithData()
         {
-            var controller = new AirportsController(this.airportsServices);
+            var controller = new CategoriesController(this.categoriesServices);
 
-            var result = controller.GetByAbbreviation("ABC");
-            var okResult = result as OkNegotiatedContentResult<AirportResponseModel>;
+            var result = controller.GetCategoryByName("Category Test");
+            var okResult = result as OkNegotiatedContentResult<CategoryResponseModel>;
 
             Assert.IsNotNull(okResult);
             Assert.AreEqual(1, okResult.Content.Id);
-            Assert.AreEqual("Test Name", okResult.Content.Name);
-            Assert.AreEqual("ABC", okResult.Content.Abbreviation);
+            Assert.AreEqual("Category Test", okResult.Content.Name);
         }
 
         [TestMethod]
         public void UpdateShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var controller = new AirportsController(this.airportsServices);
+            var controller = new CategoriesController(this.categoriesServices);
 
-            var result = controller.Update(0, TestObjectFactory.GetInvalidUpdateAirportRequestModel());
+            var result = controller.Update(0, TestObjectFactory.GetInvalidUpdateCategoryRequestModel());
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -166,10 +166,10 @@
         [TestMethod]
         public void UpdateShouldValidateModelState()
         {
-            var controller = new AirportsController(this.airportsServices);
+            var controller = new CategoriesController(this.categoriesServices);
             controller.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetInvalidUpdateAirportRequestModel();
+            var model = TestObjectFactory.GetInvalidUpdateCategoryRequestModel();
             controller.Validate(model);
 
             var result = controller.Update(1, model);
@@ -180,10 +180,10 @@
         [TestMethod]
         public void UpdateShouldReturnBadRequestWithInvalidModel()
         {
-            var controller = new AirportsController(this.airportsServices);
+            var controller = new CategoriesController(this.categoriesServices);
             controller.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetInvalidUpdateAirportRequestModel();
+            var model = TestObjectFactory.GetInvalidUpdateCategoryRequestModel();
             controller.Validate(model);
 
             var result = controller.Update(1, model);
@@ -194,10 +194,10 @@
         [TestMethod]
         public void UpdateShouldReturnNotFound()
         {
-            var controller = new AirportsController(this.airportsServices);
+            var controller = new CategoriesController(this.categoriesServices);
             controller.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetValidUpdateAirportRequestModel();
+            var model = TestObjectFactory.GetValidUpdateCategoryRequestModel();
             controller.Validate(model);
 
             var result = controller.Update(10, model);
@@ -208,10 +208,10 @@
         [TestMethod]
         public void UpdateShouldReturnOkResultWithId()
         {
-            var controller = new AirportsController(this.airportsServices);
+            var controller = new CategoriesController(this.categoriesServices);
             controller.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetValidUpdateAirportRequestModel();
+            var model = TestObjectFactory.GetValidUpdateCategoryRequestModel();
             controller.Validate(model);
 
             var result = controller.Update(model.Id, model);
@@ -224,7 +224,7 @@
         [TestMethod]
         public void DeleteShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var controller = new AirportsController(this.airportsServices);
+            var controller = new CategoriesController(this.categoriesServices);
 
             var result = controller.Delete(-1);
             var badRequestResult = result as BadRequestErrorMessageResult;
@@ -236,8 +236,8 @@
         [TestMethod]
         public void DeleteShouldReturnNotFound()
         {
-            var controller = new AirportsController(this.airportsServices);
-           
+            var controller = new CategoriesController(this.categoriesServices);
+
             var result = controller.Delete(10);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
@@ -246,7 +246,7 @@
         [TestMethod]
         public void DeleteShouldReturnOkResultWithId()
         {
-            var controller = new AirportsController(this.airportsServices);
+            var controller = new CategoriesController(this.categoriesServices);
 
             var result = controller.Delete(1);
             var okResult = result as OkNegotiatedContentResult<int>;

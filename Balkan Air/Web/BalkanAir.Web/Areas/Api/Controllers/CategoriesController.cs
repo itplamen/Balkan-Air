@@ -7,19 +7,21 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
-    using Ninject;
-
     using BalkanAir.Common;
     using Data.Models;
-    using BalkanAir.Services.Data.Contracts;
     using Models.Categories;
+    using Services.Data.Contracts;
 
     [EnableCors("*", "*", "*")]
     [Authorize(Roles = GlobalConstants.ADMINISTRATOR_ROLE)]
     public class CategoriesController : ApiController
     {
-        [Inject]
-        public ICategoriesServices CategoriesServices { get; set; }
+        private readonly ICategoriesServices categoriesServices;
+
+        public CategoriesController(ICategoriesServices categoriesServices)
+        {
+            this.categoriesServices = categoriesServices;
+        }
 
         [HttpPost]
         public IHttpActionResult Create(CategoryRequestModel category)
@@ -30,7 +32,7 @@
             }
 
             var categoryToAdd = Mapper.Map<Category>(category);
-            var addedCategoryId = this.CategoriesServices.AddCategory(categoryToAdd);
+            var addedCategoryId = this.categoriesServices.AddCategory(categoryToAdd);
 
             return this.Ok(addedCategoryId);
         }
@@ -39,8 +41,9 @@
         [AllowAnonymous]
         public IHttpActionResult All()
         {
-            var categories = this.CategoriesServices.GetAll()
-                .ProjectTo<CategoryResponseModel>();
+            var categories = this.categoriesServices.GetAll()
+                .ProjectTo<CategoryResponseModel>()
+                .ToList();
 
             return this.Ok(categories);
         }
@@ -50,7 +53,12 @@
         [Route("Api/Categories/{id:int}")]
         public IHttpActionResult Get(int id)
         {
-            var category = this.CategoriesServices.GetAll()
+            if (id <= 0)
+            {
+                return this.BadRequest(ErrorMessages.INVALID_ID);
+            }
+
+            var category = this.categoriesServices.GetAll()
                 .ProjectTo<CategoryResponseModel>()
                 .FirstOrDefault(c => c.Id == id);
 
@@ -67,13 +75,18 @@
         [Route("Api/Categories/{categoryName}")]
         public IHttpActionResult GetCategoryByName(string categoryName)
         {
-            var category = this.CategoriesServices.GetAll()
+            if (string.IsNullOrEmpty(categoryName))
+            {
+                return this.BadRequest(ErrorMessages.CATEGORY_NAME_CANNOT_BE_NULL_OR_EMPTY);
+            }
+
+            var category = this.categoriesServices.GetAll()
                 .ProjectTo<CategoryResponseModel>()
                 .FirstOrDefault(c => c.Name.ToLower() == categoryName.ToLower());
 
             if (category == null)
             {
-                return this.BadRequest("Invalid category name!");
+                return this.BadRequest(ErrorMessages.INVALID_CATEGORY_NAME);
             }
 
             return this.Ok(category);
@@ -82,13 +95,18 @@
         [HttpPut]
         public IHttpActionResult Update(int id, UpdateCategoryRequestModel category)
         {
+            if (id <= 0)
+            {
+                return this.BadRequest(ErrorMessages.INVALID_ID);
+            }
+
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
 
             var categoryToUpdate = Mapper.Map<Category>(category);
-            var updatedCategory = this.CategoriesServices.UpdateCategory(id, categoryToUpdate);
+            var updatedCategory = this.categoriesServices.UpdateCategory(id, categoryToUpdate);
 
             if (updatedCategory == null)
             {
@@ -101,7 +119,12 @@
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            var deletedCategory = this.CategoriesServices.DeleteCategory(id);
+            if (id <= 0)
+            {
+                return this.BadRequest(ErrorMessages.INVALID_ID);
+            }
+
+            var deletedCategory = this.categoriesServices.DeleteCategory(id);
 
             if (deletedCategory == null)
             {

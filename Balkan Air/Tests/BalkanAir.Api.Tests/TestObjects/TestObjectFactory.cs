@@ -10,6 +10,8 @@
     using Web.Areas.Api.Models.AircraftManufacturers;
     using Web.Areas.Api.Models.Aircrafts;
     using Web.Areas.Api.Models.Airports;
+    using Web.Areas.Api.Models.Categories;
+    using Web.Areas.Api.Models.Countries;
 
     public static class TestObjectFactory
     {
@@ -50,6 +52,29 @@
         }.AsQueryable();
 
         private static Airport nullableAirport = null;
+
+        private static IQueryable<Category> categories = new List<Category>()
+        {
+            new Category()
+            {
+                Id = 1,
+                Name = "Category Test"
+            }
+        }.AsQueryable();
+
+        private static Category nullableCategory = null;
+
+        private static IQueryable<Country> countries = new List<Country>()
+        {
+            new Country()
+            {
+                Id = 1,
+                Name = "Country Test",
+                Abbreviation = "CT"
+            }
+        }.AsQueryable();
+
+        private static Country nullableCountry = null;
 
         public static IAircraftManufacturersServices GetAircraftManufacturersServices()
         {
@@ -147,6 +172,70 @@
             return airportsServices.Object;
         }
 
+        public static ICategoriesServices GetCategoriesServices()
+        {
+            var categoriesServices = new Mock<ICategoriesServices>();
+
+            categoriesServices.Setup(c => c.AddCategory(
+                    It.IsAny<Category>()))
+                .Returns(1);
+
+            categoriesServices.Setup(c => c.GetAll())
+                .Returns(categories);
+
+            categoriesServices.Setup(c => c.UpdateCategory(
+                    It.Is<int>(i => i >= NOT_FOUND_ID),
+                    It.IsAny<Category>()))
+                .Returns(nullableCategory);
+
+            categoriesServices.Setup(c => c.UpdateCategory(
+                It.Is<int>(i => i == CORRECT_ID),
+                It.IsAny<Category>()))
+                .Returns(new Category() { Id = 1 });
+
+            categoriesServices.Setup(c => c.DeleteCategory(
+                    It.Is<int>(i => i >= NOT_FOUND_ID)))
+                .Returns(nullableCategory);
+
+            categoriesServices.Setup(c => c.DeleteCategory(
+                It.Is<int>(i => i == CORRECT_ID)))
+                .Returns(new Category() { Id = 1 });
+
+            return categoriesServices.Object;
+        }
+
+        public static ICountriesServices GetCountriesServices()
+        {
+            var countriesServices = new Mock<ICountriesServices>();
+
+            countriesServices.Setup(c => c.AddCountry(
+                    It.IsAny<Country>()))
+                .Returns(1);
+
+            countriesServices.Setup(c => c.GetAll())
+                .Returns(countries);
+
+            countriesServices.Setup(c => c.UpdateCountry(
+                    It.Is<int>(i => i >= NOT_FOUND_ID),
+                    It.IsAny<Country>()))
+                .Returns(nullableCountry);
+
+            countriesServices.Setup(c => c.UpdateCountry(
+                    It.Is<int>(i => i == CORRECT_ID),
+                    It.IsAny<Country>()))
+                .Returns(new Country() { Id = 1 });
+
+            countriesServices.Setup(c => c.DeleteCountry(
+                    It.Is<int>(i => i >= NOT_FOUND_ID)))
+                .Returns(nullableCountry);
+
+            countriesServices.Setup(c => c.DeleteCountry(
+                It.Is<int>(i => i == CORRECT_ID)))
+                .Returns(new Country() { Id = 1 });
+
+            return countriesServices.Object;
+        }
+
         public static AircraftManufacturerRequestModel GetInvalidAircraftManufacturerRequestModel()
         {
             return new AircraftManufacturerRequestModel() { Name = "TOOOOOOOOOO LOOOOONG NAAAAAAAAME TEST" };
@@ -168,7 +257,7 @@
             {
                 Id = 1,
                 Name = "Manufacturer Test",
-                IsDeleted = false
+                IsDeleted = true
             };
         }
 
@@ -199,7 +288,7 @@
                 Id = 1,
                 Model = "Model Test",
                 TotalSeats = 180,
-                IsDeleted = false,
+                IsDeleted = true,
                 AircraftManufacturerId = 1
             };
         }
@@ -233,6 +322,62 @@
                 Abbreviation = "ABC",
                 IsDeleted = false,
                 CountryId = 1
+            };
+        }
+
+        // Return category without name, so that the model can be invalid.
+        public static CategoryRequestModel GetInvalidCategoryRequesModel()
+        {
+            return new CategoryRequestModel();
+        }
+
+        public static CategoryRequestModel GetValidCategoryRequesModel()
+        {
+            return new CategoryRequestModel() { Name = "Category Test" };
+        }
+
+        public static UpdateCategoryRequestModel GetInvalidUpdateCategoryRequestModel()
+        {
+            return new UpdateCategoryRequestModel() {IsDeleted = false };
+        }
+
+        public static UpdateCategoryRequestModel GetValidUpdateCategoryRequestModel()
+        {
+            return new UpdateCategoryRequestModel()
+            {
+                Id = 1,
+                Name = "Category Test",
+                IsDeleted = true
+            };
+        }
+
+        public static CountryRequestModel GetInvalidCountryRequesModel()
+        {
+            return new CountryRequestModel() { Abbreviation = "PP" };
+        }
+
+        public static CountryRequestModel GetValidCountryRequesModel()
+        {
+            return new CountryRequestModel()
+            {
+                Name = "Country Test",
+                Abbreviation = "CT"
+            };
+        }
+
+        public static UpdateCountryRequestModel GetInvalidUpdateCountryRequestModel()
+        {
+            return new UpdateCountryRequestModel() { Abbreviation = "PP" };
+        }
+
+        public static UpdateCountryRequestModel GetValidUpdateCountryRequestModel()
+        {
+            return new UpdateCountryRequestModel()
+            {
+                Id = 1,
+                Name = "Country Test",
+                Abbreviation = "CT",
+                IsDeleted = true
             };
         }
     } 

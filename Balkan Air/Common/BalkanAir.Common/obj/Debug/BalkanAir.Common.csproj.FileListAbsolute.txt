@@ -7,4 +7,3 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Common\BalkanAir.Common\obj\Debug\B
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Common\BalkanAir.Common\bin\Debug\BalkanAir.Common.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Common\BalkanAir.Common\bin\Debug\BalkanAir.Common.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Common\BalkanAir.Common\obj\Debug\BalkanAir.Common.dll
-D:\GitHub Repositories\Balkan-Air\Balkan Air\Common\BalkanAir.Common\obj\Debug\BalkanAir.Common.csprojResolveAssemblyReference.cache

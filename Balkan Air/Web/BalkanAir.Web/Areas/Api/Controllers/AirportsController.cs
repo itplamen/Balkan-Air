@@ -56,7 +56,7 @@
         {
             if (id <= 0)
             {
-                return this.BadRequest("Invalid ID!");
+                return this.BadRequest(ErrorMessages.INVALID_ID);
             }
 
             var airport = this.airportsServices.GetAll()
@@ -77,7 +77,7 @@
         {
             if (string.IsNullOrEmpty(abbreviation))
             {
-                return this.BadRequest("Invalid abbreviation!");
+                return this.BadRequest(ErrorMessages.ABBREVIATION_CANNOT_BE_NULL_OR_EMPTY);
             }
 
             var airport = this.airportsServices.GetAll()
@@ -97,7 +97,7 @@
         {
             if (id <= 0)
             {
-                return this.BadRequest("Invalid ID!");
+                return this.BadRequest(ErrorMessages.INVALID_ID);
             }
 
             if (!this.ModelState.IsValid)
@@ -121,7 +121,7 @@
         {
             if (id <= 0)
             {
-                return this.BadRequest("Invalid ID!");
+                return this.BadRequest(ErrorMessages.INVALID_ID);
             }
 
             var deletedAirprot = this.airportsServices.DeleteAirport(id);

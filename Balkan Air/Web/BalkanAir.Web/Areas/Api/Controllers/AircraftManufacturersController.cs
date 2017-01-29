@@ -9,8 +9,8 @@
 
     using BalkanAir.Common;
     using Data.Models;
-    using Services.Data.Contracts;
     using Models.AircraftManufacturers;
+    using Services.Data.Contracts;
 
     [EnableCors("*", "*", "*")]
     [Authorize(Roles = GlobalConstants.ADMINISTRATOR_ROLE)]
@@ -55,7 +55,7 @@
         {
             if (id <= 0)
             {
-                return this.BadRequest("Invalid ID!");
+                return this.BadRequest(ErrorMessages.INVALID_ID);
             }
 
             var aircraftManufacturer = this.aircraftManufacturersServices.GetAll()
@@ -75,7 +75,7 @@
         {
             if (id <= 0)
             {
-                return this.BadRequest("Invalid ID!");
+                return this.BadRequest(ErrorMessages.INVALID_ID);
             }
 
             if (!this.ModelState.IsValid)
@@ -99,7 +99,7 @@
         {
             if (id <= 0)
             {
-                return this.BadRequest("Invalid ID!");
+                return this.BadRequest(ErrorMessages.INVALID_ID);
             }
 
             var deletedManufacturer = this.aircraftManufacturersServices.DeleteManufacturer(id);

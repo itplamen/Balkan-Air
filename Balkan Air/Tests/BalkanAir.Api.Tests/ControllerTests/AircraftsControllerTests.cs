@@ -6,6 +6,7 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    using Common;
     using Services.Data.Contracts;
     using TestObjects;
     using Web.Areas.Api.Controllers;
@@ -87,7 +88,7 @@
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
-            Assert.AreEqual("Invalid ID!", badRequestResult.Message);
+            Assert.AreEqual(ErrorMessages.INVALID_ID, badRequestResult.Message);
         }
 
         [TestMethod]
@@ -123,7 +124,7 @@
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
-            Assert.AreEqual("Invalid ID!", badRequestResult.Message);
+            Assert.AreEqual(ErrorMessages.INVALID_ID, badRequestResult.Message);
         }
 
         [TestMethod]
@@ -193,7 +194,7 @@
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
-            Assert.AreEqual("Invalid ID!", badRequestResult.Message);
+            Assert.AreEqual(ErrorMessages.INVALID_ID, badRequestResult.Message);
         }
 
         [TestMethod]

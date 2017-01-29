@@ -7,19 +7,21 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
-    using Ninject;
-
     using BalkanAir.Common;
     using Data.Models;
-    using BalkanAir.Services.Data.Contracts;
     using Models.Countries;
+    using Services.Data.Contracts;
 
     [EnableCors("*", "*", "*")]
     [Authorize(Roles = GlobalConstants.ADMINISTRATOR_ROLE)]
     public class CountriesController : ApiController
     {
-        [Inject]
-        public ICountriesServices CountriesServices { get; set; }
+        private readonly ICountriesServices countriesServices;
+
+        public CountriesController(ICountriesServices countriesServices)
+        {
+            this.countriesServices = countriesServices;
+        }
 
         [HttpPost]
         public IHttpActionResult Create(CountryRequestModel country)
@@ -30,7 +32,7 @@
             }
 
             var countryToAdd = Mapper.Map<Country>(country);
-            var addedCountryId = this.CountriesServices.AddCountry(countryToAdd);
+            var addedCountryId = this.countriesServices.AddCountry(countryToAdd);
 
             return this.Ok(addedCountryId);
         }
@@ -39,9 +41,10 @@
         [AllowAnonymous]
         public IHttpActionResult All()
         {
-            var countries = this.CountriesServices.GetAll()
+            var countries = this.countriesServices.GetAll()
+                .OrderBy(c => c.Name)
                 .ProjectTo<CountryResponseModel>()
-                .OrderBy(c => c.Name);
+                .ToList();
 
             return this.Ok(countries);
         }
@@ -50,7 +53,12 @@
         [AllowAnonymous]
         public IHttpActionResult Get(int id)
         {
-            var country = this.CountriesServices.GetAll()
+            if (id <= 0)
+            {
+                return this.BadRequest(ErrorMessages.INVALID_ID);
+            }
+
+            var country = this.countriesServices.GetAll()
                 .ProjectTo<CountryResponseModel>()
                 .FirstOrDefault(c => c.Id == id);
 
@@ -64,9 +72,14 @@
 
         [HttpGet]
         [AllowAnonymous]
-        public IHttpActionResult Get(string abbreviation)
+        public IHttpActionResult GetByAbbreviation(string abbreviation)
         {
-            var country = this.CountriesServices.GetAll()
+            if (string.IsNullOrEmpty(abbreviation))
+            {
+                return this.BadRequest(ErrorMessages.ABBREVIATION_CANNOT_BE_NULL_OR_EMPTY);
+            }
+
+            var country = this.countriesServices.GetAll()
                 .ProjectTo<CountryResponseModel>()
                 .FirstOrDefault(c => c.Abbreviation.ToLower() == abbreviation.ToLower());
 
@@ -81,13 +94,18 @@
         [HttpPut]
         public IHttpActionResult Update(int id, UpdateCountryRequestModel country)
         {
+            if (id <= 0)
+            {
+                return this.BadRequest(ErrorMessages.INVALID_ID);
+            }
+
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
 
             var countryToUpdate = Mapper.Map<Country>(country);
-            var updatedCountry = this.CountriesServices.UpdateCountry(id, countryToUpdate);
+            var updatedCountry = this.countriesServices.UpdateCountry(id, countryToUpdate);
 
             if (updatedCountry == null)
             {
@@ -100,7 +118,12 @@
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            var deletedCountry = this.CountriesServices.DeleteCountry(id);
+            if (id <= 0)
+            {
+                return this.BadRequest(ErrorMessages.INVALID_ID);
+            }
+
+            var deletedCountry = this.countriesServices.DeleteCountry(id);
 
             if (deletedCountry == null)
             {
