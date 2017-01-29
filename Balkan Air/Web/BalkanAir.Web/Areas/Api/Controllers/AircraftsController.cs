@@ -7,19 +7,21 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
-    using Ninject;
-
     using BalkanAir.Common;
     using Data.Models;
-    using BalkanAir.Services.Data.Contracts;
     using Models.Aircrafts;
+    using Services.Data.Contracts;
 
     [EnableCors("*", "*", "*")]
     [Authorize (Roles = GlobalConstants.ADMINISTRATOR_ROLE)]
     public class AircraftsController : ApiController
     {
-        [Inject]
-        public IAircraftsServices AircraftsServices { get; set; }
+        private readonly IAircraftsServices aircraftsServices;
+
+        public AircraftsController(IAircraftsServices aircraftsServices)
+        {
+            this.aircraftsServices = aircraftsServices;
+        }
 
         [HttpPost]
         public IHttpActionResult Create(AircraftRequesModel aircraft)
@@ -30,7 +32,7 @@
             }
 
             var aircraftToAdd = Mapper.Map<Aircraft>(aircraft);
-            var addedAircraftId = this.AircraftsServices.AddAircraft(aircraftToAdd);
+            var addedAircraftId = this.aircraftsServices.AddAircraft(aircraftToAdd);
 
             return this.Ok(addedAircraftId);
         }
@@ -39,9 +41,10 @@
         [AllowAnonymous]
         public IHttpActionResult All()
         {
-            var aircrafts = this.AircraftsServices.GetAll()
+            var aircrafts = this.aircraftsServices.GetAll()
+                .OrderBy(a => a.Id)
                 .ProjectTo<AircraftResponseModel>()
-                .OrderBy(a => a.Id);
+                .ToList();
 
             return this.Ok(aircrafts);
         }
@@ -50,7 +53,12 @@
         [AllowAnonymous]
         public IHttpActionResult Get(int id)
         {
-            var aircraft = this.AircraftsServices.GetAll()
+            if (id <= 0)
+            {
+                return this.BadRequest("Invalid ID!");
+            }
+
+            var aircraft = this.aircraftsServices.GetAll()
                 .ProjectTo<AircraftResponseModel>()
                 .FirstOrDefault(a => a.Id == id);
 
@@ -65,13 +73,18 @@
         [HttpPut]
         public IHttpActionResult Update(int id, UpdateAircraftRequestModel aircraft)
         {
+            if (id <= 0)
+            {
+                return this.BadRequest("Invalid ID!");
+            }
+
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
 
             var aircraftToUpdate = Mapper.Map<Aircraft>(aircraft);
-            var updatedAircraft = this.AircraftsServices.UpdateAircraft(id, aircraftToUpdate);
+            var updatedAircraft = this.aircraftsServices.UpdateAircraft(id, aircraftToUpdate);
 
             if (updatedAircraft == null)
             {
@@ -84,7 +97,12 @@
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            var deletedAircraft = this.AircraftsServices.DeleteAircraft(id);
+            if (id <= 0)
+            {
+                return this.BadRequest("Invalid ID!");
+            }
+
+            var deletedAircraft = this.aircraftsServices.DeleteAircraft(id);
 
             if (deletedAircraft == null)
             {

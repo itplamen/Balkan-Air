@@ -7,19 +7,21 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
-    using Ninject;
-
     using BalkanAir.Common;
     using Data.Models;
-    using BalkanAir.Services.Data.Contracts;
+    using Services.Data.Contracts;
     using Models.AircraftManufacturers;
 
     [EnableCors("*", "*", "*")]
     [Authorize(Roles = GlobalConstants.ADMINISTRATOR_ROLE)]
     public class AircraftManufacturersController : ApiController
     {
-        [Inject]
-        public IAircraftManufacturersServices AircraftManufacturersServices { get; set; }
+        private readonly IAircraftManufacturersServices aircraftManufacturersServices;
+
+        public AircraftManufacturersController(IAircraftManufacturersServices aircraftManufacturersServices)
+        {
+            this.aircraftManufacturersServices = aircraftManufacturersServices;
+        }
 
         [HttpPost]
         public IHttpActionResult Create(AircraftManufacturerRequestModel aircraftManufacturer)
@@ -30,7 +32,7 @@
             }
 
             var manufacturerToAdd = Mapper.Map<AircraftManufacturer>(aircraftManufacturer);
-            var manufacturerId = this.AircraftManufacturersServices.AddManufacturer(manufacturerToAdd);
+            var manufacturerId = this.aircraftManufacturersServices.AddManufacturer(manufacturerToAdd);
 
             return this.Ok(manufacturerId);
         }
@@ -39,9 +41,10 @@
         [AllowAnonymous]
         public IHttpActionResult All()
         {
-            var aircraftManufacturers = this.AircraftManufacturersServices.GetAll()
+            var aircraftManufacturers = this.aircraftManufacturersServices.GetAll()
+                .OrderBy(am => am.Name)
                 .ProjectTo<AircraftManufacturerResponseModel>()
-                .OrderBy(am => am.Name);
+                .ToList();
 
             return this.Ok(aircraftManufacturers);
         }
@@ -50,7 +53,12 @@
         [AllowAnonymous]
         public IHttpActionResult Get(int id)
         {
-            var aircraftManufacturer = this.AircraftManufacturersServices.GetAll()
+            if (id <= 0)
+            {
+                return this.BadRequest("Invalid ID!");
+            }
+
+            var aircraftManufacturer = this.aircraftManufacturersServices.GetAll()
                 .ProjectTo<AircraftManufacturerResponseModel>()
                 .FirstOrDefault(am => am.Id == id);
 
@@ -65,13 +73,18 @@
         [HttpPut]
         public IHttpActionResult Update(int id, UpdateAircraftManufacturerRequestModel aircraftManufacturer)
         {
+            if (id <= 0)
+            {
+                return this.BadRequest("Invalid ID!");
+            }
+
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
 
             var manufacturerToUpdate = Mapper.Map<AircraftManufacturer>(aircraftManufacturer);
-            var updatedManufacturer = this.AircraftManufacturersServices.UpdateManufacturer(id, manufacturerToUpdate);
+            var updatedManufacturer = this.aircraftManufacturersServices.UpdateManufacturer(id, manufacturerToUpdate);
 
             if (updatedManufacturer == null)
             {
@@ -84,7 +97,12 @@
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            var deletedManufacturer = this.AircraftManufacturersServices.DeleteManufacturer(id);
+            if (id <= 0)
+            {
+                return this.BadRequest("Invalid ID!");
+            }
+
+            var deletedManufacturer = this.aircraftManufacturersServices.DeleteManufacturer(id);
 
             if (deletedManufacturer == null)
             {
