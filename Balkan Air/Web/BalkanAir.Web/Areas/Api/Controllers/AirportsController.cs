@@ -11,15 +11,20 @@
 
     using BalkanAir.Common;
     using Data.Models;
-    using BalkanAir.Services.Data.Contracts;
     using Models.Airports;
+    using Services.Data.Contracts;
+    using Data.Repositories.Contracts;
 
     [EnableCors("*", "*", "*")]
     [Authorize(Roles = GlobalConstants.ADMINISTRATOR_ROLE)]
     public class AirportsController : ApiController
     {
-        [Inject]
-        public IAirportsServices AirportsServices { get; set; }
+        private readonly IAirportsServices airprotsServices;
+
+        public AirportsController(IAirportsServices airports)
+        {
+            this.airprotsServices = airports;
+        }
 
         [HttpPost]
         public IHttpActionResult Create(AirportRequestModel airport)
@@ -30,7 +35,7 @@
             }
 
             var airportToAdd = Mapper.Map<Airport>(airport);
-            var airportId = this.AirportsServices.AddAirport(airportToAdd);
+            var airportId = this.airprotsServices.AddAirport(airportToAdd);
 
             return this.Ok(airportId);
         }
@@ -39,10 +44,13 @@
         [AllowAnonymous]
         public IHttpActionResult All()
         {
-            var airports = this.AirportsServices.GetAll()
-                .ProjectTo<AirportResponseModel>()
+            
+
+            var airports = this.airprotsServices.GetAll()
                 .OrderBy(a => a.Name)
-                .ThenBy(a => a.Abbreviation);
+                .ThenBy(a => a.Abbreviation)
+                .ProjectTo<AirportResponseModel>()
+                .ToList();
 
             return this.Ok(airports);
         }
@@ -51,7 +59,7 @@
         [AllowAnonymous]
         public IHttpActionResult Get(int id)
         {
-            var airport = this.AirportsServices.GetAll()
+            var airport = this.airprotsServices.GetAll()
                 .ProjectTo<AirportResponseModel>()
                 .FirstOrDefault(a => a.Id == id);
 
@@ -67,7 +75,7 @@
         [AllowAnonymous]
         public IHttpActionResult Get(string abbreviation)
         {
-            var airport = this.AirportsServices.GetAll()
+            var airport = this.airprotsServices.GetAll()
                 .ProjectTo<AirportResponseModel>()
                 .FirstOrDefault(a => a.Abbreviation.ToLower() == abbreviation.ToLower());
 
@@ -88,7 +96,7 @@
             }
 
             var airportToUpdate = Mapper.Map<Airport>(airport);
-            var updatedAirport = this.AirportsServices.UpdateAirport(id, airportToUpdate);
+            var updatedAirport = this.airprotsServices.UpdateAirport(id, airportToUpdate);
 
             if (updatedAirport == null)
             {
@@ -101,7 +109,7 @@
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            var deletedAirprot = this.AirportsServices.DeleteAirport(id);
+            var deletedAirprot = this.airprotsServices.DeleteAirport(id);
 
             if (deletedAirprot == null)
             {

@@ -1,0 +1,15 @@
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Release\BalkanAir.Services.Data.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Release\BalkanAir.Services.Data.pdb
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Release\BalkanAir.Data.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Release\BalkanAir.Data.Models.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Release\EntityFramework.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Release\Microsoft.AspNet.Identity.Core.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Release\BalkanAir.Data.Models.pdb
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Release\BalkanAir.Data.pdb
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Release\EntityFramework.xml
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Release\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Release\Microsoft.AspNet.Identity.Core.xml
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\obj\Release\BalkanAir.Services.Data.csprojResolveAssemblyReference.cache
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\obj\Release\BalkanAir.Services.Data.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\obj\Release\BalkanAir.Services.Data.pdb

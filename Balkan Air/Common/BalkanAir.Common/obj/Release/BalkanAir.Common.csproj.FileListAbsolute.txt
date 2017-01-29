@@ -1,0 +1,4 @@
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Common\BalkanAir.Common\bin\Release\BalkanAir.Common.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Common\BalkanAir.Common\bin\Release\BalkanAir.Common.pdb
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Common\BalkanAir.Common\obj\Release\BalkanAir.Common.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Common\BalkanAir.Common\obj\Release\BalkanAir.Common.pdb

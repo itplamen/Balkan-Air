@@ -19,15 +19,15 @@
 
         public bool IsDeleted { get; set; }
 
-        public CountrySimpleResponseModel Country { get; set; }
+       // public CountrySimpleResponseModel Country { get; set; }
 
         public int NumberOfDeparturesFlights { get; set; }
 
-        public IEnumerable<FlightSimpleResponseModel> DeparturesFlights { get; set; }
+       // public IEnumerable<FlightSimpleResponseModel> DeparturesFlights { get; set; }
 
         public int NumberOfArrivalsFlights { get; set; }
 
-        public IEnumerable<FlightSimpleResponseModel> ArrivalsFlights { get; set; }
+       // public IEnumerable<FlightSimpleResponseModel> ArrivalsFlights { get; set; }
 
         public void CreateMappings(IConfiguration config)
         {

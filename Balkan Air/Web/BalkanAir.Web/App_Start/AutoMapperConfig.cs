@@ -20,7 +20,6 @@ namespace BalkanAir.Web.App_Start
 
             LoadStandardMappings(types);
             LoadCustomMappings(types);
-
         }
 
         private static void LoadStandardMappings(IEnumerable<Type> types)
