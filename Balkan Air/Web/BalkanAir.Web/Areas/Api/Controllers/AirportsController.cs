@@ -7,23 +7,20 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
-    using Ninject;
-
     using BalkanAir.Common;
     using Data.Models;
     using Models.Airports;
     using Services.Data.Contracts;
-    using Data.Repositories.Contracts;
-
+    
     [EnableCors("*", "*", "*")]
     [Authorize(Roles = GlobalConstants.ADMINISTRATOR_ROLE)]
     public class AirportsController : ApiController
     {
-        private readonly IAirportsServices airprotsServices;
+        private readonly IAirportsServices airportsServices;
 
-        public AirportsController(IAirportsServices airports)
+        public AirportsController(IAirportsServices airportsServices)
         {
-            this.airprotsServices = airports;
+            this.airportsServices = airportsServices;
         }
 
         [HttpPost]
@@ -35,7 +32,7 @@
             }
 
             var airportToAdd = Mapper.Map<Airport>(airport);
-            var airportId = this.airprotsServices.AddAirport(airportToAdd);
+            var airportId = this.airportsServices.AddAirport(airportToAdd);
 
             return this.Ok(airportId);
         }
@@ -44,9 +41,7 @@
         [AllowAnonymous]
         public IHttpActionResult All()
         {
-            
-
-            var airports = this.airprotsServices.GetAll()
+            var airports = this.airportsServices.GetAll()
                 .OrderBy(a => a.Name)
                 .ThenBy(a => a.Abbreviation)
                 .ProjectTo<AirportResponseModel>()
@@ -59,7 +54,12 @@
         [AllowAnonymous]
         public IHttpActionResult Get(int id)
         {
-            var airport = this.airprotsServices.GetAll()
+            if (id <= 0)
+            {
+                return this.BadRequest("Invalid ID!");
+            }
+
+            var airport = this.airportsServices.GetAll()
                 .ProjectTo<AirportResponseModel>()
                 .FirstOrDefault(a => a.Id == id);
 
@@ -73,9 +73,14 @@
 
         [HttpGet]
         [AllowAnonymous]
-        public IHttpActionResult Get(string abbreviation)
+        public IHttpActionResult GetByAbbreviation(string abbreviation)
         {
-            var airport = this.airprotsServices.GetAll()
+            if (string.IsNullOrEmpty(abbreviation))
+            {
+                return this.BadRequest("Invalid abbreviation!");
+            }
+
+            var airport = this.airportsServices.GetAll()
                 .ProjectTo<AirportResponseModel>()
                 .FirstOrDefault(a => a.Abbreviation.ToLower() == abbreviation.ToLower());
 
@@ -90,13 +95,18 @@
         [HttpPut]
         public IHttpActionResult Update(int id, UpdateAirportRequestModel airport)
         {
+            if (id <= 0)
+            {
+                return this.BadRequest("Invalid ID!");
+            }
+
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
 
             var airportToUpdate = Mapper.Map<Airport>(airport);
-            var updatedAirport = this.airprotsServices.UpdateAirport(id, airportToUpdate);
+            var updatedAirport = this.airportsServices.UpdateAirport(id, airportToUpdate);
 
             if (updatedAirport == null)
             {
@@ -109,7 +119,12 @@
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            var deletedAirprot = this.airprotsServices.DeleteAirport(id);
+            if (id <= 0)
+            {
+                return this.BadRequest("Invalid ID!");
+            }
+
+            var deletedAirprot = this.airportsServices.DeleteAirport(id);
 
             if (deletedAirprot == null)
             {

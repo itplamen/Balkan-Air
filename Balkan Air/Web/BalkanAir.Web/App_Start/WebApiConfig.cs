@@ -49,7 +49,7 @@
             config.Routes.MapHttpRoute(
                 name: "GetAirportAndCountryByAbbreviation",
                 routeTemplate: "Api/{controller}/{abbreviation}",
-                defaults: new { action = "Get" },
+                defaults: new { action = "GetByAbbreviation" },
                 constraints: new { abbreviation = @"\b[a-zA-Z]{2,3}\b", httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
         }
 
