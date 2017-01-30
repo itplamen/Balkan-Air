@@ -19,7 +19,7 @@
         public static void RegisterDefaultRoutes(HttpConfiguration config)
         {
             config.Routes.MapHttpRoute(
-                name: "DefaultApiGet",
+                name: "DefaultApiGetAll",
                 routeTemplate: "Api/{controller}",
                 defaults: new { action = "All" },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });

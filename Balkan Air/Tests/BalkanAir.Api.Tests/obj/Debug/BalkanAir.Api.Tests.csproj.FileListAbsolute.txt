@@ -78,3 +78,9 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\obj\Debug
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\obj\Debug\BalkanAir.Api.Tests.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\obj\Debug\BalkanAir.Api.Tests.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Api.Tests.dll.config
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Microsoft.Owin.Hosting.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Microsoft.Owin.Testing.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\MyTested.WebApi.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Microsoft.Owin.Hosting.xml
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Microsoft.Owin.Testing.xml
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\MyTested.WebApi.xml
