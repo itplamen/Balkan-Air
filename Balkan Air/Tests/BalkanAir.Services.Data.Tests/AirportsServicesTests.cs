@@ -14,13 +14,13 @@
     {
         private IAirportsServices airportsServices;
 
-        private InMemoryRepository<Airport> airportRepository;
+        private InMemoryRepository<Airport> airportsRepository;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.airportRepository = TestObjectFactory.GetAirportsRepository();
-            this.airportsServices = new AirportsServices(this.airportRepository);
+            this.airportsRepository = TestObjectFactory.GetAirportsRepository();
+            this.airportsServices = new AirportsServices(this.airportsRepository);
         }
 
         [TestMethod]
@@ -40,7 +40,7 @@
                 CountryId = 1
             });
 
-            Assert.AreEqual(1, this.airportRepository.NumberOfSaves);
+            Assert.AreEqual(1, this.airportsRepository.NumberOfSaves);
         }
 
         [TestMethod]
@@ -53,7 +53,7 @@
                 CountryId = 1
             });
 
-            var addedAirport = this.airportRepository.All()
+            var addedAirport = this.airportsRepository.All()
                 .FirstOrDefault(a => a.Name == "Test Airport");
 
             Assert.IsNotNull(addedAirport);
@@ -109,7 +109,7 @@
                 CountryId = 1
             });
 
-            Assert.AreEqual(1, this.airportRepository.NumberOfSaves);
+            Assert.AreEqual(1, this.airportsRepository.NumberOfSaves);
         }
 
         [TestMethod]
@@ -147,7 +147,7 @@
         {
             var result = this.airportsServices.DeleteAirport(1);
 
-            Assert.AreEqual(1, this.airportRepository.NumberOfSaves);
+            Assert.AreEqual(1, this.airportsRepository.NumberOfSaves);
         }
 
         [TestMethod]

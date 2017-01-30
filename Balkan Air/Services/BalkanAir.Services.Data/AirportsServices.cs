@@ -5,6 +5,7 @@
 
     using BalkanAir.Data.Models;
     using BalkanAir.Data.Repositories.Contracts;
+    using Common;
     using Contracts;
 
     public class AirportsServices : IAirportsServices
@@ -20,7 +21,7 @@
         {
             if (airport == null)
             {
-                throw new ArgumentNullException("Airport cannot be null!");
+                throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
             }
 
             this.airports.Add(airport);
@@ -33,7 +34,7 @@
         {
             if (id <= 0)
             {
-                throw new ArgumentOutOfRangeException("Id cannot be less or equal to zero!");
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
             }
 
             return this.airports.GetById(id);
@@ -48,12 +49,12 @@
         {
             if (id <= 0)
             {
-                throw new ArgumentOutOfRangeException("Id cannot be less or equal to zero!");
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
             }
 
             if (airport == null)
             {
-                throw new ArgumentNullException("Airport cannot be null!");
+                throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
             }
 
             var airportToUpdate = this.airports.GetById(id);
@@ -74,7 +75,7 @@
         {
             if (id <= 0)
             {
-                throw new ArgumentOutOfRangeException("Id cannot be less or equal to zero!");
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
             }
 
             var airportToDelete = this.airports.GetById(id);

@@ -1,9 +1,11 @@
 ﻿namespace BalkanAir.Services.Data
 {
+    using System;
     using System.Linq;
 
     using BalkanAir.Data.Models;
     using BalkanAir.Data.Repositories.Contracts;
+    using Common;
     using Contracts;
 
     public class AircraftsServices : IAircraftsServices
@@ -17,6 +19,11 @@
 
         public int AddAircraft(Aircraft aircraft)
         {
+            if (aircraft == null)
+            {
+                throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
+            }
+
             this.aircrafts.Add(aircraft);
             this.aircrafts.SaveChanges();
 
@@ -25,6 +32,11 @@
 
         public Aircraft GetAircraft(int id)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
+            }
+
             return this.aircrafts.GetById(id);
         }
 
@@ -35,6 +47,16 @@
 
         public Aircraft UpdateAircraft(int id, Aircraft aircraft)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
+            }
+
+            if (aircraft == null)
+            {
+                throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
+            }
+
             var aircraftToUpdate = this.aircrafts.GetById(id);
 
             if (aircrafts != null)
@@ -51,6 +73,11 @@
 
         public Aircraft DeleteAircraft(int id)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
+            }
+
             var aircraftToDelete = this.aircrafts.GetById(id);
 
             if (aircraftToDelete != null)

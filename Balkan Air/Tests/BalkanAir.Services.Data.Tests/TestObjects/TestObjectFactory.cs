@@ -1,9 +1,43 @@
-﻿using BalkanAir.Data.Models;
-
-namespace BalkanAir.Services.Data.Tests.TestObjects
+﻿namespace BalkanAir.Services.Data.Tests.TestObjects
 {
+    using BalkanAir.Data.Models;
+
     public static class TestObjectFactory
     {
+        public static InMemoryRepository<AircraftManufacturer> GetAircraftManufacturersRepository(int numberOfManufacturers = 25)
+        {
+            var manufacturers = new InMemoryRepository<AircraftManufacturer>();
+
+            for (int i = 0; i < numberOfManufacturers; i++)
+            {
+                manufacturers.Add(new AircraftManufacturer()
+                {
+                    Id = i,
+                    Name = "Test Manufacturer " + i
+                });
+            }
+
+            return manufacturers;
+        }
+
+        public static InMemoryRepository<Aircraft> GetAircraftsRepository(int numberOfAircrafts = 25)
+        {
+            var aircrafts = new InMemoryRepository<Aircraft>();
+
+            for (int i = 0; i < numberOfAircrafts; i++)
+            {
+                aircrafts.Add(new Aircraft()
+                {
+                    Id = i,
+                    Model = "Test Aircraft " + i,
+                    TotalSeats = 1,
+                    AircraftManufacturerId = 1
+                });
+            }
+
+            return aircrafts;
+        }
+
         public static InMemoryRepository<Airport> GetAirportsRepository(int numberOfAirprots = 25)
         {
             var airports = new InMemoryRepository<Airport>();
