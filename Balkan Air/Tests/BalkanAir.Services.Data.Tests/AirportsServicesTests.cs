@@ -14,18 +14,18 @@
     {
         private IAirportsServices airportsServices;
 
-        private InMemoryRepository<Airport> airportRepo;
+        private InMemoryRepository<Airport> airportRepository;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.airportRepo = TestObjectFactory.GetAirportsRepository();
-            this.airportsServices = new AirportsServices(this.airportRepo);
+            this.airportRepository = TestObjectFactory.GetAirportsRepository();
+            this.airportsServices = new AirportsServices(this.airportRepository);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void AddShouldThrowExceptionWithNotFoundAirport()
+        public void AddShouldThrowExceptionWithInvalidAirport()
         {
             var result = this.airportsServices.AddAirport(null);
         }
@@ -40,7 +40,7 @@
                 CountryId = 1
             });
 
-            Assert.AreEqual(1, this.airportRepo.NumberOfSaves);
+            Assert.AreEqual(1, this.airportRepository.NumberOfSaves);
         }
 
         [TestMethod]
@@ -53,13 +53,117 @@
                 CountryId = 1
             });
 
-            var addedAirport = this.airportRepo.All()
+            var addedAirport = this.airportRepository.All()
                 .FirstOrDefault(a => a.Name == "Test Airport");
 
             Assert.IsNotNull(addedAirport);
             Assert.AreEqual("Test Airport", addedAirport.Name);
             Assert.AreEqual("123", addedAirport.Abbreviation);
             Assert.AreEqual(1, addedAirport.CountryId);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void GetByIdShouldThrowExceptionWithInvalidId()
+        {
+            var result = this.airportsServices.GetAirport(-1);
+        }
+
+        [TestMethod]
+        public void GetByIdShouldReturnAirport()
+        {
+            var result = this.airportsServices.GetAirport(1);
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void GetAllShouldReturnAllAirportsInDatabase()
+        {
+            var result = this.airportsServices.GetAll();
+
+            Assert.IsNotNull(result);
+        } 
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void UpdateShouldThrowExceptionWithInvalidId()
+        {
+            var result = this.airportsServices.UpdateAirport(-1, new Airport());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void UpdateShouldThrowExceptionWithInvalidAirport()
+        {
+            var result = this.airportsServices.UpdateAirport(1, null);
+        }
+
+        [TestMethod]
+        public void UpdateShouldInvokeSaveChanges()
+        {
+            var result = this.airportsServices.UpdateAirport(1, new Airport()
+            {
+                Name = "Test Airport",
+                Abbreviation = "123",
+                CountryId = 1
+            });
+
+            Assert.AreEqual(1, this.airportRepository.NumberOfSaves);
+        }
+
+        [TestMethod]
+        public void UpdateShouldReturnEditedAirport()
+        {
+            var result = this.airportsServices.UpdateAirport(1, new Airport());
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void UpdateShouldEditAirport()
+        {
+            var result = this.airportsServices.UpdateAirport(1, new Airport()
+            {
+                Name = "Test Airport",
+                Abbreviation = "123",
+                CountryId = 1
+            });
+
+            Assert.AreEqual("Test Airport", result.Name);
+            Assert.AreEqual("123", result.Abbreviation);
+            Assert.AreEqual(1, result.CountryId);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void DeleteShouldThrowExceptionWithInvalidId()
+        {
+            var result = this.airportsServices.DeleteAirport(-1);
+        }
+
+        [TestMethod]
+        public void DeleteShouldInvokeSaveChanges()
+        {
+            var result = this.airportsServices.DeleteAirport(1);
+
+            Assert.AreEqual(1, this.airportRepository.NumberOfSaves);
+        }
+
+        [TestMethod]
+        public void DeleteShouldReturnNotNullAirport()
+        {
+            var result = this.airportsServices.DeleteAirport(1);
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void DeleteShouldSetIsDeletedProperyToTrue()
+        {
+            var result = this.airportsServices.DeleteAirport(1);
+
+            Assert.IsTrue(result.IsDeleted);
         }
     }
 }

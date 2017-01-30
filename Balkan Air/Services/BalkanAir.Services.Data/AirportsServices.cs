@@ -31,6 +31,11 @@
 
         public Airport GetAirport(int id)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Id cannot be less or equal to zero!");
+            }
+
             return this.airports.GetById(id);
         }
 
@@ -41,6 +46,16 @@
 
         public Airport UpdateAirport(int id, Airport airport)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Id cannot be less or equal to zero!");
+            }
+
+            if (airport == null)
+            {
+                throw new ArgumentNullException("Airport cannot be null!");
+            }
+
             var airportToUpdate = this.airports.GetById(id);
 
             if (airportToUpdate != null)
@@ -57,6 +72,11 @@
 
         public Airport DeleteAirport(int id)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Id cannot be less or equal to zero!");
+            }
+
             var airportToDelete = this.airports.GetById(id);
 
             if (airportToDelete != null)
