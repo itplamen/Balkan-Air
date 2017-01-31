@@ -21,9 +21,7 @@
             this.users.Add(user);
             this.users.SaveChanges();
 
-            //return user.Id;
-
-            return " ";
+            return user.Id;
         }
 
         public User GetUser(string id)
@@ -33,8 +31,7 @@
 
         public User GetUserByEmail(string email)
         {
-            return null;
-            //return this.users.All().FirstOrDefault(u => u.Email == email);
+            return this.users.All().FirstOrDefault(u => u.Email == email);
         }
 
         public IQueryable<User> GetAll()
@@ -46,8 +43,8 @@
         {
             var userToUpdate = this.users.GetById(id);
 
-            //if (userToUpdate != null)
-            //{
+            if (userToUpdate != null)
+            {
                 userToUpdate.UserSettings.FirstName = user.UserSettings.FirstName;
                 userToUpdate.UserSettings.LastName = user.UserSettings.LastName;
                 userToUpdate.UserSettings.DateOfBirth = user.UserSettings.DateOfBirth;
@@ -62,7 +59,7 @@
                 }
 
                 this.users.SaveChanges();
-            //}
+            }
 
             return userToUpdate;
         }
@@ -71,12 +68,12 @@
         {
             var userToDelete = this.users.GetById(id);
 
-            //if (userToDelete != null)
-            //{
+            if (userToDelete != null)
+            {
                 userToDelete.IsDeleted = true;
                 userToDelete.DeletedOn = DateTime.Now;
                 this.users.SaveChanges();
-            //}
+            }
 
             return userToDelete;
         }

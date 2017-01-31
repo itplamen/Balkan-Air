@@ -10,11 +10,12 @@
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
+
     using Ninject;
 
     using BalkanAir.Common;
-    using BalkanAir.Data.Models;
-    using BalkanAir.Services.Data.Contracts;
+    using Data.Models;
+    using Services.Data.Contracts;
 
     public partial class SiteMaster : MasterPage
     {
@@ -31,12 +32,28 @@
         [Inject]
         public IUserNotificationsServices UserNotificationsServices { get; set; }
 
+        protected ApplicationUserManager Manager
+        {
+            get { return Context.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+        }
+
+        protected User User
+        {
+            get { return this.Manager.FindById(this.Context.User.Identity.GetUserId()); }
+        }
+
         protected int NumberOfUnreadNotifications
         {
-            get
-            {
-                return this.GetCurrentUser().NumberOfUnreadNotifications;
-            }
+            get { return this.User.NumberOfUnreadNotifications; }
+        }
+
+        public IEnumerable<UserNotification> LatestNotificationsRepeater_GetData()
+        {
+            return this.UserNotificationsServices.GetAll()
+                .Where(un => un.UserId.Equals(this.User.Id))
+                .OrderByDescending(un => un.DateReceived)
+                .Take(5)
+                .ToList();
         }
 
         protected void Page_Init(object sender, EventArgs e)
@@ -44,6 +61,7 @@
             // The code below helps to protect against XSRF attacks
             var requestCookie = Request.Cookies[AntiXsrfTokenKey];
             Guid requestCookieGuidValue;
+
             if (requestCookie != null && Guid.TryParse(requestCookie.Value, out requestCookieGuidValue))
             {
                 // Use the Anti-XSRF token from the cookie
@@ -61,10 +79,12 @@
                     HttpOnly = true,
                     Value = _antiXsrfTokenValue
                 };
+
                 if (FormsAuthentication.RequireSSL && Request.IsSecureConnection)
                 {
                     responseCookie.Secure = true;
                 }
+
                 Response.Cookies.Set(responseCookie);
             }
 
@@ -96,14 +116,12 @@
             {
                 this.SiteMapPathBreadcrump.Visible = (SiteMap.CurrentNode != SiteMap.RootNode);
 
-                var currentUser = this.GetCurrentUser();
-
                 // TODO: Check for admin
-                if (currentUser != null)
+                if (this.User != null)
                 {
                     this.AdministrationMenu.Visible = true;
 
-                    if (!currentUser.EmailConfirmed)
+                    if (!this.User.EmailConfirmed)
                     {
                         this.EmailNotConfirmedPanel.Visible = true;
                     }
@@ -111,64 +129,37 @@
             }
         }
 
-        public IEnumerable<UserNotification> LatestNotificationsRepeater_GetData()
-        {
-            var user = this.GetCurrentUser();
-
-            return this.UserNotificationsServices.GetAll()
-                .Where(un => un.UserId.Equals(user.Id))
-                .OrderByDescending(un => un.DateReceived)
-                .Take(5)
-                .ToList();
-        }
-
-        protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
+        protected void LoginStatus_LoggingOut(object sender, LoginCancelEventArgs e)
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
 
         protected void SendAnotherConfirmationEmailLinkButton_Click(object sender, EventArgs e)
         {
-            var user = this.GetCurrentUser();
-            string code = this.GetManager().GenerateEmailConfirmationToken(user.Id);
-            string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
+            string code = this.Manager.GenerateEmailConfirmationToken(this.User.Id);
+            string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, this.User.Id, Request);
 
-            var mailSender = MailSender.Instance;
-
-            string messageBody = "Hello, " + user.Email.Trim() + ",";
+            string messageBody = "Hello, " + this.User.Email.Trim() + ",";
             messageBody += "<br /><br />Please click the following link to confirm your account!";
             messageBody += "<br /><a href =\"" + callbackUrl + "\">Click here to confirm your account.</a>";
-            messageBody += "<br /><br /><i>Best regards, <br /><span style=\"color:#C5027C; font-size: 15px;\"><strong>Balkan Air Bulgaria</strong></span></i>";
 
-            mailSender.SendMail(user.Email, "Confirm your account!", messageBody);
+            var mailSender = MailSender.Instance;
+            mailSender.SendMail(this.User.Email, "Confirm your account!", messageBody);
         }
 
         protected string GetUserInfo()
         {
-            var user = this.GetCurrentUser();
-
-            if (!string.IsNullOrEmpty(user.UserSettings.FirstName) && !string.IsNullOrEmpty(user.UserSettings.LastName))
+            if (!string.IsNullOrEmpty(this.User.UserSettings.FirstName) && !string.IsNullOrEmpty(this.User.UserSettings.LastName))
             {
-                return user.UserSettings.FirstName + " " + user.UserSettings.LastName;
+                return this.User.UserSettings.FirstName + " " + this.User.UserSettings.LastName;
             }
 
-            return user.Email;
+            return this.User.Email;
         }
 
         protected void MarkAllNotificationsAsReadBtn_Click(object sender, EventArgs e)
         {
-            this.UserNotificationsServices.SetAllNotificationsAsRead(this.GetCurrentUser().Id);
-        }
-
-        private ApplicationUserManager GetManager()
-        {
-            return Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-        }
-
-        private User GetCurrentUser()
-        {
-            var manager = this.GetManager();
-            return manager.FindById(this.Context.User.Identity.GetUserId());
+            this.UserNotificationsServices.SetAllNotificationsAsRead(this.User.Id);
         }
     }
 }  

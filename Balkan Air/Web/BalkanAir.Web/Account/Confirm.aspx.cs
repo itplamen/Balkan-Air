@@ -7,11 +7,11 @@
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
+
     using Ninject;
 
     using Common;
-    using Data.Models;
-    using BalkanAir.Services.Data.Contracts;
+    using Services.Data.Contracts;
 
     public partial class Confirm : Page
     {
@@ -38,15 +38,13 @@
                 {
                     successPanel.Visible = true;
 
-                    var user = this.GetCurrentUser();
-
                     bool didUserReceivedSetAccountNotification = this.UserNotificationsServices.GetAll()
-                            .Where(un => un.UserId.Equals(user.Id) && un.NotificationId == Parameters.SET_ACCOUNT_NOTIFICATION_ID)
+                            .Where(un => un.UserId.Equals(userId) && un.NotificationId == Parameters.SET_ACCOUNT_NOTIFICATION_ID)
                             .Any();
 
                     if (!didUserReceivedSetAccountNotification)
                     {
-                        this.UserNotificationsServices.SendNotification(Parameters.SET_ACCOUNT_NOTIFICATION_ID, user.Id);
+                        this.UserNotificationsServices.SendNotification(Parameters.SET_ACCOUNT_NOTIFICATION_ID, userId);
                     }
 
                     return;
@@ -55,17 +53,6 @@
 
             successPanel.Visible = false;
             errorPanel.Visible = true;
-        }
-
-        private ApplicationUserManager GetManager()
-        {
-            return Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-        }
-
-        private User GetCurrentUser()
-        {
-            var manager = this.GetManager();
-            return manager.FindById(this.Context.User.Identity.GetUserId());
         }
     }
 }

@@ -24,7 +24,6 @@
             return category.Id;
         }
 
-
         public IQueryable<Category> GetAll()
         {
             return this.categories.All();

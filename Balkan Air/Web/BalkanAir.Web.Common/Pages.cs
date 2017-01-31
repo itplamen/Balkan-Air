@@ -16,6 +16,8 @@
 
         /******************** Account *******************/
 
+        public const string LOGIN = "~/Account/Login";
+        public const string REGISTER = "~/Account/Register";
         public const string ACCOUNT = "~/Account/Manage";
         public const string PROFILE = "~/Account/Profile";
         public const string SETTINGS = "~/Account/Settings";

@@ -10,10 +10,13 @@
         private const string SEND_FROM = "itplamen@gmail.com";
         private const string SEND_FROM_NAME = "Balkan Air Bulgaria";
         //private const string PASSWORD = "__YOUR_PASSWORD_HERE__";
-        private const string PASSWORD = "Common1ypeSys1em";
+        private const string PASSWORD = " ";
         
         private const string HOST = "smtp.gmail.com";
         private const int PORT = 587;
+
+        private string MESSAGE_FOOTER = "<br /><br /><i>Best regards, <br />" + 
+            "<span style=\"color:#C5027C; font-size: 15px;\"><strong>Balkan Air Bulgaria</strong></span></i>";
 
         private static readonly object SyncRoot = new object();
         
@@ -72,7 +75,7 @@
             var mailFrom = new MailAddress(SEND_FROM, SEND_FROM_NAME);
             var message = new MailMessage(mailFrom, mailTo)
             {
-                Body = messageBody,
+                Body = messageBody + MESSAGE_FOOTER,
                 BodyEncoding = Encoding.UTF8,
                 IsBodyHtml = true,
                 Subject = subject,

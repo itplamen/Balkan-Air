@@ -136,7 +136,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                    <asp:LoginStatus ID="LoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" 
+                                        OnLoggingOut="LoginStatus_LoggingOut" />
                                 </li>
                                 <li>
                                     <div class="btn-group">

@@ -3,9 +3,10 @@
     using System;
     using System.Web;
     using System.Web.UI;
-    
+
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
+    using Common;
 
     public partial class ChangePassword : Page
     {
@@ -26,6 +27,11 @@
 
             if (!IsPostBack)
             {
+                if (!this.Context.User.Identity.IsAuthenticated)
+                {
+                    this.Response.Redirect(Pages.LOGIN);
+                }
+
                 // Determine the sections to render
                 if (HasPassword(manager))
                 {

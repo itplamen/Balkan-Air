@@ -15,3 +15,6 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\ob
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\obj\Debug\BalkanAir.Services.Data.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Debug\BalkanAir.Common.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Debug\BalkanAir.Common.pdb
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Debug\BalkanAir.Services.Data.dll.config
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Debug\EntityFramework.SqlServer.xml

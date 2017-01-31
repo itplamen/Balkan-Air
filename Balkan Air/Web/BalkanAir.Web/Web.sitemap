@@ -5,6 +5,8 @@
     <siteMapNode url="~/Account/Register" title="Register" description="Sign up, so you can book flights" />
     <siteMapNode url="~/Account/Login" title="Log in" />
     <siteMapNode url="~/Account/ForgottenPassword" title="Forgotten password" />
+    <siteMapNode url="~/Account/Confirm" title="Confirm" />
+    <siteMapNode url="~/Account/Lockout" title="Lockout" />
     
     <siteMapNode url="~/FlightInfo" title="Flight info" description="Information about all flights" />
     <siteMapNode url="~/News" title="News" description="Get latest news" />

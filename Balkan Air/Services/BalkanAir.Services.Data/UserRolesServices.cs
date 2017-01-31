@@ -1,62 +1,63 @@
-﻿//namespace BalkanAir.Services.Data
-//{
-//    using System.Linq;
+﻿namespace BalkanAir.Services.Data
+{
+    using System.Linq;
 
-//    using BalkanAir.Data.Models;
-//    using BalkanAir.Data.Repositories.Contracts;
-//    using Contracts;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
-//    public class UserRolesServices : IUserRolesServices
-//    {
-//        private readonly IRepository<IdentityRole> roles;
+    using BalkanAir.Data.Repositories.Contracts;
+    using Contracts;
 
-//        public UserRolesServices(IRepository<IdentityRole> roles)
-//        {
-//            this.roles = roles;
-//        }
+    public class UserRolesServices : IUserRolesServices
+    {
+        private readonly IRepository<IdentityRole> roles;
 
-//        public string AddRole(IdentityRole role)
-//        {
-//            this.roles.Add(role);
-//            this.roles.SaveChanges();
+        public UserRolesServices(IRepository<IdentityRole> roles)
+        {
+            this.roles = roles;
+        }
 
-//            return role.Id;
-//        }
+        public string AddRole(IdentityRole role)
+        {
+            this.roles.Add(role);
+            this.roles.SaveChanges();
 
-//        public IdentityRole GetRole(string id)
-//        {
-//            return this.roles.GetById(id);
-//        }
+            return role.Id;
+        }
 
-//        public IQueryable<IdentityRole> GetAll()
-//        {
-//            return this.roles.All();
-//        }
+        public IdentityRole GetRole(string id)
+        {
+            return this.roles.GetById(id);
+        }
 
-//        public IdentityRole UpdateRole(string id, IdentityRole role)
-//        {
-//            var roleToUpdate = this.roles.GetById(id);
-            
-//            if (roleToUpdate != null)
-//            {
-//                roleToUpdate.Name = role.Name;
-//                this.roles.SaveChanges();
-//            }
+        public IQueryable<IdentityRole> GetAll()
+        {
+            return this.roles.All();
+        }
 
-//            return roleToUpdate;
-//        }
+        public IdentityRole UpdateRole(string id, IdentityRole role)
+        {
+            var roleToUpdate = this.roles.GetById(id);
 
-//        public IdentityRole DeleteRole(string id)
-//        {
-//            var roleToDelete = this.roles.GetById(id);
+            if (roleToUpdate != null)
+            {
+                roleToUpdate.Name = role.Name;
+                this.roles.SaveChanges();
+            }
 
-//            if (roleToDelete != null)
-//            {
-//                this.roles.Delete(id);
-//                this.roles.SaveChanges();
-//            }
+            return roleToUpdate;
+        }
 
-//            return roleToDelete;
-//        }
-//    }
-//}
+        public IdentityRole DeleteRole(string id)
+        {
+            var roleToDelete = this.roles.GetById(id);
+
+            if (roleToDelete != null)
+            {
+                this.roles.Delete(id);
+                this.roles.SaveChanges();
+            }
+
+            return roleToDelete;
+        }
+    }
+}

@@ -1,26 +1,31 @@
-﻿using System;
-using System.Web;
-using System.Web.UI;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Owin;
-using BalkanAir.Web.Models;
-
-namespace BalkanAir.Web.Account
+﻿namespace BalkanAir.Web.Account
 {
+    using System;
+    using System.Web;
+    using System.Web.UI;
+
+    using Microsoft.AspNet.Identity.Owin;
+
+    using Common;
+
     public partial class Login : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             RegisterHyperLink.NavigateUrl = "Register";
-            // Enable this once you have account confirmation enabled for password reset functionality
             ForgotPasswordHyperLink.NavigateUrl = "ForgottenPassword";
 
             //OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
-            if (!String.IsNullOrEmpty(returnUrl))
+
+            if (!string.IsNullOrEmpty(returnUrl))
             {
                 RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
+            }
+
+            if (this.Context.User.Identity.IsAuthenticated)
+            {
+                this.Response.Redirect(Pages.HOME);
             }
         }
 
@@ -32,7 +37,7 @@ namespace BalkanAir.Web.Account
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
 
-                // This doen't count login failures towards account lockout
+                // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger lockout, change to shouldLockout: true
                 var result = signinManager.PasswordSignIn(Email.Text, Password.Text, RememberMe.Checked, shouldLockout: false);
 
@@ -48,7 +53,7 @@ namespace BalkanAir.Web.Account
                         Response.Redirect(String.Format("/Account/TwoFactorAuthenticationSignIn?ReturnUrl={0}&RememberMe={1}", 
                                                         Request.QueryString["ReturnUrl"],
                                                         RememberMe.Checked),
-                                          true);
+                                                        true);
                         break;
                     case SignInStatus.Failure:
                     default:

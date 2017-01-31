@@ -4,13 +4,14 @@
     using System.Linq;
     using System.Web;
     using System.Web.UI;
+
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
 
     using Ninject;
 
     using BalkanAir.Common;
-    using BalkanAir.Services.Data.Contracts;
+    using Services.Data.Contracts;
 
     public partial class ForgotPassword : Page
     {
@@ -40,13 +41,22 @@
                 string code = manager.GeneratePasswordResetToken(user.Id);
                 string callbackUrl = IdentityHelper.GetResetPasswordRedirectUrl(code, Request);
 
-                var mailSender = MailSender.Instance;
+                string username = string.Empty;
 
-                string messageBody = "Hello, " + user.Email.Trim() + ",";
+                if (string.IsNullOrEmpty(user.UserSettings.FirstName) && string.IsNullOrEmpty(user.UserSettings.LastName))
+                {
+                    username = user.Email;
+                }
+                else
+                {
+                    username = user.UserSettings.FirstName + " " + user.UserSettings.LastName;
+                }
+
+                string messageBody = "Hello, " + username + ",";
                 messageBody += "<br /><br />Please click the following link to reset your password!";
                 messageBody += "<br /><a href =\"" + callbackUrl + "\">Click here to reset your password.</a>";
-                messageBody += "<br /><br /><i>Best regards, <br /><span style=\"color:#C5027C; font-size: 15px;\"><strong>Balkan Air Bulgaria</strong></span></i>";
 
+                var mailSender = MailSender.Instance;
                 mailSender.SendMail(user.Email, "Reset Password!", messageBody);
 
                 loginForm.Visible = false;
