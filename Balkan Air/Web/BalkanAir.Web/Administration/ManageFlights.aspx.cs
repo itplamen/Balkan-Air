@@ -1,4 +1,4 @@
-﻿namespace BalkanAir.Web.Private
+﻿namespace BalkanAir.Web.Administration
 {
     using System;
     using System.Collections.Generic;
@@ -9,10 +9,10 @@
 
     using Ninject;
 
-    using BalkanAir.Data;
-    using BalkanAir.Data.Helper;
-    using BalkanAir.Data.Models;
-    using BalkanAir.Services.Data.Contracts;
+    using Data;
+    using Data.Helper;
+    using Data.Models;
+    using Services.Data.Contracts;
 
     public partial class ManageFlights : Page
     {
@@ -26,18 +26,7 @@
         public IFlightStatusesServices FlightStatusesServices { get; set; }
 
         [Inject]
-        public ICountriesServices CountriesServices { get; set; }
-
-        [Inject]
         public IAirportsServices AirportsServices { get; set; }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!this.Page.IsPostBack)
-            {
-                this.CreateFlightPanel.Visible = false;
-            }
-        }
 
         public IQueryable<Flight> ManageFlightsGridView_GetData()
         {
@@ -80,13 +69,6 @@
                 .OrderBy(a => a.Model);
         }
 
-        public IQueryable<Country> CountrytDropDownList_GetData()
-        {
-            return this.CountriesServices.GetAll()
-                .Where(c => !c.IsDeleted)
-                .OrderBy(c => c.Name);
-        }
-
         public IQueryable<Airport> AirportsDropDownList_GetData()
         {
             return this.AirportsServices.GetAll()
@@ -94,8 +76,33 @@
                 .OrderBy(a => a.Name);
         }
 
-        protected void CreateFlightBtn_Click(object sender, EventArgs e)
+        public IQueryable<object> DepartureAirportsDropDownList_GetData()
         {
+            var departureAirports = this.AirportsServices.GetAll()
+                .Where(a => !a.IsDeleted)
+                .OrderBy(a => a.Country.Name)
+                .ThenBy(a => a.Name)
+                .Select(a => new
+                {
+                    Id = a.Id,
+                    AirportInfo = a.Name + ", (" + a.Abbreviation + ") -> " + a.Country.Name
+                });
+
+            return departureAirports;
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                var selectedDepartureAirport = this.AirportsServices.GetAll()
+                .Where(a => !a.IsDeleted)
+                .OrderBy(a => a.Country.Name)
+                .ThenBy(a => a.Name)
+                .FirstOrDefault();
+
+                this.BindArrivalAirportsDropDownList(selectedDepartureAirport.Name);
+            }
         }
 
         protected void GenerateFlightNumberBtn_Click(object sender, EventArgs e)
@@ -104,33 +111,31 @@
             this.AddFlightNumberTextBox.Text = new FlightNumber(new BalkanAirDbContext()).GetUniqueFlightNumber();
         }
 
-        protected void FromCountrytDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        protected void DepartureAirportsDropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string fromCountry = this.FromCountrytDropDownList.SelectedItem.Text;
+            var selectedDepartureAirport = this.DepartureAirportsDropDownList.SelectedItem.Text.Split(new char[] { ',' })[0];
 
-            List<Airport> countryAirports = this.AirportsServices.GetAll()
-                .OrderBy(a => a.Name)
+            this.BindArrivalAirportsDropDownList(selectedDepartureAirport);
+        }
+
+        protected void CreateFlightBtn_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void BindArrivalAirportsDropDownList(string departureAirport)
+        {
+            var arrivalAirports = this.FlightsServices.GetAll()
+                .Where(a => a.DepartureAirport.Name.ToLower() == departureAirport.ToLower())
+                .Select(a => new
+                {
+                    Id = a.ArrivalAirport.Id,
+                    AirportInfo = a.ArrivalAirport.Name + ", (" + a.ArrivalAirport.Abbreviation + ") -> " + a.ArrivalAirport.Country.Name
+                })
+                .Distinct()
                 .ToList();
 
-            this.FromAirportRepeater.DataSource = countryAirports;
-            this.FromAirportRepeater.DataBind();
+            this.ArrivalAirportsDropDownList.DataSource = arrivalAirports;
+            this.ArrivalAirportsDropDownList.DataBind();
         }
-
-        protected void OnAirportSelectButtonClicked(object sender, EventArgs e)
-        {
-            LinkButton selectedAirport = sender as LinkButton;
-
-            if (selectedAirport != null)
-            {
-                
-            }
-        }
-
-        protected void NewFlightBtn_Click(object sender, EventArgs e)
-        {
-            this.CreateFlightPanel.Visible = true;
-        }
-
-     
     }
 }

@@ -31,6 +31,15 @@ namespace BalkanAir.Web.Administration {
         protected global::System.Web.UI.WebControls.TextBox CountryNameTextBox;
         
         /// <summary>
+        /// AbbreviationNameTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox AbbreviationNameTextBox;
+        
+        /// <summary>
         /// CreateCountrytBtn control.
         /// </summary>
         /// <remarks>

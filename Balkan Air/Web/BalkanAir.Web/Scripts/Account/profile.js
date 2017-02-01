@@ -15,7 +15,7 @@
         $(this).children('input[type="text"]').blur();
     });
 
-    $('#DatepickerTextBox').datepicker({ dateFormat: "yy/mm/dd" });
+    //$('#DatepickerTextBox').datepicker({ dateFormat: "yy/mm/dd" });
 });
 
 

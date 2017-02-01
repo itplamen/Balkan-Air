@@ -302,7 +302,7 @@
     <Content Include="Content\Images\selected-seat-icon.png" />
     <Content Include="Content\Images\total-weight-icon.png" />
     <Content Include="Content\Images\user-avatar-image.png" />
-    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\slick\ajax-loader.gif" />
     <Content Include="Content\slick\slick-theme.css" />
@@ -329,7 +329,7 @@
     <Content Include="Scripts\Account\profile.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\Booking\extras.js" />
     <Content Include="Scripts\Booking\select-seat.js" />

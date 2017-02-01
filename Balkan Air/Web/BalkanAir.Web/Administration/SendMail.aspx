@@ -41,10 +41,8 @@
                 maxHeight: 300,
                 buttonWidth: '350px'
             });
-
             if ($('#SuccessPanel').is(':visible')) {
                 setTimeout(function () {
-
                     $('#SuccessPanel').fadeOut('slow');
                 }, 3000);
             }

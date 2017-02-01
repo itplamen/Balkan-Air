@@ -16,7 +16,7 @@
     </asp:PlaceHolder>
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link href="Content/jquery-ui.css" rel="stylesheet" />
+    <link href="Content/jquery-ui.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="Content/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="Content/slick/slick-theme.css" />
     <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
@@ -136,7 +136,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <asp:LoginStatus ID="LoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" 
+                                    <asp:LoginStatus ID="LoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/"
                                         OnLoggingOut="LoginStatus_LoggingOut" />
                                 </li>
                                 <li>

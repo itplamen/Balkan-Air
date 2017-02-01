@@ -7,6 +7,7 @@
         ItemType="BalkanAir.Data.Models.Aircraft"
         DataKeyNames="Id"
         AutoGenerateColumns="false"
+        ShowHeaderWhenEmpty="true"
         PageSize="50"
         SelectMethod="ManageAircraftsGridView_GetData"
         UpdateMethod="ManageAircraftsGridView_UpdateItem"
@@ -14,10 +15,7 @@
         AllowSorting="true">
         <Columns>
             <asp:BoundField DataField="Id" SortExpression="Id" HeaderText="Id" />
-            <asp:TemplateField>
-                <HeaderTemplate>
-                    <asp:Label ID="ManufacturerLabel" Text="Manufacturer" runat="server" />
-                </HeaderTemplate>
+            <asp:TemplateField HeaderText="Manufacturer">
                 <ItemTemplate>
                     <asp:Literal ID="ManufacturerLiteral" Text="<%#: Item.AircraftManufacturer.Name %>" runat="server" />
                 </ItemTemplate>
@@ -32,6 +30,7 @@
             </asp:TemplateField>
             <asp:BoundField DataField="Model" SortExpression="Model" HeaderText="Model" />
             <asp:BoundField DataField="TotalSeats" SortExpression="TotalSeats" HeaderText="Total Seats" />
+            <asp:BoundField DataField="Flights.Count" HeaderText="Flights" />
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />
 
             <asp:CommandField ShowEditButton="true" ControlStyle-CssClass="btn btn-info" />
@@ -42,13 +41,17 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
+    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Invalid model length!" Type="String" ForeColor="Red" runat="server"
+        ValidationExpression="^[\s\S]{3,30}$" ControlToValidate="AircraftModelTextBox" />
+
     <asp:RangeValidator ErrorMessage="Invalid number of seats!" ControlToValidate="TotalSeatsTextBox" runat="server"
-        ForeColor="Red" MinimumValue="2" MaximumValue="700" />
+        ForeColor="Red" MinimumValue="2" MaximumValue="180" Type="Integer" />
+
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new aircraft</h3>
 
         <asp:Label Text="Model: " runat="server" />
-        <asp:TextBox ID="AircraftModelTextBox" required runat="server" Style="text-transform: uppercase;" />
+        <asp:TextBox ID="AircraftModelTextBox" required runat="server" MaxLength="30" Style="text-transform: uppercase;" />
 
         <asp:Label Text="Total seats:" runat="server" />
         <asp:TextBox ID="TotalSeatsTextBox" required runat="server" TextMode="Number" />

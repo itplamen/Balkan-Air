@@ -1,27 +1,25 @@
 ﻿namespace BalkanAir.Web.Administration
 {
     using System;
+    using System.Drawing;
     using System.Linq;
     using System.Web.UI;
 
     using Ninject;
 
     using Data.Models;
-    using BalkanAir.Services.Data.Contracts;
+    using Services.Data.Contracts;
 
     public partial class ManageCountries : Page
     {
         [Inject]
         public ICountriesServices CountriesServices { get; set; }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-        }
-
         public IQueryable<Country> ManageCountriesGridView_GetData()
         {
             return this.CountriesServices.GetAll()
-                .OrderBy(c => !c.IsDeleted);
+                .OrderBy(c => c.Name)
+                .ThenBy(c => c.Abbreviation);
         }
 
         public void ManageCountriesGridView_UpdateItem(int id)
@@ -46,10 +44,32 @@
             this.CountriesServices.DeleteCountry(id);
         }
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
         protected void CreateCountrytBtn_Click(object sender, EventArgs e)
         {
-            var country = new Country() { Name = this.CountryNameTextBox.Text };
-            this.CountriesServices.AddCountry(country);
+            if (Page.IsValid)
+            {
+                var doesAbbreviationExist = this.CountriesServices.GetAll()
+                    .Any(c => c.Abbreviation.ToLower() == this.AbbreviationNameTextBox.Text.ToLower());
+
+                if (doesAbbreviationExist)
+                {
+                    this.AbbreviationNameTextBox.BorderColor = Color.Red;
+                    return;
+                }
+
+                var country = new Country()
+                {
+                    Name = this.CountryNameTextBox.Text,
+                    Abbreviation = this.AbbreviationNameTextBox.Text.ToUpper()
+                };
+
+                this.CountriesServices.AddCountry(country);
+                this.AbbreviationNameTextBox.BorderColor = Color.Empty;
+            }
         }
     }
 }

@@ -23,6 +23,7 @@
         [Required]
         [MinLength(1)]
         [MaxLength(2)]
+        [Index(IsUnique = true)]
         public string Abbreviation { get; set; }
 
         public bool IsDeleted { get; set; }

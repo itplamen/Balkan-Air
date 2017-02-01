@@ -1,13 +1,14 @@
 ﻿namespace BalkanAir.Web.Administration
 {
     using System;
+    using System.Drawing;
     using System.Linq;
     using System.Web.UI;
 
     using Ninject;
 
-    using BalkanAir.Data.Models;
-    using BalkanAir.Services.Data.Contracts;
+    using Data.Models;
+    using Services.Data.Contracts;
 
     public partial class ManageAirports : Page
     {
@@ -17,14 +18,11 @@
         [Inject]
         public IAirportsServices AirportsServices { get; set; }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-        }
-
         public IQueryable<Airport> ManageAirportsGridView_GetData()
         {
             return this.AirportsServices.GetAll()
-                .OrderBy(a => a.Name);
+                .OrderBy(a => a.Name)
+                .ThenBy(a => a.Abbreviation);
         }
 
         public void ManageAirportsGridView_UpdateItem(int id)
@@ -56,16 +54,33 @@
                 .OrderBy(c => c.Name);
         }
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
         protected void CreateAirportBtn_Click(object sender, EventArgs e)
         {
-            var airport = new Airport()
+            if (Page.IsValid)
             {
-                Name = this.AirportNameTextBox.Text,
-                Abbreviation = this.AbbreviationTextBox.Text,
-                CountryId = int.Parse(this.CountryDropDownList.SelectedItem.Value)
-            };
+                bool doesAbbreviationExist = this.AirportsServices.GetAll()
+                    .Any(a => a.Abbreviation.ToLower() == this.AbbreviationTextBox.Text.ToLower());
 
-            this.AirportsServices.AddAirport(airport);
+                if (doesAbbreviationExist)
+                { 
+                    this.AbbreviationTextBox.BorderColor = Color.Red;
+                    return;
+                }
+
+                var airport = new Airport()
+                {
+                    Name = this.AirportNameTextBox.Text,
+                    Abbreviation = this.AbbreviationTextBox.Text.ToUpper(),
+                    CountryId = int.Parse(this.CountryDropDownList.SelectedItem.Value)
+                };
+
+                this.AirportsServices.AddAirport(airport);
+                this.AbbreviationTextBox.BorderColor = Color.Empty;
+            }
         }
     }
 }

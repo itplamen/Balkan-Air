@@ -7,6 +7,7 @@
         ItemType="BalkanAir.Data.Models.Booking"
         DataKeyNames="Id"
         AutoGenerateColumns="false"
+        ShowHeaderWhenEmpty="true"
         PageSize="50"
         SelectMethod="ManageBookingsGridView_GetData"
         UpdateMethod="ManageBookingsGridView_UpdateItem"

@@ -162,4 +162,4 @@
             this.UserNotificationsServices.SetAllNotificationsAsRead(this.User.Id);
         }
     }
-}  
+}

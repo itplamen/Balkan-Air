@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BalkanAir.Web.Private {
+namespace BalkanAir.Web.Administration {
     
     
     public partial class ManageFlights {
@@ -20,15 +20,6 @@ namespace BalkanAir.Web.Private {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView ManageFlightsGridView;
-        
-        /// <summary>
-        /// NewFlightBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button NewFlightBtn;
         
         /// <summary>
         /// CreateFlightPanel control.
@@ -103,40 +94,22 @@ namespace BalkanAir.Web.Private {
         protected global::System.Web.UI.WebControls.DropDownList FlightStatusesDropDownList;
         
         /// <summary>
-        /// FromCountrytDropDownList control.
+        /// DepartureAirportsDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList FromCountrytDropDownList;
+        protected global::System.Web.UI.WebControls.DropDownList DepartureAirportsDropDownList;
         
         /// <summary>
-        /// FromAirportPanel control.
+        /// ArrivalAirportsDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel FromAirportPanel;
-        
-        /// <summary>
-        /// FromAirportRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater FromAirportRepeater;
-        
-        /// <summary>
-        /// ToCountrytDropDownList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ToCountrytDropDownList;
+        protected global::System.Web.UI.WebControls.DropDownList ArrivalAirportsDropDownList;
         
         /// <summary>
         /// CreateFlightBtn control.

@@ -7,7 +7,7 @@
     using Ninject;
 
     using Data.Models;
-    using BalkanAir.Services.Data.Contracts;
+    using Services.Data.Contracts;
 
     public partial class ManageBookings : Page
     {

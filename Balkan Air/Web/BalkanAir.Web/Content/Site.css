@@ -9,7 +9,7 @@
     padding-right: 15px;
 }
 
-input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="select"] {
+input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="select"], input[type="time"] {
     max-width: 280px;
 }
 
@@ -107,7 +107,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     font-size: 18px;
 }
 
-#SiteMapPathBreadcrump:empty {
+#SiteMapPathBreadcrump:not(:empty) {
     display: block;
     background: #C5027C;
     border-radius: 5px;
@@ -1117,6 +1117,12 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     width: 800px;
 }
 
+#CreateFlightPanel .glyphicon {
+    position: relative;
+    top: 3px;
+    font-size: 18px;
+}
+
     #CreateFlightPanel h3 {
         margin-bottom: 30px;
     }
@@ -1125,9 +1131,9 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
         display: block;
     }
 
-    #CreateFlightPanel input[type=text] {
-        display: block;
+    #CreateFlightPanel input[type=text], #CreateFlightPanel input[type=time], #CreateFlightPanel select {
         margin-bottom: 20px;
+        width: 200px;
     }
 
 #AddFlightNumberTextBox {
@@ -1140,6 +1146,15 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     margin-bottom: 20px;
 }
 
+.glyphicon-calendar {
+    cursor: pointer;
+}
+
+.validatorSpan:after {
+    display: block;
+    content: '\a';
+    white-space: pre;
+}
 
 /****************** Administration/SendMail.aspx ******************/
 
@@ -1553,3 +1568,17 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 #NewsDiv a:hover {
     text-decoration: none;   
 } 
+
+
+
+/****************** Calendar ******************/
+
+.CalendarExtender {
+    border:1px solid #646464;
+    background-color: white;
+    color: black;
+}
+
+.ajax__calendar_invalid {
+    text-decoration: line-through;
+}

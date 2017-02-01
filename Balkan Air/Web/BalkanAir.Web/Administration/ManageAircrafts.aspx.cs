@@ -6,8 +6,8 @@
 
     using Ninject;
 
-    using BalkanAir.Data.Models;
-    using BalkanAir.Services.Data.Contracts;
+    using Data.Models;
+    using Services.Data.Contracts;
 
     public partial class ManageAircrafts : Page
     {
@@ -16,10 +16,6 @@
 
         [Inject]
         public IAircraftsServices AircraftsServices { get; set; }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-        }
 
         public IQueryable<Aircraft> ManageAircraftsGridView_GetData()
         {
@@ -57,16 +53,23 @@
                 .OrderBy(a => a.Name);
         }
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
         protected void CreateAircraftBtn_Click(object sender, EventArgs e)
         {
-            var aircraft = new Aircraft()
+            if (Page.IsValid)
             {
-                Model = this.AircraftModelTextBox.Text.ToUpper(),
-                TotalSeats = int.Parse(this.TotalSeatsTextBox.Text),
-                AircraftManufacturerId = int.Parse(this.AircraftManufacturersDropDownList.SelectedItem.Value)
-            };
+                var aircraft = new Aircraft()
+                {
+                    Model = this.AircraftModelTextBox.Text.ToUpper(),
+                    TotalSeats = int.Parse(this.TotalSeatsTextBox.Text),
+                    AircraftManufacturerId = int.Parse(this.AircraftManufacturersDropDownList.SelectedItem.Value)
+                };
 
-            this.AircraftsServices.AddAircraft(aircraft);
+                this.AircraftsServices.AddAircraft(aircraft);
+            }
         }
     }
 }

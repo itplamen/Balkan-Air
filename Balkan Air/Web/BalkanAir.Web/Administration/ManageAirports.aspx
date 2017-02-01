@@ -7,6 +7,7 @@
         ItemType="BalkanAir.Data.Models.Airport"
         DataKeyNames="Id"
         AutoGenerateColumns="false"
+        ShowHeaderWhenEmpty="true"
         PageSize="50"
         SelectMethod="ManageAirportsGridView_GetData"
         UpdateMethod="ManageAirportsGridView_UpdateItem"
@@ -32,6 +33,8 @@
                         SelectMethod="CountryDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
+            <asp:BoundField DataField="DeparturesFlights.Count" HeaderText="DeparturesFlights" />
+            <asp:BoundField DataField="ArrivalsFlights.Count" HeaderText="ArrivalsFlights" />
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />
 
             <asp:CommandField ShowEditButton="true" ControlStyle-CssClass="btn btn-info" />
@@ -42,14 +45,20 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
+    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Invalid name length!" Type="String" ForeColor="Red" runat="server"
+        ValidationExpression="^[\s\S]{2,50}$" ControlToValidate="AirportNameTextBox" />
+
+    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Invalid abbreviation length!" Type="String" ForeColor="Red" 
+        runat="server" ValidationExpression="^[\s\S]{1,3}$" ControlToValidate="AbbreviationTextBox" />
+
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new airport</h3>
 
         <asp:Label Text="Name: " runat="server" />
-        <asp:TextBox ID="AirportNameTextBox" required runat="server" />
+        <asp:TextBox ID="AirportNameTextBox" required MaxLength="50" runat="server" />
 
         <asp:Label Text="Abbreviation:" runat="server" />
-        <asp:TextBox ID="AbbreviationTextBox" required runat="server" />
+        <asp:TextBox ID="AbbreviationTextBox" required MaxLength="3" Style="text-transform: uppercase;" runat="server" />
 
         <asp:Label Text="Country: " runat="server" />
         <asp:DropDownList ID="CountryDropDownList" runat="server"
@@ -58,6 +67,6 @@
             DataTextField="Name"
             SelectMethod="CountryDropDownList_GetData" />
 
-        <asp:Button ID="CreateAirportBtn" runat="server" Text="Create" CssClass="btn btn-info" OnClick="CreateAirportBtn_Click"  />
+        <asp:Button ID="CreateAirportBtn" runat="server" Text="Create" CssClass="btn btn-info" OnClick="CreateAirportBtn_Click" />
     </asp:Panel>
 </asp:Content>
