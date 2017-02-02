@@ -22,10 +22,7 @@
             <asp:BoundField DataField="Departure" SortExpression="Departure" HeaderText="Departure" />
             <asp:BoundField DataField="Arrival" SortExpression="Arrival" HeaderText="Arrival" />
             <asp:BoundField DataField="Duration" SortExpression="Duration" HeaderText="Duration" />
-            <asp:TemplateField>
-                <HeaderTemplate>
-                    <asp:Label ID="FlightStatusLabel" Text="Flight Status" runat="server" />
-                </HeaderTemplate>
+            <asp:TemplateField HeaderText="Flight Status">
                 <ItemTemplate>
                     <asp:Literal ID="FlightStatusLiberal" Text="<%#: Item.FlightStatus.Name %>" runat="server" />
                 </ItemTemplate>
@@ -38,35 +35,27 @@
                         SelectMethod="FlightStatusesDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="Aircraft.Id" HeaderText="Aircraft" />
-            <asp:TemplateField>
-                <HeaderTemplate>
-                    <asp:Label ID="FromAirportLabel" Text="From" runat="server" />
-                </HeaderTemplate>
+            <asp:BoundField DataField="Aircraft.Model" HeaderText="Aircraft" />
+            <asp:TemplateField HeaderText="From">
                 <ItemTemplate>
                     <asp:Literal ID="FromAirportLiberal" Text="<%#: Item.DepartureAirport.Name %>" runat="server" />
                 </ItemTemplate>
                 <EditItemTemplate>
                     <asp:DropDownList ID="FromAirportsDropDownList" runat="server"
-                        ItemType="BalkanAir.Data.Models.Airport"
                         DataValueField="Id"
-                        DataTextField="Name"
+                        DataTextField="AirportInfo"
                         SelectedValue="<%#: BindItem.DepartureAirport.Id %>"
                         SelectMethod="AirportsDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField>
-                <HeaderTemplate>
-                    <asp:Label ID="ToAirportLabel" Text="To" runat="server" />
-                </HeaderTemplate>
+            <asp:TemplateField HeaderText="To">
                 <ItemTemplate>
                     <asp:Literal ID="ToAirportLiberal" Text="<%#: Item.ArrivalAirport.Name %>" runat="server" />
                 </ItemTemplate>
                 <EditItemTemplate>
                     <asp:DropDownList ID="ToAirportsDropDownList" runat="server"
-                        ItemType="BalkanAir.Data.Models.Airport"
                         DataValueField="Id"
-                        DataTextField="Name"
+                        DataTextField="AirportInfo"
                         SelectedValue="<%#: BindItem.ArrivalAirport.Id %>"
                         SelectMethod="AirportsDropDownList_GetData" />
                 </EditItemTemplate>
@@ -81,25 +70,23 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
-    <asp:UpdatePanel ID="CreateFlightPanel" runat="server" ClientIDMode="Static" UpdateMode="Always">
+    <asp:UpdatePanel ID="CreateFlightPanel" runat="server" ClientIDMode="Static" UpdateMode="Conditional">
         <ContentTemplate>
-            <asp:CustomValidator ErrorMessage="Flight number must contains exactly 6 characters!" ControlToValidate="AddFlightNumberTextBox"
-                ForeColor="Red" Display="Dynamic" ClientValidationFunction="isFlightNumberLengthValid" runat="server" />
-
+            
             <asp:RequiredFieldValidator ErrorMessage="Fligth number is required!" ControlToValidate="AddFlightNumberTextBox"
-                ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan" />
+                ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan" ValidationGroup="CreateNewFlight" />
 
             <asp:RequiredFieldValidator ErrorMessage="Departure date is required!" ControlToValidate="DepartureDatepickerTextBox"
-                ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan" />
+                ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan" ValidationGroup="CreateNewFlight" />
 
             <asp:RequiredFieldValidator ErrorMessage="Departure time is required!" ControlToValidate="DepartureTimeTextBox"
-                ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan" />
+                ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan" ValidationGroup="CreateNewFlight" />
 
             <asp:RequiredFieldValidator ErrorMessage="Arrival date is required!" ControlToValidate="ArrivalDatepickerTextBox"
-                ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan" />
+                ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan" ValidationGroup="CreateNewFlight" />
 
             <asp:RequiredFieldValidator ErrorMessage="Arrival time is required!" ControlToValidate="ArrivalTimeTextBox"
-                ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan" />
+                ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan"  ValidationGroup="CreateNewFlight"/>
 
             <h3>Create new flight</h3>
 
@@ -109,29 +96,27 @@
                 UseSubmitBehavior="false" CssClass="btn btn-success btn-sm" runat="server" OnClick="GenerateFlightNumberBtn_Click" />
 
             <asp:Label runat="server" Text="Departure Date:" AssociatedControlID="DepartureDatepickerTextBox" />
-            <asp:TextBox ID="DepartureDatepickerTextBox" ClientIDMode="Static" runat="server" ReadOnly="true" />
+            <asp:TextBox ID="DepartureDatepickerTextBox" ClientIDMode="Static" runat="server" />
             <span id="DepartureCalendarIconSpan" class="glyphicon glyphicon-calendar"></span>
 
             <ajaxToolkit:CalendarExtender runat="server"
                 TargetControlID="DepartureDatepickerTextBox"
                 CssClass="CalendarExtender"
-                Format="MMMM d, yyyy"
-                PopupButtonID="DepartureCalendarIconSpan"
-                StartDate="8/3/2010"
-                EndDate="10/7/2010" />
+                Format="d/MM/yyyy"
+                PopupButtonID="DepartureCalendarIconSpan" />
 
             <asp:Label runat="server" Text="Departure Time:" AssociatedControlID="DepartureTimeTextBox" />
             <asp:TextBox runat="server" ID="DepartureTimeTextBox" ClientIDMode="Static" TextMode="Time" />
             <span class="glyphicon glyphicon-time"></span>
 
             <asp:Label runat="server" Text="Arrival Date:" AssociatedControlID="ArrivalDatepickerTextBox" />
-            <asp:TextBox runat="server" ID="ArrivalDatepickerTextBox" ClientIDMode="Static" ReadOnly="true" />
+            <asp:TextBox runat="server" ID="ArrivalDatepickerTextBox" ClientIDMode="Static" />
             <span id="ArrivalCalendarIconSpan" class="glyphicon glyphicon-calendar"></span>
 
             <ajaxToolkit:CalendarExtender runat="server"
                 TargetControlID="ArrivalDatepickerTextBox"
                 CssClass="CalendarExtender"
-                Format="MMMM d, yyyy"
+                Format="d.MM.yyyy"
                 PopupButtonID="ArrivalCalendarIconSpan" />
 
             <asp:Label runat="server" Text="Arrival Time:" AssociatedControlID="ArrivalTimeTextBox" />
@@ -145,22 +130,29 @@
                 DataTextField="Name"
                 SelectMethod="FlightStatusesDropDownList_GetData" />
 
+            <asp:Label Text="Aircraft:" runat="server" AssociatedControlID="AircraftsDropDownList" />
+            <asp:DropDownList ID="AircraftsDropDownList" runat="server"
+                DataValueField="Id"
+                DataTextField="AircraftInfo"
+                SelectMethod="AircraftsDropDownList_GetData" />
+
             <asp:Label Text="From Airport:" runat="server" AssociatedControlID="DepartureAirportsDropDownList" />
             <asp:DropDownList ID="DepartureAirportsDropDownList" runat="server"
                 DataValueField="Id"
                 DataTextField="AirportInfo"
                 AutoPostBack="true"
-                SelectMethod="DepartureAirportsDropDownList_GetData"
-                OnSelectedIndexChanged="DepartureAirportsDropDownList_SelectedIndexChanged" />
+                SelectMethod="AirportsDropDownList_GetData" />
             
             <asp:Label Text="To Airport:" runat="server" AssociatedControlID="ArrivalAirportsDropDownList" />
             <asp:DropDownList ID="ArrivalAirportsDropDownList" runat="server"
                 DataValueField="Id"
                 DataTextField="AirportInfo"
-                AutoPostBack="true" />
+                AutoPostBack="true"
+                SelectMethod="AirportsDropDownList_GetData" />
 
             <br />
-            <asp:Button ID="CreateFlightBtn" runat="server" Text="Create" CssClass="btn btn-info" OnClick="CreateFlightBtn_Click" />
+            <asp:Button ID="CreateFlightBtn" ValidationGroup="CreateNewFlight" runat="server" Text="Create" 
+                CssClass="btn btn-info" UseSubmitBehavior="true" OnClick="CreateFlightBtn_Click" />
             <asp:Button ID="CancelBtn" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-danger"
                 UseSubmitBehavior="false" />
         </ContentTemplate>

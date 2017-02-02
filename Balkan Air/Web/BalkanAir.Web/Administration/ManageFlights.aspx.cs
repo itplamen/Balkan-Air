@@ -17,16 +17,16 @@
     public partial class ManageFlights : Page
     {
         [Inject]
-        public IFlightsServices FlightsServices { get; set; }
-
-        [Inject]
         public IAircraftsServices AircraftsServices { get; set; }
 
         [Inject]
-        public IFlightStatusesServices FlightStatusesServices { get; set; }
+        public IAirportsServices AirportsServices { get; set; }
 
         [Inject]
-        public IAirportsServices AirportsServices { get; set; }
+        public IFlightsServices FlightsServices { get; set; }
+
+        [Inject]
+        public IFlightStatusesServices FlightStatusesServices { get; set; }
 
         public IQueryable<Flight> ManageFlightsGridView_GetData()
         {
@@ -62,21 +62,22 @@
                 .OrderBy(f => f.Name);
         }
 
-        public IQueryable<Aircraft> AircraftDropDownList_GetData()
+        public IQueryable<object> AircraftsDropDownList_GetData()
         {
-            return this.AircraftsServices.GetAll()
+            var aircrafts = this.AircraftsServices.GetAll()
                 .Where(a => !a.IsDeleted)
-                .OrderBy(a => a.Model);
+                .OrderBy(a => a.Model)
+                .ThenBy(a => a.TotalSeats)
+                .Select(a => new
+                {
+                    Id = a.Id,
+                    AircraftInfo = a.AircraftManufacturer.Name + " " + a.Model + ", " + a.TotalSeats + " seats"
+                });
+
+            return aircrafts;
         }
 
-        public IQueryable<Airport> AirportsDropDownList_GetData()
-        {
-            return this.AirportsServices.GetAll()
-                .Where(a => !a.IsDeleted)
-                .OrderBy(a => a.Name);
-        }
-
-        public IQueryable<object> DepartureAirportsDropDownList_GetData()
+        public IQueryable<object> AirportsDropDownList_GetData()
         {
             var departureAirports = this.AirportsServices.GetAll()
                 .Where(a => !a.IsDeleted)
@@ -93,49 +94,37 @@
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                var selectedDepartureAirport = this.AirportsServices.GetAll()
-                .Where(a => !a.IsDeleted)
-                .OrderBy(a => a.Country.Name)
-                .ThenBy(a => a.Name)
-                .FirstOrDefault();
-
-                this.BindArrivalAirportsDropDownList(selectedDepartureAirport.Name);
-            }
         }
 
         protected void GenerateFlightNumberBtn_Click(object sender, EventArgs e)
         {
-            // TODO: Do this with services!!!
             this.AddFlightNumberTextBox.Text = new FlightNumber(new BalkanAirDbContext()).GetUniqueFlightNumber();
-        }
-
-        protected void DepartureAirportsDropDownList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var selectedDepartureAirport = this.DepartureAirportsDropDownList.SelectedItem.Text.Split(new char[] { ',' })[0];
-
-            this.BindArrivalAirportsDropDownList(selectedDepartureAirport);
         }
 
         protected void CreateFlightBtn_Click(object sender, EventArgs e)
         {
-        }
+            if (Page.IsValid)
+            {
+                string seconds = ":00";
+                
+                // Convert string to DateTime. The string should look like this: 01/08/2008 14:50:00
+                var departureDateTime = this.DepartureDatepickerTextBox.Text + " " + this.DepartureTimeTextBox.Text + seconds;
+                var arrivalDateTime = this.ArrivalDatepickerTextBox.Text + " " + this.ArrivalTimeTextBox.Text + seconds;
 
-        private void BindArrivalAirportsDropDownList(string departureAirport)
-        {
-            var arrivalAirports = this.FlightsServices.GetAll()
-                .Where(a => a.DepartureAirport.Name.ToLower() == departureAirport.ToLower())
-                .Select(a => new
+                var newFlight = new Flight()
                 {
-                    Id = a.ArrivalAirport.Id,
-                    AirportInfo = a.ArrivalAirport.Name + ", (" + a.ArrivalAirport.Abbreviation + ") -> " + a.ArrivalAirport.Country.Name
-                })
-                .Distinct()
-                .ToList();
+                    Number = this.AddFlightNumberTextBox.Text.ToUpper(),
+                    Departure = Convert.ToDateTime(departureDateTime),
+                    Arrival = Convert.ToDateTime(arrivalDateTime),
+                    FlightStatusId = int.Parse(this.FlightStatusesDropDownList.SelectedItem.Value),
+                    AircraftId = int.Parse(this.AircraftsDropDownList.SelectedItem.Value),
+                    DepartureAirportId = int.Parse(this.DepartureAirportsDropDownList.SelectedItem.Value),
+                    ArrivalAirportId = int.Parse(this.ArrivalAirportsDropDownList.SelectedItem.Value),
+                    TravelClasses = new List<TravelClass>()
+                };
 
-            this.ArrivalAirportsDropDownList.DataSource = arrivalAirports;
-            this.ArrivalAirportsDropDownList.DataBind();
+                this.FlightsServices.AddFlight(newFlight);
+            }
         }
     }
 }
