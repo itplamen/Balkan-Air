@@ -9,8 +9,8 @@
 
     using Ninject;
 
-    using BalkanAir.Common;
-    using BalkanAir.Services.Data.Contracts;
+    using Common;
+    using Services.Data.Contracts;
 
     public partial class SendMail : Page
     {

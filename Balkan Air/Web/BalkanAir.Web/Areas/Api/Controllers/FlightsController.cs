@@ -10,7 +10,7 @@
 
     using Ninject;
 
-    using BalkanAir.Common;
+    using Data.Common;
     using Data.Models;
     using BalkanAir.Services.Data.Contracts;
     using Models.Flights;

@@ -90,9 +90,9 @@
     <Compile Include="UsersServices.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\BalkanAir.Common\BalkanAir.Common.csproj">
-      <Project>{80B85304-9B48-44FA-ADAA-8023AD5DFCA3}</Project>
-      <Name>BalkanAir.Common</Name>
+    <ProjectReference Include="..\..\Data\BalkanAir.Data.Common\BalkanAir.Data.Common.csproj">
+      <Project>{F9E825F6-A4D5-4328-BCD8-FF05CDB86737}</Project>
+      <Name>BalkanAir.Data.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\BalkanAir.Data.Models\BalkanAir.Data.Models.csproj">
       <Project>{3e67705b-24a5-47c5-90f1-e54a45c0f81c}</Project>

@@ -21,13 +21,13 @@
         }
 
         [Column("FirstName")]
-        [MinLength(GlobalConstants.PASSENGER_NAME_MIN_LENGTH)]
-        [MaxLength(GlobalConstants.PASSENGER_NAME_MAX_LENGTH)]
+        [MinLength(ValidationConstants.PASSENGER_NAME_MIN_LENGTH)]
+        [MaxLength(ValidationConstants.PASSENGER_NAME_MAX_LENGTH)]
         public string FirstName { get; set; }
 
         [Column("LastName")]
-        [MinLength(GlobalConstants.PASSENGER_NAME_MIN_LENGTH)]
-        [MaxLength(GlobalConstants.PASSENGER_NAME_MAX_LENGTH)]
+        [MinLength(ValidationConstants.PASSENGER_NAME_MIN_LENGTH)]
+        [MaxLength(ValidationConstants.PASSENGER_NAME_MAX_LENGTH)]
         public string LastName { get; set; }
 
         [Column("DateOfBirth")]
@@ -38,8 +38,8 @@
         public Gender Gender { get; set; }
 
         [Column("IdentityDocumentNumber")]
-        [MinLength(GlobalConstants.PASSENGER_IDENTITY_DOCUMENT_ID_MIN_LENGTH)]
-        [MaxLength(GlobalConstants.PASSENGER_IDENTITY_DOCUMENT_ID_MAX_LENGTH)]
+        [MinLength(ValidationConstants.PASSENGER_IDENTITY_DOCUMENT_ID_MIN_LENGTH)]
+        [MaxLength(ValidationConstants.PASSENGER_IDENTITY_DOCUMENT_ID_MAX_LENGTH)]
         public string IdentityDocumentNumber { get; set; }
 
         [Column("Nationality")]

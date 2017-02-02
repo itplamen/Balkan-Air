@@ -16,5 +16,3 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Services.Data.Tests
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Services.Data.Tests\obj\Debug\BalkanAir.Services.Data.Tests.csprojResolveAssemblyReference.cache
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Services.Data.Tests\obj\Debug\BalkanAir.Services.Data.Tests.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Services.Data.Tests\obj\Debug\BalkanAir.Services.Data.Tests.pdb
-D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Services.Data.Tests\bin\Debug\BalkanAir.Common.dll
-D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Services.Data.Tests\bin\Debug\BalkanAir.Common.pdb

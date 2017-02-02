@@ -84,9 +84,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\BalkanAir.Common\BalkanAir.Common.csproj">
-      <Project>{80b85304-9b48-44fa-adaa-8023ad5dfca3}</Project>
-      <Name>BalkanAir.Common</Name>
+    <ProjectReference Include="..\BalkanAir.Data.Common\BalkanAir.Data.Common.csproj">
+      <Project>{F9E825F6-A4D5-4328-BCD8-FF05CDB86737}</Project>
+      <Name>BalkanAir.Data.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

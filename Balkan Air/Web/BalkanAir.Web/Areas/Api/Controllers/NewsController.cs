@@ -9,12 +9,12 @@
 
     using Ninject;
 
-    using BalkanAir.Common;
+    using Data.Common;
     using BalkanAir.Services.Data.Contracts;
     using Models.News;
 
     [EnableCors("*", "*", "*")]
-    [Authorize(Roles = GlobalConstants.ADMINISTRATOR_ROLE)]
+    [Authorize(Roles = ValidationConstants.ADMINISTRATOR_ROLE)]
     public class NewsController : ApiController
     {
         [Inject]

@@ -12,7 +12,7 @@ namespace BalkanAir.Web.App_Start
     using Ninject.Web.Common;
     using Ninject.Extensions.Conventions;
 
-    using BalkanAir.Common;
+    using Common;
     using Data;
     using Data.Repositories;
     using Data.Repositories.Contracts;

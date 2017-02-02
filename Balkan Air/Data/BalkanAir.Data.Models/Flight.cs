@@ -21,7 +21,7 @@
 
         [Required]
         [Index(IsUnique = true)]
-        [StringLength(GlobalConstants.FLIGHT_NUMBER_LENGTH)]
+        [StringLength(ValidationConstants.FLIGHT_NUMBER_LENGTH)]
         public string Number { get; set; }
 
         [Required]

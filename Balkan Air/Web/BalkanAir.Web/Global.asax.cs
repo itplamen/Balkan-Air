@@ -6,8 +6,8 @@
     using System.Web.Optimization;
     using System.Web.Routing;
 
-    using BalkanAir.Web.App_Start;
-    using BalkanAir.Common;
+    using App_Start;
+    using Common;
     using System.Reflection;
 
     public class Global : HttpApplication

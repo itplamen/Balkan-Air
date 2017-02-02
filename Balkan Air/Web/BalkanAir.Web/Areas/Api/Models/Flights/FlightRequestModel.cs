@@ -7,7 +7,7 @@
 
     using AutoMapper;
 
-    using BalkanAir.Common;
+    using Data.Common;
     using Data.Models;
     using Infrastructure.Mapping;
     using System.Collections.Generic;
@@ -17,7 +17,7 @@
     {
         [Required]
         [Index(IsUnique = true)]
-        [StringLength(GlobalConstants.FLIGHT_NUMBER_LENGTH)]
+        [StringLength(ValidationConstants.FLIGHT_NUMBER_LENGTH)]
         public string Number { get; set; }
 
         [Required]

@@ -5,13 +5,13 @@
     using System.ComponentModel.DataAnnotations.Schema;
 
     using Common;
-
+    
     public class Aircraft
     {
         public Aircraft()
         {
             this.Flights = new HashSet<Flight>();
-            this.TotalSeats = GlobalConstants.AIRCRAFT_MAX_SEATS;  // By Default
+            this.TotalSeats = ValidationConstants.AIRCRAFT_MAX_SEATS;  // By Default
         }
 
         [Key]
@@ -23,7 +23,7 @@
         public string Model { get; set; }
 
         [Required]
-        [Range(GlobalConstants.AIRCRAFT_MIN_SEATS, GlobalConstants.AIRCRAFT_MAX_SEATS, ErrorMessage = "Invalid number of seats!")]
+        [Range(ValidationConstants.AIRCRAFT_MIN_SEATS, ValidationConstants.AIRCRAFT_MAX_SEATS, ErrorMessage = "Invalid number of seats!")]
         public int TotalSeats { get; set; }
 
         public bool IsDeleted { get; set; }

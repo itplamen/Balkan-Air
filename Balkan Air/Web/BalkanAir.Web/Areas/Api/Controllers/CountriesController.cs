@@ -7,13 +7,13 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
-    using BalkanAir.Common;
+    using Data.Common;
     using Data.Models;
     using Models.Countries;
     using Services.Data.Contracts;
 
     [EnableCors("*", "*", "*")]
-    [Authorize(Roles = GlobalConstants.ADMINISTRATOR_ROLE)]
+    [Authorize(Roles = ValidationConstants.ADMINISTRATOR_ROLE)]
     public class CountriesController : ApiController
     {
         private readonly ICountriesServices countriesServices;

@@ -9,8 +9,8 @@
     using Ninject;
 
 
-    using BalkanAir.Common;
-    using BalkanAir.Services.Data.Contracts;
+    using Data.Common;
+    using Services.Data.Contracts;
     using Models.Users;
     using Data.Models;
     using System.Linq;

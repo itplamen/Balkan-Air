@@ -2,10 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using BalkanAir.Common;
+    using Data.Common;
     using Data.Models;
     using Infrastructure.Mapping;
-    
+
     public class UpdateAircraftRequestModel : IMapFrom<Aircraft>
     {
         [Key]
@@ -17,7 +17,7 @@
         public string Model { get; set; }
 
         [Required]
-        [Range(GlobalConstants.AIRCRAFT_MIN_SEATS, GlobalConstants.AIRCRAFT_MAX_SEATS,
+        [Range(ValidationConstants.AIRCRAFT_MIN_SEATS, ValidationConstants.AIRCRAFT_MAX_SEATS,
             ErrorMessage = "Invalid number of seats!")]
         public int TotalSeats { get; set; }
 
