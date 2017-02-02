@@ -28,7 +28,7 @@ namespace BalkanAir.Web.Administration {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel CreateFlightPanel;
+        protected global::System.Web.UI.WebControls.Panel CreateFlightPanel;
         
         /// <summary>
         /// AddFlightNumberTextBox control.
@@ -119,6 +119,15 @@ namespace BalkanAir.Web.Administration {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ArrivalAirportsDropDownList;
+        
+        /// <summary>
+        /// TravelClassesListBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox TravelClassesListBox;
         
         /// <summary>
         /// CreateFlightBtn control.

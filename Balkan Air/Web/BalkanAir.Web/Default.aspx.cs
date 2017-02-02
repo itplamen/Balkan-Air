@@ -3,15 +3,14 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
     using Ninject;
 
-    using BalkanAir.Data.Models;
-    using BalkanAir.Services.Data.Contracts;
-    using BalkanAir.Web.Common;
+    using Data.Models;
+    using Common;
+    using Services.Data.Contracts;
 
     public partial class _Default : Page
     {
@@ -32,6 +31,7 @@
             if (!this.Page.IsPostBack)
             {
                 this.NoFlightsLiteral.Visible = false;
+                this.Session.Clear();
             }
         }
 

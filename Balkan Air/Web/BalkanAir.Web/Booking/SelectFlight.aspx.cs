@@ -58,8 +58,8 @@
             }
             else
             {
-                this.Session.Remove(Parameters.DEPARTURE_AIRPORT_ID);
-                this.Session.Remove(Parameters.DESTINATION_AIRPORT_ID);
+                //this.Session.Remove(Parameters.DEPARTURE_AIRPORT_ID);
+                //this.Session.Remove(Parameters.DESTINATION_AIRPORT_ID);
             }
 
             return flights;

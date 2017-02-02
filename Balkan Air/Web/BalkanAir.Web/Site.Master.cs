@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Web;
     using System.Web.Security;
@@ -14,6 +15,7 @@
     using Ninject;
 
     using BalkanAir.Common;
+    using Common;
     using Data.Models;
     using Services.Data.Contracts;
 
@@ -24,6 +26,12 @@
         private string _antiXsrfTokenValue;
 
         [Inject]
+        public IAirportsServices AirportsServices { get; set; }
+
+        [Inject]
+        public IFlightsServices FlightsServices { get; set; }
+
+        [Inject]
         public INotificationsServices NotificationsServices { get; set; }
 
         [Inject]
@@ -31,6 +39,9 @@
 
         [Inject]
         public IUserNotificationsServices UserNotificationsServices { get; set; }
+
+        [Inject]
+        public ITravelClassesServices TravelClassesServices { get; set; }
 
         protected ApplicationUserManager Manager
         {
@@ -126,6 +137,8 @@
                         this.EmailNotConfirmedPanel.Visible = true;
                     }
                 }
+
+                this.ManageItineraryInfo();
             }
         }
 
@@ -160,6 +173,123 @@
         protected void MarkAllNotificationsAsReadBtn_Click(object sender, EventArgs e)
         {
             this.UserNotificationsServices.SetAllNotificationsAsRead(this.User.Id);
+        }
+
+        private void ManageItineraryInfo()
+        {
+            if (this.Session[Parameters.DEPARTURE_AIRPORT_ID] == null || 
+                this.Session[Parameters.DESTINATION_AIRPORT_ID] == null)
+            {
+                return;
+            }
+
+            this.SetAirprotsInfoToItinerary();
+
+            decimal totalCost = 0;
+
+            if (this.Session[Parameters.BOOKING] != null)
+            {
+                var booking = this.Session[Parameters.BOOKING] as Data.Models.Booking;
+                this.SetSelectedFlightToItinerary(booking, ref totalCost);
+
+                if (booking.Row > 0 && !string.IsNullOrEmpty(booking.SeatNumber))
+                {
+                    this.SeatLiteral.Text = booking.Row.ToString() + booking.SeatNumber;
+                }
+
+                if (booking.Baggages.Count > 0)
+                {
+                    this.SetCabinBagToItinerary(booking, ref totalCost);
+                    this.SetCheckedInBagsToItinerary(booking, ref totalCost);
+
+                    this.SetBagEquipmentsToItinerary(booking, ref totalCost, BaggageType.BabyEquipment,
+                        this.BabyEquipmentLiteral, this.BabyEquipmentPriceLiteral);
+
+                    this.SetBagEquipmentsToItinerary(booking, ref totalCost, BaggageType.SportsEquipment,
+                        this.SportsEquipmentLiteral, this.SportsEquipmentPriceLiteral);
+
+                    this.SetBagEquipmentsToItinerary(booking, ref totalCost, BaggageType.MusicEquipment,
+                        this.MusicEquipmentLiteral, this.MusicEquipmentPriceLiteral);
+                }
+            }
+
+            if (this.User != null && !string.IsNullOrEmpty(this.User.UserSettings.FirstName) &&
+                !string.IsNullOrEmpty(this.User.UserSettings.LastName))
+            {
+                this.PassengerNameLiteral.Text = this.User.UserSettings.FirstName + " " + this.User.UserSettings.LastName;
+            }
+
+            this.TotalCostLiberal.Text = "&#8364; " + string.Format("{0:0.00}", totalCost);
+            this.ItineraryInfoPanel.Visible = true;
+        }
+
+        private void SetAirprotsInfoToItinerary()
+        {
+            int departureAirportId = int.Parse(this.Session[Parameters.DEPARTURE_AIRPORT_ID].ToString());
+            int destinationAirportId = int.Parse(this.Session[Parameters.DESTINATION_AIRPORT_ID].ToString());
+
+            var departureAirport = this.AirportsServices.GetAirport(departureAirportId);
+            var destinationAirport = this.AirportsServices.GetAirport(destinationAirportId);
+
+            this.FromAirportToAirportLiteral.Text = departureAirport.Name + " (" + departureAirport.Abbreviation + ") to " +
+                destinationAirport.Name + " (" + destinationAirport.Abbreviation + ")";
+        }
+
+        private void SetSelectedFlightToItinerary(Data.Models.Booking booking, ref decimal totalCost)
+        {
+            Flight selectedFlight = this.FlightsServices.GetFlight(booking.FlightId);
+
+            this.FlightNuberLiteral.Text = selectedFlight.Number;
+            this.DateTimeLiteral.Text = selectedFlight.Departure.ToString("MMMM dd, yyyy hh:mm", CultureInfo.InvariantCulture);
+
+            decimal flightPrice = this.TravelClassesServices.GetTravelClass(booking.TravelClassId).Price;
+            this.FlightPriceLiteral.Text = "&#8364; " + string.Format("{0:0.00}", flightPrice);
+            totalCost += flightPrice;
+
+            this.TravelClassLiteral.Text = this.TravelClassesServices.GetTravelClass(booking.TravelClassId).Type.ToString() + " class";
+        }
+
+        private void SetCabinBagToItinerary(Data.Models.Booking booking, ref decimal totalCost)
+        {
+            var cabinBag = booking.Baggages
+                       .FirstOrDefault(b => b.Type == BaggageType.Cabin);
+
+            if (cabinBag != null)
+            {
+                this.CabinBagLiteral.Text = "One cabin bag " + cabinBag.Size;
+                this.CabinBagPriceLiteral.Text = "&#8364; " + string.Format("{0:0.00}", cabinBag.Price);
+                totalCost += cabinBag.Price;
+            }
+        }
+
+        private void SetCheckedInBagsToItinerary(Data.Models.Booking booking, ref decimal totalCost)
+        {
+            var checkedInBags = booking.Baggages
+                        .Where(b => b.Type == BaggageType.CheckedIn)
+                        .ToList();
+
+            if (checkedInBags.Count > 0)
+            {
+                this.CheckedIdBagsLiteral.Text = "Checked in bags " + checkedInBags.Count + " x " + checkedInBags[0].MaxKilograms + " kg. ";
+                decimal checkedInBagsPriceSum = checkedInBags.Sum(b => b.Price);
+                this.CheckedIdBagsPricesLiteral.Text = "&#8364; " + string.Format("{0:0.00}", checkedInBagsPriceSum);
+                totalCost += checkedInBagsPriceSum;
+            }
+        }
+
+        // Set baby, sports and music equipments to the itenerary info panel. 
+        private void SetBagEquipmentsToItinerary(Data.Models.Booking booking, ref decimal totalCost, BaggageType baggageType, 
+            Literal literalInfo, Literal literalPrice)
+        {
+            var equipment = booking.Baggages
+                        .FirstOrDefault(b => b.Type == baggageType);
+
+            if (equipment != null)
+            {
+                literalInfo.Text = string.Format("{0} equipment included!", baggageType.ToString());
+                literalPrice.Text = "&#8364; " + string.Format("{0:0.00}", equipment.Price);
+                totalCost += equipment.Price;
+            }
         }
     }
 }

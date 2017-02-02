@@ -11,7 +11,6 @@
     {
         public TravelClass()
         {
-            //this.Baggages = new HashSet<Baggage>();
             this.Seats = new HashSet<Seat>();
             this.ReservedSeat = true;
         }
@@ -21,10 +20,6 @@
 
         [Required]
         public TravelClassType Type { get; set; }
-
-        //[Required]
-        //[Range(1, GlobalConstants.AIRCRAFT_MAX_SEATS, ErrorMessage = "Invalid number of seats")]
-        //public int NumberOfSeats { get; set; }
 
         [Required]
         [MinLength(2)]

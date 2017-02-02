@@ -384,6 +384,31 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     font-size: 12px; 
 }
 
+#ItineraryInfoPanel {
+   position: fixed;
+   top: 97px;
+   right: 90px;
+}
+
+#ItineraryInfoPanel button, #ItineraryInfoPanel ul {
+    width: 350px;
+}
+
+#ItineraryInfoPanel li.dropdown-header {
+    font-size: 18px;
+}
+
+#ItineraryInfoPanel li.data {
+    position: relative;
+    left: 20px;
+}
+
+#ItineraryInfoPanel .priceSpan {
+    float: right;
+    position: relative;
+    right: 40px;
+}
+
 /****************** Booking/SelectFlight.aspx ******************/
 
 .airplaneFlyOutImage {
@@ -499,6 +524,11 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 
 #FlightTravelClassesDiv {
     display: inline-block;
+    cursor: pointer;
+}
+
+#FlightTravelClassesDiv label, #FlightTravelClassesDiv input[type=radio] {
+    cursor: pointer;
 }
 
 .travelClass {

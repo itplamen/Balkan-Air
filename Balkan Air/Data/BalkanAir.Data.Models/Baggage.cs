@@ -3,8 +3,6 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using Common;
-
     public class Baggage
     {
         [Key]
@@ -21,11 +19,6 @@
         public decimal Price { get; set; }
 
         public bool IsDeleted { get; set; }
-
-        //[ForeignKey("TravelClass")]
-        //public int TravelClassId { get; set; }
-
-        //public virtual TravelClass TravelClass { get; set; }
 
         [Required]
         public int BookingId { get; set; }

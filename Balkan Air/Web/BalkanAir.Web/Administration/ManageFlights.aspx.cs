@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
@@ -27,6 +26,9 @@
 
         [Inject]
         public IFlightStatusesServices FlightStatusesServices { get; set; }
+
+        [Inject]
+        public ITravelClassesServices TravelClassesServices { get; set; }
 
         public IQueryable<Flight> ManageFlightsGridView_GetData()
         {
@@ -92,6 +94,22 @@
             return departureAirports;
         }
 
+        public IQueryable<object> TravelClassesListBox_GetData()
+        {
+            var travelClasses = this.TravelClassesServices.GetAll()
+                .Where(t => !t.IsDeleted)
+                .OrderBy(t => t.Type == TravelClassType.Economy)
+                .ThenBy(t => t.Type == TravelClassType.Business)
+                .ThenBy(t => t.Type == TravelClassType.First)
+                .Select(t => new
+                {
+                    Id = t.Id,
+                    TravelClassInfo = t.Type.ToString() + ", Price: " + t.Price + ", Meal: " + t.Meal
+                });
+
+            return travelClasses;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
         }
@@ -120,11 +138,28 @@
                     AircraftId = int.Parse(this.AircraftsDropDownList.SelectedItem.Value),
                     DepartureAirportId = int.Parse(this.DepartureAirportsDropDownList.SelectedItem.Value),
                     ArrivalAirportId = int.Parse(this.ArrivalAirportsDropDownList.SelectedItem.Value),
-                    TravelClasses = new List<TravelClass>()
+                    TravelClasses = this.GetSelectedTravelClasses()
                 };
 
                 this.FlightsServices.AddFlight(newFlight);
             }
+        }
+
+        private ICollection<TravelClass> GetSelectedTravelClasses()
+        {
+            var selectedTravelClasses = new List<TravelClass>();
+
+            foreach (ListItem item in this.TravelClassesListBox.Items)
+            {
+                if (item.Selected)
+                {
+                    var id = int.Parse(item.Value);
+                    var travelClass = this.TravelClassesServices.GetTravelClass(id);
+                    selectedTravelClasses.Add(travelClass);
+                }
+            }
+
+            return selectedTravelClasses;
         }
     }
 }

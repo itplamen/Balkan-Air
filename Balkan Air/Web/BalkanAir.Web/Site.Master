@@ -42,6 +42,8 @@
             color: black;
         }
     </style>
+
+     
 </head>
 <body>
     <form runat="server">
@@ -63,7 +65,7 @@
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
-                <asp:ScriptReference Path="~/Scripts/jquery-ui.js" />
+                <asp:ScriptReference Path="~/Scripts/jquery-ui.min.js" />
                 <asp:ScriptReference Path="~/Content/slick/slick.js" />
                 <asp:ScriptReference Path="~/Scripts/home-page.js" />
                 <asp:ScriptReference Path="~/Scripts/Booking/select-flight.js" />
@@ -199,6 +201,60 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
 
+            <asp:Panel ID="ItineraryInfoPanel" Visible="false" CssClass="dropdown" ClientIDMode="Static" runat="server">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                    <span id="TotalCostTextSpan">Total Cost: <asp:Literal ID="TotalCostLiberal" runat="server" /></span> 
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-header">
+                        Flight <asp:Literal ID="FlightNuberLiteral" runat="server" />
+                    </li>
+                    <li class="data">
+                        <asp:Literal ID="FromAirportToAirportLiteral" runat="server"/>
+                    </li>
+                    <li class="data">
+                        <asp:Literal ID="DateTimeLiteral" runat="server" />
+                    </li>
+                    <li class="data">
+                        <asp:Literal ID="TravelClassLiteral" runat="server" />
+                        <span class="priceSpan"><asp:Literal ID="FlightPriceLiteral" runat="server" /></span>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">Passenger</li>
+                    <li class="data">
+                        <asp:Literal ID="PassengerNameLiteral" runat="server" />
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">Seat</li>
+                    <li class="data">
+                        <asp:Literal ID="SeatLiteral" runat="server" />
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">Bags</li>
+                    <li class="data">
+                        <asp:Literal ID="CabinBagLiteral" runat="server" />
+                        <span class="priceSpan"><asp:Literal ID="CabinBagPriceLiteral" runat="server" /></span>
+                    </li>
+                    <li class="data">
+                        <asp:Literal ID="CheckedIdBagsLiteral" runat="server" />
+                        <span class="priceSpan"><asp:Literal ID="CheckedIdBagsPricesLiteral" runat="server" /></span>
+                    </li>
+                    <li class="data">
+                        <asp:Literal ID="BabyEquipmentLiteral" runat="server" />
+                        <span class="priceSpan"><asp:Literal ID="BabyEquipmentPriceLiteral" runat="server" /></span>
+                    </li>
+                    <li class="data">
+                        <asp:Literal ID="SportsEquipmentLiteral" runat="server" />
+                        <span class="priceSpan"><asp:Literal ID="SportsEquipmentPriceLiteral" runat="server" /></span>
+                    </li>
+                    <li class="data">
+                        <asp:Literal ID="MusicEquipmentLiteral" runat="server" />
+                        <span class="priceSpan"><asp:Literal ID="MusicEquipmentPriceLiteral" runat="server" /></span>
+                    </li>
+                </ul>
+            </asp:Panel>
+
             <hr />
             <footer>
                 <p>&copy; <%: DateTime.Now.Year %> Balkan Air Bulgaria. All rights reserved. </p>
@@ -220,7 +276,11 @@
     </form>
 
     <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" ShowStartingNode="false" />
-
+    <script>
+  $( function() {
+      $("#ItineraryInfoPanel").draggable();
+  });
+  </script>
     <%--<script >
         $('.searchFlightElement').click(function () {
             $('#UpdateProgress').show();
