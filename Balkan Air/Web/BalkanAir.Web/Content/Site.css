@@ -72,7 +72,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 }
 
 .unread .notificationContentSpan, .unread .notificationDateSmall {
-    font-weight: bold;
+    font-weight: bold; 
 }
 
 .unread span {
@@ -83,6 +83,11 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     margin-top: 10px;
     display: block;
     font-style: italic;
+}
+
+.notificationDateSmall span {
+    position: relative;
+    left: 30px;
 }
 
 #LatestNotificationsButtonsDiv {
@@ -1351,7 +1356,8 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     border: 2px solid #C5027C;
     border-radius: 5px;
     width: 250px;
-    margin-right: 10px;
+    margin-right: 30px;
+    margin-bottom: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
     background-color: #F2F2F2;
@@ -1513,7 +1519,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
  
 
 /****************** Account/Notifications.aspx ******************/
-#AllNotificationsDiv {
+#AllNotificationsPanel {
     margin-top: 30px;
 }
 

@@ -1,11 +1,12 @@
 ﻿<%@ Page Title="Notifications" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Notifications.aspx.cs" Inherits="BalkanAir.Web.Account.Notifications" %>
 
 <%@ Import Namespace="System.Globalization" %>
+<%@ Import Namespace="BalkanAir.Web.Common" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: this.Page.Title %></h2>
 
-    <div id="AllNotificationsDiv">
+    <asp:Panel ID="AllNotificationsPanel" runat="server">
         <asp:ListView ID="NotificationsListView" runat="server"
             DataKeyNames="Id"
             ItemType="BalkanAir.Data.Models.UserNotification"
@@ -13,13 +14,19 @@
             ViewStateMode="Disabled">
             <ItemTemplate>
                 <p class="notificationsP <%# Item.IsRead ? "read" : "unread" %>">
-                    <a href="News.aspx">
+                    <a href="<%= Page.ResolveUrl(Pages.NOTIFICATIONS) + "?id=" %><%# Item.NotificationId %>">
                         <span class="notificationContentSpan">
                             <%#: Item.Notification.Content %>
                             <br />
                         </span>
-                        <small class="notificationDateSmall">Received on <%#: Item.DateReceived.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %>
-                        at <%#: Item.DateReceived.ToString("HH:mm", CultureInfo.InvariantCulture) %>
+                        <small class="notificationDateSmall">
+                            Received on <%#: Item.DateReceived.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %>
+                            at <%#: Item.DateReceived.ToString("HH:mm", CultureInfo.InvariantCulture) %>
+
+                            <span>
+                                <%# Item.IsRead ? "Read on " + Item.DateRead.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) + 
+                                        "at " + Item.DateRead.ToString("HH:mm", CultureInfo.InvariantCulture) : null %>
+                            </span>
                         </small>
                     </a>
                 </p>
@@ -48,5 +55,26 @@
                     UseSubmitBehavior="false" CssClass="btn btn-default" OnClick="MarkAllNotificationsAsReadBtn_Click" />
             </LayoutTemplate>
         </asp:ListView>
-    </div>
+    </asp:Panel>
+
+    <asp:Panel ID="ConcreteNotificationPanel" runat="server">
+        <asp:FormView ID="ViewNotificationFormView" runat="server"
+            ItemType="BalkanAir.Data.Models.UserNotification"
+            SelectMethod="ViewNotificationFormView_GetItem">
+            <ItemTemplate>
+                <span class="notificationContentSpan">
+                    <%#: Item.Notification.Content %>
+                    <br />
+                </span>
+                <small class="notificationDateSmall">Received on <%#: Item.DateReceived.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %>
+                    at <%#: Item.DateReceived.ToString("HH:mm", CultureInfo.InvariantCulture) %>
+
+                    <span>
+                        Read on <%#: Item.DateRead.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %>
+                        at <%#: Item.DateRead.ToString("HH:mm", CultureInfo.InvariantCulture) %>
+                    </span>
+                </small>
+            </ItemTemplate>
+        </asp:FormView>
+    </asp:Panel>
 </asp:Content>

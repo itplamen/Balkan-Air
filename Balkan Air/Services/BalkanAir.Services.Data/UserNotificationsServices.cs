@@ -39,7 +39,11 @@
             this.userNotifications.All()
                 .Where(un => un.NotificationId == notificationId && un.UserId.Equals(userId))
                 .ToList()
-                .ForEach(un => { un.IsRead = true; un.DateRead = DateTime.Now; });
+                .ForEach(un => 
+                {
+                    un.IsRead = true;
+                    un.DateRead = DateTime.Now;
+                });
 
             this.userNotifications.SaveChanges();
         }
@@ -49,7 +53,11 @@
             this.userNotifications.All()
                 .Where(un => un.UserId.Equals(userId) && !un.IsRead)
                 .ToList()
-                .ForEach(un => { un.IsRead = true; un.DateRead = DateTime.Now; });
+                .ForEach(un => 
+                {
+                    un.IsRead = true;
+                    un.DateRead = DateTime.Now;
+                });
 
             this.userNotifications.SaveChanges();
         }

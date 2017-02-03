@@ -9,11 +9,13 @@
         [Key]
         public int Id { get; set; }
 
+        [Required]
         public DateTime DateReceived { get; set; }
 
         public bool IsRead { get; set; }
 
-        public DateTime? DateRead { get; set; }
+        [Column(TypeName = "DateTime2")]
+        public DateTime DateRead { get; set; }
 
         [Required]
         [Column(Order = 0)]

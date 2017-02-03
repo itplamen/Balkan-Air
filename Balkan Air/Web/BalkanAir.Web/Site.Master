@@ -43,7 +43,7 @@
         }
     </style>
 
-     
+
 </head>
 <body>
     <form runat="server">
@@ -154,13 +154,19 @@
                                                 SelectMethod="LatestNotificationsRepeater_GetData">
                                                 <ItemTemplate>
                                                     <li class="<%# Item.IsRead ? "read" : "unread" %>">
-                                                        <a href="News.aspx">
+                                                        <a href="<%= Page.ResolveUrl(Pages.NOTIFICATIONS) + "?id=" %><%# Item.NotificationId %>">
                                                             <span class="notificationContentSpan">
                                                                 <%#: Item.Notification.Content %>
                                                                 <br />
                                                             </span>
-                                                            <small class="notificationDateSmall">Received on <%#: Item.DateReceived.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %>
+                                                            <small class="notificationDateSmall">
+                                                                Received on <%#: Item.DateReceived.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %>
                                                                 at <%#: Item.DateReceived.ToString("HH:mm", CultureInfo.InvariantCulture) %>
+
+                                                                <span>
+                                                                    <%# Item.IsRead ? "Read on " + Item.DateRead.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) + 
+                                                                    "at " + Item.DateRead.ToString("HH:mm", CultureInfo.InvariantCulture) : null %>
+                                                                </span>
                                                             </small>
                                                         </a>
                                                     </li>
@@ -203,22 +209,24 @@
 
             <asp:Panel ID="ItineraryInfoPanel" Visible="false" CssClass="dropdown" ClientIDMode="Static" runat="server">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                    <span id="TotalCostTextSpan">Total Cost: <asp:Literal ID="TotalCostLiberal" runat="server" /></span> 
+                    <span id="TotalCostTextSpan">Total Cost:
+                        <asp:Literal ID="TotalCostLiberal" runat="server" /></span>
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li class="dropdown-header">
-                        Flight <asp:Literal ID="FlightNuberLiteral" runat="server" />
+                    <li class="dropdown-header">Flight
+                        <asp:Literal ID="FlightNuberLiteral" runat="server" />
                     </li>
                     <li class="data">
-                        <asp:Literal ID="FromAirportToAirportLiteral" runat="server"/>
+                        <asp:Literal ID="FromAirportToAirportLiteral" runat="server" />
                     </li>
                     <li class="data">
                         <asp:Literal ID="DateTimeLiteral" runat="server" />
                     </li>
                     <li class="data">
                         <asp:Literal ID="TravelClassLiteral" runat="server" />
-                        <span class="priceSpan"><asp:Literal ID="FlightPriceLiteral" runat="server" /></span>
+                        <span class="priceSpan">
+                            <asp:Literal ID="FlightPriceLiteral" runat="server" /></span>
                     </li>
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header">Passenger</li>
@@ -234,23 +242,28 @@
                     <li class="dropdown-header">Bags</li>
                     <li class="data">
                         <asp:Literal ID="CabinBagLiteral" runat="server" />
-                        <span class="priceSpan"><asp:Literal ID="CabinBagPriceLiteral" runat="server" /></span>
+                        <span class="priceSpan">
+                            <asp:Literal ID="CabinBagPriceLiteral" runat="server" /></span>
                     </li>
                     <li class="data">
                         <asp:Literal ID="CheckedIdBagsLiteral" runat="server" />
-                        <span class="priceSpan"><asp:Literal ID="CheckedIdBagsPricesLiteral" runat="server" /></span>
+                        <span class="priceSpan">
+                            <asp:Literal ID="CheckedIdBagsPricesLiteral" runat="server" /></span>
                     </li>
                     <li class="data">
                         <asp:Literal ID="BabyEquipmentLiteral" runat="server" />
-                        <span class="priceSpan"><asp:Literal ID="BabyEquipmentPriceLiteral" runat="server" /></span>
+                        <span class="priceSpan">
+                            <asp:Literal ID="BabyEquipmentPriceLiteral" runat="server" /></span>
                     </li>
                     <li class="data">
                         <asp:Literal ID="SportsEquipmentLiteral" runat="server" />
-                        <span class="priceSpan"><asp:Literal ID="SportsEquipmentPriceLiteral" runat="server" /></span>
+                        <span class="priceSpan">
+                            <asp:Literal ID="SportsEquipmentPriceLiteral" runat="server" /></span>
                     </li>
                     <li class="data">
                         <asp:Literal ID="MusicEquipmentLiteral" runat="server" />
-                        <span class="priceSpan"><asp:Literal ID="MusicEquipmentPriceLiteral" runat="server" /></span>
+                        <span class="priceSpan">
+                            <asp:Literal ID="MusicEquipmentPriceLiteral" runat="server" /></span>
                     </li>
                 </ul>
             </asp:Panel>
@@ -277,10 +290,10 @@
 
     <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" ShowStartingNode="false" />
     <script>
-  $( function() {
-      $("#ItineraryInfoPanel").draggable();
-  });
-  </script>
+        $(function () {
+            $("#ItineraryInfoPanel").draggable();
+        });
+    </script>
     <%--<script >
         $('.searchFlightElement').click(function () {
             $('#UpdateProgress').show();

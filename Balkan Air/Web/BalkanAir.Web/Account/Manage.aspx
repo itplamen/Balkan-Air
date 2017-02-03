@@ -44,7 +44,7 @@
     <a href="<%= Page.ResolveUrl(Pages.PROFILE) %>">
         <div id="YourProfileDivBox" class="divBox">
             <h5>YOUR PROFILE</h5>
-            <img src="../Content/Images/user-avatar-image.png" alt="Custon account picture" />
+            <img src="../Content/Images/Account/user-avatar-image.png" alt="Custon account icon" />
             <p>Personal information</p>
         </div>
     </a>
@@ -60,7 +60,7 @@
     <a href="<%= Page.ResolveUrl(Pages.CREDIT_CARDS) %>">
         <div id="CreditCardsDivBox" class="divBox">
             <h5>CREDIT CARDS</h5>
-            <img src="../Content/Images/credit-card-icon.png" alt="Credit cards picture" />
+            <img src="../Content/Images/Account/credit-card-icon.png" alt="Credit cards icon" />
             <p>Check your saved credit cards</p>
         </div>
     </a>
@@ -68,12 +68,18 @@
     <a href="<%= Page.ResolveUrl(Pages.PREVIOUS_TRIPS) %>">
         <div id="PreviousTripsDivBox" class="divBox">
             <h5>PREVIOUS TRIPS</h5>
-            <img src="../Content/Images/previous-trips-icon.png" alt="Previous trips picture" />
+            <img src="../Content/Images/Account/previous-trips-icon.png" alt="Previous trips icon" />
             <p>Check your previous trips</p>
         </div>
     </a>
 
-
+    <a href="<%= Page.ResolveUrl(Pages.NOTIFICATIONS) %>">
+        <div id="NotificationsDivBox" class="divBox">
+            <h5>NOTIFICATIONS</h5>
+            <img src="../Content/Images/Account/notifications-icon.png" alt="Notifications icon" />
+            <p>Check your notifications</p>
+        </div>
+    </a>
 
     <div class="row">
         <div class="col-md-12">

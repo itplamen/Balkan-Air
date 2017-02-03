@@ -13,6 +13,15 @@ namespace BalkanAir.Web.Account {
     public partial class Notifications {
         
         /// <summary>
+        /// AllNotificationsPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel AllNotificationsPanel;
+        
+        /// <summary>
         /// NotificationsListView control.
         /// </summary>
         /// <remarks>
@@ -20,5 +29,23 @@ namespace BalkanAir.Web.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView NotificationsListView;
+        
+        /// <summary>
+        /// ConcreteNotificationPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ConcreteNotificationPanel;
+        
+        /// <summary>
+        /// ViewNotificationFormView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FormView ViewNotificationFormView;
     }
 }

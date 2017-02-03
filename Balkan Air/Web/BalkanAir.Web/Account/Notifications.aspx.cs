@@ -13,40 +13,69 @@
 
     using Data.Models;
     using BalkanAir.Services.Data.Contracts;
+    using System.Web.ModelBinding;
+    using Common;
 
     public partial class Notifications : Page
     {
         [Inject]
         public IUserNotificationsServices UserNotificationsServices { get; set; }
 
-        protected void Page_Load(object sender, EventArgs e)
+        private ApplicationUserManager Manager
         {
+            get { return Context.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+        }
 
+        private User CurrentUser
+        {
+            get { return this.Manager.FindById(this.Context.User.Identity.GetUserId()); }
         }
 
         public IQueryable<UserNotification> NotificationsListView_GetData()
         {
-            var user = this.GetCurrentUser();
-
             return this.UserNotificationsServices.GetAll()
-                .Where(un => un.UserId.Equals(user.Id))
+                .Where(un => un.UserId.Equals(this.CurrentUser.Id))
                 .OrderByDescending(un => un.DateReceived);
+        }
+
+        public UserNotification ViewNotificationFormView_GetItem([QueryString] int id)
+        {
+            var userNotification = this.UserNotificationsServices.GetAll()
+                .FirstOrDefault(un => un.NotificationId == id && un.UserId == this.CurrentUser.Id);
+
+            if (userNotification == null)
+            {
+                this.Response.Redirect(Pages.NOTIFICATIONS);
+            }
+
+            if (!userNotification.IsRead)
+            {
+                this.UserNotificationsServices.SetNotificationAsRead(userNotification.NotificationId, this.CurrentUser.Id);
+            }
+
+            return userNotification;
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                if (this.Request.QueryString.Count > 0)
+                {
+                    this.ConcreteNotificationPanel.Visible = true;
+                    this.AllNotificationsPanel.Visible = false;
+                }
+                else
+                {
+                    this.AllNotificationsPanel.Visible = true;
+                    this.ConcreteNotificationPanel.Visible = false;
+                }
+            }
         }
 
         protected void MarkAllNotificationsAsReadBtn_Click(object sender, EventArgs e)
         {
-            this.UserNotificationsServices.SetAllNotificationsAsRead(this.GetCurrentUser().Id);
-        }
-
-        private ApplicationUserManager GetManager()
-        {
-            return Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-        }
-
-        private User GetCurrentUser()
-        {
-            var manager = this.GetManager();
-            return manager.FindById(this.Context.User.Identity.GetUserId());
+            this.UserNotificationsServices.SetAllNotificationsAsRead(this.CurrentUser.Id);
         }
     }
 }
