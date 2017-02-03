@@ -42,12 +42,12 @@
         [Inject]
         public ITravelClassesServices TravelClassesServices { get; set; }
 
-        protected ApplicationUserManager Manager
+        private ApplicationUserManager Manager
         {
             get { return Context.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
         }
 
-        protected User User
+        private User User
         {
             get { return this.Manager.FindById(this.Context.User.Identity.GetUserId()); }
         }

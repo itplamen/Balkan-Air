@@ -1284,29 +1284,33 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 }   
 
 /****************** Account/Manage.aspx ******************/
-#UpcomingTripsDiv {
-    margin-top: 40px;
+#WelcomeText {
     margin-bottom: 40px; 
 }
 
-#UpcomingTripsDiv h3 {
+#UpcomingTripsPanel {  
+    margin-top: 40px; 
+    margin-bottom: 40px; 
+}
+
+#UpcomingTripsPanel h3 {
     margin-left: 40px; 
 }
 
-#UpcomingTripsDiv .divBox {
+#UpcomingTripsPanel .divBox {
     margin-top: 10px;
     width: 100%;
     text-align: left;
     padding-left: 20px;
 }
 
-#UpcomingTripsDiv .divBox .airplaneFlyOutImage {
+#UpcomingTripsPanel .divBox .airplaneFlyOutImage {
     width: 25px;
     height: 25px;
     left: 395px;
 }
 
-#UpcomingTripsDiv .divBox a {
+#UpcomingTripsPanel .divBox a {
     color: #C5027C; 
     float: right;
     margin-right: 40px;
@@ -1315,16 +1319,16 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     font-size: 13px;
 }
 
-#UpcomingTripsDiv .flightNumberSpan {
+#UpcomingTripsPanel .flightNumberSpan {
     font-weight: bold;
     font-size: 16px;
 }
 
-#UpcomingTripsDiv .fromAirportSpan {
+#UpcomingTripsPanel .fromAirportSpan {
     margin-right: 60px;
 }
 
-#UpcomingTripsDiv .fromAirportSpan, #UpcomingTripsDiv .toAirportSpan {
+#UpcomingTripsPanel .fromAirportSpan, #UpcomingTripsPanel .toAirportSpan {
     font-weight: bold;
     font-size: 20px;
     color: #3E007F;
@@ -1332,12 +1336,12 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     left: 150px;
 }
 
-#UpcomingTripsDiv .flightDateSpan, #UpcomingTripsDiv .flightTimeSpan, #UpcomingTripsDiv .bookingStatus {
+#UpcomingTripsPanel .flightDateSpan, #UpcomingTripsPanel .flightTimeSpan, #UpcomingTripsPanel .bookingStatus {
     font-weight: bold;
     position: relative;
 }
 
-#UpcomingTripsDiv .flightDateSpan {
+#UpcomingTripsPanel .flightDateSpan {
     bottom: 10px;
     left: 400px;
 }

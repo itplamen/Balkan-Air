@@ -3,20 +3,16 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using System.Web;
     using System.Web.UI;
 
     using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
-    using Microsoft.Owin.Security;
-    using Ninject;
-    using Owin;
 
-    using BalkanAir.Web.Models;
-    using BalkanAir.Data.Models;
-    using BalkanAir.Services.Data.Contracts;
+    using Ninject;
+
+    using Data.Models;
+    using Services.Data.Contracts;
 
     public partial class Manage : Page
     {
@@ -27,6 +23,16 @@
         {
             get;
             private set;
+        }
+
+        private ApplicationUserManager Manager
+        {
+            get { return Context.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+        }
+
+        private User CurentUser
+        {
+            get { return this.Manager.FindById(this.Context.User.Identity.GetUserId()); }
         }
 
         private bool HasPassword(ApplicationUserManager manager)
@@ -59,7 +65,23 @@
 
             if (!IsPostBack)
             {
-                this.WelcomeTextLiteral.Text = "Welcome back " + this.GetCurrentUser().UserSettings.FirstName + "!";
+                this.WelcomeTextLiteral.Text = "Welcome back " + this.CurentUser.UserSettings.FirstName + "!";
+
+                if (this.Context.User.Identity.IsAuthenticated)
+                {
+                    bool areAnyUpcomingTrips = this.BookingsServices.GetAll()
+                   .Where(b => b.UserId == this.CurentUser.Id && b.Flight.Departure < DateTime.Now)
+                   .Any();
+
+                    if (areAnyUpcomingTrips)
+                    {
+                        this.UpcomingTripsRepeater.Visible = true;
+                    }
+                    else
+                    {
+                        this.UpcomingTripsPanel.Visible = false;
+                    }
+                }
 
                 // Determine the sections to render
                 if (HasPassword(manager))
@@ -93,10 +115,8 @@
 
         public IEnumerable<Booking> UpcomingTripsRepeater_GetData()
         {
-            var user = this.GetCurrentUser();
-
             return this.BookingsServices.GetAll()
-                .Where(b => !b.IsDeleted && b.UserId.Equals(user.Id) && b.Flight.Departure < DateTime.Now)
+                .Where(b => !b.IsDeleted && b.UserId.Equals(this.CurentUser.Id) && b.Flight.Departure < DateTime.Now)
                 .ToList();
         }
 
@@ -142,17 +162,6 @@
             {
                 ModelState.AddModelError("", error);
             }
-        }
-
-        private ApplicationUserManager GetManager()
-        {
-            return Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-        }
-
-        private User GetCurrentUser()
-        {
-            var manager = this.GetManager();
-            return manager.FindById(this.Context.User.Identity.GetUserId());
         }
     }
 }

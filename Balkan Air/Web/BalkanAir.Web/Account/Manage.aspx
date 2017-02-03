@@ -6,9 +6,9 @@
 <%@ Import Namespace="BalkanAir.Web.Common" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <h2><asp:Literal ID="WelcomeTextLiteral" runat="server" /></h2>
+    <h2 id="WelcomeText"><asp:Literal ID="WelcomeTextLiteral" runat="server" /></h2>
 
-    <div id="UpcomingTripsDiv">
+    <asp:Panel ID="UpcomingTripsPanel" ClientIDMode="Static" runat="server">
         <input type="image" class="airplaneFlyOutImage" alt="Airplane image" src="../Content/Images/airplane_fly_out_image.png" />
         <h3>Upcoming trips</h3>
 
@@ -29,7 +29,7 @@
                 </a>
             </ItemTemplate>
         </asp:Repeater>
-    </div>
+    </asp:Panel>
 
     <div>
         <asp:PlaceHolder runat="server" ID="successMessage" Visible="false" ViewStateMode="Disabled">
