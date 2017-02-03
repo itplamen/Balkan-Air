@@ -40,7 +40,7 @@
             if (result.Succeeded)
             {
                 this.SendWelcomeNotification(user.Id);
-
+                
                 string code = manager.GenerateEmailConfirmationToken(user.Id);
                 string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
 
@@ -62,8 +62,13 @@
 
         private void SendWelcomeNotification(string userId)
         {
-            int welcomeNotificationId = 1;
-            this.UserNotificationsServices.SendNotification(welcomeNotificationId, userId);
+            var welcomeNotification = this.NotificationsServices.GetAll()
+                .FirstOrDefault(n => n.Type == NotificationType.Welcome);
+
+            if (welcomeNotification != null)
+            {
+                this.UserNotificationsServices.SendNotification(welcomeNotification.Id, userId);
+            }
         }
     }
 }

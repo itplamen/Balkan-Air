@@ -1,4 +1,4 @@
-﻿namespace BalkanAir.Data.Common
+﻿namespace BalkanAir.Services.Common
 {
     public static class ErrorMessages
     {

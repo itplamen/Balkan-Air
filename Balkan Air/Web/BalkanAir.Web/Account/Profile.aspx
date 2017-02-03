@@ -45,12 +45,12 @@
 
         <div class="fancyTextBox">
             <asp:Label Text="FIRST NAME" runat="server" AssociatedControlID="FirstNameTextBox" />
-            <asp:TextBox runat="server" ID="FirstNameTextBox" ClientIDMode="Static" CssClass="capitalizeTextBox" />
+            <asp:TextBox runat="server" ID="FirstNameTextBox" ClientIDMode="Static" />
         </div>
 
         <div class="fancyTextBox">
             <asp:Label Text="LAST NAME" runat="server" AssociatedControlID="LastNameTextBox" />
-            <asp:TextBox runat="server" ID="LastNameTextBox" ClientIDMode="Static" CssClass="capitalizeTextBox" />
+            <asp:TextBox runat="server" ID="LastNameTextBox" ClientIDMode="Static" />
         </div>
 
         <div class=" fancyTextBox">

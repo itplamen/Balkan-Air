@@ -21,11 +21,5 @@
         public const string DESTINATION_AIRPORT_NAME = "DestinationAirportName";
         public const string DESTINATION_AIRPORT_ABBREVIATION = "DestinationAirportAbbreviation";
         public const int NUMBER_OF_FLIGHT_SEARCHES = 4;
-
-
-        /******************** Others *******************/
-
-        public const int WELCOME_NOTIFICATION_ID = 1;
-        public const int SET_ACCOUNT_NOTIFICATION_ID = 2;
     }
 }

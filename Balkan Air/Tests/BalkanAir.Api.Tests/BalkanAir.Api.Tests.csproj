@@ -115,9 +115,17 @@
       <Project>{51d02d44-dae7-4226-927c-356ae94fce43}</Project>
       <Name>BalkanAir.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\BalkanAir.Services.Common\BalkanAir.Services.Common.csproj">
+      <Project>{1E23C3F5-2483-4B5C-95E7-1A2D2CD77FB1}</Project>
+      <Name>BalkanAir.Services.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\BalkanAir.Services.Data\BalkanAir.Services.Data.csproj">
       <Project>{df4db207-0cce-4542-9ff1-f662daf0cc14}</Project>
       <Name>BalkanAir.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Web\BalkanAir.Web.Common\BalkanAir.Web.Common.csproj">
+      <Project>{D46816CB-E401-4F61-9B96-8F8167D33B19}</Project>
+      <Name>BalkanAir.Web.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Web\BalkanAir.Web\BalkanAir.Web.csproj">
       <Project>{7c7e6503-71d4-445a-85a7-47f7bc581d1d}</Project>

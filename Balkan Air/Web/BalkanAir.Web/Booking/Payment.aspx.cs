@@ -1,4 +1,4 @@
-﻿namespace BalkanAir.Web.Booking
+namespace BalkanAir.Web.Booking
 {
     using System;
     using System.Collections.Generic;
@@ -17,7 +17,6 @@
 
     public partial class Payment : Page
     {
-        private User user;
         private Booking booking;
 
         [Inject]
@@ -29,9 +28,24 @@
         [Inject]
         public IBookingsServices BookingsServices { get; set; }
 
+        [Inject]
+        public INotificationsServices NotificationsServices { get; set; }
+
+        [Inject]
+        public IUserNotificationsServices UserNotificationsServices { get; set; }
+
+        private ApplicationUserManager Manager
+        {
+            get { return Context.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+        }
+
+        private User CurrentUser
+        {
+            get { return this.Manager.FindById(this.Context.User.Identity.GetUserId()); }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.user = GetCurrentUser();
             this.booking = (Booking)this.Session[Parameters.BOOKING];
 
             if (!this.Page.IsPostBack)
@@ -42,7 +56,7 @@
                     this.Response.Redirect(Pages.HOME);
                 }
 
-                if (this.user == null || !user.AreProfileDetailsFilled)
+                if (this.CurrentUser == null || !this.CurrentUser.AreProfileDetailsFilled)
                 {
                     this.FilledProfileDetailsRequiredPanel.Visible = true;
                     this.PaymentDetailsPanel.Visible = false;
@@ -51,7 +65,7 @@
                 {
                     this.FilledProfileDetailsRequiredPanel.Visible = false;
                     this.PaymentDetailsPanel.Visible = true;
-                    this.FillPaymentDetailsFields(this.user);
+                    this.FillPaymentDetailsFields(this.CurrentUser);
                     this.BindCardDateExpirationDropDowns();
                     this.TotalPriceLabel.Text = "Total price: &#8364; " + this.booking.TotalPrice;
                 }
@@ -63,8 +77,13 @@
             this.TravelClassesServices.BookSeat(this.booking.TravelClassId, this.booking.Row, this.booking.SeatNumber);
 
             this.booking.DateOfBooking = DateTime.Now;
-            this.booking.UserId = this.user.Id;
+            this.booking.UserId = this.CurrentUser.Id;
             this.BookingsServices.AddBooking(this.booking);
+
+            var passenger = this.CurrentUser.UserSettings.FirstName + " " + this.CurrentUser.UserSettings.LastName;
+            this.SendFlightConfirmationMail(passenger);
+
+            this.SendFlightBookedNotification(this.CurrentUser.Id);
 
             if (this.SaveCreditCardCheckBox.Checked)
             {
@@ -89,12 +108,6 @@
             this.YearsPaymentDropDown.DataBind();
         }
 
-        private User GetCurrentUser()
-        {
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            return manager.FindById(this.User.Identity.GetUserId());
-        }
-
         private void FillPaymentDetailsFields(User user)
         {
             this.FirstNamePaymentTextBox.Text = user.UserSettings.FirstName;
@@ -113,10 +126,31 @@
                 ExpirationMonth = int.Parse(this.MonthsPaymentDropDown.SelectedItem.Value),
                 ExpirationYear = int.Parse(this.YearsPaymentDropDown.SelectedItem.Value),
                 CvvNumber = this.CvvPaymentTextBox.Text,
-                UserId = this.user.Id
+                UserId = this.CurrentUser.Id
             };
 
             this.CreditCardsServices.Create(newCreditCard);
+        }
+
+        private void SendFlightConfirmationMail(string passenger)
+        {
+            string messageBody = "Dear, " + passenger.Trim() + ",";
+            messageBody += "<br /><br />Thank you for booking with Bulgaria Air. The departure of your flight is fast approaching. "
+                + "You can find in your profile some useful information as well as a reminder of your flight dates and times!";
+
+            var mailSender = MailSender.Instance;
+            mailSender.SendMail(this.CurrentUser.Email, "Flight reminder!", messageBody);
+        }
+
+        private void SendFlightBookedNotification(string userId)
+        {
+            var flightBookedNotification = this.NotificationsServices.GetAll()
+                .FirstOrDefault(n => n.Type == NotificationType.FlightBooked);
+
+            if (flightBookedNotification != null)
+            {
+                this.UserNotificationsServices.SendNotification(flightBookedNotification.Id, userId);
+            }
         }
     }
 }

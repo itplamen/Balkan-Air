@@ -20,7 +20,8 @@
         [Required]
         public DateTime DateCreated { get; set; }
 
-        public string Url { get; set; }
+        [Required]
+        public NotificationType Type { get; set; }
 
         public bool IsDeleted { get; set; }
 

@@ -6,12 +6,12 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using Common;
     using Services.Data.Contracts;
     using TestObjects;
     using Web.Areas.Api.Controllers;
     using Web.Areas.Api.Models.AircraftManufacturers;
-    
+    using Services.Common;
+
     [TestClass]
     public class AircraftManufacturersControllerTests
     {

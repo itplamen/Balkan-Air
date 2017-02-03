@@ -25,6 +25,7 @@
         public const string PREVIOUS_TRIPS = "~/Account/PreviousTrips";
         public const string NOTIFICATIONS = "~/Account/Notifications";
         public const string CHANGE_PASSWORD = "~/Account/ChangePassword";
+        public const string ITINERARY = "~/Account/Itinerary";
 
 
         /******************** Administration *******************/

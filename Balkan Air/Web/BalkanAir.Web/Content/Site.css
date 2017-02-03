@@ -264,10 +264,6 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
         text-decoration: none;
     }
 
-.capitalizeTextBox {
-    text-transform: capitalize;
-}
-
 #TopCheapestFlightsDiv {
     font-weight: bold;
     height: 180px;
@@ -1331,7 +1327,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     left: 150px;
 }
 
-#UpcomingTripsDiv .flightDateSpan, #UpcomingTripsDiv .flightTimeSpan {
+#UpcomingTripsDiv .flightDateSpan, #UpcomingTripsDiv .flightTimeSpan, #UpcomingTripsDiv .bookingStatus {
     font-weight: bold;
     position: relative;
 }
@@ -1344,6 +1340,11 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 .flightTimeSpan {
     top: 10px;
     left: 310px;
+}
+
+.bookingStatus {
+    left: 560px;
+    font-size: 16px;
 }
 
 .divBox {

@@ -7,10 +7,10 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using Common;
     using TestObjects;
     using Web.Areas.Api.Controllers;
     using Web.Areas.Api.Models.Airports;
+    using Services.Common;
 
     [TestClass]
     public class AirportsControllerTests

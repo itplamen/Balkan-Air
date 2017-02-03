@@ -12,9 +12,13 @@
 
     using Common;
     using Services.Data.Contracts;
+    using Data.Models;
 
     public partial class Confirm : Page
     {
+        [Inject]
+        public INotificationsServices NotificationsServices { get; set; }
+
         [Inject]
         public IUserNotificationsServices UserNotificationsServices { get; set; }
 
@@ -39,12 +43,15 @@
                     successPanel.Visible = true;
 
                     bool didUserReceivedSetAccountNotification = this.UserNotificationsServices.GetAll()
-                            .Where(un => un.UserId.Equals(userId) && un.NotificationId == Parameters.SET_ACCOUNT_NOTIFICATION_ID)
+                            .Where(un => un.UserId.Equals(userId) && un.Notification.Type == NotificationType.AccountConfirmation)
                             .Any();
 
                     if (!didUserReceivedSetAccountNotification)
                     {
-                        this.UserNotificationsServices.SendNotification(Parameters.SET_ACCOUNT_NOTIFICATION_ID, userId);
+                        var accountConfirmationNotification = this.NotificationsServices.GetAll()
+                            .FirstOrDefault(n => n.Type == NotificationType.AccountConfirmation);
+
+                        this.UserNotificationsServices.SendNotification(accountConfirmationNotification.Id, userId);
                     }
 
                     return;

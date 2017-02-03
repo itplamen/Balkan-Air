@@ -77,7 +77,7 @@
                 {
                     Content = this.ContentTextBox.Text,
                     DateCreated = DateTime.Now,
-                    Url = this.UrlTextBox.Text
+                    Type = NotificationType.Other
                 };
 
                 int notificationId = this.NotificationsServices.AddNotification(notification);

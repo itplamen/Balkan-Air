@@ -41,7 +41,7 @@
             {
                 notificationToUpdate.Content = notification.Content;
                 notificationToUpdate.DateCreated = notification.DateCreated;
-                notificationToUpdate.Url = notification.Url;
+                notificationToUpdate.Type = notification.Type;
                 this.notifications.SaveChanges();
             }
 

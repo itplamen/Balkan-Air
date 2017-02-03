@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BalkanAir.Api.Tests", "Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BalkanAir.Data.Common", "Data\BalkanAir.Data.Common\BalkanAir.Data.Common.csproj", "{F9E825F6-A4D5-4328-BCD8-FF05CDB86737}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BalkanAir.Services.Common", "Services\BalkanAir.Services.Common\BalkanAir.Services.Common.csproj", "{1E23C3F5-2483-4B5C-95E7-1A2D2CD77FB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{F9E825F6-A4D5-4328-BCD8-FF05CDB86737}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9E825F6-A4D5-4328-BCD8-FF05CDB86737}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9E825F6-A4D5-4328-BCD8-FF05CDB86737}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E23C3F5-2483-4B5C-95E7-1A2D2CD77FB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E23C3F5-2483-4B5C-95E7-1A2D2CD77FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E23C3F5-2483-4B5C-95E7-1A2D2CD77FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E23C3F5-2483-4B5C-95E7-1A2D2CD77FB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,5 +84,6 @@ Global
 		{ADEDE80E-C226-4E8A-97A0-8B1055E55C9B} = {B24553AF-DDCE-4668-B924-FC3677BC26DD}
 		{C5A673F9-EF36-4FE7-9BF3-8BFF975E8075} = {B24553AF-DDCE-4668-B924-FC3677BC26DD}
 		{F9E825F6-A4D5-4328-BCD8-FF05CDB86737} = {B2CF05EE-48F5-4FFE-958B-CFEBFDEE57B9}
+		{1E23C3F5-2483-4B5C-95E7-1A2D2CD77FB1} = {96BC4917-CF12-442B-B5FF-CAEF8FF1B495}
 	EndGlobalSection
 EndGlobal

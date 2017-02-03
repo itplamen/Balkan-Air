@@ -7,8 +7,8 @@
 
     using MyTested.WebApi;
 
-    using Common;
     using Web.App_Start;
+    using Web.Common;
 
     [TestClass]
     public class TestInitialize

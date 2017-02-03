@@ -39,12 +39,13 @@
      <siteMapNode url="~/Account/Profile" title="Profile" />
       <siteMapNode url="~/Account/Settings" title="Settings">
         <siteMapNode url="~/Account/ChangePassword" title="Change password" />
+        <siteMapNode url="~/Account/ManagePassword" title="Manage password" />
+        <siteMapNode url="~/Account/ResetPassword" title="Reset password" />
       </siteMapNode>
       <siteMapNode url="~/Account/CreditCards" title="Credit cards" />
       <siteMapNode url="~/Account/PreviousTrips" title="Previous trips" />
       <siteMapNode url="~/Account/Notifications" title="Notifications" />
-      <siteMapNode url="~/Account/ManagePassword" title="Manage password" />
-      <siteMapNode url="~/Account/ResetPassword" title="Reset password" />
+      <siteMapNode url="~/Account/Itinerary" title="Itinerary" />
     </siteMapNode>
   
   </siteMapNode>

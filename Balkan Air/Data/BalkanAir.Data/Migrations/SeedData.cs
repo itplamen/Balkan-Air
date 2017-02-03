@@ -588,7 +588,7 @@
             {
                 Content = welcomeNotificationContent,
                 DateCreated = DateTime.Now,
-                Url = "ddd"
+                Type = NotificationType.Welcome
             });
 
             string setAccountNotificationContent = "Thank you for confirming your account! Don't forget to fill all personal " + 
@@ -598,7 +598,17 @@
             {
                 Content = setAccountNotificationContent,
                 DateCreated = DateTime.Now,
-                Url = "ddd"
+                Type = NotificationType.AccountConfirmation
+            });
+
+            string newFlightBooked = "You have booked a new flight. Check out your profile and email to find information about " + 
+                "your flight. Don't forget to confirm your booking!";
+
+            this.Notifications.Add(new Notification()
+            {
+                Content = newFlightBooked,
+                DateCreated = DateTime.Now,
+                Type = NotificationType.FlightBooked
             });
         }
     }

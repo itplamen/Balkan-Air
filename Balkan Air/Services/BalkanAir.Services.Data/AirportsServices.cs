@@ -3,9 +3,9 @@
     using System;
     using System.Linq;
 
-    using BalkanAir.Data.Common;
     using BalkanAir.Data.Models;
     using BalkanAir.Data.Repositories.Contracts;
+    using Common;
     using Contracts;
 
     public class AirportsServices : IAirportsServices

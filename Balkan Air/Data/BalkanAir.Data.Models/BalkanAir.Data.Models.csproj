@@ -63,6 +63,7 @@
     <Compile Include="Category.cs" />
     <Compile Include="CreditCard.cs" />
     <Compile Include="Notification.cs" />
+    <Compile Include="NotificationType.cs" />
     <Compile Include="Seat.cs" />
     <Compile Include="Airport.cs" />
     <Compile Include="Baggage.cs" />

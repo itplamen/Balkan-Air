@@ -228,3 +228,5 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\Microsoft.Owi
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\obj\Debug\BalkanAir.Web.csprojResolveAssemblyReference.cache
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\obj\Debug\BalkanAir.Web.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\obj\Debug\BalkanAir.Web.pdb
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Services.Common.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Services.Common.pdb

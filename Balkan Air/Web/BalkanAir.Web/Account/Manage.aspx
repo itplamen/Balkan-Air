@@ -6,8 +6,7 @@
 <%@ Import Namespace="BalkanAir.Web.Common" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        <asp:Literal ID="WelcomeTextLiteral" runat="server" /></h2>
+    <h2><asp:Literal ID="WelcomeTextLiteral" runat="server" /></h2>
 
     <div id="UpcomingTripsDiv">
         <input type="image" class="airplaneFlyOutImage" alt="Airplane image" src="../Content/Images/airplane_fly_out_image.png" />
@@ -17,15 +16,17 @@
             ItemType="BalkanAir.Data.Models.Booking"
             SelectMethod="UpcomingTripsRepeater_GetData">
             <ItemTemplate>
-                <div class="divBox">
-                    <span class="flightNumberSpan"><%#: Item.Flight.Number %></span>
-                    <span class="fromAirportSpan"><%#: Item.Flight.DepartureAirport.Name %></span>
-                    <input type="image" class="airplaneFlyOutImage" alt="Airplane image" src="../Content/Images/airplane_fly_out_image.png" />
-                    <span class="toAirportSpan"><%#: Item.Flight.ArrivalAirport.Name %></span>
-                    <span class="flightDateSpan"><%#: Item.Flight.Departure.ToString("dddd dd, MMMM", CultureInfo.InvariantCulture) %></span>
-                    <span class="flightTimeSpan"><%#: Item.Flight.Departure.ToString("HH:mm", CultureInfo.InvariantCulture) %></span>
-                    <a href="#">DETAILS</a>
-                </div>
+                <a href='<%= Page.ResolveUrl(Pages.ITINERARY) %>?id=<%# Item.Id %>&flight=<%#: Item.Flight.Number %>'>
+                    <div class="divBox">
+                        <span class="flightNumberSpan"><%#: Item.Flight.Number %></span>
+                        <span class="fromAirportSpan"><%#: Item.Flight.DepartureAirport.Name %></span>
+                        <input type="image" class="airplaneFlyOutImage" alt="Airplane image" src="../Content/Images/airplane_fly_out_image.png" />
+                        <span class="toAirportSpan"><%#: Item.Flight.ArrivalAirport.Name %></span>
+                        <span class="flightDateSpan"><%#: Item.Flight.Departure.ToString("dddd dd, MMMM", CultureInfo.InvariantCulture) %></span>
+                        <span class="flightTimeSpan"><%#: Item.Flight.Departure.ToString("HH:mm", CultureInfo.InvariantCulture) %></span>
+                        <span class="bookingStatus">Confirmed</span>
+                    </div>
+                </a>
             </ItemTemplate>
         </asp:Repeater>
     </div>
@@ -71,6 +72,8 @@
             <p>Check your previous trips</p>
         </div>
     </a>
+
+
 
     <div class="row">
         <div class="col-md-12">
