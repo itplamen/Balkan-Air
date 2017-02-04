@@ -13,6 +13,33 @@ namespace BalkanAir.Web.Account {
     public partial class Profile {
         
         /// <summary>
+        /// NoProfilePictureLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NoProfilePictureLabel;
+        
+        /// <summary>
+        /// ProfileImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage ProfileImage;
+        
+        /// <summary>
+        /// ProfilePictureAjaxFileUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AjaxFileUpload ProfilePictureAjaxFileUpload;
+        
+        /// <summary>
         /// FirstNameTextBox control.
         /// </summary>
         /// <remarks>

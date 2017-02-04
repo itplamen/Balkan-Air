@@ -159,11 +159,21 @@
             mailSender.SendMail(this.User.Email, "Confirm your account!", messageBody);
         }
 
+        protected string GetProfileIconSrc()
+        {
+            if (this.User != null && this.User.UserSettings.ProfilePicture != null)
+            {
+                return "data:image/jpeg;base64," + Convert.ToBase64String(this.User.UserSettings.ProfilePicture);
+            }
+
+            return string.Empty;
+        }
+
         protected string GetUserInfo()
         {
-            if (!string.IsNullOrEmpty(this.User.UserSettings.FirstName) && !string.IsNullOrEmpty(this.User.UserSettings.LastName))
+            if (!string.IsNullOrEmpty(this.User.UserSettings.FirstName))
             {
-                return this.User.UserSettings.FirstName + " " + this.User.UserSettings.LastName;
+                return this.User.UserSettings.FirstName ;
             }
 
             return this.User.Email;

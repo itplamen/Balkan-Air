@@ -77,5 +77,13 @@
 
             return userToDelete;
         }
+
+        public void Upload(string userId, byte[] image)
+        {
+            var user = this.GetUser(userId);
+            user.UserSettings.ProfilePicture = image;
+
+            this.users.SaveChanges();
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="Profile" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="BalkanAir.Web.Account.Profile" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: this.Page.Title %></h2>
 
@@ -41,6 +43,27 @@
     </div>
 
     <div id="PersonalDetailsDiv">
+        <h4>PROFILE PICTURE</h4>
+
+        <div id="ProfilePictureDiv">
+            <asp:Label ID="NoProfilePictureLabel" ClientIDMode="Static" Text="NO PROFILE PICTURE!" runat="server" />
+            <img id="ProfileImage" alt="Profile Image" runat="server" />
+        </div>
+
+        <div id="UploadPictureDivBox">
+            <p id="MaximumFilzeSizeAndType">
+                <span>Maximum file size: 1 MB</span> <br />
+                <span>Allowed file types: jpg, jpeg, png, gif</span>
+            </p>
+            <ajaxToolkit:AjaxFileUpload ID="ProfilePictureAjaxFileUpload"
+                runat="server"
+                MaximumNumberOfFiles="1"
+                AllowedFileTypes="jpg,jpeg,png,gif"
+                MaxFileSize="1000"
+                OnUploadComplete="OnUploadComplete"
+                OnClientUploadComplete="uploadComplete" />
+        </div>
+
         <h4>PERSONAL DETAILS</h4>
 
         <div class="fancyTextBox">
@@ -92,6 +115,15 @@
         <asp:Button ID="SavePersonalInfoDataBtn" ClientIDMode="Static" Text="SAVE" runat="server"
             OnClick="SavePersonalInfoDataBtn_Click" />
     </div>
+
+
+    <script type = "text/javascript">
+        function uploadComplete(sender) {
+            location.reload();
+        }
+    </script>
 </asp:Content>
+
+
 
 

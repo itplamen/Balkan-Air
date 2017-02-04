@@ -134,7 +134,9 @@
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
-                                    <a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: this.GetUserInfo() %>!
+                                    <a runat="server" href="~/Account/Manage" title="Manage your account">
+                                        <img class="profileIcon" src="<%= this.GetProfileIconSrc() %>" alt="Profile Icon"  />
+                                        <%: this.GetUserInfo() %>
                                     </a>
                                 </li>
                                 <li>

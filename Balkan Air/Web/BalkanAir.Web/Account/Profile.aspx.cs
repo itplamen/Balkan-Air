@@ -2,58 +2,86 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Web;
     using System.Web.UI;
-    using System.Web.UI.WebControls;
+
+    using AjaxControlToolkit;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
+
     using Ninject;
 
     using Data.Models;
-    using BalkanAir.Services.Data.Contracts;
+    using Services.Data.Contracts;
 
     public partial class Profile : Page
     {
+        [Inject]
+        public IUsersServices UsersServices { get; set; }
+
+        private ApplicationUserManager Manager
+        {
+            get { return Context.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+        }
+
+        private User CurrentUser
+        {
+            get { return this.Manager.FindById(this.Context.User.Identity.GetUserId()); }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.Page.IsPostBack)
             {
                 this.BindGenderDropDownList();
 
-                var user = this.GetCurrentUser();
-
-                if (user != null)
+                if (this.CurrentUser != null)
                 {
-                    this.FirstNameTextBox.Text = user.UserSettings.FirstName;
-                    this.LastNameTextBox.Text = user.UserSettings.LastName;
-                    this.DatepickerTextBox.Text = this.GetDateOfBirthAsAString(user.UserSettings.DateOfBirth);
-                    this.GenderDropDownList.SelectedValue = Enum.GetName(typeof(Gender), user.UserSettings.Gender);
-                    this.IdentityDocumentNumberTextBox.Text = user.UserSettings.IdentityDocumentNumber;
-                    this.PhoneNumberTextBox.Text = user.PhoneNumber;
-                    this.FullAddressTextBox.Text = user.UserSettings.FullAddress;
+                    if (this.CurrentUser.UserSettings.ProfilePicture != null)
+                    {
+                        this.ProfileImage.Src = "data:image/jpeg;base64," + Convert.ToBase64String(this.CurrentUser.UserSettings.ProfilePicture);
+                        this.ProfileImage.Visible = true;
+                        this.NoProfilePictureLabel.Visible = false;
+                    }
+                    else
+                    {
+                        this.NoProfilePictureLabel.Visible = true;
+                        this.ProfileImage.Visible = false;
+                    }
+
+                    this.FirstNameTextBox.Text = this.CurrentUser.UserSettings.FirstName;
+                    this.LastNameTextBox.Text = this.CurrentUser.UserSettings.LastName;
+                    this.DatepickerTextBox.Text = this.GetDateOfBirthAsAString(this.CurrentUser.UserSettings.DateOfBirth);
+                    this.GenderDropDownList.SelectedValue = Enum.GetName(typeof(Gender), this.CurrentUser.UserSettings.Gender);
+                    this.IdentityDocumentNumberTextBox.Text = this.CurrentUser.UserSettings.IdentityDocumentNumber;
+                    this.PhoneNumberTextBox.Text = this.CurrentUser.PhoneNumber;
+                    this.FullAddressTextBox.Text = this.CurrentUser.UserSettings.FullAddress;
                 }
             }
         }
 
         protected void SavePersonalInfoDataBtn_Click(object sender, EventArgs e)
         {
-            var user = this.GetCurrentUser();
-
-            if (user != null)
+            if (this.CurrentUser != null)
             {
-                user.UserSettings.FirstName = this.FirstNameTextBox.Text;
-                user.UserSettings.LastName = this.LastNameTextBox.Text;
-                user.UserSettings.DateOfBirth = this.GetDateOfBirthFromDatePickerString();
-                user.UserSettings.Gender = (Gender)Enum.Parse(typeof(Gender), this.GenderDropDownList.SelectedItem.Text);
-                user.UserSettings.IdentityDocumentNumber = this.IdentityDocumentNumberTextBox.Text;
-                user.UserSettings.Nationality = "Bulgaria";
-                user.UserSettings.FullAddress = this.FullAddressTextBox.Text;
-                user.PhoneNumber = this.PhoneNumberTextBox.Text;
+                this.CurrentUser.UserSettings.FirstName = this.FirstNameTextBox.Text;
+                this.CurrentUser.UserSettings.LastName = this.LastNameTextBox.Text;
+                this.CurrentUser.UserSettings.DateOfBirth = this.GetDateOfBirthFromDatePickerString();
+                this.CurrentUser.UserSettings.Gender = (Gender)Enum.Parse(typeof(Gender), this.GenderDropDownList.SelectedItem.Text);
+                this.CurrentUser.UserSettings.IdentityDocumentNumber = this.IdentityDocumentNumberTextBox.Text;
+                this.CurrentUser.UserSettings.Nationality = "Bulgaria";
+                this.CurrentUser.UserSettings.FullAddress = this.FullAddressTextBox.Text;
+                this.CurrentUser.PhoneNumber = this.PhoneNumberTextBox.Text;
 
-                this.GetManager().Update(user);
+                this.Manager.Update(this.CurrentUser);
             }
+        }
+
+        protected void OnUploadComplete(object sender, AjaxFileUploadEventArgs e)
+        {
+            byte[] profilePicture = e.GetContents();
+            this.UsersServices.Upload(this.CurrentUser.Id, profilePicture);
         }
 
         private void BindGenderDropDownList()
@@ -66,17 +94,6 @@
 
             this.GenderDropDownList.DataSource = genders;
             this.GenderDropDownList.DataBind();
-        }
-
-        private ApplicationUserManager GetManager()
-        {
-            return Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-        }
-
-        private User GetCurrentUser()
-        {
-            var manager = this.GetManager();
-            return manager.FindById(this.Context.User.Identity.GetUserId());
         }
 
         private DateTime? GetDateOfBirthFromDatePickerString()

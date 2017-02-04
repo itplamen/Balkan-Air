@@ -17,5 +17,7 @@
         User UpdateUser(string id, User user);
 
         User DeleteUser(string id);
+
+        void Upload(string userId, byte[] image);
     }
 }
