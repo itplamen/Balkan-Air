@@ -31,7 +31,6 @@
             if (!this.Page.IsPostBack)
             {
                 this.NoFlightsLiteral.Visible = false;
-                this.Session.Clear();
             }
         }
 

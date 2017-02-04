@@ -20,6 +20,9 @@
             this.Bookings = new HashSet<Booking>();
         }
 
+        [Column("ProfilePicture")]
+        public byte[] ProfilePicture { get; set; }
+
         [Column("FirstName")]
         [MinLength(ValidationConstants.PASSENGER_NAME_MIN_LENGTH)]
         [MaxLength(ValidationConstants.PASSENGER_NAME_MAX_LENGTH)]

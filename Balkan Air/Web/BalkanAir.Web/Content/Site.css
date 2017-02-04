@@ -1304,10 +1304,12 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     padding-left: 20px;
 }
 
-#UpcomingTripsPanel .divBox .airplaneFlyOutImage {
+#UpcomingTripsPanel .divBox .airplaneFlyOutImage, #TravelPlanFlightInfoDiv .airplaneFlyOutImage {
+    position: relative;
     width: 25px;
-    height: 25px;
-    left: 395px;
+    height: 25px; 
+    top: 5px;
+    left: 120px; 
 }
 
 #UpcomingTripsPanel .divBox a {
@@ -1319,16 +1321,16 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     font-size: 13px;
 }
 
-#UpcomingTripsPanel .flightNumberSpan {
+.flightNumberSpan {
     font-weight: bold;
     font-size: 16px;
 }
 
-#UpcomingTripsPanel .fromAirportSpan {
+.fromAirportSpan {
     margin-right: 60px;
 }
 
-#UpcomingTripsPanel .fromAirportSpan, #UpcomingTripsPanel .toAirportSpan {
+.fromAirportSpan, .toAirportSpan {
     font-weight: bold;
     font-size: 20px;
     color: #3E007F;
@@ -1336,19 +1338,19 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     left: 150px;
 }
 
-#UpcomingTripsPanel .flightDateSpan, #UpcomingTripsPanel .flightTimeSpan, #UpcomingTripsPanel .bookingStatus {
+.flightDateSpan, .flightTimeSpan, .bookingStatus {
     font-weight: bold;
     position: relative;
 }
 
-#UpcomingTripsPanel .flightDateSpan {
+.flightDateSpan {
     bottom: 10px;
-    left: 400px;
+    left: 350px;
 }
 
 .flightTimeSpan {
     top: 10px;
-    left: 310px;
+    left: 250px;
 }
 
 .bookingStatus {
@@ -1413,10 +1415,6 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 #PersonalDetailsDiv h4, #ContactDetailsDiv h4 {
     margin-bottom: 30px;
     font-weight: bold;
-}
-
-#FirstNameTextBox, #LastNameTextBox {
-    text-transform: capitalize;
 }
 
 .fancyTextBox {
@@ -1571,6 +1569,124 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     text-shadow: 0px 0px 3px rgba(0,0,0, .5);
 }
 
+
+/****************** Account/Itinerary.aspx ******************/
+#TravelPlanDiv {
+    width: 900px;
+
+    border-radius: 10px;
+}
+
+#TravelPlanDiv h3, #TravelPlanDiv .statusSpan, #TravelPlanDiv .confirmationCodeSpan {
+    color: #545253; 
+    font-weight: bold;
+}
+
+#TravelPlanDiv .statusSpan, #TravelPlanDiv .confirmationCodeSpan {
+    font-size: 12px;
+    position: relative;
+    top: -50px;
+    left: 300px;
+}
+
+#TravelPlanDiv .confirmationCodeSpan {
+    left: 420px;
+}
+
+#TravelPlanDiv .statusTextSpan, #TravelPlanDiv .confirmationCodeTextSpan {
+    position: relative;
+    top: -20px;
+    left: 250px;
+    font-size: 18px;
+    color: #3E007F;
+    letter-spacing: 1px;
+}
+
+#TravelPlanDiv .confirmationCodeTextSpan {
+    left: 287px;
+}
+
+#TravelPlanHeaderDiv {
+    background-color: #E1E1E1;
+    border-radius: 10px 10px 0 0;
+    padding: 10px 20px 10px 20px;
+}
+
+#TravelPlanFlightInfoDiv {
+   margin-top: 20px;
+   padding: 20px;
+}
+
+#TravelPlanFlightInfoDiv .flightDateSpan {
+    top: -2px;
+    left: 230px;
+}
+
+#TravelPlanFlightInfoDiv .flightTimeSpan {
+    left: 160px;
+    top: 20px;
+}
+
+#TravelPlanFlightInfoDiv .toAirportSpan {
+    left: 100px;
+}
+
+#TravelPlanFlightInfoDiv .airplaneFlyOutImage {
+    left: 80px;
+}
+
+.fromAirportAbbreviationSpan, .toAirportAbbreviationSpan {
+    position: relative;
+    top: 20px;
+    left: 45px;
+    color: #3E007F;
+    font-weight: bold;
+}
+
+.datetimeBetween {
+    position: relative;
+    width: 25px;
+    height: 25px; 
+    top: 5px;
+    left: 210px;
+}
+
+#TravelPlanPassengerDiv {
+    margin-top: 40px;
+    background-color: #E1E1E1;
+    padding: 10px 20px 10px 20px;
+    color: #3E007F;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+#TravelPlanBagsAndSeatDiv {
+    margin-top: 10px;
+    padding: 10px 20px 10px 20px;
+}
+
+#TravelPlanBagsAndSeatDiv input[type=image] {
+    width: 50px;
+}
+
+#TravelPlanBagsAndSeatDiv #SeatIcon, #TravelPlanBagsAndSeatDiv #SeatNumberSpan {
+    float: right;
+}
+
+#TravelPlanBagsAndSeatDiv #SeatNumberSpan {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#TravelPlanTotalCostDiv {
+    margin-top: 40px;
+    background-color: #E1E1E1;
+    padding: 10px 20px 10px 20px;
+    border-radius: 0 0 10px 10px;
+    color: #3E007F;
+    font-weight: bold;
+}
 
 /****************** News.aspx ******************/
 #ShowByCategoryDiv {

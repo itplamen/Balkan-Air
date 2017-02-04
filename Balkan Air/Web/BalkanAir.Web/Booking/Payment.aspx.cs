@@ -90,6 +90,7 @@ namespace BalkanAir.Web.Booking
                 this.SaveCreditCard();
             }
 
+            this.Session.Clear();
             this.PaymentDonePanel.Visible = true;
             this.PaymentDetailsPanel.Visible = false;
             this.Response.AddHeader("REFRESH", "3;URL=" + Pages.HOME);

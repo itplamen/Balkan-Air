@@ -278,6 +278,7 @@
     <Content Include="Booking\Payment.aspx" />
     <Content Include="Booking\SelectFlight.aspx" />
     <Content Include="Contact.aspx" />
+    <Content Include="Content\Images\Itinerary\bag-icon.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\acceted-cards-image.png" />
@@ -293,6 +294,7 @@
     <Content Include="Content\Images\Destinations\Budapest.jpg" />
     <Content Include="Content\Images\earn-miles-icon.png" />
     <Content Include="Content\Images\extra-baggage-icon.png" />
+    <Content Include="Content\Images\Itinerary\seat-icon.png" />
     <Content Include="Content\Images\loading.gif" />
     <Content Include="Content\Images\meal-icon.png" />
     <Content Include="Content\Images\airplane-background.jpg" />
