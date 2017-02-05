@@ -27,7 +27,7 @@
         {
             if (!this.Page.IsPostBack)
             {
-                Booking booking = (Booking)this.Session[Parameters.BOOKING];
+                Booking booking = (Booking)this.Session[NativeConstants.BOOKING];
 
                 if (booking == null || (booking != null && booking.FlightId == 0 || booking.TravelClassId == 0))
                 {
@@ -68,11 +68,11 @@
 
         protected void ContinueBookingBtn_Click(object sender, EventArgs e)
         {
-            Booking booking = (Booking)this.Session[Parameters.BOOKING];
+            Booking booking = (Booking)this.Session[NativeConstants.BOOKING];
             booking.Row = int.Parse(this.SelectedRowHiddenField.Value);
             booking.SeatNumber = this.SelectedSeatHiddenField.Value;
 
-            this.Session.Add(Parameters.BOOKING, booking);
+            this.Session.Add(NativeConstants.BOOKING, booking);
             this.Response.Redirect(Pages.EXTRAS);
         }
     }

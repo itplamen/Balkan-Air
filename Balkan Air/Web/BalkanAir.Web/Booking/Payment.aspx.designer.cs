@@ -94,13 +94,13 @@ namespace BalkanAir.Web.Booking {
         protected global::System.Web.UI.WebControls.TextBox PhoneNumberPaymentTextBox;
         
         /// <summary>
-        /// NationalityPaymentTextBox control.
+        /// NationalityDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NationalityPaymentTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList NationalityDropDownList;
         
         /// <summary>
         /// CardNumberPaymentTextBox control.

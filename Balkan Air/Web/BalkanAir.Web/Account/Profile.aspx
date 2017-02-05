@@ -5,6 +5,16 @@
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: this.Page.Title %></h2>
 
+    <div>
+        <asp:PlaceHolder runat="server" ID="SuccessMessagePlaceHolder" Visible="false" ViewStateMode="Disabled">
+            <div class="alert alert-success" role="alert">
+                <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                <span class="sr-only">Succes:</span>
+                <%: this.SuccessMessage %>
+            </div>
+        </asp:PlaceHolder>
+    </div>
+
     <div class="errorMessages">
         <div>
             <asp:RequiredFieldValidator runat="server" ErrorMessage="First name is required!"
@@ -19,6 +29,16 @@
         <div>
             <asp:RequiredFieldValidator runat="server" ErrorMessage="Date of birth is required!"
                 ControlToValidate="DatepickerTextBox" Display="Dynamic" />
+        </div>
+
+        <div>
+            <asp:RequiredFieldValidator runat="server" ErrorMessage="Gender is required!" InitialValue="0"  
+                ControlToValidate="GenderDropDownList" Display="Dynamic" />
+        </div>
+
+        <div>
+            <asp:RequiredFieldValidator runat="server" ErrorMessage="Nationality is required!" InitialValue="0"  
+                ControlToValidate="NationalityDropDownList" Display="Dynamic" />
         </div>
 
         <div>
@@ -52,7 +72,8 @@
 
         <div id="UploadPictureDivBox">
             <p id="MaximumFilzeSizeAndType">
-                <span>Maximum file size: 1 MB</span> <br />
+                <span>Maximum file size: 1 MB</span>
+                <br />
                 <span>Allowed file types: jpg, jpeg, png, gif</span>
             </p>
             <ajaxToolkit:AjaxFileUpload ID="ProfilePictureAjaxFileUpload"
@@ -81,6 +102,13 @@
             <asp:TextBox runat="server" ID="DatepickerTextBox" ClientIDMode="Static" />
         </div>
 
+        <span id="DateOfBirthCalendarIconSpan" class="glyphicon glyphicon-calendar"></span>
+        <ajaxToolkit:CalendarExtender runat="server"
+            TargetControlID="DatepickerTextBox"
+            CssClass="CalendarExtender"
+            Format="d/MM/yyyy"
+            PopupButtonID="DepartureCalendarIconSpan" />
+
         <div class="fancyTextBox">
             <asp:Label Text="GENDER" runat="server" AssociatedControlID="GenderDropDownList" />
             <asp:DropDownList runat="server" ID="GenderDropDownList" />
@@ -88,7 +116,10 @@
 
         <div class="fancyTextBox">
             <asp:Label Text="NATIONALITY" runat="server" AssociatedControlID="NationalityDropDownList" />
-            <asp:DropDownList runat="server" ID="NationalityDropDownList" />
+            <asp:DropDownList ID="NationalityDropDownList" runat="server"
+                ItemType="BalkanAir.Data.Models.Country"
+                DataValueField="Id"
+                DataTextField="Name" />
         </div>
 
         <div class="fancyTextBox">
@@ -117,7 +148,7 @@
     </div>
 
 
-    <script type = "text/javascript">
+    <script type="text/javascript">
         function uploadComplete(sender) {
             location.reload();
         }

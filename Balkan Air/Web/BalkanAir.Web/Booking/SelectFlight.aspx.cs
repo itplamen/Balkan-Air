@@ -27,7 +27,7 @@
         {
             if (!this.Page.IsPostBack)
             {
-                if (this.Session[Parameters.DEPARTURE_AIRPORT_ID] == null || this.Session[Parameters.DESTINATION_AIRPORT_ID] == null)
+                if (this.Session[Common.NativeConstants.DEPARTURE_AIRPORT_ID] == null || this.Session[Common.NativeConstants.DESTINATION_AIRPORT_ID] == null)
                 {
                     this.Response.Redirect(Pages.HOME);
                 }
@@ -41,8 +41,8 @@
             int departureAirprotId;
             int destinationAirportId;
 
-            bool isDepartureAirprotIdValid = int.TryParse(this.Session[Parameters.DEPARTURE_AIRPORT_ID].ToString(), out departureAirprotId);
-            bool isDestinationAirportIdValid = int.TryParse(this.Session[Parameters.DESTINATION_AIRPORT_ID].ToString(), out destinationAirportId);
+            bool isDepartureAirprotIdValid = int.TryParse(this.Session[Common.NativeConstants.DEPARTURE_AIRPORT_ID].ToString(), out departureAirprotId);
+            bool isDestinationAirportIdValid = int.TryParse(this.Session[Common.NativeConstants.DESTINATION_AIRPORT_ID].ToString(), out destinationAirportId);
 
             if (isDepartureAirprotIdValid && isDestinationAirportIdValid)
             {
@@ -101,7 +101,7 @@
                     TravelClassId = int.Parse(this.SelectedTravelClassIdHiddenField.Value)
                 };
 
-                this.Session.Add(Parameters.BOOKING, booking);
+                this.Session.Add(Common.NativeConstants.BOOKING, booking);
                 this.Response.Redirect(Pages.EXTRAS);
             }
         }

@@ -344,7 +344,6 @@
             this.Countries.Add(new Country() { Name = "United Kingdom", Abbreviation = "UK" });
             this.Countries.Add(new Country() { Name = "France", Abbreviation = "FR" });
             this.Countries.Add(new Country() { Name = "Czech Republic", Abbreviation = "CZ" });
-            this.Countries.Add(new Country() { Name = "Other", Abbreviation = "NO" });
         }
 
         private void SeedFlightStatuses()

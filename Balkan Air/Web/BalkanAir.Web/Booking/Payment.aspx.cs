@@ -9,15 +9,19 @@ namespace BalkanAir.Web.Booking
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
+
     using Ninject;
 
-    using BalkanAir.Web.Common;
+    using Common;
     using Data.Models;
-    using BalkanAir.Services.Data.Contracts;
+    using Services.Data.Contracts;
 
     public partial class Payment : Page
     {
         private Booking booking;
+
+        [Inject]
+        public ICountriesServices CountriesServices { get; set; }
 
         [Inject]
         public ITravelClassesServices TravelClassesServices { get; set; }
@@ -46,7 +50,7 @@ namespace BalkanAir.Web.Booking
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.booking = (Booking)this.Session[Parameters.BOOKING];
+            this.booking = (Booking)this.Session[Common.NativeConstants.BOOKING];
 
             if (!this.Page.IsPostBack)
             {
@@ -93,7 +97,7 @@ namespace BalkanAir.Web.Booking
             this.Session.Clear();
             this.PaymentDonePanel.Visible = true;
             this.PaymentDetailsPanel.Visible = false;
-            this.Response.AddHeader("REFRESH", "3;URL=" + Pages.HOME);
+            this.Response.AddHeader("REFRESH", "5;URL=" + VirtualPathUtility.ToAbsolute(Pages.ACCOUNT));
         }
 
         private void BindCardDateExpirationDropDowns()
@@ -116,6 +120,11 @@ namespace BalkanAir.Web.Booking
             this.EmailPaymentTextBox.Text = user.Email;
             this.AddressPaymentTextBox.Text = user.UserSettings.FullAddress;
             this.PhoneNumberPaymentTextBox.Text = user.PhoneNumber;
+
+            this.NationalityDropDownList.DataSource = this.CountriesServices.GetAll()
+                .OrderBy(c => c.Name)
+                .ToList();
+            this.NationalityDropDownList.DataBind();
         }
 
         private void SaveCreditCard()

@@ -186,8 +186,8 @@
 
         private void ManageItineraryInfo()
         {
-            if (this.Session[Parameters.DEPARTURE_AIRPORT_ID] == null || 
-                this.Session[Parameters.DESTINATION_AIRPORT_ID] == null)
+            if (this.Session[Common.NativeConstants.DEPARTURE_AIRPORT_ID] == null || 
+                this.Session[Common.NativeConstants.DESTINATION_AIRPORT_ID] == null)
             {
                 return;
             }
@@ -196,9 +196,9 @@
 
             decimal totalCost = 0;
 
-            if (this.Session[Parameters.BOOKING] != null)
+            if (this.Session[Common.NativeConstants.BOOKING] != null)
             {
-                var booking = this.Session[Parameters.BOOKING] as Data.Models.Booking;
+                var booking = this.Session[Common.NativeConstants.BOOKING] as Data.Models.Booking;
                 this.SetSelectedFlightToItinerary(booking, ref totalCost);
 
                 if (booking.Row > 0 && !string.IsNullOrEmpty(booking.SeatNumber))
@@ -234,8 +234,8 @@
 
         private void SetAirprotsInfoToItinerary()
         {
-            int departureAirportId = int.Parse(this.Session[Parameters.DEPARTURE_AIRPORT_ID].ToString());
-            int destinationAirportId = int.Parse(this.Session[Parameters.DESTINATION_AIRPORT_ID].ToString());
+            int departureAirportId = int.Parse(this.Session[Common.NativeConstants.DEPARTURE_AIRPORT_ID].ToString());
+            int destinationAirportId = int.Parse(this.Session[Common.NativeConstants.DESTINATION_AIRPORT_ID].ToString());
 
             var departureAirport = this.AirportsServices.GetAirport(departureAirportId);
             var destinationAirport = this.AirportsServices.GetAirport(destinationAirportId);

@@ -1,9 +1,10 @@
 ﻿namespace BalkanAir.Web.Account
 {
     using System;
-    using System.Collections.Generic;
+    using System.Linq;
     using System.Web;
     using System.Web.UI;
+    using System.Web.UI.WebControls;
 
     using AjaxControlToolkit;
 
@@ -12,13 +13,19 @@
 
     using Ninject;
 
+    using Common;
     using Data.Models;
     using Services.Data.Contracts;
 
     public partial class Profile : Page
     {
         [Inject]
+        public ICountriesServices CountriesServices { get; set; }
+
+        [Inject]
         public IUsersServices UsersServices { get; set; }
+
+        protected string SuccessMessage { get; private set; }
 
         private ApplicationUserManager Manager
         {
@@ -35,46 +42,35 @@
             if (!this.Page.IsPostBack)
             {
                 this.BindGenderDropDownList();
+                this.BindNationalityDropDownList();
 
                 if (this.CurrentUser != null)
                 {
-                    if (this.CurrentUser.UserSettings.ProfilePicture != null)
-                    {
-                        this.ProfileImage.Src = "data:image/jpeg;base64," + Convert.ToBase64String(this.CurrentUser.UserSettings.ProfilePicture);
-                        this.ProfileImage.Visible = true;
-                        this.NoProfilePictureLabel.Visible = false;
-                    }
-                    else
-                    {
-                        this.NoProfilePictureLabel.Visible = true;
-                        this.ProfileImage.Visible = false;
-                    }
-
-                    this.FirstNameTextBox.Text = this.CurrentUser.UserSettings.FirstName;
-                    this.LastNameTextBox.Text = this.CurrentUser.UserSettings.LastName;
-                    this.DatepickerTextBox.Text = this.GetDateOfBirthAsAString(this.CurrentUser.UserSettings.DateOfBirth);
-                    this.GenderDropDownList.SelectedValue = Enum.GetName(typeof(Gender), this.CurrentUser.UserSettings.Gender);
-                    this.IdentityDocumentNumberTextBox.Text = this.CurrentUser.UserSettings.IdentityDocumentNumber;
-                    this.PhoneNumberTextBox.Text = this.CurrentUser.PhoneNumber;
-                    this.FullAddressTextBox.Text = this.CurrentUser.UserSettings.FullAddress;
+                    this.FillPersonalInformation();
                 }
             }
         }
 
         protected void SavePersonalInfoDataBtn_Click(object sender, EventArgs e)
         {
-            if (this.CurrentUser != null)
+            if (this.Page.IsValid && this.CurrentUser != null)
             {
                 this.CurrentUser.UserSettings.FirstName = this.FirstNameTextBox.Text;
                 this.CurrentUser.UserSettings.LastName = this.LastNameTextBox.Text;
                 this.CurrentUser.UserSettings.DateOfBirth = this.GetDateOfBirthFromDatePickerString();
                 this.CurrentUser.UserSettings.Gender = (Gender)Enum.Parse(typeof(Gender), this.GenderDropDownList.SelectedItem.Text);
                 this.CurrentUser.UserSettings.IdentityDocumentNumber = this.IdentityDocumentNumberTextBox.Text;
-                this.CurrentUser.UserSettings.Nationality = "Bulgaria";
+
+                int nationalityId = int.Parse(this.NationalityDropDownList.SelectedItem.Value);
+                this.CurrentUser.UserSettings.Nationality = this.CountriesServices.GetCountry(nationalityId).Name;
+
                 this.CurrentUser.UserSettings.FullAddress = this.FullAddressTextBox.Text;
                 this.CurrentUser.PhoneNumber = this.PhoneNumberTextBox.Text;
 
                 this.Manager.Update(this.CurrentUser);
+
+                this.SuccessMessage = "Personal information has been successfully updated!";
+                this.SuccessMessagePlaceHolder.Visible = !string.IsNullOrEmpty(this.SuccessMessage);
             }
         }
 
@@ -84,31 +80,85 @@
             this.UsersServices.Upload(this.CurrentUser.Id, profilePicture);
         }
 
-        private void BindGenderDropDownList()
+        private void FillPersonalInformation()
         {
-            List<Gender> genders = new List<Gender>
+            if (this.CurrentUser.UserSettings.ProfilePicture != null)
             {
-                Gender.Male,
-                Gender.Female
-            };
+                this.ProfileImage.Src = "data:image/jpeg;base64," + 
+                    Convert.ToBase64String(this.CurrentUser.UserSettings.ProfilePicture);
 
-            this.GenderDropDownList.DataSource = genders;
-            this.GenderDropDownList.DataBind();
-        }
-
-        private DateTime? GetDateOfBirthFromDatePickerString()
-        {
-            if (this.DatepickerTextBox.Text.Equals(string.Empty))
+                this.ProfileImage.Visible = true;
+                this.NoProfilePictureLabel.Visible = false;
+            }
+            else
             {
-                return null;
+                this.NoProfilePictureLabel.Visible = true;
+                this.ProfileImage.Visible = false;
             }
 
-            string[] date = this.DatepickerTextBox.Text.Split('/');
-            int year = int.Parse(date[0]);
-            int month = int.Parse(date[1]);
-            int day = int.Parse(date[2]);
+            this.FirstNameTextBox.Text = this.CurrentUser.UserSettings.FirstName;
+            this.LastNameTextBox.Text = this.CurrentUser.UserSettings.LastName;
+            this.DatepickerTextBox.Text = this.GetDateOfBirthAsAString(this.CurrentUser.UserSettings.DateOfBirth);
 
-            return new DateTime(year, month, day);
+            if (this.CurrentUser.UserSettings.Gender == Gender.Male || 
+                this.CurrentUser.UserSettings.Gender == Gender.Female)
+            {
+                this.GenderDropDownList.SelectedValue = ((int)this.CurrentUser.UserSettings.Gender).ToString();
+            }
+
+            if (!string.IsNullOrEmpty(this.CurrentUser.UserSettings.Nationality))
+            {
+                int countryId = this.CountriesServices.GetAll()
+                    .FirstOrDefault(c => c.Name.ToLower() == this.CurrentUser.UserSettings.Nationality.ToLower())
+                    .Id;
+
+                this.NationalityDropDownList.SelectedValue = countryId.ToString();
+            }
+
+            this.IdentityDocumentNumberTextBox.Text = this.CurrentUser.UserSettings.IdentityDocumentNumber;
+            this.PhoneNumberTextBox.Text = this.CurrentUser.PhoneNumber;
+            this.FullAddressTextBox.Text = this.CurrentUser.UserSettings.FullAddress;
+        }
+
+        private void BindGenderDropDownList()
+        {
+            var genders = Enum.GetValues(typeof(Gender));
+
+            foreach (var gender in genders)
+            {
+                this.GenderDropDownList.Items.Add(new ListItem(gender.ToString(), ((int)gender).ToString()));
+            }
+
+            if (this.CurrentUser.UserSettings.Gender != Gender.Male &&
+                this.CurrentUser.UserSettings.Gender != Gender.Female)
+            {
+                this.GenderDropDownList.Items.Insert(
+                    NativeConstants.GENDER_NOT_SELECTED_INDEX,
+                    new ListItem(
+                        NativeConstants.GENDER_NOT_SELECTED_TEXT, 
+                        NativeConstants.GENDER_NOT_SELECTED_INDEX.ToString()
+                    )
+                );
+            }
+        }
+
+        private void BindNationalityDropDownList()
+        {
+            this.NationalityDropDownList.DataSource = this.CountriesServices.GetAll()
+                .OrderBy(c => c.Name)
+                .ToList();
+            this.NationalityDropDownList.DataBind();
+
+            if (string.IsNullOrEmpty(this.CurrentUser.UserSettings.Nationality))
+            {
+                this.NationalityDropDownList.Items.Insert(
+                    NativeConstants.NATIONALITY_NOT_SELECTED_INDEX,
+                    new ListItem(
+                        NativeConstants.NATIONALITY_NOT_SELECTED_TEXT, 
+                        NativeConstants.NATIONALITY_NOT_SELECTED_INDEX.ToString()
+                    )
+                );
+            }
         }
 
         private string GetDateOfBirthAsAString(DateTime? dateOfBirth)
@@ -120,9 +170,24 @@
 
             string separator = "/";
 
-            return dateOfBirth.Value.Year.ToString() + separator +
+            return dateOfBirth.Value.Day.ToString() + separator + 
                 dateOfBirth.Value.Month.ToString() + separator +
-                dateOfBirth.Value.Day.ToString();
+                dateOfBirth.Value.Year.ToString();
+        }
+
+        private DateTime? GetDateOfBirthFromDatePickerString()
+        {
+            if (this.DatepickerTextBox.Text.Equals(string.Empty))
+            {
+                return null;
+            }
+
+            string[] date = this.DatepickerTextBox.Text.Split('/');
+            int day = int.Parse(date[0]);
+            int month = int.Parse(date[1]);
+            int year = int.Parse(date[2]);
+
+            return new DateTime(year, month, day);
         }
     }
 }

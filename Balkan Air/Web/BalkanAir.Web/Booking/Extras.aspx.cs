@@ -21,7 +21,7 @@
         {
             if (!this.Page.IsPostBack)
             {
-                Booking booking = (Booking)this.Session[Parameters.BOOKING];
+                Booking booking = (Booking)this.Session[NativeConstants.BOOKING];
 
                 if (booking == null || (booking != null && booking.FlightId == 0 || booking.TravelClassId == 0))
                 {
@@ -55,7 +55,7 @@
 
         protected void OnContinueBookingBtnClicked(object sender, EventArgs e)
         {
-            Booking booking = (Booking)this.Session[Parameters.BOOKING];
+            Booking booking = (Booking)this.Session[NativeConstants.BOOKING];
             booking.Baggages.Add(new Baggage()
             {
                 Type = BaggageType.Cabin,
@@ -95,7 +95,7 @@
 
             this.CalculateTotalPriceOfBooking(booking);
 
-            this.Session.Add(Parameters.BOOKING, booking);
+            this.Session.Add(NativeConstants.BOOKING, booking);
             this.Response.Redirect(Pages.PAYMENT);
         }
 

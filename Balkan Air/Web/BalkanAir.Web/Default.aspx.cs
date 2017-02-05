@@ -139,8 +139,8 @@
 
         private void SearchFlight(string departureAirportId, string destinationAirportId)
         {
-            this.Session.Add(Parameters.DEPARTURE_AIRPORT_ID, departureAirportId);
-            this.Session.Add(Parameters.DESTINATION_AIRPORT_ID, destinationAirportId);
+            this.Session.Add(NativeConstants.DEPARTURE_AIRPORT_ID, departureAirportId);
+            this.Session.Add(NativeConstants.DESTINATION_AIRPORT_ID, destinationAirportId);
             this.Response.Redirect(Pages.SELECT_FLIGHT);
         }
 

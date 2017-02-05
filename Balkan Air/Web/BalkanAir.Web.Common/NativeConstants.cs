@@ -1,6 +1,6 @@
 ﻿namespace BalkanAir.Web.Common
 {
-    public static class Parameters
+    public static class NativeConstants
     {
         /******************** Session *******************/
 
@@ -13,13 +13,10 @@
         public const string SELECTED_SEAT_NUMBER = "selectedSeatNumber";
 
 
-        /******************** Cookies *******************/
-
-        public const string LAST_SEARHCED_FLIGHT = "LastSearchedFlight";
-        public const string DEPARTURE_AIRPORT_NAME = "DepartureAirportName";
-        public const string DEPARTURE_AIRPORt_ABBREVIATION = "DepartureAirportAbbreviation";
-        public const string DESTINATION_AIRPORT_NAME = "DestinationAirportName";
-        public const string DESTINATION_AIRPORT_ABBREVIATION = "DestinationAirportAbbreviation";
-        public const int NUMBER_OF_FLIGHT_SEARCHES = 4;
+        /******************** Others *******************/
+        public const int NATIONALITY_NOT_SELECTED_INDEX = 0;
+        public const string NATIONALITY_NOT_SELECTED_TEXT = "--- Select nationality ---";
+        public const int GENDER_NOT_SELECTED_INDEX = 0;
+        public const string GENDER_NOT_SELECTED_TEXT = "--- Select gender ---";
     }
 }

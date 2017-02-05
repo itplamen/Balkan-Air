@@ -10,8 +10,9 @@
             PostBackUrl="~/Account/Profile" />
     </asp:Panel>
 
-    <asp:Panel ID="PaymentDonePanel" CssClass="successPanel" Visible="false" runat="server">
-        <h5>THE PAYMENT WAS SUCCESSFUL!!! AFTER 3 SECOND YOU WILL BE REDIRECTED TO YOUR PROFILE!!!</h5>
+    <asp:Panel ID="PaymentDonePanel" ClientIDMode="Static" Visible="false" runat="server">
+        <h5>THE PAYMENT WAS SUCCESSFUL!!! YOU WILL BE REDIRECTED TO YOUR PROFILE!!!</h5>
+        <asp:Image ImageUrl="~/Content/Images/splash.gif" runat="server" />
     </asp:Panel>
 
     <asp:Panel ID="PaymentDetailsPanel" Visible="false" runat="server">
@@ -20,13 +21,13 @@
 
             <div class="fancyTextBox">
                 <asp:Label CssClass="label" runat="server" Text="First name" AssociatedControlID="FirstNamePaymentTextBox" />
-                <asp:TextBox ID="FirstNamePaymentTextBox" CssClass="capitalizeTextBox" runat="server" ClientIDMode="Static"
+                <asp:TextBox ID="FirstNamePaymentTextBox" runat="server" ClientIDMode="Static"
                     required="required" />
             </div>
 
             <div class="fancyTextBox">
                 <asp:Label CssClass="label" runat="server" Text="Last name" AssociatedControlID="LastNamePaymentTextBox" />
-                <asp:TextBox ID="LastNamePaymentTextBox" CssClass="capitalizeTextBox" runat="server" ClientIDMode="Static"
+                <asp:TextBox ID="LastNamePaymentTextBox" runat="server" ClientIDMode="Static"
                     required="required" />
             </div>
             <br />
@@ -50,9 +51,12 @@
             <br />
 
             <div class="fancyTextBox">
-                <asp:Label CssClass="label" runat="server" Text="Nationality" AssociatedControlID="NationalityPaymentTextBox" />
-                <asp:TextBox ID="NationalityPaymentTextBox" CssClass="capitalizeTextBox" runat="server" placeholder="Nationality"
-                    ClientIDMode="Static" required="required" />
+                <asp:Label CssClass="label" runat="server" Text="Nationality" AssociatedControlID="NationalityDropDownList" />
+                <asp:DropDownList ID="NationalityDropDownList" runat="server"
+                    ItemType="BalkanAir.Data.Models.Country"
+                    DataValueField="Id"
+                    DataTextField="Name" />
+
             </div>
         </div>
 

@@ -1024,6 +1024,11 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     margin-left: 7px;
 }
 
+#BillingDetailsDiv .fancyTextBox select {
+    margin-left: 5px;
+    width: 320px;
+}
+
 #BillingDetailsDiv, #PaymentOptionsDiv , #CreditCardDetailsDiv {
     text-align: center;
 }
@@ -1121,6 +1126,18 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     height: 50px;
     border-radius: 5px;
     font-weight: bold;
+}
+
+#PaymentDonePanel {
+    text-align: center;
+}
+
+#PaymentDonePanel h5 {
+    margin-top: 10px;
+    margin-bottom: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #C5027C;
 }
 
 /****************** Administration ******************/
@@ -1448,7 +1465,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 }
 
 #UploadPictureDivBox {
-    width: 400px;
+    width: 640px;
     margin-bottom: 50px;
 }
 
@@ -1503,6 +1520,13 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     cursor: pointer;
 }
 
+#PersonalDetailsDiv #DateOfBirthCalendarIconSpan {
+    position: relative;
+    font-size: 25px;
+    top: -10px;
+    left: -10px;
+}
+
 .buttonBox {
     margin-top: 20px;
     text-align: center;
@@ -1533,6 +1557,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     border: 5px;
     font-size: 15px;
 }
+
 
 
 /****************** Account/Settings.aspx ******************/

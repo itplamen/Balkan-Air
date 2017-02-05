@@ -101,14 +101,14 @@
                     // Strip the query string from action
                     Form.Action = ResolveUrl("~/Account/Manage");
 
-                    SuccessMessage =
+                    this.SuccessMessage =
                         message == "ChangePwdSuccess" ? "Your password has been changed!"
                         : message == "SetPwdSuccess" ? "Your password has been set."
                         : message == "RemoveLoginSuccess" ? "The account was removed."
                         : message == "AddPhoneNumberSuccess" ? "Phone number has been added"
                         : message == "RemovePhoneNumberSuccess" ? "Phone number was removed"
-                        : String.Empty;
-                    successMessage.Visible = !String.IsNullOrEmpty(SuccessMessage);
+                        : string.Empty;
+                    this.SuccessMessagePlaceHolder.Visible = !string.IsNullOrEmpty(this.SuccessMessage);
                 }
             }
         }
