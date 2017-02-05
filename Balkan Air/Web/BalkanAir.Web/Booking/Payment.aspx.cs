@@ -67,9 +67,10 @@ namespace BalkanAir.Web.Booking
                 }
                 else
                 {
+                    this.BindNationalityDropDownList();
                     this.FilledProfileDetailsRequiredPanel.Visible = false;
                     this.PaymentDetailsPanel.Visible = true;
-                    this.FillPaymentDetailsFields(this.CurrentUser);
+                    this.FillPaymentDetailsFields();
                     this.BindCardDateExpirationDropDowns();
                     this.TotalPriceLabel.Text = "Total price: &#8364; " + this.booking.TotalPrice;
                 }
@@ -113,18 +114,38 @@ namespace BalkanAir.Web.Booking
             this.YearsPaymentDropDown.DataBind();
         }
 
-        private void FillPaymentDetailsFields(User user)
+        private void FillPaymentDetailsFields()
         {
-            this.FirstNamePaymentTextBox.Text = user.UserSettings.FirstName;
-            this.LastNamePaymentTextBox.Text = user.UserSettings.LastName;
-            this.EmailPaymentTextBox.Text = user.Email;
-            this.AddressPaymentTextBox.Text = user.UserSettings.FullAddress;
-            this.PhoneNumberPaymentTextBox.Text = user.PhoneNumber;
+            this.FirstNamePaymentTextBox.Text = this.CurrentUser.UserSettings.FirstName;
+            this.LastNamePaymentTextBox.Text = this.CurrentUser.UserSettings.LastName;
+            this.EmailPaymentTextBox.Text = this.CurrentUser.Email;
+            this.AddressPaymentTextBox.Text = this.CurrentUser.UserSettings.FullAddress;
+            this.PhoneNumberPaymentTextBox.Text = this.CurrentUser.PhoneNumber;
 
+            int countryId = this.CountriesServices.GetAll()
+                    .FirstOrDefault(c => c.Name.ToLower() == this.CurrentUser.UserSettings.Nationality.ToLower())
+                    .Id;
+
+            this.NationalityDropDownList.SelectedValue = countryId.ToString();
+        }
+
+        private void BindNationalityDropDownList()
+        {
             this.NationalityDropDownList.DataSource = this.CountriesServices.GetAll()
                 .OrderBy(c => c.Name)
                 .ToList();
             this.NationalityDropDownList.DataBind();
+
+            if (string.IsNullOrEmpty(this.CurrentUser.UserSettings.Nationality))
+            {
+                this.NationalityDropDownList.Items.Insert(
+                    NativeConstants.NATIONALITY_NOT_SELECTED_INDEX,
+                    new ListItem(
+                        NativeConstants.NATIONALITY_NOT_SELECTED_TEXT,
+                        NativeConstants.NATIONALITY_NOT_SELECTED_INDEX.ToString()
+                    )
+                );
+            }
         }
 
         private void SaveCreditCard()

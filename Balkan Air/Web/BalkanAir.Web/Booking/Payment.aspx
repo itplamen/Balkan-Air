@@ -21,14 +21,12 @@
 
             <div class="fancyTextBox">
                 <asp:Label CssClass="label" runat="server" Text="First name" AssociatedControlID="FirstNamePaymentTextBox" />
-                <asp:TextBox ID="FirstNamePaymentTextBox" runat="server" ClientIDMode="Static"
-                    required="required" />
+                <asp:TextBox ID="FirstNamePaymentTextBox" runat="server" ClientIDMode="Static" required="required" />
             </div>
 
             <div class="fancyTextBox">
                 <asp:Label CssClass="label" runat="server" Text="Last name" AssociatedControlID="LastNamePaymentTextBox" />
-                <asp:TextBox ID="LastNamePaymentTextBox" runat="server" ClientIDMode="Static"
-                    required="required" />
+                <asp:TextBox ID="LastNamePaymentTextBox" runat="server" ClientIDMode="Static" required="required" />
             </div>
             <br />
 
