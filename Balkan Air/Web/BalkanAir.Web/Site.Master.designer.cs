@@ -67,13 +67,13 @@ namespace BalkanAir.Web {
         protected global::System.Web.UI.WebControls.Panel ItineraryInfoPanel;
         
         /// <summary>
-        /// TotalCostLiberal control.
+        /// TotalCostLiteral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal TotalCostLiberal;
+        protected global::System.Web.UI.WebControls.Literal TotalCostLiteral;
         
         /// <summary>
         /// FlightNuberLiteral control.

@@ -137,7 +137,37 @@
                     }
                 }
 
-                this.ManageItineraryInfo();
+                string curretnUrl = HttpContext.Current.Request.Url.AbsolutePath;
+
+                // Show itinerary info during flight booking.
+                if ((curretnUrl == Page.ResolveUrl(Pages.SELECT_FLIGHT) || 
+                    curretnUrl == Page.ResolveUrl(Pages.EXTRAS) ||
+                    curretnUrl == Page.ResolveUrl(Pages.SELECT_SEAT) || 
+                    curretnUrl == Page.ResolveUrl(Pages.PAYMENT)) &&
+                    (this.Session[NativeConstants.DEPARTURE_AIRPORT_ID] != null &&
+                    this.Session[NativeConstants.DESTINATION_AIRPORT_ID] != null))
+                {
+                    this.ManageItineraryInfo();
+                }
+                else
+                {
+                    // Clear session from itinerary info.
+
+                    if (this.Session[NativeConstants.DEPARTURE_AIRPORT_ID] != null)
+                    {
+                        this.Session.Remove(NativeConstants.DEPARTURE_AIRPORT_ID);
+                    }
+
+                    if (this.Session[NativeConstants.DESTINATION_AIRPORT_ID] != null)
+                    {
+                        this.Session.Remove(NativeConstants.DESTINATION_AIRPORT_ID);
+                    }
+
+                    if (this.Session[NativeConstants.BOOKING] != null)
+                    {
+                        this.Session.Remove(NativeConstants.BOOKING);
+                    }
+                }
             }
         }
 
@@ -186,12 +216,6 @@
 
         private void ManageItineraryInfo()
         {
-            if (this.Session[Common.NativeConstants.DEPARTURE_AIRPORT_ID] == null || 
-                this.Session[Common.NativeConstants.DESTINATION_AIRPORT_ID] == null)
-            {
-                return;
-            }
-
             this.SetAirprotsInfoToItinerary();
 
             decimal totalCost = 0;
@@ -228,7 +252,7 @@
                 this.PassengerNameLiteral.Text = this.User.UserSettings.FirstName + " " + this.User.UserSettings.LastName;
             }
 
-            this.TotalCostLiberal.Text = "&#8364; " + string.Format("{0:0.00}", totalCost);
+            this.TotalCostLiteral.Text = "&#8364; " + string.Format("{0:0.00}", totalCost);
             this.ItineraryInfoPanel.Visible = true;
         }
 

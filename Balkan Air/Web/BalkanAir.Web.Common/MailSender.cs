@@ -7,9 +7,8 @@
 
     public sealed class MailSender
     {
-        private const string SEND_FROM = "itplamen@gmail.com";
+        private const string SEND_FROM_EMAIL = "itplamen@gmail.com";
         private const string SEND_FROM_NAME = "Balkan Air Bulgaria";
-        //private const string PASSWORD = "__YOUR_PASSWORD_HERE__";
         private const string PASSWORD = " ";
 
         private const string HOST = "smtp.gmail.com";
@@ -26,7 +25,7 @@
 
         private MailSender()
         {
-            this.networkCredential = new NetworkCredential(SEND_FROM, PASSWORD);
+            this.networkCredential = new NetworkCredential(SEND_FROM_EMAIL, PASSWORD);
 
             this.mailClient = new SmtpClient
             {
@@ -72,7 +71,7 @@
         private MailMessage PrepareMessage(string recipient, string subject, string messageBody, IEnumerable<string> bccRecipients)
         {
             var mailTo = new MailAddress(recipient);
-            var mailFrom = new MailAddress(SEND_FROM, SEND_FROM_NAME);
+            var mailFrom = new MailAddress(SEND_FROM_EMAIL, SEND_FROM_NAME);
             var message = new MailMessage(mailFrom, mailTo)
             {
                 Body = messageBody + MESSAGE_FOOTER,

@@ -212,7 +212,7 @@
             <asp:Panel ID="ItineraryInfoPanel" Visible="false" CssClass="dropdown" ClientIDMode="Static" runat="server">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                     <span id="TotalCostTextSpan">Total Cost:
-                        <asp:Literal ID="TotalCostLiberal" runat="server" /></span>
+                        <asp:Literal ID="TotalCostLiteral" runat="server" /></span>
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
