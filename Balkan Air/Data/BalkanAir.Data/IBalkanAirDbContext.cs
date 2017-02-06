@@ -14,7 +14,7 @@
 
         IDbSet<Airport> Airports { get; set; }
 
-        IDbSet<News> Articles { get; set; }
+        IDbSet<News> News { get; set; }
 
         IDbSet<Baggage> Baggages { get; set; }
 
@@ -37,6 +37,8 @@
         IDbSet<TravelClass> TravelClasses { get; set; }
 
         IDbSet<UserNotification> UserNotifications { get; set; }
+
+        IDbSet<Comment> Comments { get; set; }
 
         DbSet<TEntity> Set<TEntity>() 
             where TEntity : class;

@@ -12,7 +12,7 @@
     using Microsoft.AspNet.Identity.Owin;
 
     using Ninject;
-
+    
     using Common;
     using Data.Models;
     using Services.Data.Contracts;

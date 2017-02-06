@@ -19,6 +19,7 @@
             this.UserSettings = new UserSettings();
             this.CreditCards = new HashSet<CreditCard>();
             this.UserNotification = new HashSet<UserNotification>();
+            this.Comments = new HashSet<Comment>();
         }
 
         [DataType(DataType.DateTime)]
@@ -34,6 +35,8 @@
         public virtual ICollection<CreditCard> CreditCards { get; set; }
 
         public virtual ICollection<UserNotification> UserNotification { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
 
         [NotMapped]
         public bool AreProfileDetailsFilled

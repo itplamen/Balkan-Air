@@ -23,7 +23,6 @@ namespace BalkanAir.Data.Migrations
             }
 
             var seedData = new SeedData(context);
-              
 
             if (!context.AircraftManufacturers.Any())
             {
@@ -53,7 +52,6 @@ namespace BalkanAir.Data.Migrations
             if (!context.Flights.Any())
             {
                 context.Flights.AddOrUpdate(seedData.Flights.ToArray());
-                context.SaveChanges();
             }
 
             if (!context.TravelClasses.Any())
@@ -66,8 +64,6 @@ namespace BalkanAir.Data.Migrations
             {
                 seedData.SeedSeats();
                 context.Seats.AddOrUpdate(seedData.Seats.ToArray());
-                context.SaveChanges();
-
             }
 
             if (!context.Categories.Any())
@@ -75,14 +71,14 @@ namespace BalkanAir.Data.Migrations
                 context.Categories.AddOrUpdate(seedData.Categories.ToArray());
             }
 
-            if (!context.Articles.Any())
-            {
-                context.Articles.AddOrUpdate(seedData.Articles.ToArray());
-            }
-
             if (!context.Notifications.Any())
             {
                 context.Notifications.AddOrUpdate(seedData.Notifications.ToArray());
+            }
+
+            if (!context.News.Any())
+            {
+                context.News.AddOrUpdate(seedData.News.ToArray());
             }
 
             context.SaveChanges();

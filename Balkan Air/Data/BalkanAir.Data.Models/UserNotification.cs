@@ -21,12 +21,12 @@
         [Column(Order = 0)]
         public string UserId { get; set; }
 
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
+
         [Required]
         [Column(Order = 1)]
         public int NotificationId { get; set; }
-
-        [ForeignKey("UserId")]
-        public virtual User User { get; set; }
 
         [ForeignKey("NotificationId")]
         public virtual Notification Notification { get; set; }

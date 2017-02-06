@@ -278,6 +278,7 @@
     <Content Include="Booking\Payment.aspx" />
     <Content Include="Booking\SelectFlight.aspx" />
     <Content Include="Contact.aspx" />
+    <Content Include="Content\Images\Athens.jpg" />
     <Content Include="Content\Images\Itinerary\bag-icon.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -314,6 +315,7 @@
     <Content Include="Content\slick\slick.css" />
     <Content Include="Content\slick\slick.js" />
     <Content Include="Content\slick\slick.min.js" />
+    <Content Include="Developers.aspx" />
     <Content Include="FlightInfo.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -691,6 +693,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Developers.aspx.cs">
+      <DependentUpon>Developers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Developers.aspx.designer.cs">
+      <DependentUpon>Developers.aspx</DependentUpon>
     </Compile>
     <Compile Include="FlightInfo.aspx.cs">
       <DependentUpon>FlightInfo.aspx</DependentUpon>

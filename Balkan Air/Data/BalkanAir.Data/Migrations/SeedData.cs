@@ -46,41 +46,21 @@
             this.SeedNotifications();
 
             this.Categories = new List<Category>();
-            Categories.Add(new Category() { Name = "Art" });
-            Categories.Add(new Category() { Name = "Economy" });
-            Categories.Add(new Category() { Name = "Technology" });
-            Categories.Add(new Category() { Name = "Education" });
-            Categories.Add(new Category() { Name = "Sports" });
-            Categories.Add(new Category() { Name = "Science" });
-            Categories.Add(new Category() { Name = "Weather" });
+            this.SeedCategories();
 
-            this.Articles = new List<News>();
-            Articles.Add(new News()
+            this.News = new List<News>();
+            this.News.Add(new News()
             {
                 Category = Categories[0],
-                Title = "What is Lorem Ipsum?",
-                Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&amp;amp;amp;#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                DateCreated = DateTime.Now
-            });
-            Articles.Add(new News()
-            {
-                Category = Categories[1],
-                Title = "What is Lorem Ipsum?",
-                Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&amp;amp;amp;#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                DateCreated = DateTime.Now
-            });
-            Articles.Add(new News()
-            {
-                Category = Categories[2],
-                Title = "What is Lorem Ipsum?",
-                Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&amp;amp;amp;#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                DateCreated = DateTime.Now
-            });
-            Articles.Add(new News()
-            {
-                Category = Categories[3],
-                Title = "What is Lorem Ipsum?",
-                Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&amp;amp;amp;#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                Title = "New Sofia - Athens route launched",
+                Content = "<p>Balkan Air launched a new route from Sofia (SOF) to Athens (ATH), with a three times weekly " +
+                "service beginning in October, as part of its winter 2017 schedule which will go on sale soon.</p>" +
+                "<p>Balkan Air celebrated its new Sofia - Athens route by releasing seats for sale at prices starting from " +
+                "just &#8364;9.99 for travel in February and March. These low fare seats are available for booking until " +
+                "midnight Monday, 30 January.</p>" +
+                "<p><strong>Our Director of Air Service Development, Paul Winfield said:</strong></p>" +
+                "<p><i>“It's great to be able to celebrate our first new route announcement of the year so early into 2017 and " +
+                "for another airport in Italy to become linked with Liverpool later this year.</i></p>",
                 DateCreated = DateTime.Now
             });
         }
@@ -103,7 +83,7 @@
 
         public List<Category> Categories { get; set; }
 
-        public List<News> Articles { get; set; }
+        public List<News> News { get; set; }
 
         public List<User> Users { get; set; }
 
@@ -576,6 +556,17 @@
             return flight.TravelClasses
                 .Where(t => t.Type == type)
                 .FirstOrDefault();
+        }
+
+        private void SeedCategories()
+        {
+            this.Categories.Add(new Category() { Name = "Routes" });
+            this.Categories.Add(new Category() { Name = "Jobs" });
+            this.Categories.Add(new Category() { Name = "Aircrafts" });
+            this.Categories.Add(new Category() { Name = "Passengers" });
+            this.Categories.Add(new Category() { Name = "Discounts" });
+            this.Categories.Add(new Category() { Name = "Business" });
+            this.Categories.Add(new Category() { Name = "Weather" });
         }
 
         private void SeedNotifications()

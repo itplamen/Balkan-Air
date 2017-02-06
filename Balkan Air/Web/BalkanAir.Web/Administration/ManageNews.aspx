@@ -38,7 +38,7 @@
         </LayoutTemplate>
         <ItemTemplate>
             <h2>
-                <%#: Item.Title %> <small>Category: <%#: Item.Category.Name %></small>
+                <%#: Item.Title %> <small>Category: <%#: Item.Category != null ? Item.Category.Name : "" %></small>
                 <asp:Button Text="Edit" CommandName="Edit" runat="server" CssClass="btn btn-info" />
                 <asp:Button Text="Delete" CommandName="Delete" runat="server" CssClass="btn btn-danger" />
             </h2>

@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Aircraft.cs" />
     <Compile Include="AircraftManufacturer.cs" />
+    <Compile Include="Comment.cs" />
     <Compile Include="News.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="CreditCard.cs" />

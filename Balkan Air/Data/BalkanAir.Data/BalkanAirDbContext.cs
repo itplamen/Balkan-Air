@@ -24,7 +24,7 @@
 
         public virtual IDbSet<Airport> Airports { get; set; }
 
-        public virtual IDbSet<News> Articles { get; set; }
+        public virtual IDbSet<News> News { get; set; }
 
         public virtual IDbSet<Baggage> Baggages { get; set; }
 
@@ -47,6 +47,8 @@
         public virtual IDbSet<TravelClass> TravelClasses { get; set; }
 
         public virtual IDbSet<UserNotification> UserNotifications { get; set; }
+
+        public virtual IDbSet<Comment> Comments { get; set; }
 
         public static BalkanAirDbContext Create()
         {

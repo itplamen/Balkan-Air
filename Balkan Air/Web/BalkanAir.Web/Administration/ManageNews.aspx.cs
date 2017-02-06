@@ -11,8 +11,8 @@
 
     using Ninject;
 
-    using BalkanAir.Data.Models;
-    using BalkanAir.Services.Data.Contracts;
+    using Data.Models;
+    using Services.Data.Contracts;
 
     public partial class ManageNews : Page
     {
@@ -74,19 +74,13 @@
 
         public IQueryable<Category> CategoriesDropDownList_GetData()
         {
-            return this.CategoriesServices.GetAll();
+            return this.CategoriesServices.GetAll()
+                .OrderBy(c => c.Name);
         }
 
         protected void AddNewsButton_Click(object sender, EventArgs e)
         {
             this.ManageNewsListView.InsertItemPosition = InsertItemPosition.LastItem;
-
-            //Button addNewsButton = sender as Button;
-
-            //if (addNewsButton != null)
-            //{
-            //    addNewsButton.Visible = false;
-            //}
         }
 
         protected void CancelButton_Click(object sender, EventArgs e)

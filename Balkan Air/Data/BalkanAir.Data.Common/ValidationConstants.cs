@@ -39,6 +39,9 @@
         public const int PASSENGER_IDENTITY_DOCUMENT_ID_MIN_LENGTH = 5;
         public const int PASSENGER_IDENTITY_DOCUMENT_ID_MAX_LENGTH = 20;
 
+        // Comments
+        public const int COMMENT_CONTENT_LENGHT = 250;
+
         // Other
         public const string ADMINISTRATOR_ROLE = "Administrator";
 
