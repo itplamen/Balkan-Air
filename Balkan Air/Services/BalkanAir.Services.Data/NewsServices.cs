@@ -62,5 +62,7 @@
 
             return newsToDelete;
         }
+
+         
     }
 }

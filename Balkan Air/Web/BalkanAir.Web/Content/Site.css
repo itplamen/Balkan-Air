@@ -1401,7 +1401,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     text-align: center;
     color: #000;
 }
-
+ 
 .divBox:hover {
     box-shadow: 0 4px 28px 10px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -1434,7 +1434,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 
 /****************** Account/Profile.aspx ******************/
  
-#ProfilePictureDiv {
+#PictureBoxDiv {
     border: 3px solid #E0E0E0;
     border-radius: 5px;
     width: 200px;
@@ -1443,7 +1443,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     margin-bottom: 30px; 
 }
 
-#NoProfilePictureLabel {
+#NoPictureLabel {
     position: relative;
     top: 80px;
     left: 20px;
@@ -1452,7 +1452,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     text-transform: uppercase;
 }
 
-#ProfilePictureDiv img {
+#PictureBoxDiv img {
     width: 183px;
     height: 183px;
     border-radius: 5px;
@@ -1468,7 +1468,6 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     width: 640px;
     margin-bottom: 50px;
 }
-
 
 #PersonalDetailsDiv {
     margin-top: 20px;   
@@ -1557,8 +1556,6 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     border: 5px;
     font-size: 15px;
 }
-
-
 
 /****************** Account/Settings.aspx ******************/
 #UserSettingsDiv .row {
@@ -1799,7 +1796,13 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     text-decoration: none;   
 } 
 
+.newsItemTemplate {
+    margin-top: 50px; 
+}
 
+.newsItemTemplate img {
+    width: 300px;
+}
 
 /****************** Calendar ******************/
 
@@ -1811,4 +1814,4 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 
 .ajax__calendar_invalid {
     text-decoration: line-through;
-}
+}   

@@ -116,8 +116,8 @@
                                         Item.Title.Substring(0, 40) + "..." : Item.Title %>
                             </p>
                             <p class="content">
-                                <%# !string.IsNullOrEmpty(Item.Content) && Item.Content.Length > 190 ? 
-                                        Item.Content.Substring(0, 190) + "..." : Item.Content %>
+                                <%# !string.IsNullOrEmpty(Item.Content) && Item.Content.Length > 140 ? 
+                                        Item.Content.Substring(0, 140) + "..." : Item.Content %>
                             </p>
                             <p class="date">
                                 <%#: Item.DateCreated.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %>

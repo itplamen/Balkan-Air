@@ -65,8 +65,8 @@
     <div id="PersonalDetailsDiv">
         <h4>PROFILE PICTURE</h4>
 
-        <div id="ProfilePictureDiv">
-            <asp:Label ID="NoProfilePictureLabel" ClientIDMode="Static" Text="NO PROFILE PICTURE!" runat="server" />
+        <div id="PictureBoxDiv">
+            <asp:Label ID="NoPictureLabel" ClientIDMode="Static" Text="NO PROFILE PICTURE!" runat="server" />
             <img id="ProfileImage" alt="Profile Image" runat="server" />
         </div>
 

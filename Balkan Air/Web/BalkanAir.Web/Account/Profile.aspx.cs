@@ -89,11 +89,11 @@
                     Convert.ToBase64String(this.CurrentUser.UserSettings.ProfilePicture);
 
                 this.ProfileImage.Visible = true;
-                this.NoProfilePictureLabel.Visible = false;
+                this.NoPictureLabel.Visible = false;
             }
             else
             {
-                this.NoProfilePictureLabel.Visible = true;
+                this.NoPictureLabel.Visible = true;
                 this.ProfileImage.Visible = false;
             }
 

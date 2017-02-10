@@ -26,7 +26,7 @@
                     .OrderBy(c => c.Name)
                     .ToList();
                 this.ShowNewsByCategoryDropDownList.DataBind();
-                this.ShowNewsByCategoryDropDownList.Items.Insert(0, new ListItem("--All--", "0"));
+                this.ShowNewsByCategoryDropDownList.Items.Insert(0, new ListItem("-- All --", "0"));
 
                 this.BindAllNewsToRepeater();
             }
