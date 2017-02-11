@@ -383,7 +383,11 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     color: inherit;
 }
 
-.latestArticle:hover, .cheapFlightDiv:hover {
+.latestArticle img {
+    width: 370px;
+} 
+
+.latestArticle:hover, .cheapFlightDiv:hover, .news:hover {
     -webkit-box-shadow: 0px 0px 8px 2px #000000;
     -moz-box-shadow: 0px 0px 8px 2px #000000;
     box-shadow: 0px 0px 8px 2px #000000; 
@@ -1766,19 +1770,25 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 
 #ShowByCategoryDiv select {
     width: 120px;
-
 }
 
 .news {
-    border: 1px solid black;
-    border-radius: 10px;
-    margin: 20px;
-    padding: 0 20px 10px 20px;
-    width: 700px;
+    padding: 10px 20px 20px 20px;
     text-align: justify;
+} 
+
+.news img {
+    width: 400px;
+    height: 130px;
+    position: absolute;
+    top: -57px;
+    left: 730px; 
 }
 
-
+.news  p {
+    width: 700px; 
+    position: relative;
+}
 
 #NoNewsForCategoryLabel {
     position: relative;
@@ -1800,10 +1810,45 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     margin-top: 50px; 
 }
 
-.newsItemTemplate img {
+.newsItemTemplate img { 
     width: 300px; 
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.glyphicon-comment {
+    margin-left: 20px;
+}
+
+/****************** ViewNews ******************/
+
+.viewNewsImage {
+    width: 100%; 
+}
+
+#PostCommentBtn {
+    position: relative;
+    top: 10px;
+    left: 413px;
+}
+
+.comment {
+    margin-top: 30px;
+}
+
+.comment img {
+    width: 40px; 
+    height: 40px;
+    border-radius: 5px;
+}
+
+#CommentPostedFromSpan {
+    font-weight: bold;
+    font-size: 18px; 
+} 
+
+#DateOfCommentSmall {
+    font-weight: bold;
 }
 
 /****************** Calendar ******************/

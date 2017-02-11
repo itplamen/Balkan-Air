@@ -78,7 +78,7 @@
             ItemType="BalkanAir.Data.Models.Flight"
             SelectMethod="TopCheapestFlightsRepeater_GetData">
             <ItemTemplate>
-                <asp:LinkButton runat="server" CommandArgument="<%#: Item.Id %>" CssClass="searchFlightElement" 
+                <asp:LinkButton runat="server" CommandArgument="<%#: Item.Id %>" CssClass="searchFlightElement"
                     OnClick="OnCheapFlightLinkButtonClicked">
                     <div class="cheapFlightDiv">
                         <div class="fromAirportInfo">
@@ -115,10 +115,17 @@
                                 <%#: !string.IsNullOrEmpty(Item.Title) && Item.Title.Length > 40 ? 
                                         Item.Title.Substring(0, 40) + "..." : Item.Title %>
                             </p>
+
+                            <p>
+                                <img src='<%# Item.HeaderImage == null ? null : "data:image/jpeg;base64," + 
+                                    Convert.ToBase64String(Item.HeaderImage) %>' />
+                            </p>
+
                             <p class="content">
                                 <%# !string.IsNullOrEmpty(Item.Content) && Item.Content.Length > 140 ? 
                                         Item.Content.Substring(0, 140) + "..." : Item.Content %>
                             </p>
+
                             <p class="date">
                                 <%#: Item.DateCreated.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %>
                             </p>

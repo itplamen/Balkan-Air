@@ -72,14 +72,13 @@
                 <asp:FileUpload ID="UploadImageEdit" runat="server" />
             </p>
             <p>
-                <asp:TextBox runat="server" ID="ContentTextBox" Text="<%#: BindItem.Content %>" TextMode="MultiLine" Rows="10" Width="100%" />
+                <asp:TextBox runat="server" ID="ContentTextBox" Text="<%# BindItem.Content %>" TextMode="MultiLine" Rows="10" Width="100%" />
             </p>
             <p>
                 <asp:CheckBox ID="IsDeletedCheckBox" Text="Is Deleted" Checked="<%# BindItem.IsDeleted  %>" runat="server" />
             </p>
         </EditItemTemplate>
         <InsertItemTemplate>
-
             <div>
                 <asp:RequiredFieldValidator ErrorMessage="Title is required!" ControlToValidate="TitleInsertTextBox" runat="server"
                     ForeColor="Red" Display="Dynamic" ValidationGroup="AddNews" />

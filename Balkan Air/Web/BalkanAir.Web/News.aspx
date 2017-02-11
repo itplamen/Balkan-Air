@@ -21,12 +21,26 @@
                 <a href='<%= Page.ResolveUrl(Pages.VIEW_NEWS) + "?id=" %><%# Item.Id %>'>
                     <div class="news">
                         <h3><%#: Item.Title %></h3>
-                        <p><h5>Category: <%#: Item.Category.Name %></h5></p>
+
+                        <h5><strong>Category: <%#: Item.Category.Name %></strong></h5>
+
                         <p>
-                            <%# !string.IsNullOrEmpty(Item.Content) && Item.Content.Length > 300 ? 
-                               Item.Content.Substring(0, 300) + "..." : Item.Content %>
+                            <img src='<%# Item.HeaderImage == null ? null : "data:image/jpeg;base64," + Convert.ToBase64String(Item.HeaderImage) %>' 
+                               runat="server" visible="<%# Item.HeaderImage != null ? true : false %>" />
                         </p>
-                        <small><%#: Item.DateCreated.ToString("dd/MMMM/yyyy", CultureInfo.InvariantCulture) %></small>
+
+                        <p>
+                            <%# !string.IsNullOrEmpty(Item.Content) && Item.Content.Length > 190 ? 
+                               Item.Content.Substring(0, 190) + "..." : Item.Content %>
+                        </p>
+                        
+                        <p>
+                            <span class="glyphicon glyphicon-calendar"></span>
+                            <small><%#: Item.DateCreated.ToString("dd.MMMM.yyyy hh:mm", CultureInfo.InvariantCulture) %></small>
+
+                            <span class="glyphicon glyphicon-comment"></span>
+                            <%#: Item.Comments.Count %>
+                        </p>
                     </div>
                 </a>
             </ItemTemplate>

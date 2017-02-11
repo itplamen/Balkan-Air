@@ -18,7 +18,8 @@
         [Required]
         public DateTime DateOfComment { get; set; }
 
-        [Required]
+        public bool IsDeleted { get; set; }
+
         public string UserId { get; set; }
 
         [ForeignKey("UserId")]

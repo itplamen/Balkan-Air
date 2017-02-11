@@ -62,11 +62,13 @@
     <Compile Include="AirportsServices.cs" />
     <Compile Include="BookingsServices.cs" />
     <Compile Include="CategoriesServices.cs" />
+    <Compile Include="CommentsServices.cs" />
     <Compile Include="Contracts\IAircraftManufacturersServices.cs" />
     <Compile Include="Contracts\IAircraftsServices.cs" />
     <Compile Include="Contracts\IAirportsServices.cs" />
     <Compile Include="Contracts\IBookingsServices.cs" />
     <Compile Include="Contracts\ICategoriesServices.cs" />
+    <Compile Include="Contracts\ICommentsServices.cs" />
     <Compile Include="Contracts\ICountriesServices.cs" />
     <Compile Include="Contracts\ICreditCardsServices.cs" />
     <Compile Include="Contracts\IFlightsServices.cs" />
