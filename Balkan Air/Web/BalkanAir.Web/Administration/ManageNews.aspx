@@ -6,68 +6,26 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: this.Page.Title %></h2>
 
-    <asp:Panel ID="AddNewsPanel" runat="server">
-        <div>
-            <asp:CustomValidator ErrorMessage="" ID="ImageValidator" runat="server" ValidationGroup="image" Display="None" />
-        </div>
-
-        <div>
-            <asp:RequiredFieldValidator ErrorMessage="Title is required!" ControlToValidate="TitleInsertTextBox" runat="server"
-                ForeColor="Red" Display="Dynamic" ValidationGroup="AddNews" />
-        </div>
-
-        <div>
-            <asp:RequiredFieldValidator ErrorMessage="Content is required!" ControlToValidate="ContentInsertEditor" runat="server"
-                ForeColor="Red" Display="Dynamic" ValidationGroup="AddNews" />
-        </div>
-
-        <div id="UploadPictureDivBox">
-            <h3>Image:</h3>
-            <p id="MaximumFilzeSizeAndType">
-                <span>Maximum file size: 1 MB</span>
-                <br />
-                <span>Allowed file types: jpg, jpeg, png, gif</span>
-            </p>
-            <asp:FileUpload ID="UploadImage" runat="server" />
-        </div>
-
-        <h3>Title:</h3>
-        <asp:TextBox ID="TitleInsertTextBox" runat="server" ValidationGroup="AddNews" />
-
-        <h3>Category:</h3>
-        <asp:DropDownList ID="CategoriesInsertDropDownList" runat="server"
-            ItemType="BalkanAir.Data.Models.Category"
-            DataValueField="Id"
-            DataTextField="Name"
-            SelectMethod="CategoriesDropDownList_GetData" />
-
-        <h3>Content:</h3>
-        <ajaxToolkit:HtmlEditor.Editor ID="ContentInsertEditor" Height="300px" Width="100%" AutoFocus="true" runat="server"
-            ValidationGroup="AddNews" />
-        <br />
-
-        <asp:Button ID="AddNewsButton" Text="Add news" runat="server" CssClass="btn btn-info" OnClick="AddNewsButton_Click"
-            ValidationGroup="AddNews" />
-        <asp:Button ID="CancelButton" Text="Cancel" runat="server" CssClass="btn btn-danger" OnClick="CancelButton_Click" />
-    </asp:Panel>
-
-    <br />
-
-    <hr />
+    <div>
+        <asp:CustomValidator ErrorMessage="" ID="ImageValidator" runat="server" ValidationGroup="image" Display="None" />
+    </div>
 
     <asp:ListView ID="ManageNewsListView" runat="server"
         ItemType="BalkanAir.Data.Models.News"
         DataKeyNames="Id"
         SelectMethod="ManageNewsListView_GetData"
         UpdateMethod="ManageNewsListView_UpdateItem"
-        DeleteMethod="ManageNewsListView_DeleteItem">
+        DeleteMethod="ManageNewsListView_DeleteItem"
+        InsertMethod="ManageNewsListView_InsertItem"
+        InsertItemPosition="None">
         <LayoutTemplate>
             <asp:HyperLink NavigateUrl="?orderBy=title" Text="Sort by Title" runat="server" CssClass="btn btn-md-2 btn-default" />
             <asp:HyperLink NavigateUrl="?orderBy=date" Text="Sort by Date" runat="server" CssClass="btn btn-md-2 btn-default" />
             <asp:HyperLink NavigateUrl="?orderBy=category" Text="Sort by Category" runat="server" CssClass="btn btn-md-2 btn-default" />
 
             <div runat="server" id="itemPlaceholder"></div>
-
+            <asp:Button ID="AddNewsButton" Text="Add news" runat="server" CssClass="btn btn-info pull-right"
+                OnClick="AddNewsButton_Click" />
             <br />
             <br />
 
@@ -111,20 +69,62 @@
                     SelectMethod="CategoriesDropDownList_GetData" />
             </p>
             <p>
+                <asp:FileUpload ID="UploadImageEdit" runat="server" />
+            </p>
+            <p>
                 <asp:TextBox runat="server" ID="ContentTextBox" Text="<%#: BindItem.Content %>" TextMode="MultiLine" Rows="10" Width="100%" />
             </p>
             <p>
                 <asp:CheckBox ID="IsDeletedCheckBox" Text="Is Deleted" Checked="<%# BindItem.IsDeleted  %>" runat="server" />
             </p>
         </EditItemTemplate>
+        <InsertItemTemplate>
+
+            <div>
+                <asp:RequiredFieldValidator ErrorMessage="Title is required!" ControlToValidate="TitleInsertTextBox" runat="server"
+                    ForeColor="Red" Display="Dynamic" ValidationGroup="AddNews" />
+            </div>
+
+            <div>
+                <asp:RequiredFieldValidator ErrorMessage="Content is required!" ControlToValidate="ContentInsertEditor" runat="server"
+                    ForeColor="Red" Display="Dynamic" ValidationGroup="AddNews" />
+            </div>
+
+            <p>
+                <h3>Title:</h3>
+                <asp:TextBox ID="TitleInsertTextBox" Text="<%#: BindItem.Title %>" runat="server" />
+            </p>
+
+            <div id="UploadPictureDivBox">
+                <h3>Image:</h3>
+                <p id="MaximumFilzeSizeAndType">
+                    <span>Maximum file size: 1 MB</span>
+                    <br />
+                    <span>Allowed file types: jpg, jpeg, png, gif</span>
+                </p>
+                <asp:FileUpload ID="UploadImage" runat="server" />
+            </div>
+
+            <p>
+                <h3>Category:</h3>
+                <asp:DropDownList ID="CategoriesInsertDropDownList" runat="server"
+                    ItemType="BalkanAir.Data.Models.Category"
+                    DataValueField="Id"
+                    DataTextField="Name"
+                    SelectedValue="<%#: BindItem.CategoryId %>"
+                    SelectMethod="CategoriesDropDownList_GetData" />
+            </p>
+            <p>
+                <h3>Content:</h3>
+                <ajaxToolkit:HtmlEditor.Editor ID="ContentInsertEditor" Height="300px" Width="100%"
+                    AutoFocus="true" runat="server" Content="<%#: BindItem.Content %>" />
+            </p>
+
+            <asp:Button Text="Insert" CommandName="Insert" runat="server" CssClass="btn btn-success" />
+            <asp:Button ID="CancelButton" OnClick="CancelButton_Click" Text="Cancel" runat="server" CssClass="btn btn-danger" />
+        </InsertItemTemplate>
         <EmptyDataTemplate>
             <h4>No news found!</h4>
         </EmptyDataTemplate>
     </asp:ListView>
-
-    <script type="text/javascript">
-        function uploadComplete(sender) {
-            location.reload();
-        }
-    </script>
 </asp:Content>

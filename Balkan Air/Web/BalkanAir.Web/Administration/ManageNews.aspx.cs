@@ -24,8 +24,6 @@
             { "category", "Category.Name" }
         };
 
-        protected string SuccessMessage { get; private set; }
-
         [Inject]
         public INewsServices NewsServices { get; set; }
 
@@ -54,12 +52,36 @@
             var news = new News();
             TryUpdateModel(news);
 
+            FileUpload editImage = (FileUpload)this.ManageNewsListView.EditItem.FindControl("UploadImageEdit");
+
+            if (editImage != null)
+            {
+                news.HeaderImage = this.GetUploadedImage(editImage);
+            }
+
             this.NewsServices.UpdateNews(id, news);
         }
 
         public void ManageNewsListView_DeleteItem(int id)
         {
             this.NewsServices.DeleteNews(id);
+        }
+
+        public void ManageNewsListView_InsertItem()
+        {
+            var news = new News();
+            TryUpdateModel(news);
+
+            FileUpload editImage = (FileUpload)this.ManageNewsListView.InsertItem.FindControl("UploadImage");
+
+            if (editImage != null)
+            {
+                news.HeaderImage = this.GetUploadedImage(editImage);
+            }
+
+            news.DateCreated = DateTime.Now;
+
+            this.NewsServices.AddNews(news);
         }
 
         public IQueryable<Category> CategoriesDropDownList_GetData()
@@ -74,39 +96,24 @@
 
         protected void AddNewsButton_Click(object sender, EventArgs e)
         {
-            if (this.Page.IsValid)
-            {
-                News news = new News()
-                {
-                    Title = this.TitleInsertTextBox.Text,
-                    HeaderImage = this.GetUploadedImage(),
-                    Content = this.ContentInsertEditor.Content,
-                    DateCreated = DateTime.Now,
-                    CategoryId = int.Parse(this.CategoriesInsertDropDownList.SelectedItem.Value)
-                };
-
-                this.NewsServices.AddNews(news);
-            }
+            this.ManageNewsListView.InsertItemPosition = InsertItemPosition.LastItem;
         }
 
         protected void CancelButton_Click(object sender, EventArgs e)
         {
-            this.UploadImage.Dispose();
-            this.TitleInsertTextBox.Text = string.Empty;
-            this.CategoriesInsertDropDownList.SelectedIndex = 0;
-            this.ContentInsertEditor.Content = string.Empty;
+            this.ManageNewsListView.InsertItemPosition = InsertItemPosition.None;
         }
 
-        private byte[] GetUploadedImage()
+        private byte[] GetUploadedImage(FileUpload fileUpload)
         {
             byte[] imageData = null;
 
-            if (this.IsImageValid())
+            if (this.IsImageValid(fileUpload))
             {
-                var imageLength = this.UploadImage.PostedFile.ContentLength;
+                var imageLength = fileUpload.PostedFile.ContentLength;
                 imageData = new byte[imageLength + 1];
 
-                Stream fileStream = this.UploadImage.PostedFile.InputStream;
+                Stream fileStream = fileUpload.PostedFile.InputStream;
 
                 using (fileStream)
                 {
@@ -117,16 +124,14 @@
             return imageData;
         }
 
-        private bool IsImageValid()
+        private bool IsImageValid(FileUpload fileUpload)
         {
-            if (this.UploadImage.HasFile)
+            if (fileUpload.HasFile)
             {
-                if (this.UploadImage.PostedFile.ContentLength <= 1000000)
+                if (fileUpload.PostedFile.ContentLength <= 1000000)
                 {
-                    if (this.UploadImage.PostedFile.ContentType == "image/jpg" ||
-                        this.UploadImage.PostedFile.ContentType == "image/jpeg" ||
-                        this.UploadImage.PostedFile.ContentType == "image/png" ||
-                        this.UploadImage.PostedFile.ContentType == "image/gif")
+                    if (fileUpload.PostedFile.ContentType == "image/jpg" || fileUpload.PostedFile.ContentType == "image/jpeg" ||
+                        fileUpload.PostedFile.ContentType == "image/png" || fileUpload.PostedFile.ContentType == "image/gif")
                     {
                         return true;
                     }

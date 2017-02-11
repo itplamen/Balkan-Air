@@ -40,6 +40,7 @@
             if (newsToUpdate != null)
             {
                 newsToUpdate.Title = news.Title;
+                newsToUpdate.HeaderImage = news.HeaderImage;
                 newsToUpdate.Content = news.Content;
                 newsToUpdate.IsDeleted = news.IsDeleted;
                 newsToUpdate.CategoryId = news.CategoryId;

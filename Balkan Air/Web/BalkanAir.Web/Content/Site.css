@@ -1801,7 +1801,9 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 }
 
 .newsItemTemplate img {
-    width: 300px;
+    width: 300px; 
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 /****************** Calendar ******************/
