@@ -50,7 +50,7 @@
                 <img src='<%# Item.HeaderImage == null ? null : "data:image/jpeg;base64," + Convert.ToBase64String(Item.HeaderImage) %>'
                     alt="NO NEWS IMAGE!" />
                 <p><%# Item.Content %></p>
-                <p>Is Deteled: <%#: Item.IsDeleted %></p>
+                <p><strong>Is Deteled: <%#: Item.IsDeleted %></strong></p>
                 <small>Created on: <%#: Item.DateCreated.ToString("dd.MMM.yyyy", CultureInfo.InvariantCulture) %></small>
             </div>
         </ItemTemplate>

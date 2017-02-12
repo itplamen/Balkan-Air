@@ -40,7 +40,7 @@
                     <strong class="text-primary">Registration</strong>
                 </div>
                 <div class="col-xs-7">
-                    <span class="text-white">12.11.2011 22:00</span>
+                    <span class="text-white">aaaaaaaaaaaaa12.11.2011 22:00</span>
                 </div>
             </div>
             <div class="row">

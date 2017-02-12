@@ -36,7 +36,7 @@
                         
                         <p>
                             <span class="glyphicon glyphicon-calendar"></span>
-                            <small><%#: Item.DateCreated.ToString("dd.MMMM.yyyy hh:mm", CultureInfo.InvariantCulture) %></small>
+                            <small><%#: Item.DateCreated.ToString("dd.MMMM.yyyy HH:mm", CultureInfo.InvariantCulture) %></small>
 
                             <span class="glyphicon glyphicon-comment"></span>
                             <%#: Item.Comments.Count(c => !c.IsDeleted) %>

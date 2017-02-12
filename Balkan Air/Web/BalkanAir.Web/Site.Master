@@ -291,15 +291,11 @@
     </form>
 
     <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" ShowStartingNode="false" />
+    
     <script>
         $(function () {
             $("#ItineraryInfoPanel").draggable();
         });
     </script>
-    <%--<script >
-        $('.searchFlightElement').click(function () {
-            $('#UpdateProgress').show();
-        });
-    </script>--%>)
 </body>
 </html>

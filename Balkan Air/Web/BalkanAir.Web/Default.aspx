@@ -117,8 +117,8 @@
                             </p>
 
                             <p>
-                                <img src='<%# Item.HeaderImage == null ? null : "data:image/jpeg;base64," + 
-                                    Convert.ToBase64String(Item.HeaderImage) %>' />
+                                <img runat="server" src='<%# Item.HeaderImage == null ? null : "data:image/jpeg;base64," + 
+                                    Convert.ToBase64String(Item.HeaderImage) %>' visible="<%# Item.HeaderImage != null ? true : false %>" />
                             </p>
 
                             <p class="content">

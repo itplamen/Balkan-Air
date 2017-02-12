@@ -22,7 +22,7 @@
 
             <p>
                 <span class="glyphicon glyphicon-calendar"></span>
-                <small><%#: Item.DateCreated.ToString("dd.MMMM.yyyy hh:mm", CultureInfo.InvariantCulture) %></small>
+                <small><%#: Item.DateCreated.ToString("dd.MMMM.yyyy HH:mm", CultureInfo.InvariantCulture) %></small>
             </p>
         </ItemTemplate>
         <EmptyDataTemplate>
@@ -37,6 +37,7 @@
         InsertMethod="CommentsListView_InsertItem"
         UpdateMethod="CommentsListView_UpdateItem"
         DeleteMethod="CommentsListView_DeleteItem"
+        OnDataBound="CommentsListView_DataBound"
         InsertItemPosition="FirstItem">
         <LayoutTemplate>
             <div runat="server" id="itemPlaceholder"></div>
@@ -44,7 +45,7 @@
             <br />
             <br />
 
-            <asp:DataPager runat="server" PageSize="10">
+            <asp:DataPager ID="CommentsDataPager" runat="server" PageSize="10" >
                 <Fields>
                     <asp:NextPreviousPagerField ShowPreviousPageButton="true" ShowNextPageButton="false"
                         ButtonCssClass="pagerBtns" PreviousPageText="«" />
@@ -69,7 +70,7 @@
 
                     <small id="DateOfCommentSmall">
                         <span class="glyphicon glyphicon-calendar"></span>
-                        <%#: Item.DateOfComment.ToString("dd.MMMM.yyyy hh:mm", CultureInfo.InvariantCulture) %>
+                        <%#: Item.DateOfComment.ToString("dd.MMMM.yyyy HH:mm", CultureInfo.InvariantCulture) %>
 
                         <asp:LinkButton runat="server" title="Edit" CommandName="Edit">
                             <span class="glyphicon glyphicon-edit" runat="server" visible="<%# this.IsIconVisible(Item.UserId) %>"></span>
@@ -114,6 +115,7 @@
                 <asp:Button Text="Cancel" CommandName="Cancel" runat="server" CssClass="btn btn-danger" />
             </div>
         </EditItemTemplate>
+
     </asp:ListView>
 
     <asp:HiddenField ID="NewsIdHiddenField" runat="server" />

@@ -13,6 +13,7 @@
     using Data.Common;
     using Data.Models;
     using Services.Data.Contracts;
+    using System.Web.UI.WebControls;
 
     public partial class ViewNews : Page
     {
@@ -32,10 +33,15 @@
             int validId;
             bool isValid = int.TryParse(id, out validId);
 
-            if (isValid && validId > 0 && this.IsNewsIdValid(validId))
+            if (isValid && validId > 0 && this.IsIdLessOrEqualToLastNewsId(validId))
             {
-                this.NewsIdHiddenField.Value = validId.ToString();
-                return this.NewsServices.GetNews(validId);
+                var news = this.NewsServices.GetNews(validId);
+
+                if (!news.IsDeleted)
+                {
+                    this.NewsIdHiddenField.Value = validId.ToString();
+                    return news;
+                }
             }
 
             this.Response.Redirect(Pages.NEWS);
@@ -47,17 +53,21 @@
             int validId;
             bool isValid = int.TryParse(id, out validId);
 
-            if (isValid && validId > 0 && this.IsNewsIdValid(validId))
+            if (isValid && validId > 0 && this.IsIdLessOrEqualToLastNewsId(validId))
             {
-                var comments = this.NewsServices.GetNews(validId)
-                    .Comments
+                var news = this.NewsServices.GetNews(validId);
+
+                if (!news.IsDeleted)
+                {
+                    var comments = news.Comments
                     .Where(c => !c.IsDeleted)
                     .ToList();
 
-                this.NumberOfComments = comments.Count;
+                    this.NumberOfComments = comments.Count;
 
-                return comments
-                    .AsQueryable();
+                    return comments
+                        .AsQueryable();
+                }
             }
 
             return null;
@@ -83,7 +93,6 @@
         {
             var comment = new Comment();
             TryUpdateModel(comment);
-
 
             this.CommentsServices.UpdateComment(id, comment);
         }
@@ -153,7 +162,17 @@
             return true;
         }
 
-        private bool IsNewsIdValid(int id)
+        protected void CommentsListView_DataBound(object sender, EventArgs e)
+        {
+            DataPager pager = (DataPager)this.CommentsListView.FindControl("CommentsDataPager");
+
+            if (pager != null)
+            {
+                pager.Visible = (pager.PageSize < pager.TotalRowCount);
+            }
+        }
+
+        private bool IsIdLessOrEqualToLastNewsId(int id)
         {
             int lastNewsId = this.NewsServices.GetAll()
                .OrderByDescending(a => a.Id)
