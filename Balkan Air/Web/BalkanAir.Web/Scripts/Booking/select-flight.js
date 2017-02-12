@@ -1,6 +1,6 @@
-﻿'use strict';
+﻿$(function () {
+    'use strict';
 
-$(function () {
     var documentFragment = document.createDocumentFragment(),
         position = { my: 'center bottom+45', at: 'center top' },
         $onlineCkeckIn = $('<p><img src="../Content/Images/online-check-in-icon.png" />Online ckeck-in</p>'),

@@ -52,10 +52,10 @@
             this.News.Add(new News()
             {
                 Category = Categories[0],
-                Title = "New Sofia - Athens route launched",
-                Content = "<p>Balkan Air launched a new route from Sofia (SOF) to Athens (ATH), with a three times weekly " +
+                Title = "New Sofia - Budapest route launched",
+                Content = "<p>Balkan Air launched a new route from Sofia (SOF) to Budapest (BUD), with a three times weekly " +
                 "service beginning in October, as part of its winter 2017 schedule which will go on sale soon.</p>" +
-                "<p>Balkan Air celebrated its new Sofia - Athens route by releasing seats for sale at prices starting from " +
+                "<p>Balkan Air celebrated its new Sofia - Budapest route by releasing seats for sale at prices starting from " +
                 "just &#8364;9.99 for travel in February and March. These low fare seats are available for booking until " +
                 "midnight Monday, 30 January.</p>" +
                 "<p><strong>Our Director of Air Service Development, Paul Winfield said:</strong></p>" +

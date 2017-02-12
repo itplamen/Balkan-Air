@@ -39,7 +39,7 @@
                             <small><%#: Item.DateCreated.ToString("dd.MMMM.yyyy hh:mm", CultureInfo.InvariantCulture) %></small>
 
                             <span class="glyphicon glyphicon-comment"></span>
-                            <%#: Item.Comments.Count %>
+                            <%#: Item.Comments.Count(c => !c.IsDeleted) %>
                         </p>
                     </div>
                 </a>

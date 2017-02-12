@@ -10,6 +10,7 @@
     using Ninject;
 
     using Common;
+    using Data.Common;
     using Data.Models;
     using Services.Data.Contracts;
 
@@ -48,7 +49,11 @@
 
             if (isValid && validId > 0 && this.IsNewsIdValid(validId))
             {
-                var comments = this.NewsServices.GetNews(validId).Comments;
+                var comments = this.NewsServices.GetNews(validId)
+                    .Comments
+                    .Where(c => !c.IsDeleted)
+                    .ToList();
+
                 this.NumberOfComments = comments.Count;
 
                 return comments
@@ -72,6 +77,20 @@
             }
 
             this.CommentsServices.AddComment(comment);
+        }
+
+        public void CommentsListView_UpdateItem(int id)
+        {
+            var comment = new Comment();
+            TryUpdateModel(comment);
+
+
+            this.CommentsServices.UpdateComment(id, comment);
+        }
+
+        public void CommentsListView_DeleteItem(int id)
+        {
+            this.CommentsServices.DeleteComment(id);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -112,6 +131,26 @@
             {
                 return user.Email;
             }
+        }
+
+        protected bool IsIconVisible(string userId)
+        {
+            if (this.Context.User.Identity.IsAuthenticated && 
+                this.Context.User.IsInRole(ValidationConstants.ADMINISTRATOR_ROLE))
+            {
+                return true;
+            }
+
+            if (string.IsNullOrEmpty(userId) || !this.Context.User.Identity.IsAuthenticated)
+            {
+                return false;
+            }
+            else if(this.Context.User.Identity.IsAuthenticated && !this.Context.User.Identity.GetUserId().Equals(userId)) 
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private bool IsNewsIdValid(int id)

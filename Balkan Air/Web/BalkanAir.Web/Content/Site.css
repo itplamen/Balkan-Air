@@ -1803,7 +1803,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 }
 
 #NewsDiv a:hover {
-    text-decoration: none;   
+    text-decoration: none;
 } 
 
 .newsItemTemplate {
@@ -1819,6 +1819,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 .glyphicon-comment {
     margin-left: 20px;
 }
+
 
 /****************** ViewNews ******************/
 
@@ -1836,10 +1837,11 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     margin-top: 30px;
 }
 
-.comment img {
+#CommentPostedFromSpan img {
     width: 40px; 
     height: 40px;
-    border-radius: 5px;
+    border-radius: 5px; 
+    margin-bottom: 5px;
 }
 
 #CommentPostedFromSpan {
@@ -1849,6 +1851,16 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 
 #DateOfCommentSmall {
     font-weight: bold;
+}
+
+.glyphicon-edit  { 
+   margin-left: 30px;
+   margin-right: 5px;
+   text-decoration: none;
+}
+
+#EditCommentTextBox {
+    margin-top: 10px; 
 }
 
 /****************** Calendar ******************/
