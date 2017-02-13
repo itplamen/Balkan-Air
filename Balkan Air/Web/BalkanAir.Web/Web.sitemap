@@ -28,6 +28,7 @@
       <siteMapNode url="~/Administration/ManageBookings" title="Manage bookings" />
       <siteMapNode url="~/Administration/ManageCountries" title="Manage countries" />
       <siteMapNode url="~/Administration/ManageFlights" title="Manage flights" />
+      <siteMapNode url="~/Administration/ManageFlightStatuses" title="Manage flight statuses" />
       <siteMapNode url="~/Administration/ManageNews" title="Manage news" />
       <siteMapNode url="~/Administration/ManageNotifications" title="Manage notifications" />
       <siteMapNode url="~/Administration/ManageUserRoles" title="Manage user roles" />

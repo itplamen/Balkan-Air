@@ -58,10 +58,14 @@
                         </tr>
                         <tr>
                             <td>
+                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_FLIGHT_STATUSES) %>">Manage Flight Statuses</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <a href="<%= Page.ResolveUrl(Pages.MANAGE_NEWS) %>">Manage News</a>
                             </td>
                         </tr>
-
                         <tr>
                             <td>
                                 <a href="<%= Page.ResolveUrl(Pages.MANAGE_NOTIFICATIONS) %>">Manage Notifications</a>
