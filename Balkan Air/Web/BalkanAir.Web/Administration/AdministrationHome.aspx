@@ -73,6 +73,11 @@
                         </tr>
                         <tr>
                             <td>
+                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_TRAVEL_CLASSES) %>">Manage Travel Classes</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <a href="<%= Page.ResolveUrl(Pages.MANAGE_USER_ROLES) %>">Manage User Roles</a>
                             </td>
                         </tr>

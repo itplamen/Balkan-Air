@@ -14,7 +14,11 @@
         DeleteMethod="ManageAircraftsGridView_DeleteItem"
         AllowSorting="true">
         <Columns>
-            <asp:BoundField DataField="Id" SortExpression="Id" HeaderText="Id" />
+            <asp:TemplateField HeaderText="Id" SortExpression="Id">
+                <ItemTemplate>
+                    <asp:Literal ID="IdLiteral" Text="<%#: Item.Id %>" runat="server" />
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:TemplateField HeaderText="Manufacturer">
                 <ItemTemplate>
                     <asp:Literal ID="ManufacturerLiteral" Text="<%#: Item.AircraftManufacturer.Name %>" runat="server" />
@@ -30,7 +34,11 @@
             </asp:TemplateField>
             <asp:BoundField DataField="Model" SortExpression="Model" HeaderText="Model" />
             <asp:BoundField DataField="TotalSeats" SortExpression="TotalSeats" HeaderText="Total Seats" />
-            <asp:BoundField DataField="Flights.Count" HeaderText="Flights" />
+            <asp:TemplateField HeaderText="Number of flights">
+                <ItemTemplate>
+                    <asp:Literal ID="NumberOfFlightsLiteral" Text="<%#: Item.Flights.Count %>" runat="server" />
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />
 
             <asp:CommandField ShowEditButton="true" ControlStyle-CssClass="btn btn-info" />
@@ -41,17 +49,17 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
-    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Invalid model length!" Type="String" ForeColor="Red" runat="server"
-        ValidationExpression="^[\s\S]{3,20}$" ControlToValidate="AircraftModelTextBox" />
+    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Model length must be in the range [3 - 20]!" Type="String" 
+        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{3,20}$" ControlToValidate="AircraftModelTextBox" />
 
-    <asp:RangeValidator ErrorMessage="Invalid number of seats!" ControlToValidate="TotalSeatsTextBox" runat="server"
-        ForeColor="Red" MinimumValue="2" MaximumValue="180" Type="Integer" />
+    <asp:RangeValidator ErrorMessage="Number of seats must be in the range [2 - 180]!" ControlToValidate="TotalSeatsTextBox" 
+        runat="server" ForeColor="Red" MinimumValue="2" MaximumValue="180" Type="Integer" />
 
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new aircraft</h3>
 
         <asp:Label Text="Model: " runat="server" />
-        <asp:TextBox ID="AircraftModelTextBox" required runat="server" MaxLength="30" Style="text-transform: uppercase;" />
+        <asp:TextBox ID="AircraftModelTextBox" required runat="server" MaxLength="20" Style="text-transform: uppercase;" />
 
         <asp:Label Text="Total seats:" runat="server" />
         <asp:TextBox ID="TotalSeatsTextBox" required runat="server" TextMode="Number" />

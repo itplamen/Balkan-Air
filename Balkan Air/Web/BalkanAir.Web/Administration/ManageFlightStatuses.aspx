@@ -17,7 +17,7 @@
             <asp:BoundField DataField="Id" SortExpression="Id" HeaderText="Id" />
             <asp:BoundField DataField="Name" SortExpression="Name" HeaderText="Name" />
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />
-            <asp:BoundField DataField="FLights.Count" HeaderText="Flights" />
+            <asp:BoundField DataField="Flights.Count" HeaderText="Flights" />
 
             <asp:CommandField ShowEditButton="true" ControlStyle-CssClass="btn btn-info" />
             <asp:CommandField ShowDeleteButton="true" ControlStyle-CssClass="btn btn-danger" />

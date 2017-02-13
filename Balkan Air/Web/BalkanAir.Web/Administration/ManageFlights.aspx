@@ -114,7 +114,7 @@
         <ajaxToolkit:CalendarExtender runat="server"
             TargetControlID="ArrivalDatepickerTextBox"
             CssClass="CalendarExtender"
-            Format="d.MM.yyyy"
+            Format="d/MM/yyyy"
             PopupButtonID="ArrivalCalendarIconSpan" />
 
         <asp:Label runat="server" Text="Arrival Time:" AssociatedControlID="ArrivalTimeTextBox" />

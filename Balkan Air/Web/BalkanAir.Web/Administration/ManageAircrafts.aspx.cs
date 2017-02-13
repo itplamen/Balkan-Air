@@ -20,7 +20,6 @@
         public IQueryable<Aircraft> ManageAircraftsGridView_GetData()
         {
             return this.AircraftsServices.GetAll()
-                .Where(a => !a.IsDeleted)
                 .OrderBy(a => a.Model);
         }
 
