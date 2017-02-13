@@ -15,6 +15,8 @@
         public const int FIRST_CLASS_CHECKED_IN_BAGS = 2;
         public const int BUSINESS_CLASS_CABIN_BAGS = 2;
         public const int BUSSINESS_CLASS_CHECKED_IN_BAGS = 2;
+        public const int MIN_PRICE = 0;
+        public const int MAX_PRICE = 100000;
 
         // Aircraft
         public const int AIRCRAFT_NAME_MIN_LENGTH = 2;

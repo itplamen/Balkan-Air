@@ -5,6 +5,8 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
+    using Common;
+
     public class TravelClass
     {
         public TravelClass()
@@ -31,7 +33,7 @@
         public bool EarnMiles { get; set; }
 
         [Required]
-        [Range(0, 100000, ErrorMessage = "Invalid travel class price!")]
+        [Range(ValidationConstants.MIN_PRICE, ValidationConstants.MAX_PRICE, ErrorMessage = "Invalid travel class price!")]
         public decimal Price { get; set; }
 
         public bool IsDeleted { get; set; }

@@ -12,7 +12,15 @@
 
         public TravelClassesServices(IRepository<TravelClass> travelClasses)
         {
-            this.travelClasses = travelClasses;   
+            this.travelClasses = travelClasses;
+        }
+
+        public int AddTravelClass(TravelClass travelClass)
+        {
+            this.travelClasses.Add(travelClass);
+            this.travelClasses.SaveChanges();
+
+            return travelClass.Id;
         }
 
         public IQueryable<TravelClass> GetAll()
@@ -23,6 +31,40 @@
         public TravelClass GetTravelClass(int id)
         {
             return this.travelClasses.GetById(id);
+        }
+
+        public TravelClass UpdateTravelClass(int id, TravelClass travelClass)
+        {
+            var travelClassToUpdate = this.travelClasses.GetById(id);
+
+            if (travelClassToUpdate != null)
+            {
+                travelClassToUpdate.Type = travelClass.Type;
+                travelClassToUpdate.Meal = travelClass.Meal;
+                travelClassToUpdate.PriorityBoarding = travelClass.PriorityBoarding;
+                travelClassToUpdate.ReservedSeat = travelClass.ReservedSeat;
+                travelClassToUpdate.EarnMiles = travelClass.EarnMiles;
+                travelClassToUpdate.Price = travelClass.Price;
+                travelClassToUpdate.FlightId = travelClass.FlightId;
+                travelClassToUpdate.IsDeleted = travelClass.IsDeleted;
+
+                this.travelClasses.SaveChanges();
+            }
+
+            return travelClassToUpdate;
+        }
+
+        public TravelClass DeleteTravelClass(int id)
+        {
+            var travelClassToDelete = this.travelClasses.GetById(id);
+
+            if (travelClassToDelete != null)
+            {
+                travelClassToDelete.IsDeleted = true;
+                this.travelClasses.SaveChanges();
+            }
+
+            return travelClassToDelete;
         }
 
         public void BookSeat(int travelClassId, int row, string seatNumber)

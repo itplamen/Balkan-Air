@@ -6,9 +6,15 @@
 
     public interface ITravelClassesServices
     {
-        TravelClass GetTravelClass(int id);
+        int AddTravelClass(TravelClass travelClass);
 
         IQueryable<TravelClass> GetAll();
+
+        TravelClass GetTravelClass(int id);
+
+        TravelClass UpdateTravelClass(int id, TravelClass travelClass);
+
+        TravelClass DeleteTravelClass(int id);
 
         void BookSeat(int travelClassId, int row, string seatNumber);
     }
