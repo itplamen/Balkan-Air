@@ -14,9 +14,17 @@
         DeleteMethod="ManageAircraftsManufacturersGridView_DeleteItem"
         AllowSorting="true">
         <Columns>
-            <asp:BoundField DataField="Id" SortExpression="Id" HeaderText="Id" />
+            <asp:TemplateField HeaderText="Id" SortExpression="Id">
+                <ItemTemplate>
+                    <asp:Literal ID="IdLiteral" Text="<%#: Item.Id %>" runat="server" />
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="Name" SortExpression="Name" HeaderText="Name" />
-            <asp:BoundField DataField="Aircrafts.Count" HeaderText="Aircrafts" />
+            <asp:TemplateField HeaderText="Number of Aircrafts">
+                <ItemTemplate>
+                    <asp:Literal ID="NumberOfAircraftsLiteral" Text="<%#: Item.Aircrafts.Count %>" runat="server" />
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />
 
             <asp:CommandField ShowEditButton="true" ControlStyle-CssClass="btn btn-info" />
@@ -27,8 +35,8 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
-    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Invalid name length!" Type="String" ForeColor="Red" runat="server"
-        ValidationExpression="^[\s\S]{2,20}$" ControlToValidate="AircraftManufacturerNameTextBox" />
+    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Name length must be in the range [2 - 20]!" Type="String" 
+        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{2,20}$" ControlToValidate="AircraftManufacturerNameTextBox" />
 
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new aircraft manufacturer</h3>
