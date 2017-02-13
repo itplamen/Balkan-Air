@@ -9,6 +9,8 @@
 
     public class SeedData
     {
+        private const string SNACK = "Snack";
+        private const string MENU = "Menu";
         private const int FIRST_CLASS_ROWS = 2;
         private const int BUSINESS_CLASS_ROWS = 4;
 
@@ -40,7 +42,6 @@
             this.SeedTravelClasses();
 
             this.Seats = new List<Seat>();
-            //this.SeedSeats();
 
             this.Notifications = new List<Notification>();
             this.SeedNotifications();
@@ -131,187 +132,37 @@
         private void SeedTravelClasses()
         {
             // TravelClasses from Sofia to Madrid
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.Economy,
-                Meal = "Snack",
-                Price = 50.99m,
-                Flight = this.Flights[0]
-            });
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.Business,
-                Meal = "Menu",
-                Price = 90m,
-                PriorityBoarding = true,
-                Flight = this.Flights[0]
-            });
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.First,
-                Meal = "Menu",
-                Price = 105.99m,
-                PriorityBoarding = true,
-                EarnMiles = true,
-                Flight = this.Flights[0]
-            });
+            this.AddTravelClass(TravelClassType.Economy, SNACK, 50.99m, this.Flights[0]);
+            this.AddTravelClass(TravelClassType.Business, MENU, 90m, this.Flights[0], true);
+            this.AddTravelClass(TravelClassType.First, MENU, 105m, this.Flights[0], true, true);
 
+            this.AddTravelClass(TravelClassType.Economy, SNACK, 60.99m, this.Flights[1]);
+            this.AddTravelClass(TravelClassType.Business, MENU, 110m, this.Flights[1], true);
+            this.AddTravelClass(TravelClassType.First, MENU, 115m, this.Flights[1], true, true);
 
-
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.Economy,
-                Meal = "Snack",
-                Price = 50.99m,
-                Flight = this.Flights[1]
-            });
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.Business,
-                Meal = "Menu",
-                Price = 90m,
-                PriorityBoarding = true,
-                Flight = this.Flights[1]
-            });
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.First,
-                Meal = "Menu",
-                Price = 105.99m,
-                PriorityBoarding = true,
-                EarnMiles = true,
-                Flight = this.Flights[1]
-            });
-
-
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.Economy,
-                Meal = "Snack",
-                Price = 50.99m,
-                Flight = this.Flights[2]
-            });
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.Business,
-                Meal = "Menu",
-                Price = 90m,
-                PriorityBoarding = true,
-                Flight = this.Flights[2]
-            });
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.First,
-                Meal = "Menu",
-                Price = 105.99m,
-                PriorityBoarding = true,
-                EarnMiles = true,
-                Flight = this.Flights[2]
-            });
+            this.AddTravelClass(TravelClassType.Economy, SNACK, 70.99m, this.Flights[2]);
+            this.AddTravelClass(TravelClassType.Business, MENU, 120m, this.Flights[2], true);
+            this.AddTravelClass(TravelClassType.First, MENU, 135m, this.Flights[2], true, true);
 
             // TravelClass from Madrid to Sofia
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.Economy,
-                Meal = "Snack",
-                Price = 50.99m,
-                Flight = this.Flights[3]
-            });
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.Business,
-                Meal = "Menu",
-                Price = 90m,
-                PriorityBoarding = true,
-                Flight = this.Flights[3]
-            });
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.First,
-                Meal = "Menu",
-                Price = 105.99m,
-                PriorityBoarding = true,
-                EarnMiles = true,
-                Flight = this.Flights[3]
-            });
+            this.AddTravelClass(TravelClassType.Economy, SNACK, 20.99m, this.Flights[3]);
+            this.AddTravelClass(TravelClassType.Business, MENU, 40m, this.Flights[3], true);
+            this.AddTravelClass(TravelClassType.First, MENU, 52m, this.Flights[3], true, true);
 
             // TravelClass from Sofia to Lisbon and back
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.Economy,
-                Meal = "Snack",
-                Price = 42.99m,
-                Flight = this.Flights[4]
-            });
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.Business,
-                Meal = "Menu",
-                Price = 102.99m,
-                PriorityBoarding = true,
-                Flight = this.Flights[4]
-            });
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.First,
-                Meal = "Menu",
-                Price = 112.99m,
-                PriorityBoarding = true,
-                EarnMiles = true,
-                Flight = this.Flights[4]
-            });
+            this.AddTravelClass(TravelClassType.Economy, SNACK, 42.99m, this.Flights[4]);
+            this.AddTravelClass(TravelClassType.Business, MENU, 102.99m, this.Flights[4], true);
+            this.AddTravelClass(TravelClassType.First, MENU, 112.99m, this.Flights[4], true, true);
 
             // TravelClasses from Varna to Berlin
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.Economy,
-                Meal = "Coffee or Tea",
-                Price = 60m,
-                Flight = this.Flights[5]
-            });
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.Business,
-                Meal = "Menu",
-                Price = 180m,
-                PriorityBoarding = true,
-                Flight = this.Flights[5]
-            });
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.First,
-                Meal = "Menu",
-                Price = 190m,
-                PriorityBoarding = true,
-                EarnMiles = true,
-                Flight = this.Flights[5]
-            });
+            this.AddTravelClass(TravelClassType.Economy, SNACK, 60m, this.Flights[5]);
+            this.AddTravelClass(TravelClassType.Business, MENU, 180m, this.Flights[5], true);
+            this.AddTravelClass(TravelClassType.First, MENU, 190m, this.Flights[5], true, true);
 
             // TravelClasses from London to Paris
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.Economy,
-                Meal = "Snack",
-                Price = 20.99m,
-                Flight = this.Flights[6]
-            });
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.Business,
-                Meal = "Menu",
-                Price = 70m,
-                PriorityBoarding = true,
-                Flight = this.Flights[6]
-            });
-            this.TravelClasses.Add(new TravelClass()
-            {
-                Type = TravelClassType.First,
-                Meal = "Menu",
-                Price = 75.99m,
-                PriorityBoarding = true,
-                EarnMiles = true,
-                Flight = this.Flights[6]
-            });
+            this.AddTravelClass(TravelClassType.Economy, SNACK, 20.99m, this.Flights[6]);
+            this.AddTravelClass(TravelClassType.Business, MENU, 70m, this.Flights[6], true);
+            this.AddTravelClass(TravelClassType.First, MENU, 75.95m, this.Flights[6], true, true);
         }
 
         private void SeedCountries()
@@ -490,6 +341,20 @@
             this.AddSeatsToFlight(this.Flights[4]);
             this.AddSeatsToFlight(this.Flights[5]);
             this.AddSeatsToFlight(this.Flights[6]);
+        }
+
+        private void AddTravelClass(TravelClassType type, string meal, decimal price, Flight flight,
+            bool priorityBoarding = false, bool earnMiles = false)
+        {
+            this.TravelClasses.Add(new TravelClass()
+            {
+                Type = type,
+                Meal = meal,
+                Price = price,
+                PriorityBoarding = priorityBoarding,
+                EarnMiles = earnMiles,
+                Flight = flight
+            });
         }
 
         private void AddFlight(Airport fromAirport, Airport toAirport, DateTime departure, DateTime arrival,

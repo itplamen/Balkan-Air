@@ -42,7 +42,7 @@
     </asp:GridView>
 
     <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Invalid model length!" Type="String" ForeColor="Red" runat="server"
-        ValidationExpression="^[\s\S]{3,30}$" ControlToValidate="AircraftModelTextBox" />
+        ValidationExpression="^[\s\S]{3,20}$" ControlToValidate="AircraftModelTextBox" />
 
     <asp:RangeValidator ErrorMessage="Invalid number of seats!" ControlToValidate="TotalSeatsTextBox" runat="server"
         ForeColor="Red" MinimumValue="2" MaximumValue="180" Type="Integer" />

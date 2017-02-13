@@ -5,8 +5,6 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    using Common;
-
     public class TravelClass
     {
         public TravelClass()
@@ -44,8 +42,6 @@
         [ForeignKey("FlightId")]
         public virtual Flight Flight { get; set; }
 
-        //public virtual ICollection<Baggage> Baggages { get; set; }
-
         public virtual ICollection<Seat> Seats { get; set; }
 
         [NotMapped]
@@ -53,15 +49,9 @@
         {
             get
             {
-                int numberOfAvailableSeats = this.Seats
+                return this.Seats
                     .Where(s => !s.IsReserved)
                     .Count();
-
-                int numberOfReservedSeats = this.Seats
-                    .Where(s => s.IsReserved)
-                    .Count();
-
-                return numberOfAvailableSeats - numberOfReservedSeats;
             }
         }
     }
