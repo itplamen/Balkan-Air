@@ -7,7 +7,7 @@
 
     <div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <h3>Administrators</h3>
 
                 <asp:Repeater ID="AdministratorsRepeater" runat="server"
@@ -15,14 +15,15 @@
                     SelectMethod="AdministratorsRepeater_GetData">
                     <ItemTemplate>
                         <p>
-                            <%#: Item.UserSettings.FirstName + " " + Item.UserSettings.LastName %> <br />
+                            <%#: Item.UserSettings.FirstName + " " + Item.UserSettings.LastName %>
+                            <br />
                             <small><%#: Item.Email %></small>
                         </p>
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-4">
                 <h3>Main categories</h3>
                 <table class="table table-striped">
                     <tbody>
@@ -58,9 +59,21 @@
                         </tr>
                         <tr>
                             <td>
+                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_COMMENTS) %>">Manage Comments</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <a href="<%= Page.ResolveUrl(Pages.MANAGE_COUNTRIES) %>">Manage Countries</a>
                             </td>
                         </tr>
+                    </tbody>
+                </table>
+            </div>
+             
+            <div id="SecondColumn" class="col-md-4">
+                <table class="table table-striped">
+                    <tbody>
                         <tr>
                             <td>
                                 <a href="<%= Page.ResolveUrl(Pages.MANAGE_FLIGHTS) %>">Manage Flights</a>

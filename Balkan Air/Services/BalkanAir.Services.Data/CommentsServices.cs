@@ -1,9 +1,11 @@
 ﻿namespace BalkanAir.Services.Data
 {
+    using System;
     using System.Linq;
 
     using BalkanAir.Data.Models;
     using BalkanAir.Data.Repositories.Contracts;
+    using Common;
     using Contracts;
 
     public class CommentsServices : ICommentsServices
@@ -17,6 +19,11 @@
 
         public int AddComment(Comment comment)
         {
+            if (comment == null)
+            {
+                throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
+            }
+
             this.comments.Add(comment);
             this.comments.SaveChanges();
 
@@ -25,6 +32,11 @@
 
         public Comment GetComment(int id)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
+            }
+
             return this.comments.GetById(id);
         }
 
@@ -35,6 +47,16 @@
 
         public Comment UpdateComment(int id, Comment comment)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
+            }
+
+            if (comment == null)
+            {
+                throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
+            }
+
             var commentToUpdate = this.comments.GetById(id);
 
             if (commentToUpdate != null)
@@ -49,6 +71,11 @@
 
         public Comment DeleteComment(int id)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
+            }
+
             var commentToDelete = this.comments.GetById(id);
 
             if (commentToDelete != null)

@@ -106,11 +106,16 @@
                                 <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_AIRCRAFT_MANUFACTURERS) %>">Manage Aircraft Manufacturers</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_AIRCRAFTS) %>">Manage Aircrafts</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_AIRPORTS) %>">Manage Airports</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_BAGGAGE) %>">Manage Baggage</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_BOOKINGS) %>">Manage Bookings</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_CATEGORIES) %>">Manage Categories</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_COMMENTS) %>">Manage Comments</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_COUNTRIES) %>">Manage Countries</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_FLIGHTS) %>">Manage Flights</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_FLIGHT_STATUSES) %>">Manage Flight Statuses</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_NEWS) %>">Manage News</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_NOTIFICATIONS) %>">Manage Notifications</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_TRAVEL_CLASSES) %>">Manage Travel Classes</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_USER_ROLES) %>">Manage User Roles</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_USERS) %>">Manage Users</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.SEND_MAIL) %>">Send Mail</a></li>

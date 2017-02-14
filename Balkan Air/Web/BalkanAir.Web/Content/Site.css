@@ -1145,6 +1145,11 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 }
 
 /****************** Administration ******************/
+#SecondColumn {
+    position: relative;
+    top: 56px;
+}
+
 .administrationGridView {
     margin-top: 50px;
     padding: 50px;

@@ -28,6 +28,7 @@
       <siteMapNode url="~/Administration/ManageBaggage" title="Manage baggage" />
       <siteMapNode url="~/Administration/ManageBookings" title="Manage bookings" />
       <siteMapNode url="~/Administration/ManageCategories" title="Manage categories" />
+      <siteMapNode url="~/Administration/ManageComments" title="Manage comments" />
       <siteMapNode url="~/Administration/ManageCountries" title="Manage countries" />
       <siteMapNode url="~/Administration/ManageFlights" title="Manage flights" />
       <siteMapNode url="~/Administration/ManageFlightStatuses" title="Manage flight statuses" />
