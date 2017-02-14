@@ -23,11 +23,6 @@
         [Inject]
         public IUserNotificationsServices UserNotificationsServices { get; set; }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
         public IQueryable<Notification> ManageNotificationsGridView_GetData()
         {
             return this.NotificationsServices.GetAll();
@@ -67,6 +62,17 @@
                 });
 
             return users;
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!this.Page.IsPostBack)
+            {
+                var notoficationType = Enum.GetValues(typeof(NotificationType));
+
+                this.TypeDropDownList.DataSource = notoficationType;
+                this.TypeDropDownList.DataBind();
+            }
         }
 
         protected void CreateNotificationtBtn_Click(object sender, EventArgs e)

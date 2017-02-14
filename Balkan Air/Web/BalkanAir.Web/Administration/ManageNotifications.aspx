@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="Manage Notifications" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageNotifications.aspx.cs" Inherits="BalkanAir.Web.Administration.ManageNotifications" %>
 
+<%@ Import Namespace="System.Globalization" %>
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: this.Page.Title %></h2>
 
@@ -14,9 +16,25 @@
         AllowSorting="true">
         <Columns>
             <asp:BoundField DataField="Id" SortExpression="Id" HeaderText="Id" />
-            <asp:BoundField DataField="Content" SortExpression="Content" HeaderText="Content" />
-            <asp:BoundField DataField="DateCreated" SortExpression="DateCreated" HeaderText="Date Created" />
-            <asp:BoundField DataField="Url" SortExpression="Url" HeaderText="Url" />
+            <asp:TemplateField HeaderText="Content" SortExpression="Content">
+                <ItemTemplate>
+                    <%#: Item.Content.Length > 30 ? Item.Content.Substring(0, 40) + "..." : Item.Content %>
+                </ItemTemplate>
+                <EditItemTemplate>
+                    <asp:TextBox ID="EditContentTextBox" runat="server" Text="<%# BindItem.Content %>" TextMode="MultiLine" Rows="10" />
+                </EditItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Created on:" SortExpression="DateCreated">
+                <ItemTemplate>
+                    <%#: Item.DateCreated.ToString("dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture) %>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:BoundField DataField="Type" SortExpression="Type" HeaderText="Type" />
+            <asp:TemplateField HeaderText="Sent to users:">
+                <ItemTemplate>
+                    <%#: Item.UserNotification.Count %>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />
 
             <asp:CommandField ShowEditButton="true" ControlStyle-CssClass="btn btn-info" />
@@ -30,13 +48,13 @@
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new notification</h3>
 
-        <asp:Label Text="Content: " runat="server" />
-        <asp:TextBox ID="ContentTextBox" required runat="server" />
+        <asp:Label Text="Content: " runat="server" AssociatedControlID="ContentTextBox" />
+        <asp:TextBox ID="ContentTextBox" ClientIDMode="Static" required runat="server" TextMode="MultiLine" Rows="10" />
 
-        <asp:Label Text="Url:" runat="server" />
-        <asp:TextBox ID="UrlTextBox" required runat="server" />
+        <asp:Label Text="Type: " runat="server" AssociatedControlID="TypeDropDownList" />
+        <asp:DropDownList ID="TypeDropDownList" runat="server" />
 
-        <asp:Label Text="Send to:" runat="server" />
+        <asp:Label Text="Send to: " runat="server" AssociatedControlID="UsersListBox" />
         <asp:ListBox ID="UsersListBox" runat="server" SelectionMode="Multiple" required
             DataValueField="Id"
             DataTextField="UserInfo"

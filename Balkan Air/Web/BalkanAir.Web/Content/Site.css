@@ -1225,6 +1225,13 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     white-space: pre;
 }
 
+
+/****************** Administration/ManageNotifications.aspx ******************/
+#ContentTextBox {
+    width: 300px;
+}
+
+
 /****************** Administration/SendMail.aspx ******************/
 
 #SendMailDiv h4 {

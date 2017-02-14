@@ -1,6 +1,7 @@
 ﻿namespace BalkanAir.Web.Administration
 {
     using System;
+    using System.Drawing;
     using System.Linq;
     using System.Web.UI;
 
@@ -8,7 +9,6 @@
 
     using Data.Models;
     using Services.Data.Contracts;
-    using System.Drawing;
 
     public partial class ManageFlightStatuses : Page
     {

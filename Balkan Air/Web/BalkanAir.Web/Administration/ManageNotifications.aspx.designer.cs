@@ -31,13 +31,13 @@ namespace BalkanAir.Web.Administration {
         protected global::System.Web.UI.WebControls.TextBox ContentTextBox;
         
         /// <summary>
-        /// UrlTextBox control.
+        /// TypeDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UrlTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList TypeDropDownList;
         
         /// <summary>
         /// UsersListBox control.
