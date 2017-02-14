@@ -33,7 +33,9 @@
         public bool EarnMiles { get; set; }
 
         [Required]
-        [Range(ValidationConstants.MIN_PRICE, ValidationConstants.MAX_PRICE, ErrorMessage = "Invalid travel class price!")]
+        [Range(ValidationConstants.TRAVEL_CLASS_MIN_PRICE, 
+            ValidationConstants.TRAVEL_CLASS_MAX_PRICE, 
+            ErrorMessage = "Invalid travel class price!")]
         public decimal Price { get; set; }
 
         public bool IsDeleted { get; set; }

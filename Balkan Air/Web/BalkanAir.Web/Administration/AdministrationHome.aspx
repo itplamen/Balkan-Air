@@ -43,6 +43,11 @@
                         </tr>
                         <tr>
                             <td>
+                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_BAGGAGE) %>">Manage Baggage</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <a href="<%= Page.ResolveUrl(Pages.MANAGE_BOOKINGS) %>">Manage Bookings</a>
                             </td>
                         </tr>

@@ -34,6 +34,7 @@
         public const string MANAGE_AIRCRAFT_MANUFACTURERS = "~/Administration/ManageAircraftManufacturers";
         public const string MANAGE_AIRCRAFTS = "~/Administration/ManageAircrafts";
         public const string MANAGE_AIRPORTS = "~/Administration/ManageAirports";
+        public const string MANAGE_BAGGAGE = "~/Administration/ManageBaggage";
         public const string MANAGE_BOOKINGS = "~/Administration/ManageBookings";
         public const string MANAGE_COUNTRIES = "~/Administration/ManageCountries";
         public const string MANAGE_FLIGHTS = "~/Administration/ManageFlights";

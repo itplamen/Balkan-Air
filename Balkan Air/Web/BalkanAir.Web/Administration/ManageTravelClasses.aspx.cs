@@ -111,7 +111,8 @@
             decimal price;
             bool isValid = decimal.TryParse(this.PriceTextBox.Text, out price);
 
-            if (isValid && price >= ValidationConstants.MIN_PRICE && price <= ValidationConstants.MAX_PRICE)
+            if (isValid && price >= ValidationConstants.TRAVEL_CLASS_MIN_PRICE && 
+                price <= ValidationConstants.TRAVEL_CLASS_MAX_PRICE)
             {
                 this.PriceTextBox.BorderColor = Color.Empty;
                 return price;
