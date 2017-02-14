@@ -16,11 +16,7 @@
         DeleteMethod="ManageBookingsGridView_DeleteItem"
         AllowSorting="true">
         <Columns>
-            <asp:TemplateField HeaderText="Id" SortExpression="Id">
-                <ItemTemplate>
-                    <asp:Literal ID="IdLiteral" Text="<%#: Item.Id %>" runat="server" />
-                </ItemTemplate>
-            </asp:TemplateField>
+            <asp:BoundField DataField="Id" SortExpression="Id" HeaderText="Id" />
             <asp:TemplateField HeaderText="Date of booking" SortExpression="DateOfBooking">
                 <ItemTemplate>
                     <%#: Item.DateOfBooking.ToString("dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture) %>

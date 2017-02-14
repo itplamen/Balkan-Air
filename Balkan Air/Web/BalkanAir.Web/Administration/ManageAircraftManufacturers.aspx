@@ -14,11 +14,7 @@
         DeleteMethod="ManageAircraftsManufacturersGridView_DeleteItem"
         AllowSorting="true">
         <Columns>
-            <asp:TemplateField HeaderText="Id" SortExpression="Id">
-                <ItemTemplate>
-                    <%#: Item.Id %>
-                </ItemTemplate>
-            </asp:TemplateField>
+            <asp:BoundField DataField="Id" SortExpression="Id" HeaderText="Id" />
             <asp:BoundField DataField="Name" SortExpression="Name" HeaderText="Name" />
             <asp:TemplateField HeaderText="Number of aircrafts">
                 <ItemTemplate>

@@ -33,8 +33,16 @@
                         SelectMethod="CountryDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="DeparturesFlights.Count" HeaderText="DeparturesFlights" />
-            <asp:BoundField DataField="ArrivalsFlights.Count" HeaderText="ArrivalsFlights" />
+            <asp:TemplateField HeaderText="DeparturesFlights">
+                <ItemTemplate>
+                    <%#: Item.DeparturesFlights.Count %>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="ArrivalsFlights">
+                <ItemTemplate>
+                    <%#: Item.ArrivalsFlights.Count %>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />
 
             <asp:CommandField ShowEditButton="true" ControlStyle-CssClass="btn btn-info" />
@@ -45,11 +53,11 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
-    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Invalid name length!" Type="String" ForeColor="Red" runat="server"
-        ValidationExpression="^[\s\S]{2,50}$" ControlToValidate="AirportNameTextBox" />
+    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Name length must be in the range [2 - 50]!" Type="String" 
+        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{2,50}$" ControlToValidate="AirportNameTextBox" />
 
-    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Invalid abbreviation length!" Type="String" ForeColor="Red" 
-        runat="server" ValidationExpression="^[\s\S]{1,3}$" ControlToValidate="AbbreviationTextBox" />
+    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Abbreviation length must be in the range [1 - 3]!" 
+        Type="String" ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{1,3}$" ControlToValidate="AbbreviationTextBox" />
 
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new airport</h3>
