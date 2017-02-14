@@ -17,7 +17,11 @@
             <asp:BoundField DataField="Id" SortExpression="Id" HeaderText="Id" />
             <asp:BoundField DataField="Name" SortExpression="Name" HeaderText="Name" />
             <asp:BoundField DataField="Abbreviation" SortExpression="Abbreviation" HeaderText="Abbreviation" />
-            <asp:BoundField DataField="Airports.Count" HeaderText="Airports" />
+            <asp:TemplateField HeaderText="Number of airports">
+                <ItemTemplate>
+                    <%#: Item.Airports.Count %>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />
 
             <asp:CommandField ShowEditButton="true" ControlStyle-CssClass="btn btn-info" />
@@ -28,11 +32,11 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
-    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Invalid name length!" Type="String" ForeColor="Red" runat="server"
-        ValidationExpression="^[\s\S]{2,50}$" ControlToValidate="CountryNameTextBox" />
+    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Name length must be in the range [2 - 50]!" Type="String" 
+        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{2,50}$" ControlToValidate="CountryNameTextBox" />
 
-    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Invalid name length!" Type="String" ForeColor="Red" runat="server"
-        ValidationExpression="^[\s\S]{1,2}$" ControlToValidate="AbbreviationNameTextBox" />
+    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Abbreviation length must be in the range [1 - 2]!" Type="String" 
+        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{1,2}$" ControlToValidate="AbbreviationNameTextBox" />
 
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new country</h3>
