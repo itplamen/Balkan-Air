@@ -269,6 +269,7 @@
     <Content Include="Administration\ManageAirports.aspx" />
     <Content Include="Administration\ManageBaggage.aspx" />
     <Content Include="Administration\ManageBookings.aspx" />
+    <Content Include="Administration\ManageCategories.aspx" />
     <Content Include="Administration\ManageCountries.aspx" />
     <Content Include="Administration\ManageFlightStatuses.aspx" />
     <Content Include="Administration\ManageNews.aspx" />
@@ -571,6 +572,13 @@
     </Compile>
     <Compile Include="Administration\ManageBookings.aspx.designer.cs">
       <DependentUpon>ManageBookings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\ManageCategories.aspx.cs">
+      <DependentUpon>ManageCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administration\ManageCategories.aspx.designer.cs">
+      <DependentUpon>ManageCategories.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administration\ManageCountries.aspx.cs">
       <DependentUpon>ManageCountries.aspx</DependentUpon>

@@ -53,6 +53,11 @@
                         </tr>
                         <tr>
                             <td>
+                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_CATEGORIES) %>">Manage Categories</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <a href="<%= Page.ResolveUrl(Pages.MANAGE_COUNTRIES) %>">Manage Countries</a>
                             </td>
                         </tr>
