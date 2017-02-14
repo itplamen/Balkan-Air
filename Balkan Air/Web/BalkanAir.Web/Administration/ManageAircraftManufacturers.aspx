@@ -16,13 +16,13 @@
         <Columns>
             <asp:TemplateField HeaderText="Id" SortExpression="Id">
                 <ItemTemplate>
-                    <asp:Literal ID="IdLiteral" Text="<%#: Item.Id %>" runat="server" />
+                    <%#: Item.Id %>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:BoundField DataField="Name" SortExpression="Name" HeaderText="Name" />
-            <asp:TemplateField HeaderText="Number of Aircrafts">
+            <asp:TemplateField HeaderText="Number of aircrafts">
                 <ItemTemplate>
-                    <asp:Literal ID="NumberOfAircraftsLiteral" Text="<%#: Item.Aircrafts.Count %>" runat="server" />
+                    <%#: Item.Aircrafts.Count %>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />

@@ -14,10 +14,6 @@
         [Inject]
         public IBookingsServices BookingsServices { get; set; }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-        }
-
         public IQueryable<Booking> ManageBookingsGridView_GetData()
         {
             return this.BookingsServices.GetAll();
@@ -43,6 +39,10 @@
         public void ManageBookingsGridView_DeleteItem(int id)
         {
             this.BookingsServices.DeleteBooking(id);
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
         }
     }
 }

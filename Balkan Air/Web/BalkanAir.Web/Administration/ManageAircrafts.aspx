@@ -16,12 +16,12 @@
         <Columns>
             <asp:TemplateField HeaderText="Id" SortExpression="Id">
                 <ItemTemplate>
-                    <asp:Literal ID="IdLiteral" Text="<%#: Item.Id %>" runat="server" />
+                    <%#: Item.Id %>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Manufacturer">
                 <ItemTemplate>
-                    <asp:Literal ID="ManufacturerLiteral" Text="<%#: Item.AircraftManufacturer.Name %>" runat="server" />
+                    <%#: Item.AircraftManufacturer.Name %>
                 </ItemTemplate>
                 <EditItemTemplate>
                     <asp:DropDownList ID="ManufacturersDropDownList" runat="server"
@@ -36,7 +36,7 @@
             <asp:BoundField DataField="TotalSeats" SortExpression="TotalSeats" HeaderText="Total Seats" />
             <asp:TemplateField HeaderText="Number of flights">
                 <ItemTemplate>
-                    <asp:Literal ID="NumberOfFlightsLiteral" Text="<%#: Item.Flights.Count %>" runat="server" />
+                    <%#: Item.Flights.Count %>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />

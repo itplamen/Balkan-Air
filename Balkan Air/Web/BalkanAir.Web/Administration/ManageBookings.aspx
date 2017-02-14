@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="Manage Bookings" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageBookings.aspx.cs" Inherits="BalkanAir.Web.Administration.ManageBookings" %>
 
+<%@ Import Namespace="System.Globalization" %>
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: this.Page.Title %></h2>
 
@@ -14,34 +16,32 @@
         DeleteMethod="ManageBookingsGridView_DeleteItem"
         AllowSorting="true">
         <Columns>
-            <asp:BoundField DataField="Id" SortExpression="Id" HeaderText="Id" />
-            <asp:BoundField DataField="DateOfBooking" SortExpression="DateOfBooking" HeaderText="Booking Date" />
-            <asp:TemplateField>
-                <HeaderTemplate>
-                    <asp:Label ID="RowLabel" Text="Row" runat="server" />
-                </HeaderTemplate>
+            <asp:TemplateField HeaderText="Id" SortExpression="Id">
                 <ItemTemplate>
-                    <asp:Literal ID="RowLiteral" Text="<%#: Item.Row %>" runat="server" />
+                    <asp:Literal ID="IdLiteral" Text="<%#: Item.Id %>" runat="server" />
                 </ItemTemplate>
-                <EditItemTemplate>
-                    <asp:TextBox ID="RowTextBox" Text="<%#: BindItem.Row  %>" runat="server" TextMode="Number" />
-                </EditItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField>
-                <HeaderTemplate>
-                    <asp:Label ID="SeatLabel" Text="Seat" runat="server" />
-                </HeaderTemplate>
+            <asp:TemplateField HeaderText="Date of booking" SortExpression="DateOfBooking">
                 <ItemTemplate>
-                    <asp:Literal ID="SeatLiteral" Text="<%#: Item.Row %>" runat="server" />
+                    <%#: Item.DateOfBooking.ToString("dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture) %>
                 </ItemTemplate>
-                <EditItemTemplate>
-                    <asp:TextBox ID="SeatTextBox" Text="<%#: BindItem.SeatNumber %>" runat="server" Style="text-transform: uppercase;" MaxLength="1" />
-                </EditItemTemplate>
             </asp:TemplateField>
+            <asp:BoundField DataField="Row" SortExpression="Row" HeaderText="Row" />
+            <asp:BoundField DataField="SeatNumber" SortExpression="SeatNumber" HeaderText="Seat" />
             <asp:BoundField DataField="TotalPrice" SortExpression="TotalPrice" HeaderText="Price (&#8364;)" />
             <asp:BoundField DataField="TravelClassId" SortExpression="TravelClassId" HeaderText="Travel Class Id" />
             <asp:BoundField DataField="UserId" SortExpression="UserId" HeaderText="User Id" />
+            <asp:TemplateField HeaderText="Passenger">
+                <ItemTemplate>
+                    <%#: Item.User.UserSettings.FirstName + " " + Item.User.UserSettings.LastName %>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="FlightId" SortExpression="FlightId" HeaderText="Flight Id" />
+            <asp:TemplateField HeaderText="Flight">
+                <ItemTemplate>
+                    <%#: Item.Flight.Number + ", " + Item.Flight.DepartureAirport.Name + " -> " + Item.Flight.ArrivalAirport.Name %>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />
 
             <asp:CommandField ShowEditButton="true" ControlStyle-CssClass="btn btn-info" />

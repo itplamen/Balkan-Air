@@ -5,6 +5,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using Common;
+
     public class Booking
     {
         public Booking()
@@ -19,7 +21,7 @@
         public DateTime DateOfBooking { get; set; }
 
         [Required]
-        [Range(1, 30)]
+        [Range(ValidationConstants.MIN_ROW_NUMBER, ValidationConstants.MAX_ROW_NUMBER)]
         public int Row { get; set; }
 
         [Required]
