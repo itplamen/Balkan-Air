@@ -276,6 +276,7 @@
     <Content Include="Administration\ManageNews.aspx" />
     <Content Include="Administration\ManageNotifications.aspx" />
     <Content Include="Administration\ManageTravelClasses.aspx" />
+    <Content Include="Administration\ManageUserNotifications.aspx" />
     <Content Include="Administration\ManageUserRoles.aspx" />
     <Content Include="Administration\ManageUsers.aspx" />
     <Content Include="Administration\SendMail.aspx" />
@@ -622,6 +623,13 @@
     </Compile>
     <Compile Include="Administration\ManageTravelClasses.aspx.designer.cs">
       <DependentUpon>ManageTravelClasses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\ManageUserNotifications.aspx.cs">
+      <DependentUpon>ManageUserNotifications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administration\ManageUserNotifications.aspx.designer.cs">
+      <DependentUpon>ManageUserNotifications.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administration\ManageUserRoles.aspx.cs">
       <DependentUpon>ManageUserRoles.aspx</DependentUpon>

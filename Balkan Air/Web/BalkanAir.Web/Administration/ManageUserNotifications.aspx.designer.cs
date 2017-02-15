@@ -10,42 +10,60 @@
 namespace BalkanAir.Web.Administration {
     
     
-    public partial class ManageNotifications {
+    public partial class ManageUserNotifications {
         
         /// <summary>
-        /// ManageNotificationsGridView control.
+        /// ManageUserNotificationsGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView ManageNotificationsGridView;
+        protected global::System.Web.UI.WebControls.GridView ManageUserNotificationsGridView;
         
         /// <summary>
-        /// ContentHtmlEditor control.
+        /// SuccessPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.HtmlEditor.Editor ContentHtmlEditor;
+        protected global::System.Web.UI.WebControls.Panel SuccessPanel;
         
         /// <summary>
-        /// TypeDropDownList control.
+        /// UsersListBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TypeDropDownList;
+        protected global::System.Web.UI.WebControls.ListBox UsersListBox;
         
         /// <summary>
-        /// CreateNotificationtBtn control.
+        /// NotificationsDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CreateNotificationtBtn;
+        protected global::System.Web.UI.WebControls.DropDownList NotificationsDropDownList;
+        
+        /// <summary>
+        /// SendNotificationButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SendNotificationButton;
+        
+        /// <summary>
+        /// CancelButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CancelButton;
     }
 }

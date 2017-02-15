@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
@@ -40,19 +39,6 @@
                 });
 
             return users;
-        }
-
-        protected void Submit(object sender, EventArgs e)
-        {
-            string message = "";
-            foreach (ListItem item in UsersListBox.Items)
-            {
-                if (item.Selected)
-                {
-                    message += item.Text + " " + item.Value + "\\n";
-                }
-            }
-            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "alert('" + message + "');", true);
         }
 
         protected void SendMailButton_Click(object sender, EventArgs e)

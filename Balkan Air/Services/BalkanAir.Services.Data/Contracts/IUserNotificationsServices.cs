@@ -18,5 +18,7 @@
         UserNotification GetUserNotification(int id);
 
         IQueryable<UserNotification> GetAll();
+
+        UserNotification UpdateUserNotification(int id, UserNotification userNotification);
     }
 }

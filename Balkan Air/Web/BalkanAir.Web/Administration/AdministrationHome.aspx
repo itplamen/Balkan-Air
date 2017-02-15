@@ -101,6 +101,11 @@
                         </tr>
                         <tr>
                             <td>
+                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_USER_NOTIFICATIONS) %>">Manage User Notifications</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <a href="<%= Page.ResolveUrl(Pages.MANAGE_USER_ROLES) %>">Manage User Roles</a>
                             </td>
                         </tr>

@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="Manage Notifications" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageNotifications.aspx.cs" Inherits="BalkanAir.Web.Administration.ManageNotifications" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <%@ Import Namespace="System.Globalization" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -47,31 +49,20 @@
 
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new notification</h3>
+        <br />
 
-        <asp:Label Text="Content: " runat="server" AssociatedControlID="ContentTextBox" />
-        <asp:TextBox ID="ContentTextBox" ClientIDMode="Static" required runat="server" TextMode="MultiLine" Rows="10" />
+        <p>
+            <asp:Label Text="Content: " runat="server" AssociatedControlID="ContentHtmlEditor" />
+            <ajaxToolkit:HtmlEditor.Editor ID="ContentHtmlEditor" Height="300px" Width="100%" AutoFocus="true" runat="server" required />
+        </p>
 
-        <asp:Label Text="Type: " runat="server" AssociatedControlID="TypeDropDownList" />
-        <asp:DropDownList ID="TypeDropDownList" runat="server" />
+        <p>
+            <asp:Label Text="Type: " runat="server" AssociatedControlID="TypeDropDownList" />
+            <asp:DropDownList ID="TypeDropDownList" runat="server" />
+        </p>
 
-        <asp:Label Text="Send to: " runat="server" AssociatedControlID="UsersListBox" />
-        <asp:ListBox ID="UsersListBox" runat="server" SelectionMode="Multiple" required
-            DataValueField="Id"
-            DataTextField="UserInfo"
-            SelectMethod="UsersListBox_GetData" />
-
-        <asp:Button ID="CreateNotificationtBtn" runat="server" Text="Create" CssClass="btn btn-info" OnClick="CreateNotificationtBtn_Click" />
+        <p>
+            <asp:Button ID="CreateNotificationtBtn" runat="server" Text="Create" CssClass="btn btn-info" OnClick="CreateNotificationtBtn_Click" />
+        </p>
     </asp:Panel>
-
-    <script type="text/javascript">
-        $(function () {
-            $('[id*=UsersListBox]').multiselect({
-                enableFiltering: true,
-                includeSelectAllOption: true,
-                enableCollapsibleOptGroups: true,
-                maxHeight: 300,
-                buttonWidth: '350px'
-            });
-        });
-    </script>
 </asp:Content>

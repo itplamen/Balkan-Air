@@ -44,6 +44,7 @@
         public const string MANAGE_NEWS = "~/Administration/ManageNews";
         public const string MANAGE_NOTIFICATIONS = "~/Administration/ManageNotifications";
         public const string MANAGE_TRAVEL_CLASSES = "~/Administration/ManageTravelClasses";
+        public const string MANAGE_USER_NOTIFICATIONS = "~/Administration/ManageUserNotifications";
         public const string MANAGE_USER_ROLES = "~/Administration/ManageUserRoles";
         public const string MANAGE_USERS = "~/Administration/ManageUsers";
         public const string SEND_MAIL = "~/Administration/SendMail";

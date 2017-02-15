@@ -23,8 +23,7 @@
         <asp:TextBox ID="SubjectTextBox" runat="server" CssClass="form-control" ClientIDMode="Static" required />
 
         <h4>Content:</h4>
-        <ajaxToolkit:HtmlEditor.Editor ID="ContentHtmlEditor" Height="300px" Width="100%" AutoFocus="true" runat="server"
-            required />
+        <ajaxToolkit:HtmlEditor.Editor ID="ContentHtmlEditor" Height="300px" Width="100%" AutoFocus="true" runat="server" required />
 
         <div id="MailButtonsDiv">
             <asp:Button ID="SendMailButton" runat="server" UseSubmitBehavior="true" Text="Send" CssClass="btn btn-info" OnClick="SendMailButton_Click" />
