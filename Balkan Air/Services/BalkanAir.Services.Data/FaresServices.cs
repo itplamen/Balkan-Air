@@ -63,6 +63,7 @@
             {
                 fareToUpdate.Price = fare.Price;
                 fareToUpdate.RouteId = fare.RouteId;
+                fareToUpdate.IsDeleted = fare.IsDeleted;
 
                 this.fares.SaveChanges();
             }

@@ -18,6 +18,9 @@
         public IAirportsServices AirportsServices { get; set; }
 
         [Inject]
+        public IFaresServices FaresServices { get; set; }
+
+        [Inject]
         public INewsServices NewsServices { get; set; }
 
         [Inject]

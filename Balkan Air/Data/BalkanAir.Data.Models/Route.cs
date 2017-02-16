@@ -28,6 +28,8 @@
         [Range(0.0, double.MaxValue, ErrorMessage = "Invalid distance!")]
         public double DistanceInKm { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public virtual ICollection<Fare> Fares { get; set; }
 
         public virtual ICollection<FlightLeg> FlightLegs { get; set; }

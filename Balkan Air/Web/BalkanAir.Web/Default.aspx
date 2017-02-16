@@ -75,24 +75,24 @@
         <h2>Are you still looking for cheap flights?</h2>
 
         <asp:Repeater ID="TopCheapestFlightsRepeater" runat="server"
-            ItemType="BalkanAir.Data.Models.Flight"
+            ItemType="BalkanAir.Data.Models.Fare"
             SelectMethod="TopCheapestFlightsRepeater_GetData">
             <ItemTemplate>
                 <asp:LinkButton runat="server" CommandArgument="<%#: Item.Id %>" CssClass="searchFlightElement"
                     OnClick="OnCheapFlightLinkButtonClicked">
                     <div class="cheapFlightDiv">
                         <div class="fromAirportInfo">
-                            <span class="abbreviation"><%#: Item.DepartureAirport.Abbreviation %></span>
-                            <span><%#: Item.DepartureAirport.Name %></span>
+                            <span class="abbreviation"><%#: Item.Route.Origin.Abbreviation %></span>
+                            <span><%#: Item.Route.Origin.Name %></span>
                         </div>
                         <img src="Content/Images/airplane_fly_out_image.png" alt="Fly out image" />
                         <div class="toAirportInfo">
-                            <span class="abbreviation"><%#: Item.ArrivalAirport.Abbreviation %></span>
-                            <span><%#: Item.ArrivalAirport.Name %></span>
+                            <span class="abbreviation"><%#: Item.Route.Destination.Abbreviation %></span>
+                            <span><%#: Item.Route.Destination.Name %></span>
                         </div>
                         <div class="priceAndDateInfo">
-                            <p class="price">&#8364; <%#: Item.GetCheapestPriceFromAllTravelClasses %></p>
-                            <p class="date"><%#: Item.Departure.Date.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %></p>
+                            <p class="price">&#8364; <%#: Item.Price %></p>
+                            <p class="date"><%#: .Date.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %></p>
                         </div>
                     </div>
                 </asp:LinkButton>

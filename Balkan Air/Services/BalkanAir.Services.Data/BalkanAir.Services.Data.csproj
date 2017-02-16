@@ -78,6 +78,7 @@
     <Compile Include="Contracts\IFlightStatusesServices.cs" />
     <Compile Include="Contracts\INewsServices.cs" />
     <Compile Include="Contracts\INotificationsServices.cs" />
+    <Compile Include="Contracts\IRoutesServices.cs" />
     <Compile Include="Contracts\ISeatsServices.cs" />
     <Compile Include="Contracts\ITravelClassesServices.cs" />
     <Compile Include="Contracts\IUserNotificationsServices.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="NewsServices.cs" />
     <Compile Include="NotificationsServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoutesServices.cs" />
     <Compile Include="SeatsServices.cs" />
     <Compile Include="TravelClassesServices.cs" />
     <Compile Include="UserNotificationsServices.cs" />
