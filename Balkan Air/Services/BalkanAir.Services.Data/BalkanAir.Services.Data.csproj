@@ -77,6 +77,7 @@
     <Compile Include="Contracts\IFlightLegsServices.cs" />
     <Compile Include="Contracts\IFlightsServices.cs" />
     <Compile Include="Contracts\IFlightStatusesServices.cs" />
+    <Compile Include="Contracts\ILegInstancesServices.cs" />
     <Compile Include="Contracts\INewsServices.cs" />
     <Compile Include="Contracts\INotificationsServices.cs" />
     <Compile Include="Contracts\IRoutesServices.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="FlightLegsServices.cs" />
     <Compile Include="FlightsServices.cs" />
     <Compile Include="FlightStatusesServices.cs" />
+    <Compile Include="LegInstancesServices.cs" />
     <Compile Include="NewsServices.cs" />
     <Compile Include="NotificationsServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
