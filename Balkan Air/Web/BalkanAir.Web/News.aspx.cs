@@ -7,7 +7,7 @@
 
     using Ninject;
 
-    using BalkanAir.Services.Data.Contracts;
+    using Services.Data.Contracts;
 
     public partial class News : Page
     {

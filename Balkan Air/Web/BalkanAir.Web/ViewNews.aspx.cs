@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Web.ModelBinding;
     using System.Web.UI;
+    using System.Web.UI.WebControls;
 
     using Microsoft.AspNet.Identity;
 
@@ -13,7 +14,6 @@
     using Data.Common;
     using Data.Models;
     using Services.Data.Contracts;
-    using System.Web.UI.WebControls;
 
     public partial class ViewNews : Page
     {
@@ -28,7 +28,7 @@
 
         protected int NumberOfComments { get; private set; }
 
-        public BalkanAir.Data.Models.News ViewNewsFormView_GetItem([QueryString]string id)
+        public Data.Models.News ViewNewsFormView_GetItem([QueryString]string id)
         {
             int validId;
             bool isValid = int.TryParse(id, out validId);
@@ -60,8 +60,9 @@
                 if (!news.IsDeleted)
                 {
                     var comments = news.Comments
-                    .Where(c => !c.IsDeleted)
-                    .ToList();
+                             .Where(c => !c.IsDeleted)
+                             .ToList();
+
 
                     this.NumberOfComments = comments.Count;
 
@@ -144,7 +145,7 @@
 
         protected bool IsIconVisible(string userId)
         {
-            if (this.Context.User.Identity.IsAuthenticated && 
+            if (this.Context.User.Identity.IsAuthenticated &&
                 this.Context.User.IsInRole(ValidationConstants.ADMINISTRATOR_ROLE))
             {
                 return true;
@@ -154,7 +155,7 @@
             {
                 return false;
             }
-            else if(this.Context.User.Identity.IsAuthenticated && !this.Context.User.Identity.GetUserId().Equals(userId)) 
+            else if (this.Context.User.Identity.IsAuthenticated && !this.Context.User.Identity.GetUserId().Equals(userId))
             {
                 return false;
             }

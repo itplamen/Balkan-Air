@@ -36,11 +36,19 @@
 
         public virtual IDbSet<CreditCard> CreditCards { get; set; }
 
+        public virtual IDbSet<Fare> Fares { get; set; }
+
         public virtual IDbSet<Flight> Flights { get; set; }
+
+        public virtual IDbSet<FlightLeg> FlightLegs { get; set; }
+
+        public virtual IDbSet<LegInstance> LegInstances { get; set; }
 
         public virtual IDbSet<FlightStatus> FlightStatuses { get; set; }
 
         public virtual IDbSet<Notification> Notifications { get; set; }
+
+        public virtual IDbSet<Route> Routes { get; set; }
 
         public virtual IDbSet<Seat> Seats { get; set; }
 
@@ -56,7 +64,7 @@
         }
 
         // Use to solve the error "FOREIGN KEY constraint may cause cycles or multiple cascade paths..." 
-        // about Flight and Airport relationship.
+        // about Route and Airport relationship.
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -64,13 +72,13 @@
             // Use fluent api to specify the actions the error message suggests.
             modelBuilder
                 .Entity<Airport>()
-                .HasMany(i => i.DeparturesFlights)
+                .HasMany(i => i.Origins)
                 .WithRequired()
                 .WillCascadeOnDelete(false);
 
             modelBuilder
                 .Entity<Airport>()
-                .HasMany(i => i.ArrivalsFlights)
+                .HasMany(i => i.Destinations)
                 .WithRequired()
                 .WillCascadeOnDelete(false);
 

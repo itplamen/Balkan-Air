@@ -7,6 +7,7 @@
         ItemType="Microsoft.AspNet.Identity.EntityFramework.IdentityRole"
         DataKeyNames="Id"
         AutoGenerateColumns="false"
+        AllowPaging="true"
         PageSize="50"
         SelectMethod="ManageUserRolesGridView_GetData"
         UpdateMethod="ManageUserRolesGridView_UpdateItem"

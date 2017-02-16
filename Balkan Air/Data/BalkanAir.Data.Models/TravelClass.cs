@@ -1,9 +1,7 @@
 ﻿namespace BalkanAir.Data.Models
 {
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
 
     using Common;
 
@@ -11,7 +9,6 @@
     {
         public TravelClass()
         {
-            this.Seats = new HashSet<Seat>();
             this.ReservedSeat = true;
         }
 
@@ -33,7 +30,22 @@
         public bool EarnMiles { get; set; }
 
         [Required]
-        [Range(ValidationConstants.TRAVEL_CLASS_MIN_PRICE, 
+        [Range(
+            ValidationConstants.FIRST_AND_BUSINESS_CLASS_NUMBER_OF_ROWS_FOR_EACH, 
+            ValidationConstants.ECONOMY_CLASS_NUMBER_OF_ROWS, 
+            ErrorMessage = "Invalid number of rows for travel class!")]
+        public int NumberOfRows { get; set; }
+
+        [Required]
+        [Range(
+            ValidationConstants.FIRST_AND_BUSINESS_CLASS_NUMBER_OF_SEATS_FOR_EACH,
+            ValidationConstants.ECONOMY_CLASS_NUMBER_OF_SEATS,
+            ErrorMessage = "Invalid number of seats for travel class!")]
+        public int NumberOfSeats { get; set; }
+
+        [Required]
+        [Range(
+            ValidationConstants.TRAVEL_CLASS_MIN_PRICE, 
             ValidationConstants.TRAVEL_CLASS_MAX_PRICE, 
             ErrorMessage = "Invalid travel class price!")]
         public decimal Price { get; set; }
@@ -41,22 +53,9 @@
         public bool IsDeleted { get; set; }
 
         [Required]
-        public int FlightId { get; set; }
+        public int AircraftId { get; set; }
 
-        [ForeignKey("FlightId")]
-        public virtual Flight Flight { get; set; }
-
-        public virtual ICollection<Seat> Seats { get; set; }
-
-        [NotMapped]
-        public int AvailableSeats
-        {
-            get
-            {
-                return this.Seats
-                    .Where(s => !s.IsReserved)
-                    .Count();
-            }
-        }
+        [ForeignKey("AircraftId")]
+        public virtual Aircraft Aircraft { get; set; }
     }
 }

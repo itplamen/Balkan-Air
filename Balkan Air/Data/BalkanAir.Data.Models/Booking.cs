@@ -46,9 +46,6 @@
         [Required]
         public int FlightId { get; set; }
 
-        [ForeignKey("FlightId")]
-        public virtual Flight Flight { get; set; }
-
         public virtual ICollection<Baggage> Baggages { get; set; }
     }
 }

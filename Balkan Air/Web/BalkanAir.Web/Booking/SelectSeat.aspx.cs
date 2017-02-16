@@ -35,13 +35,13 @@
                 }
                 else
                 {
-                    this.selectedFlight = this.FlightsServices.GetFlight(booking.FlightId);
-                    this.FromAirportLabel.Text = this.selectedFlight.DepartureAirport.Name;
-                    this.ToAirportLabel.Text = this.selectedFlight.ArrivalAirport.Name;
-                    this.SelectedTravelClassLabel.Text = this.selectedFlight.TravelClasses
-                        .FirstOrDefault(t => t.Id == booking.TravelClassId)
-                        .Type
-                        .ToString();
+                    //this.selectedFlight = this.FlightsServices.GetFlight(booking.FlightId);
+                    //this.FromAirportLabel.Text = this.selectedFlight.DepartureAirport.Name;
+                    //this.ToAirportLabel.Text = this.selectedFlight.ArrivalAirport.Name;
+                    //this.SelectedTravelClassLabel.Text = this.selectedFlight.TravelClasses
+                    //    .FirstOrDefault(t => t.Id == booking.TravelClassId)
+                    //    .Type
+                    //    .ToString();
 
                     if (booking.Row != 0 && !string.IsNullOrEmpty(booking.SeatNumber))
                     {
@@ -59,11 +59,13 @@
 
         public IEnumerable<Seat> SeatRepeater_GetData()
         {
-            return this.selectedFlight.TravelClasses
-                .SelectMany(a => a.Seats)
-                .OrderByDescending(a => a.TravelClass.Type == TravelClassType.First)
-                .ThenByDescending(a => a.TravelClass.Type == TravelClassType.Business)
-                .ToList();
+            //return this.selectedFlight.TravelClasses
+            //    .SelectMany(a => a.Seats)
+            //    .OrderByDescending(a => a.TravelClass.Type == TravelClassType.First)
+            //    .ThenByDescending(a => a.TravelClass.Type == TravelClassType.Business)
+            //    .ToList();
+
+            return null;
         }
 
         protected void ContinueBookingBtn_Click(object sender, EventArgs e)

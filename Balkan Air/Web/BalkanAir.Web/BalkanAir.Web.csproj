@@ -275,6 +275,7 @@
     <Content Include="Administration\ManageFlightStatuses.aspx" />
     <Content Include="Administration\ManageNews.aspx" />
     <Content Include="Administration\ManageNotifications.aspx" />
+    <Content Include="Administration\ManageSeats.aspx" />
     <Content Include="Administration\ManageTravelClasses.aspx" />
     <Content Include="Administration\ManageUserNotifications.aspx" />
     <Content Include="Administration\ManageUserRoles.aspx" />
@@ -616,6 +617,13 @@
     </Compile>
     <Compile Include="Administration\ManageNotifications.aspx.designer.cs">
       <DependentUpon>ManageNotifications.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\ManageSeats.aspx.cs">
+      <DependentUpon>ManageSeats.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administration\ManageSeats.aspx.designer.cs">
+      <DependentUpon>ManageSeats.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administration\ManageTravelClasses.aspx.cs">
       <DependentUpon>ManageTravelClasses.aspx</DependentUpon>

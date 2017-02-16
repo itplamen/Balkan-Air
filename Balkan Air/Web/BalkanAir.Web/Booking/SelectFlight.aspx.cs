@@ -47,8 +47,7 @@
             if (isDepartureAirprotIdValid && isDestinationAirportIdValid)
             {
                 flights = this.FlightsServices.GetAll()
-                    .Where(f => !f.IsDeleted && f.DepartureAirport.Id == departureAirprotId && f.ArrivalAirport.Id == destinationAirportId)
-                    .OrderBy(f => f.Departure)
+                    .Where(f => !f.IsDeleted)
                     .ToList();
             }
 
@@ -81,8 +80,8 @@
                 this.FlightDetailsFormView.DataSource = new List<Flight>() { flight };
                 this.FlightDetailsFormView.DataBind();
 
-                this.FlightTravelClassesRepeater.DataSource = flight.TravelClasses.ToList();
-                this.FlightTravelClassesRepeater.DataBind();
+                //this.FlightTravelClassesRepeater.DataSource = flight.TravelClasses.ToList();
+                //this.FlightTravelClassesRepeater.DataBind();
             }
         }
 

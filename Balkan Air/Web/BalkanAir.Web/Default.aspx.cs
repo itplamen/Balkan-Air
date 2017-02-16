@@ -47,7 +47,7 @@
         {
             return this.FlightsServices.GetAll()
                 .Where(f => !f.IsDeleted)
-                .OrderBy(f => f.TravelClasses.FirstOrDefault(tr => tr.Type == TravelClassType.Economy).Price)
+                //.OrderBy(f => f.TravelClasses.FirstOrDefault(tr => tr.Type == TravelClassType.Economy).Price)
                 .Take(4)
                 .ToList();
         }
@@ -116,10 +116,10 @@
             if (cheapFlight != null)
             {
                 int cheapFlightId = int.Parse(cheapFlight.CommandArgument);
-                string departureAirportId = this.FlightsServices.GetFlight(cheapFlightId).DepartureAirport.Id.ToString();
-                string destinationAirportId = this.FlightsServices.GetFlight(cheapFlightId).ArrivalAirport.Id.ToString();
+                //string departureAirportId = this.FlightsServices.GetFlight(cheapFlightId).DepartureAirport.Id.ToString();
+                //string destinationAirportId = this.FlightsServices.GetFlight(cheapFlightId).ArrivalAirport.Id.ToString();
 
-                this.SearchFlight(departureAirportId, destinationAirportId);
+                //this.SearchFlight(departureAirportId, destinationAirportId);
             }
         }
 
@@ -130,10 +130,10 @@
             if (selectedArticle != null)
             {
                 int articleId = int.Parse(selectedArticle.CommandArgument);
-                string departureAirportId = this.FlightsServices.GetFlight(articleId).DepartureAirport.Id.ToString();
-                string destinationAirportId = this.FlightsServices.GetFlight(articleId).ArrivalAirport.Id.ToString();
+                //string departureAirportId = this.FlightsServices.GetFlight(articleId).DepartureAirport.Id.ToString();
+                //string destinationAirportId = this.FlightsServices.GetFlight(articleId).ArrivalAirport.Id.ToString();
 
-                this.SearchFlight(departureAirportId, destinationAirportId);
+                //this.SearchFlight(departureAirportId, destinationAirportId);
             }
         }
 
@@ -147,20 +147,20 @@
         private void BindDestinationAirports(int departureAirportID)
         {
             var destinationAirports = this.FlightsServices.GetAll()
-                .Where(f => !f.IsDeleted && f.DepartureAirport.Id == departureAirportID)
-                .Select(f => f.ArrivalAirport)
+                //.Where(f => !f.IsDeleted && f.DepartureAirport.Id == departureAirportID)
+                //.Select(f => f.ArrivalAirport)
                 .Distinct()
-                .OrderBy(a => a.Country.Name)
+                //.OrderBy(a => a.Country.Name)
                 .ToList();
 
-            if (destinationAirports == null || destinationAirports.Count == 0)
-            {
-                this.NoFlightsLiteral.Visible = true;
-            }
-            else
-            {
-                this.NoFlightsLiteral.Visible = false;
-            }
+            //if (destinationAirports == null || destinationAirports.Count == 0)
+            //{
+            //    this.NoFlightsLiteral.Visible = true;
+            //}
+            //else
+            //{
+            //    this.NoFlightsLiteral.Visible = false;
+            //}
 
             this.DestinationAirportsRepeater.DataSource = destinationAirports;
             this.DestinationAirportsRepeater.DataBind();

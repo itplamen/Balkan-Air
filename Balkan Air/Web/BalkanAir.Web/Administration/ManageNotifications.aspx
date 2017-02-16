@@ -11,6 +11,7 @@
         ItemType="BalkanAir.Data.Models.Notification"
         DataKeyNames="Id"
         AutoGenerateColumns="false"
+        AllowPaging="true"
         PageSize="50"
         SelectMethod="ManageNotificationsGridView_GetData"
         UpdateMethod="ManageNotificationsGridView_UpdateItem"

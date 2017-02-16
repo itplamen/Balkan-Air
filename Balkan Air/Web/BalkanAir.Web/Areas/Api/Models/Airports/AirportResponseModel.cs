@@ -32,8 +32,8 @@
         public void CreateMappings(IConfiguration config)
         {
             config.CreateMap<Airport, AirportResponseModel>()
-                .ForMember(a => a.NumberOfDeparturesFlights, opt => opt.MapFrom(a => a.DeparturesFlights.Count))
-                .ForMember(a => a.NumberOfArrivalsFlights, opt => opt.MapFrom(a => a.ArrivalsFlights.Count));
+                .ForMember(a => a.NumberOfDeparturesFlights, opt => opt.MapFrom(a => a.Origins.Count))
+                .ForMember(a => a.NumberOfArrivalsFlights, opt => opt.MapFrom(a => a.Destinations.Count));
         }
     }
 }

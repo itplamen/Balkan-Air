@@ -8,6 +8,7 @@
         DataKeyNames="Id"
         AutoGenerateColumns="false"
         ShowHeaderWhenEmpty="true"
+        AllowPaging="true"
         PageSize="50"
         SelectMethod="ManageAirportsGridView_GetData"
         UpdateMethod="ManageAirportsGridView_UpdateItem"
@@ -17,12 +18,9 @@
             <asp:BoundField DataField="Id" SortExpression="Id" HeaderText="Id" />
             <asp:BoundField DataField="Name" SortExpression="Name" HeaderText="Name" />
             <asp:BoundField DataField="Abbreviation" SortExpression="Abbreviation" HeaderText="Abbreviation" />
-            <asp:TemplateField>
-                <HeaderTemplate>
-                    <asp:Label ID="CountryLabel" Text="Country" runat="server" />
-                </HeaderTemplate>
+            <asp:TemplateField HeaderText="Country">
                 <ItemTemplate>
-                    <asp:Literal ID="CountryLiteral" Text="<%#: Item.Country.Name %>" runat="server" />
+                    <%#: Item.Country.Name %>
                 </ItemTemplate>
                 <EditItemTemplate>
                     <asp:DropDownList ID="CountriesDropDownList" runat="server"

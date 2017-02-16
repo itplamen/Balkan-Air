@@ -45,7 +45,7 @@
             <br />
             <br />
 
-            <asp:DataPager ID="CommentsDataPager" runat="server" PageSize="10" >
+            <asp:DataPager ID="CommentsDataPager" runat="server" PageSize="10">
                 <Fields>
                     <asp:NextPreviousPagerField ShowPreviousPageButton="true" ShowNextPageButton="false"
                         ButtonCssClass="pagerBtns" PreviousPageText="«" />
@@ -87,8 +87,9 @@
             </div>
         </ItemTemplate>
         <InsertItemTemplate>
-            <div>
-                <h3><%# this.NumberOfComments %> Comments:</h3>
+            <div id="InsertCommentDiv">
+                <h3><%# this.NumberOfComments %> Comments</h3>
+                <hr />
 
                 <asp:TextBox ID="CommentTextBox" Width="500" Height="100" runat="server" Text="<%#: BindItem.Content %>"
                     TextMode="MultiLine" Rows="10" placeholder="Add a comment..." />
@@ -105,9 +106,9 @@
                         visible="<%# this.GetProfileIconSrc(Item.UserId) == string.Empty ? false : true %>" />
                     <%#: this.GetAuthorOfTheComment(Item.UserId) %>
                 </span>
-                 
+
                 <p>
-                    <asp:TextBox ID="EditCommentTextBox" ClientIDMode="Static" Width="500" Height="100" runat="server" 
+                    <asp:TextBox ID="EditCommentTextBox" ClientIDMode="Static" Width="500" Height="100" runat="server"
                         Text="<%#: BindItem.Content %>" TextMode="MultiLine" placeholder="Add a comment..." />
                 </p>
 

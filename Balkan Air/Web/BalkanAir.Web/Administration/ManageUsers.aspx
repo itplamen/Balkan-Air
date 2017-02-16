@@ -7,6 +7,7 @@
         ItemType="BalkanAir.Data.Models.User"
         DataKeyNames="Id"
         AutoGenerateColumns="false"
+        AllowPaging="true"
         PageSize="50"
         SelectMethod="ManageUsersGridView_GetData"
         UpdateMethod="ManageUsersGridView_UpdateItem"

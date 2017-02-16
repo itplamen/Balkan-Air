@@ -24,8 +24,7 @@
 
         public IQueryable<TravelClass> ManageTravelClassesGridView_GetData()
         {
-            return this.TravelClassesServices.GetAll()
-                .OrderBy(t => t.FlightId);
+            return this.TravelClassesServices.GetAll();
         }
         public void ManageTravelClassesGridView_UpdateItem(int id)
         {
@@ -54,12 +53,10 @@
         {
             var flights = this.FlightsServices.GetAll()
                 .Where(f => !f.IsDeleted)
-                .OrderBy(f => f.DepartureAirport.Name)
-                .ThenBy(f => f.ArrivalAirport.Name)
                 .Select(f => new
                 {
                     Id = f.Id,
-                    FlightInfo = f.Number + ", " + f.DepartureAirport.Name + " -> " + f.ArrivalAirport.Name
+                    FlightInfo = f.Number
                 });
 
             return flights;
@@ -97,8 +94,7 @@
                     PriorityBoarding = this.PriorityBoardingCheckBox.Checked,
                     ReservedSeat = this.ReservedSeatCheckBox.Checked,
                     EarnMiles = this.EarnMilesCheckBox.Checked,
-                    Price = price,
-                    FlightId = int.Parse(this.FlightsDropDownList.SelectedItem.Value)
+                    Price = price
                 };
 
                 this.TravelClassesServices.AddTravelClass(travelClass);

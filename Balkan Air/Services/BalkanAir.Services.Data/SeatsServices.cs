@@ -5,6 +5,7 @@
 
     using BalkanAir.Data.Models;
     using BalkanAir.Data.Repositories.Contracts;
+    using Common;
     using Contracts;
 
     public class SeatsServices : ISeatsServices
@@ -18,6 +19,11 @@
 
         public int AddSeat(Seat seat)
         {
+            if (seat == null)
+            {
+                throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
+            }
+
             this.seats.Add(seat);
             this.seats.SaveChanges();
 
@@ -26,6 +32,11 @@
 
         public void AddSeatsToTravelClass(TravelClass travelClass)
         {
+            if (travelClass == null)
+            {
+                throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
+            }
+
             int numberOfRows = 0;
 
             if (travelClass.Type == TravelClassType.First || travelClass.Type == TravelClassType.Business)
@@ -43,12 +54,7 @@
 
             for (int row = 1; row <= numberOfRows; row++)
             {
-                this.seats.Add(new Seat() { Number = "A", Row = row, TravelClassId = travelClass.Id });
-                this.seats.Add(new Seat() { Number = "B", Row = row, TravelClassId = travelClass.Id });
-                this.seats.Add(new Seat() { Number = "C", Row = row, TravelClassId = travelClass.Id });
-                this.seats.Add(new Seat() { Number = "D", Row = row, TravelClassId = travelClass.Id });
-                this.seats.Add(new Seat() { Number = "E", Row = row, TravelClassId = travelClass.Id });
-                this.seats.Add(new Seat() { Number = "F", Row = row, TravelClassId = travelClass.Id });
+                 
             }
 
             this.seats.SaveChanges();
@@ -56,6 +62,11 @@
 
         public Seat GetSeat(int id)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
+            }
+
             return this.seats.GetById(id);
         }
 
@@ -66,15 +77,25 @@
 
         public Seat UpdateSeat(int id, Seat seat)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
+            }
+
+            if (seat == null)
+            {
+                throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
+            }
+
             var seatToUpdate = this.seats.GetById(id);
 
             if (seatToUpdate != null)
             {
                 seatToUpdate.Number = seat.Number;
-                seatToUpdate.Row = seat.Row;
+                 
                 seatToUpdate.IsReserved = seat.IsReserved;
                 seatToUpdate.IsDeleted = seat.IsDeleted;
-                seatToUpdate.TravelClassId = seat.TravelClassId;
+ 
 
                 this.seats.SaveChanges();
             }
@@ -84,6 +105,11 @@
 
         public Seat DeleteSeat(int id)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
+            }
+
             var seatToDelete = this.seats.GetById(id);
 
             if (seatToDelete != null)

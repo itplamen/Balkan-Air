@@ -45,7 +45,7 @@
                 travelClassToUpdate.ReservedSeat = travelClass.ReservedSeat;
                 travelClassToUpdate.EarnMiles = travelClass.EarnMiles;
                 travelClassToUpdate.Price = travelClass.Price;
-                travelClassToUpdate.FlightId = travelClass.FlightId;
+ 
                 travelClassToUpdate.IsDeleted = travelClass.IsDeleted;
 
                 this.travelClasses.SaveChanges();
@@ -69,15 +69,15 @@
 
         public void BookSeat(int travelClassId, int row, string seatNumber)
         {
-            Seat seat = this.travelClasses.GetById(travelClassId)
-                .Seats
-                .FirstOrDefault(s => s.Row == row && s.Number == seatNumber);
+            //Seat seat = this.travelClasses.GetById(travelClassId)
+            //    .Seats
+            //    .FirstOrDefault(s => s.Row == row && s.Number == seatNumber);
 
-            if (seat != null)
-            {
-                seat.IsReserved = true;
-                this.travelClasses.SaveChanges();
-            }
+            //if (seat != null)
+            //{
+            //    seat.IsReserved = true;
+            //    this.travelClasses.SaveChanges();
+            //}
         }
     }
 }

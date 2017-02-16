@@ -1839,6 +1839,12 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     width: 100%; 
 }
 
+#InsertCommentDiv hr {
+    margin-bottom: 40px;
+    margin-left: 0px;
+    width: 500px;
+}
+
 #PostCommentBtn {
     position: relative;
     top: 10px;

@@ -28,7 +28,7 @@
         public void CreateMappings(IConfiguration config)
         {
             config.CreateMap<Aircraft, AircraftResponseModel>()
-                .ForMember(a => a.MadeFlights, opt => opt.MapFrom(a => a.Flights.Count));
+                .ForMember(a => a.MadeFlights, opt => opt.MapFrom(a => a.LegInstance.Count));
         }
     }
 }

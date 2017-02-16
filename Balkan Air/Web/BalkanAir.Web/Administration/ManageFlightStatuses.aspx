@@ -8,6 +8,7 @@
         DataKeyNames="Id"
         AutoGenerateColumns="false"
         ShowHeaderWhenEmpty="true"
+        AllowPaging="true"
         PageSize="50"
         SelectMethod="ManageFlightStatusesGridView_GetData"
         UpdateMethod="ManageFlightStatusesGridView_UpdateItem"

@@ -10,6 +10,7 @@
         DataKeyNames="Id"
         AutoGenerateColumns="false"
         ShowHeaderWhenEmpty="true"
+        AllowPaging="true"
         PageSize="50"
         SelectMethod="ManageBookingsGridView_GetData"
         UpdateMethod="ManageBookingsGridView_UpdateItem"

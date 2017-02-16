@@ -10,7 +10,8 @@
     {
         public Aircraft()
         {
-            this.Flights = new HashSet<Flight>();
+            this.TravelClasses = new HashSet<TravelClass>();
+            this.LegInstance = new HashSet<LegInstance>();
             this.TotalSeats = ValidationConstants.AIRCRAFT_MAX_SEATS;  // By Default
         }
 
@@ -23,10 +24,6 @@
         public string Model { get; set; }
 
         [Required]
-        [Range(
-            ValidationConstants.AIRCRAFT_MIN_SEATS,
-            ValidationConstants.AIRCRAFT_MAX_SEATS, 
-            ErrorMessage = "Invalid number of seats!")]
         public int TotalSeats { get; set; }
 
         public bool IsDeleted { get; set; }
@@ -37,6 +34,8 @@
         [ForeignKey("AircraftManufacturerId")]
         public virtual AircraftManufacturer AircraftManufacturer { get; set; }
 
-        public virtual ICollection<Flight> Flights { get; set; }
+        public virtual ICollection<TravelClass> TravelClasses { get; set; }
+
+        public virtual ICollection<LegInstance> LegInstance { get; set; }
     }
 }

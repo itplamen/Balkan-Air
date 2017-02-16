@@ -9,20 +9,17 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(1)]
+        [MaxLength(2)]
         public string Number { get; set; }
-
-        [Required]
-        [Range(1, 30)]
-        public int Row { get; set; }
 
         public bool IsReserved { get; set; }
 
         public bool IsDeleted { get; set; }
 
-        [ForeignKey("TravelClass")]
-        public int TravelClassId { get; set; }
+        [Required]
+        public int LegInstanceId { get; set; }
 
-        public virtual TravelClass TravelClass { get; set; }
+        [ForeignKey("LegInstanceId")]
+        public virtual LegInstance LegInstance { get; set; }
     }
 }

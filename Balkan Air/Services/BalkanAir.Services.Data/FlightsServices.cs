@@ -40,12 +40,6 @@
             if (flightToUpdate != null)
             {
                 flightToUpdate.Number = flight.Number;
-                flightToUpdate.Departure = flight.Departure;
-                flightToUpdate.Arrival = flight.Arrival;
-                flightToUpdate.FlightStatusId = flight.FlightStatusId;
-                flightToUpdate.AircraftId = flight.AircraftId;
-                flightToUpdate.DepartureAirport.Id = flight.DepartureAirport.Id;
-                flightToUpdate.ArrivalAirport.Id = flight.ArrivalAirport.Id;
                 flightToUpdate.IsDeleted = flight.IsDeleted;
                 this.flights.SaveChanges();
             }

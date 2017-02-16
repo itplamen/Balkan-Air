@@ -8,7 +8,7 @@
     {
         public FlightStatus()
         {
-            this.Flights = new HashSet<Flight>();
+            this.LegInstances = new HashSet<LegInstance>();
         }
 
         [Key]
@@ -22,6 +22,6 @@
 
         public bool IsDeleted { get; set; }
 
-        public virtual ICollection<Flight> Flights { get; set; }
+        public virtual ICollection<LegInstance> LegInstances { get; set; }
     }
 }

@@ -8,6 +8,7 @@
         DataKeyNames="Id"
         AutoGenerateColumns="false"
         ShowHeaderWhenEmpty="true"
+        AllowPaging="true"
         PageSize="50"
         SelectMethod="ManageAircraftsManufacturersGridView_GetData"
         UpdateMethod="ManageAircraftsManufacturersGridView_UpdateItem"

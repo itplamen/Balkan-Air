@@ -131,14 +131,7 @@
 
                 var newFlight = new Flight()
                 {
-                    Number = this.AddFlightNumberTextBox.Text.ToUpper(),
-                    Departure = Convert.ToDateTime(departureDateTime),
-                    Arrival = Convert.ToDateTime(arrivalDateTime),
-                    FlightStatusId = int.Parse(this.FlightStatusesDropDownList.SelectedItem.Value),
-                    AircraftId = int.Parse(this.AircraftsDropDownList.SelectedItem.Value),
-                    DepartureAirportId = int.Parse(this.DepartureAirportsDropDownList.SelectedItem.Value),
-                    ArrivalAirportId = int.Parse(this.ArrivalAirportsDropDownList.SelectedItem.Value),
-                    TravelClasses = this.GetSelectedTravelClasses()
+                    Number = this.AddFlightNumberTextBox.Text.ToUpper()
                 };
 
                 this.FlightsServices.AddFlight(newFlight);

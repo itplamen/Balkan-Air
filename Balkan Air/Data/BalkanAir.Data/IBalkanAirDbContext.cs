@@ -24,13 +24,21 @@
 
         IDbSet<Country> Countries { get; set; }
 
-        IDbSet<CreditCard> CreditCards { get; set; }  
+        IDbSet<CreditCard> CreditCards { get; set; }
+
+        IDbSet<Fare> Fares { get; set; }
 
         IDbSet<Flight> Flights { get; set; }
+
+        IDbSet<FlightLeg> FlightLegs { get; set; }
+
+        IDbSet<LegInstance> LegInstances { get; set; }
 
         IDbSet<FlightStatus> FlightStatuses { get; set; }
 
         IDbSet<Notification> Notifications { get; set; }
+
+        IDbSet<Route> Routes { get; set; }
 
         IDbSet<Seat> Seats { get; set; }
 

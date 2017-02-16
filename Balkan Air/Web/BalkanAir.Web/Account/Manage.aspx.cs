@@ -70,7 +70,7 @@
                 if (this.Context.User.Identity.IsAuthenticated)
                 {
                     bool areAnyUpcomingTrips = this.BookingsServices.GetAll()
-                   .Where(b => b.UserId == this.CurentUser.Id && b.Flight.Departure < DateTime.Now)
+                   //.Where(b => b.UserId == this.CurentUser.Id && b.Flight.Departure < DateTime.Now)
                    .Any();
 
                     if (areAnyUpcomingTrips)
@@ -116,7 +116,7 @@
         public IEnumerable<Booking> UpcomingTripsRepeater_GetData()
         {
             return this.BookingsServices.GetAll()
-                .Where(b => !b.IsDeleted && b.UserId.Equals(this.CurentUser.Id) && b.Flight.Departure < DateTime.Now)
+                //.Where(b => !b.IsDeleted && b.UserId.Equals(this.CurentUser.Id) && b.Flight.Departure < DateTime.Now)
                 .ToList();
         }
 

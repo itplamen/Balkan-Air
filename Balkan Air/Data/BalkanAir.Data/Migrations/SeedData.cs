@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
+    using Common;
     using Helper;
     using Models;
 
@@ -11,8 +11,6 @@
     {
         private const string SNACK = "Snack";
         private const string MENU = "Menu";
-        private const int FIRST_CLASS_ROWS = 2;
-        private const int BUSINESS_CLASS_ROWS = 4;
 
         private IBalkanAirDbContext context;
 
@@ -26,6 +24,9 @@
             this.Aircrafts = new List<Aircraft>();
             this.SeedAircrafts();
 
+            this.TravelClasses = new List<TravelClass>();
+            this.SeedTravelClasses();
+
             this.Countries = new List<Country>();
             this.SeedCountries();
 
@@ -35,13 +36,20 @@
             this.FlightStatuses = new List<FlightStatus>();
             this.SeedFlightStatuses();
 
+            this.Routes = new List<Route>();
+            this.SeedRoutes();
+
+            this.Fares = new List<Fare>();
+            this.SeedFares();
+
             this.Flights = new List<Flight>();
             this.SeedFlights();
 
-            this.TravelClasses = new List<TravelClass>();
-            this.SeedTravelClasses();
+            this.FlightLegs = new List<FlightLeg>();
+            this.SeedFlightLegs();
 
-            this.Seats = new List<Seat>();
+            this.LegInstances = new List<LegInstance>();
+            this.SeedLegInstances();
 
             this.Notifications = new List<Notification>();
             this.SeedNotifications();
@@ -50,20 +58,7 @@
             this.SeedCategories();
 
             this.News = new List<News>();
-            this.News.Add(new News()
-            {
-                Category = Categories[0],
-                Title = "New Sofia - Budapest route launched",
-                Content = "<p>Balkan Air launched a new route from Sofia (SOF) to Budapest (BUD), with a three times weekly " +
-                "service beginning in October, as part of its winter 2017 schedule which will go on sale soon.</p>" +
-                "<p>Balkan Air celebrated its new Sofia - Budapest route by releasing seats for sale at prices starting from " +
-                "just &#8364;9.99 for travel in February and March. These low fare seats are available for booking until " +
-                "midnight Monday, 30 January.</p>" +
-                "<p><strong>Our Director of Air Service Development, Paul Winfield said:</strong></p>" +
-                "<p><i>“It's great to be able to celebrate our first new route announcement of the year so early into 2017 and " +
-                "for another airport in Italy to become linked with Liverpool later this year.</i></p>",
-                DateCreated = DateTime.Now
-            });
+            this.SeedNews();
         }
 
         public List<AircraftManufacturer> AircraftManufacturers { get; set; }
@@ -80,6 +75,14 @@
 
         public List<Flight> Flights { get; set; }
 
+        public List<Route> Routes { get; set; }
+
+        public List<Fare> Fares { get; set; }
+
+        public List<FlightLeg> FlightLegs { get; set; }
+
+        public List<LegInstance> LegInstances { get; set; }
+
         public List<Seat> Seats { get; set; }
 
         public List<Category> Categories { get; set; }
@@ -90,8 +93,6 @@
 
         public List<Notification> Notifications { get; set; }
 
-
-        /* ******************* SEED DATAS ******************* */
         private void SeedAircraftManufacturers()
         {
             this.AircraftManufacturers.Add(new AircraftManufacturer() { Name = "Airbus" });
@@ -100,28 +101,24 @@
 
         private void SeedAircrafts()
         {            
-            // Aircraft from Sofia to Madrid and back
             this.Aircrafts.Add(new Aircraft()
             {
                 Model = "A310",
                 AircraftManufacturer = this.AircraftManufacturers[0]
             });
 
-            // Aircraft from Sofia to Lisbon and back
             this.Aircrafts.Add(new Aircraft()
             {
                 Model = "A320",
                 AircraftManufacturer = this.AircraftManufacturers[0]
             });
 
-            // Aircraft from Varna to Berlin and back
             this.Aircrafts.Add(new Aircraft()
             {
                 Model = "A330",
                 AircraftManufacturer = this.AircraftManufacturers[0]
             });
 
-            // Aircraft from Varna to Berlin and back
             this.Aircrafts.Add(new Aircraft()
             {
                 Model = "ERJ140",
@@ -131,38 +128,31 @@
 
         private void SeedTravelClasses()
         {
-            // TravelClasses from Sofia to Madrid
-            this.AddTravelClass(TravelClassType.Economy, SNACK, 50.99m, this.Flights[0]);
-            this.AddTravelClass(TravelClassType.Business, MENU, 90m, this.Flights[0], true);
-            this.AddTravelClass(TravelClassType.First, MENU, 105m, this.Flights[0], true, true);
+            for (int aircraftId = 1; aircraftId <= this.Aircrafts.Count; aircraftId++)
+            {
+                this.AddTravelClass(TravelClassType.Economy, SNACK, 4.99m, aircraftId, ValidationConstants.ECONOMY_CLASS_NUMBER_OF_ROWS,
+                    ValidationConstants.ECONOMY_CLASS_NUMBER_OF_SEATS);
+                this.AddTravelClass(TravelClassType.Business, MENU, 17m, aircraftId, ValidationConstants.FIRST_AND_BUSINESS_CLASS_NUMBER_OF_ROWS_FOR_EACH,
+                    ValidationConstants.FIRST_AND_BUSINESS_CLASS_NUMBER_OF_SEATS_FOR_EACH, true);
+                this.AddTravelClass(TravelClassType.First, MENU, 22m, aircraftId, ValidationConstants.FIRST_AND_BUSINESS_CLASS_NUMBER_OF_ROWS_FOR_EACH,
+                    ValidationConstants.FIRST_AND_BUSINESS_CLASS_NUMBER_OF_SEATS_FOR_EACH, true, true);
+            }
+        }
 
-            this.AddTravelClass(TravelClassType.Economy, SNACK, 60.99m, this.Flights[1]);
-            this.AddTravelClass(TravelClassType.Business, MENU, 110m, this.Flights[1], true);
-            this.AddTravelClass(TravelClassType.First, MENU, 115m, this.Flights[1], true, true);
-
-            this.AddTravelClass(TravelClassType.Economy, SNACK, 70.99m, this.Flights[2]);
-            this.AddTravelClass(TravelClassType.Business, MENU, 120m, this.Flights[2], true);
-            this.AddTravelClass(TravelClassType.First, MENU, 135m, this.Flights[2], true, true);
-
-            // TravelClass from Madrid to Sofia
-            this.AddTravelClass(TravelClassType.Economy, SNACK, 20.99m, this.Flights[3]);
-            this.AddTravelClass(TravelClassType.Business, MENU, 40m, this.Flights[3], true);
-            this.AddTravelClass(TravelClassType.First, MENU, 52m, this.Flights[3], true, true);
-
-            // TravelClass from Sofia to Lisbon and back
-            this.AddTravelClass(TravelClassType.Economy, SNACK, 42.99m, this.Flights[4]);
-            this.AddTravelClass(TravelClassType.Business, MENU, 102.99m, this.Flights[4], true);
-            this.AddTravelClass(TravelClassType.First, MENU, 112.99m, this.Flights[4], true, true);
-
-            // TravelClasses from Varna to Berlin
-            this.AddTravelClass(TravelClassType.Economy, SNACK, 60m, this.Flights[5]);
-            this.AddTravelClass(TravelClassType.Business, MENU, 180m, this.Flights[5], true);
-            this.AddTravelClass(TravelClassType.First, MENU, 190m, this.Flights[5], true, true);
-
-            // TravelClasses from London to Paris
-            this.AddTravelClass(TravelClassType.Economy, SNACK, 20.99m, this.Flights[6]);
-            this.AddTravelClass(TravelClassType.Business, MENU, 70m, this.Flights[6], true);
-            this.AddTravelClass(TravelClassType.First, MENU, 75.95m, this.Flights[6], true, true);
+        private void AddTravelClass(TravelClassType type, string meal, decimal price, int aircraftId, int numberOfRows,
+            int numberOfSeats, bool priorityBoarding = false, bool earnMiles = false)
+        {
+            this.TravelClasses.Add(new TravelClass()
+            {
+                Type = type,
+                Meal = meal,
+                Price = price,
+                PriorityBoarding = priorityBoarding,
+                EarnMiles = earnMiles,
+                NumberOfRows = numberOfRows,
+                NumberOfSeats = numberOfSeats,
+                AircraftId = aircraftId
+            });
         }
 
         private void SeedCountries()
@@ -301,126 +291,202 @@
             });
         }
 
-        private void SeedFlights()
+        private void SeedRoutes()
         {
             // Sofia - Madrid
-            this.AddFlight(this.Airports[0], this.Airports[5], new DateTime(2017, 2, 18, 11, 30, 0),
-                new DateTime(2017, 2, 18, 16, 30, 0), this.FlightStatuses[0], this.Aircrafts[0]);
-
-            // Sofia - Madrid
-            this.AddFlight(this.Airports[0], this.Airports[5], new DateTime(2017, 1, 18, 20, 30, 0),
-               new DateTime(2017, 1, 18, 23, 30, 0), this.FlightStatuses[0], this.Aircrafts[0]);
-
-            // Sofia - Madrid
-            this.AddFlight(this.Airports[0], this.Airports[5], new DateTime(2017, 2, 18, 20, 30, 0),
-                 new DateTime(2017, 2, 18, 23, 30, 0), this.FlightStatuses[1], this.Aircrafts[0]);
+            this.Routes.Add(new Route()
+            {
+                OriginId = 1,
+                DestinationId = 6
+            });
 
             // Madrid - Sofia
-            this.AddFlight(this.Airports[5], this.Airports[0], new DateTime(2017, 2, 2, 20, 30, 0),
-                 new DateTime(2017, 2, 2, 23, 30, 0), this.FlightStatuses[1], this.Aircrafts[0]);
+            this.Routes.Add(new Route()
+            {
+                OriginId = 6,
+                DestinationId = 1
+            });
 
             // Sofia - Lisbon
-            this.AddFlight(this.Airports[0], this.Airports[2], new DateTime(2017, 2, 18, 10, 30, 0),
-                new DateTime(2017, 2, 14, 20, 30, 0), this.FlightStatuses[0], this.Aircrafts[1]);
+            this.Routes.Add(new Route()
+            {
+                OriginId = 1,
+                DestinationId = 3
+            });
 
             // Varna - Berlin
-            this.AddFlight(this.Airports[1], this.Airports[12], new DateTime(2016, 12, 25, 18, 24, 0),
-                new DateTime(2016, 12, 25, 21, 55, 0), this.FlightStatuses[3], this.Aircrafts[2]);
+            this.Routes.Add(new Route()
+            {
+                OriginId = 2,
+                DestinationId = 13
+            });
 
             // London - Paris
-            this.AddFlight(this.Airports[14], this.Airports[16], new DateTime(2017, 3, 3, 10, 0, 0),
-                new DateTime(2017, 3, 3, 12, 0, 0), this.FlightStatuses[7], this.Aircrafts[3]);
-        }
-
-        public void SeedSeats()
-        {
-            this.AddSeatsToFlight(this.Flights[0]);
-            this.AddSeatsToFlight(this.Flights[1]);
-            this.AddSeatsToFlight(this.Flights[2]);
-            this.AddSeatsToFlight(this.Flights[3]);
-            this.AddSeatsToFlight(this.Flights[4]);
-            this.AddSeatsToFlight(this.Flights[5]);
-            this.AddSeatsToFlight(this.Flights[6]);
-        }
-
-        private void AddTravelClass(TravelClassType type, string meal, decimal price, Flight flight,
-            bool priorityBoarding = false, bool earnMiles = false)
-        {
-            this.TravelClasses.Add(new TravelClass()
+            this.Routes.Add(new Route()
             {
-                Type = type,
-                Meal = meal,
-                Price = price,
-                PriorityBoarding = priorityBoarding,
-                EarnMiles = earnMiles,
-                Flight = flight
+                OriginId = 15,
+                DestinationId = 17
+            });
+
+            // Liverpool - Berlin, Berlin - Ibiza
+            //this.Routes.Add(new Route()
+            //{
+            //    OriginId = 1,
+            //    DestinationId = 3
+            //});
+        }
+
+        private void SeedFares()
+        {
+            // Sofia - Madrid
+            this.Fares.Add(new Fare()
+            {
+                Price = 55.90m,
+                RouteId = 1
+            });
+
+            // Madrid - Sofia
+            this.Fares.Add(new Fare()
+            {
+                Price = 29.99m,
+                RouteId = 2
+            });
+
+            // Sofia - Lisbon
+            this.Fares.Add(new Fare()
+            {
+                Price = 49.99m,
+                RouteId = 3
+            });
+
+            // Varna - Berlin
+            this.Fares.Add(new Fare()
+            {
+                Price = 62.20m,
+                RouteId = 4
+            });
+
+            // London - Paris
+            this.Fares.Add(new Fare()
+            {
+                Price = 19.99m,
+                RouteId = 5
             });
         }
 
-        private void AddFlight(Airport fromAirport, Airport toAirport, DateTime departure, DateTime arrival,
-            FlightStatus flightStatus, Aircraft aircraft)
+        private void SeedFlights()
         {
-            this.Flights.Add(new Flight()
+            // Three flights from Sofia to Madrid in different days
+
+            // Sofia - Madrid
+            this.Flights.Add(new Flight() { Number = new FlightNumber(this.context).GetUniqueFlightNumber() });
+
+            // Sofia - Madrid 
+            this.Flights.Add(new Flight() { Number = new FlightNumber(this.context).GetUniqueFlightNumber() });
+
+            // Sofia - Madrid
+            this.Flights.Add(new Flight() { Number = new FlightNumber(this.context).GetUniqueFlightNumber() });
+
+            // Madrid - Sofia
+            this.Flights.Add(new Flight() { Number = new FlightNumber(this.context).GetUniqueFlightNumber() });
+
+            // Sofia - Lisbon
+            this.Flights.Add(new Flight() { Number = new FlightNumber(this.context).GetUniqueFlightNumber() });
+
+            // Varna - Berlin
+            this.Flights.Add(new Flight() { Number = new FlightNumber(this.context).GetUniqueFlightNumber() });
+
+            // London - Paris
+            this.Flights.Add(new Flight() { Number = new FlightNumber(this.context).GetUniqueFlightNumber() });
+
+            // Liverpool - Berlin, Berlin - Ibiza
+            //this.Flights.Add(new Flight() { Number = new FlightNumber(this.context).GetUniqueFlightNumber() });
+        }
+
+        private void SeedFlightLegs ()
+        {
+            // Sofia - Madrid
+            this.AddFlightLeg(1, new TimeSpan(17, 30, 00), 6, new TimeSpan(20, 30, 00), 1, 1);
+
+            // Sofia - Madrid
+            this.AddFlightLeg(1, new TimeSpan(17, 30, 00), 6, new TimeSpan(20, 30, 00), 2, 1);
+
+            // Sofia - Madrid
+            this.AddFlightLeg(1, new TimeSpan(17, 30, 00), 6, new TimeSpan(20, 30, 00), 3, 1);
+
+            // Madrid - Sofia
+            this.AddFlightLeg(6, new TimeSpan(20, 30, 00), 1, new TimeSpan(23, 30, 00), 4, 2);
+
+            // Sofia - Lisbon
+            this.AddFlightLeg(1, new TimeSpan(14, 45, 00), 3, new TimeSpan(19, 30, 00), 5, 3);
+
+            // Varna - Berlin
+            this.AddFlightLeg(2, new TimeSpan(2, 00, 00), 13, new TimeSpan(5, 35, 00), 6, 4);
+
+            // London - Paris
+            this.AddFlightLeg(15, new TimeSpan(18, 10, 00), 17, new TimeSpan(20, 00, 00), 7, 5);
+
+            // Liverpool - Berlin, Berlin - Ibiza
+            //this.AddFlightLeg(16, new TimeSpan(8, 15, 00), 13, new TimeSpan(10, 15, 00), 8, 3);
+        }
+
+        private void AddFlightLeg(int departureAirportId, TimeSpan cheduledDepartureTime, int arrivalAirportId, 
+            TimeSpan scheduledArrivalTime, int flightId, int routeId)
+        {
+            this.FlightLegs.Add(new FlightLeg()
             {
-                Number = new FlightNumber(this.context).GetUniqueFlightNumber(),
-                DepartureAirport = fromAirport,
-                ArrivalAirport = toAirport,
-                Departure = departure,
-                Arrival = arrival,
-                FlightStatus = flightStatus,
-                Aircraft = aircraft
+                DepartureAirportId = departureAirportId,
+                ScheduledDepartureTime = cheduledDepartureTime,
+                ArrivalAirportId = arrivalAirportId,
+                ScheduledArrivalTime = scheduledArrivalTime,
+                FlightId = flightId,
+                RouteId = routeId
             });
         }
 
-        private void AddSeatsToFlight(Flight flight)
+        private void SeedLegInstances()
         {
-            if (flight == null)
-            {
-                return;
-            }
+            // Sofia - Madrid
+            this.AddLegInstance(new DateTime(2017, 2, 18), this.FlightLegs[0].ScheduledDepartureTime, 
+                this.FlightLegs[0].ScheduledArrivalTime, 1, 8, 1);
 
-            TravelClass firstClass = this.GetTravelClassFromFlight(flight, TravelClassType.First);
-            TravelClass businessClass = this.GetTravelClassFromFlight(flight, TravelClassType.Business);
-            TravelClass economyClass = this.GetTravelClassFromFlight(flight, TravelClassType.Economy);
+            // Sofia - Madrid
+            this.AddLegInstance(new DateTime(2017, 2, 23), this.FlightLegs[1].ScheduledDepartureTime,
+               this.FlightLegs[1].ScheduledArrivalTime, 2, 8, 1);
 
-            int travelClassId = 0;
-            int numberOfRows = 30;
+            // Sofia - Madrid
+            this.AddLegInstance(new DateTime(2017, 2, 28), this.FlightLegs[2].ScheduledDepartureTime,
+               this.FlightLegs[2].ScheduledArrivalTime, 3, 8, 1);
 
-            // 2 rows for First Class and Business Class and 26 rows for Economy Class
-            for (int row = 1; row <= numberOfRows; row++)
-            {
-                if (row <= FIRST_CLASS_ROWS && firstClass != null)
-                {
-                    travelClassId = firstClass.Id;
-                }
-                else if (row > FIRST_CLASS_ROWS && row <= BUSINESS_CLASS_ROWS && businessClass != null)
-                {
-                    travelClassId = businessClass.Id;
-                }
-                else if (row > BUSINESS_CLASS_ROWS && economyClass != null)
-                {
-                    travelClassId = economyClass.Id;
-                }
+            // Madrid - Sofia
+            this.AddLegInstance(new DateTime(2017, 2, 18), this.FlightLegs[3].ScheduledDepartureTime,
+               this.FlightLegs[3].ScheduledArrivalTime, 4, 8, 1);
 
-                this.Seats.Add(new Seat() { Number = "A", Row = row, TravelClassId = travelClassId });
-                this.Seats.Add(new Seat() { Number = "B", Row = row, TravelClassId = travelClassId });
-                this.Seats.Add(new Seat() { Number = "C", Row = row, TravelClassId = travelClassId });
-                this.Seats.Add(new Seat() { Number = "D", Row = row, TravelClassId = travelClassId });
-                this.Seats.Add(new Seat() { Number = "E", Row = row, TravelClassId = travelClassId });
-                this.Seats.Add(new Seat() { Number = "F", Row = row, TravelClassId = travelClassId });
-            }
+            // Sofia - Lisbon
+            this.AddLegInstance(new DateTime(2017, 2, 18), this.FlightLegs[4].ScheduledDepartureTime,
+               this.FlightLegs[4].ScheduledArrivalTime, 5, 8, 2);
+
+            // Varna - Berlin
+            this.AddLegInstance(new DateTime(2017, 2, 19), this.FlightLegs[5].ScheduledDepartureTime,
+               this.FlightLegs[5].ScheduledArrivalTime, 6, 8, 3);
+
+            // London - Paris
+            this.AddLegInstance(new DateTime(2017, 2, 18), this.FlightLegs[6].ScheduledDepartureTime,
+               this.FlightLegs[6].ScheduledArrivalTime, 7, 8, 4);
         }
 
-        private TravelClass GetTravelClassFromFlight(Flight flight, TravelClassType type)
+        private void AddLegInstance(DateTime dateOfTravel, TimeSpan departureTime, TimeSpan arrivalTime, int flightLegId,
+            int flightStatusId, int aircraftId)
         {
-            if (flight == null)
+            this.LegInstances.Add(new LegInstance()
             {
-                return null;
-            }
-
-            return flight.TravelClasses
-                .Where(t => t.Type == type)
-                .FirstOrDefault();
+                DateOfTravel = dateOfTravel,
+                DepartureTime = departureTime,
+                ArrivalTime = arrivalTime,
+                FlightLegId = flightLegId,
+                FlightStatusId = flightStatusId,
+                AircraftId = aircraftId
+            });
         }
 
         private void SeedCategories()
@@ -464,6 +530,24 @@
                 Content = newFlightBooked,
                 DateCreated = DateTime.Now,
                 Type = NotificationType.FlightBooked
+            });
+        }
+
+        private void SeedNews()
+        {
+            this.News.Add(new News()
+            {
+                Category = Categories[0],
+                Title = "New Sofia - Budapest route launched",
+                Content = "<p>Balkan Air launched a new route from Sofia (SOF) to Budapest (BUD), with a three times weekly " +
+                "service beginning in October, as part of its winter 2017 schedule which will go on sale soon.</p>" +
+                "<p>Balkan Air celebrated its new Sofia - Budapest route by releasing seats for sale at prices starting from " +
+                "just &#8364;9.99 for travel in February and March. These low fare seats are available for booking until " +
+                "midnight Monday, 30 January.</p>" +
+                "<p><strong>Our Director of Air Service Development, Paul Winfield said:</strong></p>" +
+                "<p><i>“It's great to be able to celebrate our first new route announcement of the year so early into 2017 and " +
+                "for another airport in Italy to become linked with Liverpool later this year.</i></p>",
+                DateCreated = DateTime.Now
             });
         }
     }

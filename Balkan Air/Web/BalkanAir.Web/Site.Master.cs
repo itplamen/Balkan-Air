@@ -273,7 +273,7 @@
             Flight selectedFlight = this.FlightsServices.GetFlight(booking.FlightId);
 
             this.FlightNuberLiteral.Text = selectedFlight.Number;
-            this.DateTimeLiteral.Text = selectedFlight.Departure.ToString("MMMM dd, yyyy hh:mm", CultureInfo.InvariantCulture);
+            //this.DateTimeLiteral.Text = selectedFlight.Departure.ToString("MMMM dd, yyyy hh:mm", CultureInfo.InvariantCulture);
 
             decimal flightPrice = this.TravelClassesServices.GetTravelClass(booking.TravelClassId).Price;
             this.FlightPriceLiteral.Text = "&#8364; " + string.Format("{0:0.00}", flightPrice);

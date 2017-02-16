@@ -62,8 +62,8 @@
 
         public void CreateMappings(IConfiguration config)
         {
-            config.CreateMap<Flight, FlightResponseModel>()
-                .ForMember(f => f.NumberOfBookings, opt => opt.MapFrom(f => f.Bookings.Count));
+            //config.CreateMap<Flight, FlightResponseModel>()
+            //    .ForMember(f => f.NumberOfBookings, opt => opt.MapFrom(f => f.Bookings.Count));
         }
     }
 }

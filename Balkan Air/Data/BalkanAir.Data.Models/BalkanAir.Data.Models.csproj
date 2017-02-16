@@ -60,11 +60,15 @@
     <Compile Include="Aircraft.cs" />
     <Compile Include="AircraftManufacturer.cs" />
     <Compile Include="Comment.cs" />
+    <Compile Include="Fare.cs" />
+    <Compile Include="FlightLeg.cs" />
+    <Compile Include="LegInstance.cs" />
     <Compile Include="News.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="CreditCard.cs" />
     <Compile Include="Notification.cs" />
     <Compile Include="NotificationType.cs" />
+    <Compile Include="Route.cs" />
     <Compile Include="Seat.cs" />
     <Compile Include="Airport.cs" />
     <Compile Include="Baggage.cs" />
