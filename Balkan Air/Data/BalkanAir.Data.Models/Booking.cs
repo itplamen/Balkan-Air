@@ -44,7 +44,10 @@
         public virtual User User { get; set; }
 
         [Required]
-        public int FlightId { get; set; }
+        public int LegInstanceId { get; set; }
+
+        [ForeignKey("LegInstanceId")]
+        public virtual LegInstance LegInstance { get; set; }
 
         public virtual ICollection<Baggage> Baggages { get; set; }
     }

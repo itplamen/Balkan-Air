@@ -90,9 +90,8 @@
                             <span class="abbreviation"><%#: Item.Route.Destination.Abbreviation %></span>
                             <span><%#: Item.Route.Destination.Name %></span>
                         </div>
-                        <div class="priceAndDateInfo">
+                        <div class="priceInfo">
                             <p class="price">&#8364; <%#: Item.Price %></p>
-                            <p class="date"><%#: .Date.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %></p>
                         </div>
                     </div>
                 </asp:LinkButton>

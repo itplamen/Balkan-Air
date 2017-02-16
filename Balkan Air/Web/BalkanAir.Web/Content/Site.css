@@ -338,16 +338,12 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     text-align: right;
 }
 
-.priceAndDateInfo {
+.priceInfo {
     margin-top: 30px;
 }
 
-.priceAndDateInfo .price {
+.priceInfo .price {
     float: left;
-}
-
-.priceAndDateInfo .date {
-    float: right;
 }
  
 #BackgroundImg {

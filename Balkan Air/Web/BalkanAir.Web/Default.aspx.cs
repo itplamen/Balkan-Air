@@ -27,15 +27,7 @@
         public ICountriesServices CountriesServices { get; set; }
 
         [Inject]
-        public IFlightsServices FlightsServices { get; set; }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!this.Page.IsPostBack)
-            {
-                this.NoFlightsLiteral.Visible = false;
-            }
-        }
+        public IRoutesServices RoutesServices { get; set; }
 
         public IEnumerable<Airport> DepartureAirportsRepeater_GetData()
         {
@@ -46,11 +38,11 @@
                 .ToList();
         }
 
-        public IEnumerable<Flight> TopCheapestFlightsRepeater_GetData()
+        public IEnumerable<Fare> TopCheapestFlightsRepeater_GetData()
         {
-            return this.FlightsServices.GetAll()
+            return this.FaresServices.GetAll()
                 .Where(f => !f.IsDeleted)
-                //.OrderBy(f => f.TravelClasses.FirstOrDefault(tr => tr.Type == TravelClassType.Economy).Price)
+                .OrderBy(f => f.Price)
                 .Take(4)
                 .ToList();
         }
@@ -58,9 +50,17 @@
         public IEnumerable<Data.Models.News> LatestNewsRepeater_GetData()
         {
             return this.NewsServices.GetAll().
-                Where(a => !a.IsDeleted)
+                Where(n => !n.IsDeleted)
                 .Take(3)
                 .ToList();
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!this.Page.IsPostBack)
+            {
+                this.NoFlightsLiteral.Visible = false;
+            }
         }
 
         protected void OnSelectDepartureAirportButtonClicked(object sender, EventArgs e)
@@ -72,9 +72,9 @@
                 this.DepartureAirportTextBox.Text = selectedAirport.Text;
 
                 int departureAirprotID;
-                bool isValidID = int.TryParse(selectedAirport.CommandArgument, out departureAirprotID);
+                bool isIDValid = int.TryParse(selectedAirport.CommandArgument, out departureAirprotID);
 
-                if (isValidID)
+                if (isIDValid)
                 {
                     this.DepartureAirportIdHiddenField.Value = departureAirprotID.ToString();
                     this.DestinationAirportIdHiddenField.Value = string.Empty;
@@ -114,29 +114,15 @@
 
         protected void OnCheapFlightLinkButtonClicked(object sender, EventArgs e)
         {
-            var cheapFlight = sender as LinkButton;
+            var cheapFare = sender as LinkButton;
 
-            if (cheapFlight != null)
+            if (cheapFare != null)
             {
-                int cheapFlightId = int.Parse(cheapFlight.CommandArgument);
-                //string departureAirportId = this.FlightsServices.GetFlight(cheapFlightId).DepartureAirport.Id.ToString();
-                //string destinationAirportId = this.FlightsServices.GetFlight(cheapFlightId).ArrivalAirport.Id.ToString();
+                int cheapFareId = int.Parse(cheapFare.CommandArgument);
+                string departureAirportId = this.FaresServices.GetFare(cheapFareId).Route.Origin.Id.ToString();
+                string destinationAirportId = this.FaresServices.GetFare(cheapFareId).Route.Destination.Id.ToString();
 
-                //this.SearchFlight(departureAirportId, destinationAirportId);
-            }
-        }
-
-        protected void OnLatestArticleLinkButtonClicked(object sender, EventArgs e)
-        {
-            var selectedArticle = sender as LinkButton;
-
-            if (selectedArticle != null)
-            {
-                int articleId = int.Parse(selectedArticle.CommandArgument);
-                //string departureAirportId = this.FlightsServices.GetFlight(articleId).DepartureAirport.Id.ToString();
-                //string destinationAirportId = this.FlightsServices.GetFlight(articleId).ArrivalAirport.Id.ToString();
-
-                //this.SearchFlight(departureAirportId, destinationAirportId);
+                this.SearchFlight(departureAirportId, destinationAirportId);
             }
         }
 
@@ -149,26 +135,24 @@
 
         private void BindDestinationAirports(int departureAirportID)
         {
-            var destinationAirports = this.FlightsServices.GetAll()
-                //.Where(f => !f.IsDeleted && f.DepartureAirport.Id == departureAirportID)
-                //.Select(f => f.ArrivalAirport)
+            var destinationAirports = this.RoutesServices.GetAll()
+                .Where(r => !r.IsDeleted && r.OriginId == departureAirportID)
+                .Select(r => r.Destination)
                 .Distinct()
-                //.OrderBy(a => a.Country.Name)
+                .OrderBy(a => a.Country.Name)
                 .ToList();
 
-            //if (destinationAirports == null || destinationAirports.Count == 0)
-            //{
-            //    this.NoFlightsLiteral.Visible = true;
-            //}
-            //else
-            //{
-            //    this.NoFlightsLiteral.Visible = false;
-            //}
+            if (destinationAirports == null || destinationAirports.Count == 0)
+            {
+                this.NoFlightsLiteral.Visible = true;
+            }
+            else
+            {
+                this.NoFlightsLiteral.Visible = false;
+            }
 
             this.DestinationAirportsRepeater.DataSource = destinationAirports;
             this.DestinationAirportsRepeater.DataBind();
         }
-
-        
     }
 }

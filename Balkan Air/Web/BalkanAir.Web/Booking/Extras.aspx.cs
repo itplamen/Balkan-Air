@@ -1,16 +1,14 @@
 ﻿namespace BalkanAir.Web.Booking
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using System.Web.UI;
-    using System.Web.UI.WebControls;
 
-    using BalkanAir.Web.Common;
-    using BalkanAir.Data.Models;
-    using BalkanAir.Services.Data.Contracts;
     using Ninject;
+
+    using Common;
+    using Data.Models;
+    using Services.Data.Contracts;
 
     public partial class Extras : Page
     {
@@ -23,7 +21,7 @@
             {
                 Booking booking = (Booking)this.Session[NativeConstants.BOOKING];
 
-                if (booking == null || (booking != null && booking.FlightId == 0 || booking.TravelClassId == 0))
+                if (booking == null || (booking != null && booking.LegInstanceId == 0 || booking.TravelClassId == 0))
                 {
                     this.Response.Redirect(Pages.HOME);
                 }

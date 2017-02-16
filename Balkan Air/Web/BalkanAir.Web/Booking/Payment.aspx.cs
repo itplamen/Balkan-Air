@@ -38,6 +38,9 @@ namespace BalkanAir.Web.Booking
         [Inject]
         public IUserNotificationsServices UserNotificationsServices { get; set; }
 
+        [Inject]
+        public ISeatsServices SeatsServices { get; set; }
+
         private ApplicationUserManager Manager
         {
             get { return Context.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
@@ -54,7 +57,7 @@ namespace BalkanAir.Web.Booking
 
             if (!this.Page.IsPostBack)
             {
-                if (this.booking == null || this.booking.FlightId == 0 || this.booking.TravelClassId == 0 || 
+                if (this.booking == null ||/* this.booking.FlightId == 0 ||*/ this.booking.TravelClassId == 0 || 
                     this.booking.Row == 0 || string.IsNullOrEmpty(booking.SeatNumber))
                 {
                     this.Response.Redirect(Pages.HOME);
@@ -84,6 +87,17 @@ namespace BalkanAir.Web.Booking
             this.booking.DateOfBooking = DateTime.Now;
             this.booking.UserId = this.CurrentUser.Id;
             this.BookingsServices.AddBooking(this.booking);
+
+            var seat = new Seat()
+            {
+                Row = booking.Row,
+                Number = booking.SeatNumber,
+                TravelClassId = booking.TravelClassId,
+                IsReserved = true,
+                LegInstanceId = booking.LegInstanceId
+            };
+
+            this.SeatsServices.AddSeat(seat);
 
             var passenger = this.CurrentUser.UserSettings.FirstName + " " + this.CurrentUser.UserSettings.LastName;
             this.SendFlightConfirmationMail(passenger);

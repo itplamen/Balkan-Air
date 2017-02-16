@@ -11,7 +11,7 @@
         public Aircraft()
         {
             this.TravelClasses = new HashSet<TravelClass>();
-            this.LegInstance = new HashSet<LegInstance>();
+            this.LegInstances = new HashSet<LegInstance>();
             this.TotalSeats = ValidationConstants.AIRCRAFT_MAX_SEATS;  // By Default
         }
 
@@ -36,6 +36,6 @@
 
         public virtual ICollection<TravelClass> TravelClasses { get; set; }
 
-        public virtual ICollection<LegInstance> LegInstance { get; set; }
+        public virtual ICollection<LegInstance> LegInstances { get; set; }
     }
 }

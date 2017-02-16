@@ -48,7 +48,7 @@
         public const int TRAVEL_CLASS_MIN_PRICE = 0;
         public const int TRAVEL_CLASS_MAX_PRICE = 100000;
         public const int FIRST_AND_BUSINESS_CLASS_NUMBER_OF_ROWS_FOR_EACH = 2;
-        public const int FIRST_AND_BUSINESS_CLASS_NUMBER_OF_SEATS_FOR_EACH = 6;
+        public const int FIRST_AND_BUSINESS_CLASS_NUMBER_OF_SEATS_FOR_EACH = 12;
         public const int ECONOMY_CLASS_NUMBER_OF_ROWS = 26;
         public const int ECONOMY_CLASS_NUMBER_OF_SEATS = 156;
 

@@ -7,13 +7,14 @@
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+
     using Ninject;
 
-    using BalkanAir.Data.Models;
-    using BalkanAir.Services.Data.Contracts;
-    using BalkanAir.Web.Common;
-    using Microsoft.AspNet.Identity.Owin;
-    using Microsoft.AspNet.Identity;
+    using Common;
+    using Data.Models;
+    using Services.Data.Contracts;
 
     public partial class SelectFlight : Page
     {
@@ -21,37 +22,34 @@
         public IAirportsServices AirportsServices { get; set; }
 
         [Inject]
-        public IFlightsServices FlightsServices { get; set; }
+        public ILegInstancesServices LegInstancesServices { get; set; }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!this.Page.IsPostBack)
-            {
-                if (this.Session[Common.NativeConstants.DEPARTURE_AIRPORT_ID] == null || this.Session[Common.NativeConstants.DESTINATION_AIRPORT_ID] == null)
-                {
-                    this.Response.Redirect(Pages.HOME);
-                }
-            }
-        }
+        [Inject]
+        public ITravelClassesServices TravelClassesServices { get; set; }
 
-        public IEnumerable<Flight> AvailableDatesRepeater_GetData()
+        [Inject]
+        public ISeatsServices SeatsServices { get; set; }
+
+        public IEnumerable<LegInstance> AvailableDatesRepeater_GetData()
         {
-            List<Flight> flights = null;
+            List<LegInstance> legInstances = null;
 
             int departureAirprotId;
             int destinationAirportId;
 
-            bool isDepartureAirprotIdValid = int.TryParse(this.Session[Common.NativeConstants.DEPARTURE_AIRPORT_ID].ToString(), out departureAirprotId);
-            bool isDestinationAirportIdValid = int.TryParse(this.Session[Common.NativeConstants.DESTINATION_AIRPORT_ID].ToString(), out destinationAirportId);
+            bool isDepartureAirprotIdValid = int.TryParse(this.Session[NativeConstants.DEPARTURE_AIRPORT_ID].ToString(), out departureAirprotId);
+            bool isDestinationAirportIdValid = int.TryParse(this.Session[NativeConstants.DESTINATION_AIRPORT_ID].ToString(), out destinationAirportId);
 
             if (isDepartureAirprotIdValid && isDestinationAirportIdValid)
             {
-                flights = this.FlightsServices.GetAll()
-                    .Where(f => !f.IsDeleted)
+                legInstances = this.LegInstancesServices.GetAll()
+                    .Where(l => !l.IsDeleted && l.FlightLeg.DepartureAirportId == departureAirprotId && 
+                        l.FlightLeg.ArrivalAirportId == destinationAirportId)
+                    .OrderBy(l => l.DepartureTime)
                     .ToList();
             }
 
-            if (flights == null || flights.Count == 0)
+            if (legInstances == null || legInstances.Count == 0)
             {
                 this.Response.Redirect(Pages.HOME);
             }
@@ -61,7 +59,19 @@
                 //this.Session.Remove(Parameters.DESTINATION_AIRPORT_ID);
             }
 
-            return flights;
+            return legInstances;
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!this.Page.IsPostBack)
+            {
+                if (this.Session[Common.NativeConstants.DEPARTURE_AIRPORT_ID] == null || 
+                    this.Session[Common.NativeConstants.DESTINATION_AIRPORT_ID] == null)
+                {
+                    this.Response.Redirect(Pages.HOME);
+                }
+            }
         }
 
         protected void OnFlightDateLinkButtonClicked(object sender, EventArgs e)
@@ -75,13 +85,13 @@
                 this.SelectedFlightIdHiddenField.Value = flightId.ToString();
                 this.ContinueBookingBtn.Visible = true;
 
-                Flight flight = this.FlightsServices.GetFlight(flightId);
+                LegInstance legInstance = this.LegInstancesServices.GetLegInstance(flightId);
 
-                this.FlightDetailsFormView.DataSource = new List<Flight>() { flight };
+                this.FlightDetailsFormView.DataSource = new List<LegInstance>() { legInstance };
                 this.FlightDetailsFormView.DataBind();
 
-                //this.FlightTravelClassesRepeater.DataSource = flight.TravelClasses.ToList();
-                //this.FlightTravelClassesRepeater.DataBind();
+                this.FlightTravelClassesRepeater.DataSource = legInstance.Aircraft.TravelClasses.ToList();
+                this.FlightTravelClassesRepeater.DataBind();
             }
         }
 
@@ -96,13 +106,23 @@
             {
                 Booking booking = new Booking()
                 {
-                    FlightId = int.Parse(this.SelectedFlightIdHiddenField.Value),
+                    LegInstanceId = int.Parse(this.SelectedFlightIdHiddenField.Value),
                     TravelClassId = int.Parse(this.SelectedTravelClassIdHiddenField.Value)
                 };
 
                 this.Session.Add(Common.NativeConstants.BOOKING, booking);
                 this.Response.Redirect(Pages.EXTRAS);
             }
+        }
+
+        protected int NumberOfAvailableSeats(int travelClassId)
+        {
+            var travelClass = this.TravelClassesServices.GetTravelClass(travelClassId);
+            int reservedSeatsForTravelClass = this.SeatsServices.GetAll()
+                .Where(s => s.LegInstance.AircraftId == travelClass.AircraftId)
+                .Count(s => s.IsReserved);
+
+            return travelClass.NumberOfSeats - reservedSeatsForTravelClass;
         }
 
         private ApplicationUserManager GetManager()

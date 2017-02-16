@@ -67,7 +67,6 @@
                 bookingToUpdate.TotalPrice = booking.TotalPrice;
                 bookingToUpdate.TravelClassId = booking.TravelClassId;
                 bookingToUpdate.UserId = booking.UserId;
-                bookingToUpdate.FlightId = booking.FlightId;
                 bookingToUpdate.IsDeleted = booking.IsDeleted;
                 this.bookings.SaveChanges();
             }

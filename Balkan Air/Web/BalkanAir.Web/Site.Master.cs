@@ -28,7 +28,7 @@
         public IAirportsServices AirportsServices { get; set; }
 
         [Inject]
-        public IFlightsServices FlightsServices { get; set; }
+        public ILegInstancesServices LegInstancesServices { get; set; }
 
         [Inject]
         public INotificationsServices NotificationsServices { get; set; }
@@ -270,10 +270,10 @@
 
         private void SetSelectedFlightToItinerary(Data.Models.Booking booking, ref decimal totalCost)
         {
-            Flight selectedFlight = this.FlightsServices.GetFlight(booking.FlightId);
+            LegInstance selectedLegInstance = this.LegInstancesServices.GetLegInstance(booking.LegInstanceId);
 
-            this.FlightNuberLiteral.Text = selectedFlight.Number;
-            //this.DateTimeLiteral.Text = selectedFlight.Departure.ToString("MMMM dd, yyyy hh:mm", CultureInfo.InvariantCulture);
+            this.FlightNuberLiteral.Text = selectedLegInstance.FlightLeg.Flight.Number;
+            this.DateTimeLiteral.Text = selectedLegInstance.DateOfTravel.ToString("MMMM dd, yyyy hh:mm", CultureInfo.InvariantCulture);
 
             decimal flightPrice = this.TravelClassesServices.GetTravelClass(booking.TravelClassId).Price;
             this.FlightPriceLiteral.Text = "&#8364; " + string.Format("{0:0.00}", flightPrice);

@@ -11,14 +11,19 @@
 
             <div class="center slider">
                 <asp:Repeater ID="AvailableDatesRepeater" runat="server"
-                    ItemType="BalkanAir.Data.Models.Flight"
+                    ItemType="BalkanAir.Data.Models.LegInstance"
                     SelectMethod="AvailableDatesRepeater_GetData">
                     <ItemTemplate>
                         <asp:LinkButton CssClass="datesLinkButton" runat="server" CommandArgument="<%#: Item.Id %>"
                             OnClick="OnFlightDateLinkButtonClicked">
                             <div class="flightDatesDiv">
-                                <span class="date"><%#: Item.Departure.Date.ToString("ddd dd, MMM", CultureInfo.InvariantCulture) %></span>
-                                <span class="price">&#8364; <%#: Item.TravelClasses.Where(x => x.Type == BalkanAir.Data.Models.TravelClassType.Economy).FirstOrDefault().Price %></span>
+                                <span class="date">
+                                    <%#: Item.DateOfTravel.ToString("ddd dd, MMM", CultureInfo.InvariantCulture) %>
+                                </span>
+                                <span class="price">
+                                    &#8364; 
+                                    <%#: Item.FlightLeg.Route.Fares.FirstOrDefault().Price %>
+                                </span>
                             </div>
                         </asp:LinkButton>
                     </ItemTemplate>
@@ -26,15 +31,15 @@
             </div>
 
             <div id="SelectedFlightDetailsDiv">
-                <asp:FormView ID="FlightDetailsFormView" runat="server" ItemType="BalkanAir.Data.Models.Flight">
+                <asp:FormView ID="FlightDetailsFormView" runat="server" ItemType="BalkanAir.Data.Models.LegInstance">
                     <ItemTemplate>
                         <div id="FlightDetailsDiv">
                             <h4>Flight details</h4>
                             <hr />
                             <div id="FlightDepartureDetailsDiv">
-                                <span id="FlightNumberSpan"><%#: Item.Number %></span>
-                                <span id="FromAirportSpan"><%#: Item.DepartureAirport.Name %></span>
-                                <span id="DepartureSpan"><%#: Item.Departure.ToString("HH:mm") %></span>
+                                <span id="FlightNumberSpan"><%#: Item.FlightLeg.Flight.Number %></span>
+                                <span id="FromAirportSpan"><%#: Item.FlightLeg.Route.Origin.Name %></span>
+                                <span id="DepartureSpan"><%#: Item.DepartureTime.Hours + ":" + Item.DepartureTime.Minutes %></span>
                             </div>
                             <div id="FlightMiddleImage">
                                 <span>
@@ -44,8 +49,8 @@
                             </div>
                             <div id="FlightDestinationDetailsDeiv">
                                 <span id="FlightDurationSpan"><%#: Item.Duration.Hours %> hr <%#: Item.Duration.Minutes %> min</span>
-                                <span id="ToAirportSpan"><%#: Item.ArrivalAirport.Name %></span>
-                                <span id="ArrivalSpan"><%#: Item.Arrival.ToString("HH:mm")  %></span>
+                                <span id="ToAirportSpan"><%#: Item.FlightLeg.Route.Destination.Name %></span>
+                                <span id="ArrivalSpan"><%#: Item.ArrivalTime.Hours + ":" + Item.ArrivalTime.Minutes %></span>
                             </div>
                         </div>
                     </ItemTemplate>
@@ -68,12 +73,13 @@
                                 </span>
                                 <span class="travelClassPriceSpan">
                                     <label>
-                                        <input type="radio" required name="price" value="<%# Item.Id %>" class="<%#: Item.AvailableSeats == 0 ? "noMoreSeats" : "" %>" /> 
+                                        <input type="radio" required name="price" value="<%# Item.Id %>" 
+                                            class="<%#: this.NumberOfAvailableSeats(Item.Id) == 0 ? "noMoreSeats" : "" %>" /> 
                                         &#8364; <%# Item.Price %>
                                     </label>
 
                                     <span class="travelClassSeats">
-                                        <%#: Item.AvailableSeats %> seats remaining at this price
+                                        <%#: this.NumberOfAvailableSeats(Item.Id) %> seats remaining at this price
                                     </span>
                                 </span>
                             </div>

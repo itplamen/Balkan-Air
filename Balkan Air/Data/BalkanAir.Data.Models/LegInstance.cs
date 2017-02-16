@@ -10,6 +10,7 @@
         public LegInstance()
         {
             this.Seats = new HashSet<Seat>();
+            this.Bookings = new HashSet<Booking>();
         }
 
         [Key]
@@ -44,6 +45,8 @@
         public virtual Aircraft Aircraft { get; set; }
 
         public virtual ICollection<Seat> Seats { get; set; }
+
+        public virtual ICollection<Booking> Bookings { get; set; }
 
         [NotMapped]
         public TimeSpan Duration

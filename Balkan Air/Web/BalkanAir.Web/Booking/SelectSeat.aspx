@@ -11,8 +11,8 @@
                     <span>
                         <input type="radio" id="<%#: Item.Row + Item.Number %>" name="seat" data-value="<%#: Item.Number %>"
                             required value="<%# Item.Row %>" />
-                        <label for="<%#: Item.Row + Item.Number %>" class="<%#: Item.TravelClass.Type %> 
-                            <%#: Item.TravelClass.Type.ToString() != this.SelectedTravelClassLabel.Text ? "unavailableSeatLabel" : 
+                        <label for="<%#: Item.Row + Item.Number %>" class="<%#: this.GetTravelClassType(Item.TravelClassId) %> 
+                            <%#: this.GetTravelClassType(Item.TravelClassId) != this.SelectedTravelClassLabel.Text ? "unavailableSeatLabel" : 
                                 Item.IsReserved ? "reservedSeatLabel" : "availableSeatLabel" %>">
                             <%# Item.Number %></label>
                     </span>
