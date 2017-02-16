@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FlightInfo.aspx.cs" Inherits="BalkanAir.Web.FlightInfo" %>
+﻿<%@ Page Title="Flight Info" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FlightInfo.aspx.cs" Inherits="BalkanAir.Web.FlightInfo" %>
 
 <%@ Import Namespace="System.Globalization" %>
 
@@ -22,32 +22,36 @@
     </asp:Panel>
 
     <asp:GridView ID="FlightInfoGridView" runat="server" ClientIDMode="Static"
-        ItemType="BalkanAir.Data.Models.Flight"
+        ItemType="BalkanAir.Data.Models.LegInstance"
         DataKeyNames="Id"
         AutoGenerateColumns="false"
         AllowPaging="true"
         PageSize="20"
         OnPageIndexChanging="FlightInfoGridView_PageIndexChanging">
         <Columns>
-            <asp:BoundField DataField="Number" HeaderText="Flight No." />
+            <asp:TemplateField HeaderText="Flight No.">
+                <ItemTemplate>
+                    <%#: Item.FlightLeg.Flight.Number %>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:TemplateField HeaderText="From">
                 <ItemTemplate>
-                    <%#: Item.DepartureAirport.Name %> (<%#: Item.DepartureAirport.Abbreviation %>)
+                    <%#: Item.FlightLeg.Route.Origin.Name %> (<%#: Item.FlightLeg.Route.Origin.Abbreviation %>)
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="To">
                 <ItemTemplate>
-                    <%#: Item.ArrivalAirport.Name %> (<%#: Item.ArrivalAirport.Abbreviation %>)
+                    <%#: Item.FlightLeg.Route.Destination.Name %> (<%#: Item.FlightLeg.Route.Destination.Abbreviation %>)
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Departure">
                 <ItemTemplate>
-                    <%#: Item.Departure.ToString("dd/MMMM/yy -> H:mm", CultureInfo.InvariantCulture) %>
+                    <%#: Item.DepartureDateTime.ToString("dd/MMMM/yy -> H:mm", CultureInfo.InvariantCulture) %>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Arrival">
                 <ItemTemplate>
-                    <%#: Item.Arrival.ToString("dd/MMMM/yy -> H:mm", CultureInfo.InvariantCulture) %>
+                    <%#: Item.ArrivalDateTime.ToString("dd/MMMM/yy -> H:mm", CultureInfo.InvariantCulture) %>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:BoundField DataField="Duration" HeaderText="Duration" />

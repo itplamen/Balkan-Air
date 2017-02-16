@@ -423,6 +423,10 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     right: 40px;
 }
 
+#FlightDateAndPrice {
+    margin-bottom: 10px; 
+}
+
 /****************** Booking/SelectFlight.aspx ******************/
 
 .airplaneFlyOutImage {

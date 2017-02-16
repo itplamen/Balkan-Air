@@ -61,9 +61,8 @@
 
             if (legInstanceToUpdate != null)
             {
-                legInstanceToUpdate.DateOfTravel = legInstance.DateOfTravel;
-                legInstanceToUpdate.DepartureTime = legInstance.DepartureTime;
-                legInstanceToUpdate.ArrivalTime = legInstance.ArrivalTime;
+                legInstanceToUpdate.DepartureDateTime = legInstance.DepartureDateTime;
+                legInstanceToUpdate.ArrivalDateTime = legInstance.ArrivalDateTime;
                 legInstanceToUpdate.IsDeleted = legInstance.IsDeleted;
                 legInstanceToUpdate.FlightLegId = legInstance.FlightLegId;
                 legInstanceToUpdate.FlightStatusId = legInstance.FlightStatusId;

@@ -18,7 +18,7 @@
                             OnClick="OnFlightDateLinkButtonClicked">
                             <div class="flightDatesDiv">
                                 <span class="date">
-                                    <%#: Item.DateOfTravel.ToString("ddd dd, MMM", CultureInfo.InvariantCulture) %>
+                                    <%#: Item.DepartureDateTime.ToString("ddd dd, MMM", CultureInfo.InvariantCulture) %>
                                 </span>
                                 <span class="price">
                                     &#8364; 
@@ -39,7 +39,7 @@
                             <div id="FlightDepartureDetailsDiv">
                                 <span id="FlightNumberSpan"><%#: Item.FlightLeg.Flight.Number %></span>
                                 <span id="FromAirportSpan"><%#: Item.FlightLeg.Route.Origin.Name %></span>
-                                <span id="DepartureSpan"><%#: Item.DepartureTime.Hours + ":" + Item.DepartureTime.Minutes %></span>
+                                <span id="DepartureSpan"><%#: Item.DepartureDateTime.ToString("HH:mm", CultureInfo.InvariantCulture) %></span>
                             </div>
                             <div id="FlightMiddleImage">
                                 <span>
@@ -50,7 +50,7 @@
                             <div id="FlightDestinationDetailsDeiv">
                                 <span id="FlightDurationSpan"><%#: Item.Duration.Hours %> hr <%#: Item.Duration.Minutes %> min</span>
                                 <span id="ToAirportSpan"><%#: Item.FlightLeg.Route.Destination.Name %></span>
-                                <span id="ArrivalSpan"><%#: Item.ArrivalTime.Hours + ":" + Item.ArrivalTime.Minutes %></span>
+                                <span id="ArrivalSpan"><%#: Item.ArrivalDateTime.ToString("HH:mm", CultureInfo.InvariantCulture) %></span>
                             </div>
                         </div>
                     </ItemTemplate>
@@ -74,12 +74,12 @@
                                 <span class="travelClassPriceSpan">
                                     <label>
                                         <input type="radio" required name="price" value="<%# Item.Id %>" 
-                                            class="<%#: this.NumberOfAvailableSeats(Item.Id) == 0 ? "noMoreSeats" : "" %>" /> 
+                                            class="<%#: Item.NumberOfAvailableSeats == 0 ? "noMoreSeats" : "" %>" /> 
                                         &#8364; <%# Item.Price %>
                                     </label>
 
                                     <span class="travelClassSeats">
-                                        <%#: this.NumberOfAvailableSeats(Item.Id) %> seats remaining at this price
+                                        <%#: Item.NumberOfAvailableSeats %> seats remaining at this price
                                     </span>
                                 </span>
                             </div>

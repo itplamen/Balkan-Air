@@ -62,9 +62,9 @@
             if (flightLegToUpdate != null)
             {
                 flightLegToUpdate.DepartureAirportId = flightLeg.DepartureAirportId;
-                flightLegToUpdate.ScheduledDepartureTime = flightLeg.ScheduledDepartureTime;
+                flightLegToUpdate.ScheduledDepartureDateTime = flightLeg.ScheduledDepartureDateTime;
                 flightLegToUpdate.ArrivalAirportId = flightLeg.ArrivalAirportId;
-                flightLegToUpdate.ScheduledArrivalTime = flightLeg.ScheduledArrivalTime;
+                flightLegToUpdate.ScheduledArrivalDateTime = flightLeg.ScheduledArrivalDateTime;
                 flightLegToUpdate.IsDeleted = flightLeg.IsDeleted;
                 flightLegToUpdate.FlightId = flightLeg.FlightId;
                 flightLegToUpdate.RouteId = flightLeg.RouteId;

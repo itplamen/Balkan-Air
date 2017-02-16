@@ -18,12 +18,12 @@
             <ItemTemplate>
                 <a href='<%= Page.ResolveUrl(Pages.ITINERARY) %>?id=<%# Item.Id %>&flight=<%#: Item.LegInstance.FlightLeg.Flight.Number %>'>
                     <div class="divBox">
-                        <span class="flightNumberSpan"><%#: Item.LegInstance.FlightLeg.Flight %></span>
+                        <span class="flightNumberSpan"><%#: Item.LegInstance.FlightLeg.Flight.Number %></span>
                         <span class="fromAirportSpan"><%#: Item.LegInstance.FlightLeg.Route.Origin.Name %></span>
                         <input type="image" class="airplaneFlyOutImage" alt="Airplane image" src="../Content/Images/airplane_fly_out_image.png" />
                         <span class="toAirportSpan"><%#: Item.LegInstance.FlightLeg.Route.Destination.Name %></span>
-                        <span class="flightDateSpan"><%#: Item.LegInstance.DateOfTravel.ToString("dddd dd, MMMM", CultureInfo.InvariantCulture) %></span>
-                        <span class="flightTimeSpan"><%#: Item.LegInstance.DepartureTime.Hours + ":" + Item.LegInstance.ArrivalTime.Hours %></span>
+                        <span class="flightDateSpan"><%#: Item.LegInstance.DepartureDateTime.ToString("dddd dd, MMMM", CultureInfo.InvariantCulture) %></span>
+                        <span class="flightTimeSpan"><%#: Item.LegInstance.DepartureDateTime.ToString("HH:mm", CultureInfo.InvariantCulture) %></span>
                         <span class="bookingStatus">Confirmed</span>
                     </div>
                 </a>

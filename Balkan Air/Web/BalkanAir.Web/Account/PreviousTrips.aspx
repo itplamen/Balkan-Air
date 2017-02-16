@@ -19,9 +19,23 @@
         </LayoutTemplate>
         <ItemTemplate>
             <div class="previousTripDiv">
-                <p>From: <span><%#: Item.Flight.DepartureAirport.Name %> (<%#: Item.Flight.DepartureAirport.Abbreviation %>), <%#: Item.Flight.DepartureAirport.Country.Name %></span></p>
-                <p>To: <span><%#: Item.Flight.ArrivalAirport.Name %> (<%#: Item.Flight.ArrivalAirport.Abbreviation %>), <%#: Item.Flight.ArrivalAirport.Country.Name %></span></p>
-                <p>Date of trip: <span><%#: Item.Flight.Departure %></span></p>
+                <p>
+                    From: 
+                    <span>
+                        <%#: Item.LegInstance.FlightLeg.Route.Origin.Name %> 
+                        (<%#: Item.LegInstance.FlightLeg.Route.Origin.Abbreviation %>), 
+                        <%#: Item.LegInstance.FlightLeg.Route.Origin.Country.Name %>
+                    </span>
+                </p>
+                <p>
+                    To: 
+                    <span>
+                        <%#: Item.LegInstance.FlightLeg.Route.Destination.Name %> 
+                        (<%#: Item.LegInstance.FlightLeg.Route.Destination.Abbreviation %>), 
+                        <%#: Item.LegInstance.FlightLeg.Route.Destination.Country.Name %>
+                    </span>
+                </p>
+                <p>Date of trip: <span><%#: Item.LegInstance.DepartureDateTime %></span></p>
                 <p>Date of booking: <span><%#: Item.DateOfBooking %></span></p>
                 <p>Seat: <span><%#: Item.Row %><%#: Item.SeatNumber %></span></p>
                 <p>Total price: <%#: Item.TotalPrice %></p>

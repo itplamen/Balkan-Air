@@ -19,13 +19,13 @@
         public int DepartureAirportId  { get; set; }
 
         [Required]
-        public TimeSpan ScheduledDepartureTime { get; set; }
+        public DateTime ScheduledDepartureDateTime { get; set; }
 
         [Required]
         public int ArrivalAirportId { get; set; }
 
         [Required]
-        public TimeSpan ScheduledArrivalTime { get; set; }
+        public DateTime ScheduledArrivalDateTime { get; set; }
 
         public bool IsDeleted { get; set; }
 

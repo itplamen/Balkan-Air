@@ -228,13 +228,13 @@
                     <li class="data">
                         <asp:Literal ID="FromAirportToAirportLiteral" runat="server" />
                     </li>
-                    <li class="data">
+                    <li class="data" id="FlightDateAndPrice">
                         <asp:Literal ID="DateTimeLiteral" runat="server" />
+                        <span class="priceSpan"><asp:Literal ID="FlightPriceLiteral" runat="server" /></span>
                     </li>
                     <li class="data">
                         <asp:Literal ID="TravelClassLiteral" runat="server" />
-                        <span class="priceSpan">
-                            <asp:Literal ID="FlightPriceLiteral" runat="server" /></span>
+                        <span class="priceSpan"><asp:Literal ID="TravelClassPrice" runat="server" /></span>
                     </li>
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header">Passenger</li>

@@ -28,6 +28,9 @@
         public IAirportsServices AirportsServices { get; set; }
 
         [Inject]
+        public IFaresServices FaresServices { get; set; }
+
+        [Inject]
         public ILegInstancesServices LegInstancesServices { get; set; }
 
         [Inject]
@@ -273,11 +276,18 @@
             LegInstance selectedLegInstance = this.LegInstancesServices.GetLegInstance(booking.LegInstanceId);
 
             this.FlightNuberLiteral.Text = selectedLegInstance.FlightLeg.Flight.Number;
-            this.DateTimeLiteral.Text = selectedLegInstance.DateOfTravel.ToString("MMMM dd, yyyy hh:mm", CultureInfo.InvariantCulture);
+            this.DateTimeLiteral.Text = selectedLegInstance.DepartureDateTime.ToString("MMMM dd, yyyy hh:mm", CultureInfo.InvariantCulture);
 
-            decimal flightPrice = this.TravelClassesServices.GetTravelClass(booking.TravelClassId).Price;
+            decimal flightPrice = this.FaresServices.GetAll()
+                .Where(f => f.RouteId == selectedLegInstance.FlightLeg.RouteId)
+                .FirstOrDefault()
+                .Price;
             this.FlightPriceLiteral.Text = "&#8364; " + string.Format("{0:0.00}", flightPrice);
-            totalCost += flightPrice;
+
+
+            decimal travelClassPrice = this.TravelClassesServices.GetTravelClass(booking.TravelClassId).Price;
+            this.TravelClassPrice.Text = "&#8364; " + string.Format("{0:0.00}", travelClassPrice);
+            totalCost += flightPrice + travelClassPrice;
 
             this.TravelClassLiteral.Text = this.TravelClassesServices.GetTravelClass(booking.TravelClassId).Type.ToString() + " class";
         }

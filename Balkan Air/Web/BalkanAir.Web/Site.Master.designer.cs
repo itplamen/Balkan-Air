@@ -103,6 +103,15 @@ namespace BalkanAir.Web {
         protected global::System.Web.UI.WebControls.Literal DateTimeLiteral;
         
         /// <summary>
+        /// FlightPriceLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal FlightPriceLiteral;
+        
+        /// <summary>
         /// TravelClassLiteral control.
         /// </summary>
         /// <remarks>
@@ -112,13 +121,13 @@ namespace BalkanAir.Web {
         protected global::System.Web.UI.WebControls.Literal TravelClassLiteral;
         
         /// <summary>
-        /// FlightPriceLiteral control.
+        /// TravelClassPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal FlightPriceLiteral;
+        protected global::System.Web.UI.WebControls.Literal TravelClassPrice;
         
         /// <summary>
         /// PassengerNameLiteral control.

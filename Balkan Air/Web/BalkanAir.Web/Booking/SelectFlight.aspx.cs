@@ -45,7 +45,7 @@
                 legInstances = this.LegInstancesServices.GetAll()
                     .Where(l => !l.IsDeleted && l.FlightLeg.DepartureAirportId == departureAirprotId && 
                         l.FlightLeg.ArrivalAirportId == destinationAirportId)
-                    .OrderBy(l => l.DepartureTime)
+                    .OrderBy(l => l.DepartureDateTime)
                     .ToList();
             }
 
@@ -117,12 +117,16 @@
 
         protected int NumberOfAvailableSeats(int travelClassId)
         {
-            var travelClass = this.TravelClassesServices.GetTravelClass(travelClassId);
-            int reservedSeatsForTravelClass = this.SeatsServices.GetAll()
-                .Where(s => s.LegInstance.AircraftId == travelClass.AircraftId)
-                .Count(s => s.IsReserved);
+            //var travelClass = this.TravelClassesServices.GetTravelClass(travelClassId);
+            //int reservedSeatsForTravelClass = this.SeatsServices.GetAll()
+            //    .Where(s => s.TravelClassId == travelClassId)
+            //    .Count(s => s.IsReserved);
 
-            return travelClass.NumberOfSeats - reservedSeatsForTravelClass;
+            //return travelClass.NumberOfSeats - reservedSeatsForTravelClass;
+
+            var travelClass = this.TravelClassesServices.GetTravelClass(travelClassId);
+
+            return travelClass.NumberOfAvailableSeats;
         }
 
         private ApplicationUserManager GetManager()

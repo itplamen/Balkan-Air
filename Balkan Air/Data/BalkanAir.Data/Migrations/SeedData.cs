@@ -406,39 +406,39 @@
         private void SeedFlightLegs ()
         {
             // Sofia - Madrid
-            this.AddFlightLeg(1, new TimeSpan(17, 30, 00), 6, new TimeSpan(20, 30, 00), 1, 1);
+            this.AddFlightLeg(1, new DateTime(2017, 2, 16, 17, 30, 00), 6, new DateTime(2017, 2, 16, 20, 30, 00), 1, 1);
 
             // Sofia - Madrid
-            this.AddFlightLeg(1, new TimeSpan(17, 30, 00), 6, new TimeSpan(20, 30, 00), 2, 1);
+            this.AddFlightLeg(1, new DateTime(2017, 2, 20, 17, 30, 00), 6, new DateTime(2017, 2, 17, 20, 30, 00), 2, 1);
 
             // Sofia - Madrid
-            this.AddFlightLeg(1, new TimeSpan(17, 30, 00), 6, new TimeSpan(20, 30, 00), 3, 1);
+            this.AddFlightLeg(1, new DateTime(2017, 2, 25, 17, 30, 00), 6, new DateTime(2017, 2, 25, 20, 30, 00), 3, 1);
 
             // Madrid - Sofia
-            this.AddFlightLeg(6, new TimeSpan(20, 30, 00), 1, new TimeSpan(23, 30, 00), 4, 2);
+            this.AddFlightLeg(6, new DateTime(2017, 2, 16, 20, 30, 00), 1, new DateTime(2017, 2, 16, 23, 30, 00), 4, 2);
 
             // Sofia - Lisbon
-            this.AddFlightLeg(1, new TimeSpan(14, 45, 00), 3, new TimeSpan(19, 30, 00), 5, 3);
+            this.AddFlightLeg(1, new DateTime(2017, 2, 16, 14, 45, 00), 3, new DateTime(2017, 2, 16, 19, 30, 00), 5, 3);
 
             // Varna - Berlin
-            this.AddFlightLeg(2, new TimeSpan(2, 00, 00), 13, new TimeSpan(5, 35, 00), 6, 4);
+            this.AddFlightLeg(2, new DateTime(2017, 2, 23, 2, 00, 00), 13, new DateTime(2017, 2, 23, 5, 35, 00), 6, 4);
 
             // London - Paris
-            this.AddFlightLeg(15, new TimeSpan(18, 10, 00), 17, new TimeSpan(20, 00, 00), 7, 5);
+            this.AddFlightLeg(15, new DateTime(2017, 2, 28, 18, 10, 00), 17, new DateTime(2017, 2, 28, 20, 00, 00), 7, 5);
 
             // Liverpool - Berlin, Berlin - Ibiza
             //this.AddFlightLeg(16, new TimeSpan(8, 15, 00), 13, new TimeSpan(10, 15, 00), 8, 3);
         }
 
-        private void AddFlightLeg(int departureAirportId, TimeSpan cheduledDepartureTime, int arrivalAirportId, 
-            TimeSpan scheduledArrivalTime, int flightId, int routeId)
+        private void AddFlightLeg(int departureAirportId, DateTime cheduledDepartureDateTime, int arrivalAirportId,
+            DateTime scheduledArrivalDateTime, int flightId, int routeId)
         {
             this.FlightLegs.Add(new FlightLeg()
             {
                 DepartureAirportId = departureAirportId,
-                ScheduledDepartureTime = cheduledDepartureTime,
+                ScheduledDepartureDateTime = cheduledDepartureDateTime,
                 ArrivalAirportId = arrivalAirportId,
-                ScheduledArrivalTime = scheduledArrivalTime,
+                ScheduledArrivalDateTime = scheduledArrivalDateTime,
                 FlightId = flightId,
                 RouteId = routeId
             });
@@ -447,42 +447,34 @@
         private void SeedLegInstances()
         {
             // Sofia - Madrid
-            this.AddLegInstance(new DateTime(2017, 2, 18), this.FlightLegs[0].ScheduledDepartureTime, 
-                this.FlightLegs[0].ScheduledArrivalTime, 1, 8, 1);
+            this.AddLegInstance(this.FlightLegs[0].ScheduledDepartureDateTime, this.FlightLegs[0].ScheduledArrivalDateTime, 1, 8, 1);
 
             // Sofia - Madrid
-            this.AddLegInstance(new DateTime(2017, 2, 23), this.FlightLegs[1].ScheduledDepartureTime,
-               this.FlightLegs[1].ScheduledArrivalTime, 2, 8, 1);
+            this.AddLegInstance(this.FlightLegs[1].ScheduledDepartureDateTime, this.FlightLegs[1].ScheduledArrivalDateTime, 2, 8, 1);
 
             // Sofia - Madrid
-            this.AddLegInstance(new DateTime(2017, 2, 28), this.FlightLegs[2].ScheduledDepartureTime,
-               this.FlightLegs[2].ScheduledArrivalTime, 3, 8, 1);
+            this.AddLegInstance(this.FlightLegs[2].ScheduledDepartureDateTime, this.FlightLegs[2].ScheduledArrivalDateTime, 3, 8, 1);
 
             // Madrid - Sofia
-            this.AddLegInstance(new DateTime(2017, 2, 18), this.FlightLegs[3].ScheduledDepartureTime,
-               this.FlightLegs[3].ScheduledArrivalTime, 4, 8, 1);
+            this.AddLegInstance(this.FlightLegs[3].ScheduledDepartureDateTime, this.FlightLegs[3].ScheduledArrivalDateTime, 4, 8, 1);
 
             // Sofia - Lisbon
-            this.AddLegInstance(new DateTime(2017, 2, 18), this.FlightLegs[4].ScheduledDepartureTime,
-               this.FlightLegs[4].ScheduledArrivalTime, 5, 8, 2);
+            this.AddLegInstance(this.FlightLegs[4].ScheduledDepartureDateTime, this.FlightLegs[4].ScheduledArrivalDateTime, 5, 8, 2);
 
             // Varna - Berlin
-            this.AddLegInstance(new DateTime(2017, 2, 19), this.FlightLegs[5].ScheduledDepartureTime,
-               this.FlightLegs[5].ScheduledArrivalTime, 6, 8, 3);
+            this.AddLegInstance(this.FlightLegs[5].ScheduledDepartureDateTime, this.FlightLegs[5].ScheduledArrivalDateTime, 6, 8, 3);
 
             // London - Paris
-            this.AddLegInstance(new DateTime(2017, 2, 18), this.FlightLegs[6].ScheduledDepartureTime,
-               this.FlightLegs[6].ScheduledArrivalTime, 7, 8, 4);
+            this.AddLegInstance(this.FlightLegs[6].ScheduledDepartureDateTime, this.FlightLegs[6].ScheduledArrivalDateTime, 7, 8, 4);
         }
 
-        private void AddLegInstance(DateTime dateOfTravel, TimeSpan departureTime, TimeSpan arrivalTime, int flightLegId,
+        private void AddLegInstance(DateTime departureDateTime, DateTime arrivalDateTime, int flightLegId, 
             int flightStatusId, int aircraftId)
         {
             this.LegInstances.Add(new LegInstance()
             {
-                DateOfTravel = dateOfTravel,
-                DepartureTime = departureTime,
-                ArrivalTime = arrivalTime,
+                DepartureDateTime = departureDateTime,
+                ArrivalDateTime = arrivalDateTime,
                 FlightLegId = flightLegId,
                 FlightStatusId = flightStatusId,
                 AircraftId = aircraftId

@@ -11,20 +11,20 @@
 
     using Ninject;
 
-    using BalkanAir.Data.Models;
-    using BalkanAir.Services.Data.Contracts;
+    using Data.Models;
+    using Services.Data.Contracts;
 
     public partial class FlightInfo : Page
     {
         private IDictionary<string, string> orderFlightsBy = new Dictionary<string, string>()
         {
-            { "number", "Number" },
-            { "fromAirport", "FromAirport.Name" },
-            { "toAirport", "ToAirport.Name" }
+            { "number", "FlightLeg.Flight.Number" },
+            { "fromAirport", "FlightLeg.Route.Origin.Name" },
+            { "toAirport", "FlightLeg.Route.Destination.Name" }
         };
 
         [Inject]
-        public IFlightsServices FlightsServices { get; set; }
+        public ILegInstancesServices LegInstancesServices { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,9 +38,9 @@
         {
             string flightNumber = this.SearchedFlightNumberTextBox.Text.ToLower();
 
-            List<Flight> matchedFlights = this.FlightsServices.GetAll()
-                .Where(f => !f.IsDeleted && f.Number.ToLower().Contains(flightNumber))
-                .OrderBy(f => f.Number)
+            List<LegInstance> matchedFlights = this.LegInstancesServices.GetAll()
+                .Where(l => !l.IsDeleted && l.FlightLeg.Flight.Number.ToLower().Contains(flightNumber))
+                .OrderBy(l => l.FlightLeg.Flight.Number)
                 .ToList();
 
             this.FlightInfoGridView.DataSource = matchedFlights;
@@ -56,18 +56,18 @@
         private void BindGridViewWithAllFlights()
         {
             string orderBy = this.Request.QueryString["orderBy"];
-            List<Flight> flights;
+            List<LegInstance> legInstances;
 
             if (!string.IsNullOrEmpty(orderBy) && this.orderFlightsBy.ContainsKey(orderBy))
             {
-                flights = this.FlightsServices.GetAll()
-                .Where(f => !f.IsDeleted)
+                legInstances = this.LegInstancesServices.GetAll()
+                .Where(l => !l.IsDeleted)
                 .OrderBy(this.orderFlightsBy[orderBy] + " Ascending")
                 .ToList();
             }
             else
             {
-                flights = this.FlightsServices.GetAll()
+                legInstances = this.LegInstancesServices.GetAll()
                 .Where(f => !f.IsDeleted)
                 .ToList();
             }
@@ -78,7 +78,7 @@
                 this.Response.Redirect(this.Request.Url.AbsolutePath);
             }
 
-            this.FlightInfoGridView.DataSource = flights;
+            this.FlightInfoGridView.DataSource = legInstances;
             this.FlightInfoGridView.DataBind();
         }   
     }

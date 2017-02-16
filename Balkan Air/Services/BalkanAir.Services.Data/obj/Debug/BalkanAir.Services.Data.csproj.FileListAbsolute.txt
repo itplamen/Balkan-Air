@@ -1,4 +1,3 @@
-D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Debug\EntityFramework.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Debug\BalkanAir.Services.Data.dll.config
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Debug\BalkanAir.Services.Data.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Debug\BalkanAir.Services.Data.pdb
@@ -6,6 +5,7 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bi
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Debug\BalkanAir.Data.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Debug\BalkanAir.Data.Models.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Debug\BalkanAir.Services.Common.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Debug\EntityFramework.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Debug\EntityFramework.SqlServer.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll

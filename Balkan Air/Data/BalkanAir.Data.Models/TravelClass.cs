@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
     using Common;
 
@@ -57,5 +58,24 @@
 
         [ForeignKey("AircraftId")]
         public virtual Aircraft Aircraft { get; set; }
+
+        [NotMapped]
+        public int NumberOfAvailableSeats
+        {
+            get
+            {
+                var legInstance = this.Aircraft.LegInstances
+                    .Where(l => l.AircraftId == this.AircraftId)
+                    .FirstOrDefault();
+
+                if (legInstance != null)
+                {
+                    return this.NumberOfSeats - legInstance.Seats
+                        .Count(s => !s.IsDeleted && s.IsReserved && s.TravelClassId == this.Id);
+                }
+
+                return -1;
+            }
+        }
     }
 }

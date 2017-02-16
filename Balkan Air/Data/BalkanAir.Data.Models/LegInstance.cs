@@ -17,14 +17,10 @@
         public int Id { get; set; }
 
         [Required]
-        [DataType(DataType.Date)]
-        public DateTime DateOfTravel { get; set; }
+        public DateTime DepartureDateTime { get; set; }
 
         [Required]
-        public TimeSpan DepartureTime { get; set; }
-
-        [Required]
-        public TimeSpan ArrivalTime { get; set; }
+        public DateTime ArrivalDateTime { get; set; }
 
         public bool IsDeleted { get; set; }
 
@@ -53,7 +49,7 @@
         {
             get
             {
-                return this.ArrivalTime - this.DepartureTime;
+                return this.ArrivalDateTime - this.DepartureDateTime;
             }
         }
     }
