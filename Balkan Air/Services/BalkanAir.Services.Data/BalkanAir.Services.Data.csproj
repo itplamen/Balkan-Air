@@ -73,6 +73,7 @@
     <Compile Include="Contracts\ICommentsServices.cs" />
     <Compile Include="Contracts\ICountriesServices.cs" />
     <Compile Include="Contracts\ICreditCardsServices.cs" />
+    <Compile Include="Contracts\IFaresServices.cs" />
     <Compile Include="Contracts\IFlightsServices.cs" />
     <Compile Include="Contracts\IFlightStatusesServices.cs" />
     <Compile Include="Contracts\INewsServices.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Contracts\IUsersServices.cs" />
     <Compile Include="CountriesServices.cs" />
     <Compile Include="CreditCardsServices.cs" />
+    <Compile Include="FaresServices.cs" />
     <Compile Include="FlightsServices.cs" />
     <Compile Include="FlightStatusesServices.cs" />
     <Compile Include="NewsServices.cs" />

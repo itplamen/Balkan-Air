@@ -8,8 +8,8 @@
 
     using Ninject;
 
-    using Data.Models;
     using Common;
+    using Data.Models;
     using Services.Data.Contracts;
 
     public partial class _Default : Page

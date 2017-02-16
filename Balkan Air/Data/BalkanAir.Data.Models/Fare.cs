@@ -12,6 +12,8 @@
         [Range(0, 100000, ErrorMessage = "Invalid price!")]
         public decimal Price { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         [Required]
         public int RouteId { get; set; }
 
