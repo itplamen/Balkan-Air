@@ -9,7 +9,6 @@
         public int Id { get; set; }
 
         [Required]
-        [Range(0, 100000, ErrorMessage = "Invalid price!")]
         public decimal Price { get; set; }
 
         public bool IsDeleted { get; set; }

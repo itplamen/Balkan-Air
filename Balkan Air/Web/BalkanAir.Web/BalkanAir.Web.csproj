@@ -264,22 +264,23 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\Profile.aspx" />
     <Content Include="Administration\AdministrationHome.aspx" />
-    <Content Include="Administration\ManageAircraftManufacturers.aspx" />
-    <Content Include="Administration\ManageAircrafts.aspx" />
-    <Content Include="Administration\ManageAirports.aspx" />
-    <Content Include="Administration\ManageBaggage.aspx" />
-    <Content Include="Administration\ManageBookings.aspx" />
-    <Content Include="Administration\ManageCategories.aspx" />
-    <Content Include="Administration\ManageComments.aspx" />
-    <Content Include="Administration\ManageCountries.aspx" />
-    <Content Include="Administration\ManageFlightStatuses.aspx" />
-    <Content Include="Administration\ManageNews.aspx" />
-    <Content Include="Administration\ManageNotifications.aspx" />
-    <Content Include="Administration\ManageSeats.aspx" />
-    <Content Include="Administration\ManageTravelClasses.aspx" />
-    <Content Include="Administration\ManageUserNotifications.aspx" />
-    <Content Include="Administration\ManageUserRoles.aspx" />
-    <Content Include="Administration\ManageUsers.aspx" />
+    <Content Include="Administration\FaresManagement.aspx" />
+    <Content Include="Administration\AircraftManufacturersManagement.aspx" />
+    <Content Include="Administration\AircraftsManagement.aspx" />
+    <Content Include="Administration\AirportsManagement.aspx" />
+    <Content Include="Administration\BaggageManagement.aspx" />
+    <Content Include="Administration\BookingsManagement.aspx" />
+    <Content Include="Administration\CategoriesManagement.aspx" />
+    <Content Include="Administration\CommentsManagement.aspx" />
+    <Content Include="Administration\CountriesManagement.aspx" />
+    <Content Include="Administration\FlightStatusesManagement.aspx" />
+    <Content Include="Administration\NewsManagement.aspx" />
+    <Content Include="Administration\NotificationsManagement.aspx" />
+    <Content Include="Administration\SeatsManagement.aspx" />
+    <Content Include="Administration\TravelClassesManagement.aspx" />
+    <Content Include="Administration\UserNotificationsManagement.aspx" />
+    <Content Include="Administration\UserRolesManagement.aspx" />
+    <Content Include="Administration\UsersManagement.aspx" />
     <Content Include="Administration\SendMail.aspx" />
     <Content Include="Booking\Extras.aspx" />
     <Content Include="Booking\Payment.aspx" />
@@ -338,7 +339,7 @@
     <Content Include="Content\slick\slick.less" />
     <Content Include="Content\slick\slick.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Administration\ManageFlights.aspx" />
+    <Content Include="Administration\FlightsManagement.aspx" />
     <Content Include="News.aspx" />
     <Content Include="Scripts\Account\profile.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -541,117 +542,124 @@
     <Compile Include="Administration\AdministrationHome.aspx.designer.cs">
       <DependentUpon>AdministrationHome.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administration\ManageAircraftManufacturers.aspx.cs">
-      <DependentUpon>ManageAircraftManufacturers.aspx</DependentUpon>
+    <Compile Include="Administration\FaresManagement.aspx.cs">
+      <DependentUpon>FaresManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administration\ManageAircraftManufacturers.aspx.designer.cs">
-      <DependentUpon>ManageAircraftManufacturers.aspx</DependentUpon>
+    <Compile Include="Administration\FaresManagement.aspx.designer.cs">
+      <DependentUpon>FaresManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administration\ManageAircrafts.aspx.cs">
-      <DependentUpon>ManageAircrafts.aspx</DependentUpon>
+    <Compile Include="Administration\AircraftManufacturersManagement.aspx.cs">
+      <DependentUpon>AircraftManufacturersManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administration\ManageAircrafts.aspx.designer.cs">
-      <DependentUpon>ManageAircrafts.aspx</DependentUpon>
+    <Compile Include="Administration\AircraftManufacturersManagement.aspx.designer.cs">
+      <DependentUpon>AircraftManufacturersManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administration\ManageAirports.aspx.cs">
-      <DependentUpon>ManageAirports.aspx</DependentUpon>
+    <Compile Include="Administration\AircraftsManagement.aspx.cs">
+      <DependentUpon>AircraftsManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administration\ManageAirports.aspx.designer.cs">
-      <DependentUpon>ManageAirports.aspx</DependentUpon>
+    <Compile Include="Administration\AircraftsManagement.aspx.designer.cs">
+      <DependentUpon>AircraftsManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administration\ManageBaggage.aspx.cs">
-      <DependentUpon>ManageBaggage.aspx</DependentUpon>
+    <Compile Include="Administration\AirportsManagement.aspx.cs">
+      <DependentUpon>AirportsManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administration\ManageBaggage.aspx.designer.cs">
-      <DependentUpon>ManageBaggage.aspx</DependentUpon>
+    <Compile Include="Administration\AirportsManagement.aspx.designer.cs">
+      <DependentUpon>AirportsManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administration\ManageBookings.aspx.cs">
-      <DependentUpon>ManageBookings.aspx</DependentUpon>
+    <Compile Include="Administration\BaggageManagement.aspx.cs">
+      <DependentUpon>BaggageManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administration\ManageBookings.aspx.designer.cs">
-      <DependentUpon>ManageBookings.aspx</DependentUpon>
+    <Compile Include="Administration\BaggageManagement.aspx.designer.cs">
+      <DependentUpon>BaggageManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administration\ManageCategories.aspx.cs">
-      <DependentUpon>ManageCategories.aspx</DependentUpon>
+    <Compile Include="Administration\BookingsManagement.aspx.cs">
+      <DependentUpon>BookingsManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administration\ManageCategories.aspx.designer.cs">
-      <DependentUpon>ManageCategories.aspx</DependentUpon>
+    <Compile Include="Administration\BookingsManagement.aspx.designer.cs">
+      <DependentUpon>BookingsManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administration\ManageComments.aspx.cs">
-      <DependentUpon>ManageComments.aspx</DependentUpon>
+    <Compile Include="Administration\CategoriesManagement.aspx.cs">
+      <DependentUpon>CategoriesManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administration\ManageComments.aspx.designer.cs">
-      <DependentUpon>ManageComments.aspx</DependentUpon>
+    <Compile Include="Administration\CategoriesManagement.aspx.designer.cs">
+      <DependentUpon>CategoriesManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administration\ManageCountries.aspx.cs">
-      <DependentUpon>ManageCountries.aspx</DependentUpon>
+    <Compile Include="Administration\CommentsManagement.aspx.cs">
+      <DependentUpon>CommentsManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administration\ManageCountries.aspx.designer.cs">
-      <DependentUpon>ManageCountries.aspx</DependentUpon>
+    <Compile Include="Administration\CommentsManagement.aspx.designer.cs">
+      <DependentUpon>CommentsManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administration\ManageFlightStatuses.aspx.cs">
-      <DependentUpon>ManageFlightStatuses.aspx</DependentUpon>
+    <Compile Include="Administration\CountriesManagement.aspx.cs">
+      <DependentUpon>CountriesManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administration\ManageFlightStatuses.aspx.designer.cs">
-      <DependentUpon>ManageFlightStatuses.aspx</DependentUpon>
+    <Compile Include="Administration\CountriesManagement.aspx.designer.cs">
+      <DependentUpon>CountriesManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administration\ManageNews.aspx.cs">
-      <DependentUpon>ManageNews.aspx</DependentUpon>
+    <Compile Include="Administration\FlightStatusesManagement.aspx.cs">
+      <DependentUpon>FlightStatusesManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administration\ManageNews.aspx.designer.cs">
-      <DependentUpon>ManageNews.aspx</DependentUpon>
+    <Compile Include="Administration\FlightStatusesManagement.aspx.designer.cs">
+      <DependentUpon>FlightStatusesManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administration\ManageNotifications.aspx.cs">
-      <DependentUpon>ManageNotifications.aspx</DependentUpon>
+    <Compile Include="Administration\NewsManagement.aspx.cs">
+      <DependentUpon>NewsManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administration\ManageNotifications.aspx.designer.cs">
-      <DependentUpon>ManageNotifications.aspx</DependentUpon>
+    <Compile Include="Administration\NewsManagement.aspx.designer.cs">
+      <DependentUpon>NewsManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administration\ManageSeats.aspx.cs">
-      <DependentUpon>ManageSeats.aspx</DependentUpon>
+    <Compile Include="Administration\NotificationsManagement.aspx.cs">
+      <DependentUpon>NotificationsManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administration\ManageSeats.aspx.designer.cs">
-      <DependentUpon>ManageSeats.aspx</DependentUpon>
+    <Compile Include="Administration\NotificationsManagement.aspx.designer.cs">
+      <DependentUpon>NotificationsManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administration\ManageTravelClasses.aspx.cs">
-      <DependentUpon>ManageTravelClasses.aspx</DependentUpon>
+    <Compile Include="Administration\SeatsManagement.aspx.cs">
+      <DependentUpon>SeatsManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administration\ManageTravelClasses.aspx.designer.cs">
-      <DependentUpon>ManageTravelClasses.aspx</DependentUpon>
+    <Compile Include="Administration\SeatsManagement.aspx.designer.cs">
+      <DependentUpon>SeatsManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administration\ManageUserNotifications.aspx.cs">
-      <DependentUpon>ManageUserNotifications.aspx</DependentUpon>
+    <Compile Include="Administration\TravelClassesManagement.aspx.cs">
+      <DependentUpon>TravelClassesManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administration\ManageUserNotifications.aspx.designer.cs">
-      <DependentUpon>ManageUserNotifications.aspx</DependentUpon>
+    <Compile Include="Administration\TravelClassesManagement.aspx.designer.cs">
+      <DependentUpon>TravelClassesManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administration\ManageUserRoles.aspx.cs">
-      <DependentUpon>ManageUserRoles.aspx</DependentUpon>
+    <Compile Include="Administration\UserNotificationsManagement.aspx.cs">
+      <DependentUpon>UserNotificationsManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administration\ManageUserRoles.aspx.designer.cs">
-      <DependentUpon>ManageUserRoles.aspx</DependentUpon>
+    <Compile Include="Administration\UserNotificationsManagement.aspx.designer.cs">
+      <DependentUpon>UserNotificationsManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administration\ManageUsers.aspx.cs">
-      <DependentUpon>ManageUsers.aspx</DependentUpon>
+    <Compile Include="Administration\UserRolesManagement.aspx.cs">
+      <DependentUpon>UserRolesManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administration\ManageUsers.aspx.designer.cs">
-      <DependentUpon>ManageUsers.aspx</DependentUpon>
+    <Compile Include="Administration\UserRolesManagement.aspx.designer.cs">
+      <DependentUpon>UserRolesManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\UsersManagement.aspx.cs">
+      <DependentUpon>UsersManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administration\UsersManagement.aspx.designer.cs">
+      <DependentUpon>UsersManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administration\SendMail.aspx.cs">
       <DependentUpon>SendMail.aspx</DependentUpon>
@@ -771,12 +779,12 @@
     <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
     <Compile Include="Infrastructure\ObjectFactory.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Administration\ManageFlights.aspx.cs">
-      <DependentUpon>ManageFlights.aspx</DependentUpon>
+    <Compile Include="Administration\FlightsManagement.aspx.cs">
+      <DependentUpon>FlightsManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administration\ManageFlights.aspx.designer.cs">
-      <DependentUpon>ManageFlights.aspx</DependentUpon>
+    <Compile Include="Administration\FlightsManagement.aspx.designer.cs">
+      <DependentUpon>FlightsManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="News.aspx.cs">
       <DependentUpon>News.aspx</DependentUpon>

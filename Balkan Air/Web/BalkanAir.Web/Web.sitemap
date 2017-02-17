@@ -22,22 +22,22 @@
     </siteMapNode>
     
     <siteMapNode url="~/Administration/AdministrationHome" title="Administration" roles="Administrator">
-      <siteMapNode url="~/Administration/ManageAircraftManufacturers" title="Manage aircraft manufacturers" />
-      <siteMapNode url="~/Administration/ManageAircrafts" title="Manage aircrafts" />
-      <siteMapNode url="~/Administration/ManageAirports" title="Manage airports" />
-      <siteMapNode url="~/Administration/ManageBaggage" title="Manage baggage" />
-      <siteMapNode url="~/Administration/ManageBookings" title="Manage bookings" />
-      <siteMapNode url="~/Administration/ManageCategories" title="Manage categories" />
-      <siteMapNode url="~/Administration/ManageComments" title="Manage comments" />
-      <siteMapNode url="~/Administration/ManageCountries" title="Manage countries" />
-      <siteMapNode url="~/Administration/ManageFlights" title="Manage flights" />
-      <siteMapNode url="~/Administration/ManageFlightStatuses" title="Manage flight statuses" />
-      <siteMapNode url="~/Administration/ManageNews" title="Manage news" />
-      <siteMapNode url="~/Administration/ManageNotifications" title="Manage notifications" />
-      <siteMapNode url="~/Administration/ManageTravelClasses" title="Manage travel classes" />
-      <siteMapNode url="~/Administration/ManageUserNotifications" title="Manage user notifications" />
-      <siteMapNode url="~/Administration/ManageUserRoles" title="Manage user roles" />
-      <siteMapNode url="~/Administration/ManageUsers" title="Manage users" />
+      <siteMapNode url="~/Administration/AircraftManufacturersManagement" title="Aircraft manufacturers management" />
+      <siteMapNode url="~/Administration/AircraftsManagement" title="Aircrafts management" />
+      <siteMapNode url="~/Administration/AirportsManagement" title="Airports management" />
+      <siteMapNode url="~/Administration/BaggageManagement" title="Baggage management" />
+      <siteMapNode url="~/Administration/BookingsManagement" title="Bookings management" />
+      <siteMapNode url="~/Administration/CategoriesManagement" title="Categories management" />
+      <siteMapNode url="~/Administration/CommentsManagement" title="Comments management" />
+      <siteMapNode url="~/Administration/CountriesManagement" title="Countries management" />
+      <siteMapNode url="~/Administration/FlightsManagement" title="Flights management" />
+      <siteMapNode url="~/Administration/FlightStatusesManagement" title="Flight statuses management" />
+      <siteMapNode url="~/Administration/NewsManagement" title="News management" />
+      <siteMapNode url="~/Administration/NotificationsManagement" title="Notifications management" />
+      <siteMapNode url="~/Administration/TravelClassesManagement" title="Travel classes management" />
+      <siteMapNode url="~/Administration/UserNotificationsManagement" title="User notifications management" />
+      <siteMapNode url="~/Administration/UserRolesManagement" title="User roles management" />
+      <siteMapNode url="~/Administration/UsersManagement" title="Users management" />
       <siteMapNode url="~/Administration/SendMail" title="Send mail" />
     </siteMapNode>
   

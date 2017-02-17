@@ -31,22 +31,22 @@
         /******************** Administration *******************/
 
         public const string ADMINISTRATION_HOME = "~/Administration/AdministrationHome";
-        public const string MANAGE_AIRCRAFT_MANUFACTURERS = "~/Administration/ManageAircraftManufacturers";
-        public const string MANAGE_AIRCRAFTS = "~/Administration/ManageAircrafts";
-        public const string MANAGE_AIRPORTS = "~/Administration/ManageAirports";
-        public const string MANAGE_BAGGAGE = "~/Administration/ManageBaggage";
-        public const string MANAGE_BOOKINGS = "~/Administration/ManageBookings";
-        public const string MANAGE_CATEGORIES = "~/Administration/ManageCategories";
-        public const string MANAGE_COMMENTS = "~/Administration/ManageComments";
-        public const string MANAGE_COUNTRIES = "~/Administration/ManageCountries";
-        public const string MANAGE_FLIGHTS = "~/Administration/ManageFlights";
-        public const string MANAGE_FLIGHT_STATUSES = "~/Administration/ManageFlightStatuses";
-        public const string MANAGE_NEWS = "~/Administration/ManageNews";
-        public const string MANAGE_NOTIFICATIONS = "~/Administration/ManageNotifications";
-        public const string MANAGE_TRAVEL_CLASSES = "~/Administration/ManageTravelClasses";
-        public const string MANAGE_USER_NOTIFICATIONS = "~/Administration/ManageUserNotifications";
-        public const string MANAGE_USER_ROLES = "~/Administration/ManageUserRoles";
-        public const string MANAGE_USERS = "~/Administration/ManageUsers";
+        public const string AIRCRAFT_MANUFACTURERS_MANAGEMENT = "~/Administration/AircraftManufacturersManagement";
+        public const string AIRCRAFTS_MANAGEMENT = "~/Administration/AircraftsManagement";
+        public const string AIRPORTS_MANAGEMENT = "~/Administration/AirportsManagement";
+        public const string BAGGAGE_MANAGEMENT = "~/Administration/BaggageManagement";
+        public const string BOOKINGS_MANAGEMENT = "~/Administration/BookingsManagement";
+        public const string CATEGORIES_MANAGEMENT = "~/Administration/CategoriesManagement";
+        public const string COMMENTS_MANAGEMENT = "~/Administration/CommentsManagement";
+        public const string COUNTRIES_MANAGEMENT = "~/Administration/CountriesManagement";
+        public const string FLIGHTS_MANAGEMENT = "~/Administration/FlightsManagement";
+        public const string FLIGHT_STATUSES_MANAGEMENT = "~/Administration/FlightStatusesManagement";
+        public const string NEWS_MANAGEMENT = "~/Administration/NewsManagement";
+        public const string NOTIFICATIONS_MANAGEMENT = "~/Administration/NotificationsManagement";
+        public const string TRAVEL_CLASSES_MANAGEMENT = "~/Administration/TravelClassesManagement";
+        public const string USER_NOTIFICATIONS_MANAGEMENT = "~/Administration/UserNotificationsManagement";
+        public const string USER_ROLES_MANAGEMENT = "~/Administration/UserRolesManagement";
+        public const string USERS_MANAGEMENT = "~/Administration/UsersManagement";
         public const string SEND_MAIL = "~/Administration/SendMail";
     }
 }

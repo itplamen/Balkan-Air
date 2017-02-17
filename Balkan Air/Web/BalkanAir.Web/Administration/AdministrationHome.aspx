@@ -29,42 +29,42 @@
                     <tbody>
                         <tr>
                             <td>
-                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_AIRCRAFT_MANUFACTURERS) %>">Manage Aircraft Manufacturers</a>
+                                <a href="<%= Page.ResolveUrl(Pages.AIRCRAFT_MANUFACTURERS_MANAGEMENT) %>">Aircraft Manufacturers Management</a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_AIRCRAFTS) %>">Manage Aircrafts</a>
+                                <a href="<%= Page.ResolveUrl(Pages.AIRCRAFTS_MANAGEMENT) %>">Aircrafts Management Management</a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_AIRPORTS) %>">Manage Airports</a>
+                                <a href="<%= Page.ResolveUrl(Pages.AIRPORTS_MANAGEMENT) %>">Airports Management</a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_BAGGAGE) %>">Manage Baggage</a>
+                                <a href="<%= Page.ResolveUrl(Pages.BAGGAGE_MANAGEMENT) %>">Baggage Management</a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_BOOKINGS) %>">Manage Bookings</a>
+                                <a href="<%= Page.ResolveUrl(Pages.BOOKINGS_MANAGEMENT) %>">Bookings Management</a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_CATEGORIES) %>">Manage Categories</a>
+                                <a href="<%= Page.ResolveUrl(Pages.CATEGORIES_MANAGEMENT) %>">Categories Management</a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_COMMENTS) %>">Manage Comments</a>
+                                <a href="<%= Page.ResolveUrl(Pages.COMMENTS_MANAGEMENT) %>">Comments Management</a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_COUNTRIES) %>">Manage Countries</a>
+                                <a href="<%= Page.ResolveUrl(Pages.COUNTRIES_MANAGEMENT) %>">Countries Management</a>
                             </td>
                         </tr>
                     </tbody>
@@ -76,42 +76,42 @@
                     <tbody>
                         <tr>
                             <td>
-                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_FLIGHTS) %>">Manage Flights</a>
+                                <a href="<%= Page.ResolveUrl(Pages.FLIGHTS_MANAGEMENT) %>">Flights Management</a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_FLIGHT_STATUSES) %>">Manage Flight Statuses</a>
+                                <a href="<%= Page.ResolveUrl(Pages.FLIGHT_STATUSES_MANAGEMENT) %>">Flight Statuses Management</a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_NEWS) %>">Manage News</a>
+                                <a href="<%= Page.ResolveUrl(Pages.NEWS_MANAGEMENT) %>">News Management</a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_NOTIFICATIONS) %>">Manage Notifications</a>
+                                <a href="<%= Page.ResolveUrl(Pages.NOTIFICATIONS_MANAGEMENT) %>">Notifications Management</a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_TRAVEL_CLASSES) %>">Manage Travel Classes</a>
+                                <a href="<%= Page.ResolveUrl(Pages.TRAVEL_CLASSES_MANAGEMENT) %>">Travel Classes Management</a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_USER_NOTIFICATIONS) %>">Manage User Notifications</a>
+                                <a href="<%= Page.ResolveUrl(Pages.USER_NOTIFICATIONS_MANAGEMENT) %>">User Notifications Management</a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_USER_ROLES) %>">Manage User Roles</a>
+                                <a href="<%= Page.ResolveUrl(Pages.USER_ROLES_MANAGEMENT) %>">User Roles Management</a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a href="<%= Page.ResolveUrl(Pages.MANAGE_USERS) %>">Manage Users</a>
+                                <a href="<%= Page.ResolveUrl(Pages.USERS_MANAGEMENT) %>">Users Management</a>
                             </td>
                         </tr>
                         <tr>

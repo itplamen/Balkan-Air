@@ -103,22 +103,22 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="<%= Page.ResolveUrl(Pages.ADMINISTRATION_HOME) %>">Administration - Home</a></li>
-                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_AIRCRAFT_MANUFACTURERS) %>">Manage Aircraft Manufacturers</a></li>
-                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_AIRCRAFTS) %>">Manage Aircrafts</a></li>
-                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_AIRPORTS) %>">Manage Airports</a></li>
-                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_BAGGAGE) %>">Manage Baggage</a></li>
-                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_BOOKINGS) %>">Manage Bookings</a></li>
-                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_CATEGORIES) %>">Manage Categories</a></li>
-                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_COMMENTS) %>">Manage Comments</a></li>
-                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_COUNTRIES) %>">Manage Countries</a></li>
-                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_FLIGHTS) %>">Manage Flights</a></li>
-                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_FLIGHT_STATUSES) %>">Manage Flight Statuses</a></li>
-                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_NEWS) %>">Manage News</a></li>
-                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_NOTIFICATIONS) %>">Manage Notifications</a></li>
-                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_TRAVEL_CLASSES) %>">Manage Travel Classes</a></li>
-                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_USERS) %>">Manage User Notifications</a></li>
-                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_USER_ROLES) %>">Manage User Roles</a></li>
-                                <li><a href="<%= Page.ResolveUrl(Pages.MANAGE_USERS) %>">Manage Users</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.AIRCRAFT_MANUFACTURERS_MANAGEMENT) %>">Aircraft Manufacturers Management</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.AIRCRAFTS_MANAGEMENT) %>">Aircrafts Management</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.AIRPORTS_MANAGEMENT) %>">Airports Management</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.BAGGAGE_MANAGEMENT) %>">Baggage Management</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.BOOKINGS_MANAGEMENT) %>">Bookings Management</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.CATEGORIES_MANAGEMENT) %>">Categories Management</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.COMMENTS_MANAGEMENT) %>">Comments Management</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.COUNTRIES_MANAGEMENT) %>">Countries Management</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.FLIGHTS_MANAGEMENT) %>">Flights Management</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.FLIGHT_STATUSES_MANAGEMENT) %>">Flight Statuses Management</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.NEWS_MANAGEMENT) %>">News Management</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.NOTIFICATIONS_MANAGEMENT) %>">Notifications Management</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.TRAVEL_CLASSES_MANAGEMENT) %>">Travel Classes Management</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.USERS_MANAGEMENT) %>">User Notification Managements</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.USER_ROLES_MANAGEMENT) %>">User Roles Management</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.USERS_MANAGEMENT) %>">Users Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.SEND_MAIL) %>">Send Mail</a></li>
                             </ul>
                         </li>
