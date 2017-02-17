@@ -81,8 +81,6 @@ namespace BalkanAir.Web.Booking
 
         protected void PayAndBookNowBtn_Click(object sender, EventArgs e)
         {
-            this.TravelClassesServices.BookSeat(this.booking.TravelClassId, this.booking.Row, this.booking.SeatNumber);
-
             this.booking.DateOfBooking = DateTime.Now;
             this.booking.UserId = this.CurrentUser.Id;
             this.BookingsServices.AddBooking(this.booking);

@@ -65,6 +65,7 @@
                 aircraftToUpdate.TotalSeats = aircraft.TotalSeats;
                 aircraftToUpdate.AircraftManufacturerId = aircraft.AircraftManufacturerId;
                 aircraftToUpdate.IsDeleted = aircraft.IsDeleted;
+
                 this.aircrafts.SaveChanges();
             }
 

@@ -30,36 +30,6 @@
             return seat.Id;
         }
 
-        public void AddSeatsToTravelClass(TravelClass travelClass)
-        {
-            if (travelClass == null)
-            {
-                throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
-            }
-
-            int numberOfRows = 0;
-
-            if (travelClass.Type == TravelClassType.First || travelClass.Type == TravelClassType.Business)
-            {
-                numberOfRows = 2;
-            }
-            else if (travelClass.Type == TravelClassType.Economy)
-            {
-                numberOfRows = 26;
-            }
-            else
-            {
-                throw new IndexOutOfRangeException("Invalid travel class type!");
-            }
-
-            for (int row = 1; row <= numberOfRows; row++)
-            {
-                 
-            }
-
-            this.seats.SaveChanges();
-        }
-
         public Seat GetSeat(int id)
         {
             if (id <= 0)
@@ -91,12 +61,13 @@
 
             if (seatToUpdate != null)
             {
+                seatToUpdate.Row = seat.Row;
                 seatToUpdate.Number = seat.Number;
-                 
                 seatToUpdate.IsReserved = seat.IsReserved;
+                seatToUpdate.TravelClassId = seat.TravelClassId;
+                seatToUpdate.LegInstanceId = seat.LegInstanceId;
                 seatToUpdate.IsDeleted = seat.IsDeleted;
  
-
                 this.seats.SaveChanges();
             }
 

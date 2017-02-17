@@ -1,9 +1,11 @@
 ﻿namespace BalkanAir.Services.Data
 {
+    using System;
     using System.Linq;
 
     using BalkanAir.Data.Models;
     using BalkanAir.Data.Repositories.Contracts;
+    using Common;
     using Contracts;
 
     public class TravelClassesServices : ITravelClassesServices
@@ -17,6 +19,11 @@
 
         public int AddTravelClass(TravelClass travelClass)
         {
+            if (travelClass == null)
+            {
+                throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
+            }
+
             this.travelClasses.Add(travelClass);
             this.travelClasses.SaveChanges();
 
@@ -30,11 +37,26 @@
 
         public TravelClass GetTravelClass(int id)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
+            }
+
             return this.travelClasses.GetById(id);
         }
 
         public TravelClass UpdateTravelClass(int id, TravelClass travelClass)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
+            }
+
+            if (travelClass == null)
+            {
+                throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
+            }
+
             var travelClassToUpdate = this.travelClasses.GetById(id);
 
             if (travelClassToUpdate != null)
@@ -44,8 +66,10 @@
                 travelClassToUpdate.PriorityBoarding = travelClass.PriorityBoarding;
                 travelClassToUpdate.ReservedSeat = travelClass.ReservedSeat;
                 travelClassToUpdate.EarnMiles = travelClass.EarnMiles;
+                travelClassToUpdate.NumberOfRows = travelClass.NumberOfRows;
+                travelClassToUpdate.NumberOfSeats = travelClass.NumberOfSeats;
                 travelClassToUpdate.Price = travelClass.Price;
- 
+                travelClassToUpdate.AircraftId = travelClass.AircraftId;
                 travelClassToUpdate.IsDeleted = travelClass.IsDeleted;
 
                 this.travelClasses.SaveChanges();
@@ -56,6 +80,11 @@
 
         public TravelClass DeleteTravelClass(int id)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
+            }
+
             var travelClassToDelete = this.travelClasses.GetById(id);
 
             if (travelClassToDelete != null)
@@ -65,19 +94,6 @@
             }
 
             return travelClassToDelete;
-        }
-
-        public void BookSeat(int travelClassId, int row, string seatNumber)
-        {
-            //Seat seat = this.travelClasses.GetById(travelClassId)
-            //    .Seats
-            //    .FirstOrDefault(s => s.Row == row && s.Number == seatNumber);
-
-            //if (seat != null)
-            //{
-            //    seat.IsReserved = true;
-            //    this.travelClasses.SaveChanges();
-            //}
         }
     }
 }

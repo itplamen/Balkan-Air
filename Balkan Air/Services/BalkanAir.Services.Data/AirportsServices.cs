@@ -65,6 +65,7 @@
                 airportToUpdate.Abbreviation = airport.Abbreviation;
                 airportToUpdate.CountryId = airport.CountryId;
                 airportToUpdate.IsDeleted = airport.IsDeleted;
+
                 this.airports.SaveChanges();
             }
 

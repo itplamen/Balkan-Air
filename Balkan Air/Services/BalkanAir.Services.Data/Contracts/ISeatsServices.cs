@@ -8,8 +8,6 @@
     {
         int AddSeat(Seat seat);
 
-        void AddSeatsToTravelClass(TravelClass travelClass);
-
         Seat GetSeat(int id);
 
         IQueryable<Seat> GetAll();

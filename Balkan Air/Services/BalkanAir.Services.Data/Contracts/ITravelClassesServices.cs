@@ -15,7 +15,5 @@
         TravelClass UpdateTravelClass(int id, TravelClass travelClass);
 
         TravelClass DeleteTravelClass(int id);
-
-        void BookSeat(int travelClassId, int row, string seatNumber);
     }
 }

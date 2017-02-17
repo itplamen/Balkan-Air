@@ -1,9 +1,11 @@
 ﻿namespace BalkanAir.Services.Data
 {
+    using System;
     using System.Linq;
 
     using BalkanAir.Data.Models;
     using BalkanAir.Data.Repositories.Contracts;
+    using Common;
     using Contracts;
 
     public class FlightStatusesServices : IFlightStatusesServices
@@ -17,6 +19,11 @@
 
         public int AddFlightStatus(FlightStatus flightStatus)
         {
+            if (flightStatus == null)
+            {
+                throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
+            }
+
             this.flightStatuses.Add(flightStatus);
             this.flightStatuses.SaveChanges();
 
@@ -25,6 +32,11 @@
 
         public FlightStatus GetFlightStatus(int id)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
+            }
+
             return this.flightStatuses.GetById(id);
         }
 
@@ -35,6 +47,16 @@
 
         public FlightStatus UpdateFlightStatus(int id, FlightStatus flightStatus)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
+            }
+
+            if (flightStatus == null)
+            {
+                throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
+            }
+
             var flightStatusToUpdate = this.flightStatuses.GetById(id);
 
             if (flightStatusToUpdate != null)
@@ -49,6 +71,11 @@
 
         public FlightStatus DeleteFlightStatus(int id)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
+            }
+
             var flightStatusToDelete = this.flightStatuses.GetById(id);
 
             if (flightStatusToDelete != null)
