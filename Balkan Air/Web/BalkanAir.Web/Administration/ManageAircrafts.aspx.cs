@@ -8,6 +8,7 @@
 
     using Data.Models;
     using Services.Data.Contracts;
+    using Data.Common;
 
     public partial class ManageAircrafts : Page
     {
@@ -54,6 +55,10 @@
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!this.Page.IsPostBack)
+            {
+                this.TotalSeatsTextBox.Text = ValidationConstants.AIRCRAFT_MAX_SEATS.ToString();
+            }
         }
 
         protected void CreateAircraftBtn_Click(object sender, EventArgs e)

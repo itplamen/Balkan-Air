@@ -31,14 +31,14 @@
                         SelectMethod="CountryDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="DeparturesFlights">
+            <asp:TemplateField HeaderText="Origins">
                 <ItemTemplate>
-                    <%#: Item.DeparturesFlights.Count %>
+                    <%#: Item.Origins.Count %>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="ArrivalsFlights">
+            <asp:TemplateField HeaderText="Destinations">
                 <ItemTemplate>
-                    <%#: Item.ArrivalsFlights.Count %>
+                    <%#: Item.Destinations.Count %>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />

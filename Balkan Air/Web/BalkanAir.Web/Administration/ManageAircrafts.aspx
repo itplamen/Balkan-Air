@@ -31,9 +31,14 @@
             </asp:TemplateField>
             <asp:BoundField DataField="Model" SortExpression="Model" HeaderText="Model" />
             <asp:BoundField DataField="TotalSeats" SortExpression="TotalSeats" HeaderText="Total Seats" />
-            <asp:TemplateField HeaderText="Number of flights">
+            <asp:TemplateField HeaderText="Travel Classes">
                 <ItemTemplate>
-                    <%#: Item.Flights.Count %>
+                    <%#: Item.TravelClasses.Count %>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Leg Instances">
+                <ItemTemplate>
+                    <%#: Item.LegInstances.Count %>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />

@@ -21,8 +21,19 @@
             <asp:CheckBoxField DataField="PriorityBoarding" HeaderText="Priority Boarding" />
             <asp:CheckBoxField DataField="ReservedSeat" HeaderText="Reserved Seat" />
             <asp:CheckBoxField DataField="EarnMiles" HeaderText="Earn Miles" />
-            <asp:BoundField DataField="Price" SortExpression="Price" HeaderText="Price" />
-            <asp:BoundField DataField="FlightId" SortExpression="FlightId" HeaderText="Flight Id" />
+            <asp:BoundField DataField="NumberOfRows" SortExpression="NumberOfRows" HeaderText="Number Of Rows" />
+            <asp:BoundField DataField="NumberOfSeats" SortExpression="NumberOfSeats" HeaderText="Number Of Seats" />
+            <asp:BoundField DataField="Price" SortExpression="Price" HeaderText="Price (&#8364;)" />
+            <asp:TemplateField HeaderText="Aircraft">
+                <ItemTemplate>
+                    <%#: "Id: " + Item.AircraftId + ", " + Item.Aircraft.AircraftManufacturer.Name + " " + Item.Aircraft.Model %>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Available Seats">
+                <ItemTemplate>
+                    <%#: Item.NumberOfAvailableSeats %>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />
 
             <asp:CommandField ShowEditButton="true" ControlStyle-CssClass="btn btn-info" />
@@ -33,8 +44,18 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
-    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Invalid meal length!" Type="String" ForeColor="Red" runat="server"
-        ValidationExpression="^[\s\S]{2,50}$" ControlToValidate="MealTextBox" />
+    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Meal length must be in the range [2 - 50]!" Type="String"
+        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{2,50}$" ControlToValidate="MealTextBox" />
+    <br />
+
+    <asp:RangeValidator ErrorMessage="Number of rows must be in the range [2 - 26]!" ControlToValidate="NumberOfRowsTextBox"
+        runat="server" ForeColor="Red" MinimumValue="2" MaximumValue="26" Type="Integer" />
+    <br />
+
+
+    <asp:RangeValidator ErrorMessage="Number of seats must be in the range [12 - 156]!" ControlToValidate="NumberOfSeatsTextBox"
+        runat="server" ForeColor="Red" MinimumValue="12" MaximumValue="156" Type="Integer" />
+    <br />
 
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new travel class</h3>
@@ -61,16 +82,26 @@
         </p>
 
         <p>
+            <asp:Label Text="Number Of Rows: " runat="server" AssociatedControlID="NumberOfRowsTextBox" />
+            <asp:TextBox ID="NumberOfRowsTextBox" required runat="server" TextMode="Number" />
+        </p>
+
+        <p>
+            <asp:Label Text="Number Of Seats: " runat="server" AssociatedControlID="NumberOfSeatsTextBox" />
+            <asp:TextBox ID="NumberOfSeatsTextBox" required runat="server" TextMode="Number" />
+        </p>
+
+        <p>
             <asp:Label Text="Price: " runat="server" AssociatedControlID="PriceTextBox" />
             <asp:TextBox ID="PriceTextBox" required runat="server" />
         </p>
 
         <p>
-            <asp:Label Text="Flight: " runat="server" AssociatedControlID="FlightsDropDownList" />
-            <asp:DropDownList ID="FlightsDropDownList" runat="server"
+            <asp:Label Text="Aircraft: " runat="server" AssociatedControlID="AircraftsDropDownList" />
+            <asp:DropDownList ID="AircraftsDropDownList" runat="server"
                 DataValueField="Id"
-                DataTextField="FlightInfo"
-                SelectMethod="FlightsDropDownList_GetData" />
+                DataTextField="AircraftInfo"
+                SelectMethod="AircraftsDropDownList_GetData" />
         </p>
 
         <asp:Button ID="CreatTravelClassBtn" runat="server" Text="Create" CssClass="btn btn-info" OnClick="CreatTravelClassBtn_Click" />

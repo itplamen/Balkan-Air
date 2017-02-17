@@ -18,7 +18,7 @@
         AllowSorting="true">
         <Columns>
             <asp:BoundField DataField="Id" SortExpression="Id" HeaderText="Id" />
-            <asp:TemplateField HeaderText="Date of booking" SortExpression="DateOfBooking">
+            <asp:TemplateField HeaderText="Date Of Booking" SortExpression="DateOfBooking">
                 <ItemTemplate>
                     <%#: Item.DateOfBooking.ToString("dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture) %>
                 </ItemTemplate>
@@ -33,10 +33,16 @@
                     <%#: Item.User.UserSettings.FirstName + " " + Item.User.UserSettings.LastName %>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="FlightId" SortExpression="FlightId" HeaderText="Flight Id" />
-            <asp:TemplateField HeaderText="Flight">
+            <asp:BoundField DataField="LegInstanceId" SortExpression="LegInstanceId" HeaderText="Leg Instance Id" />
+            <asp:TemplateField HeaderText="Leg Instance">
                 <ItemTemplate>
-                    <%#: Item.Flight.Number + ", " + Item.Flight.DepartureAirport.Name + " -> " + Item.Flight.ArrivalAirport.Name %>
+                    <%#: Item.LegInstance.FlightLeg.Flight.Number + ", " + Item.LegInstance.FlightLeg.Route.Origin.Name + " -> " + 
+                            Item.LegInstance.FlightLeg.Route.Destination.Name %>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Baggages">
+                <ItemTemplate>
+                    <%#: Item.Baggages.Count %>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />

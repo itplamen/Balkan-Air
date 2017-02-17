@@ -67,6 +67,24 @@ namespace BalkanAir.Web.Administration {
         protected global::System.Web.UI.WebControls.CheckBox EarnMilesCheckBox;
         
         /// <summary>
+        /// NumberOfRowsTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox NumberOfRowsTextBox;
+        
+        /// <summary>
+        /// NumberOfSeatsTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox NumberOfSeatsTextBox;
+        
+        /// <summary>
         /// PriceTextBox control.
         /// </summary>
         /// <remarks>
@@ -76,13 +94,13 @@ namespace BalkanAir.Web.Administration {
         protected global::System.Web.UI.WebControls.TextBox PriceTextBox;
         
         /// <summary>
-        /// FlightsDropDownList control.
+        /// AircraftsDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList FlightsDropDownList;
+        protected global::System.Web.UI.WebControls.DropDownList AircraftsDropDownList;
         
         /// <summary>
         /// CreatTravelClassBtn control.

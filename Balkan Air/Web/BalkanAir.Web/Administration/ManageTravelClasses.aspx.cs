@@ -14,10 +14,7 @@
     public partial class ManageTravelClasses : Page
     {
         [Inject]
-        public IFlightsServices FlightsServices { get; set; }
-
-        [Inject]
-        public ISeatsServices SeatsServices { get; set; }
+        public IAircraftsServices AircraftsServices { get; set; }
 
         [Inject]
         public ITravelClassesServices TravelClassesServices { get; set; }
@@ -49,17 +46,17 @@
             this.TravelClassesServices.DeleteTravelClass(id);
         }
 
-        public IQueryable<object> FlightsDropDownList_GetData()
+        public IQueryable<object> AircraftsDropDownList_GetData()
         {
-            var flights = this.FlightsServices.GetAll()
-                .Where(f => !f.IsDeleted)
-                .Select(f => new
+            var aircrafts = this.AircraftsServices.GetAll()
+                .Where(a => !a.IsDeleted)
+                .Select(a => new
                 {
-                    Id = f.Id,
-                    FlightInfo = f.Number
+                    Id = a.Id,
+                    AircraftInfo = "Id: " + a.Id + ", " + a.AircraftManufacturer.Name + " " + a.Model + " " + a.TotalSeats + " seats"
                 });
 
-            return flights;
+            return aircrafts;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -94,11 +91,13 @@
                     PriorityBoarding = this.PriorityBoardingCheckBox.Checked,
                     ReservedSeat = this.ReservedSeatCheckBox.Checked,
                     EarnMiles = this.EarnMilesCheckBox.Checked,
-                    Price = price
+                    NumberOfRows = int.Parse(this.NumberOfRowsTextBox.Text),
+                    NumberOfSeats = int.Parse(this.NumberOfSeatsTextBox.Text),
+                    Price = price,
+                    AircraftId = int.Parse(this.AircraftsDropDownList.SelectedItem.Value)
                 };
 
                 this.TravelClassesServices.AddTravelClass(travelClass);
-                this.SeatsServices.AddSeatsToTravelClass(travelClass);
             }
         }
 

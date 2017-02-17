@@ -17,12 +17,12 @@
         <Columns>
             <asp:BoundField DataField="Id" SortExpression="Id" HeaderText="Id" />
             <asp:BoundField DataField="Name" SortExpression="Name" HeaderText="Name" />
+            <asp:TemplateField HeaderText="Leg Instances">
+                <ItemTemplate>
+                    <%#: Item.LegInstances.Count %>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />
-             <asp:TemplateField HeaderText="Number of flights">
-                 <ItemTemplate>
-                     <%#: Item.Flights.Count %>
-                 </ItemTemplate>
-             </asp:TemplateField>
 
             <asp:CommandField ShowEditButton="true" ControlStyle-CssClass="btn btn-info" />
             <asp:CommandField ShowDeleteButton="true" ControlStyle-CssClass="btn btn-danger" />
@@ -32,7 +32,7 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
-    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Name length must be in the range [2 - 15]!" Type="String" 
+    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Name length must be in the range [2 - 15]!" Type="String"
         ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{2,15}$" ControlToValidate="FlightStatusNameTextBox" />
 
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
@@ -41,7 +41,7 @@
         <asp:Label Text="Name: " runat="server" />
         <asp:TextBox ID="FlightStatusNameTextBox" required MaxLength="15" runat="server" />
 
-        <asp:Button ID="CreateFlightStatustBtn" runat="server" Text="Create" CssClass="btn btn-info" 
+        <asp:Button ID="CreateFlightStatustBtn" runat="server" Text="Create" CssClass="btn btn-info"
             OnClick="CreateFlightStatustBtn_Click" />
     </asp:Panel>
 </asp:Content>
