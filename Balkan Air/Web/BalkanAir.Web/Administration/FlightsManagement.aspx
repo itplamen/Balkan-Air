@@ -37,7 +37,7 @@
     <asp:RequiredFieldValidator ErrorMessage="Fligth number is required!" ControlToValidate="AddFlightNumberTextBox"
         ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan" ValidationGroup="CreateNewFlight" />
 
-    <asp:Panel ID="CreateFlightPanel" runat="server" ClientIDMode="Static">
+    <asp:Panel runat="server" ClientIDMode="Static">
         <h3>Create new flight</h3>
 
         <asp:Label runat="server" AssociatedControlID="AddFlightNumberTextBox" Text="Flight number (unique):" />

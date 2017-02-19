@@ -273,6 +273,7 @@
     <Content Include="Administration\CategoriesManagement.aspx" />
     <Content Include="Administration\CommentsManagement.aspx" />
     <Content Include="Administration\CountriesManagement.aspx" />
+    <Content Include="Administration\FlightLegsManagement.aspx" />
     <Content Include="Administration\FlightStatusesManagement.aspx" />
     <Content Include="Administration\NewsManagement.aspx" />
     <Content Include="Administration\NotificationsManagement.aspx" />
@@ -604,6 +605,13 @@
     </Compile>
     <Compile Include="Administration\CountriesManagement.aspx.designer.cs">
       <DependentUpon>CountriesManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\FlightLegsManagement.aspx.cs">
+      <DependentUpon>FlightLegsManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administration\FlightLegsManagement.aspx.designer.cs">
+      <DependentUpon>FlightLegsManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administration\FlightStatusesManagement.aspx.cs">
       <DependentUpon>FlightStatusesManagement.aspx</DependentUpon>

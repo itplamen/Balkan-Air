@@ -39,6 +39,8 @@
         public const string CATEGORIES_MANAGEMENT = "~/Administration/CategoriesManagement";
         public const string COMMENTS_MANAGEMENT = "~/Administration/CommentsManagement";
         public const string COUNTRIES_MANAGEMENT = "~/Administration/CountriesManagement";
+        public const string FARES_MANAGEMENT = "~/Administration/FaresManagement";
+        public const string FLIGHT_LEGS_MANAGEMENT = "~/Administration/FlightLegsManagement";
         public const string FLIGHTS_MANAGEMENT = "~/Administration/FlightsManagement";
         public const string FLIGHT_STATUSES_MANAGEMENT = "~/Administration/FlightStatusesManagement";
         public const string NEWS_MANAGEMENT = "~/Administration/NewsManagement";

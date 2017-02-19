@@ -76,6 +76,16 @@
                     <tbody>
                         <tr>
                             <td>
+                                <a href="<%= Page.ResolveUrl(Pages.FARES_MANAGEMENT) %>">Fares Management</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="<%= Page.ResolveUrl(Pages.FLIGHT_LEGS_MANAGEMENT) %>">Flight Legs Management</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <a href="<%= Page.ResolveUrl(Pages.FLIGHTS_MANAGEMENT) %>">Flights Management</a>
                             </td>
                         </tr>

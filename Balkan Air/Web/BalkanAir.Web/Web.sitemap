@@ -30,6 +30,8 @@
       <siteMapNode url="~/Administration/CategoriesManagement" title="Categories management" />
       <siteMapNode url="~/Administration/CommentsManagement" title="Comments management" />
       <siteMapNode url="~/Administration/CountriesManagement" title="Countries management" />
+      <siteMapNode url="~/Administration/FaresManagement" title="Fares management" />
+      <siteMapNode url="~/Administration/FlightLegsManagement" title="Flight Legs Management" />
       <siteMapNode url="~/Administration/FlightsManagement" title="Flights management" />
       <siteMapNode url="~/Administration/FlightStatusesManagement" title="Flight statuses management" />
       <siteMapNode url="~/Administration/NewsManagement" title="News management" />

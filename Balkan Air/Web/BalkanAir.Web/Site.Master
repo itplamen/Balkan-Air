@@ -111,6 +111,8 @@
                                 <li><a href="<%= Page.ResolveUrl(Pages.CATEGORIES_MANAGEMENT) %>">Categories Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.COMMENTS_MANAGEMENT) %>">Comments Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.COUNTRIES_MANAGEMENT) %>">Countries Management</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.FARES_MANAGEMENT) %>">Fares Management</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.FLIGHT_LEGS_MANAGEMENT) %>">Flight Legs Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.FLIGHTS_MANAGEMENT) %>">Flights Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.FLIGHT_STATUSES_MANAGEMENT) %>">Flight Statuses Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.NEWS_MANAGEMENT) %>">News Management</a></li>
