@@ -42,8 +42,6 @@
             color: black;
         }
     </style>
-
-
 </head>
 <body>
     <form runat="server">
@@ -115,6 +113,7 @@
                                 <li><a href="<%= Page.ResolveUrl(Pages.FLIGHT_LEGS_MANAGEMENT) %>">Flight Legs Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.FLIGHTS_MANAGEMENT) %>">Flights Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.FLIGHT_STATUSES_MANAGEMENT) %>">Flight Statuses Management</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.LEG_INSTANCES_MANAGEMENT) %>">Leg Instances Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.NEWS_MANAGEMENT) %>">News Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.NOTIFICATIONS_MANAGEMENT) %>">Notifications Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.SEATS_MANAGEMENT) %>">Seats Management</a></li>

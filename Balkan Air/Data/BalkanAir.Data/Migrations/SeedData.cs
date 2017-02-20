@@ -409,7 +409,7 @@
             this.AddFlightLeg(1, new DateTime(2017, 2, 16, 17, 30, 00), 6, new DateTime(2017, 2, 16, 20, 30, 00), 1, 1);
 
             // Sofia - Madrid
-            this.AddFlightLeg(1, new DateTime(2017, 2, 20, 17, 30, 00), 6, new DateTime(2017, 2, 17, 20, 30, 00), 2, 1);
+            this.AddFlightLeg(1, new DateTime(2017, 2, 20, 17, 30, 00), 6, new DateTime(2017, 2, 20, 20, 30, 00), 2, 1);
 
             // Sofia - Madrid
             this.AddFlightLeg(1, new DateTime(2017, 2, 25, 17, 30, 00), 6, new DateTime(2017, 2, 25, 20, 30, 00), 3, 1);

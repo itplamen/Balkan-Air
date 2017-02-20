@@ -43,6 +43,7 @@
         public const string FLIGHT_LEGS_MANAGEMENT = "~/Administration/FlightLegsManagement";
         public const string FLIGHTS_MANAGEMENT = "~/Administration/FlightsManagement";
         public const string FLIGHT_STATUSES_MANAGEMENT = "~/Administration/FlightStatusesManagement";
+        public const string LEG_INSTANCES_MANAGEMENT = "~/Administration/LegInstancesManagement";
         public const string NEWS_MANAGEMENT = "~/Administration/NewsManagement";
         public const string NOTIFICATIONS_MANAGEMENT = "~/Administration/NotificationsManagement";
         public const string SEATS_MANAGEMENT = "~/Administration/SeatsManagement";

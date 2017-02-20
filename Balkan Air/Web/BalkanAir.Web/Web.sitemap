@@ -34,6 +34,7 @@
       <siteMapNode url="~/Administration/FlightLegsManagement" title="Flight Legs Management" />
       <siteMapNode url="~/Administration/FlightsManagement" title="Flights management" />
       <siteMapNode url="~/Administration/FlightStatusesManagement" title="Flight statuses management" />
+      <siteMapNode url="~/Administration/LegInstancesManagement" title="Leg instances management" />
       <siteMapNode url="~/Administration/NewsManagement" title="News management" />
       <siteMapNode url="~/Administration/NotificationsManagement" title="Notifications management" />
       <siteMapNode url="~/Administration/SeatsManagement" title="Seats management" />

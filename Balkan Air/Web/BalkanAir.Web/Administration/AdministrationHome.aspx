@@ -96,6 +96,11 @@
                         </tr>
                         <tr>
                             <td>
+                                <a href="<%= Page.ResolveUrl(Pages.LEG_INSTANCES_MANAGEMENT) %>">Leg Instances Management</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <a href="<%= Page.ResolveUrl(Pages.NEWS_MANAGEMENT) %>">News Management</a>
                             </td>
                         </tr>
