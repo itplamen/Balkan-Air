@@ -51,28 +51,35 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
-    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Model length must be in the range [3 - 20]!" Type="String" 
-        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{3,20}$" ControlToValidate="AircraftModelTextBox" />
+    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Model length must be in the range [3 - 20]!" Type="String"
+        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{3,20}$" ValidationGroup="CreateNewAircraft"
+        CssClass="validatorSpan" ControlToValidate="AircraftModelTextBox" />
 
-    <asp:RangeValidator ErrorMessage="Number of seats must be in the range [2 - 180]!" ControlToValidate="TotalSeatsTextBox" 
-        runat="server" ForeColor="Red" MinimumValue="2" MaximumValue="180" Type="Integer" />
+    <asp:RangeValidator ErrorMessage="Number of seats must be in the range [2 - 180]!" ControlToValidate="TotalSeatsTextBox"
+        runat="server" ForeColor="Red" MinimumValue="2" MaximumValue="180" Type="Integer" CssClass="validatorSpan" 
+        ValidationGroup="CreateNewAircraft" />
 
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new aircraft</h3>
 
-        <asp:Label Text="Model: " runat="server" />
+        <asp:Label Text="Model:" runat="server" AssociatedControlID="AircraftModelTextBox" />
         <asp:TextBox ID="AircraftModelTextBox" required runat="server" MaxLength="20" Style="text-transform: uppercase;" />
 
-        <asp:Label Text="Total seats:" runat="server" />
+        <asp:Label Text="Total seats:" runat="server" AssociatedControlID="TotalSeatsTextBox" />
         <asp:TextBox ID="TotalSeatsTextBox" required runat="server" TextMode="Number" />
 
-        <asp:Label Text="Manufacturer: " runat="server" />
+        <asp:Label Text="Manufacturer:" runat="server" AssociatedControlID="AircraftManufacturersDropDownList" />
         <asp:DropDownList ID="AircraftManufacturersDropDownList" runat="server"
             ItemType="BalkanAir.Data.Models.AircraftManufacturer"
             DataValueField="Id"
             DataTextField="Name"
             SelectMethod="AircraftManufacturersDropDownList_GetData" />
 
-        <asp:Button ID="CreateAircraftBtn" runat="server" Text="Create" CssClass="btn btn-info" OnClick="CreateAircraftBtn_Click" />
+        <p>
+            <asp:Button ID="CreateAircraftBtn" runat="server" Text="Create" CssClass="btn btn-info" ValidationGroup="CreateNewAircraft"
+                OnClick="CreateAircraftBtn_Click" />
+            <asp:Button ID="CancelBtn" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-danger"
+                UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
+        </p>
     </asp:Panel>
 </asp:Content>

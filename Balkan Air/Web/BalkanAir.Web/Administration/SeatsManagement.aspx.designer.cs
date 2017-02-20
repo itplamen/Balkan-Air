@@ -22,21 +22,66 @@ namespace BalkanAir.Web.Administration {
         protected global::System.Web.UI.WebControls.GridView SeatsGridView;
         
         /// <summary>
-        /// AirportNameTextBox control.
+        /// RowTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AirportNameTextBox;
+        protected global::System.Web.UI.WebControls.TextBox RowTextBox;
         
         /// <summary>
-        /// AbbreviationTextBox control.
+        /// SeatNumberTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AbbreviationTextBox;
+        protected global::System.Web.UI.WebControls.TextBox SeatNumberTextBox;
+        
+        /// <summary>
+        /// IsSeatReservedCheckBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox IsSeatReservedCheckBox;
+        
+        /// <summary>
+        /// AddTravelClassDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList AddTravelClassDropDownList;
+        
+        /// <summary>
+        /// AddLegInstanceDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList AddLegInstanceDropDown;
+        
+        /// <summary>
+        /// CreateAirportBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CreateAirportBtn;
+        
+        /// <summary>
+        /// CancelBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CancelBtn;
     }
 }

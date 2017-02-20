@@ -75,7 +75,14 @@
                 };
 
                 this.FaresServices.AddFare(fare);
+
+                this.ClearFields();
             }
+        }
+
+        protected void CancelBtn_Click(object sender, EventArgs e)
+        {
+            this.ClearFields();
         }
 
         private decimal GetValidPrice()
@@ -91,6 +98,12 @@
 
             this.PriceTextBox.BorderColor = Color.Red;
             return -1;
+        }
+
+        private void ClearFields()
+        {
+            this.PriceTextBox.Text = string.Empty;
+            this.AddRoutesDropDownList.SelectedIndex = 0;
         }
     }
 }

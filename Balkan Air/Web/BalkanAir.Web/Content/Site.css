@@ -1153,61 +1153,45 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 .administrationGridView {
     margin-top: 50px;
     padding: 50px;
-    margin-bottom: 50px;
-    border-radius: 15px;
+    margin-bottom: 30px;
 }
 
     .administrationGridView th, .administrationGridView td {
-        border: none;
         text-align: center;
         padding: 5px;
     }
 
 .administrationAddEntityPanel {
-    border: 1px solid black;
-    border-radius: 10px;
     margin-top: 10px;
     padding: 10px;
 }
 
 .administrationAddEntityPanel input[type="text"], .administrationAddEntityPanel input[type="number"], 
-.administrationAddEntityPanel select {
-    width: 200px;
+.administrationAddEntityPanel input[type=time], .administrationAddEntityPanel select, 
+.administrationAddEntityPanel button {
+    margin-bottom: 20px;
+    width: 250px;
     height: 30px;
-    margin-right: 20px;
 }
 
-/****************** Administration/ManageFlights.aspx ******************/
-#CreateFlightLegPanel {
-    border: 1px solid black;
-    border-radius: 10px;
-    margin-top: 10px;
-    padding: 10px;
-    width: 800px;
+.administrationAddEntityPanel h3 {
+    margin-bottom: 30px;
 }
 
-#CreateFlightLegPanel .glyphicon {
+.administrationAddEntityPanel label {
+    display: block;
+}  
+
+.administrationAddEntityPanel .glyphicon {
     position: relative;
     top: 3px;
     font-size: 18px;
 }
 
-    #CreateFlightLegPanel h3 {
-        margin-bottom: 30px;
-    }
-
-    #CreateFlightLegPanel label {
-        display: block;
-    }
-
-    #CreateFlightLegPanel input[type=text], #CreateFlightLegPanel input[type=time], #CreateFlightLegPanel select {
-        margin-bottom: 20px;
-        width: 250px;
-    }
-
+/****************** Administration/ManageFlights.aspx ******************/
 #AddFlightNumberTextBox {
-     float: left; 
-     margin-right: 10px;
+    float: left; 
+    margin-right: 10px;
 }
 
 #GenerateFlightNumberBtn {

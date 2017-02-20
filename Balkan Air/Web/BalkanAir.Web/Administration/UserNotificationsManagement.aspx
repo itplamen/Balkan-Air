@@ -51,24 +51,18 @@
 
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Send notification to users</h3>
-        <br />
 
-        <p>
-            <asp:Label Text="Send to: " runat="server" AssociatedControlID="UsersListBox" />
-            <asp:ListBox ID="UsersListBox" runat="server" SelectionMode="Multiple" required
-                DataValueField="Id"
-                DataTextField="UserInfo"
-                SelectMethod="UsersListBox_GetData" />
-        </p>
+        <asp:Label Text="Send to: " runat="server" AssociatedControlID="UsersListBox" />
+        <asp:ListBox ID="UsersListBox" runat="server" SelectionMode="Multiple" required
+            DataValueField="Id"
+            DataTextField="UserInfo"
+            SelectMethod="UsersListBox_GetData" />
 
-        <p>
-            <asp:Label Text="Notification: " runat="server" AssociatedControlID="NotificationsDropDownList" />
-            <asp:DropDownList ID="NotificationsDropDownList" runat="server"
-                DataValueField="Id"
-                DataTextField="NotificationInfo"
-                SelectMethod="NotificationsDropDownList_GetData" />
-        </p> 
-        <br />
+        <asp:Label Text="Notification: " runat="server" AssociatedControlID="NotificationsDropDownList" />
+        <asp:DropDownList ID="NotificationsDropDownList" runat="server"
+            DataValueField="Id"
+            DataTextField="NotificationInfo"
+            SelectMethod="NotificationsDropDownList_GetData" />
 
         <p>
             <asp:Button ID="SendNotificationButton" runat="server" UseSubmitBehavior="true" Text="Send" CssClass="btn btn-info"

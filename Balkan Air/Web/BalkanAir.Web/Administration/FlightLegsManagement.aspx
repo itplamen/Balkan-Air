@@ -19,7 +19,7 @@
         AllowSorting="true">
         <Columns>
             <asp:BoundField DataField="Id" SortExpression="Id" HeaderText="Id" />
-            <asp:TemplateField HeaderText="Origin">
+            <asp:TemplateField HeaderText="Origin" SortExpression="DepartureAirportId">
                 <ItemTemplate>
                     <%#: this.GetAirport(Item.DepartureAirportId) %>
                 </ItemTemplate>
@@ -31,12 +31,12 @@
                         SelectMethod="AirportsDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Scheduled Departure">
+            <asp:TemplateField HeaderText="Scheduled Departure" SortExpression="ScheduledDepartureDateTime">
                 <ItemTemplate>
                     <%#: Item.ScheduledDepartureDateTime.ToString("dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture)  %>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Destination">
+            <asp:TemplateField HeaderText="Destination" SortExpression="ArrivalAirportId">
                 <ItemTemplate>
                     <%#: this.GetAirport(Item.ArrivalAirportId) %>
                 </ItemTemplate>
@@ -48,12 +48,12 @@
                         SelectMethod="AirportsDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Scheduled Arrival">
+            <asp:TemplateField HeaderText="Scheduled Arrival" SortExpression="ScheduledArrivalDateTime">
                 <ItemTemplate>
                     <%#: Item.ScheduledArrivalDateTime.ToString("dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture)  %>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Flight">
+            <asp:TemplateField HeaderText="Flight" SortExpression="FlightId">
                 <ItemTemplate>
                     <%#: "Id:" + Item.FlightId + " " + Item.Flight.Number %>
                 </ItemTemplate>
@@ -65,7 +65,7 @@
                         SelectMethod="FlightsDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Route">
+            <asp:TemplateField HeaderText="Route" SortExpression="RouteId">
                 <ItemTemplate>
                     <%#: "Id:" + Item.RouteId + " " + Item.Route.Origin.Name + " (" + Item.Route.Origin.Abbreviation + ") -> " + 
                             Item.Route.Destination.Name + " (" + Item.Route.Destination.Abbreviation + ")" %>
@@ -103,12 +103,18 @@
         ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan" ValidationGroup="CreateNewFlightLeg" />
 
     <asp:RequiredFieldValidator ErrorMessage="Arrival time is required!" ControlToValidate="ScheduledArrivalTimeTextBox"
-        ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan" ValidationGroup="CreateNewFlightLeg" /> 
+        ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan" ValidationGroup="CreateNewFlightLeg" />
 
-    <asp:Panel ID="CreateFlightLegPanel" runat="server" ClientIDMode="Static">
+    <asp:CustomValidator ID="AreDateTimesValidCustomValidator" CssClass="validatorSpan" Display="Dynamic" ForeColor="Red" 
+        ErrorMessage="" runat="server" />
+
+    <asp:CustomValidator ID="AreDateTimesAfterDateTimeNowCustomValidator" CssClass="validatorSpan" Display="Dynamic" 
+        ForeColor="Red" ErrorMessage="" runat="server" />
+
+    <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new flight leg</h3>
 
-        <asp:Label Text="Departure Airport: " runat="server" AssociatedControlID="AddDepartureAirportDropDownList" />
+        <asp:Label Text="Departure Airport:" runat="server" AssociatedControlID="AddDepartureAirportDropDownList" />
         <asp:DropDownList ID="AddDepartureAirportDropDownList" runat="server"
             DataValueField="Id"
             DataTextField="AirportInfo"
@@ -128,13 +134,13 @@
         <asp:TextBox runat="server" ID="ScheduledDepartureTimeTextBox" ClientIDMode="Static" TextMode="Time" />
         <span class="glyphicon glyphicon-time"></span>
 
-        <asp:Label Text="Arrival Airport: " runat="server" AssociatedControlID="AddArrivalAirportDropDownList" />
+        <asp:Label Text="Arrival Airport:" runat="server" AssociatedControlID="AddArrivalAirportDropDownList" />
         <asp:DropDownList ID="AddArrivalAirportDropDownList" runat="server"
             DataValueField="Id"
             DataTextField="AirportInfo"
             SelectMethod="AirportsDropDownList_GetData" />
 
-        <asp:Label runat="server" Text="Scheduled Arrival Date: " AssociatedControlID="ScheduledArrivalDateTextBox" />
+        <asp:Label runat="server" Text="Scheduled Arrival Date:" AssociatedControlID="ScheduledArrivalDateTextBox" />
         <asp:TextBox runat="server" ID="ScheduledArrivalDateTextBox" ClientIDMode="Static" />
         <span id="ArrivalCalendarIconSpan" class="glyphicon glyphicon-calendar"></span>
 
@@ -144,44 +150,28 @@
             Format="d/MM/yyyy"
             PopupButtonID="ArrivalCalendarIconSpan" />
 
-        <asp:Label runat="server" Text="Scheduled Arrival Time: " AssociatedControlID="ScheduledArrivalTimeTextBox" />
+        <asp:Label runat="server" Text="Scheduled Arrival Time:" AssociatedControlID="ScheduledArrivalTimeTextBox" />
         <asp:TextBox runat="server" ID="ScheduledArrivalTimeTextBox" ClientIDMode="Static" TextMode="Time" />
         <span class="glyphicon glyphicon-time"></span>
 
-        <asp:Label Text="Flight: " runat="server" AssociatedControlID="AddFlightDropDownList" />
+        <asp:Label Text="Flight:" runat="server" AssociatedControlID="AddFlightDropDownList" />
         <asp:DropDownList ID="AddFlightDropDownList" runat="server"
             DataValueField="Id"
             DataTextField="FlightInfo"
             SelectMethod="FlightsDropDownList_GetData" />
 
-        <asp:Label Text="Route: " runat="server" AssociatedControlID="AddRoutesDropDownList" />
+        <asp:Label Text="Route:" runat="server" AssociatedControlID="AddRoutesDropDownList" />
         <asp:DropDownList ID="AddRoutesDropDownList" runat="server"
             DataValueField="Id"
             DataTextField="RouteInfo"
             SelectMethod="RoutesDropDownList" />
 
-        <asp:Label Text="Leg Instances: " runat="server" AssociatedControlID="LegInstancesListBox" />
-        <asp:ListBox ID="LegInstancesListBox" runat="server" SelectionMode="Multiple" required
-            DataValueField="Id"
-            DataTextField="LegInstanceInfo"
-            SelectMethod="LegInstancesListBox_GetData" />
-
-        <asp:Button ID="CreateFlightLegBtn" ValidationGroup="CreateNewFlightLeg" runat="server" Text="Create"
-            CssClass="btn btn-info" UseSubmitBehavior="true" OnClick="CreateFlightLegBtn_Click" />
-        <asp:Button ID="CancelBtn" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-danger"
-            UseSubmitBehavior="false" />
+        <p>
+            <asp:Button ID="CreateFlightLegBtn" ValidationGroup="CreateNewFlightLeg" runat="server" Text="Create"
+                CssClass="btn btn-info" UseSubmitBehavior="true" OnClick="CreateFlightLegBtn_Click" />
+            <asp:Button ID="CancelBtn" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-danger"
+                UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
+        </p>
     </asp:Panel>
-
-    <script type="text/javascript">
-        $(function () {
-            $('[id*=LegInstancesListBox]').multiselect({
-                enableFiltering: true,
-                includeSelectAllOption: true,
-                enableCollapsibleOptGroups: true,
-                maxHeight: 300,
-                buttonWidth: '350px'
-            });
-        });
-    </script>
 </asp:Content>
 

@@ -94,7 +94,14 @@
                 };
 
                 this.BaggageServices.AddBaggage(baggage);
+
+                this.ClearFields();
             }
+        }
+
+        protected void CancelBtn_Click(object sender, EventArgs e)
+        {
+            this.ClearFields();   
         }
 
         private decimal GetValidPrice()
@@ -110,6 +117,15 @@
 
             this.PriceTextBox.BorderColor = Color.Red;
             return -1;
+        }
+
+        private void ClearFields()
+        {
+            this.BaggageTypeDropDownList.SelectedIndex = 0;
+            this.MaxKilogramsTextBox.Text = string.Empty;
+            this.SizeTextBox.Text = string.Empty;
+            this.PriceTextBox.Text = string.Empty;
+            this.BookingsDropDownList.SelectedIndex = 0;
         }
     }
 }

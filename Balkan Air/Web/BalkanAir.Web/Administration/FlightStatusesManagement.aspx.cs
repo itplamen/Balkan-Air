@@ -63,8 +63,20 @@
                 var flightStatus = new FlightStatus() { Name = this.FlightStatusNameTextBox.Text };
 
                 this.FlightStatusesServices.AddFlightStatus(flightStatus);
-                this.FlightStatusNameTextBox.BorderColor = Color.Empty;
+                
+                this.ClearFields();
             }
+        }
+
+        protected void CancelBtn_Click(object sender, EventArgs e)
+        {
+            this.ClearFields();
+        }
+
+        private void ClearFields()
+        {
+            this.FlightStatusNameTextBox.Text = string.Empty;
+            this.FlightStatusNameTextBox.BorderColor = Color.Empty;
         }
     }
 }

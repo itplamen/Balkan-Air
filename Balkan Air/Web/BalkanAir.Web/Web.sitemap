@@ -36,6 +36,7 @@
       <siteMapNode url="~/Administration/FlightStatusesManagement" title="Flight statuses management" />
       <siteMapNode url="~/Administration/NewsManagement" title="News management" />
       <siteMapNode url="~/Administration/NotificationsManagement" title="Notifications management" />
+      <siteMapNode url="~/Administration/SeatsManagement" title="Seats management" />
       <siteMapNode url="~/Administration/TravelClassesManagement" title="Travel classes management" />
       <siteMapNode url="~/Administration/UserNotificationsManagement" title="User notifications management" />
       <siteMapNode url="~/Administration/UserRolesManagement" title="User roles management" />

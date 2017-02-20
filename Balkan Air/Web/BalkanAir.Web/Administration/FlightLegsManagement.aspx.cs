@@ -1,11 +1,8 @@
 ﻿namespace BalkanAir.Web.Administration
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using System.Web.UI;
-    using System.Web.UI.WebControls;
 
     using Ninject;
 
@@ -121,48 +118,104 @@
                 return "Airport not foud!";
             }
 
-            return airport.Name + " (" + airport.Abbreviation + ")";
+            return "Id:" + airport.Id + " " + airport.Name + " (" + airport.Abbreviation + ")";
         }
 
         protected void CreateFlightLegBtn_Click(object sender, EventArgs e)
         {
+            string seconds = ":00";
+
+            // Convert string to DateTime. The string should look like this: 01/08/2008 14:50:00
+            string departureDateTime = this.ScheduledDepartureDateTextBox.Text + " " + 
+                this.ScheduledDepartureTimeTextBox.Text + seconds;
+
+            string arrivalDateTime = this.ScheduledArrivalDateTextBox.Text + " " + 
+                this.ScheduledArrivalTimeTextBox.Text + seconds;
+
+            DateTime scheduledDepartureDateTime = Convert.ToDateTime(departureDateTime);
+            DateTime scheduledArrivalDateTime = Convert.ToDateTime(arrivalDateTime);
+
+            if (this.AreDateTimesValid(scheduledDepartureDateTime, scheduledArrivalDateTime) && 
+                this.IsDateTimeAfterDateTimeNow(scheduledDepartureDateTime) && 
+                this.IsDateTimeAfterDateTimeNow(scheduledDepartureDateTime) && this.Page.IsValid)
             {
-                string seconds = ":00";
-
-                // Convert string to DateTime. The string should look like this: 01/08/2008 14:50:00
-                var departureDateTime = this.ScheduledDepartureDateTextBox.Text + " " + this.ScheduledDepartureTimeTextBox.Text + seconds;
-                var arrivalDateTime = this.ScheduledArrivalDateTextBox.Text + " " + this.ScheduledArrivalTimeTextBox.Text + seconds;
-
                 var newFlightLeg = new FlightLeg()
                 {
                     DepartureAirportId = int.Parse(this.AddDepartureAirportDropDownList.SelectedItem.Value),
-                    ScheduledDepartureDateTime = Convert.ToDateTime(departureDateTime),
+                    ScheduledDepartureDateTime = scheduledDepartureDateTime,
                     ArrivalAirportId = int.Parse(this.AddArrivalAirportDropDownList.SelectedItem.Value),
-                    ScheduledArrivalDateTime = Convert.ToDateTime(arrivalDateTime),
+                    ScheduledArrivalDateTime = scheduledArrivalDateTime,
                     FlightId = int.Parse(this.AddFlightDropDownList.SelectedItem.Value),
-                    RouteId = int.Parse(this.AddRoutesDropDownList.SelectedItem.Value),
-                    LegInstances = this.GetSelectedLegInstances()
+                    RouteId = int.Parse(this.AddRoutesDropDownList.SelectedItem.Value)
                 };
 
                 this.FlightLegsServices.AddFlightLeg(newFlightLeg);
+
+                this.ClearFields();
             }
         }
 
-        private ICollection<LegInstance> GetSelectedLegInstances()
+        protected void CancelBtn_Click(object sender, EventArgs e)
         {
-            var selectedLegInstances = new List<LegInstance>();
+            this.ClearFields();
+        }
 
-            foreach (ListItem item in this.LegInstancesListBox.Items)
+        private bool AreDateTimesValid(DateTime scheduledDepartureDateTime, DateTime scheduledArrivalDateTime)
+        {
+            int result = DateTime.Compare(scheduledDepartureDateTime, scheduledArrivalDateTime);
+
+            if (result == 0)
             {
-                if (item.Selected)
-                {
-                    var id = int.Parse(item.Value);
-                    var legInstance = this.LegInstancesServices.GetLegInstance(id);
-                    selectedLegInstances.Add(legInstance);
-                }
+                this.AreDateTimesValidCustomValidator.ErrorMessage = "Departure and arrival datetime cannot be equal!";
+                this.AreDateTimesValidCustomValidator.IsValid = false;
+                return false;
+            }
+            else if (result > 0)
+            {
+                this.AreDateTimesValidCustomValidator.ErrorMessage = "Arrival datetime cannot be earlier than departure datetime!";
+                this.AreDateTimesValidCustomValidator.IsValid = false;
+                return false;
             }
 
-            return selectedLegInstances;
+            this.AreDateTimesValidCustomValidator.ErrorMessage = string.Empty;
+            this.AreDateTimesValidCustomValidator.IsValid = true;
+            return true;
+        }
+
+        private bool IsDateTimeAfterDateTimeNow(DateTime dateTime)
+        {
+            int departureDateCompareResult = DateTime.Compare(dateTime, DateTime.Now);
+
+            if (departureDateCompareResult == 0)
+            {
+                this.AreDateTimesAfterDateTimeNowCustomValidator.ErrorMessage = "Departure and arrival datetime " +
+                    "cannot be equal with datetime now!";
+                this.AreDateTimesAfterDateTimeNowCustomValidator.IsValid = false;
+                return false;
+            }
+            else if (departureDateCompareResult < 0)
+            {
+                this.AreDateTimesAfterDateTimeNowCustomValidator.ErrorMessage = "Departure and arrival " + 
+                    " datetime cannot be before datetime now!";
+                this.AreDateTimesAfterDateTimeNowCustomValidator.IsValid = false;
+                return false;
+            }
+
+            this.AreDateTimesAfterDateTimeNowCustomValidator.ErrorMessage = string.Empty;
+            this.AreDateTimesAfterDateTimeNowCustomValidator.IsValid = true;
+            return true;
+        }
+
+        private void ClearFields()
+        {
+            this.AddDepartureAirportDropDownList.SelectedIndex = 0;
+            this.ScheduledDepartureDateTextBox.Text = string.Empty;
+            this.ScheduledDepartureTimeTextBox.Text = string.Empty;
+            this.AddArrivalAirportDropDownList.SelectedIndex = 0;
+            this.ScheduledArrivalDateTextBox.Text = string.Empty;
+            this.ScheduledArrivalTimeTextBox.Text = string.Empty;
+            this.AddFlightDropDownList.SelectedIndex = 0;
+            this.AddRoutesDropDownList.SelectedIndex = 0;
         }
     }
 }

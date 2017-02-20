@@ -22,6 +22,15 @@ namespace BalkanAir.Web.Administration {
         protected global::System.Web.UI.WebControls.GridView NotificationsGridView;
         
         /// <summary>
+        /// InvalidTypeCustomValidatior control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator InvalidTypeCustomValidatior;
+        
+        /// <summary>
         /// ContentHtmlEditor control.
         /// </summary>
         /// <remarks>
@@ -47,5 +56,14 @@ namespace BalkanAir.Web.Administration {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button CreateNotificationtBtn;
+        
+        /// <summary>
+        /// CancelBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CancelBtn;
     }
 }

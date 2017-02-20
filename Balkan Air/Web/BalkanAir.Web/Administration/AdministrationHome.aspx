@@ -34,7 +34,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="<%= Page.ResolveUrl(Pages.AIRCRAFTS_MANAGEMENT) %>">Aircrafts Management Management</a>
+                                <a href="<%= Page.ResolveUrl(Pages.AIRCRAFTS_MANAGEMENT) %>">Aircrafts Management</a>
                             </td>
                         </tr>
                         <tr>
@@ -102,6 +102,11 @@
                         <tr>
                             <td>
                                 <a href="<%= Page.ResolveUrl(Pages.NOTIFICATIONS_MANAGEMENT) %>">Notifications Management</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="<%= Page.ResolveUrl(Pages.SEATS_MANAGEMENT) %>">Seats Management</a>
                             </td>
                         </tr>
                         <tr>

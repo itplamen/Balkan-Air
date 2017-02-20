@@ -37,7 +37,7 @@
     <asp:RequiredFieldValidator ErrorMessage="Fligth number is required!" ControlToValidate="AddFlightNumberTextBox"
         ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan" ValidationGroup="CreateNewFlight" />
 
-    <asp:Panel runat="server" ClientIDMode="Static">
+    <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Create new flight</h3>
 
         <asp:Label runat="server" AssociatedControlID="AddFlightNumberTextBox" Text="Flight number (unique):" />
@@ -45,9 +45,11 @@
         <asp:Button ID="GenerateFlightNumberBtn" ClientIDMode="Static" Text="Generate number"
             UseSubmitBehavior="false" CssClass="btn btn-success btn-sm" runat="server" OnClick="GenerateFlightNumberBtn_Click" />
 
-        <asp:Button ID="CreateFlightBtn" ValidationGroup="CreateNewFlight" runat="server" Text="Create"
-            CssClass="btn btn-info" UseSubmitBehavior="true" OnClick="CreateFlightBtn_Click" />
-        <asp:Button ID="CancelBtn" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-danger"
-            UseSubmitBehavior="false" />
+        <p>
+            <asp:Button ID="CreateFlightBtn" ValidationGroup="CreateNewFlight" runat="server" Text="Create"
+                CssClass="btn btn-info" UseSubmitBehavior="true" OnClick="CreateFlightBtn_Click" />
+            <asp:Button ID="CancelBtn" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-danger"
+                UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
+        </p>
     </asp:Panel>
 </asp:Content>

@@ -10,11 +10,11 @@
 
     public class AircraftsServices : IAircraftsServices
     {
-        private readonly IRepository<Aircraft> aircrafts;
+        private readonly IRepository<Aircraft> aircraftsRepository;
 
         public AircraftsServices(IRepository<Aircraft> aircrafts)
         {
-            this.aircrafts = aircrafts;
+            this.aircraftsRepository = aircrafts;
         }
 
         public int AddAircraft(Aircraft aircraft)
@@ -24,8 +24,8 @@
                 throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
             }
 
-            this.aircrafts.Add(aircraft);
-            this.aircrafts.SaveChanges();
+            this.aircraftsRepository.Add(aircraft);
+            this.aircraftsRepository.SaveChanges();
 
             return aircraft.Id;
         }
@@ -37,12 +37,12 @@
                 throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
             }
 
-            return this.aircrafts.GetById(id);
+            return this.aircraftsRepository.GetById(id);
         }
 
         public IQueryable<Aircraft> GetAll()
         {
-            return this.aircrafts.All();
+            return this.aircraftsRepository.All();
         }
 
         public Aircraft UpdateAircraft(int id, Aircraft aircraft)
@@ -57,16 +57,16 @@
                 throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
             }
 
-            var aircraftToUpdate = this.aircrafts.GetById(id);
+            var aircraftToUpdate = this.aircraftsRepository.GetById(id);
 
-            if (aircrafts != null)
+            if (aircraftsRepository != null)
             {
                 aircraftToUpdate.Model = aircraft.Model;
                 aircraftToUpdate.TotalSeats = aircraft.TotalSeats;
                 aircraftToUpdate.AircraftManufacturerId = aircraft.AircraftManufacturerId;
                 aircraftToUpdate.IsDeleted = aircraft.IsDeleted;
 
-                this.aircrafts.SaveChanges();
+                this.aircraftsRepository.SaveChanges();
             }
 
             return aircraftToUpdate;
@@ -79,15 +79,16 @@
                 throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
             }
 
-            var aircraftToDelete = this.aircrafts.GetById(id);
+            var aircraftToDelete = this.aircraftsRepository.GetById(id);
 
             if (aircraftToDelete != null)
             {
                 aircraftToDelete.IsDeleted = true;
-                this.aircrafts.SaveChanges();
+                this.aircraftsRepository.SaveChanges();
             }
 
             return aircraftToDelete;
         }
     }
 }
+         

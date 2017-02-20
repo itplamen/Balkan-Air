@@ -45,6 +45,7 @@
         public const string FLIGHT_STATUSES_MANAGEMENT = "~/Administration/FlightStatusesManagement";
         public const string NEWS_MANAGEMENT = "~/Administration/NewsManagement";
         public const string NOTIFICATIONS_MANAGEMENT = "~/Administration/NotificationsManagement";
+        public const string SEATS_MANAGEMENT = "~/Administration/SeatsManagement";
         public const string TRAVEL_CLASSES_MANAGEMENT = "~/Administration/TravelClassesManagement";
         public const string USER_NOTIFICATIONS_MANAGEMENT = "~/Administration/UserNotificationsManagement";
         public const string USER_ROLES_MANAGEMENT = "~/Administration/UserRolesManagement";

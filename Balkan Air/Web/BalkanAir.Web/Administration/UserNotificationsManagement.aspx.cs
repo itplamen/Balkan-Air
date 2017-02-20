@@ -105,10 +105,17 @@
 
                 this.UserNotificationsServices.SendNotification(notificationId, usersId);
                 this.SuccessPanel.Visible = true;
+
+                this.ClearFields();
             }
         }
 
         protected void CancelButton_Click(object sender, EventArgs e)
+        {
+            this.ClearFields();
+        }
+
+        private void ClearFields()
         {
             this.UsersListBox.ClearSelection();
             this.NotificationsDropDownList.SelectedIndex = 0;

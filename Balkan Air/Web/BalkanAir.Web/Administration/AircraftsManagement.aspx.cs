@@ -21,7 +21,8 @@
         public IQueryable<Aircraft> AircraftsGridView_GetData()
         {
             return this.AircraftsServices.GetAll()
-                .OrderBy(a => a.Model);
+                .OrderBy(a => a.AircraftManufacturer.Name)
+                .ThenBy(a => a.Model);
         }
 
         public void AircraftsGridView_UpdateItem(int id)
@@ -73,7 +74,20 @@
                 };
 
                 this.AircraftsServices.AddAircraft(aircraft);
+
+                this.ClearFields();
             }
+        }
+
+        protected void CancelBtn_Click(object sender, EventArgs e)
+        {
+            this.ClearFields();
+        }
+
+        private void ClearFields()
+        {
+            this.AircraftModelTextBox.Text = string.Empty;
+            this.AircraftManufacturersDropDownList.SelectedIndex = 0;
         }
     }
 }

@@ -64,6 +64,11 @@
         {
             get
             {
+                if (this.Aircraft == null)
+                {
+                    return -1;
+                }
+
                 var legInstance = this.Aircraft.LegInstances
                     .Where(l => l.AircraftId == this.AircraftId)
                     .FirstOrDefault();

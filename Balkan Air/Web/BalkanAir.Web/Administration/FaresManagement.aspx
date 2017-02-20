@@ -42,15 +42,19 @@
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new fare</h3>
 
-        <asp:Label Text="Price: " runat="server" AssociatedControlID="PriceTextBox" />
+        <asp:Label Text="Price:" runat="server" AssociatedControlID="PriceTextBox" />
         <asp:TextBox ID="PriceTextBox" required runat="server" />
 
-        <asp:Label Text="Route: " runat="server" AssociatedControlID="AddRoutesDropDownList" />
+        <asp:Label Text="Route:" runat="server" AssociatedControlID="AddRoutesDropDownList" />
         <asp:DropDownList ID="AddRoutesDropDownList" runat="server"
             DataValueField="Id"
             DataTextField="RouteInfo"
             SelectMethod="RoutesDropDownList_GetData" />
 
-        <asp:Button ID="CreateFaretBtn" runat="server" Text="Create" CssClass="btn btn-info" OnClick="CreateFaretBtn_Click" />
+        <p>
+            <asp:Button ID="CreateFaretBtn" runat="server" Text="Create" CssClass="btn btn-info" OnClick="CreateFaretBtn_Click" />
+            <asp:Button ID="CancelBtn" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-danger"
+                UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
+        </p>
     </asp:Panel>
 </asp:Content>

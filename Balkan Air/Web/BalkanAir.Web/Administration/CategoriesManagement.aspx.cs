@@ -53,7 +53,19 @@
             {
                 var category = new Category() { Name = this.CategoryNameTextBox.Text };
                 this.CategoriesServices.AddCategory(category);
+
+                this.ClearFields();
             }
+        }
+
+        protected void CancelBtn_Click(object sender, EventArgs e)
+        {
+            this.ClearFields();
+        }
+
+        private void ClearFields()
+        {
+            this.CategoryNameTextBox.Text = string.Empty;
         }
     }
 }

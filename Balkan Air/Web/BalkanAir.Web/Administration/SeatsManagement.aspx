@@ -18,8 +18,31 @@
             <asp:BoundField DataField="Id" SortExpression="Id" HeaderText="Id" />
             <asp:BoundField DataField="Number" SortExpression="Number" HeaderText="Number" />
             <asp:BoundField DataField="Row" SortExpression="Row" HeaderText="Row" />
-            <asp:BoundField DataField="IsReserved" SortExpression="IsReserved" HeaderText="Is Reserved" />
-            <asp:BoundField DataField="TravelClassId" SortExpression="TravelClassId" HeaderText="Travel Class Id" />
+            <asp:CheckBoxField DataField="IsReserved" HeaderText="Is Reserved" />
+            <asp:TemplateField HeaderText="Travel Class" SortExpression="TravelClassId">
+                <ItemTemplate>
+                    <%#: this.GetTravelClass(Item.TravelClassId) %>
+                </ItemTemplate>
+                <EditItemTemplate>
+                    <asp:DropDownList ID="EditTravelClassDropDownList" runat="server"
+                        DataValueField="Id"
+                        DataTextField="TravelClassInfo"
+                        SelectedValue="<%#: BindItem.TravelClassId %>"
+                        SelectMethod="TravelClassDropDownList_GetData" />
+                </EditItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Leg Instance" SortExpression="LegInstanceId">
+                <ItemTemplate>
+                    <%#: "Id:" + Item.LegInstanceId + ", " + Item.LegInstance.DepartureDateTime + " -> " + Item.LegInstance.ArrivalDateTime %>
+                </ItemTemplate>
+                <EditItemTemplate>
+                    <asp:DropDownList ID="EditLegInstanceDropDown" runat="server"
+                        DataValueField="Id"
+                        DataTextField="LegInstanceInfo"
+                        SelectedValue="<%#: BindItem.LegInstanceId %>"
+                        SelectMethod="LegInstanceDropDown_GetData" />
+                </EditItemTemplate>
+            </asp:TemplateField>
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />
 
             <asp:CommandField ShowEditButton="true" ControlStyle-CssClass="btn btn-info" />
@@ -30,23 +53,38 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
-    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Name length must be in the range [2 - 50]!" Type="String" 
-        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{2,50}$" ControlToValidate="AirportNameTextBox" />
-
-    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Abbreviation length must be in the range [1 - 3]!" 
-        Type="String" ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{1,3}$" ControlToValidate="AbbreviationTextBox" />
+    <asp:RangeValidator ErrorMessage="Row must be in the range [1 - 30]!" ControlToValidate="RowTextBox" runat="server"
+        ForeColor="Red" MinimumValue="1" MaximumValue="30" Type="Integer" CssClass="validatorSpan" ValidationGroup="CreateNewSeat" />
 
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new seat</h3>
 
-        <asp:Label Text="Name: " runat="server" />
-        <asp:TextBox ID="AirportNameTextBox" required MaxLength="50" runat="server" />
+        <asp:Label Text="Row:" runat="server" AssociatedControlID="RowTextBox" />
+        <asp:TextBox ID="RowTextBox" required runat="server" TextMode="Number" />
 
-        <asp:Label Text="Abbreviation:" runat="server" />
-        <asp:TextBox ID="AbbreviationTextBox" required MaxLength="3" Style="text-transform: uppercase;" runat="server" />
+        <asp:Label Text="Number:" runat="server" AssociatedControlID="SeatNumberTextBox" />
+        <asp:TextBox ID="SeatNumberTextBox" required MaxLength="1" Style="text-transform: uppercase;" runat="server" />
 
-         
+        <asp:Label Text="Is Reserved:" runat="server" AssociatedControlID="IsSeatReservedCheckBox" />
+        <asp:CheckBox ID="IsSeatReservedCheckBox" runat="server" />
 
-        <%--<asp:Button ID="CreateAirportBtn" runat="server" Text="Create" CssClass="btn btn-info" OnClick="CreateAirportBtn_Click" />--%>
+        <asp:Label Text="Travel Class:" runat="server" AssociatedControlID="AddTravelClassDropDownList" />
+        <asp:DropDownList ID="AddTravelClassDropDownList" runat="server"
+            DataValueField="Id"
+            DataTextField="TravelClassInfo"
+            SelectMethod="TravelClassDropDownList_GetData" />
+
+        <asp:Label Text="Leg Instance:" runat="server" AssociatedControlID="AddLegInstanceDropDown" />
+        <asp:DropDownList ID="AddLegInstanceDropDown" runat="server"
+            DataValueField="Id"
+            DataTextField="LegInstanceInfo"
+            SelectMethod="LegInstanceDropDown_GetData" />
+
+        <p>
+            <asp:Button ID="CreateAirportBtn" runat="server" Text="Create" CssClass="btn btn-info" ValidationGroup="CreateNewSeat"
+                OnClick="CreateAirportBtn_Click" />
+            <asp:Button ID="CancelBtn" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-danger"
+                UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
+        </p>
     </asp:Panel>
 </asp:Content>

@@ -32,15 +32,21 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
-    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Name length must be in the range [1 - 50]!" Type="String" 
-        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{1,50}$" ControlToValidate="CategoryNameTextBox" />
+    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Name length must be in the range [1 - 50]!" Type="String"
+        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{1,50}$" ValidationGroup="AddCategory" CssClass="validatorSpan"
+        ControlToValidate="CategoryNameTextBox" />
 
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new category</h3>
 
-        <asp:Label Text="Name: " runat="server" />
+        <asp:Label Text="Name:" runat="server" AssociatedControlID="CategoryNameTextBox" />
         <asp:TextBox ID="CategoryNameTextBox" required MaxLength="50" runat="server" />
 
-        <asp:Button ID="CreateCategoryBtn" runat="server" Text="Create" CssClass="btn btn-info" OnClick="CreateCategoryBtn_Click" />
+        <p>
+            <asp:Button ID="CreateCategoryBtn" runat="server" Text="Create" CssClass="btn btn-info" ValidationGroup="AddCategory"
+                OnClick="CreateCategoryBtn_Click" />
+            <asp:Button ID="CancelBtn" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-danger"
+                UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
+        </p>
     </asp:Panel>
 </asp:Content>

@@ -48,22 +48,22 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
+    <asp:CustomValidator ID="InvalidTypeCustomValidatior" ErrorMessage="" Display="Dynamic" ForeColor="Red" runat="server" />
+
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new notification</h3>
-        <br />
 
-        <p>
-            <asp:Label Text="Content: " runat="server" AssociatedControlID="ContentHtmlEditor" />
+            <asp:Label Text="Content:" runat="server" AssociatedControlID="ContentHtmlEditor" />
             <ajaxToolkit:HtmlEditor.Editor ID="ContentHtmlEditor" Height="300px" Width="100%" AutoFocus="true" runat="server" required />
-        </p>
-
-        <p>
-            <asp:Label Text="Type: " runat="server" AssociatedControlID="TypeDropDownList" />
+ 
+            <asp:Label Text="Type:" runat="server" AssociatedControlID="TypeDropDownList" />
             <asp:DropDownList ID="TypeDropDownList" runat="server" />
-        </p>
 
         <p>
-            <asp:Button ID="CreateNotificationtBtn" runat="server" Text="Create" CssClass="btn btn-info" OnClick="CreateNotificationtBtn_Click" />
+            <asp:Button ID="CreateNotificationtBtn" runat="server" Text="Create" CssClass="btn btn-info" 
+                OnClick="CreateNotificationtBtn_Click" />
+            <asp:Button ID="CancelBtn" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-danger"
+                UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
         </p>
     </asp:Panel>
 </asp:Content>

@@ -33,22 +33,29 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
-    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Name length must be in the range [2 - 50]!" Type="String" 
-        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{2,50}$" ControlToValidate="CountryNameTextBox" />
+    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Name length must be in the range [2 - 50]!" Type="String"
+        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{2,50}$" ValidationGroup="AddCountry" CssClass="validatorSpan"
+        ControlToValidate="CountryNameTextBox" />
 
-    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Abbreviation length must be in the range [1 - 2]!" Type="String" 
-        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{1,2}$" ControlToValidate="AbbreviationNameTextBox" />
+    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Abbreviation length must be in the range [1 - 2]!" Type="String"
+        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{1,2}$" ValidationGroup="AddCountry" CssClass="validatorSpan"
+        ControlToValidate="AbbreviationNameTextBox" />
 
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new country</h3>
 
-        <asp:Label Text="Name: " runat="server" />
+        <asp:Label Text="Name:" runat="server" AssociatedControlID="CountryNameTextBox" />
         <asp:TextBox ID="CountryNameTextBox" required MaxLength="50" runat="server" />
 
-        <asp:Label Text="Abbreviation: " runat="server" />
-        <asp:TextBox ID="AbbreviationNameTextBox" required MaxLength="2" Style="text-transform: uppercase;" runat="server"  />
+        <asp:Label Text="Abbreviation:" runat="server" AssociatedControlID="AbbreviationNameTextBox" />
+        <asp:TextBox ID="AbbreviationNameTextBox" required MaxLength="2" Style="text-transform: uppercase;" runat="server" />
 
-        <asp:Button ID="CreateCountrytBtn" runat="server" Text="Create" CssClass="btn btn-info" OnClick="CreateCountrytBtn_Click" />
+        <p>
+            <asp:Button ID="CreateCountrytBtn" runat="server" Text="Create" CssClass="btn btn-info" ValidationGroup="AddCountry"
+                OnClick="CreateCountrytBtn_Click" />
+            <asp:Button ID="CancelBtn" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-danger"
+                UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
+        </p>
     </asp:Panel>
 </asp:Content>
 

@@ -94,11 +94,18 @@
                     NumberOfRows = int.Parse(this.NumberOfRowsTextBox.Text),
                     NumberOfSeats = int.Parse(this.NumberOfSeatsTextBox.Text),
                     Price = price,
-                    AircraftId = int.Parse(this.AircraftsDropDownList.SelectedItem.Value)
+                    AircraftId = int.Parse(this.AddAircraftsDropDownList.SelectedItem.Value)
                 };
 
                 this.TravelClassesServices.AddTravelClass(travelClass);
+
+                this.ClearFields();
             }
+        }
+
+        protected void CancelBtn_Click(object sender, EventArgs e)
+        {
+            this.ClearFields();
         }
 
         private decimal GetValidPrice()
@@ -115,6 +122,19 @@
 
             this.PriceTextBox.BorderColor = Color.Red;
             return -1;
+        }
+
+        private void ClearFields()
+        {
+            this.TravelClassTypeDropDownList.SelectedIndex = 0;
+            this.MealTextBox.Text = string.Empty;
+            this.PriorityBoardingCheckBox.Checked = false;
+            this.ReservedSeatCheckBox.Checked = true;
+            this.EarnMilesCheckBox.Checked = false;
+            this.NumberOfRowsTextBox.Text = string.Empty;
+            this.NumberOfSeatsTextBox.Text = string.Empty;
+            this.PriceTextBox.Text = string.Empty;
+            this.AddAircraftsDropDownList.SelectedIndex = 0;
         }
     }
 }

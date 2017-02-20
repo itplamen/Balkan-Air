@@ -32,16 +32,21 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
-    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Name length must be in the range [2 - 20]!" Type="String" 
-        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{2,20}$" ControlToValidate="AircraftManufacturerNameTextBox" />
+    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Name length must be in the range [2 - 20]!" Type="String"
+        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{2,20}$" ValidationGroup="CreateNewAircraftManufacturer"
+        CssClass="validatorSpan" ControlToValidate="AircraftManufacturerNameTextBox" />
 
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new aircraft manufacturer</h3>
 
-        <asp:Label Text="Name: " runat="server" />
+        <asp:Label Text="Name:" runat="server" AssociatedControlID="AircraftManufacturerNameTextBox" />
         <asp:TextBox ID="AircraftManufacturerNameTextBox" required runat="server" MaxLength="20" />
 
-        <asp:Button ID="CreateAircraftManufacturerBtn" runat="server" Text="Create" CssClass="btn btn-info"
-            OnClick="CreateAircraftManufacturerBtn_Click" />
+        <p>
+            <asp:Button ID="CreateAircraftManufacturerBtn" runat="server" Text="Create" CssClass="btn btn-info"
+                ValidationGroup="CreateNewAircraftManufacturer" OnClick="CreateAircraftManufacturerBtn_Click" />
+            <asp:Button ID="CancelBtn" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-danger"
+                UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
+        </p>
     </asp:Panel>
 </asp:Content>

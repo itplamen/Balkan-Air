@@ -6,8 +6,8 @@
 
     using Ninject;
 
-    using Services.Data.Contracts;
     using Data.Models;
+    using Services.Data.Contracts;
 
     public partial class NotificationsManagement : Page
     {
@@ -55,15 +55,38 @@
         {
             if (this.Page.IsValid)
             {
+                NotificationType selectedType;
+                bool isTypeValid = Enum.TryParse(this.TypeDropDownList.SelectedItem.Text, out selectedType);
+
+                if (!isTypeValid)
+                {
+                    this.InvalidTypeCustomValidatior.ErrorMessage = "Invalid notification type!";
+                    this.InvalidTypeCustomValidatior.IsValid = false;
+                    return;
+                }
+
                 var notification = new Notification()
                 {
                     Content = this.ContentHtmlEditor.Content,
                     DateCreated = DateTime.Now,
-                    Type = NotificationType.Other
+                    Type = selectedType
                 };
 
-                int notificationId = this.NotificationsServices.AddNotification(notification);
+                this.NotificationsServices.AddNotification(notification);
+
+                this.ClearFeilds();
             }
+        }
+
+        protected void CancelBtn_Click(object sender, EventArgs e)
+        {
+            this.ClearFeilds();
+        }
+
+        private void ClearFeilds()
+        {
+            this.ContentHtmlEditor.Content = string.Empty;
+            this.TypeDropDownList.SelectedIndex = 0;
         }
     }
 }

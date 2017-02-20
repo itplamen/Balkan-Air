@@ -31,40 +31,35 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
-    <asp:RangeValidator ErrorMessage="Baggage kilograms must be in the range [0 - 32]!" ControlToValidate="MaxKilogramsTextBox"
-        runat="server" ForeColor="Red" MinimumValue="0" MaximumValue="32" Type="Integer" />
+    <asp:RangeValidator ErrorMessage="Baggage kilograms must be in the range [0 - 32]!" ValidationGroup="AddBaggage" CssClass="validatorSpan"
+        ControlToValidate="MaxKilogramsTextBox" runat="server" ForeColor="Red" MinimumValue="0" MaximumValue="32" Type="Integer" />
 
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new baggage</h3>
 
-        <p>
-            <asp:Label Text="Type: " runat="server" AssociatedControlID="BaggageTypeDropDownList" />
-            <asp:DropDownList runat="server" ID="BaggageTypeDropDownList" />
-        </p>
+        <asp:Label Text="Type:" runat="server" AssociatedControlID="BaggageTypeDropDownList" />
+        <asp:DropDownList runat="server" ID="BaggageTypeDropDownList" />
+
+        <asp:Label Text="Max Kilograms:" runat="server" AssociatedControlID="MaxKilogramsTextBox" />
+        <asp:TextBox ID="MaxKilogramsTextBox" required runat="server" TextMode="Number" />
+
+        <asp:Label Text="Size:" runat="server" AssociatedControlID="SizeTextBox" />
+        <asp:TextBox ID="SizeTextBox" required runat="server" />
+
+        <asp:Label Text="Price:" runat="server" AssociatedControlID="PriceTextBox" />
+        <asp:TextBox ID="PriceTextBox" required runat="server" />
+
+        <asp:Label Text="For booking:" runat="server" AssociatedControlID="BookingsDropDownList" />
+        <asp:DropDownList ID="BookingsDropDownList" runat="server"
+            DataValueField="Id"
+            DataTextField="BookingInfo"
+            SelectMethod="BookingsDropDownList_GetData" />
 
         <p>
-            <asp:Label Text="Max Kilograms: " runat="server" AssociatedControlID="MaxKilogramsTextBox" />
-            <asp:TextBox ID="MaxKilogramsTextBox" required runat="server" TextMode="Number" />
+            <asp:Button ID="CreateBaggageBtn" runat="server" Text="Create" CssClass="btn btn-info" ValidationGroup="AddBaggage"
+                OnClick="CreateBaggageBtn_Click" />
+            <asp:Button ID="CancelBtn" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-danger"
+                UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
         </p>
-
-        <p>
-            <asp:Label Text="Size: " runat="server" AssociatedControlID="SizeTextBox" />
-            <asp:TextBox ID="SizeTextBox" required runat="server" />
-        </p>
-
-        <p>
-            <asp:Label Text="Price: " runat="server" AssociatedControlID="PriceTextBox" />
-            <asp:TextBox ID="PriceTextBox" required runat="server" />
-        </p>
-
-        <p>
-            <asp:Label Text="For booking: " runat="server" AssociatedControlID="BookingsDropDownList" />
-            <asp:DropDownList ID="BookingsDropDownList" runat="server"
-                DataValueField="Id"
-                DataTextField="BookingInfo"
-                SelectMethod="BookingsDropDownList_GetData" />
-        </p>
-
-        <asp:Button ID="CreateBaggageBtn" runat="server" Text="Create" CssClass="btn btn-info" OnClick="CreateBaggageBtn_Click" />
     </asp:Panel>
 </asp:Content>

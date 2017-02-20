@@ -79,8 +79,22 @@
                 };
 
                 this.AirportsServices.AddAirport(airport);
-                this.AbbreviationTextBox.BorderColor = Color.Empty;
+
+                this.ClearFields();
             }
+        }
+
+        protected void CancelBtn_Click(object sender, EventArgs e)
+        {
+            this.ClearFields();
+        }
+
+        private void ClearFields()
+        {
+            this.AirportNameTextBox.Text = string.Empty;
+            this.AbbreviationTextBox.Text = string.Empty;
+            this.AbbreviationTextBox.BorderColor = Color.Empty;
+            this.CountryDropDownList.SelectedIndex = 0;
         }
     }
 }

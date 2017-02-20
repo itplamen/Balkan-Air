@@ -1,8 +1,9 @@
 ﻿namespace BalkanAir.Data.Models
 {
-    using Common;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+
+    using Common;
 
     public class Seat
     {

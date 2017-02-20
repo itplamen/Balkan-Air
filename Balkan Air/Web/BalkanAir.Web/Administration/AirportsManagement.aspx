@@ -51,28 +51,35 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
-    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Name length must be in the range [2 - 50]!" Type="String" 
-        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{2,50}$" ControlToValidate="AirportNameTextBox" />
+    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Name length must be in the range [2 - 50]!" Type="String"
+        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{2,50}$" ValidationGroup="CreateAirport"
+        CssClass="validatorSpan" ControlToValidate="AirportNameTextBox" />
 
-    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Abbreviation length must be in the range [1 - 3]!" 
-        Type="String" ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{1,3}$" ControlToValidate="AbbreviationTextBox" />
+    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Abbreviation length must be in the range [1 - 3]!"
+        Type="String" ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{1,3}$" ValidationGroup="CreateAirport"
+        CssClass="validatorSpan" ControlToValidate="AbbreviationTextBox" />
 
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new airport</h3>
 
-        <asp:Label Text="Name: " runat="server" />
+        <asp:Label Text="Name:" runat="server" AssociatedControlID="AirportNameTextBox" />
         <asp:TextBox ID="AirportNameTextBox" required MaxLength="50" runat="server" />
 
-        <asp:Label Text="Abbreviation:" runat="server" />
+        <asp:Label Text="Abbreviation:" runat="server" AssociatedControlID="AbbreviationTextBox" />
         <asp:TextBox ID="AbbreviationTextBox" required MaxLength="3" Style="text-transform: uppercase;" runat="server" />
 
-        <asp:Label Text="Country: " runat="server" />
+        <asp:Label Text="Country:" runat="server" AssociatedControlID="CountryDropDownList" />
         <asp:DropDownList ID="CountryDropDownList" runat="server"
             ItemType="BalkanAir.Data.Models.Country"
             DataValueField="Id"
             DataTextField="Name"
             SelectMethod="CountryDropDownList_GetData" />
 
-        <asp:Button ID="CreateAirportBtn" runat="server" Text="Create" CssClass="btn btn-info" OnClick="CreateAirportBtn_Click" />
+        <p>
+            <asp:Button ID="CreateAirportBtn" runat="server" Text="Create" CssClass="btn btn-info"
+                ValidationGroup="CreateAirport" OnClick="CreateAirportBtn_Click" />
+            <asp:Button ID="CancelBtn" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-danger"
+                UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
+        </p>
     </asp:Panel>
 </asp:Content>

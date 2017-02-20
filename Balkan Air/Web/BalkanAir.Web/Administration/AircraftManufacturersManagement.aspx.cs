@@ -8,11 +8,16 @@
 
     using Data.Models;
     using Services.Data.Contracts;
+    using System.Collections.Generic;
+    using System.Web.UI.WebControls;
 
     public partial class AircraftManufacturersManagement : Page
     {
         [Inject]
         public IAircraftManufacturersServices AircraftManufacturersServices { get; set; }
+
+        [Inject]
+        public IAircraftsServices AircraftsServices { get; set; }
 
         public IQueryable<AircraftManufacturer> AircraftsManufacturersGridView_GetData()
         {
@@ -42,6 +47,19 @@
             this.AircraftManufacturersServices.DeleteManufacturer(id);
         }
 
+        public IQueryable<object> AircraftsListBox_GetData()
+        {
+            var aircrafts = this.AircraftsServices.GetAll()
+                .Where(a => !a.IsDeleted)
+                .Select(a => new
+                {
+                    Id = a.Id,
+                    AircraftInfo = "Id:" + a.Id + " " + a.AircraftManufacturer.Name + " " + a.Model
+                });
+
+            return aircrafts;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
         }
@@ -52,7 +70,19 @@
             {
                 var manufacturer = new AircraftManufacturer() { Name = this.AircraftManufacturerNameTextBox.Text };
                 this.AircraftManufacturersServices.AddManufacturer(manufacturer);
+
+                this.ClearFields();
             }
+        }
+
+        protected void CancelBtn_Click(object sender, EventArgs e)
+        {
+            this.ClearFields();
+        }
+
+        private void ClearFields()
+        {
+            this.AircraftManufacturerNameTextBox.Text = string.Empty;
         }
     }
 }

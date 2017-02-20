@@ -117,6 +117,7 @@
                                 <li><a href="<%= Page.ResolveUrl(Pages.FLIGHT_STATUSES_MANAGEMENT) %>">Flight Statuses Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.NEWS_MANAGEMENT) %>">News Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.NOTIFICATIONS_MANAGEMENT) %>">Notifications Management</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.SEATS_MANAGEMENT) %>">Seats Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.TRAVEL_CLASSES_MANAGEMENT) %>">Travel Classes Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.USERS_MANAGEMENT) %>">User Notification Managements</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.USER_ROLES_MANAGEMENT) %>">User Roles Management</a></li>

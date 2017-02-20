@@ -60,5 +60,10 @@
                 this.FlightsServices.AddFlight(newFlight);
             }
         }
+
+        protected void CancelBtn_Click(object sender, EventArgs e)
+        {
+            this.AddFlightNumberTextBox.Text = string.Empty;
+        }
     }
 }

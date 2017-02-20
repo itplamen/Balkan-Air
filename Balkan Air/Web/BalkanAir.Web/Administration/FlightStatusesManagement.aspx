@@ -33,15 +33,20 @@
     </asp:GridView>
 
     <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Name length must be in the range [2 - 15]!" Type="String"
-        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{2,15}$" ControlToValidate="FlightStatusNameTextBox" />
+        ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{2,15}$" ValidationGroup="CreateNewFlightStatus" 
+        CssClass="validatorSpan" ControlToValidate="FlightStatusNameTextBox" />
 
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new flight status</h3>
 
-        <asp:Label Text="Name: " runat="server" />
+        <asp:Label Text="Name:" runat="server" />
         <asp:TextBox ID="FlightStatusNameTextBox" required MaxLength="15" runat="server" />
 
-        <asp:Button ID="CreateFlightStatustBtn" runat="server" Text="Create" CssClass="btn btn-info"
-            OnClick="CreateFlightStatustBtn_Click" />
+        <p>
+            <asp:Button ID="CreateFlightStatustBtn" runat="server" Text="Create" CssClass="btn btn-info"
+                ValidationGroup="CreateNewFlightStatus" OnClick="CreateFlightStatustBtn_Click" />
+            <asp:Button ID="CancelBtn" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-danger"
+                UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
+        </p>
     </asp:Panel>
 </asp:Content>

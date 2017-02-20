@@ -68,8 +68,21 @@
                 };
 
                 this.CountriesServices.AddCountry(country);
-                this.AbbreviationNameTextBox.BorderColor = Color.Empty;
+
+                this.ClearFields();
             }
+        }
+
+        protected void CancelBtn_Click(object sender, EventArgs e)
+        {
+            this.ClearFields();
+        }
+
+        private void ClearFields()
+        {
+            this.CountryNameTextBox.Text = string.Empty;
+            this.AbbreviationNameTextBox.Text = string.Empty;
+            this.AbbreviationNameTextBox.BorderColor = Color.Empty;
         }
     }
 }
