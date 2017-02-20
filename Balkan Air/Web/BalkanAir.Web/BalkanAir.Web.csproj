@@ -278,6 +278,7 @@
     <Content Include="Administration\LegInstancesManagement.aspx" />
     <Content Include="Administration\NewsManagement.aspx" />
     <Content Include="Administration\NotificationsManagement.aspx" />
+    <Content Include="Administration\RoutesManagement.aspx" />
     <Content Include="Administration\SeatsManagement.aspx" />
     <Content Include="Administration\TravelClassesManagement.aspx" />
     <Content Include="Administration\UserNotificationsManagement.aspx" />
@@ -641,6 +642,13 @@
     </Compile>
     <Compile Include="Administration\NotificationsManagement.aspx.designer.cs">
       <DependentUpon>NotificationsManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\RoutesManagement.aspx.cs">
+      <DependentUpon>RoutesManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administration\RoutesManagement.aspx.designer.cs">
+      <DependentUpon>RoutesManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administration\SeatsManagement.aspx.cs">
       <DependentUpon>SeatsManagement.aspx</DependentUpon>

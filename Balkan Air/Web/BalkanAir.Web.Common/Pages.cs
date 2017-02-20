@@ -46,6 +46,7 @@
         public const string LEG_INSTANCES_MANAGEMENT = "~/Administration/LegInstancesManagement";
         public const string NEWS_MANAGEMENT = "~/Administration/NewsManagement";
         public const string NOTIFICATIONS_MANAGEMENT = "~/Administration/NotificationsManagement";
+        public const string ROUTES_MANAGEMENT = "~/Administration/RoutesManagement";
         public const string SEATS_MANAGEMENT = "~/Administration/SeatsManagement";
         public const string TRAVEL_CLASSES_MANAGEMENT = "~/Administration/TravelClassesManagement";
         public const string USER_NOTIFICATIONS_MANAGEMENT = "~/Administration/UserNotificationsManagement";

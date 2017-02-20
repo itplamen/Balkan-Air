@@ -116,6 +116,7 @@
                                 <li><a href="<%= Page.ResolveUrl(Pages.LEG_INSTANCES_MANAGEMENT) %>">Leg Instances Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.NEWS_MANAGEMENT) %>">News Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.NOTIFICATIONS_MANAGEMENT) %>">Notifications Management</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.ROUTES_MANAGEMENT) %>">Routes Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.SEATS_MANAGEMENT) %>">Seats Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.TRAVEL_CLASSES_MANAGEMENT) %>">Travel Classes Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.USERS_MANAGEMENT) %>">User Notification Managements</a></li>

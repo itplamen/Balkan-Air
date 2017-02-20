@@ -111,6 +111,11 @@
                         </tr>
                         <tr>
                             <td>
+                                <a href="<%= Page.ResolveUrl(Pages.ROUTES_MANAGEMENT) %>">Routes Management</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <a href="<%= Page.ResolveUrl(Pages.SEATS_MANAGEMENT) %>">Seats Management</a>
                             </td>
                         </tr>

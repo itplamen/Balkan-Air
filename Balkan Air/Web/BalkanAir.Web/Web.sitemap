@@ -37,6 +37,7 @@
       <siteMapNode url="~/Administration/LegInstancesManagement" title="Leg instances management" />
       <siteMapNode url="~/Administration/NewsManagement" title="News management" />
       <siteMapNode url="~/Administration/NotificationsManagement" title="Notifications management" />
+      <siteMapNode url="~/Administration/RoutesManagement" title="Routes management" />
       <siteMapNode url="~/Administration/SeatsManagement" title="Seats management" />
       <siteMapNode url="~/Administration/TravelClassesManagement" title="Travel classes management" />
       <siteMapNode url="~/Administration/UserNotificationsManagement" title="User notifications management" />
