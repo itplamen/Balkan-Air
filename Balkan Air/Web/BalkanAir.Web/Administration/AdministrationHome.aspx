@@ -67,13 +67,6 @@
                                 <a href="<%= Page.ResolveUrl(Pages.COUNTRIES_MANAGEMENT) %>">Countries Management</a>
                             </td>
                         </tr>
-                    </tbody>
-                </table>
-            </div>
-             
-            <div id="SecondColumn" class="col-md-4">
-                <table class="table table-striped">
-                    <tbody>
                         <tr>
                             <td>
                                 <a href="<%= Page.ResolveUrl(Pages.FARES_MANAGEMENT) %>">Fares Management</a>
@@ -89,6 +82,13 @@
                                 <a href="<%= Page.ResolveUrl(Pages.FLIGHTS_MANAGEMENT) %>">Flights Management</a>
                             </td>
                         </tr>
+                    </tbody>
+                </table>
+            </div>
+             
+            <div id="SecondColumn" class="col-md-4">
+                <table class="table table-striped">
+                    <tbody>
                         <tr>
                             <td>
                                 <a href="<%= Page.ResolveUrl(Pages.FLIGHT_STATUSES_MANAGEMENT) %>">Flight Statuses Management</a>

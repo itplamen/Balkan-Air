@@ -28,13 +28,15 @@
 });
 
 $(document).ready(function () {
-    $('.center').slick({
-        infinite: false,
-        centerMode: true,
-        focusOnSelect: true,
-        slidesToShow: 5,
-        slidesToScroll: 1,
-    });
+    //$('.center').slick({
+    //    infinite: true,
+    //    centerMode: true,
+    //    variableWidth: true,
+    //    focusOnSelect: true,
+    //    adaptiveHeight: true,
+    //    slidesToShow: 5,
+    //    slidesToScroll: 1,
+    //});
 
     $('.travelClassPriceSpan input[type="radio"].noMoreSeats').attr('disabled', true);
 

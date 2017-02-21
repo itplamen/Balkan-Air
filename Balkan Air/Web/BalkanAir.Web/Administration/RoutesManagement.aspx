@@ -16,7 +16,7 @@
         AllowSorting="true">
         <Columns>
             <asp:BoundField DataField="Id" SortExpression="Id" HeaderText="Id" />
-            <asp:TemplateField HeaderText="Origin" SortExpression="Origin">
+            <asp:TemplateField HeaderText="Origin" SortExpression="OriginId">
                 <ItemTemplate>
                     <%#: "Id:" + Item.OriginId + ", " + Item.Origin.Name + " (" + Item.Origin.Abbreviation + ")" %>
                 </ItemTemplate>

@@ -16,7 +16,7 @@
         AllowSorting="true">
         <Columns>
             <asp:BoundField DataField="Id" SortExpression="Id" HeaderText="Id" />
-            <asp:BoundField DataField="Price" SortExpression="Price" HeaderText="Price" />
+            <asp:BoundField DataField="Price" SortExpression="Price" HeaderText="Price (&#8364;)" />
             <asp:TemplateField HeaderText="Route">
                 <ItemTemplate>
                     <%#: "Id:" + Item.RouteId + ", " + Item.Route.Origin.Name + " -> " + Item.Route.Destination.Name %>

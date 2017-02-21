@@ -27,7 +27,7 @@
         public ICountriesServices CountriesServices { get; set; }
 
         [Inject]
-        public IRoutesServices RoutesServices { get; set; }
+        public ILegInstancesServices LegInstancesServices { get; set; }
 
         public IEnumerable<Airport> DepartureAirportsRepeater_GetData()
         {
@@ -38,11 +38,11 @@
                 .ToList();
         }
 
-        public IEnumerable<Fare> TopCheapestFlightsRepeater_GetData()
+        public IEnumerable<LegInstance> TopCheapestFlightsRepeater_GetData()
         {
-            return this.FaresServices.GetAll()
-                .Where(f => !f.IsDeleted)
-                .OrderBy(f => f.Price)
+            return this.LegInstancesServices.GetAll()
+                .Where(l => !l.IsDeleted)
+                .OrderBy(l => l.Price)
                 .Take(4)
                 .ToList();
         }
@@ -135,9 +135,9 @@
 
         private void BindDestinationAirports(int departureAirportID)
         {
-            var destinationAirports = this.RoutesServices.GetAll()
-                .Where(r => !r.IsDeleted && r.OriginId == departureAirportID)
-                .Select(r => r.Destination)
+            var destinationAirports = this.LegInstancesServices.GetAll()
+                .Where(l => !l.IsDeleted && l.FlightLeg.DepartureAirportId == departureAirportID)
+                .Select(l => l.FlightLeg.Route.Destination)
                 .Distinct()
                 .OrderBy(a => a.Country.Name)
                 .ToList();

@@ -18,6 +18,9 @@
         public IAirportsServices AirportsServices { get; set; }
 
         [Inject]
+        public IFaresServices FaresServices { get; set; }
+
+        [Inject]
         public IFlightLegsServices FlightLegsServices { get; set; }
 
         [Inject]
@@ -82,6 +85,19 @@
                 });
         }
 
+        public IQueryable<object> FaresDropDownList_GetData()
+        {
+            return this.FaresServices.GetAll()
+                .Where(f => !f.IsDeleted)
+                .OrderBy(f => f.Price)
+                .Select(f => new
+                {
+                    Id = f.Id,
+                    FareInfo = "Id:" + f.Id + ", " + f.Route.Origin.Name + " (" + f.Route.Origin.Abbreviation + ") -> " +
+                               f.Route.Destination.Name + " (" + f.Route.Destination.Abbreviation + "), \u20AC" + f.Price
+                });
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
         }
@@ -112,10 +128,14 @@
             if (this.AreDateTimesValid(departureDateTime, arrivalDateTime) && this.IsDateTimeAfterDateTimeNow(departureDateTime) &&
                 this.IsDateTimeAfterDateTimeNow(departureDateTime) && this.Page.IsValid)
             {
+                int fareId = int.Parse(this.AddFareDropDownList.SelectedItem.Value);
+                decimal price = this.FaresServices.GetFare(fareId).Price;
+
                 var legInstance = new LegInstance()
                 {
                     DepartureDateTime = departureDateTime,
                     ArrivalDateTime = arrivalDateTime,
+                    Price = price,
                     FlightLegId = int.Parse(this.AddFlightLegDropDownList.SelectedItem.Value),
                     FlightStatusId = int.Parse(this.AddFlightStatusDropDownList.SelectedItem.Value),
                     AircraftId = int.Parse(this.AddAircraftDropDownList.SelectedItem.Value)

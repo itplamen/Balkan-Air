@@ -35,10 +35,12 @@
             List<LegInstance> legInstances = null;
 
             int departureAirprotId;
-            int destinationAirportId;
+            bool isDepartureAirprotIdValid = int.TryParse(this.Session[NativeConstants.DEPARTURE_AIRPORT_ID].ToString(),
+                out departureAirprotId);
 
-            bool isDepartureAirprotIdValid = int.TryParse(this.Session[NativeConstants.DEPARTURE_AIRPORT_ID].ToString(), out departureAirprotId);
-            bool isDestinationAirportIdValid = int.TryParse(this.Session[NativeConstants.DESTINATION_AIRPORT_ID].ToString(), out destinationAirportId);
+            int destinationAirportId;
+            bool isDestinationAirportIdValid = int.TryParse(this.Session[NativeConstants.DESTINATION_AIRPORT_ID].ToString(), 
+                out destinationAirportId);
 
             if (isDepartureAirprotIdValid && isDestinationAirportIdValid)
             {

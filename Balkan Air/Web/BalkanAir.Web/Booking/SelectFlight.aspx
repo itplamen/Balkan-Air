@@ -21,8 +21,7 @@
                                     <%#: Item.DepartureDateTime.ToString("ddd dd, MMM", CultureInfo.InvariantCulture) %>
                                 </span>
                                 <span class="price">
-                                    &#8364; 
-                                    <%#: Item.FlightLeg.Route.Fares.FirstOrDefault().Price %>
+                                    &#8364; <%#: Item.Price %>
                                 </span>
                             </div>
                         </asp:LinkButton>
@@ -35,6 +34,11 @@
                     <ItemTemplate>
                         <div id="FlightDetailsDiv">
                             <h4>Flight details</h4>
+                            <small>
+                                <strong>
+                                    <%#: Item.DepartureDateTime.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %>
+                                </strong>
+                            </small>
                             <hr />
                             <div id="FlightDepartureDetailsDiv">
                                 <span id="FlightNumberSpan"><%#: Item.FlightLeg.Flight.Number %></span>
@@ -106,4 +110,15 @@
                     PostBackUrl="~/Account/Login.aspx" />
             </asp:Panel>
     </asp:Panel>
+
+    <script>
+        $('.center').slick({
+            infinite: false,
+            centerMode: false,
+            focusOnSelect: false,
+            variableWidth: true,
+            slidesToShow: 5,
+            slidesToScroll: 1,
+        });
+    </script>
 </asp:Content>

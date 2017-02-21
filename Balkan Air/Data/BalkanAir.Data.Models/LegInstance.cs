@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
     public class LegInstance
     {
@@ -21,6 +22,9 @@
 
         [Required]
         public DateTime ArrivalDateTime { get; set; }
+
+        [Required]
+        public decimal Price { get; set; }
 
         public bool IsDeleted { get; set; }
 

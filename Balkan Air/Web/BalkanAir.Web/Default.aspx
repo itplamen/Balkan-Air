@@ -75,23 +75,24 @@
         <h2>Are you still looking for cheap flights?</h2>
 
         <asp:Repeater ID="TopCheapestFlightsRepeater" runat="server"
-            ItemType="BalkanAir.Data.Models.Fare"
+            ItemType="BalkanAir.Data.Models.LegInstance"
             SelectMethod="TopCheapestFlightsRepeater_GetData">
             <ItemTemplate>
                 <asp:LinkButton runat="server" CommandArgument="<%#: Item.Id %>" CssClass="searchFlightElement"
                     OnClick="OnCheapFlightLinkButtonClicked">
                     <div class="cheapFlightDiv">
                         <div class="fromAirportInfo">
-                            <span class="abbreviation"><%#: Item.Route.Origin.Abbreviation %></span>
-                            <span><%#: Item.Route.Origin.Name %></span>
+                            <span class="abbreviation"><%#: Item.FlightLeg.Route.Origin.Abbreviation %></span>
+                            <span><%#: Item.FlightLeg.Route.Origin.Name %></span>
                         </div>
                         <img src="Content/Images/airplane_fly_out_image.png" alt="Fly out image" />
                         <div class="toAirportInfo">
-                            <span class="abbreviation"><%#: Item.Route.Destination.Abbreviation %></span>
-                            <span><%#: Item.Route.Destination.Name %></span>
+                            <span class="abbreviation"><%#: Item.FlightLeg.Route.Destination.Abbreviation %></span>
+                            <span><%#: Item.FlightLeg.Route.Destination.Name %></span>
                         </div>
-                        <div class="priceInfo">
+                        <div class="priceAndDateInfo">
                             <p class="price">&#8364; <%#: Item.Price %></p>
+                            <p class="date"><%#: Item.DepartureDateTime.Date.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %></p>
                         </div>
                     </div>
                 </asp:LinkButton>

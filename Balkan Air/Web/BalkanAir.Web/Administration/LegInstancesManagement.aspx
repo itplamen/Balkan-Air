@@ -20,6 +20,7 @@
             <asp:BoundField DataField="Id" SortExpression="Id" HeaderText="Id" />
             <asp:BoundField DataField="DepartureDateTime" SortExpression="DepartureDateTime" HeaderText="Departure" />
             <asp:BoundField DataField="ArrivalDateTime" SortExpression="ArrivalDateTime" HeaderText="Arrival" />
+            <asp:BoundField DataField="Price" SortExpression="Price" HeaderText="Price (&#8364;)" />
             <asp:TemplateField HeaderText="Flight Leg" SortExpression="FlightLegId">
                 <ItemTemplate>
                     <%#: "Id:" + Item.FlightLegId + " " + Item.FlightLeg.Flight.Number + ", " + 
@@ -132,6 +133,12 @@
         <asp:Label runat="server" Text="Arrival Time:" AssociatedControlID="ArrivalTimeTextBox" />
         <asp:TextBox runat="server" ID="ArrivalTimeTextBox" ClientIDMode="Static" TextMode="Time" />
         <span class="glyphicon glyphicon-time"></span>
+
+        <asp:Label Text="Price (&#8364;):" runat="server" AssociatedControlID="AddFareDropDownList" />
+        <asp:DropDownList ID="AddFareDropDownList" runat="server"
+            DataValueField="Id"
+            DataTextField="FareInfo"
+            SelectMethod="FaresDropDownList_GetData" />
 
         <asp:Label Text="Flight Leg:" runat="server" AssociatedControlID="AddFlightLegDropDownList" />
         <asp:DropDownList ID="AddFlightLegDropDownList" runat="server"
