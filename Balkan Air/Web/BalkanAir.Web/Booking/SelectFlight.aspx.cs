@@ -30,6 +30,8 @@
         [Inject]
         public ISeatsServices SeatsServices { get; set; }
 
+        protected LegInstance LegInstance { get;  private set; }
+
         public IEnumerable<LegInstance> AvailableDatesRepeater_GetData()
         {
             List<LegInstance> legInstances = null;
@@ -42,13 +44,27 @@
             bool isDestinationAirportIdValid = int.TryParse(this.Session[NativeConstants.DESTINATION_AIRPORT_ID].ToString(), 
                 out destinationAirportId);
 
-            if (isDepartureAirprotIdValid && isDestinationAirportIdValid)
+            DateTime departureDate;
+            bool isDepartureDateValid = DateTime.TryParse(this.Session[NativeConstants.DEPARTURE_DATE].ToString(), 
+                out departureDate);
+
+            if (isDepartureAirprotIdValid && isDestinationAirportIdValid && isDepartureDateValid)
             {
                 legInstances = this.LegInstancesServices.GetAll()
                     .Where(l => !l.IsDeleted && l.FlightLeg.DepartureAirportId == departureAirprotId && 
                         l.FlightLeg.ArrivalAirportId == destinationAirportId)
                     .OrderBy(l => l.DepartureDateTime)
                     .ToList();
+
+                int initialSlideIndex = legInstances
+                    .FindIndex(l => l.DepartureDateTime.Date == departureDate.Date);
+
+                if (initialSlideIndex == -1)
+                {
+                    initialSlideIndex = 0;
+                }
+
+                this.InitialSlideToStartHiddenField.Value = initialSlideIndex.ToString();
             }
 
             if (legInstances == null || legInstances.Count == 0)
@@ -68,11 +84,13 @@
         {
             if (!this.Page.IsPostBack)
             {
-                if (this.Session[Common.NativeConstants.DEPARTURE_AIRPORT_ID] == null || 
-                    this.Session[Common.NativeConstants.DESTINATION_AIRPORT_ID] == null)
+                if (this.Session[NativeConstants.DEPARTURE_AIRPORT_ID] == null || 
+                    this.Session[NativeConstants.DESTINATION_AIRPORT_ID] == null)
                 {
                     this.Response.Redirect(Pages.HOME);
                 }
+
+                this.InitialSlideToStartHiddenField.Value = "1";
             }
         }
 
@@ -82,18 +100,7 @@
 
             if (selectedFlightDate != null)
             {
-                int flightId = int.Parse(selectedFlightDate.CommandArgument);
-
-                this.SelectedFlightIdHiddenField.Value = flightId.ToString();
-                this.ContinueBookingBtn.Visible = true;
-
-                LegInstance legInstance = this.LegInstancesServices.GetLegInstance(flightId);
-
-                this.FlightDetailsFormView.DataSource = new List<LegInstance>() { legInstance };
-                this.FlightDetailsFormView.DataBind();
-
-                this.FlightTravelClassesRepeater.DataSource = legInstance.Aircraft.TravelClasses.ToList();
-                this.FlightTravelClassesRepeater.DataBind();
+                
             }
         }
 
@@ -129,6 +136,23 @@
             var travelClass = this.TravelClassesServices.GetTravelClass(travelClassId);
 
             return travelClass.NumberOfAvailableSeats;
+        }
+
+        protected void ShowFlgihtInfoButton_Click(object sender, EventArgs e)
+        {
+            int flightId = int.Parse(CurrentFlightInfoIdHiddenField.Value);
+
+            this.SelectedFlightIdHiddenField.Value = flightId.ToString();
+            this.ContinueBookingBtn.Visible = true;
+
+            LegInstance legInstance = this.LegInstancesServices.GetLegInstance(flightId);
+            this.LegInstance = legInstance;
+
+            this.FlightDetailsFormView.DataSource = new List<LegInstance>() { legInstance };
+            this.FlightDetailsFormView.DataBind();
+
+            this.FlightTravelClassesRepeater.DataSource = legInstance.Aircraft.TravelClasses.ToList();
+            this.FlightTravelClassesRepeater.DataBind();
         }
 
         private ApplicationUserManager GetManager()

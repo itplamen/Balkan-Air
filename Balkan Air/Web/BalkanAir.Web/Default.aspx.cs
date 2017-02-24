@@ -59,7 +59,15 @@
         {
             if (!this.Page.IsPostBack)
             {
+                this.DepartureAirportTextBox.Attributes.Add("readonly", "readonly");
+                this.DestinationAirportTextBox.Attributes.Add("readonly", "readonly");
+                this.DepartureDateTextBox.Attributes.Add("readonly", "readonly");
+                this.ArrivalDateTextBox.Attributes.Add("readonly", "readonly");
+
                 this.NoFlightsLiteral.Visible = false;
+
+                this.DepartureCalendar.StartDate = DateTime.Now.Date.AddDays(1);
+                this.ArrivalCalendarExtender.StartDate = DateTime.Now.Date.AddDays(1);
             }
         }
 
@@ -105,10 +113,22 @@
 
         protected void OnFlightSearchButtonClicked(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(this.DepartureAirportIdHiddenField.Value) &&
-                !string.IsNullOrEmpty(this.DestinationAirportIdHiddenField.Value))
+            if (this.Page.IsValid && !string.IsNullOrEmpty(this.DepartureAirportIdHiddenField.Value) &&
+                !string.IsNullOrEmpty(this.DestinationAirportIdHiddenField.Value) && 
+                this.DepartureDateTextBox.Text != string.Empty && this.ArrivalDateTextBox.Text != string.Empty)
             {
-                this.SearchFlight(this.DepartureAirportIdHiddenField.Value, this.DestinationAirportIdHiddenField.Value);
+                DateTime departureDate = DateTime.Parse(this.DepartureDateTextBox.Text);
+                DateTime arrivalDate = DateTime.Parse(this.ArrivalDateTextBox.Text);
+
+                if (departureDate > arrivalDate)
+                {
+                    this.InvalidDatesCustomValidator.ErrorMessage = "Arrival date cannot be earlier than departure date!";
+                    this.InvalidDatesCustomValidator.IsValid = false;
+                    return;
+                }
+
+                this.SearchFlight(this.DepartureAirportIdHiddenField.Value, this.DestinationAirportIdHiddenField.Value,
+                    departureDate, arrivalDate);
             }
         }
 
@@ -122,14 +142,18 @@
                 string departureAirportId = this.FaresServices.GetFare(cheapFareId).Route.Origin.Id.ToString();
                 string destinationAirportId = this.FaresServices.GetFare(cheapFareId).Route.Destination.Id.ToString();
 
-                this.SearchFlight(departureAirportId, destinationAirportId);
+                //this.SearchFlight(departureAirportId, destinationAirportId);
             }
         }
 
-        private void SearchFlight(string departureAirportId, string destinationAirportId)
+        private void SearchFlight(string departureAirportId, string destinationAirportId,
+            DateTime departureDate, DateTime arrivalDate)
         {
             this.Session.Add(NativeConstants.DEPARTURE_AIRPORT_ID, departureAirportId);
             this.Session.Add(NativeConstants.DESTINATION_AIRPORT_ID, destinationAirportId);
+            this.Session.Add(NativeConstants.DEPARTURE_DATE, departureDate);
+            this.Session.Add(NativeConstants.ARRIVAL_DATE, arrivalDate);
+
             this.Response.Redirect(Pages.SELECT_FLIGHT);
         }
 

@@ -31,15 +31,6 @@ namespace BalkanAir.Web {
         protected global::System.Web.UI.WebControls.TextBox DestinationAirportTextBox;
         
         /// <summary>
-        /// SearchBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SearchBtn;
-        
-        /// <summary>
         /// DepartureAirportIdHiddenField control.
         /// </summary>
         /// <remarks>
@@ -58,6 +49,60 @@ namespace BalkanAir.Web {
         protected global::System.Web.UI.WebControls.HiddenField DestinationAirportIdHiddenField;
         
         /// <summary>
+        /// InvalidDatesCustomValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator InvalidDatesCustomValidator;
+        
+        /// <summary>
+        /// DepartureDateTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DepartureDateTextBox;
+        
+        /// <summary>
+        /// DepartureCalendar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender DepartureCalendar;
+        
+        /// <summary>
+        /// ArrivalDateTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ArrivalDateTextBox;
+        
+        /// <summary>
+        /// ArrivalCalendarExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender ArrivalCalendarExtender;
+        
+        /// <summary>
+        /// SearchBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SearchBtn;
+        
+        /// <summary>
         /// DepartureAirportsRepeater control.
         /// </summary>
         /// <remarks>
@@ -65,15 +110,6 @@ namespace BalkanAir.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater DepartureAirportsRepeater;
-        
-        /// <summary>
-        /// adddd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel adddd;
         
         /// <summary>
         /// DestinationAirportsRepeater control.

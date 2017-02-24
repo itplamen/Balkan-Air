@@ -201,34 +201,57 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 
 #SearchFlightsDiv {
     position: absolute;
-    top: 200px;
+    top: 120px;
     margin-left: 40px;
     background-color: #F2F2F2;
     border-radius: 5px;
     padding: 50px;
     width: 500px;
-    height: 370px;
+    height: 460px; 
     z-index: 1;
 }
 
-#SearchFlightsDiv .fancyTextBox {
+#DepartureFancyTextBox, #DestinationFancyTextBox, #DepartureDateFancyTextBox {
     display: block;
     width: 400px;
     height: 80px;
     text-align: left;
 }
 
-#SearchFlightsDiv .fancyTextBox label {
+#DepartureDateFancyTextBox, #ArrivalDateFancyTextBox {
+    height: 60px;
+    width: 180px;
+}
+
+#DepartureDateFancyTextBox {
+    float: left;
+}
+
+#ArrivalDateFancyTextBox {
+    position: relative;
+    left: 20px;
+}
+
+#DepartureDateTextBox, #ArrivalDateTextBox {
+    width: 150px;
+    height: 30px;
+    font-size: 16px;
+} 
+
+#DepartureFancyTextBox label, #DestinationFancyTextBox label {
     font-size: 16px;
 }
 
 #SearchFlightsDiv .fancyTextBox input[type="text"] {
-    height: 50px;
-    font-size: 20px;
     margin-left: 9px;
 }
 
 #DepartureAirportTextBox, #DestinationAirportTextBox {
+    height: 50px;
+    font-size: 20px;
+}
+
+#DepartureAirportTextBox, #DestinationAirportTextBox, #DepartureDateTextBox, #ArrivalDateTextBox {
     background-color: #F2F2F2;
     text-transform: capitalize;
     margin-left: 6px;
@@ -237,16 +260,18 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 #SearchBtn {
     display: block;
     width: 400px;
+    position: relative;
+    top: -20px;
 }
 
 #DepartureAirportsDiv, #DestinationAirportsDiv {
     display: none;
     position: absolute;
-    top: 200px;
+    top: 120px;
     margin-left: 550px;
     overflow-y: auto;
     width: 500px;
-    height: 370px;
+    height: 460px;
     padding: 20px;
     background-color: #e9dddd;
 }
@@ -281,6 +306,10 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     .airport:active {
         text-decoration: none;
     }
+
+.requiredFieldValidator {
+     
+}
 
 #TopCheapestFlightsDiv {
     font-weight: bold;
@@ -444,25 +473,45 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     margin-left: 50px;
 }
 
-.flightDatesDiv {
+div.flightDatesDiv.slick-current   {
+    background-color: #073886;
+    height: 85px;
+}
+
+div.flightDatesDiv {
     width: 180px;
-    height: 80px;
+    height: 75px;
     text-align: center;
     margin-left: 2px;
     font-size: 18px;
     display: inline-block;
-    background-color: #073886;
+    border-radius: 5px;
+    background-color: #C5027C;
     text-align: center;
+    cursor: pointer;
 }
 
-.datesLinkButton:hover {
-    text-decoration: none;
+#ShowFlgihtInfoButtonDiv {
+    margin-top: -50px;
+    margin-bottom: 50px;    
+}
+
+#ShowFlgihtInfoButton {
+    background-color: #073886;
+    opacity: 0.8;
+    color: #fff;
+    border: 0;
+}
+
+#ShowFlgihtInfoButton:hover {
+    opacity: 1.0;
 }
 
 .flightDatesDiv .date, .flightDatesDiv .price {
     display: block;
     margin-top: 10px;
-}
+    pointer-events: none;
+} 
 
 .flightDatesDiv .date {
     color: #ffffff;
@@ -637,11 +686,11 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     font-size: 12px
 }
 
-#ContinueBookingDiv {
+#ContinueBookingDiv, #ShowFlgihtInfoButtonDiv {
     text-align: right; 
 }
 
-#ContinueBookingBtn {
+#ContinueBookingBtn, #ShowFlgihtInfoButton {
     height: 50px;
     width: 130px;
     margin-top: 20px;

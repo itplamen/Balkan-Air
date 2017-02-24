@@ -26,7 +26,6 @@
         .slider {
             width: 90%;
             margin: 50px auto;
-            background-color: #f6eeee;
         }
 
         .slick-slide {
@@ -46,7 +45,7 @@
 <body>
     <form runat="server">
 
-        <asp:ScriptManager runat="server" EnablePartialRendering="true">
+        <asp:ScriptManager ID="ScriptManager" runat="server" EnablePartialRendering="true" EnablePageMethods="true">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>

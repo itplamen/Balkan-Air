@@ -28,22 +28,20 @@
 });
 
 $(document).ready(function () {
-    //$('.center').slick({
-    //    infinite: true,
-    //    centerMode: true,
-    //    variableWidth: true,
-    //    focusOnSelect: true,
-    //    adaptiveHeight: true,
-    //    slidesToShow: 5,
-    //    slidesToScroll: 1,
-    //});
-
     $('.travelClassPriceSpan input[type="radio"].noMoreSeats').attr('disabled', true);
 
     $('.travelClassPriceSpan input[type="radio"]').click(function (event) {
         $('#SelectedTravelClassIdHiddenField').val($(event.target).val());
         $('.travelClassPriceSpan').css('background-color', 'initial');
         $(event.target).closest('.travelClassPriceSpan').css('background-color', 'pink');
+    });
+
+    var dddd = $('.flightDatesDiv');
+
+    $('.flightDatesDiv').click(function () {
+        var currentFlightDate = $("div.flightDatesDiv.slick-current")[0];
+        
+        $('#CurrentFlightInfoIdHiddenField').val($(currentFlightDate).attr('data-value'));
     });
 });
 

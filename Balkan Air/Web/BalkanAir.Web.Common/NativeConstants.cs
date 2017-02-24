@@ -6,6 +6,8 @@
 
         public const string DEPARTURE_AIRPORT_ID = "departureAirprotId";
         public const string DESTINATION_AIRPORT_ID = "destinationAirportId";
+        public const string DEPARTURE_DATE = "departureDate";
+        public const string ARRIVAL_DATE = "arrivalDate";
         public const string BOOKING = "booking";
         public const string SELECTED_FLIGHT_ID = "selectedFlightId";
         public const string SELECTED_TRAVEL_CLASS_ID = "selectedTravelClassId";

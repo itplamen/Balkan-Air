@@ -31,6 +31,24 @@ namespace BalkanAir.Web.Booking {
         protected global::System.Web.UI.WebControls.Repeater AvailableDatesRepeater;
         
         /// <summary>
+        /// ShowFlgihtInfoButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ShowFlgihtInfoButton;
+        
+        /// <summary>
+        /// UU control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UU;
+        
+        /// <summary>
         /// FlightDetailsFormView control.
         /// </summary>
         /// <remarks>
@@ -47,6 +65,24 @@ namespace BalkanAir.Web.Booking {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater FlightTravelClassesRepeater;
+        
+        /// <summary>
+        /// InitialSlideToStartHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField InitialSlideToStartHiddenField;
+        
+        /// <summary>
+        /// CurrentFlightInfoIdHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField CurrentFlightInfoIdHiddenField;
         
         /// <summary>
         /// SelectedFlightIdHiddenField control.

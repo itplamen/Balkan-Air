@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
     using Common;
     
@@ -37,5 +38,20 @@
         public virtual ICollection<TravelClass> TravelClasses { get; set; }
 
         public virtual ICollection<LegInstance> LegInstances { get; set; }
+
+        [NotMapped]
+        public decimal GetCheapestTravelClassPrice
+        {
+            get
+            {
+                if (this.TravelClasses.Count == 0)
+                {
+                    return 0;
+                }
+
+                return this.TravelClasses
+                    .Min(t => t.Price);
+            }
+        }
     }
 }

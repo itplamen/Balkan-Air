@@ -3,8 +3,9 @@
 <%@ Import Namespace="System.Globalization" %>
 <%@ Import Namespace="BalkanAir.Web.Common" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="homeSlider">
         <img src="Content/Images/Destinations/Paris.jpg" alt="Paris Destination Image" />
         <img src="Content/Images/Destinations/Rome.jpg" alt="Rome Destination Image" />
@@ -19,23 +20,47 @@
                 <div class="fancyTextBox" id="DepartureFancyTextBox">
                     <asp:Label CssClass="label" runat="server" Text="From:" AssociatedControlID="DepartureAirportTextBox" />
                     <asp:TextBox ID="DepartureAirportTextBox" runat="server" placeholder="Departure Airport" AutoPostBack="true"
-                        ClientIDMode="Static" ReadOnly="true" />
+                        ClientIDMode="Static" />
                 </div>
 
                 <div class="fancyTextBox" id="DestinationFancyTextBox">
                     <asp:Label CssClass="label" runat="server" Text="To:" AssociatedControlID="DestinationAirportTextBox" />
-                    <asp:TextBox ID="DestinationAirportTextBox" runat="server" placeholder="Destination Airport"
-                        AutoPostBack="true" ClientIDMode="Static" ReadOnly="true" />
-                </div>
-
-                <div class="buttonBox">
-                    <asp:Button ID="SearchBtn" runat="server" ClientIDMode="Static" Text="Search" OnClick="OnFlightSearchButtonClicked" />
+                    <asp:TextBox ID="DestinationAirportTextBox" runat="server" placeholder="Arrival Airport"
+                        AutoPostBack="true" ClientIDMode="Static" />
                 </div>
 
                 <asp:HiddenField ID="DepartureAirportIdHiddenField" runat="server" />
                 <asp:HiddenField ID="DestinationAirportIdHiddenField" runat="server" />
             </ContentTemplate>
         </asp:UpdatePanel>
+
+        <asp:CustomValidator ID="InvalidDatesCustomValidator" Display="Dynamic" ForeColor="Red" ClientIDMode="Static" runat="server" />
+
+        <div class="fancyTextBox" id="DepartureDateFancyTextBox">
+            <asp:Label CssClass="label" runat="server" Text="Departure:" AssociatedControlID="DepartureDateTextBox" />
+            <asp:TextBox ID="DepartureDateTextBox" runat="server" placeholder="Date" ClientIDMode="Static" />
+        </div>
+
+        <ajaxToolkit:CalendarExtender ID="DepartureCalendar" runat="server"
+            TargetControlID="DepartureDateTextBox"
+            CssClass="CalendarExtender"
+            Format="d MMM yyyy"
+            PopupButtonID="DepartureDateTextBox" />
+
+        <div class="fancyTextBox" id="ArrivalDateFancyTextBox">
+            <asp:Label CssClass="label" runat="server" Text="Arrival:" AssociatedControlID="ArrivalDateTextBox" />
+            <asp:TextBox ID="ArrivalDateTextBox" runat="server" placeholder="Date" ClientIDMode="Static" />
+        </div>
+
+        <ajaxToolkit:CalendarExtender ID="ArrivalCalendarExtender" runat="server"
+            TargetControlID="ArrivalDateTextBox"
+            CssClass="CalendarExtender"
+            Format="d MMM yyyy"
+            PopupButtonID="ArrivalDateTextBox" />
+
+        <div class="buttonBox">
+            <asp:Button ID="SearchBtn" runat="server" ClientIDMode="Static" Text="Search" OnClick="OnFlightSearchButtonClicked" />
+        </div>
     </div>
 
     <div id="DepartureAirportsDiv">
@@ -55,7 +80,7 @@
     </div>
 
     <div id="DestinationAirportsDiv">
-        <asp:UpdatePanel ID="adddd" runat="server" UpdateMode="Always">
+        <asp:UpdatePanel runat="server" UpdateMode="Always">
             <ContentTemplate>
                 <asp:Repeater ID="DestinationAirportsRepeater" runat="server" ItemType="BalkanAir.Data.Models.Airport">
                     <ItemTemplate>
@@ -118,7 +143,8 @@
 
                             <p>
                                 <img runat="server" src='<%# Item.HeaderImage == null ? null : "data:image/jpeg;base64," + 
-                                    Convert.ToBase64String(Item.HeaderImage) %>' visible="<%# Item.HeaderImage != null ? true : false %>" />
+                                    Convert.ToBase64String(Item.HeaderImage) %>'
+                                    visible="<%# Item.HeaderImage != null ? true : false %>" />
                             </p>
 
                             <p class="content">
@@ -135,4 +161,43 @@
             </asp:Repeater>
         </div>
     </div>
+
+    <script>
+        $('#SearchBtn').click(areAllFieldsFilled);
+
+        function areAllFieldsFilled() {
+            var $departureAirportTextBox = $('#DepartureAirportTextBox'),
+                $destinationAirportTextBox = $('#DestinationAirportTextBox'),
+                $departureDateTextBox = $('#DepartureDateTextBox'),
+                $arrivalDateTextBox = $('#ArrivalDateTextBox');
+
+            if ($departureAirportTextBox.val() !== '' && $destinationAirportTextBox.val() !== '' &&
+                $departureDateTextBox.val() !== '' && $arrivalDateTextBox.val() !== '') {
+
+                $departureAirportTextBox.parent().css('border-color', '#E0E0E0');
+                $destinationAirportTextBox.parent().css('border-color', '#E0E0E0');
+                $departureDateTextBox.parent().css('border-color', '#E0E0E0');
+                $arrivalDateTextBox.parent().css('border-color', '#E0E0E0');
+
+                return true;
+            }
+            else if ($departureAirportTextBox.val() === '') {
+                $departureAirportTextBox.parent().css('border-color', 'red');
+            }
+            else if ($destinationAirportTextBox.val() === '') {
+                $destinationAirportTextBox.parent().css('border-color', 'red');
+            }
+            else if ($departureDateTextBox.val() === '') {
+                $departureDateTextBox.parent().css('border-color', 'red');
+            }
+            else if ($arrivalDateTextBox.val() === '') {
+                $arrivalDateTextBox.parent().css('border-color', 'red');
+            }
+            else {
+                throw new Error('Invalid field ID!')
+            }
+
+            return false;
+        }
+    </script>
 </asp:Content>
