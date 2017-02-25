@@ -134,15 +134,30 @@
 
         protected void OnCheapFlightLinkButtonClicked(object sender, EventArgs e)
         {
-            var cheapFare = sender as LinkButton;
+            var legInstanceLinkBtn = sender as LinkButton;
 
-            if (cheapFare != null)
+            if (legInstanceLinkBtn != null)
             {
-                int cheapFareId = int.Parse(cheapFare.CommandArgument);
-                string departureAirportId = this.FaresServices.GetFare(cheapFareId).Route.Origin.Id.ToString();
-                string destinationAirportId = this.FaresServices.GetFare(cheapFareId).Route.Destination.Id.ToString();
+                int legInstanceId = int.Parse(legInstanceLinkBtn.CommandArgument);
+                var legInstance = this.LegInstancesServices.GetLegInstance(legInstanceId);
 
-                //this.SearchFlight(departureAirportId, destinationAirportId);
+                if (legInstance == null)
+                {
+                    return;
+                }
+
+                string departureAirportId = legInstance
+                    .FlightLeg
+                    .DepartureAirportId
+                    .ToString();
+
+                string destinationAirportId = legInstance
+                    .FlightLeg
+                    .ArrivalAirportId
+                    .ToString();
+
+                this.SearchFlight(departureAirportId, destinationAirportId, legInstance.DepartureDateTime, 
+                    legInstance.ArrivalDateTime);
             }
         }
 

@@ -116,7 +116,7 @@
                             <span><%#: Item.FlightLeg.Route.Destination.Name %></span>
                         </div>
                         <div class="priceAndDateInfo">
-                            <p class="price">&#8364; <%#: Item.Price %></p>
+                            <p class="price">&#8364; <%#: Item.Price + Item.Aircraft.GetCheapestTravelClassPrice %></p>
                             <p class="date"><%#: Item.DepartureDateTime.Date.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %></p>
                         </div>
                     </div>
