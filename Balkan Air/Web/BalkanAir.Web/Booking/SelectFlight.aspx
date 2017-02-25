@@ -9,8 +9,8 @@
         <input type="image" class="airplaneFlyOutImage" alt="Airplane image" src="../Content/Images/airplane_fly_out_image.png" />
         <h3>Choose flight out</h3>
 
-        <div class="center slider">
-            <asp:Repeater ID="AvailableDatesRepeater" runat="server"
+        <div id="AvailableDepartureDatesDiv" class="center slider">
+            <asp:Repeater ID="AvailableDepartureDatesRepeater" runat="server"
                 ItemType="BalkanAir.Data.Models.LegInstance"
                 SelectMethod="AvailableDatesRepeater_GetData">
                 <ItemTemplate>

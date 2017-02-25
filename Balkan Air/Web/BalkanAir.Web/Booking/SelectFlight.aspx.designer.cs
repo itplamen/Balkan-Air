@@ -22,13 +22,13 @@ namespace BalkanAir.Web.Booking {
         protected global::System.Web.UI.WebControls.Panel FlightDetailsPanel;
         
         /// <summary>
-        /// AvailableDatesRepeater control.
+        /// AvailableDepartureDatesRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater AvailableDatesRepeater;
+        protected global::System.Web.UI.WebControls.Repeater AvailableDepartureDatesRepeater;
         
         /// <summary>
         /// ShowFlgihtInfoButton control.

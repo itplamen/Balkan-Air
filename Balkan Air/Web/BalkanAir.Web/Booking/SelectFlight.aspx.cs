@@ -59,12 +59,18 @@
                 int initialSlideIndex = legInstances
                     .FindIndex(l => l.DepartureDateTime.Date == departureDate.Date);
 
+                this.CurrentFlightInfoIdHiddenField.Value = legInstances
+                    .FirstOrDefault(l => l.DepartureDateTime.Date == departureDate.Date)
+                    .Id
+                    .ToString();
+
                 if (initialSlideIndex == -1)
                 {
                     initialSlideIndex = 0;
                 }
 
                 this.InitialSlideToStartHiddenField.Value = initialSlideIndex.ToString();
+                this.ShowFlightInfo();
             }
 
             if (legInstances == null || legInstances.Count == 0)
@@ -94,16 +100,6 @@
             }
         }
 
-        protected void OnFlightDateLinkButtonClicked(object sender, EventArgs e)
-        {
-            LinkButton selectedFlightDate = sender as LinkButton;
-
-            if (selectedFlightDate != null)
-            {
-                
-            }
-        }
-
         protected void OnContinueBookingBtnClicked(object sender, EventArgs e)
         {
             if (!this.User.Identity.IsAuthenticated || string.IsNullOrEmpty(this.SelectedFlightIdHiddenField.Value) ||
@@ -126,13 +122,6 @@
 
         protected int NumberOfAvailableSeats(int travelClassId)
         {
-            //var travelClass = this.TravelClassesServices.GetTravelClass(travelClassId);
-            //int reservedSeatsForTravelClass = this.SeatsServices.GetAll()
-            //    .Where(s => s.TravelClassId == travelClassId)
-            //    .Count(s => s.IsReserved);
-
-            //return travelClass.NumberOfSeats - reservedSeatsForTravelClass;
-
             var travelClass = this.TravelClassesServices.GetTravelClass(travelClassId);
 
             return travelClass.NumberOfAvailableSeats;
@@ -140,7 +129,23 @@
 
         protected void ShowFlgihtInfoButton_Click(object sender, EventArgs e)
         {
-            int flightId = int.Parse(CurrentFlightInfoIdHiddenField.Value);
+            this.ShowFlightInfo();
+        }
+
+        private ApplicationUserManager GetManager()
+        {
+            return Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        }
+
+        private User GetCurrentUser()
+        {
+            var manager = this.GetManager();
+            return manager.FindById(this.Context.User.Identity.GetUserId());
+        }
+
+        private void ShowFlightInfo()
+        {
+            int flightId = int.Parse(this.CurrentFlightInfoIdHiddenField.Value);
 
             this.SelectedFlightIdHiddenField.Value = flightId.ToString();
             this.ContinueBookingBtn.Visible = true;
@@ -153,17 +158,6 @@
 
             this.FlightTravelClassesRepeater.DataSource = legInstance.Aircraft.TravelClasses.ToList();
             this.FlightTravelClassesRepeater.DataBind();
-        }
-
-        private ApplicationUserManager GetManager()
-        {
-            return Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-        }
-
-        private User GetCurrentUser()
-        {
-            var manager = this.GetManager();
-            return manager.FindById(this.Context.User.Identity.GetUserId());
         }
     }
 }

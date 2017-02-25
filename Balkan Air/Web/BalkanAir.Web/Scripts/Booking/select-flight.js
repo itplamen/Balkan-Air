@@ -36,12 +36,12 @@ $(document).ready(function () {
         $(event.target).closest('.travelClassPriceSpan').css('background-color', 'pink');
     });
 
-    var dddd = $('.flightDatesDiv');
+    $('.flightDatesDiv')
+        .add('.slick-arrow')
+        .click(function () {
+            var currentFlightDate = $("div.flightDatesDiv.slick-current")[0];
 
-    $('.flightDatesDiv').click(function () {
-        var currentFlightDate = $("div.flightDatesDiv.slick-current")[0];
-        
-        $('#CurrentFlightInfoIdHiddenField').val($(currentFlightDate).attr('data-value'));
+            $('#CurrentFlightInfoIdHiddenField').val($(currentFlightDate).attr('data-value'));
     });
 });
 

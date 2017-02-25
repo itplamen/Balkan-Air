@@ -13,6 +13,24 @@ namespace BalkanAir.Web {
     public partial class _Default {
         
         /// <summary>
+        /// ReturnRouteRadioButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton ReturnRouteRadioButton;
+        
+        /// <summary>
+        /// OneWayRadioButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton OneWayRadioButton;
+        
+        /// <summary>
         /// DepartureAirportTextBox control.
         /// </summary>
         /// <remarks>
@@ -74,6 +92,15 @@ namespace BalkanAir.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender DepartureCalendar;
+        
+        /// <summary>
+        /// ArrivalDateFancyTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ArrivalDateFancyTextBox;
         
         /// <summary>
         /// ArrivalDateTextBox control.

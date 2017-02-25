@@ -17,6 +17,11 @@
     <div id="SearchFlightsDiv">
         <asp:UpdatePanel runat="server" UpdateMode="Always">
             <ContentTemplate>
+                <asp:RadioButton ID="ReturnRouteRadioButton" ClientIDMode="Static" Text="Return" runat="server"
+                    GroupName="RouteOption" AutoPostBack="true" OnCheckedChanged="ReturnRouteRadioButton_CheckedChanged" />
+                <asp:RadioButton ID="OneWayRadioButton" ClientIDMode="Static" Text="One way" runat="server"
+                    GroupName="RouteOption" AutoPostBack="true" OnCheckedChanged="OnewayRadioButton_CheckedChanged" />
+
                 <div class="fancyTextBox" id="DepartureFancyTextBox">
                     <asp:Label CssClass="label" runat="server" Text="From:" AssociatedControlID="DepartureAirportTextBox" />
                     <asp:TextBox ID="DepartureAirportTextBox" runat="server" placeholder="Departure Airport" AutoPostBack="true"
@@ -47,10 +52,10 @@
             Format="d MMM yyyy"
             PopupButtonID="DepartureDateTextBox" />
 
-        <div class="fancyTextBox" id="ArrivalDateFancyTextBox">
+        <asp:Panel runat="server" CssClass="fancyTextBox" ID="ArrivalDateFancyTextBox" ClientIDMode="Static">
             <asp:Label CssClass="label" runat="server" Text="Arrival:" AssociatedControlID="ArrivalDateTextBox" />
             <asp:TextBox ID="ArrivalDateTextBox" runat="server" placeholder="Date" ClientIDMode="Static" />
-        </div>
+        </asp:Panel>
 
         <ajaxToolkit:CalendarExtender ID="ArrivalCalendarExtender" runat="server"
             TargetControlID="ArrivalDateTextBox"

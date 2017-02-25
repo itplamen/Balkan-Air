@@ -59,6 +59,10 @@
         {
             if (!this.Page.IsPostBack)
             {
+                this.ReturnRouteRadioButton.Checked = true;
+                this.ArrivalDateTextBox.Visible = this.ReturnRouteRadioButton.Checked;
+                this.ArrivalDateFancyTextBox.Visible = this.ArrivalDateTextBox.Visible;
+
                 this.DepartureAirportTextBox.Attributes.Add("readonly", "readonly");
                 this.DestinationAirportTextBox.Attributes.Add("readonly", "readonly");
                 this.DepartureDateTextBox.Attributes.Add("readonly", "readonly");
@@ -115,12 +119,18 @@
         {
             if (this.Page.IsValid && !string.IsNullOrEmpty(this.DepartureAirportIdHiddenField.Value) &&
                 !string.IsNullOrEmpty(this.DestinationAirportIdHiddenField.Value) && 
-                this.DepartureDateTextBox.Text != string.Empty && this.ArrivalDateTextBox.Text != string.Empty)
+                this.DepartureDateTextBox.Text != string.Empty)
             {
                 DateTime departureDate = DateTime.Parse(this.DepartureDateTextBox.Text);
-                DateTime arrivalDate = DateTime.Parse(this.ArrivalDateTextBox.Text);
+                DateTime? arrivalDate = null;
 
-                if (departureDate > arrivalDate)
+                if (this.ReturnRouteRadioButton.Checked && this.ArrivalDateTextBox.Visible && 
+                        this.ArrivalDateTextBox.Text != string.Empty)
+                {
+                    arrivalDate = DateTime.Parse(this.ArrivalDateTextBox.Text);
+                }
+
+                if (arrivalDate != null && departureDate > arrivalDate)
                 {
                     this.InvalidDatesCustomValidator.ErrorMessage = "Arrival date cannot be earlier than departure date!";
                     this.InvalidDatesCustomValidator.IsValid = false;
@@ -162,7 +172,7 @@
         }
 
         private void SearchFlight(string departureAirportId, string destinationAirportId,
-            DateTime departureDate, DateTime arrivalDate)
+            DateTime? departureDate, DateTime? arrivalDate)
         {
             this.Session.Add(NativeConstants.DEPARTURE_AIRPORT_ID, departureAirportId);
             this.Session.Add(NativeConstants.DESTINATION_AIRPORT_ID, destinationAirportId);
@@ -192,6 +202,18 @@
 
             this.DestinationAirportsRepeater.DataSource = destinationAirports;
             this.DestinationAirportsRepeater.DataBind();
+        }
+
+        protected void ReturnRouteRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.ArrivalDateTextBox.Visible = true;
+            this.ArrivalDateFancyTextBox.Visible = true;
+        }
+
+        protected void OnewayRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.ArrivalDateTextBox.Visible = false;
+            this.ArrivalDateFancyTextBox.Visible = false;
         }
     }
 }

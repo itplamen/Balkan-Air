@@ -8,7 +8,8 @@
     padding-right: 15px;
 }
 
-input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="select"], input[type="time"] {
+input[type="text"], input[type="password"], input[type="email"], 
+input[type="tel"], input[type="select"], input[type="time"] {
     max-width: 280px;
 }
 
@@ -205,10 +206,14 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     margin-left: 40px;
     background-color: #F2F2F2;
     border-radius: 5px;
-    padding: 50px;
+    padding: 40px 50px 50px 50px;
     width: 500px;
     height: 460px; 
     z-index: 1;
+}
+
+#OnewayRadioButton {
+    margin-left: 20px;
 }
 
 #DepartureFancyTextBox, #DestinationFancyTextBox, #DepartureDateFancyTextBox {
@@ -222,7 +227,6 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     height: 60px;
     width: 180px;
 }
-
 #DepartureDateFancyTextBox {
     float: left;
 }
@@ -307,15 +311,12 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
         text-decoration: none;
     }
 
-.requiredFieldValidator {
-     
-}
-
 #TopCheapestFlightsDiv {
     font-weight: bold;
     height: 180px;
     width: 100%;
     padding-top: 10px;
+    padding-left: 20px;
     margin-top: 100px;
 }
 
@@ -383,8 +384,8 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     height: auto;
     margin: 0 auto;
     position: absolute;
-    left: -2000px; 
-    right: -2000px;
+    left: -1px;
+    width: 100%; 
     top: 710px;
     z-index: -1;
 }
