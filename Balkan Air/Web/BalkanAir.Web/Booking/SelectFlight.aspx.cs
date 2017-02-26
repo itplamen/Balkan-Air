@@ -155,14 +155,26 @@
             {
                 this.OneWayRouteTravelClassCustomValidator.ErrorMessage = "Departure flight and travel class are required!";
                 this.OneWayRouteTravelClassCustomValidator.IsValid = false;
+
+                return;
             }
 
             if(this.ReturnRouteFlightsPanel.Visible &&
-                    string.IsNullOrEmpty(this.ReturnRouteSelectedFlightIdHiddenField.Value) &&
-                    string.IsNullOrEmpty(this.ReturnRouteSelectedTravelClassIdHiddenField.Value))
+                string.IsNullOrEmpty(this.ReturnRouteSelectedFlightIdHiddenField.Value) &&
+                string.IsNullOrEmpty(this.ReturnRouteSelectedTravelClassIdHiddenField.Value))
             {
                 this.ReturnRouteTravelClassCustomValidator.ErrorMessage = "Arrival flight and travel class are required!";
                 this.ReturnRouteTravelClassCustomValidator.IsValid = false;
+
+                return;
+            }
+
+            if (this.ReturnRouteFlightsPanel.Visible && !this.AreSelectedDatesValid())
+            {
+                this.InvalidArrivalDateCustomValidator.ErrorMessage = "Arrival flight cannot be before departure flight!";
+                this.InvalidArrivalDateCustomValidator.IsValid = false;
+
+                return;
             }
 
             if (this.Page.IsValid)
@@ -185,7 +197,7 @@
             return travelClass.NumberOfAvailableSeats;
         }
 
-        protected void ShowOneWayFlgihtInfoButton_Click(object sender, EventArgs e)
+        protected void ShowOneWayFlgihtInfoHiddenButton_Click(object sender, EventArgs e)
         {
             this.OneWayRouteSelectedFlightIdHiddenField.Value = this.OneWayRouteCurrentFlightInfoIdHiddenField.Value;
 
@@ -193,7 +205,7 @@
                 this.OneWayFlightTravelClassesRepeater);
         }
 
-        protected void ShowReturnFlgihtInfoButton_Click(object sender, EventArgs e)
+        protected void ShowReturnFlgihtInfoHiddenButton_Click(object sender, EventArgs e)
         {
             this.ReturnRouteSelectedFlightIdHiddenField.Value = this.ReturnRouteCurrentFlightInfoIdHiddenField.Value;
 
@@ -227,6 +239,22 @@
 
             travelClasses.DataSource = legInstance.Aircraft.TravelClasses.ToList();
             travelClasses.DataBind();
+        }
+
+        private bool AreSelectedDatesValid()
+        {
+            int oneWayRouteFlightId = int.Parse(this.OneWayRouteSelectedFlightIdHiddenField.Value);
+            int returnRouteFlightId = int.Parse(this.ReturnRouteSelectedFlightIdHiddenField.Value);
+
+            var departureFlight = this.LegInstancesServices.GetLegInstance(oneWayRouteFlightId);
+            var arrivalFlight = this.LegInstancesServices.GetLegInstance(returnRouteFlightId);
+
+            if (departureFlight.DepartureDateTime > arrivalFlight.DepartureDateTime)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

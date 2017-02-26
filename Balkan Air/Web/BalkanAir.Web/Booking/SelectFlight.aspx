@@ -8,7 +8,9 @@
     <asp:CustomValidator ID="OneWayRouteTravelClassCustomValidator" runat="server" Display="Dynamic" ForeColor="Red" />
 
     <asp:CustomValidator ID="ReturnRouteTravelClassCustomValidator" runat="server" Display="Dynamic" ForeColor="Red" />
-    
+
+    <asp:CustomValidator ID="InvalidArrivalDateCustomValidator" runat="server" Display="Dynamic" ForeColor="Red" />
+
     <asp:Panel ID="FlightDetailsPanel" runat="server" ClientIDMode="Static">
         <input type="image" class="airplaneFlyOutImage" alt="Airplane image" src="../Content/Images/airplane_fly_out_image.png" />
         <h3>Choose flight out</h3>
@@ -29,17 +31,12 @@
             </asp:Repeater>
         </div>
 
-        <div class="showFlgihtInfoButtonDiv">
-            <asp:Button ID="ShowOneWayFlgihtInfoButton" ClientIDMode="Static" Text="Show Flight" runat="server"
-                UseSubmitBehavior="false" OnClick="ShowOneWayFlgihtInfoButton_Click" ValidateRequestMode="Disabled" />
-        </div>
-
         <div class="selectedFlightDetailsDiv">
-            <asp:UpdatePanel runat="server" UpdateMode="Always">
-                <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="ShowOneWayFlgihtInfoButton" EventName="Click" />
-                </Triggers>
+            <asp:UpdatePanel ID="UP" ClientIDMode="Static" runat="server" UpdateMode="Always">
                 <ContentTemplate>
+                    <asp:Button ID="ShowOneWayFlgihtInfoHiddenButton" ClientIDMode="Static" runat="server"
+                        UseSubmitBehavior="false" OnClick="ShowOneWayFlgihtInfoHiddenButton_Click" ValidateRequestMode="Disabled" />
+
                     <asp:FormView ID="OneWayFlightDetailsFormView" runat="server" ItemType="BalkanAir.Data.Models.LegInstance">
                         <ItemTemplate>
                             <div class="flightDetailsDiv">
@@ -128,17 +125,12 @@
                 </asp:Repeater>
             </div>
 
-            <div class="showFlgihtInfoButtonDiv">
-                <asp:Button ID="ShowReturnFlgihtInfoButton" ClientIDMode="Static" Text="Show Flight" runat="server"
-                    UseSubmitBehavior="false" OnClick="ShowReturnFlgihtInfoButton_Click" ValidateRequestMode="Disabled" />
-            </div>
-
             <div class="selectedFlightDetailsDiv">
                 <asp:UpdatePanel runat="server" UpdateMode="Always">
-                    <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="ShowReturnFlgihtInfoButton" EventName="Click" />
-                    </Triggers>
                     <ContentTemplate>
+                        <asp:Button ID="ShowReturnFlgihtInfoHiddenButton" ClientIDMode="Static" runat="server"
+                            UseSubmitBehavior="false" OnClick="ShowReturnFlgihtInfoHiddenButton_Click" ValidateRequestMode="Disabled" />
+
                         <asp:FormView ID="ReturnFlightDetailsFormView" runat="server" ItemType="BalkanAir.Data.Models.LegInstance">
                             <ItemTemplate>
                                 <div class="flightDetailsDiv">

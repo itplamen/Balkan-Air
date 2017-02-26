@@ -492,19 +492,18 @@ div.flightDatesDiv {
     cursor: pointer;
 }
 
-.showFlgihtInfoButtonDiv {
-    margin-top: -50px;
-    margin-bottom: 50px;    
+#ShowOneWayFlgihtInfoHiddenButton, #ShowReturnFlgihtInfoHiddenButton {
+    display: none;
 }
-  
-#ShowOneWayFlgihtInfoButton, #ShowReturnFlgihtInfoButton {
+
+ #ShowReturnFlgihtInfoButton {
     background-color: #073886;
     opacity: 0.8;
     color: #fff;
     border: 0;
 }
 
-#ShowOneWayFlgihtInfoButton:hover , #ShowReturnFlgihtInfoButton:hover {
+#ShowReturnFlgihtInfoButton:hover {
     opacity: 1.0; 
 }
 
@@ -698,11 +697,11 @@ div.flightDatesDiv {
     margin: 5px 20px 5px 20px;
 }
 
-#ContinueBookingDiv, .showFlgihtInfoButtonDiv {
+#ContinueBookingDiv {
     text-align: right; 
 }
 
-#ContinueBookingBtn, #ShowOneWayFlgihtInfoButton, #ShowReturnFlgihtInfoButton {
+#ContinueBookingBtn, #ShowReturnFlgihtInfoButton {
     height: 50px;
     width: 130px;
     margin-top: 20px;

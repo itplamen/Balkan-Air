@@ -47,17 +47,21 @@ $(document).ready(function () {
     $('.oneWayRouteFlights')
         .add('#OneWayRouteDepartureDatesDiv .slick-arrow')
         .click(function () {
-            var currentFlightDate = $('div.oneWayRouteFlights.slick-current')[0];
+            var currentFlightDate = $('div.oneWayRouteFlights.slick-current')[0],
+                showOneWayFlgihtInfoHiddenButton = $('#ShowOneWayFlgihtInfoHiddenButton')[0];
 
             $('#OneWayRouteCurrentFlightInfoIdHiddenField').val($(currentFlightDate).attr('data-value'));
+            showOneWayFlgihtInfoHiddenButton.click();
         });
-
+    
     $('.returnRouteFlights')
         .add('#ReturnRouteDepartureDatesDiv .slick-arrow')
         .click(function () {
-            var currentFlightDate = $('div.returnRouteFlights.slick-current')[0];
+            var currentFlightDate = $('div.returnRouteFlights.slick-current')[0],
+                showReturnFlgihtInfoHiddenButton = $('#ShowReturnFlgihtInfoHiddenButton')[0];;
 
             $('#ReturnRouteCurrentFlightInfoIdHiddenField').val($(currentFlightDate).attr('data-value'));
+            showReturnFlgihtInfoHiddenButton.click();
         });
 });
 
@@ -72,3 +76,4 @@ function selectReturnRouteTravelClass(event) {
     $('.returnRouteTravelClasses .travelClassPriceSpan').css('background-color', 'initial');
     $(event.target).closest('.returnRouteTravelClasses .travelClassPriceSpan').css('background-color', 'pink');
 }
+ 
