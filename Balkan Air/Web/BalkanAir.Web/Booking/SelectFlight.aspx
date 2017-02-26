@@ -5,6 +5,10 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: this.Page.Title %></h2>
 
+    <asp:CustomValidator ID="OneWayRouteTravelClassCustomValidator" runat="server" Display="Dynamic" ForeColor="Red" />
+
+    <asp:CustomValidator ID="ReturnRouteTravelClassCustomValidator" runat="server" Display="Dynamic" ForeColor="Red" />
+    
     <asp:Panel ID="FlightDetailsPanel" runat="server" ClientIDMode="Static">
         <input type="image" class="airplaneFlyOutImage" alt="Airplane image" src="../Content/Images/airplane_fly_out_image.png" />
         <h3>Choose flight out</h3>
@@ -26,7 +30,7 @@
         </div>
 
         <div class="showFlgihtInfoButtonDiv">
-            <asp:Button ID="ShowOneWayFlgihtInfoButton" ClientIDMode="Static" Text="Show Flight" runat="server" 
+            <asp:Button ID="ShowOneWayFlgihtInfoButton" ClientIDMode="Static" Text="Show Flight" runat="server"
                 UseSubmitBehavior="false" OnClick="ShowOneWayFlgihtInfoButton_Click" ValidateRequestMode="Disabled" />
         </div>
 
@@ -66,7 +70,7 @@
                         </ItemTemplate>
                     </asp:FormView>
 
-                    <div class="flightTravelClassesDiv">
+                    <div class="flightTravelClassesDiv oneWayRouteTravelClasses">
                         <asp:Repeater ID="OneWayFlightTravelClassesRepeater" runat="server" ClientIDMode="Static"
                             ItemType="BalkanAir.Data.Models.TravelClass">
                             <ItemTemplate>
@@ -83,7 +87,7 @@
                                     </span>
                                     <span class="travelClassPriceSpan">
                                         <label>
-                                            <input type="radio" required name="price" value="<%# Item.Id %>"
+                                            <input type="radio" required name="onaWayRoutePrice" value="<%# Item.Id %>"
                                                 class="<%#: Item.NumberOfAvailableSeats == 0 ? "noMoreSeats" : "" %>" />
                                             &#8364; <%# Item.Price + this.LegInstance.Price %>
                                         </label>
@@ -96,13 +100,13 @@
                             </ItemTemplate>
                         </asp:Repeater>
                     </div>
+
+                    <asp:HiddenField ID="OneWayRouteInitialSlideIndexHiddenField" ClientIDMode="Static" runat="server" />
+                    <asp:HiddenField ID="OneWayRouteCurrentFlightInfoIdHiddenField" ClientIDMode="Static" runat="server" />
+                    <asp:HiddenField ID="OneWayRouteSelectedFlightIdHiddenField" runat="server" />
+                    <asp:HiddenField ID="OneWayRouteSelectedTravelClassIdHiddenField" ClientIDMode="Static" runat="server" />
                 </ContentTemplate>
             </asp:UpdatePanel>
-
-            <asp:HiddenField ID="OneWayRouteInitialSlideIndexHiddenField" ClientIDMode="Static" runat="server" />
-            <asp:HiddenField ID="OneWayRouteCurrentFlightInfoIdHiddenField" ClientIDMode="Static" runat="server" />
-            <asp:HiddenField ID="OneWayRouteSelectedFlightIdHiddenField" runat="server" />
-            <asp:HiddenField ID="OneWayRouteSelectedTravelClassIdHiddenField" ClientIDMode="Static" runat="server" />
         </div>
 
         <asp:Panel ID="ReturnRouteFlightsPanel" ClientIDMode="Static" runat="server">
@@ -125,7 +129,7 @@
             </div>
 
             <div class="showFlgihtInfoButtonDiv">
-                <asp:Button ID="ShowReturnFlgihtInfoButton" ClientIDMode="Static" Text="Show Flight" runat="server" 
+                <asp:Button ID="ShowReturnFlgihtInfoButton" ClientIDMode="Static" Text="Show Flight" runat="server"
                     UseSubmitBehavior="false" OnClick="ShowReturnFlgihtInfoButton_Click" ValidateRequestMode="Disabled" />
             </div>
 
@@ -165,7 +169,7 @@
                             </ItemTemplate>
                         </asp:FormView>
 
-                        <div class="flightTravelClassesDiv">
+                        <div class="flightTravelClassesDiv returnRouteTravelClasses">
                             <asp:Repeater ID="ReturnFlightTravelClassesRepeater" runat="server" ClientIDMode="Static"
                                 ItemType="BalkanAir.Data.Models.TravelClass">
                                 <ItemTemplate>
@@ -182,7 +186,7 @@
                                         </span>
                                         <span class="travelClassPriceSpan">
                                             <label>
-                                                <input type="radio" required name="price" value="<%# Item.Id %>"
+                                                <input type="radio" required name="returnRoutePrice" value="<%# Item.Id %>"
                                                     class="<%#: Item.NumberOfAvailableSeats == 0 ? "noMoreSeats" : "" %>" />
                                                 &#8364; <%# Item.Price + this.LegInstance.Price %>
                                             </label>
@@ -195,13 +199,13 @@
                                 </ItemTemplate>
                             </asp:Repeater>
                         </div>
+                        <asp:HiddenField ID="ReturnRouteInitialSlideIndexHiddenField" ClientIDMode="Static" runat="server" />
+                        <asp:HiddenField ID="ReturnRouteCurrentFlightInfoIdHiddenField" ClientIDMode="Static" runat="server" />
+                        <asp:HiddenField ID="ReturnRouteSelectedFlightIdHiddenField" runat="server" />
+                        <asp:HiddenField ID="ReturnRouteSelectedTravelClassIdHiddenField" ClientIDMode="Static" runat="server" />
+
                     </ContentTemplate>
                 </asp:UpdatePanel>
-
-                <asp:HiddenField ID="ReturnRouteInitialSlideIndexHiddenField" ClientIDMode="Static" runat="server" />
-                <asp:HiddenField ID="ReturnRouteCurrentFlightInfoIdHiddenField" ClientIDMode="Static" runat="server" />
-                <asp:HiddenField ID="ReturnRouteSelectedFlightIdHiddenField" runat="server" />
-                <asp:HiddenField ID="ReturnRouteSelectedTravelClassIdHiddenField" ClientIDMode="Static" runat="server" />
             </div>
         </asp:Panel>
 

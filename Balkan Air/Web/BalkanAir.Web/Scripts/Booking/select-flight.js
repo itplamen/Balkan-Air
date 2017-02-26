@@ -25,16 +25,24 @@
         position: position,
         content: documentFragment.appendChild($standartContent.append($priorityBoarding, $extraBaggage, $earnMiles)[0].cloneNode(true))
     });
+
+    // Click events can't fire, because of the UpdatePanel. The solution is to use Sys.WebForms.PageRequestManage.
+    var pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
+
+    // Re-bind jQuery events.
+    pageRequestManager.add_endRequest(function () {
+        $('.oneWayRouteTravelClasses .travelClassPriceSpan input[type="radio"]').click(selectOneWayRouteTravelClass);
+        $('.returnRouteTravelClasses .travelClassPriceSpan input[type="radio"]').click(selectReturnRouteTravelClass);
+    });
 });
+
 
 $(document).ready(function () {
     $('.travelClassPriceSpan input[type="radio"].noMoreSeats').attr('disabled', true);
 
-    $('.travelClassPriceSpan input[type="radio"]').click(function (event) {
-        $('#SelectedTravelClassIdHiddenField').val($(event.target).val());
-        $('.travelClassPriceSpan').css('background-color', 'initial');
-        $(event.target).closest('.travelClassPriceSpan').css('background-color', 'pink');
-    });
+    // Bind jQuery events initially
+    $('.oneWayRouteTravelClasses .travelClassPriceSpan input[type="radio"]').click(selectOneWayRouteTravelClass);
+    $('.returnRouteTravelClasses .travelClassPriceSpan input[type="radio"]').click(selectReturnRouteTravelClass);
 
     $('.oneWayRouteFlights')
         .add('#OneWayRouteDepartureDatesDiv .slick-arrow')
@@ -43,7 +51,6 @@ $(document).ready(function () {
 
             $('#OneWayRouteCurrentFlightInfoIdHiddenField').val($(currentFlightDate).attr('data-value'));
         });
-
 
     $('.returnRouteFlights')
         .add('#ReturnRouteDepartureDatesDiv .slick-arrow')
@@ -54,4 +61,14 @@ $(document).ready(function () {
         });
 });
 
+function selectOneWayRouteTravelClass(event) {
+    $('#OneWayRouteSelectedTravelClassIdHiddenField').val($(event.target).val());
+    $('.oneWayRouteTravelClasses .travelClassPriceSpan').css('background-color', 'initial');
+    $(event.target).closest('.oneWayRouteTravelClasses .travelClassPriceSpan').css('background-color', 'pink');
+}
 
+function selectReturnRouteTravelClass(event) {
+    $('#ReturnRouteSelectedTravelClassIdHiddenField').val($(event.target).val());
+    $('.returnRouteTravelClasses .travelClassPriceSpan').css('background-color', 'initial');
+    $(event.target).closest('.returnRouteTravelClasses .travelClassPriceSpan').css('background-color', 'pink');
+}

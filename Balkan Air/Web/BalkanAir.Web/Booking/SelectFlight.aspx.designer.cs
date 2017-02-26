@@ -13,6 +13,24 @@ namespace BalkanAir.Web.Booking {
     public partial class SelectFlight {
         
         /// <summary>
+        /// OneWayRouteTravelClassCustomValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator OneWayRouteTravelClassCustomValidator;
+        
+        /// <summary>
+        /// ReturnRouteTravelClassCustomValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator ReturnRouteTravelClassCustomValidator;
+        
+        /// <summary>
         /// FlightDetailsPanel control.
         /// </summary>
         /// <remarks>

@@ -1,16 +1,15 @@
-﻿'use strict';
+﻿$(function () {
+    'use strict';
 
-function pageLoad(sender, args) {
-    $('#DepartureFancyTextBox').on('click', function () {
-        $(this).css('border', '3px solid #C5027C');
-        $('#DepartureAirportsDiv').show();
-    });
+    // Click events can't fire, because of the UpdatePanel. The solution is to use Sys.WebForms.PageRequestManage.
+    var pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
 
-    $('#DestinationFancyTextBox').on('click', function () {
-        $(this).css('border', '3px solid #C5027C');
-        $('#DestinationAirportsDiv').show();
+    // Re-bind jQuery events.
+    pageRequestManager.add_endRequest(function () {
+        $('#DepartureFancyTextBox').click(showDepartureAirports);
+        $('#DestinationFancyTextBox').click(showDestinationAirports);
     });
-}
+});
 
 $(document).ready(function () {
     $('.homeSlider').slick({
@@ -24,6 +23,10 @@ $(document).ready(function () {
         autoplay: true,
         speed: 2000,
     });
+
+    // Bind jQuery events initially.
+    $('#DepartureFancyTextBox').click(showDepartureAirports);
+    $('#DestinationFancyTextBox').click(showDestinationAirports);
 
     $(document).mouseup(function (e) {
         var $departureAirportsDiv = $("#DepartureAirportsDiv"),
@@ -46,3 +49,13 @@ $(document).ready(function () {
         }
     });
 });
+
+function showDepartureAirports() {
+    $(this).css('border', '3px solid #C5027C');
+    $('#DepartureAirportsDiv').show();
+}
+
+function showDestinationAirports() {
+    $(this).css('border', '3px solid #C5027C');
+    $('#DestinationAirportsDiv').show();
+}
