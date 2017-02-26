@@ -31,13 +31,13 @@ namespace BalkanAir.Web.Administration {
         protected global::System.Web.UI.WebControls.CustomValidator InvalidTypeCustomValidatior;
         
         /// <summary>
-        /// ContentHtmlEditor control.
+        /// ContentAjaxHtmlEditor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.HtmlEditor.Editor ContentHtmlEditor;
+        protected global::AjaxControlToolkit.HtmlEditor.Editor ContentAjaxHtmlEditor;
         
         /// <summary>
         /// TypeDropDownList control.

@@ -125,7 +125,7 @@
                 DateTime? arrivalDate = null;
 
                 if (this.ReturnRouteRadioButton.Checked && this.ArrivalDateTextBox.Visible && 
-                        this.ArrivalDateTextBox.Text != string.Empty)
+                    this.ArrivalDateTextBox.Text != string.Empty)
                 {
                     arrivalDate = DateTime.Parse(this.ArrivalDateTextBox.Text);
                 }
@@ -166,8 +166,7 @@
                     .ArrivalAirportId
                     .ToString();
 
-                this.SearchFlight(departureAirportId, destinationAirportId, legInstance.DepartureDateTime, 
-                    legInstance.ArrivalDateTime);
+                this.SearchFlight(departureAirportId, destinationAirportId, legInstance.DepartureDateTime, null);
             }
         }
 

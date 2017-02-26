@@ -212,7 +212,7 @@ input[type="tel"], input[type="select"], input[type="time"] {
     z-index: 1;
 }
 
-#OnewayRadioButton {
+#OneWayRadioButton {
     margin-left: 20px;
 }
 
@@ -492,20 +492,20 @@ div.flightDatesDiv {
     cursor: pointer;
 }
 
-#ShowFlgihtInfoButtonDiv {
+.showFlgihtInfoButtonDiv {
     margin-top: -50px;
     margin-bottom: 50px;    
 }
-
-#ShowFlgihtInfoButton {
+  
+#ShowOneWayFlgihtInfoButton, #ShowReturnFlgihtInfoButton {
     background-color: #073886;
     opacity: 0.8;
     color: #fff;
     border: 0;
 }
 
-#ShowFlgihtInfoButton:hover {
-    opacity: 1.0;
+#ShowOneWayFlgihtInfoButton:hover , #ShowReturnFlgihtInfoButton:hover {
+    opacity: 1.0; 
 }
 
 .flightDatesDiv .date, .flightDatesDiv .price {
@@ -526,26 +526,26 @@ div.flightDatesDiv {
     border: 3px solid black;
 }
 
-#FlightDetailsDiv {
+.flightDetailsDiv {
     display: inline-block;
 }
 
-#FlightDepartureDetailsDiv {
+.flightDepartureDetailsDiv {
     display: inline-block;
     text-align: left;
 }
 
-    #FlightDepartureDetailsDiv span {
+    .flightDepartureDetailsDiv span {
         display: block;
     }
 
-#FlightMiddleImage {
+.flightMiddleImage {
     display: inline-block;
     margin-left: 30px;
     margin-right: 30px;
 }
 
-    #FlightMiddleImage span {
+    .flightMiddleImage span {
         display: block;
     }
 
@@ -556,37 +556,39 @@ div.flightDatesDiv {
             bottom: 15px;
         }
 
-#FlightDestinationDetailsDeiv {
+.flightDestinationDetailsDeiv {
     display: inline-block;
     text-align: right;
 }
 
-    #FlightDestinationDetailsDeiv span {
+    .flightDestinationDetailsDeiv span {
         display: block;
     }
 
-#FlightNumberSpan, #FlightDurationSpan {
+.departureFlightNumberSpan, .flightDurationSpan {
     color: gray;
     font-size: 16px;
 }
 
-#FromAirportSpan, #ToAirportSpan {
+.departureAirportSpan, .destinationAirportSpan {
     font-size: 13px;
     font-weight: bold;
 }
 
-#DepartureSpan, #ArrivalSpan {
+.departureSpan, .arrivalSpan {
     font-size: 22px;
     font-weight: bold;
 }
 
-#FlightDetailsDiv {
+.flightDetailsDiv {
     padding: 10px;
     margin-right: 50px;
 }
 
-#SelectedFlightDetailsDiv {
+.selectedFlightDetailsDiv {
     background-color: #f6eeee;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 #FlightDetailsPanel table {
@@ -594,12 +596,12 @@ div.flightDatesDiv {
     margin-left: 30px;
 }
 
-#FlightTravelClassesDiv {
+.flightTravelClassesDiv {
     display: inline-block;
     cursor: pointer;
 }
 
-#FlightTravelClassesDiv label, #FlightTravelClassesDiv input[type=radio] {
+.flightTravelClassesDiv label, .flightTravelClassesDiv input[type=radio] {
     cursor: pointer;
 }
 
@@ -638,11 +640,11 @@ div.flightDatesDiv {
         text-align: center;
     }
 
-#EconomyClassSpan img:not(.availableIcon) {
+.economyClassSpan img:not(.availableIcon) {
     display: none;
 }
 
-#BusinessClassSpan .earnMilesIcons {
+.businessClassSpan .earnMilesIcons {
     display: none;
 }
 
@@ -686,12 +688,21 @@ div.flightDatesDiv {
     color: #d70505;
     font-size: 12px
 }
+ 
+#ReturnRouteFlightsPanel {
+    margin-top: 50px;
+}
 
-#ContinueBookingDiv, #ShowFlgihtInfoButtonDiv {
+#ReturnRouteFlightsPanel hr {
+    border-top: 1px solid #ccc;
+    margin: 5px 20px 5px 20px;
+}
+
+#ContinueBookingDiv, .showFlgihtInfoButtonDiv {
     text-align: right; 
 }
 
-#ContinueBookingBtn, #ShowFlgihtInfoButton {
+#ContinueBookingBtn, #ShowOneWayFlgihtInfoButton, #ShowReturnFlgihtInfoButton {
     height: 50px;
     width: 130px;
     margin-top: 20px;

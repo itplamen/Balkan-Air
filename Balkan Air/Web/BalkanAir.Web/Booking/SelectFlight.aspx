@@ -9,12 +9,12 @@
         <input type="image" class="airplaneFlyOutImage" alt="Airplane image" src="../Content/Images/airplane_fly_out_image.png" />
         <h3>Choose flight out</h3>
 
-        <div id="AvailableDepartureDatesDiv" class="center slider">
-            <asp:Repeater ID="AvailableDepartureDatesRepeater" runat="server"
+        <div id="OneWayRouteDepartureDatesDiv" class="oneWayRouteSlider slider">
+            <asp:Repeater ID="OneWayRouteDepartureDatesRepeater" runat="server"
                 ItemType="BalkanAir.Data.Models.LegInstance"
-                SelectMethod="AvailableDatesRepeater_GetData">
+                SelectMethod="OneWayRouteDepartureDatesRepeater_GetData">
                 <ItemTemplate>
-                    <div class="flightDatesDiv" data-value="<%#: Item.Id %>">
+                    <div class="flightDatesDiv oneWayRouteFlights" data-value="<%#: Item.Id %>">
                         <span class="date">
                             <%#: Item.DepartureDateTime.ToString("ddd dd, MMM", CultureInfo.InvariantCulture) %>
                         </span>
@@ -25,53 +25,53 @@
             </asp:Repeater>
         </div>
 
-        <div id="ShowFlgihtInfoButtonDiv">
-             <asp:Button ID="ShowFlgihtInfoButton" ClientIDMode="Static" Text="Show Flight" runat="server"
-            OnClick="ShowFlgihtInfoButton_Click" UseSubmitBehavior="false" ValidateRequestMode="Disabled" />
+        <div class="showFlgihtInfoButtonDiv">
+            <asp:Button ID="ShowOneWayFlgihtInfoButton" ClientIDMode="Static" Text="Show Flight" runat="server" 
+                UseSubmitBehavior="false" OnClick="ShowOneWayFlgihtInfoButton_Click" ValidateRequestMode="Disabled" />
         </div>
 
-        <div id="SelectedFlightDetailsDiv">
-            <asp:UpdatePanel runat="server" UpdateMode="Always" ID="UU">
+        <div class="selectedFlightDetailsDiv">
+            <asp:UpdatePanel runat="server" UpdateMode="Always">
                 <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="ShowFlgihtInfoButton" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="ShowOneWayFlgihtInfoButton" EventName="Click" />
                 </Triggers>
                 <ContentTemplate>
-                    <asp:FormView ID="FlightDetailsFormView" runat="server" ItemType="BalkanAir.Data.Models.LegInstance">
+                    <asp:FormView ID="OneWayFlightDetailsFormView" runat="server" ItemType="BalkanAir.Data.Models.LegInstance">
                         <ItemTemplate>
-                            <div id="FlightDetailsDiv">
+                            <div class="flightDetailsDiv">
                                 <h4>Flight details</h4>
                                 <h5>
                                     <strong>
                                         <%#: Item.DepartureDateTime.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %>
                                     </strong>
                                 </h5>
-                                <hr />
-                                <div id="FlightDepartureDetailsDiv">
-                                    <span id="FlightNumberSpan"><%#: Item.FlightLeg.Flight.Number %></span>
-                                    <span id="FromAirportSpan"><%#: Item.FlightLeg.Route.Origin.Name %></span>
-                                    <span id="DepartureSpan"><%#: Item.DepartureDateTime.ToString("HH:mm", CultureInfo.InvariantCulture) %></span>
+                                <br />
+                                <div class="flightDepartureDetailsDiv">
+                                    <span class="departureFlightNumberSpan"><%#: Item.FlightLeg.Flight.Number %></span>
+                                    <span class="departureAirportSpan"><%#: Item.FlightLeg.Route.Origin.Name %></span>
+                                    <span class="departureSpan"><%#: Item.DepartureDateTime.ToString("HH:mm", CultureInfo.InvariantCulture) %></span>
                                 </div>
-                                <div id="FlightMiddleImage">
+                                <div class="flightMiddleImage">
                                     <span>
                                         <input type="image" alt="Airplane image" src="../Content/Images/airplane_between_airports.png"
                                             class="airplaneBetweenAirports" />
                                     </span>
                                 </div>
-                                <div id="FlightDestinationDetailsDeiv">
-                                    <span id="FlightDurationSpan"><%#: Item.Duration.Hours %> hr <%#: Item.Duration.Minutes %> min</span>
-                                    <span id="ToAirportSpan"><%#: Item.FlightLeg.Route.Destination.Name %></span>
-                                    <span id="ArrivalSpan"><%#: Item.ArrivalDateTime.ToString("HH:mm", CultureInfo.InvariantCulture) %></span>
+                                <div class="flightDestinationDetailsDeiv">
+                                    <span class="flightDurationSpan"><%#: Item.Duration.Hours %> hr <%#: Item.Duration.Minutes %> min</span>
+                                    <span class="destinationAirportSpan"><%#: Item.FlightLeg.Route.Destination.Name %></span>
+                                    <span class="arrivalSpan"><%#: Item.ArrivalDateTime.ToString("HH:mm", CultureInfo.InvariantCulture) %></span>
                                 </div>
                             </div>
                         </ItemTemplate>
                     </asp:FormView>
 
-                    <div id="FlightTravelClassesDiv">
-                        <asp:Repeater ID="FlightTravelClassesRepeater" runat="server" ClientIDMode="Static"
+                    <div class="flightTravelClassesDiv">
+                        <asp:Repeater ID="OneWayFlightTravelClassesRepeater" runat="server" ClientIDMode="Static"
                             ItemType="BalkanAir.Data.Models.TravelClass">
                             <ItemTemplate>
                                 <div class="travelClass <%#: Item.Type %>ClassDiv" title="">
-                                    <span id="<%#: Item.Type %>ClassSpan" class="travelClassTypeSpan"><%#: Item.Type %> Class
+                                    <span class="<%#: Item.Type %>ClassSpan travelClassTypeSpan"><%#: Item.Type %> Class
                                 <span class="travelClassTypeDetailsSpan">
                                     <img src="../Content/Images/online-check-in-icon.png" class="availableIcon" alt="Online ckeck-in Icon" />
                                     <img src="../Content/Images/meal-icon.png" class="availableIcon" alt="Meal Icon" />
@@ -99,11 +99,111 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
 
-            <asp:HiddenField ID="InitialSlideToStartHiddenField" ClientIDMode="Static" runat="server" />
-            <asp:HiddenField ID="CurrentFlightInfoIdHiddenField" ClientIDMode="Static" runat="server" />
-            <asp:HiddenField ID="SelectedFlightIdHiddenField" runat="server" />
-            <asp:HiddenField ID="SelectedTravelClassIdHiddenField" ClientIDMode="Static" runat="server" />
+            <asp:HiddenField ID="OneWayRouteInitialSlideIndexHiddenField" ClientIDMode="Static" runat="server" />
+            <asp:HiddenField ID="OneWayRouteCurrentFlightInfoIdHiddenField" ClientIDMode="Static" runat="server" />
+            <asp:HiddenField ID="OneWayRouteSelectedFlightIdHiddenField" runat="server" />
+            <asp:HiddenField ID="OneWayRouteSelectedTravelClassIdHiddenField" ClientIDMode="Static" runat="server" />
         </div>
+
+        <asp:Panel ID="ReturnRouteFlightsPanel" ClientIDMode="Static" runat="server">
+            <hr />
+
+            <div id="ReturnRouteDepartureDatesDiv" class="returnRouteSlider slider">
+                <asp:Repeater ID="ReturnRouteDepartureDatesRepeater" runat="server"
+                    ItemType="BalkanAir.Data.Models.LegInstance"
+                    SelectMethod="ReturnRouteDepartureDatesRepeater_GetData">
+                    <ItemTemplate>
+                        <div class="flightDatesDiv returnRouteFlights" data-value="<%#: Item.Id %>">
+                            <span class="date">
+                                <%#: Item.DepartureDateTime.ToString("ddd dd, MMM", CultureInfo.InvariantCulture) %>
+                            </span>
+                            <span class="price">&#8364; <%#: Item.Price + Item.Aircraft.GetCheapestTravelClassPrice %>
+                            </span>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
+
+            <div class="showFlgihtInfoButtonDiv">
+                <asp:Button ID="ShowReturnFlgihtInfoButton" ClientIDMode="Static" Text="Show Flight" runat="server" 
+                    UseSubmitBehavior="false" OnClick="ShowReturnFlgihtInfoButton_Click" ValidateRequestMode="Disabled" />
+            </div>
+
+            <div class="selectedFlightDetailsDiv">
+                <asp:UpdatePanel runat="server" UpdateMode="Always">
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="ShowReturnFlgihtInfoButton" EventName="Click" />
+                    </Triggers>
+                    <ContentTemplate>
+                        <asp:FormView ID="ReturnFlightDetailsFormView" runat="server" ItemType="BalkanAir.Data.Models.LegInstance">
+                            <ItemTemplate>
+                                <div class="flightDetailsDiv">
+                                    <h4>Flight details</h4>
+                                    <h5>
+                                        <strong>
+                                            <%#: Item.DepartureDateTime.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %>
+                                        </strong>
+                                    </h5>
+                                    <br />
+                                    <div class="flightDepartureDetailsDiv">
+                                        <span class="departureFlightNumberSpan"><%#: Item.FlightLeg.Flight.Number %></span>
+                                        <span class="departureAirportSpan"><%#: Item.FlightLeg.Route.Origin.Name %></span>
+                                        <span class="departureSpan"><%#: Item.DepartureDateTime.ToString("HH:mm", CultureInfo.InvariantCulture) %></span>
+                                    </div>
+                                    <div class="flightMiddleImage">
+                                        <span>
+                                            <input type="image" alt="Airplane image" src="../Content/Images/airplane_between_airports.png"
+                                                class="airplaneBetweenAirports" />
+                                        </span>
+                                    </div>
+                                    <div class="flightDestinationDetailsDeiv">
+                                        <span class="flightDurationSpan"><%#: Item.Duration.Hours %> hr <%#: Item.Duration.Minutes %> min</span>
+                                        <span class="destinationAirportSpan"><%#: Item.FlightLeg.Route.Destination.Name %></span>
+                                        <span class="arrivalSpan"><%#: Item.ArrivalDateTime.ToString("HH:mm", CultureInfo.InvariantCulture) %></span>
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:FormView>
+
+                        <div class="flightTravelClassesDiv">
+                            <asp:Repeater ID="ReturnFlightTravelClassesRepeater" runat="server" ClientIDMode="Static"
+                                ItemType="BalkanAir.Data.Models.TravelClass">
+                                <ItemTemplate>
+                                    <div class="travelClass <%#: Item.Type %>ClassDiv" title="">
+                                        <span class="<%#: Item.Type %>ClassSpan travelClassTypeSpan"><%#: Item.Type %> Class
+                                <span class="travelClassTypeDetailsSpan">
+                                    <img src="../Content/Images/online-check-in-icon.png" class="availableIcon" alt="Online ckeck-in Icon" />
+                                    <img src="../Content/Images/meal-icon.png" class="availableIcon" alt="Meal Icon" />
+                                    <img src="../Content/Images/reserved-seat-icon.png" class="availableIcon" alt="Reserved Seat Icon" />
+                                    <img src="../Content/Images/priority-boarding-icon.png" class="priorityBoardingIcons" alt="Priority Boarding Icon" />
+                                    <img src="../Content/Images/extra-baggage-icon.png" class="extraBaggageIcons" alt="Extra Baggage Icon" />
+                                    <img src="../Content/Images/earn-miles-icon.png" class="earnMilesIcons" alt="Earn Miles Icon" />
+                                </span>
+                                        </span>
+                                        <span class="travelClassPriceSpan">
+                                            <label>
+                                                <input type="radio" required name="price" value="<%# Item.Id %>"
+                                                    class="<%#: Item.NumberOfAvailableSeats == 0 ? "noMoreSeats" : "" %>" />
+                                                &#8364; <%# Item.Price + this.LegInstance.Price %>
+                                            </label>
+
+                                            <span class="travelClassSeats">
+                                                <%#: Item.NumberOfAvailableSeats %> seats remaining at this price
+                                            </span>
+                                        </span>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+
+                <asp:HiddenField ID="ReturnRouteInitialSlideIndexHiddenField" ClientIDMode="Static" runat="server" />
+                <asp:HiddenField ID="ReturnRouteCurrentFlightInfoIdHiddenField" ClientIDMode="Static" runat="server" />
+                <asp:HiddenField ID="ReturnRouteSelectedFlightIdHiddenField" runat="server" />
+                <asp:HiddenField ID="ReturnRouteSelectedTravelClassIdHiddenField" ClientIDMode="Static" runat="server" />
+            </div>
+        </asp:Panel>
 
         <div id="ContinueBookingDiv">
             <asp:Button ID="ContinueBookingBtn" Text="Continue" runat="server" ClientIDMode="Static"
@@ -122,14 +222,24 @@
     </asp:Panel>
 
     <script>
-        $('.center').slick({
+        $('.oneWayRouteSlider').slick({
             infinite: false,
             centerMode: true,
             focusOnSelect: true,
             variableWidth: true,
             slidesToShow: 5,
             slidesToScroll: 1,
-            initialSlide: parseInt($('#InitialSlideToStartHiddenField').val(), 10)
+            initialSlide: parseInt($('#OneWayRouteInitialSlideIndexHiddenField').val(), 10)
+        });
+
+        $('.returnRouteSlider').slick({
+            infinite: false,
+            centerMode: true,
+            focusOnSelect: true,
+            variableWidth: true,
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            initialSlide: parseInt($('#ReturnRouteInitialSlideIndexHiddenField').val(), 10)
         });
 
     </script>

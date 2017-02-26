@@ -53,8 +53,8 @@
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new notification</h3>
 
-            <asp:Label Text="Content:" runat="server" AssociatedControlID="ContentHtmlEditor" />
-            <ajaxToolkit:HtmlEditor.Editor ID="ContentHtmlEditor" Height="300px" Width="100%" AutoFocus="true" runat="server" required />
+            <asp:Label Text="Content:" runat="server" AssociatedControlID="ContentAjaxHtmlEditor" />
+            <ajaxToolkit:HtmlEditor.Editor ID="ContentAjaxHtmlEditor" Height="300px" Width="100%" AutoFocus="true" runat="server" required />
  
             <asp:Label Text="Type:" runat="server" AssociatedControlID="TypeDropDownList" />
             <asp:DropDownList ID="TypeDropDownList" runat="server" />

@@ -22,85 +22,157 @@ namespace BalkanAir.Web.Booking {
         protected global::System.Web.UI.WebControls.Panel FlightDetailsPanel;
         
         /// <summary>
-        /// AvailableDepartureDatesRepeater control.
+        /// OneWayRouteDepartureDatesRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater AvailableDepartureDatesRepeater;
+        protected global::System.Web.UI.WebControls.Repeater OneWayRouteDepartureDatesRepeater;
         
         /// <summary>
-        /// ShowFlgihtInfoButton control.
+        /// ShowOneWayFlgihtInfoButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ShowFlgihtInfoButton;
+        protected global::System.Web.UI.WebControls.Button ShowOneWayFlgihtInfoButton;
         
         /// <summary>
-        /// UU control.
+        /// OneWayFlightDetailsFormView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UU;
+        protected global::System.Web.UI.WebControls.FormView OneWayFlightDetailsFormView;
         
         /// <summary>
-        /// FlightDetailsFormView control.
+        /// OneWayFlightTravelClassesRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FormView FlightDetailsFormView;
+        protected global::System.Web.UI.WebControls.Repeater OneWayFlightTravelClassesRepeater;
         
         /// <summary>
-        /// FlightTravelClassesRepeater control.
+        /// OneWayRouteInitialSlideIndexHiddenField control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater FlightTravelClassesRepeater;
+        protected global::System.Web.UI.WebControls.HiddenField OneWayRouteInitialSlideIndexHiddenField;
         
         /// <summary>
-        /// InitialSlideToStartHiddenField control.
+        /// OneWayRouteCurrentFlightInfoIdHiddenField control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField InitialSlideToStartHiddenField;
+        protected global::System.Web.UI.WebControls.HiddenField OneWayRouteCurrentFlightInfoIdHiddenField;
         
         /// <summary>
-        /// CurrentFlightInfoIdHiddenField control.
+        /// OneWayRouteSelectedFlightIdHiddenField control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField CurrentFlightInfoIdHiddenField;
+        protected global::System.Web.UI.WebControls.HiddenField OneWayRouteSelectedFlightIdHiddenField;
         
         /// <summary>
-        /// SelectedFlightIdHiddenField control.
+        /// OneWayRouteSelectedTravelClassIdHiddenField control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField SelectedFlightIdHiddenField;
+        protected global::System.Web.UI.WebControls.HiddenField OneWayRouteSelectedTravelClassIdHiddenField;
         
         /// <summary>
-        /// SelectedTravelClassIdHiddenField control.
+        /// ReturnRouteFlightsPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField SelectedTravelClassIdHiddenField;
+        protected global::System.Web.UI.WebControls.Panel ReturnRouteFlightsPanel;
+        
+        /// <summary>
+        /// ReturnRouteDepartureDatesRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater ReturnRouteDepartureDatesRepeater;
+        
+        /// <summary>
+        /// ShowReturnFlgihtInfoButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ShowReturnFlgihtInfoButton;
+        
+        /// <summary>
+        /// ReturnFlightDetailsFormView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FormView ReturnFlightDetailsFormView;
+        
+        /// <summary>
+        /// ReturnFlightTravelClassesRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater ReturnFlightTravelClassesRepeater;
+        
+        /// <summary>
+        /// ReturnRouteInitialSlideIndexHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ReturnRouteInitialSlideIndexHiddenField;
+        
+        /// <summary>
+        /// ReturnRouteCurrentFlightInfoIdHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ReturnRouteCurrentFlightInfoIdHiddenField;
+        
+        /// <summary>
+        /// ReturnRouteSelectedFlightIdHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ReturnRouteSelectedFlightIdHiddenField;
+        
+        /// <summary>
+        /// ReturnRouteSelectedTravelClassIdHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ReturnRouteSelectedTravelClassIdHiddenField;
         
         /// <summary>
         /// ContinueBookingBtn control.

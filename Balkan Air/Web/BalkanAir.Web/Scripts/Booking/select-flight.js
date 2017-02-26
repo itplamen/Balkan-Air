@@ -36,13 +36,22 @@ $(document).ready(function () {
         $(event.target).closest('.travelClassPriceSpan').css('background-color', 'pink');
     });
 
-    $('.flightDatesDiv')
-        .add('.slick-arrow')
+    $('.oneWayRouteFlights')
+        .add('#OneWayRouteDepartureDatesDiv .slick-arrow')
         .click(function () {
-            var currentFlightDate = $("div.flightDatesDiv.slick-current")[0];
+            var currentFlightDate = $('div.oneWayRouteFlights.slick-current')[0];
 
-            $('#CurrentFlightInfoIdHiddenField').val($(currentFlightDate).attr('data-value'));
-    });
+            $('#OneWayRouteCurrentFlightInfoIdHiddenField').val($(currentFlightDate).attr('data-value'));
+        });
+
+
+    $('.returnRouteFlights')
+        .add('#ReturnRouteDepartureDatesDiv .slick-arrow')
+        .click(function () {
+            var currentFlightDate = $('div.returnRouteFlights.slick-current')[0];
+
+            $('#ReturnRouteCurrentFlightInfoIdHiddenField').val($(currentFlightDate).attr('data-value'));
+        });
 });
 
 

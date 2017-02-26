@@ -67,7 +67,7 @@
 
                 var notification = new Notification()
                 {
-                    Content = this.ContentHtmlEditor.Content,
+                    Content = this.ContentAjaxHtmlEditor.Content,
                     DateCreated = DateTime.Now,
                     Type = selectedType
                 };
@@ -85,7 +85,7 @@
 
         private void ClearFeilds()
         {
-            this.ContentHtmlEditor.Content = string.Empty;
+            this.ContentAjaxHtmlEditor.Content = string.Empty;
             this.TypeDropDownList.SelectedIndex = 0;
         }
     }
