@@ -25,6 +25,9 @@
         public ILegInstancesServices LegInstancesServices { get; set; }
 
         [Inject]
+        public IRoutesServices RoutesServices { get; set; }
+
+        [Inject]
         public ITravelClassesServices TravelClassesServices { get; set; }
 
         [Inject]
@@ -32,9 +35,31 @@
 
         protected LegInstance LegInstance { get; private set; }
 
-        private int DepartureAirprotId { get; set; }
+        protected Route RouteInfo
+        {
+            get
+            {
+                return this.RoutesServices.GetAll()
+                    .FirstOrDefault(r => r.OriginId == this.DepartureAirprotId &&
+                                    r.DestinationId == this.DestinationAirportId);
+            }
+        }
 
-        private int DestinationAirportId { get; set; }
+        private int DepartureAirprotId
+        {
+            get
+            {
+                return int.Parse(this.Session[NativeConstants.DEPARTURE_AIRPORT_ID].ToString());
+            }
+        }
+
+        private int DestinationAirportId
+        {
+            get
+            {
+                return int.Parse(this.Session[NativeConstants.DESTINATION_AIRPORT_ID].ToString());
+            }
+        }
 
         private DateTime DepartureDate { get; set; }
 
@@ -44,7 +69,7 @@
         {
             var legInstances = this.LegInstancesServices.GetAll()
                 .Where(l => !l.IsDeleted && l.FlightLeg.DepartureAirportId == this.DepartureAirprotId &&
-                    l.FlightLeg.ArrivalAirportId == this.DestinationAirportId)
+                            l.FlightLeg.ArrivalAirportId == this.DestinationAirportId)
                 .OrderBy(l => l.DepartureDateTime)
                 .ToList();
 
@@ -58,25 +83,21 @@
                 //this.Session.Remove(Parameters.DESTINATION_AIRPORT_ID);
             }
 
+            this.AddDaysWithNoFlightToSlider(legInstances);
+
             int initialSlideIndex = legInstances
                 .FindIndex(l => l.DepartureDateTime.Date == this.DepartureDate.Date);
 
-            this.OneWayRouteCurrentFlightInfoIdHiddenField.Value = legInstances
-                .FirstOrDefault(l => l.DepartureDateTime.Date == this.DepartureDate.Date)
-                .Id
-                .ToString();
-
-            this.OneWayRouteSelectedFlightIdHiddenField.Value = this.OneWayRouteCurrentFlightInfoIdHiddenField.Value;
-
-            if (initialSlideIndex == -1)
-            {
-                initialSlideIndex = 0;
-            }
-
             this.OneWayRouteInitialSlideIndexHiddenField.Value = initialSlideIndex.ToString();
 
-            this.ShowFlightInfo(this.OneWayRouteCurrentFlightInfoIdHiddenField, this.OneWayFlightDetailsFormView,
-                this.OneWayFlightTravelClassesRepeater);
+            int currentFlightId = legInstances
+                .FirstOrDefault(l => l.DepartureDateTime.Date == this.DepartureDate.Date)
+                .Id;
+
+            if (currentFlightId > 0)
+            {
+                this.ShowFlightInfo(currentFlightId, this.OneWayFlightDetailsFormView, this.OneWayFlightTravelClassesRepeater);
+            }
 
             return legInstances;
         }
@@ -85,34 +106,30 @@
         {
             var legInstances = this.LegInstancesServices.GetAll()
                 .Where(l => !l.IsDeleted && l.FlightLeg.DepartureAirportId == this.DestinationAirportId &&
-                    l.FlightLeg.ArrivalAirportId == this.DepartureAirprotId)
+                            l.FlightLeg.ArrivalAirportId == this.DepartureAirprotId)
                 .OrderBy(l => l.DepartureDateTime)
                 .ToList();
 
             if (legInstances == null || legInstances.Count == 0)
             {
-                return null;
+                this.Response.Redirect(Pages.HOME);
             }
+
+            this.AddDaysWithNoFlightToSlider(legInstances);
 
             int initialSlideIndex = legInstances
                 .FindIndex(l => l.DepartureDateTime.Date == this.ArrivalDate.Date);
 
-            this.ReturnRouteCurrentFlightInfoIdHiddenField.Value = legInstances
-                .FirstOrDefault(l => l.DepartureDateTime.Date == this.ArrivalDate.Date)
-                .Id
-                .ToString();
-
-            this.ReturnRouteSelectedFlightIdHiddenField.Value = this.ReturnRouteCurrentFlightInfoIdHiddenField.Value;
-
-            if (initialSlideIndex == -1)
-            {
-                initialSlideIndex = 0;
-            }
-
             this.ReturnRouteInitialSlideIndexHiddenField.Value = initialSlideIndex.ToString();
 
-            this.ShowFlightInfo(this.ReturnRouteCurrentFlightInfoIdHiddenField, this.ReturnFlightDetailsFormView,
-                this.ReturnFlightTravelClassesRepeater);
+            int currentFlightId = legInstances
+                .FirstOrDefault(l => l.DepartureDateTime.Date == this.ArrivalDate.Date)
+                .Id;
+
+            if (currentFlightId > 0)
+            {
+                this.ShowFlightInfo(currentFlightId, this.ReturnFlightDetailsFormView, this.ReturnFlightTravelClassesRepeater);
+            }
 
             return legInstances;
         }
@@ -127,8 +144,6 @@
                     this.Response.Redirect(Pages.HOME);
                 }
 
-                this.DepartureAirprotId = int.Parse(this.Session[NativeConstants.DEPARTURE_AIRPORT_ID].ToString());
-                this.DestinationAirportId = int.Parse(this.Session[NativeConstants.DESTINATION_AIRPORT_ID].ToString());
                 this.DepartureDate = DateTime.Parse(this.Session[NativeConstants.DEPARTURE_DATE].ToString());
 
                 if (this.Session[NativeConstants.ARRIVAL_DATE] == null)
@@ -199,18 +214,30 @@
 
         protected void ShowOneWayFlgihtInfoHiddenButton_Click(object sender, EventArgs e)
         {
+            int currentFlightId = int.Parse(this.OneWayRouteCurrentFlightInfoIdHiddenField.Value);
+
+            if (this.OneWayRouteCurrentFlightInfoIdHiddenField.Value == string.Empty || currentFlightId <= 0)
+            {
+                return;
+            }
+
             this.OneWayRouteSelectedFlightIdHiddenField.Value = this.OneWayRouteCurrentFlightInfoIdHiddenField.Value;
 
-            this.ShowFlightInfo(this.OneWayRouteCurrentFlightInfoIdHiddenField, this.OneWayFlightDetailsFormView, 
-                this.OneWayFlightTravelClassesRepeater);
+            this.ShowFlightInfo(currentFlightId, this.OneWayFlightDetailsFormView, this.OneWayFlightTravelClassesRepeater);
         }
 
         protected void ShowReturnFlgihtInfoHiddenButton_Click(object sender, EventArgs e)
         {
+            int currentFlightId = int.Parse(this.ReturnRouteCurrentFlightInfoIdHiddenField.Value);
+
+            if (this.ReturnRouteCurrentFlightInfoIdHiddenField.Value == string.Empty || currentFlightId <= 0)
+            {
+                return;
+            }
+
             this.ReturnRouteSelectedFlightIdHiddenField.Value = this.ReturnRouteCurrentFlightInfoIdHiddenField.Value;
 
-            this.ShowFlightInfo(this.ReturnRouteCurrentFlightInfoIdHiddenField, this.ReturnFlightDetailsFormView,
-                this.ReturnFlightTravelClassesRepeater);
+            this.ShowFlightInfo(currentFlightId, this.ReturnFlightDetailsFormView, this.ReturnFlightTravelClassesRepeater);
         }
 
         private ApplicationUserManager GetManager()
@@ -224,11 +251,29 @@
             return manager.FindById(this.Context.User.Identity.GetUserId());
         }
 
-        private void ShowFlightInfo(HiddenField selectedFlightId, FormView flightDetails, Repeater travelClasses)
+        private void AddDaysWithNoFlightToSlider(List<LegInstance> legInstances)
         {
-            int flightId = int.Parse(selectedFlightId.Value);
+            int daysInMonth = DateTime.DaysInMonth(this.DepartureDate.Year, this.DepartureDate.Month);
 
-            selectedFlightId.Value = flightId.ToString();
+            for (int day = 1; day <= daysInMonth; day++)
+            {
+                var flight = legInstances.FirstOrDefault(l => l.DepartureDateTime.Day == day);
+
+                if (flight == null)
+                {
+                    int indexToInsert = day - 1;
+                    LegInstance noFlightForThisDay = new LegInstance()
+                    {
+                        DepartureDateTime = new DateTime(this.DepartureDate.Year, this.DepartureDate.Month, day)
+                    };
+
+                    legInstances.Insert(indexToInsert, noFlightForThisDay);
+                }
+            }
+        }
+
+        private void ShowFlightInfo(int flightId, FormView flightDetails, Repeater travelClasses)
+        {
             this.ContinueBookingBtn.Visible = true;
 
             LegInstance legInstance = this.LegInstancesServices.GetLegInstance(flightId);

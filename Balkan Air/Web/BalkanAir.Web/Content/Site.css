@@ -467,7 +467,11 @@ input[type="tel"], input[type="select"], input[type="time"] {
     width: 30px;
     height: 30px;
     position: absolute;
-    cursor: default;
+    cursor: default; 
+}
+
+.returnFlyOutImage {
+    transform: scaleX(-1);
 }
 
 #FlightDetailsPanel h3 {
@@ -487,10 +491,18 @@ div.flightDatesDiv {
     font-size: 18px;
     display: inline-block;
     border-radius: 5px;
-    background-color: #C5027C;
     text-align: center;
     cursor: pointer;
 }
+
+div.flightDatesDiv  {
+    background-color: #C5027C;
+}
+
+div.flightDatesDiv.noFlightDatesDiv {
+    background-color: #fff;
+    border: 1px solid gray;
+} 
 
 #ShowOneWayFlgihtInfoHiddenButton, #ShowReturnFlgihtInfoHiddenButton {
     display: none;
@@ -519,6 +531,14 @@ div.flightDatesDiv {
 
 .flightDatesDiv .price {
     color: #F0CB30;
+}
+
+div.flightDatesDiv.noFlightDatesDiv .date, div.flightDatesDiv.noFlightDatesDiv .price {
+    color: #000;
+}
+
+div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
+    font-weight: bold;
 }
 
 #SelectedFlightDate {
@@ -1404,6 +1424,7 @@ div.flightDatesDiv {
     height: 25px; 
     top: 5px;
     left: 120px; 
+     
 }
 
 #UpcomingTripsPanel .divBox a {

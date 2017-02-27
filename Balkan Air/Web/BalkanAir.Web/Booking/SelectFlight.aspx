@@ -13,26 +13,34 @@
 
     <asp:Panel ID="FlightDetailsPanel" runat="server" ClientIDMode="Static">
         <input type="image" class="airplaneFlyOutImage" alt="Airplane image" src="../Content/Images/airplane_fly_out_image.png" />
-        <h3>Choose flight out</h3>
+        <h3>
+            <%: this.RouteInfo.Origin.Name %> to <%: this.RouteInfo.Destination.Name %>
+        </h3>
 
         <div id="OneWayRouteDepartureDatesDiv" class="oneWayRouteSlider slider">
             <asp:Repeater ID="OneWayRouteDepartureDatesRepeater" runat="server"
                 ItemType="BalkanAir.Data.Models.LegInstance"
                 SelectMethod="OneWayRouteDepartureDatesRepeater_GetData">
                 <ItemTemplate>
-                    <div class="flightDatesDiv oneWayRouteFlights" data-value="<%#: Item.Id %>">
+                    <div class='flightDatesDiv oneWayRouteFlights <%#: Item.Id == 0 ? "noFlightDatesDiv" : string.Empty %>'
+                        data-value="<%#: Item.Id != 0 ? Item.Id : 0 %>">
                         <span class="date">
                             <%#: Item.DepartureDateTime.ToString("ddd dd, MMM", CultureInfo.InvariantCulture) %>
                         </span>
-                        <span class="price">&#8364; <%#: Item.Price + Item.Aircraft.GetCheapestTravelClassPrice %>
+                        <span class="price">
+                            <%#: Item.Id != 0 ? "\u20AC" + (Item.Price + Item.Aircraft.GetCheapestTravelClassPrice) : "No flight" %>
                         </span>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
         </div>
 
-        <div class="selectedFlightDetailsDiv">
-            <asp:UpdatePanel ID="UP" ClientIDMode="Static" runat="server" UpdateMode="Always">
+        <div id="NoOneWayRouteFlightsDiv" class="warningPanel">
+            <h5>Sorry, there are no flights available on this day!</h5>
+        </div>
+
+        <div id="OneWayRouteSelectedFlightDetailsDiv" class="selectedFlightDetailsDiv">
+            <asp:UpdatePanel runat="server" UpdateMode="Always">
                 <ContentTemplate>
                     <asp:Button ID="ShowOneWayFlgihtInfoHiddenButton" ClientIDMode="Static" runat="server"
                         UseSubmitBehavior="false" OnClick="ShowOneWayFlgihtInfoHiddenButton_Click" ValidateRequestMode="Disabled" />
@@ -105,27 +113,38 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
+        <hr />
 
         <asp:Panel ID="ReturnRouteFlightsPanel" ClientIDMode="Static" runat="server">
-            <hr />
+            <input type="image" class="airplaneFlyOutImage returnFlyOutImage" alt="Airplane image"
+                src="../Content/Images/airplane_fly_out_image.png" />
+            <h3>
+                <%: this.RouteInfo.Destination.Name %> to <%: this.RouteInfo.Origin.Name %>
+            </h3>
 
             <div id="ReturnRouteDepartureDatesDiv" class="returnRouteSlider slider">
                 <asp:Repeater ID="ReturnRouteDepartureDatesRepeater" runat="server"
                     ItemType="BalkanAir.Data.Models.LegInstance"
                     SelectMethod="ReturnRouteDepartureDatesRepeater_GetData">
                     <ItemTemplate>
-                        <div class="flightDatesDiv returnRouteFlights" data-value="<%#: Item.Id %>">
+                        <div class='flightDatesDiv returnRouteFlights <%#: Item.Id == 0 ? "noFlightDatesDiv" : string.Empty %>'
+                            data-value="<%#: Item.Id != 0 ? Item.Id : 0 %>">
                             <span class="date">
                                 <%#: Item.DepartureDateTime.ToString("ddd dd, MMM", CultureInfo.InvariantCulture) %>
                             </span>
-                            <span class="price">&#8364; <%#: Item.Price + Item.Aircraft.GetCheapestTravelClassPrice %>
+                            <span class="price">
+                                <%#: Item.Id != 0 ? "\u20AC" + (Item.Price + Item.Aircraft.GetCheapestTravelClassPrice) : "No flight" %>
                             </span>
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
 
-            <div class="selectedFlightDetailsDiv">
+            <div id="NoReturnRouteFlightsDiv" class="warningPanel">
+                <h5>Sorry, there are no flights available on this day!</h5>
+            </div>
+
+            <div id="ReturnRouteSelectedFlightDetailsDiv" class="selectedFlightDetailsDiv">
                 <asp:UpdatePanel runat="server" UpdateMode="Always">
                     <ContentTemplate>
                         <asp:Button ID="ShowReturnFlgihtInfoHiddenButton" ClientIDMode="Static" runat="server"
