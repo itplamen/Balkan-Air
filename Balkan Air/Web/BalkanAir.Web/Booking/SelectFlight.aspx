@@ -14,9 +14,10 @@
     <asp:Panel ID="FlightDetailsPanel" runat="server" ClientIDMode="Static">
         <input type="image" class="airplaneFlyOutImage" alt="Airplane image" src="../Content/Images/airplane_fly_out_image.png" />
         <h3>
-            <%: this.RouteInfo.Origin.Name %> to <%: this.RouteInfo.Destination.Name %>
+            <%: this.RouteInfo.Origin.Name %>, <small>(<%: this.RouteInfo.Origin.Abbreviation %>)</small>  to 
+            <%: this.RouteInfo.Destination.Name %>, <small>(<%: this.RouteInfo.Destination.Abbreviation %>)</small>
         </h3>
-
+            
         <div id="OneWayRouteDepartureDatesDiv" class="oneWayRouteSlider slider">
             <asp:Repeater ID="OneWayRouteDepartureDatesRepeater" runat="server"
                 ItemType="BalkanAir.Data.Models.LegInstance"
@@ -92,7 +93,7 @@
                                     </span>
                                     <span class="travelClassPriceSpan">
                                         <label>
-                                            <input type="radio" required name="onaWayRoutePrice" value="<%# Item.Id %>"
+                                            <input type="radio" required name="oneWayRoutePrice" value="<%# Item.Id %>"
                                                 class="<%#: Item.NumberOfAvailableSeats == 0 ? "noMoreSeats" : "" %>" />
                                             &#8364; <%# Item.Price + this.LegInstance.Price %>
                                         </label>
@@ -119,7 +120,8 @@
             <input type="image" class="airplaneFlyOutImage returnFlyOutImage" alt="Airplane image"
                 src="../Content/Images/airplane_fly_out_image.png" />
             <h3>
-                <%: this.RouteInfo.Destination.Name %> to <%: this.RouteInfo.Origin.Name %>
+                <%: this.RouteInfo.Destination.Name %>, <small>(<%: this.RouteInfo.Destination.Abbreviation %>)</small> to 
+                <%: this.RouteInfo.Origin.Name %>, <small>(<%: this.RouteInfo.Origin.Abbreviation %>)</small>
             </h3>
 
             <div id="ReturnRouteDepartureDatesDiv" class="returnRouteSlider slider">
@@ -222,7 +224,7 @@
 
         <div id="ContinueBookingDiv">
             <asp:Button ID="ContinueBookingBtn" Text="Continue" runat="server" ClientIDMode="Static"
-                OnClick="OnContinueBookingBtnClicked" Visible="false" />
+                OnClick="OnContinueBookingBtnClicked" Enabled="false" />
         </div>
 
         <asp:Panel ID="SignInRequiredPanel" Visible="false" CssClass="warningPanel" runat="server" ClientIDMode="Static">

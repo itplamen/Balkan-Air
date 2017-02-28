@@ -13,58 +13,121 @@ namespace BalkanAir.Web.Booking {
     public partial class Extras {
         
         /// <summary>
-        /// BabyEquipmentCheckBox control.
+        /// OneWayRouteBabyEquipmentCheckBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox BabyEquipmentCheckBox;
+        protected global::System.Web.UI.WebControls.CheckBox OneWayRouteBabyEquipmentCheckBox;
         
         /// <summary>
-        /// SportsEquipmentCheckBox control.
+        /// OneWayRouteSportsEquipmentCheckBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox SportsEquipmentCheckBox;
+        protected global::System.Web.UI.WebControls.CheckBox OneWayRouteSportsEquipmentCheckBox;
         
         /// <summary>
-        /// MusicEquipmentCheckBox control.
+        /// OneWayRouteMusicEquipmentCheckBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox MusicEquipmentCheckBox;
+        protected global::System.Web.UI.WebControls.CheckBox OneWayRouteMusicEquipmentCheckBox;
         
         /// <summary>
-        /// SelectSeatBtn control.
+        /// OneWayRouteSelectSeatBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SelectSeatBtn;
+        protected global::System.Web.UI.WebControls.Button OneWayRouteSelectSeatBtn;
         
         /// <summary>
-        /// SelectedSeatImage control.
+        /// OneWayRouteSelectedSeatImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image SelectedSeatImage;
+        protected global::System.Web.UI.WebControls.Image OneWayRouteSelectedSeatImage;
         
         /// <summary>
-        /// SelectedSeatLabel control.
+        /// OneWayRouteSelectedSeatLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SelectedSeatLabel;
+        protected global::System.Web.UI.WebControls.Label OneWayRouteSelectedSeatLabel;
+        
+        /// <summary>
+        /// ReturnRouteExtrasPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ReturnRouteExtrasPanel;
+        
+        /// <summary>
+        /// ReturnRouteBabyEquipmentCheckBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ReturnRouteBabyEquipmentCheckBox;
+        
+        /// <summary>
+        /// ReturnRouteSportsEquipmentCheckBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ReturnRouteSportsEquipmentCheckBox;
+        
+        /// <summary>
+        /// ReturnRouteMusicEquipmentCheckBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ReturnRouteMusicEquipmentCheckBox;
+        
+        /// <summary>
+        /// ReturnRouteSelectSeatBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ReturnRouteSelectSeatBtn;
+        
+        /// <summary>
+        /// ReturnRouteSelectedSeatImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ReturnRouteSelectedSeatImage;
+        
+        /// <summary>
+        /// ReturnRouteSelectedSeatLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ReturnRouteSelectedSeatLabel;
         
         /// <summary>
         /// ContinueBookingBtn control.
@@ -76,48 +139,93 @@ namespace BalkanAir.Web.Booking {
         protected global::System.Web.UI.WebControls.Button ContinueBookingBtn;
         
         /// <summary>
-        /// SelectedCheckedInBagPrice control.
+        /// OneWayRouteSelectedCheckedInBagPriceHiddenField control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField SelectedCheckedInBagPrice;
+        protected global::System.Web.UI.WebControls.HiddenField OneWayRouteSelectedCheckedInBagPriceHiddenField;
         
         /// <summary>
-        /// SelectedCheckedInBagWeight control.
+        /// OneWayRouteSelectedCheckedInBagWeightHiddenField control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField SelectedCheckedInBagWeight;
+        protected global::System.Web.UI.WebControls.HiddenField OneWayRouteSelectedCheckedInBagWeightHiddenField;
         
         /// <summary>
-        /// NumberOfCheckedInBags control.
+        /// OneWayRouteNumberOfCheckedInBagsHiddenField control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField NumberOfCheckedInBags;
+        protected global::System.Web.UI.WebControls.HiddenField OneWayRouteNumberOfCheckedInBagsHiddenField;
         
         /// <summary>
-        /// SelectedCabinBagPrice control.
+        /// OneWayRouteSelectedCabinBagPriceHiddenField control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField SelectedCabinBagPrice;
+        protected global::System.Web.UI.WebControls.HiddenField OneWayRouteSelectedCabinBagPriceHiddenField;
         
         /// <summary>
-        /// SelectedCabinBagSize control.
+        /// OneWayRouteSelectedCabinBagSizeHiddenField control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField SelectedCabinBagSize;
+        protected global::System.Web.UI.WebControls.HiddenField OneWayRouteSelectedCabinBagSizeHiddenField;
+        
+        /// <summary>
+        /// ReturnRouteSelectedCheckedInBagPriceHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ReturnRouteSelectedCheckedInBagPriceHiddenField;
+        
+        /// <summary>
+        /// ReturnRouteSelectedCheckedInBagWeightHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ReturnRouteSelectedCheckedInBagWeightHiddenField;
+        
+        /// <summary>
+        /// ReturnRouteNumberOfCheckedInBagsHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ReturnRouteNumberOfCheckedInBagsHiddenField;
+        
+        /// <summary>
+        /// ReturnRouteSelectedCabinBagPriceHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ReturnRouteSelectedCabinBagPriceHiddenField;
+        
+        /// <summary>
+        /// ReturnRouteSelectedCabinBagSizeHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ReturnRouteSelectedCabinBagSizeHiddenField;
     }
 }

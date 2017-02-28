@@ -52,7 +52,7 @@ namespace BalkanAir.Web.Booking
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.booking = (Booking)this.Session[Common.NativeConstants.BOOKING];
+            this.booking = (Booking)this.Session[Common.NativeConstants.ONE_WAY_ROUTE_BOOKING];
 
             if (!this.Page.IsPostBack)
             {

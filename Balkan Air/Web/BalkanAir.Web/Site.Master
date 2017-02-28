@@ -212,7 +212,7 @@
                     OnClick="SendAnotherConfirmationEmailLinkButton_Click" />.
             </asp:Panel>
 
-            <asp:SiteMapPath ID="SiteMapPathBreadcrump" runat="server" PathSeparator=" / " />
+            <asp:SiteMapPath ID="SiteMapPathBreadcrump" ClientIDMode="Static" runat="server" PathSeparator=" / " />
 
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
@@ -303,6 +303,14 @@
     <script>
         $(function () {
             $("#ItineraryInfoPanel").draggable();
+        });
+ 
+        $(document).ready(function () {
+            var $siteMapPathBreadcrump = $('#SiteMapPathBreadcrump');
+
+            if ($siteMapPathBreadcrump.children('span').length === 0) {
+                $siteMapPathBreadcrump.hide();
+            }
         });
     </script>
 </body>

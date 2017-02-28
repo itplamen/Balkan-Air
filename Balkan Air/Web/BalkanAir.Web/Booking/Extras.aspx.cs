@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Web.UI;
+    using System.Web.UI.WebControls;
 
     using Ninject;
 
@@ -13,88 +14,134 @@
     public partial class Extras : Page
     {
         [Inject]
+        public ILegInstancesServices LegInstancesServices { get; set; }
+
+        [Inject]
         public ITravelClassesServices TravelClassesServices { get; set; }
+        
+        protected Route RouteInfo
+        {
+            get
+            {
+                return this.LegInstancesServices.GetLegInstance(this.OneWayRouteBooking.LegInstanceId)
+                    .FlightLeg
+                    .Route;
+            }
+        }
+
+        private Booking OneWayRouteBooking
+        {
+            get
+            {
+                return (Booking)this.Session[NativeConstants.ONE_WAY_ROUTE_BOOKING];
+            }
+        }
+
+        private Booking ReturnRouteBooking
+        {
+            get
+            {
+                return (Booking)this.Session[NativeConstants.RETURN_ROUTE_BOOKING];
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.Page.IsPostBack)
             {
-                Booking booking = (Booking)this.Session[NativeConstants.BOOKING];
-
-                if (booking == null || (booking != null && booking.LegInstanceId == 0 || booking.TravelClassId == 0))
+                if (this.OneWayRouteBooking == null || (this.OneWayRouteBooking != null && 
+                    (this.OneWayRouteBooking.LegInstanceId == 0 || this.OneWayRouteBooking.TravelClassId == 0)))
+                {
+                    this.Response.Redirect(Pages.HOME);
+                }
+                else if (this.ReturnRouteBooking != null && (this.ReturnRouteBooking.LegInstanceId == 0 ||
+                    this.ReturnRouteBooking.TravelClassId == 0))
                 {
                     this.Response.Redirect(Pages.HOME);
                 }
                 else
                 {
-                    if (booking.Row == 0 || string.IsNullOrEmpty(booking.SeatNumber))
+                    this.ManageSeatSelection(this.OneWayRouteBooking, this.OneWayRouteSelectedSeatLabel,
+                        this.OneWayRouteSelectedSeatImage, this.OneWayRouteSelectSeatBtn);
+
+                    if (this.ReturnRouteBooking != null)
                     {
-                        this.SelectedSeatLabel.Visible = false;
-                        this.SelectedSeatImage.Visible = false;
-                        this.SelectSeatBtn.Text = "SELECT SEAT";
-                        this.ContinueBookingBtn.Visible = false;
-                    }
-                    else
-                    {
-                        this.SelectedSeatLabel.Visible = true;
-                        this.SelectedSeatImage.Visible = true;
-                        this.SelectedSeatLabel.Text = booking.Row + booking.SeatNumber;
-                        this.SelectSeatBtn.Text = "CHANGE";
-                        this.ContinueBookingBtn.Visible = true;
+                        this.ReturnRouteExtrasPanel.Visible = true;
+
+                        this.ManageSeatSelection(this.ReturnRouteBooking, this.ReturnRouteSelectedSeatLabel,
+                            this.ReturnRouteSelectedSeatImage, this.ReturnRouteSelectSeatBtn);
                     }
                 }
             }
         }
 
-        protected void SelectSeatBtn_Click(object sender, EventArgs e)
+        protected void OnSelectSeatButtonClicked(object sender, EventArgs e)
         {
             this.Response.Redirect(Pages.SELECT_SEAT);
         }
 
         protected void OnContinueBookingBtnClicked(object sender, EventArgs e)
         {
-            Booking booking = (Booking)this.Session[NativeConstants.BOOKING];
-            booking.Baggages.Add(new Baggage()
+            this.OneWayRouteBooking.Baggages.Add(new Baggage()
             {
                 Type = BaggageType.Cabin,
-                Size = this.SelectedCabinBagSize.Value,
-                Price = decimal.Parse(this.SelectedCabinBagPrice.Value)
+                Size = this.OneWayRouteSelectedCabinBagSizeHiddenField.Value,
+                Price = decimal.Parse(this.OneWayRouteSelectedCabinBagPriceHiddenField.Value)
             });
 
-            int numberOfCheckedInBags = int.Parse(this.NumberOfCheckedInBags.Value);
+            int numberOfCheckedInBags = int.Parse(this.OneWayRouteNumberOfCheckedInBagsHiddenField.Value);
 
             if (numberOfCheckedInBags > 0)
             {
                 for (int i = 1; i <= numberOfCheckedInBags; i++)
                 {
-                    booking.Baggages.Add(new Baggage()
+                    this.OneWayRouteBooking.Baggages.Add(new Baggage()
                     {
                         Type = BaggageType.CheckedIn,
-                        MaxKilograms = int.Parse(this.SelectedCheckedInBagWeight.Value),
-                        Price = decimal.Parse(this.SelectedCheckedInBagPrice.Value)
+                        MaxKilograms = int.Parse(this.OneWayRouteSelectedCheckedInBagWeightHiddenField.Value),
+                        Price = decimal.Parse(this.OneWayRouteSelectedCheckedInBagPriceHiddenField.Value)
                     });
                 }
             }
 
-            if (this.BabyEquipmentCheckBox.Checked)
+            if (this.OneWayRouteBabyEquipmentCheckBox.Checked)
             {
-                this.AddOtherBaggagesToBooking(booking, BaggageType.BabyEquipment, 10);
+                this.AddOtherBaggagesToBooking(this.OneWayRouteBooking, BaggageType.BabyEquipment, 10);
             }
 
-            if (this.SportsEquipmentCheckBox.Checked)
+            if (this.OneWayRouteSportsEquipmentCheckBox.Checked)
             {
-                this.AddOtherBaggagesToBooking(booking, BaggageType.SportsEquipment, 30);
+                this.AddOtherBaggagesToBooking(this.OneWayRouteBooking, BaggageType.SportsEquipment, 30);
             }
 
-            if (this.MusicEquipmentCheckBox.Checked)
+            if (this.OneWayRouteMusicEquipmentCheckBox.Checked)
             {
-                this.AddOtherBaggagesToBooking(booking, BaggageType.MusicEquipment, 50);
+                this.AddOtherBaggagesToBooking(this.OneWayRouteBooking, BaggageType.MusicEquipment, 50);
             }
 
-            this.CalculateTotalPriceOfBooking(booking);
+            this.CalculateTotalPriceOfBooking(this.OneWayRouteBooking);
 
-            this.Session.Add(NativeConstants.BOOKING, booking);
+            this.Session.Add(NativeConstants.ONE_WAY_ROUTE_BOOKING, this.OneWayRouteBooking);
             this.Response.Redirect(Pages.PAYMENT);
+        }
+
+        private void ManageSeatSelection(Booking booking, Label selectedSeatLabel, Image selectedSeatImg, Button selectedSeatBtn)
+        {
+            if (booking.Row == 0 || string.IsNullOrEmpty(booking.SeatNumber))
+            {
+                selectedSeatLabel.Visible = false;
+                selectedSeatImg.Visible = false;
+                selectedSeatBtn.Text = "SELECT SEAT";
+                this.ContinueBookingBtn.Visible = false;
+            }
+            else
+            {
+                selectedSeatLabel.Visible = true;
+                selectedSeatImg.Visible = true;
+                selectedSeatLabel.Text = booking.Row + booking.SeatNumber;
+                selectedSeatBtn.Text = "CHANGE";
+                this.ContinueBookingBtn.Visible = true;
+            }
         }
 
         private void AddOtherBaggagesToBooking(Booking booking, BaggageType type, decimal price)

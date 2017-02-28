@@ -97,6 +97,7 @@
             if (currentFlightId > 0)
             {
                 this.ShowFlightInfo(currentFlightId, this.OneWayFlightDetailsFormView, this.OneWayFlightTravelClassesRepeater);
+                this.OneWayRouteSelectedFlightIdHiddenField.Value = currentFlightId.ToString();
             }
 
             return legInstances;
@@ -129,6 +130,7 @@
             if (currentFlightId > 0)
             {
                 this.ShowFlightInfo(currentFlightId, this.ReturnFlightDetailsFormView, this.ReturnFlightTravelClassesRepeater);
+                this.ReturnRouteSelectedFlightIdHiddenField.Value = currentFlightId.ToString();
             }
 
             return legInstances;
@@ -175,8 +177,8 @@
             }
 
             if(this.ReturnRouteFlightsPanel.Visible &&
-                string.IsNullOrEmpty(this.ReturnRouteSelectedFlightIdHiddenField.Value) &&
-                string.IsNullOrEmpty(this.ReturnRouteSelectedTravelClassIdHiddenField.Value))
+                (string.IsNullOrEmpty(this.ReturnRouteSelectedFlightIdHiddenField.Value) ||
+                string.IsNullOrEmpty(this.ReturnRouteSelectedTravelClassIdHiddenField.Value)))
             {
                 this.ReturnRouteTravelClassCustomValidator.ErrorMessage = "Arrival flight and travel class are required!";
                 this.ReturnRouteTravelClassCustomValidator.IsValid = false;
@@ -194,13 +196,25 @@
 
             if (this.Page.IsValid)
             {
-                Booking booking = new Booking()
+                Booking oneWayRouteBooking = new Booking()
                 {
                     LegInstanceId = int.Parse(this.OneWayRouteSelectedFlightIdHiddenField.Value),
                     TravelClassId = int.Parse(this.OneWayRouteSelectedTravelClassIdHiddenField.Value)
                 };
 
-                this.Session.Add(Common.NativeConstants.BOOKING, booking);
+                this.Session.Add(NativeConstants.ONE_WAY_ROUTE_BOOKING, oneWayRouteBooking);
+
+                if (this.ReturnRouteFlightsPanel.Visible)
+                {
+                    Booking returnRouteBooking = new Booking()
+                    {
+                        LegInstanceId = int.Parse(this.ReturnRouteSelectedFlightIdHiddenField.Value),
+                        TravelClassId = int.Parse(this.ReturnRouteSelectedTravelClassIdHiddenField.Value)
+                    };
+
+                    this.Session.Add(NativeConstants.RETURN_ROUTE_BOOKING, returnRouteBooking);
+                }
+
                 this.Response.Redirect(Pages.EXTRAS);
             }
         }
@@ -274,7 +288,7 @@
 
         private void ShowFlightInfo(int flightId, FormView flightDetails, Repeater travelClasses)
         {
-            this.ContinueBookingBtn.Visible = true;
+            this.ContinueBookingBtn.Enabled = true;
 
             LegInstance legInstance = this.LegInstancesServices.GetLegInstance(flightId);
             this.LegInstance = legInstance;

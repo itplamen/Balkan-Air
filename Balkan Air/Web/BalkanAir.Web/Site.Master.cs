@@ -166,9 +166,9 @@
                         this.Session.Remove(NativeConstants.DESTINATION_AIRPORT_ID);
                     }
 
-                    if (this.Session[NativeConstants.BOOKING] != null)
+                    if (this.Session[NativeConstants.ONE_WAY_ROUTE_BOOKING] != null)
                     {
-                        this.Session.Remove(NativeConstants.BOOKING);
+                        this.Session.Remove(NativeConstants.ONE_WAY_ROUTE_BOOKING);
                     }
                 }
             }
@@ -223,9 +223,9 @@
 
             decimal totalCost = 0;
 
-            if (this.Session[Common.NativeConstants.BOOKING] != null)
+            if (this.Session[Common.NativeConstants.ONE_WAY_ROUTE_BOOKING] != null)
             {
-                var booking = this.Session[Common.NativeConstants.BOOKING] as Data.Models.Booking;
+                var booking = this.Session[Common.NativeConstants.ONE_WAY_ROUTE_BOOKING] as Data.Models.Booking;
                 this.SetSelectedFlightToItinerary(booking, ref totalCost);
 
                 if (booking.Row > 0 && !string.IsNullOrEmpty(booking.SeatNumber))

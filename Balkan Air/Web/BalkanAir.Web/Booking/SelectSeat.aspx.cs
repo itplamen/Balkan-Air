@@ -41,7 +41,7 @@
         {
             if (!this.Page.IsPostBack)
             {
-                Booking booking = (Booking)this.Session[NativeConstants.BOOKING];
+                Booking booking = (Booking)this.Session[NativeConstants.ONE_WAY_ROUTE_BOOKING];
 
                 if (booking == null || (booking != null && booking.LegInstanceId == 0 || booking.TravelClassId == 0))
                 {
@@ -73,11 +73,11 @@
 
         protected void ContinueBookingBtn_Click(object sender, EventArgs e)
         {
-            Booking booking = (Booking)this.Session[NativeConstants.BOOKING];
+            Booking booking = (Booking)this.Session[NativeConstants.ONE_WAY_ROUTE_BOOKING];
             booking.Row = int.Parse(this.SelectedRowHiddenField.Value);
             booking.SeatNumber = this.SelectedSeatHiddenField.Value;
 
-            this.Session.Add(NativeConstants.BOOKING, booking);
+            this.Session.Add(NativeConstants.ONE_WAY_ROUTE_BOOKING, booking);
             this.Response.Redirect(Pages.EXTRAS);
         }
 
@@ -97,7 +97,7 @@
         {
             var seatMap = new List<Seat>();
 
-            Booking booking = (Booking)this.Session[NativeConstants.BOOKING];
+            Booking booking = (Booking)this.Session[NativeConstants.ONE_WAY_ROUTE_BOOKING];
 
             TravelClass firstClass = this.GetTravelClassFromFlight(booking.LegInstanceId, TravelClassType.First);
             TravelClass businessClass = this.GetTravelClassFromFlight(booking.LegInstanceId, TravelClassType.Business);

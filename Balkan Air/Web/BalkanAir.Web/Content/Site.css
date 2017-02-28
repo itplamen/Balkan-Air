@@ -478,6 +478,10 @@ input[type="tel"], input[type="select"], input[type="time"] {
     margin-left: 50px;
 }
 
+#FlightDetailsPanel h3 small {
+    color: initial;
+}
+
 div.flightDatesDiv.slick-current   {
     background-color: #073886;
     height: 85px;
@@ -776,36 +780,38 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
 
 /****************** Booking/Extras.aspx ******************/
 
-#CheckedInBaggageDiv,  #CabinBaggageDiv, #OtherExtrasDiv {
+#OneWayRouteCheckedInBaggageDiv,  #OneWayRouteCabinBaggageDiv, .otherExtrasDiv, 
+#ReturnRouteCheckedInBaggageDiv, #ReturnRouteCabinBaggageDiv {
     border: 1px solid #E0E0E0;
     border-radius: 10px;
-    height: 250px;
+    height: 250px; 
 } 
 
-#CheckedInBaggageDiv img {
+#OneWayRouteCheckedInBaggageDiv img, #ReturnRouteCheckedInBaggageDiv img {
     width: 90px;
     display: block;
     position: relative;
     left: 20px;
 }
 
-#CheckedInBaggageDiv div, #CabinBaggageDiv div {
+#OneWayRouteCheckedInBaggageDiv div, #OneWayRouteCabinBaggageDiv div, 
+#ReturnRouteCheckedInBaggageDiv div, #ReturnRouteCabinBaggageDiv div {
     text-align: center;
 }
 
-#TotalWeightDiv {
-    position: absolute;
+.totalWeightDiv {
+    position: absolute; 
     top: 40px;
     right: 10px;
 }
 
-#TotalWeightDiv input[type="button"] {
-    width: 50px;
+.totalWeightDiv input[type="button"] {
+    width: 50px; 
     height: 30px;
     font-size: 20px;
 }
 
-#NumberOfBaggages {
+#OneWayRouteNumberOfBaggages, #ReturnRouteNumberOfBaggages {
     display: inline-block;
     width: 20px;
     height: 30px;
@@ -814,7 +820,7 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
     font-size: 20px;
 }
 
-#ExtrasDiv label {
+.extrasDiv label {
     border: 3px solid #E0E0E0;
     width: 140px;
     height: 70px; 
@@ -825,36 +831,36 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
     cursor: pointer;
 }
 
-#ExtrasDiv label:hover, #OtherExtrasDiv div:hover:not(:last-child) {
+.extrasDiv label:hover, .otherExtrasDiv div:hover:not(:last-child) {
     border-color: #CD0082;
 }
 
-#ExtrasDiv label span {
+.extrasDiv label span {
     font-size: 20px;
     font-weight: bold;
     display: block;
  }
 
-#ExtrasDiv input[type="radio"] {
+.extrasDiv input[type="radio"] {
     display: none;
 }
 
-#ExtrasDiv input[type="radio"]:checked + label  {
+.extrasDiv input[type="radio"]:checked + label  {
     border-color: #CD0082;
     color: #CD0082;
 }
 
-#ExtrasDiv small {
+.extrasDiv small {
     position: relative;
     top: -10px;
     color: #CD0082;
 }
 
-#ExtrasDiv div {
+.extrasDiv div {
     display: inline-block;
 }
 
-#OtherExtrasDiv div {
+.otherExtrasDiv div {
     margin-top: 10px;
     margin-right: 20px;  
     border: 3px solid #E0E0E0;
@@ -862,11 +868,11 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
     padding-left: 10px; 
 }
 
-#OtherExtrasDiv div:not(:last-child) {
+.otherExtrasDiv div:not(:last-child) {
     height: 50px;
 }
  
-#OtherExtrasDiv label {
+.otherExtrasDiv label {
     width: 240px;
     font-weight: bold;
     border: 0;
@@ -874,25 +880,25 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
     top: -5px;
 }
 
-#OtherExtrasDiv input[type="checkbox"] {
+.otherExtrasDiv input[type="checkbox"] {
     width: 25px;
     height: 25px;   
 }
 
-#SelectSeatDiv {
+.selectSeatDiv {
     width: 500px;
     height: 100px;
 }
 
-#SelectSeatDiv img {
+.selectSeatDiv img {
     width: 50px;
 }
 
-#SelectSeatDiv span {
+.selectSeatDiv span {
     font-size: 18px;
-}
+} 
 
-#SelectSeatBtn {
+#OneWayRouteSelectSeatBtn, #ReturnRouteSelectSeatBtn {
     height: 50px;
     width: 130px;
     margin-top: 20px;
@@ -903,9 +909,9 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
     border-color: #C5027C;
     background-color: #fff;
     color: #C5027C;
-}
+} 
 
-#SelectSeatBtn:hover {
+#OneWayRouteSelectSeatBtn:hover, #ReturnRouteSelectSeatBtn:hover {
     background-color: #C5027C;
     color: #fff;
 }
@@ -927,7 +933,7 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
     position: absolute;
     top: 160px;
     left: 38%;
-}
+} 
 
 #SeatsDiv input[type="radio"] {
     opacity: 0.011;

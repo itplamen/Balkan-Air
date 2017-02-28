@@ -66,7 +66,7 @@ $(document).ready(function () {
                 $oneWayRouteSelectedFlightDetailsDiv = $('#OneWayRouteSelectedFlightDetailsDiv');
 
             if (flightDataValue !== '' && parseInt(flightDataValue, 10) !== INVALID_DATA_VALUE) {
-                if (!$oneWayRouteSelectedFlightDetailsDiv.is(':visible')) {
+                if ($noOneWayRouteFlightsDiv.is(':visible')) {
                     $noOneWayRouteFlightsDiv.hide();
                     $oneWayRouteSelectedFlightDetailsDiv.show();
                     $continueBookingBtn.prop('disabled', false);
@@ -91,7 +91,7 @@ $(document).ready(function () {
                 $returnRouteSelectedFlightDetailsDiv = $('#ReturnRouteSelectedFlightDetailsDiv');
 
             if (flightDataValue !== '' && parseInt(flightDataValue, 10) !== INVALID_DATA_VALUE) {
-                if (!$returnRouteSelectedFlightDetailsDiv.is(':visible')) {
+                if ($noReturnRouteFlightsDiv.is(':visible')) {
                     $noReturnRouteFlightsDiv.hide();
                     $returnRouteSelectedFlightDetailsDiv.show();
                     $continueBookingBtn.prop('disabled', false);
