@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: this.Page.Title %></h2>
 
-    <h3>
+    <h3 class="routeInfo">
         <%: this.RouteInfo.Origin.Name %>, <small>(<%: this.RouteInfo.Origin.Abbreviation %>)</small> to 
         <%: this.RouteInfo.Destination.Name %>, <small>(<%: this.RouteInfo.Destination.Abbreviation %>)</small>
     </h3>
@@ -83,7 +83,7 @@
 
             <div class="selectSeatDiv">
                 <asp:Button ID="OneWayRouteSelectSeatBtn" ClientIDMode="Static" UseSubmitBehavior="false"
-                    ValidateRequestMode="Disabled" OnClick="OnSelectSeatButtonClicked" runat="server" />
+                    ValidateRequestMode="Disabled" OnClick="OneWayRouteSelectSeatBtn_Click" runat="server" />
                 <asp:Image ImageUrl="~/Content/Images/selected-seat-icon.png" ID="OneWayRouteSelectedSeatImage" runat="server" />
                 <asp:Label ID="OneWayRouteSelectedSeatLabel" runat="server" />
             </div>
@@ -91,9 +91,9 @@
     </div>
 
     <asp:Panel ID="ReturnRouteExtrasPanel" runat="server" ClientIDMode="Static" CssClass="extrasDiv row" Visible="false">
-        <h3>
-            <%: this.RouteInfo.Destination.Name %>, (<%: this.RouteInfo.Destination.Abbreviation %>) to 
-            <%: this.RouteInfo.Origin.Name %>, (<%: this.RouteInfo.Origin.Abbreviation %>)
+        <h3 class="routeInfo">
+            <%: this.RouteInfo.Destination.Name %>, <small>(<%: this.RouteInfo.Destination.Abbreviation %>)</small> to 
+            <%: this.RouteInfo.Origin.Name %>, <small>(<%: this.RouteInfo.Origin.Abbreviation %>)</small>
         </h3>
 
         <div id="ReturnRouteCheckedInBaggageDiv" class="col-md-6">
@@ -170,7 +170,7 @@
 
             <div class="selectSeatDiv">
                 <asp:Button ID="ReturnRouteSelectSeatBtn" ClientIDMode="Static" UseSubmitBehavior="false"
-                    ValidateRequestMode="Disabled" OnClick="OnSelectSeatButtonClicked" runat="server" />
+                    ValidateRequestMode="Disabled" OnClick="ReturnRouteSelectSeatBtn_Click" runat="server" />
                 <asp:Image ImageUrl="~/Content/Images/selected-seat-icon.png" ID="ReturnRouteSelectedSeatImage" runat="server" />
                 <asp:Label ID="ReturnRouteSelectedSeatLabel" runat="server" />
             </div>

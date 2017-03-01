@@ -13,7 +13,7 @@
 
     <asp:Panel ID="FlightDetailsPanel" runat="server" ClientIDMode="Static">
         <input type="image" class="airplaneFlyOutImage" alt="Airplane image" src="../Content/Images/airplane_fly_out_image.png" />
-        <h3>
+        <h3 class="routeInfo">
             <%: this.RouteInfo.Origin.Name %>, <small>(<%: this.RouteInfo.Origin.Abbreviation %>)</small>  to 
             <%: this.RouteInfo.Destination.Name %>, <small>(<%: this.RouteInfo.Destination.Abbreviation %>)</small>
         </h3>
@@ -119,7 +119,7 @@
         <asp:Panel ID="ReturnRouteFlightsPanel" ClientIDMode="Static" runat="server">
             <input type="image" class="airplaneFlyOutImage returnFlyOutImage" alt="Airplane image"
                 src="../Content/Images/airplane_fly_out_image.png" />
-            <h3>
+            <h3 class="routeInfo">
                 <%: this.RouteInfo.Destination.Name %>, <small>(<%: this.RouteInfo.Destination.Abbreviation %>)</small> to 
                 <%: this.RouteInfo.Origin.Name %>, <small>(<%: this.RouteInfo.Origin.Abbreviation %>)</small>
             </h3>

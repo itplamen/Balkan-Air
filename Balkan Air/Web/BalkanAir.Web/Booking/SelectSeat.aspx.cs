@@ -25,43 +25,60 @@
         [Inject]
         public ITravelClassesServices TravelClassesServices { get; set; }
 
+        private string SelectSeatForRoute
+        {
+            get
+            {
+                if (((bool)this.Session[NativeConstants.ONE_WAY_ROUTE_SELECT_SEAT]) &&
+                !((bool)this.Session[NativeConstants.RETURN_ROUTE_SELECT_SEAT]))
+                {
+                    return NativeConstants.ONE_WAY_ROUTE_BOOKING;
+                }
+                else
+                {
+                    return NativeConstants.RETURN_ROUTE_BOOKING;
+                }
+            }
+        }
+
+        private Booking Booking
+        {
+            get
+            {
+                return (Booking)this.Session[this.SelectSeatForRoute];
+            }
+        }
+
         public IEnumerable<Seat> SeatRepeater_GetData()
         {
             return this.GenerateSeatMap();
-
-            //return this.selectedFlight.TravelClasses
-            //    .SelectMany(a => a.Seats)
-            //    .OrderByDescending(a => a.TravelClass.Type == TravelClassType.First)
-            //    .ThenByDescending(a => a.TravelClass.Type == TravelClassType.Business)
-            //    .ToList();
-
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.Page.IsPostBack)
             {
-                Booking booking = (Booking)this.Session[NativeConstants.ONE_WAY_ROUTE_BOOKING];
-
-                if (booking == null || (booking != null && booking.LegInstanceId == 0 || booking.TravelClassId == 0))
+                if (this.Booking == null || (this.Booking != null && this.Booking.LegInstanceId == 0 || 
+                    this.Booking.TravelClassId == 0))
                 {
                     this.Response.Redirect(Pages.HOME);
                 }
                 else
                 {
-                    LegInstance selectedLegInstance = this.LegInstancesServices.GetLegInstance(booking.LegInstanceId);
+                    LegInstance selectedLegInstance = this.LegInstancesServices.GetLegInstance(this.Booking.LegInstanceId);
+
                     this.FromAirportLabel.Text = selectedLegInstance.FlightLeg.Route.Origin.Name;
                     this.ToAirportLabel.Text = selectedLegInstance.FlightLeg.Route.Destination.Name;
                     this.SelectedTravelClassLabel.Text = selectedLegInstance.Aircraft.TravelClasses
-                        .FirstOrDefault(t => t.Id == booking.TravelClassId)
+                        .FirstOrDefault(t => t.Id == this.Booking.TravelClassId)
                         .Type
                         .ToString();
 
-                    if (booking.Row != 0 && !string.IsNullOrEmpty(booking.SeatNumber))
+                    if (this.Booking.Row != 0 && !string.IsNullOrEmpty(this.Booking.SeatNumber))
                     {
-                        this.SelectedRowAndSeatLabel.Text = "Seat: " + booking.Row + booking.SeatNumber;
-                        this.SelectedRowHiddenField.Value = booking.Row.ToString();
-                        this.SelectedSeatHiddenField.Value = booking.SeatNumber;
+                        this.SelectedRowAndSeatLabel.Text = "Seat: " + this.Booking.Row + this.Booking.SeatNumber;
+                        this.SelectedRowHiddenField.Value = this.Booking.Row.ToString();
+                        this.SelectedSeatHiddenField.Value = this.Booking.SeatNumber;
                     }
                     else
                     {
@@ -73,11 +90,10 @@
 
         protected void ContinueBookingBtn_Click(object sender, EventArgs e)
         {
-            Booking booking = (Booking)this.Session[NativeConstants.ONE_WAY_ROUTE_BOOKING];
-            booking.Row = int.Parse(this.SelectedRowHiddenField.Value);
-            booking.SeatNumber = this.SelectedSeatHiddenField.Value;
+            this.Booking.Row = int.Parse(this.SelectedRowHiddenField.Value);
+            this.Booking.SeatNumber = this.SelectedSeatHiddenField.Value;
 
-            this.Session.Add(NativeConstants.ONE_WAY_ROUTE_BOOKING, booking);
+            this.Session.Add(this.SelectSeatForRoute, this.Booking);
             this.Response.Redirect(Pages.EXTRAS);
         }
 
@@ -97,11 +113,9 @@
         {
             var seatMap = new List<Seat>();
 
-            Booking booking = (Booking)this.Session[NativeConstants.ONE_WAY_ROUTE_BOOKING];
-
-            TravelClass firstClass = this.GetTravelClassFromFlight(booking.LegInstanceId, TravelClassType.First);
-            TravelClass businessClass = this.GetTravelClassFromFlight(booking.LegInstanceId, TravelClassType.Business);
-            TravelClass economyClass = this.GetTravelClassFromFlight(booking.LegInstanceId, TravelClassType.Economy);
+            TravelClass firstClass = this.GetTravelClassFromFlight(this.Booking.LegInstanceId, TravelClassType.First);
+            TravelClass businessClass = this.GetTravelClassFromFlight(this.Booking.LegInstanceId, TravelClassType.Business);
+            TravelClass economyClass = this.GetTravelClassFromFlight(this.Booking.LegInstanceId, TravelClassType.Economy);
 
             int travelClassId = 0;
             int numberOfRows = 30;
@@ -134,7 +148,7 @@
                 seatMap.Add(new Seat() { Number = "F", Row = row, TravelClassId = travelClassId });
             }
 
-            List<Seat> reservedSeats = this.GetReservedSeats(booking.LegInstanceId);
+            List<Seat> reservedSeats = this.GetReservedSeats(this.Booking.LegInstanceId);
 
             for (int i = 0; i < seatMap.Count; i++)
             {

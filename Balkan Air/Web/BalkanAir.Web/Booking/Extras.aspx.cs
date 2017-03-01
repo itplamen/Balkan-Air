@@ -75,8 +75,19 @@
             }
         }
 
-        protected void OnSelectSeatButtonClicked(object sender, EventArgs e)
+        protected void OneWayRouteSelectSeatBtn_Click(object sender, EventArgs e)
         {
+            this.Session.Add(NativeConstants.ONE_WAY_ROUTE_SELECT_SEAT, true);
+            this.Session.Add(NativeConstants.RETURN_ROUTE_SELECT_SEAT, false);
+
+            this.Response.Redirect(Pages.SELECT_SEAT);
+        }
+
+        protected void ReturnRouteSelectSeatBtn_Click(object sender, EventArgs e)
+        {
+            this.Session.Add(NativeConstants.RETURN_ROUTE_SELECT_SEAT, true);
+            this.Session.Add(NativeConstants.ONE_WAY_ROUTE_SELECT_SEAT, false);
+            
             this.Response.Redirect(Pages.SELECT_SEAT);
         }
 
