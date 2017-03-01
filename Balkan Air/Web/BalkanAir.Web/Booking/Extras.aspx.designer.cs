@@ -13,6 +13,60 @@ namespace BalkanAir.Web.Booking {
     public partial class Extras {
         
         /// <summary>
+        /// OneWayRouteExtrasPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel OneWayRouteExtrasPanel;
+        
+        /// <summary>
+        /// OneWayRouteNoneCheckedInBag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton OneWayRouteNoneCheckedInBag;
+        
+        /// <summary>
+        /// OneWayRoute23KgCheckedInBag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton OneWayRoute23KgCheckedInBag;
+        
+        /// <summary>
+        /// OneWayRoute32KgCheckedInBag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton OneWayRoute32KgCheckedInBag;
+        
+        /// <summary>
+        /// OneWayRouteSmallCabinBag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton OneWayRouteSmallCabinBag;
+        
+        /// <summary>
+        /// OneWayRouteLargeCabinBag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton OneWayRouteLargeCabinBag;
+        
+        /// <summary>
         /// OneWayRouteBabyEquipmentCheckBox control.
         /// </summary>
         /// <remarks>
@@ -74,6 +128,51 @@ namespace BalkanAir.Web.Booking {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel ReturnRouteExtrasPanel;
+        
+        /// <summary>
+        /// ReturnRouteNoneCheckedInBag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton ReturnRouteNoneCheckedInBag;
+        
+        /// <summary>
+        /// ReturnRoute23KgCheckedInBag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton ReturnRoute23KgCheckedInBag;
+        
+        /// <summary>
+        /// ReturnRoute32KgCheckedInBag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton ReturnRoute32KgCheckedInBag;
+        
+        /// <summary>
+        /// ReturnRouteSmallCabinBag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton ReturnRouteSmallCabinBag;
+        
+        /// <summary>
+        /// ReturnRouteLargeCabinBag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton ReturnRouteLargeCabinBag;
         
         /// <summary>
         /// ReturnRouteBabyEquipmentCheckBox control.
@@ -139,24 +238,6 @@ namespace BalkanAir.Web.Booking {
         protected global::System.Web.UI.WebControls.Button ContinueBookingBtn;
         
         /// <summary>
-        /// OneWayRouteSelectedCheckedInBagPriceHiddenField control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField OneWayRouteSelectedCheckedInBagPriceHiddenField;
-        
-        /// <summary>
-        /// OneWayRouteSelectedCheckedInBagWeightHiddenField control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField OneWayRouteSelectedCheckedInBagWeightHiddenField;
-        
-        /// <summary>
         /// OneWayRouteNumberOfCheckedInBagsHiddenField control.
         /// </summary>
         /// <remarks>
@@ -166,42 +247,6 @@ namespace BalkanAir.Web.Booking {
         protected global::System.Web.UI.WebControls.HiddenField OneWayRouteNumberOfCheckedInBagsHiddenField;
         
         /// <summary>
-        /// OneWayRouteSelectedCabinBagPriceHiddenField control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField OneWayRouteSelectedCabinBagPriceHiddenField;
-        
-        /// <summary>
-        /// OneWayRouteSelectedCabinBagSizeHiddenField control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField OneWayRouteSelectedCabinBagSizeHiddenField;
-        
-        /// <summary>
-        /// ReturnRouteSelectedCheckedInBagPriceHiddenField control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField ReturnRouteSelectedCheckedInBagPriceHiddenField;
-        
-        /// <summary>
-        /// ReturnRouteSelectedCheckedInBagWeightHiddenField control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField ReturnRouteSelectedCheckedInBagWeightHiddenField;
-        
-        /// <summary>
         /// ReturnRouteNumberOfCheckedInBagsHiddenField control.
         /// </summary>
         /// <remarks>
@@ -209,23 +254,5 @@ namespace BalkanAir.Web.Booking {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField ReturnRouteNumberOfCheckedInBagsHiddenField;
-        
-        /// <summary>
-        /// ReturnRouteSelectedCabinBagPriceHiddenField control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField ReturnRouteSelectedCabinBagPriceHiddenField;
-        
-        /// <summary>
-        /// ReturnRouteSelectedCabinBagSizeHiddenField control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField ReturnRouteSelectedCabinBagSizeHiddenField;
     }
 }

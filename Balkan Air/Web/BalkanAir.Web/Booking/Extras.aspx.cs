@@ -18,7 +18,7 @@
 
         [Inject]
         public ITravelClassesServices TravelClassesServices { get; set; }
-        
+
         protected Route RouteInfo
         {
             get
@@ -49,7 +49,9 @@
         {
             if (!this.Page.IsPostBack)
             {
-                if (this.OneWayRouteBooking == null || (this.OneWayRouteBooking != null && 
+                this.AddAttributesToRadioButtons();
+
+                if (this.OneWayRouteBooking == null || (this.OneWayRouteBooking != null &&
                     (this.OneWayRouteBooking.LegInstanceId == 0 || this.OneWayRouteBooking.TravelClassId == 0)))
                 {
                     this.Response.Redirect(Pages.HOME);
@@ -75,10 +77,33 @@
             }
         }
 
+        protected void Page_PreRender(Object sender, EventArgs e)
+        {
+            if (!this.Page.IsPostBack)
+            {
+                this.SaveBagSelectionAfterSeatSelection(this.OneWayRouteExtrasPanel, "one-way-route-checked-in-bag",
+                    NativeConstants.ONE_WAY_ROUTE_SELECTED_CHECKED_IN_BAG);
+
+                this.SaveBagSelectionAfterSeatSelection(this.OneWayRouteExtrasPanel, "one-way-route-cabin-bag",
+                    NativeConstants.ONE_WAY_ROUTE_SELECTED_CABIN_BAG);
+
+                if (this.ReturnRouteExtrasPanel.Visible)
+                {
+                    this.SaveBagSelectionAfterSeatSelection(this.ReturnRouteExtrasPanel, "return-route-checked-in-bag",
+                        NativeConstants.RETURN_ROUTE_SELECTED_CHECKED_IN_BAG);
+
+                    this.SaveBagSelectionAfterSeatSelection(this.ReturnRouteExtrasPanel, "return-route-cabin-bag",
+                        NativeConstants.RETURN_ROUTE_SELECTED_CABIN_BAG);
+                }
+            }
+        }
+
         protected void OneWayRouteSelectSeatBtn_Click(object sender, EventArgs e)
         {
             this.Session.Add(NativeConstants.ONE_WAY_ROUTE_SELECT_SEAT, true);
             this.Session.Add(NativeConstants.RETURN_ROUTE_SELECT_SEAT, false);
+
+            this.SaveAllBagsToSessionBeforeSeatSelection();
 
             this.Response.Redirect(Pages.SELECT_SEAT);
         }
@@ -87,53 +112,79 @@
         {
             this.Session.Add(NativeConstants.RETURN_ROUTE_SELECT_SEAT, true);
             this.Session.Add(NativeConstants.ONE_WAY_ROUTE_SELECT_SEAT, false);
-            
+
+            this.SaveAllBagsToSessionBeforeSeatSelection();
+
             this.Response.Redirect(Pages.SELECT_SEAT);
         }
 
         protected void OnContinueBookingBtnClicked(object sender, EventArgs e)
         {
-            this.OneWayRouteBooking.Baggages.Add(new Baggage()
-            {
-                Type = BaggageType.Cabin,
-                Size = this.OneWayRouteSelectedCabinBagSizeHiddenField.Value,
-                Price = decimal.Parse(this.OneWayRouteSelectedCabinBagPriceHiddenField.Value)
-            });
+            //this.OneWayRouteBooking.Baggages.Add(new Baggage()
+            //{
+            //    Type = BaggageType.Cabin,
+            //    Size = this.OneWayRouteSelectedCabinBagSizeHiddenField.Value,
+            //    Price = decimal.Parse(this.OneWayRouteSelectedCabinBagPriceHiddenField.Value)
+            //});
+            
+            //int numberOfCheckedInBags = int.Parse(this.OneWayRouteNumberOfCheckedInBagsHiddenField.Value);
 
-            int numberOfCheckedInBags = int.Parse(this.OneWayRouteNumberOfCheckedInBagsHiddenField.Value);
+            //if (numberOfCheckedInBags > 0)
+            //{
+            //    for (int i = 1; i <= numberOfCheckedInBags; i++)
+            //    {
+            //        this.OneWayRouteBooking.Baggages.Add(new Baggage()
+            //        {
+            //            Type = BaggageType.CheckedIn,
+            //            MaxKilograms = int.Parse(this.OneWayRouteSelectedCheckedInBagWeightHiddenField.Value),
+            //            Price = decimal.Parse(this.OneWayRouteSelectedCheckedInBagPriceHiddenField.Value)
+            //        });
+            //    }
+            //}
 
-            if (numberOfCheckedInBags > 0)
+            //if (this.OneWayRouteBabyEquipmentCheckBox.Checked)
+            //{
+            //    this.AddOtherBaggagesToBooking(this.OneWayRouteBooking, BaggageType.BabyEquipment, 10);
+            //}
+
+            //if (this.OneWayRouteSportsEquipmentCheckBox.Checked)
+            //{
+            //    this.AddOtherBaggagesToBooking(this.OneWayRouteBooking, BaggageType.SportsEquipment, 30);
+            //}
+
+            //if (this.OneWayRouteMusicEquipmentCheckBox.Checked)
+            //{
+            //    this.AddOtherBaggagesToBooking(this.OneWayRouteBooking, BaggageType.MusicEquipment, 50);
+            //}
+
+            //this.CalculateTotalPriceOfBooking(this.OneWayRouteBooking);
+
+            //this.Session.Add(NativeConstants.ONE_WAY_ROUTE_BOOKING, this.OneWayRouteBooking);
+            //this.Response.Redirect(Pages.PAYMENT);
+        }
+
+        private void AddAttributesToRadioButtons()
+        {
+            // Checked-in baggage
+            this.OneWayRouteNoneCheckedInBag.InputAttributes.Add("data-price", "0");
+            this.OneWayRoute23KgCheckedInBag.InputAttributes.Add("data-price", "26");
+            this.OneWayRoute32KgCheckedInBag.InputAttributes.Add("data-price", "36");
+
+            // Cabin baggage
+            this.OneWayRouteSmallCabinBag.InputAttributes.Add("data-price", "0");
+            this.OneWayRouteLargeCabinBag.InputAttributes.Add("data-price", "14");
+
+            if (this.ReturnRouteBooking != null)
             {
-                for (int i = 1; i <= numberOfCheckedInBags; i++)
-                {
-                    this.OneWayRouteBooking.Baggages.Add(new Baggage()
-                    {
-                        Type = BaggageType.CheckedIn,
-                        MaxKilograms = int.Parse(this.OneWayRouteSelectedCheckedInBagWeightHiddenField.Value),
-                        Price = decimal.Parse(this.OneWayRouteSelectedCheckedInBagPriceHiddenField.Value)
-                    });
-                }
+                // Checked-in baggage
+                this.ReturnRouteNoneCheckedInBag.InputAttributes.Add("data-price", "0");
+                this.ReturnRoute23KgCheckedInBag.InputAttributes.Add("data-price", "26");
+                this.ReturnRoute32KgCheckedInBag.InputAttributes.Add("data-price", "36");
+
+                // Cabin baggage
+                this.ReturnRouteSmallCabinBag.InputAttributes.Add("data-price", "0");
+                this.ReturnRouteLargeCabinBag.InputAttributes.Add("data-price", "14");
             }
-
-            if (this.OneWayRouteBabyEquipmentCheckBox.Checked)
-            {
-                this.AddOtherBaggagesToBooking(this.OneWayRouteBooking, BaggageType.BabyEquipment, 10);
-            }
-
-            if (this.OneWayRouteSportsEquipmentCheckBox.Checked)
-            {
-                this.AddOtherBaggagesToBooking(this.OneWayRouteBooking, BaggageType.SportsEquipment, 30);
-            }
-
-            if (this.OneWayRouteMusicEquipmentCheckBox.Checked)
-            {
-                this.AddOtherBaggagesToBooking(this.OneWayRouteBooking, BaggageType.MusicEquipment, 50);
-            }
-
-            this.CalculateTotalPriceOfBooking(this.OneWayRouteBooking);
-
-            this.Session.Add(NativeConstants.ONE_WAY_ROUTE_BOOKING, this.OneWayRouteBooking);
-            this.Response.Redirect(Pages.PAYMENT);
         }
 
         private void ManageSeatSelection(Booking booking, Label selectedSeatLabel, Image selectedSeatImg, Button selectedSeatBtn)
@@ -169,6 +220,51 @@
             booking.TotalPrice = booking.Baggages.Sum(b => b.Price) + this.TravelClassesServices
                 .GetTravelClass(booking.TravelClassId)
                 .Price;
+        }
+
+        private void SaveAllBagsToSessionBeforeSeatSelection()
+        {
+            this.SaveSelectedBagToSessionBeforeSeatSelection(this.OneWayRouteExtrasPanel, "one-way-route-checked-in-bag",
+                NativeConstants.ONE_WAY_ROUTE_SELECTED_CHECKED_IN_BAG);
+
+            this.SaveSelectedBagToSessionBeforeSeatSelection(this.OneWayRouteExtrasPanel, "one-way-route-cabin-bag",
+                NativeConstants.ONE_WAY_ROUTE_SELECTED_CABIN_BAG);
+
+            if (this.ReturnRouteBooking != null)
+            {
+                this.SaveSelectedBagToSessionBeforeSeatSelection(this.ReturnRouteExtrasPanel, "return-route-checked-in-bag",
+                    NativeConstants.RETURN_ROUTE_SELECTED_CHECKED_IN_BAG);
+
+                this.SaveSelectedBagToSessionBeforeSeatSelection(this.ReturnRouteExtrasPanel, "return-route-cabin-bag",
+                    NativeConstants.RETURN_ROUTE_SELECTED_CABIN_BAG);
+            }
+        }
+
+        private void SaveSelectedBagToSessionBeforeSeatSelection(Control container, string groupName, string sessionVariable)
+        {
+            var selectedBag = container.Controls.OfType<RadioButton>()
+                .FirstOrDefault(r => r.GroupName == groupName && r.Checked);
+
+            if (selectedBag != null)
+            {
+                this.Session.Add(sessionVariable, selectedBag.ID);
+            }
+        }
+
+        private void SaveBagSelectionAfterSeatSelection(Control container, string groupName, string sessionVariable)
+        {
+            var selectedBagId = this.Session[sessionVariable];
+
+            if (selectedBagId != null)
+            {
+                var selectedBag = container.Controls.OfType<RadioButton>()
+                    .FirstOrDefault(r => r.GroupName == groupName && r.ID == selectedBagId.ToString());
+
+                if (selectedBag != null)
+                {
+                    selectedBag.Checked = true;
+                }
+            }
         }
     }
 }

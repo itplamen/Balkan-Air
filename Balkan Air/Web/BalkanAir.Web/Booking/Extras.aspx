@@ -8,28 +8,28 @@
         <%: this.RouteInfo.Destination.Name %>, <small>(<%: this.RouteInfo.Destination.Abbreviation %>)</small>
     </h3>
 
-    <div class="extrasDiv row">
+    <asp:Panel ID="OneWayRouteExtrasPanel" runat="server" ClientIDMode="Static" CssClass="extrasDiv row">
         <div id="OneWayRouteCheckedInBaggageDiv" class="col-md-6">
             <h4>CHECKED-IN BAGGAGE</h4>
             <small>PLEASE SELECT CHECKED-IN BAGGAGE</small>
             <br />
 
             <div>
-                <input type="radio" id="OneWayRouteNoneCheckedInBag" class="checkedInBag" value="0"
-                    required data-price="0" name="one-way-route-checked-in-bag" />
-                <label for="OneWayRouteNoneCheckedInBag">None<span>Travel light</span></label>
+                <asp:RadioButton ID="OneWayRouteNoneCheckedInBag" ClientIDMode="Static" CssClass="checkedInBag"
+                    GroupName="one-way-route-checked-in-bag" value="0" data-price="0" runat="server"
+                    Text="None<span>Travel light</span>" />
             </div>
 
             <div>
-                <input type="radio" id="OneWayRoute23KgCheckedInBag" class="checkedInBag" value="23"
-                    required data-price="26" name="one-way-route-checked-in-bag" />
-                <label for="OneWayRoute23KgCheckedInBag">23 kg<span>&#8364; 26.00</span></label>
+                <asp:RadioButton ID="OneWayRoute23KgCheckedInBag" ClientIDMode="Static" CssClass="checkedInBag"
+                    GroupName="one-way-route-checked-in-bag" value="23" data-price="26" runat="server"
+                    Text="23 kg<span>&#8364; 26.00</span>" />
             </div>
 
             <div>
-                <input type="radio" id="OneWayRoute32KgCheckedInBag" class="checkedInBag" value="32"
-                    required data-price="36" name="one-way-route-checked-in-bag" />
-                <label for="OneWayRoute32KgCheckedInBag">32 kg<span>&#8364; 36.00</span></label>
+                <asp:RadioButton ID="OneWayRoute32KgCheckedInBag" ClientIDMode="Static" CssClass="checkedInBag"
+                    GroupName="one-way-route-checked-in-bag" value="32" data-price="36" runat="server"
+                    Text="32 kg<span>&#8364; 36.00</span>" />
             </div>
 
             <div class="totalWeightDiv">
@@ -50,17 +50,17 @@
             <br />
 
             <div>
-                <input id="OneWayRouteSmallCabinBag" type="radio" class="cabinBag" required
-                    value="42 × 32 × 25 CM" data-price="0" name="one-way-route-cabin-bag" />
-                <label for="OneWayRouteSmallCabinBag">Small<span>Free</span></label>
+                <asp:RadioButton ID="OneWayRouteSmallCabinBag" ClientIDMode="Static" CssClass="cabinBag" 
+                    GroupName="one-way-route-cabin-bag" value="42 × 32 × 25 CM" data-price="0" runat="server" 
+                    Text="Small<span>Free</span>" />
                 <br />
                 <small>42 × 32 × 25 CM</small>
             </div>
 
             <div>
-                <input id="OneWayRouteLargeCabinBag" type="radio" class="cabinBag" required
-                    value="56 × 45 × 25 CM" data-price="14" name="one-way-route-cabin-bag" />
-                <label for="OneWayRouteLargeCabinBag">Large<span>&#8364; 14.00</span></label>
+                <asp:RadioButton ID="OneWayRouteLargeCabinBag" ClientIDMode="Static" CssClass="cabinBag" 
+                    GroupName="one-way-route-cabin-bag" value="56 × 45 × 25 CM" data-price="14" runat="server" 
+                    Text="Large<span>&#8364; 14.00</span>" />
                 <br />
                 <small>56 × 45 × 25 CM</small>
             </div>
@@ -88,7 +88,7 @@
                 <asp:Label ID="OneWayRouteSelectedSeatLabel" runat="server" />
             </div>
         </div>
-    </div>
+    </asp:Panel>
 
     <asp:Panel ID="ReturnRouteExtrasPanel" runat="server" ClientIDMode="Static" CssClass="extrasDiv row" Visible="false">
         <h3 class="routeInfo">
@@ -102,21 +102,21 @@
             <br />
 
             <div>
-                <input type="radio" id="ReturnRouteNoneCheckedInBag" class="checkedInBag" value="0"
-                    required data-price="0" name="return-route-checked-in-bag" />
-                <label for="ReturnRouteNoneCheckedInBag">None<span>Travel light</span></label>
+                <asp:RadioButton ID="ReturnRouteNoneCheckedInBag" ClientIDMode="Static" CssClass="checkedInBag"
+                    GroupName="return-route-checked-in-bag" value="0" runat="server"
+                    Text="None<span>Travel light</span>" />
             </div>
 
             <div>
-                <input type="radio" id="ReturnRoute23KgCheckedInBag" class="checkedInBag" value="23"
-                    required data-price="26" name="return-route-checked-in-bag" />
-                <label for="ReturnRoute23KgCheckedInBag">23 kg<span>&#8364; 26.00</span></label>
+                <asp:RadioButton ID="ReturnRoute23KgCheckedInBag" ClientIDMode="Static" CssClass="checkedInBag"
+                    GroupName="return-route-checked-in-bag" value="23" runat="server"
+                    Text="23 kg<span>&#8364; 26.00</span>" />
             </div>
 
             <div>
-                <input type="radio" id="ReturnRoute32KgCheckedInBag" class="checkedInBag" value="32"
-                    required data-price="36" name="return-route-checked-in-bag" />
-                <label for="ReturnRoute32KgCheckedInBag">32 kg<span>&#8364; 36.00</span></label>
+                <asp:RadioButton ID="ReturnRoute32KgCheckedInBag" ClientIDMode="Static" CssClass="checkedInBag"
+                    GroupName="return-route-checked-in-bag" value="32" runat="server"
+                    Text="32 kg<span>&#8364; 36.00</span>" />
             </div>
 
             <div class="totalWeightDiv">
@@ -137,17 +137,17 @@
             <br />
 
             <div>
-                <input id="ReturnRouteSmallCabinBag" type="radio" class="cabinBag" required
-                    value="42 × 32 × 25 CM" data-price="0" name="return-route-cabin-bag" />
-                <label for="ReturnRouteSmallCabinBag">Small<span>Free</span></label>
+                <asp:RadioButton ID="ReturnRouteSmallCabinBag" ClientIDMode="Static" CssClass="cabinBag" 
+                    GroupName="return-route-cabin-bag" value="42 × 32 × 25 CM" runat="server" 
+                    Text="Small<span>Free</span>" />
                 <br />
                 <small>42 × 32 × 25 CM</small>
             </div>
 
             <div>
-                <input id="ReturnRouteLargeCabinBag" type="radio" class="cabinBag" required
-                    value="56 × 45 × 25 CM" data-price="14" name="return-route-cabin-bag" />
-                <label for="ReturnRouteLargeCabinBag">Large<span>&#8364; 14.00</span></label>
+                <asp:RadioButton ID="ReturnRouteLargeCabinBag" ClientIDMode="Static" CssClass="cabinBag" 
+                    GroupName="return-route-cabin-bag" value="56 × 45 × 25 CM" runat="server" 
+                    Text="Large<span>&#8364; 14.00</span>" />
                 <br />
                 <small>56 × 45 × 25 CM</small>
             </div>
@@ -182,15 +182,7 @@
             OnClick="OnContinueBookingBtnClicked" />
     </div>
 
-    <asp:HiddenField ID="OneWayRouteSelectedCheckedInBagPriceHiddenField" ClientIDMode="Static" runat="server" />
-    <asp:HiddenField ID="OneWayRouteSelectedCheckedInBagWeightHiddenField" ClientIDMode="Static" runat="server" />
     <asp:HiddenField ID="OneWayRouteNumberOfCheckedInBagsHiddenField" ClientIDMode="Static" runat="server" />
-    <asp:HiddenField ID="OneWayRouteSelectedCabinBagPriceHiddenField" ClientIDMode="Static" runat="server" />
-    <asp:HiddenField ID="OneWayRouteSelectedCabinBagSizeHiddenField" ClientIDMode="Static" runat="server" />
 
-    <asp:HiddenField ID="ReturnRouteSelectedCheckedInBagPriceHiddenField" ClientIDMode="Static" runat="server" />
-    <asp:HiddenField ID="ReturnRouteSelectedCheckedInBagWeightHiddenField" ClientIDMode="Static" runat="server" />
     <asp:HiddenField ID="ReturnRouteNumberOfCheckedInBagsHiddenField" ClientIDMode="Static" runat="server" />
-    <asp:HiddenField ID="ReturnRouteSelectedCabinBagPriceHiddenField" ClientIDMode="Static" runat="server" />
-    <asp:HiddenField ID="ReturnRouteSelectedCabinBagSizeHiddenField" ClientIDMode="Static" runat="server" />
 </asp:Content>
