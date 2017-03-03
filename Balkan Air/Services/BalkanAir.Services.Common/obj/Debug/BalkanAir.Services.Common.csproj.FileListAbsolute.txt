@@ -1,5 +1,4 @@
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Common\bin\Debug\BalkanAir.Services.Common.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Common\bin\Debug\BalkanAir.Services.Common.pdb
-D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Common\obj\Debug\BalkanAir.Services.Common.csprojResolveAssemblyReference.cache
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Common\obj\Debug\BalkanAir.Services.Common.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Services\BalkanAir.Services.Common\obj\Debug\BalkanAir.Services.Common.pdb

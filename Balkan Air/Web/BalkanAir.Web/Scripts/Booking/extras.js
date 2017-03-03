@@ -3,6 +3,8 @@
 
     var MIN_CHECKED_IN_BAGGAGES = 1,
         MAX_CHECKED_IN_BAGGAGES = 3,
+        DATA_PRICE_ATTR = 'data-price',
+        DECIMAL_PLACES = 2,
         $oneWayRoute23KgCheckedInBag = $('#OneWayRoute23KgCheckedInBag'),
         $oneWayRoute32KgCheckedInBag = $('#OneWayRoute32KgCheckedInBag'),
         $oneWayRouteAddRemoveBagSpan = $('#OneWayRouteAddRemoveBagSpan'),
@@ -130,7 +132,7 @@
 
     function initializeCheckedInBagsInfo($checkedInBag, $priceSpan, $weightSpan, $bagsNumber, $bagsNumberHidden) {
         var numberOfBags = parseInt($bagsNumberHidden.val(), 10),
-            checkedInBagPrice = parseFloat(Math.round($checkedInBag.attr('data-price') * 100) / 100),
+            checkedInBagPrice = parseFloat(Math.round($checkedInBag.attr(DATA_PRICE_ATTR) * 100) / 100),
             checkedInBagWeight = parseInt($checkedInBag.val(), 10);
 
         if (numberOfBags && numberOfBags > MIN_CHECKED_IN_BAGGAGES) {
@@ -144,7 +146,7 @@
             numberOfBags = MIN_CHECKED_IN_BAGGAGES;
         }
         
-        $priceSpan.html(checkedInBagPrice.toFixed(2));
+        $priceSpan.html(checkedInBagPrice.toFixed(DECIMAL_PLACES));
         $weightSpan.html(checkedInBagWeight);
         $bagsNumber.html(numberOfBags);
         $bagsNumberHidden.val(numberOfBags);
@@ -164,8 +166,8 @@
 
         if (numberOfBags < MAX_CHECKED_IN_BAGGAGES) {
             currentPrice = parseFloat(Math.round(($priceSpan.html() * 100) / 100));
-            priceToAdd = parseFloat(Math.round(($checkedInBag.attr('data-price') * 100) / 100));
-            $priceSpan.html((currentPrice + priceToAdd).toFixed(2));
+            priceToAdd = parseFloat(Math.round(($checkedInBag.attr(DATA_PRICE_ATTR) * 100) / 100));
+            $priceSpan.html((currentPrice + priceToAdd).toFixed(DECIMAL_PLACES));
 
             currentWeight = parseInt($weightSpan.html(), 10);
             $weightSpan.html(currentWeight + parseInt($checkedInBag.val(), 10));
@@ -189,8 +191,8 @@
 
         if (numberOfBags > MIN_CHECKED_IN_BAGGAGES) {
             currentPrice = parseFloat(Math.round(($priceSpan.html() * 100) / 100));
-            priceToAdd = parseFloat(Math.round(($checkedInBag.attr('data-price') * 100) / 100));
-            $priceSpan.html((currentPrice - priceToAdd).toFixed(2));
+            priceToAdd = parseFloat(Math.round(($checkedInBag.attr(DATA_PRICE_ATTR) * 100) / 100));
+            $priceSpan.html((currentPrice - priceToAdd).toFixed(DECIMAL_PLACES));
 
             currentWeight = parseInt($weightSpan.html(), 10);
             $weightSpan.html(currentWeight - parseInt($checkedInBag.val(), 10));

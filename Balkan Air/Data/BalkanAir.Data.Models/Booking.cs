@@ -11,7 +11,7 @@
     {
         public Booking()
         {
-            this.Baggages = new HashSet<Baggage>();
+            this.Baggage = new HashSet<Baggage>();
         }
 
         [Key]
@@ -49,6 +49,6 @@
         [ForeignKey("LegInstanceId")]
         public virtual LegInstance LegInstance { get; set; }
 
-        public virtual ICollection<Baggage> Baggages { get; set; }
+        public virtual ICollection<Baggage> Baggage { get; set; }
     }
 }

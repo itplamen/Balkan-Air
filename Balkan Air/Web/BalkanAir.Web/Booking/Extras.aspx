@@ -18,19 +18,19 @@
 
             <div>
                 <asp:RadioButton ID="OneWayRouteNoneCheckedInBag" ClientIDMode="Static" CssClass="checkedInBag"
-                    GroupName="one-way-route-checked-in-bag" value="0" data-price="0" runat="server"
+                    GroupName="one-way-route-checked-in-bag" value="0" runat="server"
                     Text="None<span>Travel light</span>" />
             </div>
 
             <div>
                 <asp:RadioButton ID="OneWayRoute23KgCheckedInBag" ClientIDMode="Static" CssClass="checkedInBag"
-                    GroupName="one-way-route-checked-in-bag" value="23" data-price="26" runat="server"
+                    GroupName="one-way-route-checked-in-bag" value="23" runat="server"
                     Text="23 kg<span>&#8364; 26.00</span>" />
             </div>
 
             <div>
                 <asp:RadioButton ID="OneWayRoute32KgCheckedInBag" ClientIDMode="Static" CssClass="checkedInBag"
-                    GroupName="one-way-route-checked-in-bag" value="32" data-price="36" runat="server"
+                    GroupName="one-way-route-checked-in-bag" value="32" runat="server"
                     Text="32 kg<span>&#8364; 36.00</span>" />
             </div>
 

@@ -101,7 +101,7 @@
         private IList<Baggage> GetBaggages(int bookingId, BaggageType type)
         {
             return this.BookingsServices.GetBooking(bookingId)
-                .Baggages
+                .Baggage
                 .Where(b => b.Type == type)
                 .ToList();
         }

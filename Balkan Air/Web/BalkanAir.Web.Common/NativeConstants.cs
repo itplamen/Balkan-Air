@@ -24,6 +24,17 @@
 
         /******************** Account/Profile *******************/
 
+        public const string BAG_PRICE_ATTR = "data-price";
+        public const string BAG_KG_ATTR = "value";
+        public const string BAG_SIZE_ATTR = "value";
+        public const decimal NONE_CHECKED_IN_BAG_PRICE = 0;
+        public const decimal MEDIUM_CHECKED_IN_BAG_PRICE = 26m;
+        public const decimal LARGE_CHECKED_IN_BAG_PRICE = 36m;
+        public const decimal SMALL_CABIN_BAG_PRICE = 0m;
+        public const decimal LARGE_CABIN_BAG_PRICE = 14m;
+
+        /******************** Account/Profile *******************/
+
         public const int NATIONALITY_NOT_SELECTED_INDEX = 0;
         public const string NATIONALITY_NOT_SELECTED_TEXT = "--- Select nationality ---";
         public const int GENDER_NOT_SELECTED_INDEX = 0;

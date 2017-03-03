@@ -233,7 +233,7 @@
                     this.SeatLiteral.Text = booking.Row.ToString() + booking.SeatNumber;
                 }
 
-                if (booking.Baggages.Count > 0)
+                if (booking.Baggage.Count > 0)
                 {
                     this.SetCabinBagToItinerary(booking, ref totalCost);
                     this.SetCheckedInBagsToItinerary(booking, ref totalCost);
@@ -294,7 +294,7 @@
 
         private void SetCabinBagToItinerary(Data.Models.Booking booking, ref decimal totalCost)
         {
-            var cabinBag = booking.Baggages
+            var cabinBag = booking.Baggage
                        .FirstOrDefault(b => b.Type == BaggageType.Cabin);
 
             if (cabinBag != null)
@@ -307,7 +307,7 @@
 
         private void SetCheckedInBagsToItinerary(Data.Models.Booking booking, ref decimal totalCost)
         {
-            var checkedInBags = booking.Baggages
+            var checkedInBags = booking.Baggage
                         .Where(b => b.Type == BaggageType.CheckedIn)
                         .ToList();
 
@@ -324,7 +324,7 @@
         private void SetBagEquipmentsToItinerary(Data.Models.Booking booking, ref decimal totalCost, BaggageType baggageType, 
             Literal literalInfo, Literal literalPrice)
         {
-            var equipment = booking.Baggages
+            var equipment = booking.Baggage
                         .FirstOrDefault(b => b.Type == baggageType);
 
             if (equipment != null)
