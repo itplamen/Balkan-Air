@@ -22,7 +22,8 @@
         public const string SELECTED_SEAT_NUMBER = "selectedSeatNumber";
 
 
-        /******************** Others *******************/
+        /******************** Account/Profile *******************/
+
         public const int NATIONALITY_NOT_SELECTED_INDEX = 0;
         public const string NATIONALITY_NOT_SELECTED_TEXT = "--- Select nationality ---";
         public const int GENDER_NOT_SELECTED_INDEX = 0;

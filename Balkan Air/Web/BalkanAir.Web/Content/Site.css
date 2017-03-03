@@ -721,10 +721,6 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
     margin: 5px 20px 5px 20px;
 }
 
-#ContinueBookingDiv {
-    text-align: right; 
-}
-
 #ContinueBookingBtn, #ShowReturnFlgihtInfoButton {
     height: 50px;
     width: 130px;
@@ -780,38 +776,38 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
 
 /****************** Booking/Extras.aspx ******************/
 
-#OneWayRouteCheckedInBaggageDiv,  #OneWayRouteCabinBaggageDiv, .otherExtrasDiv, 
-#ReturnRouteCheckedInBaggageDiv, #ReturnRouteCabinBaggageDiv {
+#OneWayRouteCheckedInBaggagePanel,  #OneWayRouteCabinBaggagePanel, .otherExtrasDiv, 
+#ReturnRouteCheckedInBaggagePanel, #ReturnRouteCabinBaggagePanel {
     border: 1px solid #E0E0E0;
     border-radius: 10px;
     height: 250px; 
 } 
 
-#OneWayRouteCheckedInBaggageDiv img, #ReturnRouteCheckedInBaggageDiv img {
+#OneWayRouteCheckedInBaggagePanel img, #ReturnRouteCheckedInBaggagePanel img {
     width: 90px;
     display: block;
     position: relative;
     left: 20px;
 }
-
-#OneWayRouteCheckedInBaggageDiv div, #OneWayRouteCabinBaggageDiv div, 
-#ReturnRouteCheckedInBaggageDiv div, #ReturnRouteCabinBaggageDiv div {
+ 
+#OneWayRouteCheckedInBaggagePanel div, #OneWayRouteCabinBaggagePanel div, 
+#ReturnRouteCheckedInBaggagePanel div, #ReturnRouteCabinBaggagePanel div {
     text-align: center;
 }
-
-.totalWeightDiv {
+ 
+.checkedInBagPriceAndWeightDiv {
     position: absolute; 
     top: 40px;
     right: 10px;
 }
 
-.totalWeightDiv input[type="button"] {
+.checkedInBagPriceAndWeightDiv input[type="button"] {
     width: 50px; 
-    height: 30px;
+    height: 30px; 
     font-size: 20px;
 }
 
-#OneWayRouteNumberOfBaggages, #ReturnRouteNumberOfBaggages {
+#OneWayRouteNumberOfBaggage, #ReturnRouteNumberOfBaggage {
     display: inline-block;
     width: 20px;
     height: 30px;
@@ -834,7 +830,7 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
     margin-bottom: 10px;
     cursor: pointer;
 }
-
+ 
 .extrasDiv label:hover, .otherExtrasDiv div:hover:not(:last-child) {
     border-color: #CD0082;
 }

@@ -22,6 +22,15 @@ namespace BalkanAir.Web.Booking {
         protected global::System.Web.UI.WebControls.Panel OneWayRouteExtrasPanel;
         
         /// <summary>
+        /// OneWayRouteCheckedInBaggagePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel OneWayRouteCheckedInBaggagePanel;
+        
+        /// <summary>
         /// OneWayRouteNoneCheckedInBag control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace BalkanAir.Web.Booking {
         protected global::System.Web.UI.WebControls.RadioButton OneWayRoute32KgCheckedInBag;
         
         /// <summary>
+        /// OneWayRouteCabinBaggagePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel OneWayRouteCabinBaggagePanel;
+        
+        /// <summary>
         /// OneWayRouteSmallCabinBag control.
         /// </summary>
         /// <remarks>
@@ -65,6 +83,15 @@ namespace BalkanAir.Web.Booking {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton OneWayRouteLargeCabinBag;
+        
+        /// <summary>
+        /// OneWayRouteOtherBaggagePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel OneWayRouteOtherBaggagePanel;
         
         /// <summary>
         /// OneWayRouteBabyEquipmentCheckBox control.
@@ -130,6 +157,15 @@ namespace BalkanAir.Web.Booking {
         protected global::System.Web.UI.WebControls.Panel ReturnRouteExtrasPanel;
         
         /// <summary>
+        /// ReturnRouteCheckedInBaggagePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ReturnRouteCheckedInBaggagePanel;
+        
+        /// <summary>
         /// ReturnRouteNoneCheckedInBag control.
         /// </summary>
         /// <remarks>
@@ -157,6 +193,15 @@ namespace BalkanAir.Web.Booking {
         protected global::System.Web.UI.WebControls.RadioButton ReturnRoute32KgCheckedInBag;
         
         /// <summary>
+        /// ReturnRouteCabinBaggagePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ReturnRouteCabinBaggagePanel;
+        
+        /// <summary>
         /// ReturnRouteSmallCabinBag control.
         /// </summary>
         /// <remarks>
@@ -173,6 +218,15 @@ namespace BalkanAir.Web.Booking {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton ReturnRouteLargeCabinBag;
+        
+        /// <summary>
+        /// ReturnRouteOtherBaggagePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ReturnRouteOtherBaggagePanel;
         
         /// <summary>
         /// ReturnRouteBabyEquipmentCheckBox control.

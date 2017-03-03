@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="Extras" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Extras.aspx.cs" Inherits="BalkanAir.Web.Booking.Extras" %>
 
+<%@ Import Namespace="BalkanAir.Web.Common" %>
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: this.Page.Title %></h2>
 
@@ -9,7 +11,7 @@
     </h3>
 
     <asp:Panel ID="OneWayRouteExtrasPanel" runat="server" ClientIDMode="Static" CssClass="extrasDiv row">
-        <div id="OneWayRouteCheckedInBaggageDiv" class="col-md-6">
+        <asp:Panel ID="OneWayRouteCheckedInBaggagePanel" runat="server" ClientIDMode="Static" CssClass="col-md-6">
             <h4>CHECKED-IN BAGGAGE</h4>
             <small>PLEASE SELECT CHECKED-IN BAGGAGE</small>
             <br />
@@ -32,19 +34,19 @@
                     Text="32 kg<span>&#8364; 36.00</span>" />
             </div>
 
-            <div class="totalWeightDiv">
+            <div class="checkedInBagPriceAndWeightDiv">
                 <img src="../Content/Images/total-weight-icon.png" alt="Total Weight Icon" />
                 <p id="OneWayRoutePrice">Price: &#8364; <span id="OneWayRoutePriceSpan">0</span></p>
-                <p>Total weight: <span id="OneWayRouteWeightSpan">0</span>kg</p>
-                <span id="OneWayRouteNumericBag">
+                <p>Total weight: <span id="OneWayRouteWeightSpan">0</span> kg</p>
+                <span id="OneWayRouteAddRemoveBagSpan">
                     <input type="button" id="OneWayRouteRemoveBagBtn" value="-" />
-                    <span id="OneWayRouteNumberOfBaggages">0</span>
+                    <span id="OneWayRouteNumberOfBaggage">0</span>
                     <input type="button" id="OneWayRouteAddBagBtn" value="+" />
                 </span>
             </div>
-        </div>
+        </asp:Panel>
 
-        <div id="OneWayRouteCabinBaggageDiv" class="col-md-6">
+        <asp:Panel ID="OneWayRouteCabinBaggagePanel" runat="server" ClientIDMode="Static" CssClass="col-md-6">
             <h4>CABIN BAGGAGE</h4>
             <small>PLEASE SELECT CABIN BAGGAGE</small>
             <br />
@@ -64,9 +66,9 @@
                 <br />
                 <small>56 × 45 × 25 CM</small>
             </div>
-        </div>
+        </asp:Panel>
 
-        <div class="otherExtrasDiv col-md-12">
+        <asp:Panel ID="OneWayRouteOtherBaggagePanel" runat="server" CssClass="otherExtrasDiv col-md-12">
             <h4>OTHER EXTRAS</h4>
 
             <div>
@@ -87,7 +89,7 @@
                 <asp:Image ImageUrl="~/Content/Images/selected-seat-icon.png" ID="OneWayRouteSelectedSeatImage" runat="server" />
                 <asp:Label ID="OneWayRouteSelectedSeatLabel" runat="server" />
             </div>
-        </div>
+        </asp:Panel>
     </asp:Panel>
 
     <asp:Panel ID="ReturnRouteExtrasPanel" runat="server" ClientIDMode="Static" CssClass="extrasDiv row" Visible="false">
@@ -96,7 +98,7 @@
             <%: this.RouteInfo.Origin.Name %>, <small>(<%: this.RouteInfo.Origin.Abbreviation %>)</small>
         </h3>
 
-        <div id="ReturnRouteCheckedInBaggageDiv" class="col-md-6">
+        <asp:Panel ID="ReturnRouteCheckedInBaggagePanel" runat="server" ClientIDMode="Static" CssClass="col-md-6">
             <h4>CHECKED-IN BAGGAGE</h4>
             <small>PLEASE SELECT CHECKED-IN BAGGAGE</small>
             <br />
@@ -119,19 +121,19 @@
                     Text="32 kg<span>&#8364; 36.00</span>" />
             </div>
 
-            <div class="totalWeightDiv">
+            <div class="checkedInBagPriceAndWeightDiv">
                 <img src="../Content/Images/total-weight-icon.png" alt="Total Weight Icon" />
                 <p id="ReturnRoutePrice">Price: &#8364; <span id="ReturnRoutePriceSpan">0</span></p>
                 <p>Total weight: <span id="ReturnRouteWeightSpan">0</span>kg</p>
-                <span id="ReturnRouteNumericBag">
+                <span id="ReturnRouteAddRemoveBagSpan">
                     <input type="button" id="ReturnRouteRemoveBagBtn" value="-" />
-                    <span id="ReturnRouteNumberOfBaggages">0</span>
+                    <span id="ReturnRouteNumberOfBaggage">0</span>
                     <input type="button" id="ReturnRouteAddBagBtn" value="+" />
                 </span>
             </div>
-        </div>
+        </asp:Panel>
 
-        <div id="ReturnRouteCabinBaggageDiv" class="col-md-6">
+        <asp:Panel ID="ReturnRouteCabinBaggagePanel" runat="server" ClientIDMode="Static" CssClass="col-md-6">
             <h4>CABIN BAGGAGE</h4>
             <small>PLEASE SELECT CABIN BAGGAGE</small>
             <br />
@@ -151,9 +153,9 @@
                 <br />
                 <small>56 × 45 × 25 CM</small>
             </div>
-        </div>
+        </asp:Panel>
 
-        <div class="otherExtrasDiv col-md-12">
+        <asp:Panel ID="ReturnRouteOtherBaggagePanel" runat="server" CssClass="otherExtrasDiv col-md-12">
             <h4>OTHER EXTRAS</h4>
 
             <div>
@@ -174,7 +176,7 @@
                 <asp:Image ImageUrl="~/Content/Images/selected-seat-icon.png" ID="ReturnRouteSelectedSeatImage" runat="server" />
                 <asp:Label ID="ReturnRouteSelectedSeatLabel" runat="server" />
             </div>
-        </div>
+        </asp:Panel>
     </asp:Panel>
 
     <div id="ContinueBookingDiv">
@@ -183,6 +185,5 @@
     </div>
 
     <asp:HiddenField ID="OneWayRouteNumberOfCheckedInBagsHiddenField" ClientIDMode="Static" runat="server" />
-
     <asp:HiddenField ID="ReturnRouteNumberOfCheckedInBagsHiddenField" ClientIDMode="Static" runat="server" />
 </asp:Content>

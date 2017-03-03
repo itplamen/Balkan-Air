@@ -50,6 +50,7 @@
             if (!this.Page.IsPostBack)
             {
                 this.AddAttributesToRadioButtons();
+                this.SaveAllBagsToSessionBeforeSeatSelection();
 
                 if (this.OneWayRouteBooking == null || (this.OneWayRouteBooking != null &&
                     (this.OneWayRouteBooking.LegInstanceId == 0 || this.OneWayRouteBooking.TravelClassId == 0)))
@@ -81,19 +82,36 @@
         {
             if (!this.Page.IsPostBack)
             {
-                this.SaveBagSelectionAfterSeatSelection(this.OneWayRouteExtrasPanel, "one-way-route-checked-in-bag",
+                this.SaveBagSelectionAfterSeatSelection(this.OneWayRouteCheckedInBaggagePanel,
                     NativeConstants.ONE_WAY_ROUTE_SELECTED_CHECKED_IN_BAG);
 
-                this.SaveBagSelectionAfterSeatSelection(this.OneWayRouteExtrasPanel, "one-way-route-cabin-bag",
+                this.SaveBagSelectionAfterSeatSelection(this.OneWayRouteCabinBaggagePanel,
                     NativeConstants.ONE_WAY_ROUTE_SELECTED_CABIN_BAG);
 
-                if (this.ReturnRouteExtrasPanel.Visible)
+                this.SaveOtherBagsSelectionAfterSeatSelection(this.OneWayRouteOtherBaggagePanel);
+
+                if (this.Session[this.OneWayRouteNumberOfCheckedInBagsHiddenField.ID] != null)
                 {
-                    this.SaveBagSelectionAfterSeatSelection(this.ReturnRouteExtrasPanel, "return-route-checked-in-bag",
+                    this.OneWayRouteNumberOfCheckedInBagsHiddenField.Value =
+                        this.Session[this.OneWayRouteNumberOfCheckedInBagsHiddenField.ID].ToString();
+                }
+
+                if (this.ReturnRouteBooking != null)
+                {
+                    this.SaveBagSelectionAfterSeatSelection(this.ReturnRouteCheckedInBaggagePanel,
                         NativeConstants.RETURN_ROUTE_SELECTED_CHECKED_IN_BAG);
 
-                    this.SaveBagSelectionAfterSeatSelection(this.ReturnRouteExtrasPanel, "return-route-cabin-bag",
+                    this.SaveBagSelectionAfterSeatSelection(this.ReturnRouteCabinBaggagePanel,
                         NativeConstants.RETURN_ROUTE_SELECTED_CABIN_BAG);
+
+                    this.SaveOtherBagsSelectionAfterSeatSelection(this.ReturnRouteOtherBaggagePanel);
+
+                    if (this.Session[this.ReturnRouteNumberOfCheckedInBagsHiddenField.ID] != null)
+                    {
+                        this.ReturnRouteNumberOfCheckedInBagsHiddenField.Value =
+                           this.Session[this.ReturnRouteNumberOfCheckedInBagsHiddenField.ID].ToString();
+
+                    }
                 }
             }
         }
@@ -104,6 +122,14 @@
             this.Session.Add(NativeConstants.RETURN_ROUTE_SELECT_SEAT, false);
 
             this.SaveAllBagsToSessionBeforeSeatSelection();
+            this.Session.Add(this.OneWayRouteNumberOfCheckedInBagsHiddenField.ID,
+                this.OneWayRouteNumberOfCheckedInBagsHiddenField.Value);
+
+            if (!string.IsNullOrEmpty(this.ReturnRouteNumberOfCheckedInBagsHiddenField.Value))
+            {
+                this.Session.Add(this.ReturnRouteNumberOfCheckedInBagsHiddenField.ID,
+                this.ReturnRouteNumberOfCheckedInBagsHiddenField.Value);
+            }
 
             this.Response.Redirect(Pages.SELECT_SEAT);
         }
@@ -114,6 +140,14 @@
             this.Session.Add(NativeConstants.ONE_WAY_ROUTE_SELECT_SEAT, false);
 
             this.SaveAllBagsToSessionBeforeSeatSelection();
+            this.Session.Add(this.ReturnRouteNumberOfCheckedInBagsHiddenField.ID,
+                this.ReturnRouteNumberOfCheckedInBagsHiddenField.Value);
+
+            if (!string.IsNullOrEmpty(this.OneWayRouteNumberOfCheckedInBagsHiddenField.Value))
+            {
+                this.Session.Add(this.OneWayRouteNumberOfCheckedInBagsHiddenField.ID,
+                this.OneWayRouteNumberOfCheckedInBagsHiddenField.Value);
+            }
 
             this.Response.Redirect(Pages.SELECT_SEAT);
         }
@@ -126,7 +160,7 @@
             //    Size = this.OneWayRouteSelectedCabinBagSizeHiddenField.Value,
             //    Price = decimal.Parse(this.OneWayRouteSelectedCabinBagPriceHiddenField.Value)
             //});
-            
+
             //int numberOfCheckedInBags = int.Parse(this.OneWayRouteNumberOfCheckedInBagsHiddenField.Value);
 
             //if (numberOfCheckedInBags > 0)
@@ -224,26 +258,30 @@
 
         private void SaveAllBagsToSessionBeforeSeatSelection()
         {
-            this.SaveSelectedBagToSessionBeforeSeatSelection(this.OneWayRouteExtrasPanel, "one-way-route-checked-in-bag",
+            this.SaveSelectedBagToSessionBeforeSeatSelection(this.OneWayRouteCheckedInBaggagePanel, 
                 NativeConstants.ONE_WAY_ROUTE_SELECTED_CHECKED_IN_BAG);
 
-            this.SaveSelectedBagToSessionBeforeSeatSelection(this.OneWayRouteExtrasPanel, "one-way-route-cabin-bag",
+            this.SaveSelectedBagToSessionBeforeSeatSelection(this.OneWayRouteCabinBaggagePanel, 
                 NativeConstants.ONE_WAY_ROUTE_SELECTED_CABIN_BAG);
+
+            this.SaveOtherBagsToSessionBeforeSeatSelection(this.OneWayRouteOtherBaggagePanel);
 
             if (this.ReturnRouteBooking != null)
             {
-                this.SaveSelectedBagToSessionBeforeSeatSelection(this.ReturnRouteExtrasPanel, "return-route-checked-in-bag",
+                this.SaveSelectedBagToSessionBeforeSeatSelection(this.ReturnRouteCheckedInBaggagePanel,
                     NativeConstants.RETURN_ROUTE_SELECTED_CHECKED_IN_BAG);
 
-                this.SaveSelectedBagToSessionBeforeSeatSelection(this.ReturnRouteExtrasPanel, "return-route-cabin-bag",
+                this.SaveSelectedBagToSessionBeforeSeatSelection(this.ReturnRouteCabinBaggagePanel,
                     NativeConstants.RETURN_ROUTE_SELECTED_CABIN_BAG);
+
+                this.SaveOtherBagsToSessionBeforeSeatSelection(this.ReturnRouteOtherBaggagePanel);
             }
         }
 
-        private void SaveSelectedBagToSessionBeforeSeatSelection(Control container, string groupName, string sessionVariable)
+        private void SaveSelectedBagToSessionBeforeSeatSelection(Control container, string sessionVariable)
         {
             var selectedBag = container.Controls.OfType<RadioButton>()
-                .FirstOrDefault(r => r.GroupName == groupName && r.Checked);
+                .FirstOrDefault(r => r.Checked);
 
             if (selectedBag != null)
             {
@@ -251,14 +289,14 @@
             }
         }
 
-        private void SaveBagSelectionAfterSeatSelection(Control container, string groupName, string sessionVariable)
+        private void SaveBagSelectionAfterSeatSelection(Control container, string sessionVariable)
         {
             var selectedBagId = this.Session[sessionVariable];
 
             if (selectedBagId != null)
             {
                 var selectedBag = container.Controls.OfType<RadioButton>()
-                    .FirstOrDefault(r => r.GroupName == groupName && r.ID == selectedBagId.ToString());
+                    .FirstOrDefault(r => r.ID == selectedBagId.ToString());
 
                 if (selectedBag != null)
                 {
@@ -266,5 +304,38 @@
                 }
             }
         }
+
+        private void SaveOtherBagsToSessionBeforeSeatSelection(Control container)
+        {
+            var selectedOtherBags = container.Controls
+                .OfType<CheckBox>()
+                .Where(c => c.Checked)
+                .ToList();
+
+            if (selectedOtherBags.Count > 0)
+            {
+                selectedOtherBags.ForEach(c =>
+                {
+                    this.Session.Add(c.ID, c.Checked);
+                });
+            }
+        }
+
+        private void SaveOtherBagsSelectionAfterSeatSelection(Control container)
+        {
+            container.Controls
+                .OfType<CheckBox>()
+                .ToList()
+                .ForEach(c =>
+                {
+                    if (this.Session[c.ID] != null)
+                    {
+                        c.Checked = true;
+                        this.Session[c.ID] = null;
+                    }
+                });
+        }
+
+
     }
 }
