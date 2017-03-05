@@ -1,7 +1,9 @@
 ﻿$(function () {
     'use strict';
 
-    var documentFragment = document.createDocumentFragment(),
+    var INVALID_DATA_VALUE = 0,
+        pageRequestManager,
+        documentFragment = document.createDocumentFragment(),
         position = { my: 'center bottom+45', at: 'center top' },
         $onlineCkeckIn = $('<p><img src="../Content/Images/online-check-in-icon.png" />Online ckeck-in</p>'),
         $mealAndDrinks = $('<p><img src="../Content/Images/meal-icon.png" />Meal and drinks</p>'),
@@ -9,7 +11,11 @@
         $reservedSeat = $('<p><img src="../Content/Images/reserved-seat-icon.png" />Reserved seat, seat selection for the relevant travel class</p>'),
         $extraBaggage = $('<p><img src="../Content/Images/extra-baggage-icon.png" />Extra baggage</p>'),
         $earnMiles = $('<p><img src="../Content/Images/earn-miles-icon.png" />Earn miles</p>'),
-        $standartContent = $('<div class="tooltipDiv" />').append($onlineCkeckIn, $mealAndDrinks, $reservedSeat);
+        $standartContent = $('<div class="tooltipDiv" />').append($onlineCkeckIn, $mealAndDrinks, $reservedSeat),
+        $noOneWayRouteFlightsDiv = $('#NoOneWayRouteFlightsDiv'),
+        $noReturnRouteFlightsDiv = $('#NoReturnRouteFlightsDiv');
+
+    manageContinueBookingDivBox();
 
     $('.EconomyClassDiv').tooltip({
         position: position,
@@ -27,21 +33,18 @@
     });
 
     // Click events can't fire, because of the UpdatePanel. The solution is to use Sys.WebForms.PageRequestManage.
-    var pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
+    pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
 
     // Re-bind jQuery events.
     pageRequestManager.add_endRequest(function () {
-        $('.oneWayRouteTravelClasses .travelClassPriceSpan input[type="radio"]').click(selectOneWayRouteTravelClass);
-        $('.returnRouteTravelClasses .travelClassPriceSpan input[type="radio"]').click(selectReturnRouteTravelClass);
+        $('.oneWayRouteTravelClasses input[type="radio"]').change(function () {
+            selectTravelClass($(this), $('#OneWayRouteSelectedTravelClassIdHiddenField'), '.oneWayRouteTravelClasses');
+        });
+
+        $('.returnRouteTravelClasses input[type="radio"]').change(function () {
+            selectTravelClass($(this), $('#ReturnRouteSelectedTravelClassIdHiddenField'), '.returnRouteTravelClasses');
+        });
     });
-});
-
-
-$(document).ready(function () {
-    var INVALID_DATA_VALUE = 0,
-        $noOneWayRouteFlightsDiv = $('#NoOneWayRouteFlightsDiv'),
-        $noReturnRouteFlightsDiv = $('#NoReturnRouteFlightsDiv'),
-        $continueBookingBtn = $('#ContinueBookingBtn');
 
     if (!$('div.oneWayRouteFlights.slick-current').hasClass('noFlightDatesDiv')) {
         $noOneWayRouteFlightsDiv.hide();
@@ -53,70 +56,88 @@ $(document).ready(function () {
 
     $('.travelClassPriceSpan input[type="radio"].noMoreSeats').attr('disabled', true);
 
-    // Bind jQuery events initially
-    $('.oneWayRouteTravelClasses .travelClassPriceSpan input[type="radio"]').click(selectOneWayRouteTravelClass);
-    $('.returnRouteTravelClasses .travelClassPriceSpan input[type="radio"]').click(selectReturnRouteTravelClass);
+    // Bind jQuery events initially.
+    $('.oneWayRouteTravelClasses input[type="radio"]').change(function () {
+        selectTravelClass($(this), $('#OneWayRouteSelectedTravelClassIdHiddenField'), '.oneWayRouteTravelClasses');
+    });
+
+    $('.returnRouteTravelClasses input[type="radio"]').change(function () {
+        selectTravelClass($(this), $('#ReturnRouteSelectedTravelClassIdHiddenField'), '.returnRouteTravelClasses');
+    });
 
     $('.oneWayRouteFlights')
         .add('#OneWayRouteDepartureDatesDiv .slick-arrow')
         .click(function () {
-            var currentFlightDate = $('div.oneWayRouteFlights.slick-current')[0],
-                showOneWayFlgihtInfoHiddenButton = $('#ShowOneWayFlgihtInfoHiddenButton')[0],
-                flightDataValue = $(currentFlightDate).attr('data-value'),
-                $oneWayRouteSelectedFlightDetailsDiv = $('#OneWayRouteSelectedFlightDetailsDiv');
-
-            if (flightDataValue !== '' && parseInt(flightDataValue, 10) !== INVALID_DATA_VALUE) {
-                if ($noOneWayRouteFlightsDiv.is(':visible')) {
-                    $noOneWayRouteFlightsDiv.hide();
-                    $oneWayRouteSelectedFlightDetailsDiv.show();
-                    $continueBookingBtn.prop('disabled', false);
-                }
-
-                $('#OneWayRouteCurrentFlightInfoIdHiddenField').val(flightDataValue);
-                showOneWayFlgihtInfoHiddenButton.click();
-            }
-            else {
-                $oneWayRouteSelectedFlightDetailsDiv.hide();
-                $noOneWayRouteFlightsDiv.show();
-                $continueBookingBtn.prop('disabled', true);
-            }
+            flightDetailsManagement($('#ShowOneWayFlgihtInfoHiddenButton'), $('div.oneWayRouteFlights.slick-current'),
+                $('#OneWayRouteSelectedFlightDetailsDiv'), $noOneWayRouteFlightsDiv,
+                $('#OneWayRouteCurrentFlightInfoIdHiddenField'), '.oneWayRouteTravelClasses');
         });
-    
+
     $('.returnRouteFlights')
         .add('#ReturnRouteDepartureDatesDiv .slick-arrow')
         .click(function () {
-            var currentFlightDate = $('div.returnRouteFlights.slick-current')[0],
-                showReturnFlgihtInfoHiddenButton = $('#ShowReturnFlgihtInfoHiddenButton')[0],
-                flightDataValue = $(currentFlightDate).attr('data-value'),
-                $returnRouteSelectedFlightDetailsDiv = $('#ReturnRouteSelectedFlightDetailsDiv');
-
-            if (flightDataValue !== '' && parseInt(flightDataValue, 10) !== INVALID_DATA_VALUE) {
-                if ($noReturnRouteFlightsDiv.is(':visible')) {
-                    $noReturnRouteFlightsDiv.hide();
-                    $returnRouteSelectedFlightDetailsDiv.show();
-                    $continueBookingBtn.prop('disabled', false);
-                }
-
-                $('#ReturnRouteCurrentFlightInfoIdHiddenField').val(flightDataValue);
-                showReturnFlgihtInfoHiddenButton.click();
-            }
-            else {
-                $returnRouteSelectedFlightDetailsDiv.hide();
-                $noReturnRouteFlightsDiv.show();
-                $continueBookingBtn.prop('disabled', true);
-            }
+            flightDetailsManagement($('#ShowReturnFlgihtInfoHiddenButton'), $('div.returnRouteFlights.slick-current'),
+                $('#ReturnRouteSelectedFlightDetailsDiv'), $noReturnRouteFlightsDiv,
+                $('#ReturnRouteCurrentFlightInfoIdHiddenField'), '.returnRouteTravelClasses');
         });
+
+    function selectTravelClass($selectedTravelClass, $travelClassIdHidden, travelClasses) {
+        $travelClassIdHidden.val($selectedTravelClass.val());
+        $(travelClasses + ' .travelClassPriceSpan').css('background-color', 'initial');
+        $selectedTravelClass.closest(travelClasses + ' .travelClassPriceSpan').css('background-color', 'pink');
+        manageContinueBookingDivBox();
+    }
+
+    function flightDetailsManagement($hiddenBtn, $currentFlight, $flightDetailsDiv, $noFlightsDiv, $flightIdHidden, travelClasses) {
+        var flightDataValue = $currentFlight.attr('data-value');
+
+        if (flightDataValue !== '' && parseInt(flightDataValue, 10) !== INVALID_DATA_VALUE) {
+            if ($noFlightsDiv.is(':visible')) {
+                $noFlightsDiv.hide();
+                $flightDetailsDiv.show();
+            }
+
+            $flightIdHidden.val(flightDataValue);
+            $hiddenBtn[0].click();
+        }
+        else {
+            $flightDetailsDiv.hide();
+            $noFlightsDiv.show();
+
+            $(travelClasses + ' input[type="radio"]:checked').attr('checked', false);
+        }
+
+        manageContinueBookingDivBox();
+    }
+
+    // Manage continue booking button and span helper.
+    function manageContinueBookingDivBox() {
+        var OUTBOUND_FLIGHT_NOT_SELECTED = 'CHOOSE AN OUTBOUND FLIGHT!',
+            RETURN_FLIGHT_NOT_SELECTED = 'CHOOSE A RETURN FLIGHT!',
+            CONTINUE_BOOKING = 'EVERYTHING LOOKS FINE. PLEASE CONTINUE!',
+            $oneWayRouteSelectedTravelClass = $('.oneWayRouteTravelClasses input[type="radio"]:checked'),
+            $returnRouteSelectedTravelClass;
+
+        if (!$oneWayRouteSelectedTravelClass.prop('checked')) {
+            setContinueBookingDivBox(OUTBOUND_FLIGHT_NOT_SELECTED, true);
+            return;
+        }
+        else {
+            if ($('#ReturnRouteFlightsPanel').is(':visible')) {
+                $returnRouteSelectedTravelClass = $('.returnRouteTravelClasses input[type="radio"]:checked');
+
+                if (!$returnRouteSelectedTravelClass.is(':radio')) {
+                    setContinueBookingDivBox(RETURN_FLIGHT_NOT_SELECTED, true);
+                    return;
+                }                
+            }
+
+            setContinueBookingDivBox(CONTINUE_BOOKING, false);
+        }
+    }
+
+    function setContinueBookingDivBox(helperText, isButtonDisabled) {
+        $('#BookingHelperSpan').html(helperText);
+        $('#ContinueBookingBtn').prop('disabled', isButtonDisabled);
+    }
 });
-
-function selectOneWayRouteTravelClass(event) {
-    $('#OneWayRouteSelectedTravelClassIdHiddenField').val($(event.target).val());
-    $('.oneWayRouteTravelClasses .travelClassPriceSpan').css('background-color', 'initial');
-    $(event.target).closest('.oneWayRouteTravelClasses .travelClassPriceSpan').css('background-color', 'pink');
-}
-
-function selectReturnRouteTravelClass(event) {
-    $('#ReturnRouteSelectedTravelClassIdHiddenField').val($(event.target).val());
-    $('.returnRouteTravelClasses .travelClassPriceSpan').css('background-color', 'initial');
-    $(event.target).closest('.returnRouteTravelClasses .travelClassPriceSpan').css('background-color', 'pink');
-}
- 

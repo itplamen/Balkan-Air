@@ -42,7 +42,7 @@
             </div>
 
             <div id="ContinueBookingDiv">
-                <asp:Button ID="ContinueBookingBtn" Text="SAVE" runat="server" ClientIDMode="Static" OnClick="ContinueBookingBtn_Click" />
+                <asp:Button ID="SaveSeatBtn" Text="SAVE" runat="server" ClientIDMode="Static" OnClick="SaveSeatBtn_Click" />
             </div>
         </div>
 

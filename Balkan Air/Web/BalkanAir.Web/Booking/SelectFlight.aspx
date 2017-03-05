@@ -224,7 +224,9 @@
 
         <div id="ContinueBookingDiv">
             <asp:Button ID="ContinueBookingBtn" Text="Continue" runat="server" ClientIDMode="Static"
-                OnClick="OnContinueBookingBtnClicked" Enabled="false" />
+                OnClick="OnContinueBookingBtnClicked" CausesValidation="true" UseSubmitBehavior="true"  />
+            
+            <span id="BookingHelperSpan"></span>
         </div>
 
         <asp:Panel ID="SignInRequiredPanel" Visible="false" CssClass="warningPanel" runat="server" ClientIDMode="Static">
@@ -239,25 +241,25 @@
     </asp:Panel>
 
     <script>
-        $('.oneWayRouteSlider').slick({
-            infinite: false,
-            centerMode: true,
-            focusOnSelect: true,
-            variableWidth: true,
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            initialSlide: parseInt($('#OneWayRouteInitialSlideIndexHiddenField').val(), 10)
-        });
+        $(function () {
+            showSlickSlider($('.oneWayRouteSlider'), $('#OneWayRouteInitialSlideIndexHiddenField'));
+            
+            if ($('#ReturnRouteFlightsPanel').is(':visible')) {
+                showSlickSlider($('.returnRouteSlider'), $('#ReturnRouteInitialSlideIndexHiddenField'));
+            }
 
-        $('.returnRouteSlider').slick({
-            infinite: false,
-            centerMode: true,
-            focusOnSelect: true,
-            variableWidth: true,
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            initialSlide: parseInt($('#ReturnRouteInitialSlideIndexHiddenField').val(), 10)
-        });
+            function showSlickSlider($sliderClass, $initialSlideIndexHiddenField) {
+                $sliderClass.slick({
+                    infinite: false,
+                    centerMode: true,
+                    focusOnSelect: true,
+                    variableWidth: true,
+                    slidesToShow: 5,
+                    slidesToScroll: 1,
+                    initialSlide: parseInt($initialSlideIndexHiddenField.val(), 10)
+                });
+            }
+        }());
 
     </script>
 </asp:Content>

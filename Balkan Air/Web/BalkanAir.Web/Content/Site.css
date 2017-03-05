@@ -545,10 +545,6 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
     font-weight: bold;
 }
 
-#SelectedFlightDate {
-    border: 3px solid black;
-}
-
 .flightDetailsDiv {
     display: inline-block;
 }
@@ -721,10 +717,11 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
     margin: 5px 20px 5px 20px;
 }
 
-#ContinueBookingBtn, #ShowReturnFlgihtInfoButton {
+#ContinueBookingBtn, #ShowReturnFlgihtInfoButton, #SaveSeatBtn {
     height: 50px;
     width: 130px;
     margin-top: 20px;
+    border: none;
     border-radius: 5px;
     font-size: 16px;
     font-weight: bold;
@@ -758,14 +755,27 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
     font-weight: bold;
 }
 
-#SignInToContinueBtn, #ContinueBookingBtn, #PayAndBookNowBtn, #GoToProfileBtn {
+#SignInToContinueBtn, #ContinueBookingBtn:not(:disabled), #SaveSeatBtn, 
+#PayAndBookNowBtn, #GoToProfileBtn {
     border: none;
     background-color: #C5027C;
     color: #fff;
 }
 
-#SignInToContinueBtn:hover, #ContinueBookingBtn:hover, #PayAndBookNowBtn:hover, #GoToProfileBtn:hover {
+#SignInToContinueBtn:hover, #ContinueBookingBtn:hover:not(:disabled), #SaveSeatBtn:hover, 
+#PayAndBookNowBtn:hover, #GoToProfileBtn:hover {
     opacity: 0.7;
+}
+
+#ContinueBookingBtn:disabled {  
+    background-color: #DBDBDB;
+    color: #999999;
+}
+ 
+#BookingHelperSpan {
+    color: #999999;
+    font-weight: bold;
+    margin-left: 20px;
 }
 
 #CreateNewAccountToContinueBtn, #SignInToContinueBtn, #GoToProfileBtn {

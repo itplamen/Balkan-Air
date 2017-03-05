@@ -76,12 +76,12 @@ namespace BalkanAir.Web.Booking {
         protected global::System.Web.UI.WebControls.HiddenField SelectedSeatHiddenField;
         
         /// <summary>
-        /// ContinueBookingBtn control.
+        /// SaveSeatBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ContinueBookingBtn;
+        protected global::System.Web.UI.WebControls.Button SaveSeatBtn;
     }
 }

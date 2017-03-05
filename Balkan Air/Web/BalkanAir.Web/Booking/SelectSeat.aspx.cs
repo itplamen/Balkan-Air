@@ -88,7 +88,7 @@
             }
         }
 
-        protected void ContinueBookingBtn_Click(object sender, EventArgs e)
+        protected void SaveSeatBtn_Click(object sender, EventArgs e)
         {
             this.Booking.Row = int.Parse(this.SelectedRowHiddenField.Value);
             this.Booking.SeatNumber = this.SelectedSeatHiddenField.Value;
