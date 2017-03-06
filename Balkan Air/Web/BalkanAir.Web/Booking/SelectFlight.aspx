@@ -239,8 +239,12 @@
                 PostBackUrl="~/Account/Login.aspx" />
         </asp:Panel>
     </asp:Panel>
+</asp:Content>
 
-    <script>
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
+    <script src="../Scripts/Booking/select-flight.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
         $(function () {
             showSlickSlider($('.oneWayRouteSlider'), $('#OneWayRouteInitialSlideIndexHiddenField'));
             
@@ -260,6 +264,5 @@
                 });
             }
         }());
-
     </script>
 </asp:Content>

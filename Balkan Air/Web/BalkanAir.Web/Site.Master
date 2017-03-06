@@ -64,11 +64,7 @@
                 <asp:ScriptReference Name="WebFormsBundle" />
                 <asp:ScriptReference Path="~/Scripts/jquery-ui.min.js" />
                 <asp:ScriptReference Path="~/Content/slick/slick.js" />
-                <asp:ScriptReference Path="~/Scripts/home-page.js" />
-                <asp:ScriptReference Path="~/Scripts/Booking/select-flight.js" />
-                <asp:ScriptReference Path="~/Scripts/Booking/extras.js" />
-                <asp:ScriptReference Path="~/Scripts/Booking/select-seat.js" />
-                <asp:ScriptReference Path="~/Scripts/Account/profile.js" />
+                <%--<asp:ScriptReference Path="~/Scripts/home-page.js" />--%>
                 <asp:ScriptReference Path="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" />
                 <asp:ScriptReference Path="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js" />
                 <%--Site Scripts--%>
@@ -143,7 +139,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a runat="server" href="~/Account/Manage" title="Manage your account">
-                                        <img class="profileIcon" src="<%= this.GetProfileIconSrc() %>" alt="Profile Icon"  />
+                                        <img class="profileIcon" src="<%= this.GetProfileIconSrc() %>" alt="Profile Icon" />
                                         <%: this.GetUserInfo() %>
                                     </a>
                                 </li>
@@ -169,8 +165,7 @@
                                                                 <%#: Item.Notification.Content %>
                                                                 <br />
                                                             </span>
-                                                            <small class="notificationDateSmall">
-                                                                Received on <%#: Item.DateReceived.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %>
+                                                            <small class="notificationDateSmall">Received on <%#: Item.DateReceived.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %>
                                                                 at <%#: Item.DateReceived.ToString("HH:mm", CultureInfo.InvariantCulture) %>
 
                                                                 <span>
@@ -232,11 +227,13 @@
                     </li>
                     <li class="data" id="FlightDateAndPrice">
                         <asp:Literal ID="DateTimeLiteral" runat="server" />
-                        <span class="priceSpan"><asp:Literal ID="FlightPriceLiteral" runat="server" /></span>
+                        <span class="priceSpan">
+                            <asp:Literal ID="FlightPriceLiteral" runat="server" /></span>
                     </li>
                     <li class="data">
                         <asp:Literal ID="TravelClassLiteral" runat="server" />
-                        <span class="priceSpan"><asp:Literal ID="TravelClassPrice" runat="server" /></span>
+                        <span class="priceSpan">
+                            <asp:Literal ID="TravelClassPrice" runat="server" /></span>
                     </li>
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header">Passenger</li>
@@ -299,12 +296,15 @@
     </form>
 
     <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" ShowStartingNode="false" />
-    
-    <script>
+
+    <asp:ContentPlaceHolder ID="JavaScriptContent" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <script type="text/javascript">
         $(function () {
             $("#ItineraryInfoPanel").draggable();
         });
- 
+
         $(document).ready(function () {
             var $siteMapPathBreadcrump = $('#SiteMapPathBreadcrump');
 

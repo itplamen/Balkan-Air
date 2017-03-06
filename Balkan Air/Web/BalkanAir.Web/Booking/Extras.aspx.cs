@@ -227,7 +227,6 @@
 
             selectedSeatLabel.Visible = isVisible;
             selectedSeatImg.Visible = isVisible;
-            this.ContinueBookingBtn.Visible = isVisible;
         }
 
         private void SetOneWayRouteSeatSelectionToSession(bool isSeatSelectionForOneWayRoute = true)

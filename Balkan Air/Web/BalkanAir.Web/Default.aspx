@@ -166,8 +166,11 @@
             </asp:Repeater>
         </div>
     </div>
+</asp:Content>
 
-    <script>
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
+    <script src="Scripts/home-page.js" type="text/javascript"></script>
+    <script type="text/javascript">
         $('#SearchBtn').click(areAllFieldsFilled);
 
         function areAllFieldsFilled() {

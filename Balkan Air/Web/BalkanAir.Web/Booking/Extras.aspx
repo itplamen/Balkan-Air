@@ -182,8 +182,14 @@
     <div id="ContinueBookingDiv">
         <asp:Button ID="ContinueBookingBtn" Text="Continue" runat="server" ClientIDMode="Static"
             OnClick="OnContinueBookingBtnClicked" />
+
+        <span id="BookingHelperSpan"></span>
     </div>
 
     <asp:HiddenField ID="OneWayRouteNumberOfCheckedInBagsHiddenField" ClientIDMode="Static" runat="server" />
     <asp:HiddenField ID="ReturnRouteNumberOfCheckedInBagsHiddenField" ClientIDMode="Static" runat="server" />
+</asp:Content>
+
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
+    <script src="../Scripts/Booking/extras.js" type="text/javascript"></script>
 </asp:Content>

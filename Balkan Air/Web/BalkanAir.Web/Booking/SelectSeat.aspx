@@ -64,3 +64,7 @@
         </div>
     </div>
 </asp:Content>
+
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
+    <script src="../Scripts/Booking/select-seat.js" type="text/javascript"></script>
+</asp:Content>

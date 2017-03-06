@@ -155,6 +155,6 @@
     </script>
 </asp:Content>
 
-
-
-
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
+    <script src="../Scripts/Account/profile.js" type="text/javascript"></script>
+</asp:Content>
