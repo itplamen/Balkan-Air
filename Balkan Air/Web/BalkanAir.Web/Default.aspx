@@ -46,7 +46,7 @@
             <asp:TextBox ID="DepartureDateTextBox" runat="server" placeholder="Date" ClientIDMode="Static" />
         </div>
 
-        <ajaxToolkit:CalendarExtender ID="DepartureCalendar" runat="server"
+        <ajaxToolkit:CalendarExtender ID="DepartureCalendar" ClientIDMode="Static" runat="server"
             TargetControlID="DepartureDateTextBox"
             CssClass="CalendarExtender"
             Format="d MMM yyyy"
@@ -170,42 +170,4 @@
 
 <asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
     <script src="Scripts/home-page.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $('#SearchBtn').click(areAllFieldsFilled);
-
-        function areAllFieldsFilled() {
-            var $departureAirportTextBox = $('#DepartureAirportTextBox'),
-                $destinationAirportTextBox = $('#DestinationAirportTextBox'),
-                $departureDateTextBox = $('#DepartureDateTextBox'),
-                $arrivalDateTextBox = $('#ArrivalDateTextBox');
-
-            if ($departureAirportTextBox.val() !== '' && $destinationAirportTextBox.val() !== '' &&
-                $departureDateTextBox.val() !== '' && $arrivalDateTextBox.val() !== '') {
-
-                $departureAirportTextBox.parent().css('border-color', '#E0E0E0');
-                $destinationAirportTextBox.parent().css('border-color', '#E0E0E0');
-                $departureDateTextBox.parent().css('border-color', '#E0E0E0');
-                $arrivalDateTextBox.parent().css('border-color', '#E0E0E0');
-
-                return true;
-            }
-            else if ($departureAirportTextBox.val() === '') {
-                $departureAirportTextBox.parent().css('border-color', 'red');
-            }
-            else if ($destinationAirportTextBox.val() === '') {
-                $destinationAirportTextBox.parent().css('border-color', 'red');
-            }
-            else if ($departureDateTextBox.val() === '') {
-                $departureDateTextBox.parent().css('border-color', 'red');
-            }
-            else if ($arrivalDateTextBox.val() === '') {
-                $arrivalDateTextBox.parent().css('border-color', 'red');
-            }
-            else {
-                throw new Error('Invalid field ID!')
-            }
-
-            return false;
-        }
-    </script>
 </asp:Content>

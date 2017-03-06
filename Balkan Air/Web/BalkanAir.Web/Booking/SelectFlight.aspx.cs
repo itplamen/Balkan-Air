@@ -196,9 +196,12 @@
 
             if (this.Page.IsValid)
             {
+                int legInstanceId = int.Parse(this.OneWayRouteSelectedFlightIdHiddenField.Value);
+
                 Booking oneWayRouteBooking = new Booking()
                 {
-                    LegInstanceId = int.Parse(this.OneWayRouteSelectedFlightIdHiddenField.Value),
+                    LegInstanceId = legInstanceId,
+                    LegInstance = this.LegInstancesServices.GetLegInstance(legInstanceId),
                     TravelClassId = int.Parse(this.OneWayRouteSelectedTravelClassIdHiddenField.Value)
                 };
 
@@ -206,9 +209,12 @@
 
                 if (this.ReturnRouteFlightsPanel.Visible)
                 {
+                    legInstanceId = int.Parse(this.OneWayRouteSelectedFlightIdHiddenField.Value);
+
                     Booking returnRouteBooking = new Booking()
                     {
-                        LegInstanceId = int.Parse(this.ReturnRouteSelectedFlightIdHiddenField.Value),
+                        LegInstanceId = legInstanceId,
+                        LegInstance = this.LegInstancesServices.GetLegInstance(legInstanceId),
                         TravelClassId = int.Parse(this.ReturnRouteSelectedTravelClassIdHiddenField.Value)
                     };
 

@@ -53,7 +53,7 @@
 
             <div>
                 <asp:RadioButton ID="OneWayRouteSmallCabinBag" ClientIDMode="Static" CssClass="cabinBag" 
-                    GroupName="one-way-route-cabin-bag" value="42 × 32 × 25 CM" data-price="0" runat="server" 
+                    GroupName="one-way-route-cabin-bag" value="42 × 32 × 25 CM" runat="server" 
                     Text="Small<span>Free</span>" />
                 <br />
                 <small>42 × 32 × 25 CM</small>
@@ -61,7 +61,7 @@
 
             <div>
                 <asp:RadioButton ID="OneWayRouteLargeCabinBag" ClientIDMode="Static" CssClass="cabinBag" 
-                    GroupName="one-way-route-cabin-bag" value="56 × 45 × 25 CM" data-price="14" runat="server" 
+                    GroupName="one-way-route-cabin-bag" value="56 × 45 × 25 CM" runat="server" 
                     Text="Large<span>&#8364; 14.00</span>" />
                 <br />
                 <small>56 × 45 × 25 CM</small>

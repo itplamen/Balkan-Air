@@ -96,7 +96,7 @@
                 <br />
 
                 <div id="TotalPriceDiv">
-                    <asp:Label ID="TotalPriceLabel" Text="text" runat="server" />
+                    <asp:Label ID="TotalPriceLabel" runat="server" />
                 </div>
 
                 <div id="SaveCreditCardDiv">

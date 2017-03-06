@@ -12,6 +12,11 @@
 });
 
 $(document).ready(function () {
+    var BORDER_COLOR_INITIAL = 'rgb(224, 224, 224)',
+        BORDER_COLOR_ON_CLICK = 'rgb(197, 2, 124)',
+        $departureDateTextBox = $('#DepartureDateTextBox'),
+        $arrivalDateTextBox = $('#ArrivalDateTextBox');
+
     $('.homeSlider').slick({
         arrows: false,
         dots: true,
@@ -28,6 +33,12 @@ $(document).ready(function () {
     $('#DepartureFancyTextBox').click(showDepartureAirports);
     $('#DestinationFancyTextBox').click(showDestinationAirports);
 
+    $departureDateTextBox
+        .add($arrivalDateTextBox)
+        .click(function () {
+            $(this).parent().css('border-color', BORDER_COLOR_ON_CLICK);
+        });
+
     $(document).mouseup(function (e) {
         var $departureAirportsDiv = $("#DepartureAirportsDiv"),
             $destinationAirportsDiv = $('#DestinationAirportsDiv');
@@ -37,7 +48,7 @@ $(document).ready(function () {
             $departureAirportsDiv.has(e.target).length !== 0) {
 
             $departureAirportsDiv.hide();
-            $('#DepartureFancyTextBox').css('border', '3px solid #E0E0E0');
+            $('#DepartureFancyTextBox').css('border-color', BORDER_COLOR_INITIAL);
         }
 
         // If the target of the click isn't the container nor a descendant of the container.
@@ -45,17 +56,68 @@ $(document).ready(function () {
             $destinationAirportsDiv.has(e.target).length !== 0) {
 
             $destinationAirportsDiv.hide();
-            $('#DestinationFancyTextBox').css('border', '3px solid #E0E0E0');
+            $('#DestinationFancyTextBox').css('border-color', BORDER_COLOR_INITIAL);
+        }
+
+        if ($departureDateTextBox.parent().css('border-color') == BORDER_COLOR_ON_CLICK) {
+            $departureDateTextBox.parent().css('border-color', BORDER_COLOR_INITIAL);
+        }
+
+        if ($arrivalDateTextBox.parent().css('border-color') == BORDER_COLOR_ON_CLICK) {
+            $arrivalDateTextBox.parent().css('border-color', BORDER_COLOR_INITIAL);
         }
     });
+
+    $('#SearchBtn').click(areAllFieldsFilled);
+
+    
 });
 
 function showDepartureAirports() {
-    $(this).css('border', '3px solid #C5027C');
+    $(this).css('border-color', 'rgb(197, 2, 124)');
     $('#DepartureAirportsDiv').show();
 }
 
 function showDestinationAirports() {
-    $(this).css('border', '3px solid #C5027C');
+    $(this).css('border-color', 'rgb(197, 2, 124)');
     $('#DestinationAirportsDiv').show();
+}
+
+function areAllFieldsFilled() {
+    var $departureAirportTextBox = $('#DepartureAirportTextBox'),
+        $destinationAirportTextBox = $('#DestinationAirportTextBox'),
+        $departureDateTextBox = $('#DepartureDateTextBox'),
+        $arrivalDateTextBox = $('#ArrivalDateTextBox');
+
+    if ($departureAirportTextBox.val() !== '' && $destinationAirportTextBox.val() !== '' &&
+        $departureDateTextBox.val() !== '' ) {
+
+        $departureAirportTextBox.parent().css('border-color', '#E0E0E0');
+        $destinationAirportTextBox.parent().css('border-color', '#E0E0E0');
+        $departureDateTextBox.parent().css('border-color', '#E0E0E0');
+
+        if ($arrivalDateTextBox.is('input:text') && $arrivalDateTextBox.val() === '') {
+            $arrivalDateTextBox.parent().css('border-color', 'red');
+            return false;
+        }
+        else {
+            $arrivalDateTextBox.parent().css('border-color', '#E0E0E0');
+        }
+        
+        return true;
+    }
+    else if ($departureAirportTextBox.val() === '') {
+        $departureAirportTextBox.parent().css('border-color', 'red');
+    }
+    else if ($destinationAirportTextBox.val() === '') {
+        $destinationAirportTextBox.parent().css('border-color', 'red');
+    }
+    else if ($departureDateTextBox.val() === '') {
+        $departureDateTextBox.parent().css('border-color', 'red');
+    }
+    else {
+        throw new Error('Invalid field ID!')
+    }
+
+    return false;
 }

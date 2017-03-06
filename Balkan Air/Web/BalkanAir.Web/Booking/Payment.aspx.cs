@@ -17,8 +17,6 @@ namespace BalkanAir.Web.Booking
 
     public partial class Payment : Page
     {
-        private Booking booking;
-
         [Inject]
         public ICountriesServices CountriesServices { get; set; }
 
@@ -40,24 +38,44 @@ namespace BalkanAir.Web.Booking
         [Inject]
         public ISeatsServices SeatsServices { get; set; }
 
+        private Booking OneWayRouteBooking
+        {
+            get
+            {
+                return (Booking)this.Session[NativeConstants.ONE_WAY_ROUTE_BOOKING];
+            }
+        }
+
+        private Booking ReturnRouteBooking
+        {
+            get
+            {
+                return (Booking)this.Session[NativeConstants.RETURN_ROUTE_BOOKING];
+            }
+        }
+
         private ApplicationUserManager Manager
         {
-            get { return Context.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+            get
+            {
+                return Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
         }
 
         private User CurrentUser
         {
-            get { return this.Manager.FindById(this.Context.User.Identity.GetUserId()); }
+            get
+            {
+                return this.Manager.FindById(this.Context.User.Identity.GetUserId());
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.booking = (Booking)this.Session[Common.NativeConstants.ONE_WAY_ROUTE_BOOKING];
-
             if (!this.Page.IsPostBack)
             {
-                if (this.booking == null ||/* this.booking.FlightId == 0 ||*/ this.booking.TravelClassId == 0 || 
-                    this.booking.Row == 0 || string.IsNullOrEmpty(booking.SeatNumber))
+                if (!this.IsBookingValid(this.OneWayRouteBooking) || this.ReturnRouteBooking != null && 
+                    !this.IsBookingValid(this.ReturnRouteBooking))
                 {
                     this.Response.Redirect(Pages.HOME);
                 }
@@ -74,27 +92,31 @@ namespace BalkanAir.Web.Booking
                     this.PaymentDetailsPanel.Visible = true;
                     this.FillPaymentDetailsFields();
                     this.BindCardDateExpirationDropDowns();
-                    this.TotalPriceLabel.Text = "Total price: &#8364; " + this.booking.TotalPrice;
+
+                    decimal totalPrice = 0;
+
+                    this.CalculateTotalPrice(this.OneWayRouteBooking);
+                    totalPrice += this.OneWayRouteBooking.TotalPrice;
+                        
+                    if (this.ReturnRouteBooking != null)
+                    {
+                        this.CalculateTotalPrice(this.ReturnRouteBooking);
+                        totalPrice += this.ReturnRouteBooking.TotalPrice;
+                    }
+
+                    this.TotalPriceLabel.Text = "Total price: &#8364; " + totalPrice;
                 }
             }
         }
 
         protected void PayAndBookNowBtn_Click(object sender, EventArgs e)
         {
-            this.booking.DateOfBooking = DateTime.Now;
-            this.booking.UserId = this.CurrentUser.Id;
-            this.BookingsServices.AddBooking(this.booking);
+            this.BookNow(this.OneWayRouteBooking);
 
-            var seat = new Seat()
+            if (this.ReturnRouteBooking != null)
             {
-                Row = booking.Row,
-                Number = booking.SeatNumber,
-                TravelClassId = booking.TravelClassId,
-                IsReserved = true,
-                LegInstanceId = booking.LegInstanceId
-            };
-
-            this.SeatsServices.AddSeat(seat);
+                this.BookNow(this.ReturnRouteBooking);
+            }
 
             var passenger = this.CurrentUser.UserSettings.FirstName + " " + this.CurrentUser.UserSettings.LastName;
             this.SendFlightConfirmationMail(passenger);
@@ -112,32 +134,16 @@ namespace BalkanAir.Web.Booking
             this.Response.AddHeader("REFRESH", "5;URL=" + VirtualPathUtility.ToAbsolute(Pages.ACCOUNT));
         }
 
-        private void BindCardDateExpirationDropDowns()
+        private bool IsBookingValid(Booking booking)
         {
-            int startingMonth = 1;
-            int numberOfMonths = 12;
-            this.MonthsPaymentDropDown.DataSource = Enumerable.Range(startingMonth, numberOfMonths);
-            this.MonthsPaymentDropDown.DataBind();
+            if (this.OneWayRouteBooking == null || this.OneWayRouteBooking.LegInstanceId == 0 ||
+                    this.OneWayRouteBooking.TravelClassId == 0 || this.OneWayRouteBooking.Row == 0 ||
+                    string.IsNullOrEmpty(this.OneWayRouteBooking.SeatNumber))
+            {
+                return false;
+            }
 
-            int startingYear = DateTime.Now.Year;
-            int numberOfYears = 10;
-            this.YearsPaymentDropDown.DataSource = Enumerable.Range(startingYear, numberOfYears);
-            this.YearsPaymentDropDown.DataBind();
-        }
-
-        private void FillPaymentDetailsFields()
-        {
-            this.FirstNamePaymentTextBox.Text = this.CurrentUser.UserSettings.FirstName;
-            this.LastNamePaymentTextBox.Text = this.CurrentUser.UserSettings.LastName;
-            this.EmailPaymentTextBox.Text = this.CurrentUser.Email;
-            this.AddressPaymentTextBox.Text = this.CurrentUser.UserSettings.FullAddress;
-            this.PhoneNumberPaymentTextBox.Text = this.CurrentUser.PhoneNumber;
-
-            int countryId = this.CountriesServices.GetAll()
-                    .FirstOrDefault(c => c.Name.ToLower() == this.CurrentUser.UserSettings.Nationality.ToLower())
-                    .Id;
-
-            this.NationalityDropDownList.SelectedValue = countryId.ToString();
+            return true;
         }
 
         private void BindNationalityDropDownList()
@@ -159,19 +165,66 @@ namespace BalkanAir.Web.Booking
             }
         }
 
-        private void SaveCreditCard()
+        private void FillPaymentDetailsFields()
         {
-            CreditCard newCreditCard = new CreditCard()
+            this.FirstNamePaymentTextBox.Text = this.CurrentUser.UserSettings.FirstName;
+            this.LastNamePaymentTextBox.Text = this.CurrentUser.UserSettings.LastName;
+            this.EmailPaymentTextBox.Text = this.CurrentUser.Email;
+            this.AddressPaymentTextBox.Text = this.CurrentUser.UserSettings.FullAddress;
+            this.PhoneNumberPaymentTextBox.Text = this.CurrentUser.PhoneNumber;
+
+            int countryId = this.CountriesServices.GetAll()
+                    .FirstOrDefault(c => c.Name.ToLower() == this.CurrentUser.UserSettings.Nationality.ToLower())
+                    .Id;
+
+            this.NationalityDropDownList.SelectedValue = countryId.ToString();
+        }
+
+        private void BindCardDateExpirationDropDowns()
+        {
+            int startingMonth = 1;
+            int numberOfMonths = 12;
+            this.MonthsPaymentDropDown.DataSource = Enumerable.Range(startingMonth, numberOfMonths);
+            this.MonthsPaymentDropDown.DataBind();
+
+            int startingYear = DateTime.Now.Year;
+            int numberOfYears = 10;
+            this.YearsPaymentDropDown.DataSource = Enumerable.Range(startingYear, numberOfYears);
+            this.YearsPaymentDropDown.DataBind();
+        }
+
+        private void CalculateTotalPrice(Booking booking)
+        {
+            var travelClassPrice = booking.LegInstance.Aircraft.TravelClasses
+                .FirstOrDefault(t => t.Id == booking.TravelClassId)
+                .Price;
+
+            decimal totalPrice = booking.LegInstance.Price + travelClassPrice;
+
+            foreach (var bag in booking.Baggage)
             {
-                Number = this.CardNumberPaymentTextBox.Text,
-                NameOnCard = this.NameOnCardPaymentTextBox.Text,
-                ExpirationMonth = int.Parse(this.MonthsPaymentDropDown.SelectedItem.Value),
-                ExpirationYear = int.Parse(this.YearsPaymentDropDown.SelectedItem.Value),
-                CvvNumber = this.CvvPaymentTextBox.Text,
-                UserId = this.CurrentUser.Id
+                totalPrice += bag.Price;
+            }
+
+            booking.TotalPrice = totalPrice;
+        }
+
+        private void BookNow(Booking booking)
+        {
+            booking.DateOfBooking = DateTime.Now;
+            booking.UserId = this.CurrentUser.Id;
+            this.BookingsServices.AddBooking(booking);
+
+            var seat = new Seat()
+            {
+                Row = booking.Row,
+                Number = booking.SeatNumber,
+                TravelClassId = booking.TravelClassId,
+                IsReserved = true,
+                LegInstanceId = booking.LegInstanceId
             };
 
-            this.CreditCardsServices.Create(newCreditCard);
+            this.SeatsServices.AddSeat(seat);
         }
 
         private void SendFlightConfirmationMail(string passenger)
@@ -193,6 +246,21 @@ namespace BalkanAir.Web.Booking
             {
                 this.UserNotificationsServices.SendNotification(flightBookedNotification.Id, userId);
             }
+        }
+
+        private void SaveCreditCard()
+        {
+            CreditCard newCreditCard = new CreditCard()
+            {
+                Number = this.CardNumberPaymentTextBox.Text,
+                NameOnCard = this.NameOnCardPaymentTextBox.Text,
+                ExpirationMonth = int.Parse(this.MonthsPaymentDropDown.SelectedItem.Value),
+                ExpirationYear = int.Parse(this.YearsPaymentDropDown.SelectedItem.Value),
+                CvvNumber = this.CvvPaymentTextBox.Text,
+                UserId = this.CurrentUser.Id
+            };
+
+            this.CreditCardsServices.Create(newCreditCard);
         }
     }
 }

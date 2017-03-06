@@ -173,39 +173,39 @@
         private void AddAttributesToRadioButtons()
         {
             // Checked-in baggage
-            this.OneWayRouteNoneCheckedInBag.InputAttributes.Add(NativeConstants.BAG_PRICE_ATTR, 
+            this.OneWayRouteNoneCheckedInBag.Attributes.Add(NativeConstants.BAG_PRICE_ATTR, 
                 NativeConstants.NONE_CHECKED_IN_BAG_PRICE.ToString());
 
-            this.OneWayRoute23KgCheckedInBag.InputAttributes.Add(NativeConstants.BAG_PRICE_ATTR,
+            this.OneWayRoute23KgCheckedInBag.Attributes.Add(NativeConstants.BAG_PRICE_ATTR,
                 NativeConstants.MEDIUM_CHECKED_IN_BAG_PRICE.ToString());
 
-            this.OneWayRoute32KgCheckedInBag.InputAttributes.Add(NativeConstants.BAG_PRICE_ATTR,
+            this.OneWayRoute32KgCheckedInBag.Attributes.Add(NativeConstants.BAG_PRICE_ATTR,
                 NativeConstants.LARGE_CHECKED_IN_BAG_PRICE.ToString());
 
             // Cabin baggage
-            this.OneWayRouteSmallCabinBag.InputAttributes.Add(NativeConstants.BAG_PRICE_ATTR,
+            this.OneWayRouteSmallCabinBag.Attributes.Add(NativeConstants.BAG_PRICE_ATTR,
                 NativeConstants.SMALL_CABIN_BAG_PRICE.ToString());
 
-            this.OneWayRouteLargeCabinBag.InputAttributes.Add(NativeConstants.BAG_PRICE_ATTR,
+            this.OneWayRouteLargeCabinBag.Attributes.Add(NativeConstants.BAG_PRICE_ATTR,
                 NativeConstants.LARGE_CABIN_BAG_PRICE.ToString());
 
             if (this.ReturnRouteBooking != null)
             {
                 // Checked-in baggage
-                this.ReturnRouteNoneCheckedInBag.InputAttributes.Add(NativeConstants.BAG_PRICE_ATTR,
+                this.ReturnRouteNoneCheckedInBag.Attributes.Add(NativeConstants.BAG_PRICE_ATTR,
                     NativeConstants.NONE_CHECKED_IN_BAG_PRICE.ToString());
 
-                this.ReturnRoute23KgCheckedInBag.InputAttributes.Add(NativeConstants.BAG_PRICE_ATTR,
+                this.ReturnRoute23KgCheckedInBag.Attributes.Add(NativeConstants.BAG_PRICE_ATTR,
                     NativeConstants.MEDIUM_CHECKED_IN_BAG_PRICE.ToString());
 
-                this.ReturnRoute32KgCheckedInBag.InputAttributes.Add(NativeConstants.BAG_PRICE_ATTR,
+                this.ReturnRoute32KgCheckedInBag.Attributes.Add(NativeConstants.BAG_PRICE_ATTR,
                     NativeConstants.LARGE_CHECKED_IN_BAG_PRICE.ToString());
 
                 // Cabin baggage
-                this.ReturnRouteSmallCabinBag.InputAttributes.Add(NativeConstants.BAG_PRICE_ATTR, 
+                this.ReturnRouteSmallCabinBag.Attributes.Add(NativeConstants.BAG_PRICE_ATTR, 
                     NativeConstants.SMALL_CABIN_BAG_PRICE.ToString());
 
-                this.ReturnRouteLargeCabinBag.InputAttributes.Add(NativeConstants.BAG_PRICE_ATTR,
+                this.ReturnRouteLargeCabinBag.Attributes.Add(NativeConstants.BAG_PRICE_ATTR,
                     NativeConstants.LARGE_CABIN_BAG_PRICE.ToString());
             }
         }
@@ -377,6 +377,9 @@
 
             for (int i = 1; i <= numberOfBags; i++)
             {
+                var aaa = int.Parse(selectedCheckedInBag.Attributes[NativeConstants.BAG_KG_ATTR]);
+                var ddd = decimal.Parse(selectedCheckedInBag.Attributes[NativeConstants.BAG_PRICE_ATTR]);
+
                 booking.Baggage.Add(new Baggage()
                 {
                     Type = BaggageType.CheckedIn,
