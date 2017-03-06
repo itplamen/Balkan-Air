@@ -87,7 +87,7 @@
                 <asp:Button ID="OneWayRouteSelectSeatBtn" ClientIDMode="Static" UseSubmitBehavior="false"
                     ValidateRequestMode="Disabled" OnClick="OneWayRouteSelectSeatBtn_Click" runat="server" />
                 <asp:Image ImageUrl="~/Content/Images/selected-seat-icon.png" ID="OneWayRouteSelectedSeatImage" runat="server" />
-                <asp:Label ID="OneWayRouteSelectedSeatLabel" runat="server" />
+                <asp:Label ID="OneWayRouteSelectedSeat" ClientIDMode="Static" runat="server" />
             </div>
         </asp:Panel>
     </asp:Panel>
@@ -174,7 +174,7 @@
                 <asp:Button ID="ReturnRouteSelectSeatBtn" ClientIDMode="Static" UseSubmitBehavior="false"
                     ValidateRequestMode="Disabled" OnClick="ReturnRouteSelectSeatBtn_Click" runat="server" />
                 <asp:Image ImageUrl="~/Content/Images/selected-seat-icon.png" ID="ReturnRouteSelectedSeatImage" runat="server" />
-                <asp:Label ID="ReturnRouteSelectedSeatLabel" runat="server" />
+                <asp:Label ID="ReturnRouteSelectedSeat" ClientIDMode="Static" runat="server" />
             </div>
         </asp:Panel>
     </asp:Panel>

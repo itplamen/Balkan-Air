@@ -139,13 +139,13 @@ namespace BalkanAir.Web.Booking {
         protected global::System.Web.UI.WebControls.Image OneWayRouteSelectedSeatImage;
         
         /// <summary>
-        /// OneWayRouteSelectedSeatLabel control.
+        /// OneWayRouteSelectedSeat control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label OneWayRouteSelectedSeatLabel;
+        protected global::System.Web.UI.WebControls.Label OneWayRouteSelectedSeat;
         
         /// <summary>
         /// ReturnRouteExtrasPanel control.
@@ -274,13 +274,13 @@ namespace BalkanAir.Web.Booking {
         protected global::System.Web.UI.WebControls.Image ReturnRouteSelectedSeatImage;
         
         /// <summary>
-        /// ReturnRouteSelectedSeatLabel control.
+        /// ReturnRouteSelectedSeat control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ReturnRouteSelectedSeatLabel;
+        protected global::System.Web.UI.WebControls.Label ReturnRouteSelectedSeat;
         
         /// <summary>
         /// ContinueBookingBtn control.

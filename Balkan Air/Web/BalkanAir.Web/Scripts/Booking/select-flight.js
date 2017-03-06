@@ -120,13 +120,12 @@
 
         if (!$oneWayRouteSelectedTravelClass.prop('checked')) {
             setContinueBookingDivBox(OUTBOUND_FLIGHT_NOT_SELECTED, true);
-            return;
         }
         else {
             if ($('#ReturnRouteFlightsPanel').is(':visible')) {
                 $returnRouteSelectedTravelClass = $('.returnRouteTravelClasses input[type="radio"]:checked');
 
-                if (!$returnRouteSelectedTravelClass.is(':radio')) {
+                if (!$returnRouteSelectedTravelClass.prop('checked')) {
                     setContinueBookingDivBox(RETURN_FLIGHT_NOT_SELECTED, true);
                     return;
                 }                

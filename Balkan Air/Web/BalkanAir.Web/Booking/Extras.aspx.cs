@@ -63,21 +63,21 @@
                 }
                 else
                 {
-                    this.ManageSeatSelection(this.OneWayRouteBooking, this.OneWayRouteSelectedSeatLabel,
+                    this.ManageSeatSelection(this.OneWayRouteBooking, this.OneWayRouteSelectedSeat,
                         this.OneWayRouteSelectedSeatImage, this.OneWayRouteSelectSeatBtn);
 
                     if (this.ReturnRouteBooking != null)
                     {
                         this.ReturnRouteExtrasPanel.Visible = true;
 
-                        this.ManageSeatSelection(this.ReturnRouteBooking, this.ReturnRouteSelectedSeatLabel,
+                        this.ManageSeatSelection(this.ReturnRouteBooking, this.ReturnRouteSelectedSeat,
                             this.ReturnRouteSelectedSeatImage, this.ReturnRouteSelectSeatBtn);
                     }
                 }
             }
         }
 
-        protected void Page_PreRender(Object sender, EventArgs e)
+        protected void Page_PreRender(object sender, EventArgs e)
         {
             if (!this.Page.IsPostBack)
             {

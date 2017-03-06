@@ -25,6 +25,7 @@
         $returnRouteSelectedCheckedInBag;
 
     setCheckedInBagsInfo();
+    manageContinueBookingDivBox();
 
     $('#OneWayRouteNoneCheckedInBag').change(function () {
         setCheckedInBagsInfo();
@@ -45,6 +46,10 @@
         .change(function () {
             setCheckedInBagsInfo();
         });
+
+    $('#OneWayRouteExtrasPanel input[type="radio"]')
+        .add('#ReturnRouteExtrasPanel input[type="radio"]')
+        .change(manageContinueBookingDivBox);
 
     $('#OneWayRouteAddBagBtn')
         .click(function () {
@@ -200,5 +205,70 @@
             $bagsNumber.html(numberOfBags - 1);
             $bagsNumberHidden.val(numberOfBags - 1);
         }
+    }
+
+    // Manage continue booking button and span helper.
+    function manageContinueBookingDivBox() {
+        var OUTBOUND_FLIGHT_CHECK = "OUTBOUND",
+            RETURN_FLIGHT_CHECK = "RETURN",
+            CONTINUE_BOOKING = 'EVERYTHING LOOKS FINE. PLEASE CONTINUE!',
+            areExtrasForOutboundFlightValid = false,
+            areExtrasForReturnFlightValid = false,
+            $oneWayRouteCheckedInBag = $('#OneWayRouteCheckedInBaggagePanel input[type="radio"]:checked'),
+            $oneWayRouteCabinBag = $('#OneWayRouteCabinBaggagePanel input[type="radio"]:checked'),
+            $oneWayRouteSelectedSeat = $('#OneWayRouteSelectedSeat'),
+            $returnRouteCheckedInBag,
+            $returnRouteCabinBag,
+            $returnRouteSelectedSeat;
+
+        areExtrasForOutboundFlightValid = areBagsAndSeatSelected($oneWayRouteCheckedInBag,
+            $oneWayRouteCabinBag, $oneWayRouteSelectedSeat, OUTBOUND_FLIGHT_CHECK);
+
+        if (!areExtrasForOutboundFlightValid) {
+            return;
+        }
+
+        if ($('#ReturnRouteExtrasPanel').is(':visible')) {
+            $returnRouteCheckedInBag = $('#ReturnRouteCheckedInBaggagePanel input[type="radio"]:checked');
+            $returnRouteCabinBag = $('#ReturnRouteCabinBaggagePanel input[type="radio"]:checked'),
+            $returnRouteSelectedSeat = $('#ReturnRouteSelectedSeat'),
+
+            areExtrasForReturnFlightValid = areBagsAndSeatSelected($returnRouteCheckedInBag,
+                $returnRouteCabinBag, $returnRouteSelectedSeat, RETURN_FLIGHT_CHECK);
+
+            if (!areExtrasForReturnFlightValid) {
+                return;
+            }
+        }
+
+        setContinueBookingDivBox(CONTINUE_BOOKING, false);
+    }
+
+    function areBagsAndSeatSelected($checkedInBag, $cabinBag, $selectedSeatSpan, typeOfFlight) {
+        var CHECKED_IN_BAG_NOT_SELECTED = 'PLEASE SELECT A CHECKED-IN BAGGAGE FOR ' + typeOfFlight + ' FLIGHT!',
+            CABIN_BAG_NOT_SELECTED = 'PLEASE SELECT A CABIN BAGGAGE FOR ' + typeOfFlight + ' FLIGHT!',
+            SEAT_NOT_SELECTED = 'PLEASE SELECT A SEAT FOR ' + typeOfFlight + ' FLIGHT!';
+
+        if (!$checkedInBag.prop('checked')) {
+            setContinueBookingDivBox(CHECKED_IN_BAG_NOT_SELECTED, true);
+        }
+        else if (!$cabinBag.prop('checked')) {
+            setContinueBookingDivBox(CABIN_BAG_NOT_SELECTED, true);
+        }
+        else if (!$selectedSeatSpan.is('span') || $selectedSeatSpan.html() === '') {
+            // The check if "$selectedSeatSpan is span" is required in case if the span is hidden
+            // from code behind (in this scenario, $selectedSeatSpan will select "document", not "span"). 
+            setContinueBookingDivBox(SEAT_NOT_SELECTED, true);
+        }
+        else {
+            return true;
+        }
+
+        return false;
+    }
+
+    function setContinueBookingDivBox(helperText, isButtonDisabled) {
+        $('#BookingHelperSpan').html(helperText);
+        $('#ContinueBookingBtn').prop('disabled', isButtonDisabled);
     }
 });
