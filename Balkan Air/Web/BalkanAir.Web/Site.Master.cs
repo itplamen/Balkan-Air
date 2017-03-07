@@ -154,22 +154,7 @@
                 }
                 else
                 {
-                    // Clear session from itinerary info.
-
-                    if (this.Session[NativeConstants.DEPARTURE_AIRPORT_ID] != null)
-                    {
-                        this.Session.Remove(NativeConstants.DEPARTURE_AIRPORT_ID);
-                    }
-
-                    if (this.Session[NativeConstants.DESTINATION_AIRPORT_ID] != null)
-                    {
-                        this.Session.Remove(NativeConstants.DESTINATION_AIRPORT_ID);
-                    }
-
-                    if (this.Session[NativeConstants.ONE_WAY_ROUTE_BOOKING] != null)
-                    {
-                        this.Session.Remove(NativeConstants.ONE_WAY_ROUTE_BOOKING);
-                    }
+                    this.ClearSessionFromItineraryInfo();
                 }
             }
         }
@@ -332,6 +317,24 @@
                 literalInfo.Text = string.Format("{0} equipment included!", baggageType.ToString());
                 literalPrice.Text = "&#8364; " + string.Format("{0:0.00}", equipment.Price);
                 totalCost += equipment.Price;
+            }
+        }
+
+        private void ClearSessionFromItineraryInfo()
+        {
+            if (this.Session[NativeConstants.DEPARTURE_AIRPORT_ID] != null)
+            {
+                this.Session.Remove(NativeConstants.DEPARTURE_AIRPORT_ID);
+            }
+
+            if (this.Session[NativeConstants.DESTINATION_AIRPORT_ID] != null)
+            {
+                this.Session.Remove(NativeConstants.DESTINATION_AIRPORT_ID);
+            }
+
+            if (this.Session[NativeConstants.ONE_WAY_ROUTE_BOOKING] != null)
+            {
+                this.Session.Remove(NativeConstants.ONE_WAY_ROUTE_BOOKING);
             }
         }
     }

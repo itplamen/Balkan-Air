@@ -212,8 +212,9 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
 
-            <asp:Panel ID="ItineraryInfoPanel" Visible="false" CssClass="dropdown" ClientIDMode="Static" runat="server">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+            <asp:Panel ID="ItineraryInfoPanel" Visible="false" CssClass="dropdown" title=""
+                ClientIDMode="Static" runat="server">
+                <button id="DropdownBtn" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                     <span id="TotalCostTextSpan">Total Cost:
                         <asp:Literal ID="TotalCostLiteral" runat="server" /></span>
                     <span class="caret"></span>
@@ -302,7 +303,24 @@
 
     <script type="text/javascript">
         $(function () {
-            $("#ItineraryInfoPanel").draggable();
+            var $itineraryInfoPanel = $('#ItineraryInfoPanel');
+
+            $itineraryInfoPanel.draggable({
+                cancel: false
+            });
+
+            $('#DropdownBtn').tooltip({
+                position: { my: 'center top-100', at: 'center top' },
+                track: true,
+                content: function () {
+                    if (!$itineraryInfoPanel.hasClass('open')) {
+                        return 'Open the dropdown to see all details about your itinerary!<br/>The dropdown is draggable!';
+                    }
+                    else {
+                        return 'Close the dropdown to hide all details about your itinerary!<br/>The dropdown is draggable!';
+                    }
+                }
+            });
         });
 
         $(document).ready(function () {
