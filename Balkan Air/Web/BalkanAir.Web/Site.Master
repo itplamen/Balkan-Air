@@ -220,58 +220,129 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li class="dropdown-header">Flight
-                        <asp:Literal ID="FlightNuberLiteral" runat="server" />
+                    <li class="dropdown-header">FLIGHTS</li>
+                    <li>
+                        <ul>
+                            <li class="data bold-data">
+                                <asp:Literal ID="OutboundFlightNumberLiteral" runat="server" /><br />
+                                <asp:Literal ID="OutboundFlightAirports" runat="server" />
+                            </li>
+                            <li class="data flightDateAndPrice">
+                                <asp:Literal ID="OutboundFlightDateTimeLiteral" runat="server" />
+                                <span class="priceSpan">
+                                    <asp:Literal ID="OutboundFlightPriceLiteral" runat="server" />
+                                </span>
+                            </li>
+                            <li class="data">
+                                <asp:Literal ID="OutboundFlightTravelClassLiteral" runat="server" />
+                                <span class="priceSpan">
+                                    <asp:Literal ID="OutboundFlightTravelClassPrice" runat="server" />
+                                </span>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="data">
-                        <asp:Literal ID="FromAirportToAirportLiteral" runat="server" />
-                    </li>
-                    <li class="data" id="FlightDateAndPrice">
-                        <asp:Literal ID="DateTimeLiteral" runat="server" />
-                        <span class="priceSpan">
-                            <asp:Literal ID="FlightPriceLiteral" runat="server" /></span>
-                    </li>
-                    <li class="data">
-                        <asp:Literal ID="TravelClassLiteral" runat="server" />
-                        <span class="priceSpan">
-                            <asp:Literal ID="TravelClassPrice" runat="server" /></span>
+                    <li runat="server" id="ReturnFlightInfo">
+                        <ul>
+                            <li role="separator" class="divider divider-small"></li>
+                            <li class="data bold-data">
+                                <asp:Literal ID="ReturnFlightNumberLiteral" runat="server" /><br />
+                                <asp:Literal ID="ReturnFlightAirports" runat="server" />
+                            </li>
+                            <li class="data flightDateAndPrice">
+                                <asp:Literal ID="ReturnFlightDateTimeLiteral" runat="server" />
+                                <span class="priceSpan">
+                                    <asp:Literal ID="ReturnFlightPriceLiteral" runat="server" /></span>
+                            </li>
+                            <li class="data">
+                                <asp:Literal ID="ReturnFlightTravelClassLiteral" runat="server" />
+                                <span class="priceSpan">
+                                    <asp:Literal ID="ReturnFlightTravelClassPrice" runat="server" /></span>
+                            </li>
+                        </ul>
                     </li>
                     <li role="separator" class="divider"></li>
-                    <li class="dropdown-header">Passenger</li>
+                    <li class="dropdown-header">PASSENGER</li>
                     <li class="data">
                         <asp:Literal ID="PassengerNameLiteral" runat="server" />
                     </li>
                     <li role="separator" class="divider"></li>
-                    <li class="dropdown-header">Seat</li>
+                    <li class="dropdown-header">SEATS</li>
                     <li class="data">
-                        <asp:Literal ID="SeatLiteral" runat="server" />
+                        <asp:Literal ID="OutboundFlightSeatLiteral" runat="server" />
+                    </li>
+                    <li runat="server" id="ReturnFlightSeatInfo" class="data">
+                        <asp:Literal ID="ReturnFlightSeatLiteral" runat="server" />
                     </li>
                     <li role="separator" class="divider"></li>
-                    <li class="dropdown-header">Bags</li>
-                    <li class="data">
-                        <asp:Literal ID="CabinBagLiteral" runat="server" />
-                        <span class="priceSpan">
-                            <asp:Literal ID="CabinBagPriceLiteral" runat="server" /></span>
+                    <li class="dropdown-header">BAGS</li>
+                    <li>
+                        <ul>
+                            <li class="data">
+                                <asp:Literal ID="OutboundFlightCabinBagLiteral" runat="server" />
+                                <span class="priceSpan">
+                                    <asp:Literal ID="OutboundFlightCabinBagPriceLiteral" runat="server" />
+                                </span>
+                            </li>
+                            <li class="data">
+                                <asp:Literal ID="OutboundFlightCheckedIdBagsLiteral" runat="server" />
+                                <span class="priceSpan">
+                                    <asp:Literal ID="OutboundFlightCheckedIdBagsPricesLiteral" runat="server" />
+                                </span>
+                            </li>
+                            <li class="data">
+                                <asp:Literal ID="OutboundFlightBabyEquipmentLiteral" runat="server" />
+                                <span class="priceSpan">
+                                    <asp:Literal ID="OutboundFlightBabyEquipmentPriceLiteral" runat="server" />
+                                </span>
+                            </li>
+                            <li class="data">
+                                <asp:Literal ID="OutboundFlightSportsEquipmentLiteral" runat="server" />
+                                <span class="priceSpan">
+                                    <asp:Literal ID="OutboundFlightSportsEquipmentPriceLiteral" runat="server" />
+                                </span>
+                            </li>
+                            <li class="data">
+                                <asp:Literal ID="OutboundFlightMusicEquipmentLiteral" runat="server" />
+                                <span class="priceSpan">
+                                    <asp:Literal ID="OutboundFlightMusicEquipmentPriceLiteral" runat="server" />
+                                </span>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="data">
-                        <asp:Literal ID="CheckedIdBagsLiteral" runat="server" />
-                        <span class="priceSpan">
-                            <asp:Literal ID="CheckedIdBagsPricesLiteral" runat="server" /></span>
-                    </li>
-                    <li class="data">
-                        <asp:Literal ID="BabyEquipmentLiteral" runat="server" />
-                        <span class="priceSpan">
-                            <asp:Literal ID="BabyEquipmentPriceLiteral" runat="server" /></span>
-                    </li>
-                    <li class="data">
-                        <asp:Literal ID="SportsEquipmentLiteral" runat="server" />
-                        <span class="priceSpan">
-                            <asp:Literal ID="SportsEquipmentPriceLiteral" runat="server" /></span>
-                    </li>
-                    <li class="data">
-                        <asp:Literal ID="MusicEquipmentLiteral" runat="server" />
-                        <span class="priceSpan">
-                            <asp:Literal ID="MusicEquipmentPriceLiteral" runat="server" /></span>
+                    <li runat="server" id="ReturnFlightBagsInfo">
+                        <ul>
+                            <li role="separator" class="divider divider-small"></li>
+                            <li class="data">
+                                <asp:Literal ID="ReturnFlightCabinBagLiteral" runat="server" />
+                                <span class="priceSpan">
+                                    <asp:Literal ID="ReturnFlightCabinBagPriceLiteral" runat="server" />
+                                </span>
+                            </li>
+                            <li class="data">
+                                <asp:Literal ID="ReturnFlightCheckedIdBagsLiteral" runat="server" />
+                                <span class="priceSpan">
+                                    <asp:Literal ID="ReturnFlightCheckedIdBagsPricesLiteral" runat="server" />
+                                </span>
+                            </li>
+                            <li class="data">
+                                <asp:Literal ID="ReturnFlightBabyEquipmentLiteral" runat="server" />
+                                <span class="priceSpan">
+                                    <asp:Literal ID="ReturnFlightBabyEquipmentPriceLiteral" runat="server" />
+                                </span>
+                            </li>
+                            <li class="data">
+                                <asp:Literal ID="ReturnFlightSportsEquipmentLiteral" runat="server" />
+                                <span class="priceSpan">
+                                    <asp:Literal ID="ReturnFlightSportsEquipmentPriceLiteral" runat="server" />
+                                </span>
+                            </li>
+                            <li class="data">
+                                <asp:Literal ID="ReturnFlightMusicEquipmentLiteral" runat="server" />
+                                <span class="priceSpan">
+                                    <asp:Literal ID="ReturnFlightMusicEquipmentPriceLiteral" runat="server" />
+                                </span>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </asp:Panel>

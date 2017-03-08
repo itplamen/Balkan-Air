@@ -85,58 +85,121 @@ namespace BalkanAir.Web {
         protected global::System.Web.UI.WebControls.Literal TotalCostLiteral;
         
         /// <summary>
-        /// FlightNuberLiteral control.
+        /// OutboundFlightNumberLiteral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal FlightNuberLiteral;
+        protected global::System.Web.UI.WebControls.Literal OutboundFlightNumberLiteral;
         
         /// <summary>
-        /// FromAirportToAirportLiteral control.
+        /// OutboundFlightAirports control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal FromAirportToAirportLiteral;
+        protected global::System.Web.UI.WebControls.Literal OutboundFlightAirports;
         
         /// <summary>
-        /// DateTimeLiteral control.
+        /// OutboundFlightDateTimeLiteral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal DateTimeLiteral;
+        protected global::System.Web.UI.WebControls.Literal OutboundFlightDateTimeLiteral;
         
         /// <summary>
-        /// FlightPriceLiteral control.
+        /// OutboundFlightPriceLiteral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal FlightPriceLiteral;
+        protected global::System.Web.UI.WebControls.Literal OutboundFlightPriceLiteral;
         
         /// <summary>
-        /// TravelClassLiteral control.
+        /// OutboundFlightTravelClassLiteral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal TravelClassLiteral;
+        protected global::System.Web.UI.WebControls.Literal OutboundFlightTravelClassLiteral;
         
         /// <summary>
-        /// TravelClassPrice control.
+        /// OutboundFlightTravelClassPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal TravelClassPrice;
+        protected global::System.Web.UI.WebControls.Literal OutboundFlightTravelClassPrice;
+        
+        /// <summary>
+        /// ReturnFlightInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ReturnFlightInfo;
+        
+        /// <summary>
+        /// ReturnFlightNumberLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ReturnFlightNumberLiteral;
+        
+        /// <summary>
+        /// ReturnFlightAirports control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ReturnFlightAirports;
+        
+        /// <summary>
+        /// ReturnFlightDateTimeLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ReturnFlightDateTimeLiteral;
+        
+        /// <summary>
+        /// ReturnFlightPriceLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ReturnFlightPriceLiteral;
+        
+        /// <summary>
+        /// ReturnFlightTravelClassLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ReturnFlightTravelClassLiteral;
+        
+        /// <summary>
+        /// ReturnFlightTravelClassPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ReturnFlightTravelClassPrice;
         
         /// <summary>
         /// PassengerNameLiteral control.
@@ -148,103 +211,220 @@ namespace BalkanAir.Web {
         protected global::System.Web.UI.WebControls.Literal PassengerNameLiteral;
         
         /// <summary>
-        /// SeatLiteral control.
+        /// OutboundFlightSeatLiteral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal SeatLiteral;
+        protected global::System.Web.UI.WebControls.Literal OutboundFlightSeatLiteral;
         
         /// <summary>
-        /// CabinBagLiteral control.
+        /// ReturnFlightSeatInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal CabinBagLiteral;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ReturnFlightSeatInfo;
         
         /// <summary>
-        /// CabinBagPriceLiteral control.
+        /// ReturnFlightSeatLiteral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal CabinBagPriceLiteral;
+        protected global::System.Web.UI.WebControls.Literal ReturnFlightSeatLiteral;
         
         /// <summary>
-        /// CheckedIdBagsLiteral control.
+        /// OutboundFlightCabinBagLiteral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal CheckedIdBagsLiteral;
+        protected global::System.Web.UI.WebControls.Literal OutboundFlightCabinBagLiteral;
         
         /// <summary>
-        /// CheckedIdBagsPricesLiteral control.
+        /// OutboundFlightCabinBagPriceLiteral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal CheckedIdBagsPricesLiteral;
+        protected global::System.Web.UI.WebControls.Literal OutboundFlightCabinBagPriceLiteral;
         
         /// <summary>
-        /// BabyEquipmentLiteral control.
+        /// OutboundFlightCheckedIdBagsLiteral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal BabyEquipmentLiteral;
+        protected global::System.Web.UI.WebControls.Literal OutboundFlightCheckedIdBagsLiteral;
         
         /// <summary>
-        /// BabyEquipmentPriceLiteral control.
+        /// OutboundFlightCheckedIdBagsPricesLiteral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal BabyEquipmentPriceLiteral;
+        protected global::System.Web.UI.WebControls.Literal OutboundFlightCheckedIdBagsPricesLiteral;
         
         /// <summary>
-        /// SportsEquipmentLiteral control.
+        /// OutboundFlightBabyEquipmentLiteral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal SportsEquipmentLiteral;
+        protected global::System.Web.UI.WebControls.Literal OutboundFlightBabyEquipmentLiteral;
         
         /// <summary>
-        /// SportsEquipmentPriceLiteral control.
+        /// OutboundFlightBabyEquipmentPriceLiteral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal SportsEquipmentPriceLiteral;
+        protected global::System.Web.UI.WebControls.Literal OutboundFlightBabyEquipmentPriceLiteral;
         
         /// <summary>
-        /// MusicEquipmentLiteral control.
+        /// OutboundFlightSportsEquipmentLiteral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal MusicEquipmentLiteral;
+        protected global::System.Web.UI.WebControls.Literal OutboundFlightSportsEquipmentLiteral;
         
         /// <summary>
-        /// MusicEquipmentPriceLiteral control.
+        /// OutboundFlightSportsEquipmentPriceLiteral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal MusicEquipmentPriceLiteral;
+        protected global::System.Web.UI.WebControls.Literal OutboundFlightSportsEquipmentPriceLiteral;
+        
+        /// <summary>
+        /// OutboundFlightMusicEquipmentLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal OutboundFlightMusicEquipmentLiteral;
+        
+        /// <summary>
+        /// OutboundFlightMusicEquipmentPriceLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal OutboundFlightMusicEquipmentPriceLiteral;
+        
+        /// <summary>
+        /// ReturnFlightBagsInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ReturnFlightBagsInfo;
+        
+        /// <summary>
+        /// ReturnFlightCabinBagLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ReturnFlightCabinBagLiteral;
+        
+        /// <summary>
+        /// ReturnFlightCabinBagPriceLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ReturnFlightCabinBagPriceLiteral;
+        
+        /// <summary>
+        /// ReturnFlightCheckedIdBagsLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ReturnFlightCheckedIdBagsLiteral;
+        
+        /// <summary>
+        /// ReturnFlightCheckedIdBagsPricesLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ReturnFlightCheckedIdBagsPricesLiteral;
+        
+        /// <summary>
+        /// ReturnFlightBabyEquipmentLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ReturnFlightBabyEquipmentLiteral;
+        
+        /// <summary>
+        /// ReturnFlightBabyEquipmentPriceLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ReturnFlightBabyEquipmentPriceLiteral;
+        
+        /// <summary>
+        /// ReturnFlightSportsEquipmentLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ReturnFlightSportsEquipmentLiteral;
+        
+        /// <summary>
+        /// ReturnFlightSportsEquipmentPriceLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ReturnFlightSportsEquipmentPriceLiteral;
+        
+        /// <summary>
+        /// ReturnFlightMusicEquipmentLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ReturnFlightMusicEquipmentLiteral;
+        
+        /// <summary>
+        /// ReturnFlightMusicEquipmentPriceLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ReturnFlightMusicEquipmentPriceLiteral;
         
         /// <summary>
         /// SelectedUnreadNotificationIdHiddenField control.

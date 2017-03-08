@@ -430,7 +430,7 @@ input[type="tel"], input[type="select"], input[type="time"] {
 
 .latestArticle .content, .latestArticle .date {
     font-size: 12px; 
-}
+} 
 
 #ItineraryInfoPanel {
    position: fixed;
@@ -442,22 +442,44 @@ input[type="tel"], input[type="select"], input[type="time"] {
     width: 350px;
 }
 
+#ItineraryInfoPanel li.divider-small {
+    width: 300px;
+    position: relative;
+    left: 22px;
+} 
+
 #ItineraryInfoPanel li.dropdown-header {
     font-size: 18px;
+    color: #000;
 }
 
 #ItineraryInfoPanel li.data {
     position: relative;
-    left: 20px;
+    left: 20px; 
+}
+
+#ItineraryInfoPanel li.bold-data {
+    font-weight: bold;
 }
 
 #ItineraryInfoPanel .priceSpan {
     float: right;
     position: relative;
-    right: 40px;
+    right: 5px;
 }
 
-#FlightDateAndPrice {
+#ItineraryInfoPanel .dropdown-menu {
+    max-height: 500px;
+    overflow-x: hidden;
+}
+
+#ItineraryInfoPanel .dropdown-menu li ul {
+    position: relative;
+    left: -40px;
+    list-style: none;
+}
+
+.flightDateAndPrice {
     margin-bottom: 10px; 
 }
 

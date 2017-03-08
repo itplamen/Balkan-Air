@@ -55,6 +55,22 @@
             get { return this.Manager.FindById(this.Context.User.Identity.GetUserId()); }
         }
 
+        private Data.Models.Booking OneWayRouteBooking
+        {
+            get
+            {
+                return (Data.Models.Booking) this.Session[NativeConstants.ONE_WAY_ROUTE_BOOKING];
+            }
+        }
+
+        private Data.Models.Booking ReturnRouteBooking
+        {
+            get
+            {
+                return (Data.Models.Booking)this.Session[NativeConstants.RETURN_ROUTE_BOOKING];
+            }
+        }
+
         protected int NumberOfUnreadNotifications
         {
             get { return this.User.NumberOfUnreadNotifications; }
@@ -208,30 +224,60 @@
 
             decimal totalCost = 0;
 
-            if (this.Session[Common.NativeConstants.ONE_WAY_ROUTE_BOOKING] != null)
+            if (this.OneWayRouteBooking != null)
             {
-                var booking = this.Session[Common.NativeConstants.ONE_WAY_ROUTE_BOOKING] as Data.Models.Booking;
-                this.SetSelectedFlightToItinerary(booking, ref totalCost);
+                this.SetItineraryForBooking(this.OneWayRouteBooking, ref totalCost, this.OutboundFlightSeatLiteral,
+                this.OutboundFlightNumberLiteral, this.OutboundFlightDateTimeLiteral, this.OutboundFlightPriceLiteral,
+                this.OutboundFlightTravelClassPrice, this.OutboundFlightTravelClassLiteral);
 
-                if (booking.Row > 0 && !string.IsNullOrEmpty(booking.SeatNumber))
+                if (this.OneWayRouteBooking.Baggage.Count > 0)
                 {
-                    this.SeatLiteral.Text = booking.Row.ToString() + booking.SeatNumber;
-                }
+                    this.SetCabinBagToItinerary(this.OneWayRouteBooking, ref totalCost, this.OutboundFlightCabinBagLiteral,
+                    this.OutboundFlightCabinBagPriceLiteral);
 
-                if (booking.Baggage.Count > 0)
+                    this.SetCheckedInBagsToItinerary(this.OneWayRouteBooking, ref totalCost, this.OutboundFlightCheckedIdBagsLiteral,
+                        this.OutboundFlightCheckedIdBagsPricesLiteral);
+
+                    this.SetBagEquipmentsToItinerary(this.OneWayRouteBooking, ref totalCost, BaggageType.BabyEquipment,
+                        this.OutboundFlightBabyEquipmentLiteral, this.OutboundFlightBabyEquipmentPriceLiteral);
+
+                    this.SetBagEquipmentsToItinerary(this.OneWayRouteBooking, ref totalCost, BaggageType.SportsEquipment,
+                        this.OutboundFlightSportsEquipmentLiteral, this.OutboundFlightSportsEquipmentPriceLiteral);
+
+                    this.SetBagEquipmentsToItinerary(this.OneWayRouteBooking, ref totalCost, BaggageType.MusicEquipment,
+                        this.OutboundFlightMusicEquipmentLiteral, this.OutboundFlightMusicEquipmentPriceLiteral);
+                }
+            }
+
+            if (this.ReturnRouteBooking != null)
+            {
+                this.SetItineraryForBooking(this.ReturnRouteBooking, ref totalCost, this.ReturnFlightSeatLiteral,
+                this.ReturnFlightNumberLiteral, this.ReturnFlightDateTimeLiteral, this.ReturnFlightPriceLiteral,
+                this.ReturnFlightTravelClassPrice, this.ReturnFlightTravelClassLiteral);
+
+                if (this.ReturnRouteBooking.Baggage.Count > 0)
                 {
-                    this.SetCabinBagToItinerary(booking, ref totalCost);
-                    this.SetCheckedInBagsToItinerary(booking, ref totalCost);
+                    this.SetCabinBagToItinerary(this.ReturnRouteBooking, ref totalCost, this.ReturnFlightCabinBagLiteral,
+                    this.ReturnFlightCabinBagPriceLiteral);
 
-                    this.SetBagEquipmentsToItinerary(booking, ref totalCost, BaggageType.BabyEquipment,
-                        this.BabyEquipmentLiteral, this.BabyEquipmentPriceLiteral);
+                    this.SetCheckedInBagsToItinerary(this.ReturnRouteBooking, ref totalCost, this.ReturnFlightCheckedIdBagsLiteral,
+                        this.ReturnFlightCheckedIdBagsPricesLiteral);
 
-                    this.SetBagEquipmentsToItinerary(booking, ref totalCost, BaggageType.SportsEquipment,
-                        this.SportsEquipmentLiteral, this.SportsEquipmentPriceLiteral);
+                    this.SetBagEquipmentsToItinerary(this.ReturnRouteBooking, ref totalCost, BaggageType.BabyEquipment,
+                        this.ReturnFlightBabyEquipmentLiteral, this.ReturnFlightBabyEquipmentPriceLiteral);
 
-                    this.SetBagEquipmentsToItinerary(booking, ref totalCost, BaggageType.MusicEquipment,
-                        this.MusicEquipmentLiteral, this.MusicEquipmentPriceLiteral);
+                    this.SetBagEquipmentsToItinerary(this.ReturnRouteBooking, ref totalCost, BaggageType.SportsEquipment,
+                        this.ReturnFlightSportsEquipmentLiteral, this.ReturnFlightSportsEquipmentPriceLiteral);
+
+                    this.SetBagEquipmentsToItinerary(this.ReturnRouteBooking, ref totalCost, BaggageType.MusicEquipment,
+                        this.ReturnFlightMusicEquipmentLiteral, this.ReturnFlightMusicEquipmentPriceLiteral);
                 }
+            }
+            else
+            {
+                this.ReturnFlightInfo.Visible = false;
+                this.ReturnFlightSeatInfo.Visible = false;
+                this.ReturnFlightBagsInfo.Visible = false;
             }
 
             if (this.User != null && !string.IsNullOrEmpty(this.User.UserSettings.FirstName) &&
@@ -244,63 +290,87 @@
             this.ItineraryInfoPanel.Visible = true;
         }
 
+        private void SetItineraryForBooking (Data.Models.Booking booking, ref decimal totalCost, Literal seatLiteral,
+            Literal flightNumberLiteral, Literal dateTimeLiteral, Literal flightPriceLiteral, Literal travelClassPriceLiteral, 
+            Literal travelClassLiteral)
+        {
+            this.SetSelectedFlightToItinerary(booking, ref totalCost, flightNumberLiteral, dateTimeLiteral,
+                    flightPriceLiteral, travelClassPriceLiteral, travelClassLiteral);
+
+            if (booking.Row > 0 && !string.IsNullOrEmpty(booking.SeatNumber))
+            {
+                seatLiteral.Text = booking.Row.ToString() + booking.SeatNumber;
+            }
+        }
+
         private void SetAirprotsInfoToItinerary()
         {
-            int departureAirportId = int.Parse(this.Session[Common.NativeConstants.DEPARTURE_AIRPORT_ID].ToString());
-            int destinationAirportId = int.Parse(this.Session[Common.NativeConstants.DESTINATION_AIRPORT_ID].ToString());
+            int departureAirportId = int.Parse(this.Session[NativeConstants.DEPARTURE_AIRPORT_ID].ToString());
+            int destinationAirportId = int.Parse(this.Session[NativeConstants.DESTINATION_AIRPORT_ID].ToString());
 
             var departureAirport = this.AirportsServices.GetAirport(departureAirportId);
             var destinationAirport = this.AirportsServices.GetAirport(destinationAirportId);
 
-            this.FromAirportToAirportLiteral.Text = departureAirport.Name + " (" + departureAirport.Abbreviation + ") to " +
+            this.OutboundFlightAirports.Text = departureAirport.Name + " (" + departureAirport.Abbreviation + ") to " +
                 destinationAirport.Name + " (" + destinationAirport.Abbreviation + ")";
+
+            if (this.ReturnRouteBooking != null)
+            {
+                this.ReturnFlightAirports.Text = destinationAirport.Name + " (" + destinationAirport.Abbreviation + ") to" +
+                    departureAirport.Name + " (" + departureAirport.Abbreviation + ")";
+            }
         }
 
-        private void SetSelectedFlightToItinerary(Data.Models.Booking booking, ref decimal totalCost)
+        private void SetSelectedFlightToItinerary(Data.Models.Booking booking, ref decimal totalCost, Literal flightNumberLiteral, 
+            Literal dateTimeLiteral, Literal flightPriceLiteral, Literal travelClassPriceLiteral, Literal travelClassLiteral)
         {
             LegInstance selectedLegInstance = this.LegInstancesServices.GetLegInstance(booking.LegInstanceId);
 
-            this.FlightNuberLiteral.Text = selectedLegInstance.FlightLeg.Flight.Number;
-            this.DateTimeLiteral.Text = selectedLegInstance.DepartureDateTime.ToString("MMMM dd, yyyy hh:mm", CultureInfo.InvariantCulture);
+            flightNumberLiteral.Text = "Flight № " + selectedLegInstance.FlightLeg.Flight.Number;
+            dateTimeLiteral.Text = selectedLegInstance.DepartureDateTime.ToString("MMMM dd, yyyy hh:mm", CultureInfo.InvariantCulture);
 
             decimal flightPrice = this.FaresServices.GetAll()
                 .Where(f => f.RouteId == selectedLegInstance.FlightLeg.RouteId)
                 .FirstOrDefault()
                 .Price;
-            this.FlightPriceLiteral.Text = "&#8364; " + string.Format("{0:0.00}", flightPrice);
 
+            flightPriceLiteral.Text = "&#8364; " + string.Format("{0:0.00}", flightPrice);
 
             decimal travelClassPrice = this.TravelClassesServices.GetTravelClass(booking.TravelClassId).Price;
-            this.TravelClassPrice.Text = "&#8364; " + string.Format("{0:0.00}", travelClassPrice);
+            travelClassPriceLiteral.Text = "&#8364; " + string.Format("{0:0.00}", travelClassPrice);
             totalCost += flightPrice + travelClassPrice;
 
-            this.TravelClassLiteral.Text = this.TravelClassesServices.GetTravelClass(booking.TravelClassId).Type.ToString() + " class";
+            travelClassLiteral.Text = this.TravelClassesServices.GetTravelClass(booking.TravelClassId).Type.ToString() + " class";
         }
 
-        private void SetCabinBagToItinerary(Data.Models.Booking booking, ref decimal totalCost)
+        private void SetCabinBagToItinerary(Data.Models.Booking booking, ref decimal totalCost, Literal cabinBagLiteral, 
+            Literal cabinBabPriceLiteral)
         {
             var cabinBag = booking.Baggage
                        .FirstOrDefault(b => b.Type == BaggageType.Cabin);
 
             if (cabinBag != null)
             {
-                this.CabinBagLiteral.Text = "One cabin bag " + cabinBag.Size;
-                this.CabinBagPriceLiteral.Text = "&#8364; " + string.Format("{0:0.00}", cabinBag.Price);
+                cabinBagLiteral.Text = "One cabin bag " + cabinBag.Size;
+                cabinBabPriceLiteral.Text = "&#8364; " + string.Format("{0:0.00}", cabinBag.Price);
                 totalCost += cabinBag.Price;
             }
         }
 
-        private void SetCheckedInBagsToItinerary(Data.Models.Booking booking, ref decimal totalCost)
+        private void SetCheckedInBagsToItinerary(Data.Models.Booking booking, ref decimal totalCost, 
+            Literal checkedInBagsLiteral, Literal checkedInBagsPricesLiteral)
         {
             var checkedInBags = booking.Baggage
-                        .Where(b => b.Type == BaggageType.CheckedIn)
-                        .ToList();
+                .Where(b => b.Type == BaggageType.CheckedIn)
+                .ToList();
 
             if (checkedInBags.Count > 0)
             {
-                this.CheckedIdBagsLiteral.Text = "Checked in bags " + checkedInBags.Count + " x " + checkedInBags[0].MaxKilograms + " kg. ";
+                checkedInBagsLiteral.Text = "Checked in bags " + checkedInBags.Count + " x " + 
+                    checkedInBags[0].MaxKilograms + " kg. ";
+
                 decimal checkedInBagsPriceSum = checkedInBags.Sum(b => b.Price);
-                this.CheckedIdBagsPricesLiteral.Text = "&#8364; " + string.Format("{0:0.00}", checkedInBagsPriceSum);
+                checkedInBagsPricesLiteral.Text = "&#8364; " + string.Format("{0:0.00}", checkedInBagsPriceSum);
                 totalCost += checkedInBagsPriceSum;
             }
         }
@@ -310,14 +380,22 @@
             Literal literalInfo, Literal literalPrice)
         {
             var equipment = booking.Baggage
-                        .FirstOrDefault(b => b.Type == baggageType);
+                .FirstOrDefault(b => b.Type == baggageType);
 
             if (equipment != null)
             {
-                literalInfo.Text = string.Format("{0} equipment included!", baggageType.ToString());
+                literalInfo.Text = string.Format("{0} equipment included!", this.GetBagEquiptmentAsString(baggageType));
                 literalPrice.Text = "&#8364; " + string.Format("{0:0.00}", equipment.Price);
                 totalCost += equipment.Price;
             }
+        }
+
+        private string GetBagEquiptmentAsString(BaggageType type)
+        {
+            string typeAsString = type.ToString();
+            int index = typeAsString.ToLower().IndexOf("equipment");
+
+            return typeAsString.Substring(0, index);
         }
 
         private void ClearSessionFromItineraryInfo()
