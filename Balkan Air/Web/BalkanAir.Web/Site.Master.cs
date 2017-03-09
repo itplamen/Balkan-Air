@@ -170,7 +170,7 @@
                 }
                 else
                 {
-                    this.ClearSessionFromItineraryInfo();
+                    this.Session.Clear();
                 }
             }
         }
@@ -391,24 +391,6 @@
             int index = typeAsString.ToLower().IndexOf("equipment");
 
             return typeAsString.Substring(0, index);
-        }
-
-        private void ClearSessionFromItineraryInfo()
-        {
-            if (this.Session[NativeConstants.DEPARTURE_AIRPORT_ID] != null)
-            {
-                this.Session.Remove(NativeConstants.DEPARTURE_AIRPORT_ID);
-            }
-
-            if (this.Session[NativeConstants.DESTINATION_AIRPORT_ID] != null)
-            {
-                this.Session.Remove(NativeConstants.DESTINATION_AIRPORT_ID);
-            }
-
-            if (this.Session[NativeConstants.ONE_WAY_ROUTE_BOOKING] != null)
-            {
-                this.Session.Remove(NativeConstants.ONE_WAY_ROUTE_BOOKING);
-            }
         }
     }
 }
