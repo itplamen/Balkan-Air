@@ -14,7 +14,7 @@
     using Services.Common;
 
     [EnableCors("*", "*", "*")]
-    [Authorize(Roles = ValidationConstants.ADMINISTRATOR_ROLE)]
+    [Authorize(Roles = UserRolesConstants.ADMINISTRATOR_ROLE)]
     public class CategoriesController : ApiController
     {
         private readonly ICategoriesServices categoriesServices;

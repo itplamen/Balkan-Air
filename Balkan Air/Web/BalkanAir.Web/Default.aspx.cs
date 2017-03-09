@@ -173,10 +173,10 @@
         private void SearchFlight(string departureAirportId, string destinationAirportId,
             DateTime? departureDate, DateTime? arrivalDate)
         {
-            this.Session.Add(NativeConstants.DEPARTURE_AIRPORT_ID, departureAirportId);
-            this.Session.Add(NativeConstants.DESTINATION_AIRPORT_ID, destinationAirportId);
-            this.Session.Add(NativeConstants.DEPARTURE_DATE, departureDate);
-            this.Session.Add(NativeConstants.ARRIVAL_DATE, arrivalDate);
+            this.Session.Add(Constants.DEPARTURE_AIRPORT_ID, departureAirportId);
+            this.Session.Add(Constants.DESTINATION_AIRPORT_ID, destinationAirportId);
+            this.Session.Add(Constants.DEPARTURE_DATE, departureDate);
+            this.Session.Add(Constants.ARRIVAL_DATE, arrivalDate);
 
             this.Response.Redirect(Pages.SELECT_FLIGHT);
         }

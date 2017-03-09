@@ -83,6 +83,8 @@
 
         private void FillPersonalInformation()
         {
+            var pass = this.CurrentUser.PasswordHash;
+
             if (this.CurrentUser.UserSettings.ProfilePicture != null)
             {
                 this.ProfileImage.Src = "data:image/jpeg;base64," + 
@@ -134,10 +136,10 @@
                 this.CurrentUser.UserSettings.Gender != Gender.Female)
             {
                 this.GenderDropDownList.Items.Insert(
-                    NativeConstants.GENDER_NOT_SELECTED_INDEX,
+                    Common.Constants.GENDER_NOT_SELECTED_INDEX,
                     new ListItem(
-                        NativeConstants.GENDER_NOT_SELECTED_TEXT, 
-                        NativeConstants.GENDER_NOT_SELECTED_INDEX.ToString()
+                        Common.Constants.GENDER_NOT_SELECTED_TEXT,
+                        Common.Constants.GENDER_NOT_SELECTED_INDEX.ToString()
                     )
                 );
             }
@@ -153,10 +155,10 @@
             if (string.IsNullOrEmpty(this.CurrentUser.UserSettings.Nationality))
             {
                 this.NationalityDropDownList.Items.Insert(
-                    NativeConstants.NATIONALITY_NOT_SELECTED_INDEX,
+                    Common.Constants.NATIONALITY_NOT_SELECTED_INDEX,
                     new ListItem(
-                        NativeConstants.NATIONALITY_NOT_SELECTED_TEXT, 
-                        NativeConstants.NATIONALITY_NOT_SELECTED_INDEX.ToString()
+                        Common.Constants.NATIONALITY_NOT_SELECTED_TEXT,
+                        Common.Constants.NATIONALITY_NOT_SELECTED_INDEX.ToString()
                     )
                 );
             }

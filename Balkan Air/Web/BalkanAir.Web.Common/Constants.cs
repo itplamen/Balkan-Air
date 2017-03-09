@@ -1,6 +1,6 @@
 ﻿namespace BalkanAir.Web.Common
 {
-    public static class NativeConstants
+    public static class Constants
     {
         /******************** Session *******************/
 

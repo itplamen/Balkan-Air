@@ -11,6 +11,7 @@
     using Ninject;
 
     using Common;
+    using Data.Common;
     using Data.Models;
     using Services.Data.Contracts;
 
@@ -35,10 +36,13 @@
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
             var user = new User() { UserName = Email.Text, Email = Email.Text };
+
             IdentityResult result = manager.Create(user, Password.Text);
 
             if (result.Succeeded)
             {
+                manager.AddToRole(user.Id, UserRolesConstants.AUTHENTICATED_USER_ROLE);
+
                 this.SendWelcomeNotification(user.Id);
                 
                 string code = manager.GenerateEmailConfirmationToken(user.Id);

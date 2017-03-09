@@ -14,7 +14,7 @@
     using Models.News;
 
     [EnableCors("*", "*", "*")]
-    [Authorize(Roles = ValidationConstants.ADMINISTRATOR_ROLE)]
+    [Authorize(Roles = UserRolesConstants.ADMINISTRATOR_ROLE)]
     public class NewsController : ApiController
     {
         [Inject]

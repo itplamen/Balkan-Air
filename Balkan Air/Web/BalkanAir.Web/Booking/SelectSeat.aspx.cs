@@ -29,14 +29,14 @@
         {
             get
             {
-                if (((bool)this.Session[NativeConstants.ONE_WAY_ROUTE_SELECT_SEAT]) &&
-                !((bool)this.Session[NativeConstants.RETURN_ROUTE_SELECT_SEAT]))
+                if (((bool)this.Session[Constants.ONE_WAY_ROUTE_SELECT_SEAT]) &&
+                !((bool)this.Session[Constants.RETURN_ROUTE_SELECT_SEAT]))
                 {
-                    return NativeConstants.ONE_WAY_ROUTE_BOOKING;
+                    return Constants.ONE_WAY_ROUTE_BOOKING;
                 }
                 else
                 {
-                    return NativeConstants.RETURN_ROUTE_BOOKING;
+                    return Constants.RETURN_ROUTE_BOOKING;
                 }
             }
         }

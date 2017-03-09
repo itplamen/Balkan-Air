@@ -42,7 +42,7 @@ namespace BalkanAir.Web.Booking
         {
             get
             {
-                return (Booking)this.Session[NativeConstants.ONE_WAY_ROUTE_BOOKING];
+                return (Booking)this.Session[Common.Constants.ONE_WAY_ROUTE_BOOKING];
             }
         }
 
@@ -50,7 +50,7 @@ namespace BalkanAir.Web.Booking
         {
             get
             {
-                return (Booking)this.Session[NativeConstants.RETURN_ROUTE_BOOKING];
+                return (Booking)this.Session[Common.Constants.RETURN_ROUTE_BOOKING];
             }
         }
 
@@ -156,10 +156,10 @@ namespace BalkanAir.Web.Booking
             if (string.IsNullOrEmpty(this.CurrentUser.UserSettings.Nationality))
             {
                 this.NationalityDropDownList.Items.Insert(
-                    NativeConstants.NATIONALITY_NOT_SELECTED_INDEX,
+                    Common.Constants.NATIONALITY_NOT_SELECTED_INDEX,
                     new ListItem(
-                        NativeConstants.NATIONALITY_NOT_SELECTED_TEXT,
-                        NativeConstants.NATIONALITY_NOT_SELECTED_INDEX.ToString()
+                        Common.Constants.NATIONALITY_NOT_SELECTED_TEXT,
+                        Common.Constants.NATIONALITY_NOT_SELECTED_INDEX.ToString()
                     )
                 );
             }

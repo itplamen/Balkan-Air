@@ -49,7 +49,7 @@
         {
             get
             {
-                return int.Parse(this.Session[NativeConstants.DEPARTURE_AIRPORT_ID].ToString());
+                return int.Parse(this.Session[Common.Constants.DEPARTURE_AIRPORT_ID].ToString());
             }
         }
 
@@ -57,7 +57,7 @@
         {
             get
             {
-                return int.Parse(this.Session[NativeConstants.DESTINATION_AIRPORT_ID].ToString());
+                return int.Parse(this.Session[Common.Constants.DESTINATION_AIRPORT_ID].ToString());
             }
         }
 
@@ -77,11 +77,6 @@
             if (legInstances == null || legInstances.Count == 0)
             {
                 this.Response.Redirect(Pages.HOME);
-            }
-            else
-            {
-                //this.Session.Remove(Parameters.DEPARTURE_AIRPORT_ID);
-                //this.Session.Remove(Parameters.DESTINATION_AIRPORT_ID);
             }
 
             this.AddDaysWithNoFlightToSlider(legInstances);
@@ -142,22 +137,22 @@
         {
             if (!this.Page.IsPostBack)
             {
-                if (this.Session[NativeConstants.DEPARTURE_AIRPORT_ID] == null ||
-                    this.Session[NativeConstants.DESTINATION_AIRPORT_ID] == null)
+                if (this.Session[Common.Constants.DEPARTURE_AIRPORT_ID] == null ||
+                    this.Session[Common.Constants.DESTINATION_AIRPORT_ID] == null)
                 {
                     this.Response.Redirect(Pages.HOME);
                 }
 
-                this.DepartureDate = DateTime.Parse(this.Session[NativeConstants.DEPARTURE_DATE].ToString());
+                this.DepartureDate = DateTime.Parse(this.Session[Common.Constants.DEPARTURE_DATE].ToString());
 
-                if (this.Session[NativeConstants.ARRIVAL_DATE] == null)
+                if (this.Session[Common.Constants.ARRIVAL_DATE] == null)
                 {
                     this.ReturnRouteFlightsPanel.Visible = false;
                 }
                 else
                 {
                     this.ReturnRouteFlightsPanel.Visible = true;
-                    this.ArrivalDate = DateTime.Parse(this.Session[NativeConstants.ARRIVAL_DATE].ToString());
+                    this.ArrivalDate = DateTime.Parse(this.Session[Common.Constants.ARRIVAL_DATE].ToString());
                 }
             }
         }
@@ -207,7 +202,7 @@
                     TravelClassId = int.Parse(this.OneWayRouteSelectedTravelClassIdHiddenField.Value)
                 };
 
-                this.Session.Add(NativeConstants.ONE_WAY_ROUTE_BOOKING, oneWayRouteBooking);
+                this.Session.Add(Common.Constants.ONE_WAY_ROUTE_BOOKING, oneWayRouteBooking);
 
                 if (this.ReturnRouteFlightsPanel.Visible)
                 {
@@ -220,7 +215,7 @@
                         TravelClassId = int.Parse(this.ReturnRouteSelectedTravelClassIdHiddenField.Value)
                     };
 
-                    this.Session.Add(NativeConstants.RETURN_ROUTE_BOOKING, returnRouteBooking);
+                    this.Session.Add(Common.Constants.RETURN_ROUTE_BOOKING, returnRouteBooking);
                 }
 
                 this.Response.Redirect(Pages.EXTRAS);

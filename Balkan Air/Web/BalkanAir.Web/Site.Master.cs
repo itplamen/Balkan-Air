@@ -15,6 +15,7 @@
     using Ninject;
 
     using Common;
+    using Data.Common;
     using Data.Models;
     using Services.Data.Contracts;
 
@@ -59,7 +60,7 @@
         {
             get
             {
-                return (Data.Models.Booking) this.Session[NativeConstants.ONE_WAY_ROUTE_BOOKING];
+                return (Data.Models.Booking) this.Session[Common.Constants.ONE_WAY_ROUTE_BOOKING];
             }
         }
 
@@ -67,7 +68,7 @@
         {
             get
             {
-                return (Data.Models.Booking)this.Session[NativeConstants.RETURN_ROUTE_BOOKING];
+                return (Data.Models.Booking)this.Session[Common.Constants.RETURN_ROUTE_BOOKING];
             }
         }
 
@@ -145,8 +146,7 @@
             {
                 this.SiteMapPathBreadcrump.Visible = (SiteMap.CurrentNode != SiteMap.RootNode);
 
-                // TODO: Check for admin
-                if (this.User != null)
+                if (this.User != null && this.Manager.IsInRole(this.User.Id, UserRolesConstants.ADMINISTRATOR_ROLE))
                 {
                     this.AdministrationMenu.Visible = true;
 
@@ -159,12 +159,12 @@
                 string curretnUrl = HttpContext.Current.Request.Url.AbsolutePath;
 
                 // Show itinerary info during flight booking.
-                if ((curretnUrl == Page.ResolveUrl(Pages.SELECT_FLIGHT) || 
-                    curretnUrl == Page.ResolveUrl(Pages.EXTRAS) ||
-                    curretnUrl == Page.ResolveUrl(Pages.SELECT_SEAT) || 
-                    curretnUrl == Page.ResolveUrl(Pages.PAYMENT)) &&
-                    (this.Session[NativeConstants.DEPARTURE_AIRPORT_ID] != null &&
-                    this.Session[NativeConstants.DESTINATION_AIRPORT_ID] != null))
+                if ((curretnUrl == base.Page.ResolveUrl(Pages.SELECT_FLIGHT) || 
+                    curretnUrl == base.Page.ResolveUrl(Pages.EXTRAS) ||
+                    curretnUrl == base.Page.ResolveUrl(Pages.SELECT_SEAT) || 
+                    curretnUrl == base.Page.ResolveUrl(Pages.PAYMENT)) &&
+                    (this.Session[Common.Constants.DEPARTURE_AIRPORT_ID] != null &&
+                    this.Session[Common.Constants.DESTINATION_AIRPORT_ID] != null))
                 {
                     this.ManageItineraryInfo();
                 }
@@ -305,8 +305,8 @@
 
         private void SetAirprotsInfoToItinerary()
         {
-            int departureAirportId = int.Parse(this.Session[NativeConstants.DEPARTURE_AIRPORT_ID].ToString());
-            int destinationAirportId = int.Parse(this.Session[NativeConstants.DESTINATION_AIRPORT_ID].ToString());
+            int departureAirportId = int.Parse(this.Session[Common.Constants.DEPARTURE_AIRPORT_ID].ToString());
+            int destinationAirportId = int.Parse(this.Session[Common.Constants.DESTINATION_AIRPORT_ID].ToString());
 
             var departureAirport = this.AirportsServices.GetAirport(departureAirportId);
             var destinationAirport = this.AirportsServices.GetAirport(destinationAirportId);

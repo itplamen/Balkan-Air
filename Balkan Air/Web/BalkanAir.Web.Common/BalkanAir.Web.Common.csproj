@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="Assemblies.cs" />
     <Compile Include="MailSender.cs" />
-    <Compile Include="NativeConstants.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Pages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

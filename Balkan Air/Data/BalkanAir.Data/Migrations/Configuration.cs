@@ -109,7 +109,8 @@ namespace BalkanAir.Data.Migrations
                 context.Roles.Remove(entity);
             }
 
-            context.Roles.AddOrUpdate(new IdentityRole(ValidationConstants.ADMINISTRATOR_ROLE));
+            context.Roles.AddOrUpdate(new IdentityRole(UserRolesConstants.ADMINISTRATOR_ROLE));
+            context.Roles.AddOrUpdate(new IdentityRole(UserRolesConstants.AUTHENTICATED_USER_ROLE));
         }
     }
 }

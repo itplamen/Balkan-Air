@@ -51,9 +51,5 @@
         public const int FIRST_AND_BUSINESS_CLASS_NUMBER_OF_SEATS_FOR_EACH = 12;
         public const int ECONOMY_CLASS_NUMBER_OF_ROWS = 26;
         public const int ECONOMY_CLASS_NUMBER_OF_SEATS = 156;
-
-        // Other
-        public const string ADMINISTRATOR_ROLE = "Administrator";
-
     }
 }

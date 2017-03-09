@@ -146,7 +146,7 @@
         protected bool IsIconVisible(string userId)
         {
             if (this.Context.User.Identity.IsAuthenticated &&
-                this.Context.User.IsInRole(ValidationConstants.ADMINISTRATOR_ROLE))
+                this.Context.User.IsInRole(UserRolesConstants.ADMINISTRATOR_ROLE))
             {
                 return true;
             }
