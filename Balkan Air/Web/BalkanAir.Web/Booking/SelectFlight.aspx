@@ -97,7 +97,6 @@
                                                 class="<%#: Item.NumberOfAvailableSeats == 0 ? "noMoreSeats" : "" %>" />
                                             &#8364; <%# Item.Price + this.LegInstance.Price %>
                                         </label>
-
                                         <span class="travelClassSeats">
                                             <%#: Item.NumberOfAvailableSeats %> seats remaining at this price
                                         </span>

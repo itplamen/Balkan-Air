@@ -329,16 +329,11 @@
             flightNumberLiteral.Text = "Flight № " + selectedLegInstance.FlightLeg.Flight.Number;
             dateTimeLiteral.Text = selectedLegInstance.DepartureDateTime.ToString("MMMM dd, yyyy hh:mm", CultureInfo.InvariantCulture);
 
-            decimal flightPrice = this.FaresServices.GetAll()
-                .Where(f => f.RouteId == selectedLegInstance.FlightLeg.RouteId)
-                .FirstOrDefault()
-                .Price;
-
-            flightPriceLiteral.Text = "&#8364; " + string.Format("{0:0.00}", flightPrice);
+            flightPriceLiteral.Text = "&#8364; " + string.Format("{0:0.00}", selectedLegInstance.Price);
 
             decimal travelClassPrice = this.TravelClassesServices.GetTravelClass(booking.TravelClassId).Price;
             travelClassPriceLiteral.Text = "&#8364; " + string.Format("{0:0.00}", travelClassPrice);
-            totalCost += flightPrice + travelClassPrice;
+            totalCost += selectedLegInstance.Price + travelClassPrice;
 
             travelClassLiteral.Text = this.TravelClassesServices.GetTravelClass(booking.TravelClassId).Type.ToString() + " class";
         }
