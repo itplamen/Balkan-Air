@@ -341,6 +341,7 @@
     <Content Include="Content\slick\slick-theme.scss" />
     <Content Include="Content\slick\slick.less" />
     <Content Include="Content\slick\slick.scss" />
+    <Content Include="Deny.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Administration\FlightsManagement.aspx" />
     <Content Include="News.aspx" />
