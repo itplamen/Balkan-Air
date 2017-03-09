@@ -211,7 +211,7 @@ namespace BalkanAir.Web.Booking
 
         private void BookNow(Booking booking)
         {
-            // LegInstance must be null before add booking into database, in order to avoid the exception: 
+            // LegInstance must be null before adding booking into database, in order to avoid the exception: 
             // "Entity object cannot be referenced by multiple instances of IEntityChangeTracker."
 
             booking.LegInstance = null;

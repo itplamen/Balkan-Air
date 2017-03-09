@@ -68,7 +68,8 @@
         public IEnumerable<LegInstance> OneWayRouteDepartureDatesRepeater_GetData()
         {
             var legInstances = this.LegInstancesServices.GetAll()
-                .Where(l => !l.IsDeleted && l.FlightLeg.DepartureAirportId == this.DepartureAirprotId &&
+                .Where(l => !l.IsDeleted && l.DepartureDateTime > DateTime.Now && 
+                            l.FlightLeg.DepartureAirportId == this.DepartureAirprotId && 
                             l.FlightLeg.ArrivalAirportId == this.DestinationAirportId)
                 .OrderBy(l => l.DepartureDateTime)
                 .ToList();
@@ -106,7 +107,8 @@
         public IEnumerable<LegInstance> ReturnRouteDepartureDatesRepeater_GetData()
         {
             var legInstances = this.LegInstancesServices.GetAll()
-                .Where(l => !l.IsDeleted && l.FlightLeg.DepartureAirportId == this.DestinationAirportId &&
+                .Where(l => !l.IsDeleted && l.DepartureDateTime > DateTime.Now && 
+                            l.FlightLeg.DepartureAirportId == this.DestinationAirportId &&
                             l.FlightLeg.ArrivalAirportId == this.DepartureAirprotId)
                 .OrderBy(l => l.DepartureDateTime)
                 .ToList();

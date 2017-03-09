@@ -41,7 +41,7 @@
         public IEnumerable<LegInstance> TopCheapestFlightsRepeater_GetData()
         {
             return this.LegInstancesServices.GetAll()
-                .Where(l => !l.IsDeleted)
+                .Where(l => !l.IsDeleted && l.DepartureDateTime > DateTime.Today)
                 .OrderBy(l => l.Price)
                 .Take(4)
                 .ToList();
