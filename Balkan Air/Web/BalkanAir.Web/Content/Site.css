@@ -180,9 +180,14 @@ input[type="tel"], input[type="select"], input[type="time"] {
 }
 
 #LoadingGif {
-    display: block;
+    display: block; 
     margin: auto;
     width: 200px;
+}
+
+.administrationDropdownMenu {
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .homeSlider {

@@ -7,7 +7,7 @@
         ViewStateMode="Disabled">
         <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
         <span class="sr-only">Error:</span>
-        New user role with ID <asp:Literal ID="AddedUserRoleIdLiteral" runat="server" /> 
+        New user role "<asp:Literal ID="AddedUserRoleNameLiteral" runat="server" />"
         was added successfully!
     </asp:Panel>
 
@@ -33,13 +33,19 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
+    <asp:CustomValidator ID="CustomValidator" Display="Dynamic" ForeColor="Red" runat="server" />
+
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new user role</h3>
 
-        <asp:Label Text="Name: " runat="server" />
+        <asp:Label Text="Name: " runat="server" AssociatedControlID="UserRoleNameTextBox" />
         <asp:TextBox ID="UserRoleNameTextBox" required runat="server" />
 
-        <asp:Button ID="CreateUserRoleBtn" runat="server" Text="Create" CssClass="btn btn-info" 
-            OnClick="CreateUserRoleBtn_Click" />
+        <p>
+            <asp:Button ID="CreateUserRoleBtn" runat="server" Text="Create" CssClass="btn btn-info" 
+                OnClick="CreateUserRoleBtn_Click" />
+            <asp:Button ID="CancelBtn" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-danger"
+                UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
+        </p>
     </asp:Panel>
 </asp:Content>

@@ -94,7 +94,7 @@
                         <li><a href="#">Developers</a></li>
                         <li class="dropdown" runat="server" visible="false" id="AdministrationMenu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu administrationDropdownMenu">
                                 <li><a href="<%= Page.ResolveUrl(Pages.ADMINISTRATION_HOME) %>">Administration - Home</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.AIRCRAFT_MANUFACTURERS_MANAGEMENT) %>">Aircraft Manufacturers Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.AIRCRAFTS_MANAGEMENT) %>">Aircrafts Management</a></li>
@@ -397,7 +397,7 @@
             if ($successPanel.is(':visible')) {
                 setTimeout(function () {
                     $successPanel.fadeOut('slow');
-                }, 3000);
+                }, 4000);
             }
         });
 

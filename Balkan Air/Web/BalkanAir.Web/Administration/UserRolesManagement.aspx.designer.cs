@@ -22,13 +22,13 @@ namespace BalkanAir.Web.Administration {
         protected global::System.Web.UI.WebControls.Panel SuccessPanel;
         
         /// <summary>
-        /// AddedUserRoleIdLiteral control.
+        /// AddedUserRoleNameLiteral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal AddedUserRoleIdLiteral;
+        protected global::System.Web.UI.WebControls.Literal AddedUserRoleNameLiteral;
         
         /// <summary>
         /// UserRolesGridView control.
@@ -38,6 +38,15 @@ namespace BalkanAir.Web.Administration {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView UserRolesGridView;
+        
+        /// <summary>
+        /// CustomValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator;
         
         /// <summary>
         /// UserRoleNameTextBox control.
@@ -56,5 +65,14 @@ namespace BalkanAir.Web.Administration {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button CreateUserRoleBtn;
+        
+        /// <summary>
+        /// CancelBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CancelBtn;
     }
 }
