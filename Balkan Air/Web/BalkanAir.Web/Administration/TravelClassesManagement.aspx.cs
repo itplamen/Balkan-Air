@@ -97,7 +97,10 @@
                     AircraftId = int.Parse(this.AddAircraftsDropDownList.SelectedItem.Value)
                 };
 
-                this.TravelClassesServices.AddTravelClass(travelClass);
+                int id = this.TravelClassesServices.AddTravelClass(travelClass);
+
+                this.SuccessPanel.Visible = true;
+                this.AddedTravelClassIdLiteral.Text = id.ToString();
 
                 this.ClearFields();
             }

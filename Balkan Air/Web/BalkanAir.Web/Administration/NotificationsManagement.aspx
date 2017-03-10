@@ -7,6 +7,14 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: this.Page.Title %></h2>
 
+    <asp:Panel ID="SuccessPanel" ClientIDMode="Static" Visible="false" runat="server" CssClass="alert alert-success" role="alert"
+        ViewStateMode="Disabled">
+        <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        New notification with ID <asp:Literal ID="AddedNotificationIdLiteral" runat="server" /> 
+        was added successfully!
+    </asp:Panel>
+
     <asp:GridView ID="NotificationsGridView" runat="server" CssClass="administrationGridView"
         ItemType="BalkanAir.Data.Models.Notification"
         DataKeyNames="Id"

@@ -57,7 +57,10 @@
             if (this.Page.IsValid)
             {
                 var newFlight = new Flight() { Number = this.AddFlightNumberTextBox.Text.ToUpper() };
-                this.FlightsServices.AddFlight(newFlight);
+                int id = this.FlightsServices.AddFlight(newFlight);
+
+                this.SuccessPanel.Visible = true;
+                this.AddedFlightIdLiteral.Text = id.ToString();
             }
         }
 

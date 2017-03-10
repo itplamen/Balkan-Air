@@ -93,7 +93,10 @@
                     BookingId = int.Parse(this.BookingsDropDownList.SelectedItem.Value)
                 };
 
-                this.BaggageServices.AddBaggage(baggage);
+                int id = this.BaggageServices.AddBaggage(baggage);
+
+                this.SuccessPanel.Visible = true;
+                this.AddedBagIdLiteral.Text = id.ToString();
 
                 this.ClearFields();
             }

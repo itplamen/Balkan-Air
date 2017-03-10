@@ -61,8 +61,10 @@
                 }
 
                 var flightStatus = new FlightStatus() { Name = this.FlightStatusNameTextBox.Text };
+                int id = this.FlightStatusesServices.AddFlightStatus(flightStatus);
 
-                this.FlightStatusesServices.AddFlightStatus(flightStatus);
+                this.SuccessPanel.Visible = true;
+                this.AddedFLightStatusIdLiteral.Text = id.ToString();
                 
                 this.ClearFields();
             }

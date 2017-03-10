@@ -52,7 +52,10 @@
             if (this.Page.IsValid)
             {
                 var category = new Category() { Name = this.CategoryNameTextBox.Text };
-                this.CategoriesServices.AddCategory(category);
+                int id = this.CategoriesServices.AddCategory(category);
+
+                this.SuccessPanel.Visible = true;
+                this.AddedCategoryIdLiteral.Text = id.ToString();
 
                 this.ClearFields();
             }

@@ -101,7 +101,10 @@
                     LegInstanceId = int.Parse(this.AddLegInstanceDropDown.SelectedItem.Value)
                 };
 
-                this.SeatsServices.AddSeat(seat);
+                int id = this.SeatsServices.AddSeat(seat);
+
+                this.SuccessPanel.Visible = true;
+                this.AddedSeatIdLiteral.Text = id.ToString();
 
                 this.ClearFields();
             }

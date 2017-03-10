@@ -72,7 +72,10 @@
                     Type = selectedType
                 };
 
-                this.NotificationsServices.AddNotification(notification);
+                int id = this.NotificationsServices.AddNotification(notification);
+
+                this.SuccessPanel.Visible = true;
+                this.AddedNotificationIdLiteral.Text = id.ToString();
 
                 this.ClearFeilds();
             }

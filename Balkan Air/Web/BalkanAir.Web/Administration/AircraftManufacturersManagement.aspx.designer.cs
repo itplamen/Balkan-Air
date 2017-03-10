@@ -13,6 +13,24 @@ namespace BalkanAir.Web.Administration {
     public partial class AircraftManufacturersManagement {
         
         /// <summary>
+        /// SuccessPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel SuccessPanel;
+        
+        /// <summary>
+        /// AddedManufacturerIdLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal AddedManufacturerIdLiteral;
+        
+        /// <summary>
         /// AircraftsManufacturersGridView control.
         /// </summary>
         /// <remarks>

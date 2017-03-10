@@ -74,7 +74,10 @@
                     RouteId = int.Parse(this.AddRoutesDropDownList.SelectedItem.Value)    
                 };
 
-                this.FaresServices.AddFare(fare);
+                int id = this.FaresServices.AddFare(fare);
+
+                this.SuccessPanel.Visible = true;
+                this.AddedFareIdLiteral.Text = id.ToString();
 
                 this.ClearFields();
             }

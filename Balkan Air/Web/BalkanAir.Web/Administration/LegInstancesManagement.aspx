@@ -5,6 +5,14 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: this.Page.Title %></h2>
 
+    <asp:Panel ID="SuccessPanel" ClientIDMode="Static" Visible="false" runat="server" CssClass="alert alert-success" role="alert"
+        ViewStateMode="Disabled">
+        <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        New leg instance with ID <asp:Literal ID="AddedLegInstanceIdLiteral" runat="server" /> 
+        was added successfully!
+    </asp:Panel>
+
     <asp:GridView ID="LegInstancesGridView" runat="server" CssClass="administrationGridView"
         ItemType="BalkanAir.Data.Models.LegInstance"
         DataKeyNames="Id"
@@ -86,13 +94,13 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
-    <asp:RequiredFieldValidator ErrorMessage="Departure date is required!" ControlToValidate="DepartureDateTextBox"
+    <asp:RequiredFieldValidator ErrorMessage="Departure date is required!" ControlToValidate="LegInstanceDepartureDateTextBox"
         ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan" ValidationGroup="CreateLegInstance" />
 
     <asp:RequiredFieldValidator ErrorMessage="Departure time is required!" ControlToValidate="DepartureTimeTextBox"
         ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan" ValidationGroup="CreateLegInstance" />
 
-    <asp:RequiredFieldValidator ErrorMessage="Arrival date is required!" ControlToValidate="ArrivalDateTextBox"
+    <asp:RequiredFieldValidator ErrorMessage="Arrival date is required!" ControlToValidate="LegInstanceArrivalDateTextBox"
         ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan" ValidationGroup="CreateLegInstance" />
 
     <asp:RequiredFieldValidator ErrorMessage="Arrival time is required!" ControlToValidate="ArrivalTimeTextBox"
@@ -107,12 +115,12 @@
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new leg instance</h3>
 
-        <asp:Label runat="server" Text="Departure Date:" AssociatedControlID="DepartureDateTextBox" />
-        <asp:TextBox ID="DepartureDateTextBox" ClientIDMode="Static" runat="server" />
+        <asp:Label runat="server" Text="Departure Date:" AssociatedControlID="LegInstanceDepartureDateTextBox" />
+        <asp:TextBox ID="LegInstanceDepartureDateTextBox" ClientIDMode="Static" runat="server" />
         <span id="DepartureCalendarIconSpan" class="glyphicon glyphicon-calendar"></span>
 
         <ajaxToolkit:CalendarExtender runat="server"
-            TargetControlID="DepartureDateTextBox"
+            TargetControlID="LegInstanceDepartureDateTextBox"
             CssClass="CalendarExtender"
             Format="d/MM/yyyy"
             PopupButtonID="DepartureCalendarIconSpan" />
@@ -120,12 +128,12 @@
         <asp:Label runat="server" Text="Departure Time:" AssociatedControlID="DepartureTimeTextBox" />
         <asp:TextBox runat="server" ID="DepartureTimeTextBox" ClientIDMode="Static" TextMode="Time" />
 
-        <asp:Label runat="server" Text="Arrival Date:" AssociatedControlID="ArrivalDateTextBox" />
-        <asp:TextBox runat="server" ID="ArrivalDateTextBox" ClientIDMode="Static" />
+        <asp:Label runat="server" Text="Arrival Date:" AssociatedControlID="LegInstanceArrivalDateTextBox" />
+        <asp:TextBox runat="server" ID="LegInstanceArrivalDateTextBox" ClientIDMode="Static" />
         <span id="ArrivalCalendarIconSpan" class="glyphicon glyphicon-calendar"></span>
 
         <ajaxToolkit:CalendarExtender runat="server"
-            TargetControlID="ArrivalDateTextBox"
+            TargetControlID="LegInstanceArrivalDateTextBox"
             CssClass="CalendarExtender"
             Format="d/MM/yyyy"
             PopupButtonID="ArrivalCalendarIconSpan" />

@@ -73,7 +73,10 @@
                     AircraftManufacturerId = int.Parse(this.AircraftManufacturersDropDownList.SelectedItem.Value)
                 };
 
-                this.AircraftsServices.AddAircraft(aircraft);
+                int id = this.AircraftsServices.AddAircraft(aircraft);
+
+                this.SuccessPanel.Visible = true;
+                this.AddedAircraftIdLiteral.Text = id.ToString();
 
                 this.ClearFields();
             }

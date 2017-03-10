@@ -3,6 +3,13 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: this.Page.Title %></h2>
 
+    <asp:Panel ID="SuccessPanel" ClientIDMode="Static" Visible="false" runat="server" CssClass="alert alert-success" role="alert"
+        ViewStateMode="Disabled">
+        <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Notification sent successfully!
+    </asp:Panel>
+
     <asp:GridView ID="UserNotificationsGridView" runat="server" CssClass="administrationGridView"
         ItemType="BalkanAir.Data.Models.UserNotification"
         DataKeyNames="Id"
@@ -42,13 +49,6 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
-    <asp:Panel ID="SuccessPanel" ClientIDMode="Static" Visible="false" runat="server" CssClass="alert alert-success" role="alert"
-        ViewStateMode="Disabled">
-        <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
-        <span class="sr-only">Error:</span>
-        Notification sent successfully!
-    </asp:Panel>
-
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Send notification to users</h3>
 
@@ -81,11 +81,6 @@
                 maxHeight: 300,
                 buttonWidth: '350px'
             });
-            if ($('#SuccessPanel').is(':visible')) {
-                setTimeout(function () {
-                    $('#SuccessPanel').fadeOut('slow');
-                }, 3000);
-            }
         });
     </script>
 </asp:Content>

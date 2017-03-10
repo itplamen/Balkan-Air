@@ -13,6 +13,24 @@ namespace BalkanAir.Web.Administration {
     public partial class LegInstancesManagement {
         
         /// <summary>
+        /// SuccessPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel SuccessPanel;
+        
+        /// <summary>
+        /// AddedLegInstanceIdLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal AddedLegInstanceIdLiteral;
+        
+        /// <summary>
         /// LegInstancesGridView control.
         /// </summary>
         /// <remarks>
@@ -40,13 +58,13 @@ namespace BalkanAir.Web.Administration {
         protected global::System.Web.UI.WebControls.CustomValidator AreDateTimesAfterDateTimeNowCustomValidator;
         
         /// <summary>
-        /// DepartureDateTextBox control.
+        /// LegInstanceDepartureDateTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DepartureDateTextBox;
+        protected global::System.Web.UI.WebControls.TextBox LegInstanceDepartureDateTextBox;
         
         /// <summary>
         /// DepartureTimeTextBox control.
@@ -58,13 +76,13 @@ namespace BalkanAir.Web.Administration {
         protected global::System.Web.UI.WebControls.TextBox DepartureTimeTextBox;
         
         /// <summary>
-        /// ArrivalDateTextBox control.
+        /// LegInstanceArrivalDateTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ArrivalDateTextBox;
+        protected global::System.Web.UI.WebControls.TextBox LegInstanceArrivalDateTextBox;
         
         /// <summary>
         /// ArrivalTimeTextBox control.

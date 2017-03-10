@@ -13,15 +13,6 @@ namespace BalkanAir.Web.Administration {
     public partial class UserNotificationsManagement {
         
         /// <summary>
-        /// UserNotificationsGridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView UserNotificationsGridView;
-        
-        /// <summary>
         /// SuccessPanel control.
         /// </summary>
         /// <remarks>
@@ -29,6 +20,15 @@ namespace BalkanAir.Web.Administration {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel SuccessPanel;
+        
+        /// <summary>
+        /// UserNotificationsGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView UserNotificationsGridView;
         
         /// <summary>
         /// UsersListBox control.

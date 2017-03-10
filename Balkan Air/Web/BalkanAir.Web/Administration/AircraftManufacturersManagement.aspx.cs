@@ -69,7 +69,10 @@
             if (Page.IsValid)
             {
                 var manufacturer = new AircraftManufacturer() { Name = this.AircraftManufacturerNameTextBox.Text };
-                this.AircraftManufacturersServices.AddManufacturer(manufacturer);
+                int id = this.AircraftManufacturersServices.AddManufacturer(manufacturer);
+
+                this.SuccessPanel.Visible = true;
+                this.AddedManufacturerIdLiteral.Text = id.ToString();
 
                 this.ClearFields();
             }

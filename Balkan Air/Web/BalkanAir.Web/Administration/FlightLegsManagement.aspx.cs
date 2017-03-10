@@ -149,7 +149,10 @@
                     RouteId = int.Parse(this.AddRoutesDropDownList.SelectedItem.Value)
                 };
 
-                this.FlightLegsServices.AddFlightLeg(newFlightLeg);
+                int id = this.FlightLegsServices.AddFlightLeg(newFlightLeg);
+
+                this.SuccessPanel.Visible = true;
+                this.AddedFlightLegIdLiteral.Text = id.ToString();
 
                 this.ClearFields();
             }

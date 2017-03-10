@@ -67,7 +67,10 @@
                     Abbreviation = this.AbbreviationNameTextBox.Text.ToUpper()
                 };
 
-                this.CountriesServices.AddCountry(country);
+                int id = this.CountriesServices.AddCountry(country);
+
+                this.SuccessPanel.Visible = true;
+                this.AddedCountryIdLiteral.Text = id.ToString();
 
                 this.ClearFields();
             }

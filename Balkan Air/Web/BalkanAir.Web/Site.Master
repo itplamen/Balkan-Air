@@ -374,7 +374,8 @@
 
     <script type="text/javascript">
         $(function () {
-            var $itineraryInfoPanel = $('#ItineraryInfoPanel');
+            var $itineraryInfoPanel = $('#ItineraryInfoPanel'),
+            $successPanel = $('#SuccessPanel');
 
             $itineraryInfoPanel.draggable({
                 cancel: false
@@ -392,6 +393,12 @@
                     }
                 }
             });
+
+            if ($successPanel.is(':visible')) {
+                setTimeout(function () {
+                    $successPanel.fadeOut('slow');
+                }, 3000);
+            }
         });
 
         $(document).ready(function () {

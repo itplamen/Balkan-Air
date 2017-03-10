@@ -78,7 +78,10 @@
                     CountryId = int.Parse(this.CountryDropDownList.SelectedItem.Value)
                 };
 
-                this.AirportsServices.AddAirport(airport);
+                int id = this.AirportsServices.AddAirport(airport);
+
+                this.SuccessPanel.Visible = true;
+                this.AddedAirportIdLiteral.Text = id.ToString();
 
                 this.ClearFields();
             }

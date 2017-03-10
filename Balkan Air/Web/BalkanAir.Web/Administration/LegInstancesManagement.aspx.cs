@@ -119,8 +119,11 @@
             string seconds = ":00";
 
             // Convert string to DateTime. The string should look like this: 01/08/2008 14:50:00
-            string stringDepartureDateTime = this.DepartureDateTextBox.Text + " " + this.DepartureTimeTextBox.Text + seconds;
-            string stringArrivalDateTime = this.ArrivalDateTextBox.Text + " " + this.ArrivalTimeTextBox.Text + seconds;
+            string stringDepartureDateTime = this.LegInstanceDepartureDateTextBox.Text + " " + 
+                this.DepartureTimeTextBox.Text + seconds;
+
+            string stringArrivalDateTime = this.LegInstanceArrivalDateTextBox.Text + " " + 
+                this.ArrivalTimeTextBox.Text + seconds;
 
             DateTime departureDateTime = Convert.ToDateTime(stringDepartureDateTime);
             DateTime arrivalDateTime = Convert.ToDateTime(stringArrivalDateTime);
@@ -141,7 +144,10 @@
                     AircraftId = int.Parse(this.AddAircraftDropDownList.SelectedItem.Value)
                 };
 
-                this.LegInstancesServices.AddLegInstance(legInstance);
+                int id = this.LegInstancesServices.AddLegInstance(legInstance);
+
+                this.SuccessPanel.Visible = true;
+                this.AddedLegInstanceIdLiteral.Text = id.ToString();
 
                 this.ClearFields();
             }
@@ -200,9 +206,9 @@
 
         private void ClearFields()
         {
-            this.DepartureDateTextBox.Text = string.Empty;
+            this.LegInstanceDepartureDateTextBox.Text = string.Empty;
             this.DepartureTimeTextBox.Text = string.Empty;
-            this.ArrivalDateTextBox.Text = string.Empty;
+            this.LegInstanceArrivalDateTextBox.Text = string.Empty;
             this.ArrivalTimeTextBox.Text = string.Empty;
             this.AddFlightLegDropDownList.SelectedIndex = 0;
             this.AddFlightStatusDropDownList.SelectedIndex = 0;

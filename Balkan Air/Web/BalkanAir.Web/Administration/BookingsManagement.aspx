@@ -40,9 +40,9 @@
                             Item.LegInstance.FlightLeg.Route.Destination.Name %>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Baggages">
+            <asp:TemplateField HeaderText="Baggage">
                 <ItemTemplate>
-                    <%#: Item.Baggages.Count %>
+                    <%#: Item.Baggage.Count %>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />

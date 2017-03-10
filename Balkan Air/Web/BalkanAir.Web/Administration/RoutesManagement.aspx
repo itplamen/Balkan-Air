@@ -3,6 +3,14 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: this.Page.Title %></h2>
 
+    <asp:Panel ID="SuccessPanel" ClientIDMode="Static" Visible="false" runat="server" CssClass="alert alert-success" role="alert"
+        ViewStateMode="Disabled">
+        <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        New route with ID <asp:Literal ID="AddedRouteIdLiteral" runat="server" /> 
+        was added successfully!
+    </asp:Panel>
+
     <asp:GridView ID="RoutesGridView" runat="server" CssClass="administrationGridView"
         ItemType="BalkanAir.Data.Models.Route"
         DataKeyNames="Id"
@@ -61,10 +69,10 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
-    <asp:CustomValidator ID="InvalidOriginAndDestinationCustomValidator" ErrorMessage="Origin and destination cannot be same!" 
+    <asp:CustomValidator ID="InvalidOriginAndDestinationCustomValidator" ErrorMessage="Origin and destination cannot be same!"
         Display="Dynamic" ForeColor="Red" runat="server" />
 
-    <asp:CustomValidator ID="InvalidDistanceCustonValidator" ErrorMessage="Invalid distance!" Display="Dynamic" ForeColor="Red" 
+    <asp:CustomValidator ID="InvalidDistanceCustonValidator" ErrorMessage="Invalid distance!" Display="Dynamic" ForeColor="Red"
         runat="server" />
 
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">

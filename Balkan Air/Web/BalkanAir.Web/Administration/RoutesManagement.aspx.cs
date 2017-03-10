@@ -89,7 +89,10 @@
                     DistanceInKm = distance
                 };
 
-                this.RoutesServices.AddRoute(route);
+                int id = this.RoutesServices.AddRoute(route);
+
+                this.SuccessPanel.Visible = true;
+                this.AddedRouteIdLiteral.Text = id.ToString();
 
                 this.ClearFields();
             }
