@@ -30,7 +30,9 @@
             <asp:Button ID="CancelButton" runat="server" UseSubmitBehavior="false" Text="Cancel" CssClass="btn btn-danger" OnClick="CancelButton_Click" />
         </div>
     </div>
+</asp:Content>
 
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
     <script type="text/javascript">
         $(function () {
             $('[id*=UsersListBox]').multiselect({
@@ -40,11 +42,6 @@
                 maxHeight: 300,
                 buttonWidth: '350px'
             });
-            if ($('#SuccessPanel').is(':visible')) {
-                setTimeout(function () {
-                    $('#SuccessPanel').fadeOut('slow');
-                }, 3000);
-            }
         });
     </script>
 </asp:Content>

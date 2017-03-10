@@ -3,6 +3,14 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: this.Page.Title %></h2>
 
+    <asp:Panel ID="SuccessPanel" ClientIDMode="Static" Visible="false" runat="server" CssClass="alert alert-success" role="alert"
+        ViewStateMode="Disabled">
+        <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        New travel class with ID <asp:Literal ID="AddedTravelClassIdLiteral" runat="server" /> 
+        was added successfully!
+    </asp:Panel>
+
     <asp:GridView ID="UsersGridView" runat="server" CssClass="administrationGridView"
         ItemType="BalkanAir.Data.Models.User"
         DataKeyNames="Id"
@@ -15,6 +23,16 @@
         AllowSorting="true">
         <Columns>
             <asp:BoundField DataField="Id" SortExpression="Id" HeaderText="Id" />
+            <asp:TemplateField HeaderText="Email" SortExpression="Email">
+                <ItemTemplate>
+                    <%#: Item.Email %>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Role">
+                <ItemTemplate>
+                    <%#: this.GetUserRole(Item.Roles) %>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="UserSettings.FirstName" HeaderText="First Name" />
             <asp:BoundField DataField="UserSettings.LastName" HeaderText="Last Name" />
             <asp:BoundField DataField="UserSettings.DateOfBirth" HeaderText="Date Of Birth" />
@@ -33,30 +51,4 @@
             <h4>No users found!</h4>
         </EmptyDataTemplate>
     </asp:GridView>
-
-     
-    <%--<asp:Panel runat="server" CssClass="administrationAddEntityPanel">
-        <h3>Add new user</h3>
-
-        <asp:Label Text="First name:" runat="server" />
-        <asp:TextBox ID="FirstNameTextBox" runat="server" required />
-
-        <asp:Label Text="Last name:" runat="server" />
-        <asp:TextBox ID="LastNameTextBox" runat="server" required />
-
-        <asp:Label Text="Date of birth:" runat="server" />
-        <asp:TextBox runat="server" ID="DateOfBirthTextBox" ClientIDMode="Static" />
-
-      
-
-
-
-        <asp:Button ID="CreateAircraftBtn" runat="server" Text="Create" CssClass="btn btn-info" OnClick="CreateAircraftBtn_Click" />
-    </asp:Panel>--%>
-
-    <%--<script>
-        $(function () {
-            $('#DateOfBirthTextBox').datepicker({ dateFormat: "yy/mm/dd" });
-        });
-    </script>--%>
 </asp:Content>

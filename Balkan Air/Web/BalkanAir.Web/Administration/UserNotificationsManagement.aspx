@@ -71,7 +71,9 @@
                 OnClick="CancelButton_Click" />
         </p>
     </asp:Panel>
+</asp:Content>
 
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
     <script type="text/javascript">
         $(function () {
             $('[id*=UsersListBox]').multiselect({
