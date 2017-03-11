@@ -5,6 +5,7 @@
 
     using BalkanAir.Data.Models;
     using BalkanAir.Data.Repositories.Contracts;
+    using Common;
     using Contracts;
 
     public class UsersServices : IUsersServices
@@ -88,6 +89,11 @@
 
         public void SetLastLogin(string userEmail, DateTime dateTime)
         {
+            if (string.IsNullOrEmpty(userEmail))
+            {
+                throw new ArgumentNullException("Email cannot be null or empty!");
+            }
+
             var user = this.GetUserByEmail(userEmail);
 
             if (user != null)
@@ -99,11 +105,32 @@
 
         public void SetLastLogout(string userEmail, DateTime dateTime)
         {
+            if (string.IsNullOrEmpty(userEmail))
+            {
+                throw new ArgumentNullException("Email cannot be null or empty!");
+            }
+
             var user = this.GetUserByEmail(userEmail);
 
             if (user != null)
             {
                 user.UserSettings.LastLogout = dateTime;
+                this.users.SaveChanges();
+            }
+        }
+
+        public void SetLogoffForUser(string userId, bool logoff)
+        {
+            if (string.IsNullOrEmpty(userId))
+            {
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_USER_ID);
+            }
+
+            var user = this.users.GetById(userId);
+
+            if (user != null)
+            {
+                user.DoesAdminForcedLogoff = logoff;
                 this.users.SaveChanges();
             }
         }

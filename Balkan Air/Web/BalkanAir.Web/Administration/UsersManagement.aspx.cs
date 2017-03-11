@@ -10,6 +10,7 @@
     using Services.Data.Contracts;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System.Collections.Generic;
+    using System.Web.UI.WebControls;
 
     public partial class UsersManagement : Page
     {
@@ -80,6 +81,24 @@
             }
 
             return userRoles;
+        }
+
+        protected void LogoffUsersButton_Click(object sender, EventArgs e)
+        {
+            foreach (ListItem item in this.UsersListBox.Items)
+            {
+                if (item.Selected)
+                {
+                    string userId = item.Value;
+
+                    this.UsersServices.SetLogoffForUser(userId, true);
+                }
+            }
+        }
+
+        protected void CancelButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

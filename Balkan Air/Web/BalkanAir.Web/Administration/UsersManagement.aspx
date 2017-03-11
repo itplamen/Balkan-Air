@@ -7,7 +7,8 @@
         ViewStateMode="Disabled">
         <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
         <span class="sr-only">Error:</span>
-        New travel class with ID <asp:Literal ID="AddedTravelClassIdLiteral" runat="server" /> 
+        New travel class with ID
+        <asp:Literal ID="AddedTravelClassIdLiteral" runat="server" />
         was added successfully!
     </asp:Panel>
 
@@ -61,4 +62,37 @@
             <h4>No users found!</h4>
         </EmptyDataTemplate>
     </asp:GridView>
+
+    <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
+        <h3>Users management</h3>
+
+        <asp:Label Text="Users to logoff: " runat="server" AssociatedControlID="UsersListBox" />
+        <asp:ListBox ID="UsersListBox" runat="server" SelectionMode="Multiple" required
+            DataValueField="Id"
+            DataTextField="UserInfo"
+            SelectMethod="UsersListBox_GetData" />
+
+        <p>
+            <asp:Button ID="LogoffUsersButton" Text="Logoff" runat="server" UseSubmitBehavior="false" 
+                CssClass="btn btn-info" OnClick="LogoffUsersButton_Click" />
+        </p>
+
+        <p>
+            <asp:Button ID="CancelButton" runat="server" UseSubmitBehavior="false" Text="Cancel" CssClass="btn btn-danger"
+                OnClick="CancelButton_Click" />
+        </p>
+    </asp:Panel>
+</asp:Content>
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
+    <script type="text/javascript">
+        $(function () {
+            $('[id*=UsersListBox]').multiselect({
+                enableFiltering: true,
+                includeSelectAllOption: true,
+                enableCollapsibleOptGroups: true,
+                maxHeight: 300,
+                buttonWidth: '350px'
+            });
+        });
+    </script>
 </asp:Content>

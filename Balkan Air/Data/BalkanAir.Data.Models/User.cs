@@ -32,6 +32,8 @@
 
         public bool IsDeleted { get; set; }
 
+        public bool DoesAdminForcedLogoff { get; set; }
+
         public virtual ICollection<CreditCard> CreditCards { get; set; }
 
         public virtual ICollection<UserNotification> UserNotification { get; set; }

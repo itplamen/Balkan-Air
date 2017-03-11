@@ -24,5 +24,7 @@
         void SetLastLogin(string userEmail, DateTime dateTime);
 
         void SetLastLogout(string userEmail, DateTime dateTime);
+
+        void SetLogoffForUser(string userId, bool logoff);
     }
 }

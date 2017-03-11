@@ -60,7 +60,7 @@
         {
             get
             {
-                return (Data.Models.Booking) this.Session[Common.Constants.ONE_WAY_ROUTE_BOOKING];
+                return (Data.Models.Booking)this.Session[Common.Constants.ONE_WAY_ROUTE_BOOKING];
             }
         }
 
@@ -142,6 +142,14 @@
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (this.User != null && this.User.DoesAdminForcedLogoff)
+            {
+                this.UsersServices.SetLogoffForUser(this.User.Id, false);
+                Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                this.Response.Redirect(Pages.HOME);
+            }
+
             if (!IsPostBack)
             {
                 this.SiteMapPathBreadcrump.Visible = (SiteMap.CurrentNode != SiteMap.RootNode);
@@ -159,9 +167,9 @@
                 string curretnUrl = HttpContext.Current.Request.Url.AbsolutePath;
 
                 // Show itinerary info during flight booking.
-                if ((curretnUrl == base.Page.ResolveUrl(Pages.SELECT_FLIGHT) || 
+                if ((curretnUrl == base.Page.ResolveUrl(Pages.SELECT_FLIGHT) ||
                     curretnUrl == base.Page.ResolveUrl(Pages.EXTRAS) ||
-                    curretnUrl == base.Page.ResolveUrl(Pages.SELECT_SEAT) || 
+                    curretnUrl == base.Page.ResolveUrl(Pages.SELECT_SEAT) ||
                     curretnUrl == base.Page.ResolveUrl(Pages.PAYMENT)) &&
                     (this.Session[Common.Constants.DEPARTURE_AIRPORT_ID] != null &&
                     this.Session[Common.Constants.DESTINATION_AIRPORT_ID] != null))
@@ -208,7 +216,7 @@
         {
             if (!string.IsNullOrEmpty(this.User.UserSettings.FirstName))
             {
-                return this.User.UserSettings.FirstName ;
+                return this.User.UserSettings.FirstName;
             }
 
             return this.User.Email;
@@ -291,8 +299,8 @@
             this.ItineraryInfoPanel.Visible = true;
         }
 
-        private void SetItineraryForBooking (Data.Models.Booking booking, ref decimal totalCost, Literal seatLiteral,
-            Literal flightNumberLiteral, Literal dateTimeLiteral, Literal flightPriceLiteral, Literal travelClassPriceLiteral, 
+        private void SetItineraryForBooking(Data.Models.Booking booking, ref decimal totalCost, Literal seatLiteral,
+            Literal flightNumberLiteral, Literal dateTimeLiteral, Literal flightPriceLiteral, Literal travelClassPriceLiteral,
             Literal travelClassLiteral)
         {
             this.SetSelectedFlightToItinerary(booking, ref totalCost, flightNumberLiteral, dateTimeLiteral,
@@ -322,7 +330,7 @@
             }
         }
 
-        private void SetSelectedFlightToItinerary(Data.Models.Booking booking, ref decimal totalCost, Literal flightNumberLiteral, 
+        private void SetSelectedFlightToItinerary(Data.Models.Booking booking, ref decimal totalCost, Literal flightNumberLiteral,
             Literal dateTimeLiteral, Literal flightPriceLiteral, Literal travelClassPriceLiteral, Literal travelClassLiteral)
         {
             LegInstance selectedLegInstance = this.LegInstancesServices.GetLegInstance(booking.LegInstanceId);
@@ -339,7 +347,7 @@
             travelClassLiteral.Text = this.TravelClassesServices.GetTravelClass(booking.TravelClassId).Type.ToString() + " class";
         }
 
-        private void SetCabinBagToItinerary(Data.Models.Booking booking, ref decimal totalCost, Literal cabinBagLiteral, 
+        private void SetCabinBagToItinerary(Data.Models.Booking booking, ref decimal totalCost, Literal cabinBagLiteral,
             Literal cabinBabPriceLiteral)
         {
             var cabinBag = booking.Baggage
@@ -353,7 +361,7 @@
             }
         }
 
-        private void SetCheckedInBagsToItinerary(Data.Models.Booking booking, ref decimal totalCost, 
+        private void SetCheckedInBagsToItinerary(Data.Models.Booking booking, ref decimal totalCost,
             Literal checkedInBagsLiteral, Literal checkedInBagsPricesLiteral)
         {
             var checkedInBags = booking.Baggage
@@ -362,7 +370,7 @@
 
             if (checkedInBags.Count > 0)
             {
-                checkedInBagsLiteral.Text = "Checked in bags " + checkedInBags.Count + " x " + 
+                checkedInBagsLiteral.Text = "Checked in bags " + checkedInBags.Count + " x " +
                     checkedInBags[0].MaxKilograms + " kg. ";
 
                 decimal checkedInBagsPriceSum = checkedInBags.Sum(b => b.Price);
@@ -372,7 +380,7 @@
         }
 
         // Set baby, sports and music equipments to the itenerary info panel. 
-        private void SetBagEquipmentsToItinerary(Data.Models.Booking booking, ref decimal totalCost, BaggageType baggageType, 
+        private void SetBagEquipmentsToItinerary(Data.Models.Booking booking, ref decimal totalCost, BaggageType baggageType,
             Literal literalInfo, Literal literalPrice)
         {
             var equipment = booking.Baggage
