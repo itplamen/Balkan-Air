@@ -23,6 +23,9 @@
         [Inject]
         public IUserNotificationsServices UserNotificationsServices { get; set; }
 
+        [Inject]
+        public IUsersServices UsersServices { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (this.Context.User.Identity.IsAuthenticated)
@@ -56,6 +59,8 @@
                 mailSender.SendMail(user.Email, "Confirm your account!", messageBody);
 
                 signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
+                this.UsersServices.SetLastLogin(user.Email, DateTime.Now);
+
                 IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
             }
             else

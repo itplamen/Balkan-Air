@@ -177,6 +177,7 @@
 
         protected void LoginStatus_LoggingOut(object sender, LoginCancelEventArgs e)
         {
+            this.UsersServices.SetLastLogout(this.User.Email, DateTime.Now);
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
 

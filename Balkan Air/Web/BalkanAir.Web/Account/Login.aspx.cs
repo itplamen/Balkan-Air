@@ -6,10 +6,16 @@
 
     using Microsoft.AspNet.Identity.Owin;
 
+    using Ninject;
+
     using Common;
+    using Services.Data.Contracts;
 
     public partial class Login : Page
     {
+        [Inject]
+        public IUsersServices UsersServices { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             RegisterHyperLink.NavigateUrl = "Register";
@@ -44,6 +50,7 @@
                 switch (result)
                 {
                     case SignInStatus.Success:
+                        this.UsersServices.SetLastLogin(this.Email.Text, DateTime.Now);
                         IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                         break;
                     case SignInStatus.LockedOut:

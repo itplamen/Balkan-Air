@@ -392,19 +392,19 @@
         private void SeedFlightLegs ()
         {
             // Sofia - Madrid
-            this.AddFlightLeg(1, new DateTime(2017, 3, 1, 17, 30, 00), 6, new DateTime(2017, 3, 1, 20, 30, 00), 1, 1);
+            this.AddFlightLeg(1, new DateTime(2017, 4, 1, 17, 30, 00), 6, new DateTime(2017, 4, 1, 20, 30, 00), 1, 1);
 
             // Madrid - Sofia
-            this.AddFlightLeg(6, new DateTime(2017, 3, 1, 20, 30, 00), 1, new DateTime(2017, 3, 1, 23, 30, 00), 2, 2);
+            this.AddFlightLeg(6, new DateTime(2017, 4, 1, 20, 30, 00), 1, new DateTime(2017, 4, 1, 23, 30, 00), 2, 2);
 
             // Sofia - Lisbon
-            this.AddFlightLeg(1, new DateTime(2017, 3, 1, 14, 45, 00), 3, new DateTime(2017, 3, 1, 19, 30, 00), 3, 3);
+            this.AddFlightLeg(1, new DateTime(2017, 4, 1, 14, 45, 00), 3, new DateTime(2017, 4, 1, 19, 30, 00), 3, 3);
 
             // Varna - Berlin
-            this.AddFlightLeg(2, new DateTime(2017, 3, 1, 2, 00, 00), 13, new DateTime(2017, 3, 1, 5, 35, 00), 4, 4);
+            this.AddFlightLeg(2, new DateTime(2017, 4, 1, 2, 00, 00), 13, new DateTime(2017, 4, 1, 5, 35, 00), 4, 4);
 
             // London - Paris
-            this.AddFlightLeg(15, new DateTime(2017, 3, 1, 18, 10, 00), 17, new DateTime(2017, 3, 1, 20, 00, 00), 5, 5);
+            this.AddFlightLeg(15, new DateTime(2017, 4, 1, 18, 10, 00), 17, new DateTime(2017, 4, 1, 20, 00, 00), 5, 5);
 
             // Liverpool - Berlin, Berlin - Ibiza
             //this.AddFlightLeg(16, new TimeSpan(8, 15, 00), 13, new TimeSpan(10, 15, 00), 8, 3);

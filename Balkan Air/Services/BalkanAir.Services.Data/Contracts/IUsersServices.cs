@@ -1,5 +1,6 @@
 ﻿namespace BalkanAir.Services.Data.Contracts
 {
+    using System;
     using System.Linq;
 
     using BalkanAir.Data.Models;
@@ -19,5 +20,9 @@
         User DeleteUser(string id);
 
         void Upload(string userId, byte[] image);
+
+        void SetLastLogin(string userEmail, DateTime dateTime);
+
+        void SetLastLogout(string userEmail, DateTime dateTime);
     }
 }

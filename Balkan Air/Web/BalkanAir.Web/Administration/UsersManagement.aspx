@@ -42,6 +42,16 @@
             <asp:BoundField DataField="UserSettings.FullAddress" HeaderText="Address" />
             <asp:BoundField DataField="CreatedOn" HeaderText="Created On" />
             <asp:BoundField DataField="DeletedOn" HeaderText="Deleted On" />
+            <asp:TemplateField HeaderText="Last Login">
+                <ItemTemplate>
+                    <%#: Item.UserSettings.LastLogin %>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Last Logout">
+                <ItemTemplate>
+                    <%#: Item.UserSettings.LastLogout %>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />
 
             <asp:CommandField ShowEditButton="true" ControlStyle-CssClass="btn btn-info" />

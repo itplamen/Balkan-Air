@@ -63,6 +63,12 @@
         [Column("ReceiveNotificationWhenNewFlight")]
         public bool ReceiveNotificationWhenNewFlight { get; set; }
 
+        [Column("LastLogin", TypeName = "datetime2")]
+        public DateTime LastLogin { get; set; }
+
+        [Column("LastLogout", TypeName = "datetime2")]
+        public DateTime LastLogout { get; set; }
+
         public virtual ICollection<Booking> Bookings { get; set; }
     }
 }

@@ -8,7 +8,7 @@
     using Contracts;
 
     public class UsersServices : IUsersServices
-    {
+    {       
         private readonly IRepository<User> users;
 
         public UsersServices(IRepository<User> users)
@@ -84,6 +84,28 @@
             user.UserSettings.ProfilePicture = image;
 
             this.users.SaveChanges();
+        }
+
+        public void SetLastLogin(string userEmail, DateTime dateTime)
+        {
+            var user = this.GetUserByEmail(userEmail);
+
+            if (user != null)
+            {
+                user.UserSettings.LastLogin = dateTime;
+                this.users.SaveChanges();
+            }
+        }
+
+        public void SetLastLogout(string userEmail, DateTime dateTime)
+        {
+            var user = this.GetUserByEmail(userEmail);
+
+            if (user != null)
+            {
+                user.UserSettings.LastLogout = dateTime;
+                this.users.SaveChanges();
+            }
         }
     }
 }
