@@ -7,9 +7,7 @@
         ViewStateMode="Disabled">
         <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
         <span class="sr-only">Error:</span>
-        New travel class with ID
-        <asp:Literal ID="AddedTravelClassIdLiteral" runat="server" />
-        was added successfully!
+        <asp:Literal Id="SuccessPanelLiteral" runat="server" />
     </asp:Panel>
 
     <asp:GridView ID="UsersGridView" runat="server" CssClass="administrationGridView"
@@ -63,36 +61,60 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
-    <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
-        <h3>Users management</h3>
+    <asp:Button ID="LogoffUsersBtn" Text="Logoff" UseSubmitBehavior="false" runat="server" CssClass="btn btn-info"
+        OnClick="LogoffUsersBtn_Click" />
+
+    <asp:Button ID="ChangeUsersRolesBtn" Text="Change roles" UseSubmitBehavior="false" runat="server" CssClass="btn btn-info"
+        OnClick="ChangeUsersRolesBtn_Click" />
+
+    <asp:Panel ID="LogoffUsersPanel" Visible="false" runat="server" CssClass="administrationAddEntityPanel">
+        <h3>Logoff users</h3>
 
         <asp:Label Text="Users to logoff: " runat="server" AssociatedControlID="UsersListBox" />
         <asp:ListBox ID="UsersListBox" runat="server" SelectionMode="Multiple" required
+            CssClass="bootstrapListBox"
             DataValueField="Id"
             DataTextField="UserInfo"
             SelectMethod="UsersListBox_GetData" />
 
         <p>
-            <asp:Button ID="LogoffUsersButton" Text="Logoff" runat="server" UseSubmitBehavior="false" 
-                CssClass="btn btn-info" OnClick="LogoffUsersButton_Click" />
-        </p>
+            <asp:Button ID="LogoffUsersButton" Text="Log off" runat="server" CssClass="btn btn-info"
+                UseSubmitBehavior="true" ValidateRequestMode="Enabled" OnClick="LogoffUsersButton_Click" />
 
-        <p>
-            <asp:Button ID="CancelButton" runat="server" UseSubmitBehavior="false" Text="Cancel" CssClass="btn btn-danger"
-                OnClick="CancelButton_Click" />
+            <asp:Button ID="CancelLogoffUsersButton" runat="server" ValidateRequestMode="Disabled" UseSubmitBehavior="false"
+                Text="Cancel" CssClass="btn btn-danger" OnClick="CancelLogoffUsersButton_Click" />
         </p>
     </asp:Panel>
-</asp:Content>
-<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
-    <script type="text/javascript">
-        $(function () {
-            $('[id*=UsersListBox]').multiselect({
-                enableFiltering: true,
-                includeSelectAllOption: true,
-                enableCollapsibleOptGroups: true,
-                maxHeight: 300,
-                buttonWidth: '350px'
-            });
-        });
-    </script>
+
+    <asp:Panel ID="ChangeRolesPanel" Visible="false" runat="server" CssClass="administrationAddEntityPanel">
+        <h3>Change roles</h3>
+
+        <asp:Label Text="Users: " runat="server" AssociatedControlID="UsersToChangeRolesListBox" />
+        <asp:ListBox ID="UsersToChangeRolesListBox" runat="server" SelectionMode="Single" required
+            CssClass="bootstrapListBox"
+            DataValueField="Id"
+            DataTextField="UserInfo"
+            AutoPostBack="true"
+            SelectMethod="UsersListBox_GetData"
+            OnSelectedIndexChanged="UsersToChangeRolesListBox_SelectedIndexChanged" />
+
+        <asp:Label Text="Roles: " runat="server" AssociatedControlID="UsersToChangeRolesListBox" />
+        <asp:ListBox ID="RolesOfSelectedUserListBox" runat="server" SelectionMode="Multiple" required
+            ItemType="Microsoft.AspNet.Identity.EntityFramework.IdentityRole"
+            CssClass="bootstrapListBox"
+            DataValueField="Id"
+            DataTextField="Name"
+            SelectMethod="RolesOfSelectedUserListBox_GetData" />
+
+        <p>
+            <asp:Button ID="AddToUserRolesButton" Text="Add" runat="server" UseSubmitBehavior="true" ValidateRequestMode="Enabled"
+                CssClass="btn btn-info" OnClick="AddToUserRolesButton_Click" />
+
+            <asp:Button ID="DeleteFromUserRolesButton" Text="Remove" CssClass="btn btn-warning" runat="server" 
+                UseSubmitBehavior="true" ValidateRequestMode="Enabled" OnClick="DeleteFromUserRolesButton_Click" />
+
+            <asp:Button ID="CancelChanginUserRolesButton" Text="Cancel" runat="server" ValidateRequestMode="Disabled" 
+                UseSubmitBehavior="false" CssClass="btn btn-danger" OnClick="CancelChanginUserRolesButton_Click" />
+        </p>
+    </asp:Panel>
 </asp:Content>

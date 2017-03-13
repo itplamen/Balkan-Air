@@ -9,11 +9,15 @@
     using Ninject;
 
     using Services.Data.Contracts;
+    using Data.Models;
 
     public partial class UserRolesManagement : Page
     {
         [Inject]
-        public IUserRolesServices UserRolesServices { get; set; }  
+        public IUserRolesServices UserRolesServices { get; set; } 
+        
+        [Inject]
+        public IUsersServices UsersServices { get; set; }
 
         public IQueryable<IdentityRole> UserRolesGridView_GetData()
         {
@@ -65,7 +69,8 @@
                 this.UserRolesServices.AddRole(role);
 
                 this.SuccessPanel.Visible = true;
-                this.AddedUserRoleNameLiteral.Text = this.UserRoleNameTextBox.Text;
+                this.AddedUserRoleNameLiteral.Text = "New user role " + "" + this.UserRoleNameTextBox.Text + 
+                    "" + "was added successfully!";
 
                 this.ClearFields();
             }

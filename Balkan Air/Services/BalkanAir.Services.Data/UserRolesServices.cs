@@ -56,7 +56,7 @@
                 this.roles.Delete(id);
                 this.roles.SaveChanges();
             }
-
+            
             return roleToDelete;
         }
     }

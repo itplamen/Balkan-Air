@@ -54,6 +54,7 @@
 
         <asp:Label Text="Send to: " runat="server" AssociatedControlID="UsersListBox" />
         <asp:ListBox ID="UsersListBox" runat="server" SelectionMode="Multiple" required
+            CssClass="bootstrapListBox"
             DataValueField="Id"
             DataTextField="UserInfo"
             SelectMethod="UsersListBox_GetData" />
@@ -71,17 +72,4 @@
                 OnClick="CancelButton_Click" />
         </p>
     </asp:Panel>
-</asp:Content>
-<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
-    <script type="text/javascript">
-        $(function () {
-            $('[id*=UsersListBox]').multiselect({
-                enableFiltering: true,
-                includeSelectAllOption: true,
-                enableCollapsibleOptGroups: true,
-                maxHeight: 300,
-                buttonWidth: '350px'
-            });
-        });
-    </script>
 </asp:Content>

@@ -394,6 +394,14 @@
                 }
             });
 
+            $('[class*=bootstrapListBox]').multiselect({
+                enableFiltering: true,
+                includeSelectAllOption: true,
+                enableCollapsibleOptGroups: true,
+                maxHeight: 300,
+                buttonWidth: '350px'
+            });
+
             if ($successPanel.is(':visible')) {
                 setTimeout(function () {
                     $successPanel.fadeOut('slow');

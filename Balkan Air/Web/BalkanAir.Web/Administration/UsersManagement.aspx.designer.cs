@@ -22,13 +22,13 @@ namespace BalkanAir.Web.Administration {
         protected global::System.Web.UI.WebControls.Panel SuccessPanel;
         
         /// <summary>
-        /// AddedTravelClassIdLiteral control.
+        /// SuccessPanelLiteral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal AddedTravelClassIdLiteral;
+        protected global::System.Web.UI.WebControls.Literal SuccessPanelLiteral;
         
         /// <summary>
         /// UsersGridView control.
@@ -38,6 +38,33 @@ namespace BalkanAir.Web.Administration {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView UsersGridView;
+        
+        /// <summary>
+        /// LogoffUsersBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button LogoffUsersBtn;
+        
+        /// <summary>
+        /// ChangeUsersRolesBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ChangeUsersRolesBtn;
+        
+        /// <summary>
+        /// LogoffUsersPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel LogoffUsersPanel;
         
         /// <summary>
         /// UsersListBox control.
@@ -58,12 +85,66 @@ namespace BalkanAir.Web.Administration {
         protected global::System.Web.UI.WebControls.Button LogoffUsersButton;
         
         /// <summary>
-        /// CancelButton control.
+        /// CancelLogoffUsersButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CancelButton;
+        protected global::System.Web.UI.WebControls.Button CancelLogoffUsersButton;
+        
+        /// <summary>
+        /// ChangeRolesPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ChangeRolesPanel;
+        
+        /// <summary>
+        /// UsersToChangeRolesListBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox UsersToChangeRolesListBox;
+        
+        /// <summary>
+        /// RolesOfSelectedUserListBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox RolesOfSelectedUserListBox;
+        
+        /// <summary>
+        /// AddToUserRolesButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AddToUserRolesButton;
+        
+        /// <summary>
+        /// DeleteFromUserRolesButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DeleteFromUserRolesButton;
+        
+        /// <summary>
+        /// CancelChanginUserRolesButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CancelChanginUserRolesButton;
     }
 }

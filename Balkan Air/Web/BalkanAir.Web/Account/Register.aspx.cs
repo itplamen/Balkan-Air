@@ -45,7 +45,7 @@
             if (result.Succeeded)
             {
                 manager.AddToRole(user.Id, UserRolesConstants.AUTHENTICATED_USER_ROLE);
-
+                
                 this.SendWelcomeNotification(user.Id);
                 
                 string code = manager.GenerateEmailConfirmationToken(user.Id);

@@ -7,8 +7,7 @@
         ViewStateMode="Disabled">
         <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
         <span class="sr-only">Error:</span>
-        New user role "<asp:Literal ID="AddedUserRoleNameLiteral" runat="server" />"
-        was added successfully!
+        <asp:Literal ID="AddedUserRoleNameLiteral" runat="server" />
     </asp:Panel>
 
     <asp:GridView ID="UserRolesGridView" runat="server" CssClass="administrationGridView"
@@ -42,8 +41,9 @@
         <asp:TextBox ID="UserRoleNameTextBox" required runat="server" />
 
         <p>
-            <asp:Button ID="CreateUserRoleBtn" runat="server" Text="Create" CssClass="btn btn-info" 
+            <asp:Button ID="CreateUserRoleBtn" runat="server" Text="Create" CssClass="btn btn-info"
                 OnClick="CreateUserRoleBtn_Click" />
+
             <asp:Button ID="CancelBtn" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-danger"
                 UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
         </p>

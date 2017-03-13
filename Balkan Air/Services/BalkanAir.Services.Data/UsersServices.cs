@@ -7,11 +7,11 @@
     using BalkanAir.Data.Repositories.Contracts;
     using Common;
     using Contracts;
-
+    
     public class UsersServices : IUsersServices
     {       
         private readonly IRepository<User> users;
-
+        
         public UsersServices(IRepository<User> users)
         {
             this.users = users;
@@ -21,7 +21,7 @@
         {
             this.users.Add(user);
             this.users.SaveChanges();
-
+            
             return user.Id;
         }
 
@@ -43,7 +43,7 @@
         public User UpdateUser(string id, User user)
         {
             var userToUpdate = this.users.GetById(id);
-
+            
             if (userToUpdate != null)
             {
                 userToUpdate.UserSettings.FirstName = user.UserSettings.FirstName;

@@ -15,6 +15,7 @@
     <div id="SendMailDiv">
         <h4>Recipients:</h4>
         <asp:ListBox ID="UsersListBox" runat="server" SelectionMode="Multiple" required
+            CssClass="bootstrapListBox"
             DataValueField="Id"
             DataTextField="UserInfo"
             SelectMethod="UsersListBox_GetData" />
@@ -30,18 +31,4 @@
             <asp:Button ID="CancelButton" runat="server" UseSubmitBehavior="false" Text="Cancel" CssClass="btn btn-danger" OnClick="CancelButton_Click" />
         </div>
     </div>
-</asp:Content>
-
-<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
-    <script type="text/javascript">
-        $(function () {
-            $('[id*=UsersListBox]').multiselect({
-                enableFiltering: true,
-                includeSelectAllOption: true,
-                enableCollapsibleOptGroups: true,
-                maxHeight: 300,
-                buttonWidth: '350px'
-            });
-        });
-    </script>
 </asp:Content>
