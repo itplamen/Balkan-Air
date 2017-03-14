@@ -74,11 +74,6 @@
                 .OrderBy(l => l.DepartureDateTime)
                 .ToList();
 
-            if (legInstances == null || legInstances.Count == 0)
-            {
-                this.Response.Redirect(Pages.HOME);
-            }
-
             this.AddDaysWithNoFlightToSlider(legInstances);
 
             int initialSlideIndex = legInstances
@@ -107,11 +102,6 @@
                             l.FlightLeg.ArrivalAirportId == this.DepartureAirprotId)
                 .OrderBy(l => l.DepartureDateTime)
                 .ToList();
-
-            if (legInstances == null || legInstances.Count == 0)
-            {
-                this.Response.Redirect(Pages.HOME);
-            }
 
             this.AddDaysWithNoFlightToSlider(legInstances);
 

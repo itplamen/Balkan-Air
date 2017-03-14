@@ -60,7 +60,7 @@
     <Compile Include="AircraftManufacturersServices.cs" />
     <Compile Include="AircraftsServices.cs" />
     <Compile Include="AirportsServices.cs" />
-    <Compile Include="BaggagesServices.cs" />
+    <Compile Include="BaggageServices.cs" />
     <Compile Include="BookingsServices.cs" />
     <Compile Include="CategoriesServices.cs" />
     <Compile Include="CommentsServices.cs" />

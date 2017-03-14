@@ -62,6 +62,7 @@
             if (countryToUpdate != null)
             {
                 countryToUpdate.Name = country.Name;
+                countryToUpdate.Abbreviation = country.Abbreviation;
                 countryToUpdate.IsDeleted = country.IsDeleted;
                 this.countries.SaveChanges();
             }

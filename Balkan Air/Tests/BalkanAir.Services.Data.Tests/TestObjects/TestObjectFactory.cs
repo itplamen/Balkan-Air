@@ -56,6 +56,25 @@
             return airports;
         }
 
+        public static InMemoryRepository<Baggage> GetBaggageRepository(int numberOfBags = 25)
+        {
+            var bags = new InMemoryRepository<Baggage>();
+
+            for (int i = 0; i < numberOfBags; i++)
+            {
+                bags.Add(new Baggage()
+                {
+                    Id = i,
+                    Type = BaggageType.Cabin,
+                    Price = 1m,
+                    Size = "Test Size " + i,
+                    BookingId = 1
+                });
+            }
+
+            return bags;
+        }
+
         public static InMemoryRepository<Country> GetCountriesRepository(int numberOfCountries = 25)
         {
             var countries = new InMemoryRepository<Country>();

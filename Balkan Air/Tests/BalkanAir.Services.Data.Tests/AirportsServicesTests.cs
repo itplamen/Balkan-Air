@@ -16,11 +16,19 @@
 
         private InMemoryRepository<Airport> airportsRepository;
 
+        private Airport airport;
+
         [TestInitialize]
         public void TestInitialize()
         {
             this.airportsRepository = TestObjectFactory.GetAirportsRepository();
             this.airportsServices = new AirportsServices(this.airportsRepository);
+            this.airport = new Airport()
+            {
+                Name = "Test Airport",
+                Abbreviation = "123",
+                CountryId = 1
+            };
         }
 
         [TestMethod]
@@ -33,12 +41,7 @@
         [TestMethod]
         public void AddShouldInvokeSaveChanges()
         {
-            var result = this.airportsServices.AddAirport(new Airport()
-            {
-                Name = "Test Airport",
-                Abbreviation = "123",
-                CountryId = 1
-            });
+            var result = this.airportsServices.AddAirport(this.airport);
 
             Assert.AreEqual(1, this.airportsRepository.NumberOfSaves);
         }
@@ -46,20 +49,15 @@
         [TestMethod]
         public void AddShouldPopulateAirportToDatabase()
         {
-            var result = this.airportsServices.AddAirport(new Airport()
-            {
-                Name = "Test Airport",
-                Abbreviation = "123",
-                CountryId = 1
-            });
+            var result = this.airportsServices.AddAirport(this.airport);
 
             var addedAirport = this.airportsRepository.All()
-                .FirstOrDefault(a => a.Name == "Test Airport");
+                .FirstOrDefault(a => a.Name == this.airport.Name);
 
             Assert.IsNotNull(addedAirport);
-            Assert.AreEqual("Test Airport", addedAirport.Name);
-            Assert.AreEqual("123", addedAirport.Abbreviation);
-            Assert.AreEqual(1, addedAirport.CountryId);
+            Assert.AreEqual(this.airport.Name, addedAirport.Name);
+            Assert.AreEqual(this.airport.Abbreviation, addedAirport.Abbreviation);
+            Assert.AreEqual(this.airport.CountryId, addedAirport.CountryId);
         }
 
         [TestMethod]
@@ -102,12 +100,7 @@
         [TestMethod]
         public void UpdateShouldInvokeSaveChanges()
         {
-            var result = this.airportsServices.UpdateAirport(1, new Airport()
-            {
-                Name = "Test Airport",
-                Abbreviation = "123",
-                CountryId = 1
-            });
+            var result = this.airportsServices.UpdateAirport(1, this.airport);
 
             Assert.AreEqual(1, this.airportsRepository.NumberOfSaves);
         }
@@ -123,16 +116,11 @@
         [TestMethod]
         public void UpdateShouldEditAirport()
         {
-            var result = this.airportsServices.UpdateAirport(1, new Airport()
-            {
-                Name = "Test Airport",
-                Abbreviation = "123",
-                CountryId = 1
-            });
+            var result = this.airportsServices.UpdateAirport(1, this.airport);
 
-            Assert.AreEqual("Test Airport", result.Name);
-            Assert.AreEqual("123", result.Abbreviation);
-            Assert.AreEqual(1, result.CountryId);
+            Assert.AreEqual(this.airport.Name, result.Name);
+            Assert.AreEqual(this.airport.Abbreviation, result.Abbreviation);
+            Assert.AreEqual(this.airport.CountryId, result.CountryId);
         }
 
         [TestMethod]

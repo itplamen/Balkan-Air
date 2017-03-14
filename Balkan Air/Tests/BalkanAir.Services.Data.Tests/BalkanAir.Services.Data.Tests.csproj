@@ -53,6 +53,8 @@
     <Compile Include="AircraftManufacturersServicesTests.cs" />
     <Compile Include="AircraftsServicesTests.cs" />
     <Compile Include="AirportsServicesTests.cs" />
+    <Compile Include="BaggageServicesTests.cs" />
+    <Compile Include="CountriesServicesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestObjects\InMemoryRepository.cs" />
     <Compile Include="TestObjects\TestObjectFactory.cs" />

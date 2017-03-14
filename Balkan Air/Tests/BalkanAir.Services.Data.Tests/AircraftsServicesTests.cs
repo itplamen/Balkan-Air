@@ -16,11 +16,19 @@
 
         private InMemoryRepository<Aircraft> aircraftsRepository;
 
+        private Aircraft aircraft;
+
         [TestInitialize]
         public void TestInitialize()
         {
             this.aircraftsRepository = TestObjectFactory.GetAircraftsRepository();
             this.aircraftsServices = new AircraftsServices(this.aircraftsRepository);
+            this.aircraft = new Aircraft()
+            {
+                Model = "Test Aircraft",
+                TotalSeats = 1,
+                AircraftManufacturerId = 1
+            };
         }
 
         [TestMethod]
@@ -33,12 +41,7 @@
         [TestMethod]
         public void AddShouldInvokeSaveChanges()
         {
-            var result = this.aircraftsServices.AddAircraft(new Aircraft()
-            {
-                Model = "Test Aircraft",
-                TotalSeats = 1,
-                AircraftManufacturerId = 1
-            });
+            var result = this.aircraftsServices.AddAircraft(this.aircraft);
 
             Assert.AreEqual(1, this.aircraftsRepository.NumberOfSaves);
         }
@@ -46,20 +49,15 @@
         [TestMethod]
         public void AddShouldPopulateAircraftToDatabase()
         {
-            var result = this.aircraftsServices.AddAircraft(new Aircraft()
-            {
-                Model = "Test Aircraft",
-                TotalSeats = 1,
-                AircraftManufacturerId = 1
-            });
+            var result = this.aircraftsServices.AddAircraft(this.aircraft);
 
             var addedAircraft = this.aircraftsRepository.All()
-                .FirstOrDefault(a => a.Model == "Test Aircraft");
+                .FirstOrDefault(a => a.Model == this.aircraft.Model);
 
             Assert.IsNotNull(addedAircraft);
-            Assert.AreEqual("Test Aircraft", addedAircraft.Model);
-            Assert.AreEqual(1, addedAircraft.TotalSeats);
-            Assert.AreEqual(1, addedAircraft.AircraftManufacturerId);
+            Assert.AreEqual(this.aircraft.Model, addedAircraft.Model);
+            Assert.AreEqual(this.aircraft.TotalSeats, addedAircraft.TotalSeats);
+            Assert.AreEqual(this.aircraft.AircraftManufacturerId, addedAircraft.AircraftManufacturerId);
         }
 
         [TestMethod]
@@ -102,12 +100,7 @@
         [TestMethod]
         public void UpdateShouldInvokeSaveChanges()
         {
-            var result = this.aircraftsServices.UpdateAircraft(1, new Aircraft()
-            {
-                Model = "Test Aircraft",
-                TotalSeats = 1,
-                AircraftManufacturerId = 1
-            });
+            var result = this.aircraftsServices.UpdateAircraft(1, this.aircraft);
 
             Assert.AreEqual(1, this.aircraftsRepository.NumberOfSaves);
         }
@@ -123,16 +116,11 @@
         [TestMethod]
         public void UpdateShouldEditAircraft()
         {
-            var result = this.aircraftsServices.UpdateAircraft(1, new Aircraft()
-            {
-                Model = "Test Aircraft",
-                TotalSeats = 1,
-                AircraftManufacturerId = 1
-            });
+            var result = this.aircraftsServices.UpdateAircraft(1, this.aircraft);
 
-            Assert.AreEqual("Test Aircraft", result.Model);
-            Assert.AreEqual(1, result.TotalSeats);
-            Assert.AreEqual(1, result.AircraftManufacturerId);
+            Assert.AreEqual(this.aircraft.Model, result.Model);
+            Assert.AreEqual(this.aircraft.TotalSeats, result.TotalSeats);
+            Assert.AreEqual(this.aircraft.AircraftManufacturerId, result.AircraftManufacturerId);
         }
 
         [TestMethod]

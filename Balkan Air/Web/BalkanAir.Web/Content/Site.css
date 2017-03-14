@@ -1275,13 +1275,12 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
 #SecondColumn {
     position: relative;
     top: 56px;
-}
+} 
 
 .administrationGridView {
     padding: 50px;
     margin-top: 50px;
     margin-bottom: 30px;
-    width: 500px;
 }
 
     .administrationGridView th, .administrationGridView td {

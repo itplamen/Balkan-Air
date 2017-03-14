@@ -116,8 +116,15 @@
                     this.DestinationAirportIdHiddenField.Value = destinationAirportID.ToString();
                 }
 
+                int originAirportId = int.Parse(this.DepartureAirportIdHiddenField.Value);
+                var originAirport = this.AirportsServices.GetAirport(originAirportId);
+
+                var destinationAirport = this.AirportsServices.GetAirport(destinationAirportID);
+
                 var allFlights = this.LegInstancesServices.GetAll()
-                    .Where(l => l.DepartureDateTime > DateTime.Today)
+                    .Where(l => l.FlightLeg.Route.Origin.Name == originAirport.Name && 
+                                l.FlightLeg.Route.Destination.Name == destinationAirport.Name && 
+                                l.DepartureDateTime > DateTime.Today)
                     .OrderBy(l => l.DepartureDateTime)
                     .ToList();
 

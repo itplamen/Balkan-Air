@@ -16,11 +16,17 @@
 
         private InMemoryRepository<AircraftManufacturer> manufacturersRepository;
 
+        private AircraftManufacturer aircraftManufacturer;
+
         [TestInitialize]
         public void TestInitialize()
         {
             this.manufacturersRepository = TestObjectFactory.GetAircraftManufacturersRepository();
             this.aircraftManufacturersServices = new AircraftManufacturersServices(this.manufacturersRepository);
+            this.aircraftManufacturer = new AircraftManufacturer()
+            {
+                Name = "Test Manufacturer"
+            };
         }
 
         [TestMethod]
@@ -33,10 +39,7 @@
         [TestMethod]
         public void AddShouldInvokeSaveChanges()
         {
-            var result = this.aircraftManufacturersServices.AddManufacturer(new AircraftManufacturer()
-            {
-                Name = "Test Manufacturer"
-            });
+            var result = this.aircraftManufacturersServices.AddManufacturer(this.aircraftManufacturer);
 
             Assert.AreEqual(1, this.manufacturersRepository.NumberOfSaves);
         }
@@ -44,16 +47,13 @@
         [TestMethod]
         public void AddShouldPopulateManufacturerToDatabase()
         {
-            var result = this.aircraftManufacturersServices.AddManufacturer(new AircraftManufacturer()
-            {
-                Name = "Test Manufacturer"
-            });
+            var result = this.aircraftManufacturersServices.AddManufacturer(this.aircraftManufacturer);
 
             var addedManufacturer = this.manufacturersRepository.All()
-                .FirstOrDefault(a => a.Name == "Test Manufacturer");
+                .FirstOrDefault(a => a.Name == this.aircraftManufacturer.Name);
 
             Assert.IsNotNull(addedManufacturer);
-            Assert.AreEqual("Test Manufacturer", addedManufacturer.Name);
+            Assert.AreEqual(this.aircraftManufacturer.Name, addedManufacturer.Name);
         }
 
         [TestMethod]
@@ -96,10 +96,7 @@
         [TestMethod]
         public void UpdateShouldInvokeSaveChanges()
         {
-            var result = this.aircraftManufacturersServices.UpdateManufacturer(1, new AircraftManufacturer()
-            {
-                Name = "Test Manufacturer"
-            });
+            var result = this.aircraftManufacturersServices.UpdateManufacturer(1, this.aircraftManufacturer);
 
             Assert.AreEqual(1, this.manufacturersRepository.NumberOfSaves);
         }
@@ -115,12 +112,9 @@
         [TestMethod]
         public void UpdateShouldEditManufacturer()
         {
-            var result = this.aircraftManufacturersServices.UpdateManufacturer(1, new AircraftManufacturer()
-            {
-                Name = "Test Manufacturer"
-            });
+            var result = this.aircraftManufacturersServices.UpdateManufacturer(1, this.aircraftManufacturer);
 
-            Assert.AreEqual("Test Manufacturer", result.Name);
+            Assert.AreEqual(this.aircraftManufacturer.Name, result.Name);
         }
 
         [TestMethod]
