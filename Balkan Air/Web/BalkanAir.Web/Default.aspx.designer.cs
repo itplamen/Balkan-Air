@@ -67,15 +67,6 @@ namespace BalkanAir.Web {
         protected global::System.Web.UI.WebControls.HiddenField DestinationAirportIdHiddenField;
         
         /// <summary>
-        /// InvalidDatesCustomValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator InvalidDatesCustomValidator;
-        
-        /// <summary>
         /// DepartureDateTextBox control.
         /// </summary>
         /// <remarks>
@@ -112,13 +103,22 @@ namespace BalkanAir.Web {
         protected global::System.Web.UI.WebControls.TextBox ArrivalDateTextBox;
         
         /// <summary>
-        /// ArrivalCalendarExtender control.
+        /// ArrivalCalendar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender ArrivalCalendarExtender;
+        protected global::AjaxControlToolkit.CalendarExtender ArrivalCalendar;
+        
+        /// <summary>
+        /// InvalidDatesCustomValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator InvalidDatesCustomValidator;
         
         /// <summary>
         /// SearchBtn control.

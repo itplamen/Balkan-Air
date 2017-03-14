@@ -6,6 +6,8 @@
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
+    using AjaxControlToolkit;
+
     using Ninject;
 
     using Common;
@@ -68,10 +70,9 @@
                 this.DepartureDateTextBox.Attributes.Add("readonly", "readonly");
                 this.ArrivalDateTextBox.Attributes.Add("readonly", "readonly");
 
-                this.NoFlightsLiteral.Visible = false;
+                this.InitializeCalendars();
 
-                this.DepartureCalendar.StartDate = DateTime.Now.Date.AddDays(1);
-                this.ArrivalCalendarExtender.StartDate = DateTime.Now.Date.AddDays(1);
+                this.NoFlightsLiteral.Visible = false;
             }
         }
 
@@ -94,6 +95,8 @@
 
                     this.BindDestinationAirports(departureAirprotID);
                 }
+
+                this.InitializeCalendars();
             }
         }
 
@@ -112,19 +115,34 @@
                 {
                     this.DestinationAirportIdHiddenField.Value = destinationAirportID.ToString();
                 }
+
+                var allFlights = this.LegInstancesServices.GetAll()
+                    .Where(l => l.DepartureDateTime > DateTime.Today)
+                    .OrderBy(l => l.DepartureDateTime)
+                    .ToList();
+
+                var firstFlightDate = allFlights[0].DepartureDateTime.Date;
+                var lastFlightDate = allFlights[allFlights.Count - 1].DepartureDateTime.Date;
+
+                this.SetCalendar(this.DepartureCalendar, firstFlightDate, firstFlightDate, lastFlightDate);
+
+                if (this.ReturnRouteRadioButton.Checked)
+                {
+                    this.SetCalendar(this.ArrivalCalendar, firstFlightDate, firstFlightDate, lastFlightDate);
+                }
             }
         }
 
         protected void OnFlightSearchButtonClicked(object sender, EventArgs e)
         {
             if (this.Page.IsValid && !string.IsNullOrEmpty(this.DepartureAirportIdHiddenField.Value) &&
-                !string.IsNullOrEmpty(this.DestinationAirportIdHiddenField.Value) && 
+                !string.IsNullOrEmpty(this.DestinationAirportIdHiddenField.Value) &&
                 this.DepartureDateTextBox.Text != string.Empty)
             {
                 DateTime departureDate = DateTime.Parse(this.DepartureDateTextBox.Text);
                 DateTime? arrivalDate = null;
 
-                if (this.ReturnRouteRadioButton.Checked && this.ArrivalDateTextBox.Visible && 
+                if (this.ReturnRouteRadioButton.Checked && this.ArrivalDateTextBox.Visible &&
                     this.ArrivalDateTextBox.Text != string.Empty)
                 {
                     arrivalDate = DateTime.Parse(this.ArrivalDateTextBox.Text);
@@ -170,13 +188,32 @@
             }
         }
 
+        private void InitializeCalendars()
+        {
+            var date = DateTime.Today.Date.AddDays(1);
+
+            this.SetCalendar(this.DepartureCalendar, date, date, null);
+
+            if (this.ReturnRouteRadioButton.Checked)
+            {
+                this.SetCalendar(this.ArrivalCalendar, date, date, null);
+            }
+        }
+
+        private void SetCalendar(CalendarExtender calendar, DateTime? selectedDate, DateTime? startDate, DateTime? endDate)
+        {
+            calendar.SelectedDate = selectedDate;
+            calendar.StartDate = startDate;
+            calendar.EndDate = endDate;
+        }
+
         private void SearchFlight(string departureAirportId, string destinationAirportId,
             DateTime? departureDate, DateTime? arrivalDate)
         {
-            this.Session.Add(Constants.DEPARTURE_AIRPORT_ID, departureAirportId);
-            this.Session.Add(Constants.DESTINATION_AIRPORT_ID, destinationAirportId);
-            this.Session.Add(Constants.DEPARTURE_DATE, departureDate);
-            this.Session.Add(Constants.ARRIVAL_DATE, arrivalDate);
+            this.Session.Add(Common.Constants.DEPARTURE_AIRPORT_ID, departureAirportId);
+            this.Session.Add(Common.Constants.DESTINATION_AIRPORT_ID, destinationAirportId);
+            this.Session.Add(Common.Constants.DEPARTURE_DATE, departureDate);
+            this.Session.Add(Common.Constants.ARRIVAL_DATE, arrivalDate);
 
             this.Response.Redirect(Pages.SELECT_FLIGHT);
         }

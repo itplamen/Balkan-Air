@@ -36,12 +36,8 @@
 
                 <asp:HiddenField ID="DepartureAirportIdHiddenField" runat="server" />
                 <asp:HiddenField ID="DestinationAirportIdHiddenField" runat="server" />
-            </ContentTemplate>
-        </asp:UpdatePanel>
 
-        <asp:CustomValidator ID="InvalidDatesCustomValidator" Display="Dynamic" ForeColor="Red" ClientIDMode="Static" runat="server" />
-
-        <div class="fancyTextBox" id="DepartureDateFancyTextBox">
+                <div class="fancyTextBox" id="DepartureDateFancyTextBox">
             <asp:Label CssClass="label" runat="server" Text="Departure:" AssociatedControlID="DepartureDateTextBox" />
             <asp:TextBox ID="DepartureDateTextBox" runat="server" placeholder="Date" ClientIDMode="Static" />
         </div>
@@ -57,11 +53,17 @@
             <asp:TextBox ID="ArrivalDateTextBox" runat="server" placeholder="Date" ClientIDMode="Static" />
         </asp:Panel>
 
-        <ajaxToolkit:CalendarExtender ID="ArrivalCalendarExtender" runat="server"
+        <ajaxToolkit:CalendarExtender ID="ArrivalCalendar" runat="server"
             TargetControlID="ArrivalDateTextBox"
             CssClass="CalendarExtender"
             Format="d MMM yyyy"
             PopupButtonID="ArrivalDateTextBox" />
+            </ContentTemplate>
+        </asp:UpdatePanel>
+
+        <asp:CustomValidator ID="InvalidDatesCustomValidator" Display="Dynamic" ForeColor="Red" ClientIDMode="Static" runat="server" />
+
+        
 
         <div class="buttonBox">
             <asp:Button ID="SearchBtn" runat="server" ClientIDMode="Static" Text="Search" OnClick="OnFlightSearchButtonClicked" />
