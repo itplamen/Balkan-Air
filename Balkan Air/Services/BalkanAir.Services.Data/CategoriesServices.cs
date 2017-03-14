@@ -17,7 +17,6 @@
             this.categories = categories;
         }
 
-
         public int AddCategory(Category category)
         {
             if (category == null)

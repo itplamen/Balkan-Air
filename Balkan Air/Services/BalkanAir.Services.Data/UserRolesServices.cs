@@ -1,10 +1,12 @@
 ﻿namespace BalkanAir.Services.Data
 {
+    using System;
     using System.Linq;
 
     using Microsoft.AspNet.Identity.EntityFramework;
 
     using BalkanAir.Data.Repositories.Contracts;
+    using Common;
     using Contracts;
 
     public class UserRolesServices : IUserRolesServices
@@ -18,6 +20,11 @@
 
         public string AddRole(IdentityRole role)
         {
+            if (role == null)
+            {
+                throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
+            }
+
             this.roles.Add(role);
             this.roles.SaveChanges();
 
@@ -26,6 +33,11 @@
 
         public IdentityRole GetRole(string id)
         {
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException(ErrorMessages.NULL_OR_EMPTY_ID);
+            }
+
             return this.roles.GetById(id);
         }
 
@@ -36,6 +48,16 @@
 
         public IdentityRole UpdateRole(string id, IdentityRole role)
         {
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException(ErrorMessages.NULL_OR_EMPTY_ID);
+            }
+
+            if (role == null)
+            {
+                throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
+            }
+
             var roleToUpdate = this.roles.GetById(id);
 
             if (roleToUpdate != null)
@@ -49,6 +71,11 @@
 
         public IdentityRole DeleteRole(string id)
         {
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException(ErrorMessages.NULL_OR_EMPTY_ID);
+            }
+
             var roleToDelete = this.roles.GetById(id);
 
             if (roleToDelete != null)

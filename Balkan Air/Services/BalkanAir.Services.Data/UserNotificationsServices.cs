@@ -22,12 +22,12 @@
         {
             if (notificationId <= 0)
             {
-                throw new ArgumentNullException(ErrorMessages.INVALID_ID);
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
             }
 
             if (string.IsNullOrEmpty(userId))
             {
-                throw new ArgumentNullException(ErrorMessages.INVALID_USER_ID);
+                throw new ArgumentNullException(ErrorMessages.NULL_OR_EMPTY_ID);
             }
 
             this.AddUserNotification(notificationId, userId);
@@ -38,7 +38,7 @@
         {
             if (notificationId <= 0)
             {
-                throw new ArgumentNullException(ErrorMessages.INVALID_ID);
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
             }
 
             if (usersId == null || !usersId.Any())
@@ -58,12 +58,12 @@
         {
             if (notificationId <= 0)
             {
-                throw new ArgumentNullException(ErrorMessages.INVALID_ID);
+                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
             }
 
             if (string.IsNullOrEmpty(userId))
             {
-                throw new ArgumentNullException(ErrorMessages.INVALID_USER_ID);
+                throw new ArgumentNullException(ErrorMessages.NULL_OR_EMPTY_ID);
             }
 
             // If notification was sent more than once.
@@ -83,7 +83,7 @@
         {
             if (string.IsNullOrEmpty(userId))
             {
-                throw new ArgumentNullException(ErrorMessages.INVALID_USER_ID);
+                throw new ArgumentNullException(ErrorMessages.NULL_OR_EMPTY_ID);
             }
 
             this.userNotifications.All()

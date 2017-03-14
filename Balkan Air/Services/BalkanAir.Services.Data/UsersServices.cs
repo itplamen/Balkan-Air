@@ -19,6 +19,11 @@
 
         public string AddUser(User user)
         {
+            if (user == null)
+            {
+                throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
+            }
+
             this.users.Add(user);
             this.users.SaveChanges();
             
@@ -27,11 +32,21 @@
 
         public User GetUser(string id)
         {
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException(ErrorMessages.NULL_OR_EMPTY_ID);
+            }
+
             return this.users.GetById(id);
         }
 
         public User GetUserByEmail(string email)
         {
+            if (string.IsNullOrEmpty(email))
+            {
+                throw new ArgumentNullException(ErrorMessages.NULL_OR_EMPTY_EMAIL);
+            }
+
             return this.users.All().FirstOrDefault(u => u.Email == email);
         }
 
@@ -42,6 +57,16 @@
 
         public User UpdateUser(string id, User user)
         {
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException(ErrorMessages.NULL_OR_EMPTY_ID);
+            }
+
+            if (user == null)
+            {
+                throw new ArgumentNullException(ErrorMessages.ENTITY_CANNOT_BE_NULL);
+            }
+
             var userToUpdate = this.users.GetById(id);
             
             if (userToUpdate != null)
@@ -67,6 +92,11 @@
 
         public User DeleteUser(string id)
         {
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException(ErrorMessages.NULL_OR_EMPTY_ID);
+            }
+
             var userToDelete = this.users.GetById(id);
 
             if (userToDelete != null)
@@ -81,17 +111,30 @@
 
         public void Upload(string userId, byte[] image)
         {
-            var user = this.GetUser(userId);
-            user.UserSettings.ProfilePicture = image;
+            if (string.IsNullOrEmpty(userId))
+            {
+                throw new ArgumentNullException(ErrorMessages.NULL_OR_EMPTY_ID);
+            }
 
-            this.users.SaveChanges();
+            if (image == null || image.Length == 0)
+            {
+                throw new ArgumentNullException(ErrorMessages.INVALID_IMAGE_TO_UPLOAD);
+            }
+
+            var user = this.GetUser(userId);
+
+            if (user != null)
+            {
+                user.UserSettings.ProfilePicture = image;
+                this.users.SaveChanges();
+            }
         }
 
         public void SetLastLogin(string userEmail, DateTime dateTime)
         {
             if (string.IsNullOrEmpty(userEmail))
             {
-                throw new ArgumentNullException("Email cannot be null or empty!");
+                throw new ArgumentNullException(ErrorMessages.NULL_OR_EMPTY_EMAIL);
             }
 
             var user = this.GetUserByEmail(userEmail);
@@ -107,7 +150,7 @@
         {
             if (string.IsNullOrEmpty(userEmail))
             {
-                throw new ArgumentNullException("Email cannot be null or empty!");
+                throw new ArgumentNullException(ErrorMessages.NULL_OR_EMPTY_EMAIL);
             }
 
             var user = this.GetUserByEmail(userEmail);
@@ -123,7 +166,7 @@
         {
             if (string.IsNullOrEmpty(userId))
             {
-                throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_USER_ID);
+                throw new ArgumentNullException(ErrorMessages.NULL_OR_EMPTY_ID);
             }
 
             var user = this.users.GetById(userId);

@@ -17,7 +17,10 @@
         public const string NULL_OR_EMPTY_LIST_OF_USERS = "Cannot send notification to null or empty list of users!";
 
         // Users
-        public const string INVALID_USER_ID = "User id cannot be null or emtpy!";
+        public const string NULL_OR_EMPTY_EMAIL = "Email cannot be null or empty!";
+        public const string INVALID_IMAGE_TO_UPLOAD = "Invalid image to upload!";
 
+        // Users, Roles
+        public const string NULL_OR_EMPTY_ID = "ID cannot be null or emtpy!";
     }
 }
