@@ -1,5 +1,7 @@
 ﻿namespace BalkanAir.Services.Data.Tests.TestObjects
 {
+    using System;
+
     using BalkanAir.Data.Models;
 
     public static class TestObjectFactory
@@ -90,6 +92,24 @@
             }
 
             return countries;
+        }
+
+        public static InMemoryRepository<UserNotification> GetUserNotificationsRepository(int numberOfNotifications = 25)
+        {
+            var userNotifications = new InMemoryRepository<UserNotification>();
+
+            for (int i = 0; i < numberOfNotifications; i++)
+            {
+                userNotifications.Add(new UserNotification()
+                {
+                    Id = i,
+                    DateReceived = DateTime.Now,
+                    UserId = "User Id Test",
+                    NotificationId = 1
+                });
+            }
+
+            return userNotifications;
         }
     }
 }

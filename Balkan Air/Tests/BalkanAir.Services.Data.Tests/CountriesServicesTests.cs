@@ -51,7 +51,7 @@
             var result = this.countriesServices.AddCountry(this.country);
 
             var addedCountry = this.countriesRepository.All()
-                .FirstOrDefault(a => a.Name == this.country.Name);
+                .FirstOrDefault(c => c.Name == this.country.Name);
 
             Assert.IsNotNull(addedCountry);
             Assert.AreEqual(this.country.Name, addedCountry.Name);
