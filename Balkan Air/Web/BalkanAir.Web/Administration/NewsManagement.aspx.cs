@@ -2,9 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Linq.Dynamic;
+    using System.Text;
     using System.Web;
     using System.Web.ModelBinding;
     using System.Web.UI;
@@ -12,6 +14,7 @@
 
     using Ninject;
 
+    using Common;
     using Data.Models;
     using Services.Data.Contracts;
 
@@ -29,6 +32,15 @@
 
         [Inject]
         public ICategoriesServices CategoriesServices { get; set; }
+
+        [Inject]
+        public INotificationsServices NotificationsServices { get; set; }
+
+        [Inject]
+        public IUserNotificationsServices UserNotificationsServices { get; set; }
+
+        [Inject]
+        public IUsersServices UsersServices { get; set; }
 
         public IQueryable<News> NewsListView_GetData([QueryString]string orderBy)
         {
@@ -82,6 +94,9 @@
             news.DateCreated = DateTime.Now;
 
             this.NewsServices.AddNews(news);
+
+            this.SendNotificationToSubscribedUsers(news);
+            this.SendMailToSubscribedUsers(news);
         }
 
         public IQueryable<Category> CategoriesDropDownList_GetData()
@@ -154,6 +169,72 @@
             }
 
             return false;
+        }
+
+        private void SendNotificationToSubscribedUsers(News news)
+        {
+            var notificationId = this.AddNotification(news);
+            var usersIdToSendNotification = this.GetSubscribedUsersToReceiveNotification();
+
+            this.UserNotificationsServices.SendNotification(notificationId, usersIdToSendNotification);
+        }
+
+        private void SendMailToSubscribedUsers(News news)
+        {
+            var userEmails = this.GetSubscribedUsersToReceiveEmail();
+
+            StringBuilder messageBody = new StringBuilder();
+            messageBody.Append("Hello, Passenger,");
+            messageBody.Append("<br/><br/>" + this.GetContent(news));
+            messageBody.Append("<br/><br/><small>If you don't want to receive emails for new news, go to your account settings and " +
+                "uncheck <strong>'Receive email when there is a new news'</strong> option!</small>");
+
+            var mailSender = MailSender.Instance;
+            mailSender.SendMail(userEmails[0], "Added a new news!", messageBody.ToString(), userEmails);
+        }
+
+        private int AddNotification(News news)
+        {
+            StringBuilder content = new StringBuilder();
+            content.Append(this.GetContent(news));
+            content.Append("<br/><small>If you don't want to receive notifications for new news, go to your account settings and " +
+                "uncheck <strong>'Receive notification when there is a new news'</strong> option!</small>");
+
+            var addedNewNewsNotification = new Notification()
+            {
+                Content = content.ToString(),
+                DateCreated = DateTime.Now,
+                Type = NotificationType.AddedNewNews
+            };
+
+            this.NotificationsServices.AddNotification(addedNewNewsNotification);
+
+            return addedNewNewsNotification.Id;
+        }
+
+        private IEnumerable<string> GetSubscribedUsersToReceiveNotification()
+        {
+            return this.UsersServices.GetAll()
+                .Where(u => !u.IsDeleted && u.UserSettings.ReceiveNotificationWhenNewNews)
+                .Select(u => u.Id)
+                .ToList();
+        }
+
+        private IList<string> GetSubscribedUsersToReceiveEmail()
+        {
+            return this.UsersServices.GetAll()
+                .Where(u => !u.IsDeleted && u.UserSettings.ReceiveEmailWhenNewNews)
+                .Select(u => u.Email)
+                .ToList();
+        }
+
+        private string GetContent(News news)
+        {
+            string date = news.DateCreated.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture);
+            string time = news.DateCreated.ToString("HH:mm", CultureInfo.InvariantCulture);
+            string addedAt = date + " at " + time;
+
+            return string.Format(@"Added a new news ""{0}"" on {1}!", news.Title, addedAt);
         }
     }
 }

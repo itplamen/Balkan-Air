@@ -1,11 +1,15 @@
 ﻿namespace BalkanAir.Web.Administration
 {
     using System;
+    using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
+    using System.Text;
     using System.Web.UI;
 
     using Ninject;
 
+    using Common;
     using Data.Models;
     using Services.Data.Contracts;
 
@@ -28,6 +32,15 @@
 
         [Inject]
         public ILegInstancesServices LegInstancesServices { get; set; }
+
+        [Inject]
+        public INotificationsServices NotificationsServices { get; set; }
+
+        [Inject]
+        public IUserNotificationsServices UserNotificationsServices { get; set; }
+
+        [Inject]
+        public IUsersServices UsersServices { get; set; }
 
         public IQueryable<LegInstance> LegInstancesGridView_GetData()
         {
@@ -150,6 +163,9 @@
                 this.AddedLegInstanceIdLiteral.Text = id.ToString();
 
                 this.ClearFields();
+
+                this.SendNotificationToSubscribedUsers(legInstance);
+                this.SendMailToSubscribedUsers(legInstance);
             }
         }
 
@@ -213,6 +229,80 @@
             this.AddFlightLegDropDownList.SelectedIndex = 0;
             this.AddFlightStatusDropDownList.SelectedIndex = 0;
             this.AddAircraftDropDownList.SelectedIndex = 0;
+        }
+
+        private void SendNotificationToSubscribedUsers(LegInstance legInstance)
+        {
+            var notificationId = this.AddNotification(legInstance);
+            var usersIdToSendNotification = this.GetSubscribedUsersToReceiveNotification();
+
+            this.UserNotificationsServices.SendNotification(notificationId, usersIdToSendNotification);
+        }
+
+        private void SendMailToSubscribedUsers(LegInstance legInstance)
+        {
+            var userEmails = this.GetSubscribedUsersToReceiveEmail();
+
+            StringBuilder messageBody = new StringBuilder();
+            messageBody.Append("Hello, Passenger,");
+            messageBody.Append("<br/><br/>" + this.GetContent(legInstance));
+            messageBody.Append("<br/><br/><small>If you don't want to receive emails for new flights, go to your account settings and " +
+                "uncheck <strong>'Receive email when there is a new flight'</strong> option!</small>");
+
+            var mailSender = MailSender.Instance;
+            mailSender.SendMail(userEmails[0], "Added a new flight!", messageBody.ToString(), userEmails);
+        }
+
+        private int AddNotification(LegInstance legInstance)
+        {
+            StringBuilder content = new StringBuilder();
+            content.Append(this.GetContent(legInstance));
+            content.Append("<br/><small>If you don't want to receive notifications for new flights, go to your account settings and " +
+                "uncheck <strong>'Receive notification when there is a new flight'</strong> option!</small>");
+
+            var addedNewNewsNotification = new Notification()
+            {
+                Content = content.ToString(),
+                DateCreated = DateTime.Now,
+                Type = NotificationType.AddedNewNews
+            };
+
+            this.NotificationsServices.AddNotification(addedNewNewsNotification);
+
+            return addedNewNewsNotification.Id;
+        }
+
+        private IEnumerable<string> GetSubscribedUsersToReceiveNotification()
+        {
+            return this.UsersServices.GetAll()
+                .Where(u => !u.IsDeleted && u.UserSettings.ReceiveNotificationWhenNewFlight)
+                .Select(u => u.Id)
+                .ToList();
+        }
+
+        private IList<string> GetSubscribedUsersToReceiveEmail()
+        {
+            return this.UsersServices.GetAll()
+                .Where(u => !u.IsDeleted && u.UserSettings.ReceiveEmailWhenNewFlight)
+                .Select(u => u.Email)
+                .ToList();
+        }
+
+        private string GetContent(LegInstance legInstance)
+        {
+            var flightLeg = this.GetFlightLeg(legInstance.FlightLegId);
+            string origin = this.GetAirport(flightLeg.DepartureAirportId);
+            string destination = this.GetAirport(flightLeg.ArrivalAirportId);
+            string date = legInstance.DepartureDateTime.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture);
+            string time = legInstance.DepartureDateTime.ToString("HH:mm", CultureInfo.InvariantCulture);
+
+            return string.Format(@"Added a new flight ""{0}, from {1} to {2}, departure on {3} at {4}""!",
+                flightLeg.Flight.Number, origin, destination, date, time);
+        }
+
+        private FlightLeg GetFlightLeg(int id)
+        {
+            return this.FlightLegsServices.GetFlightLeg(id);
         }
     }
 }

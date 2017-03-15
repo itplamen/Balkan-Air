@@ -113,7 +113,6 @@ C:\Users\itplamen\Desktop\Balkan Air\Web\BalkanAir.Web\bin\System.Web.Http.Cors.
 C:\Users\itplamen\Desktop\Balkan Air\Web\BalkanAir.Web\bin\System.Web.Http.Cors.xml
 C:\Users\itplamen\Desktop\Balkan Air\Web\BalkanAir.Web\bin\AutoMapper.dll
 C:\Users\itplamen\Desktop\Balkan Air\Web\BalkanAir.Web\bin\AutoMapper.xml
-D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\obj\Debug\BalkanAir.Web.csprojResolveAssemblyReference.cache
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\ApplicationInsights.config
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\roslyn\csc.exe
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -228,5 +227,6 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\Microsoft.Owi
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\Microsoft.Owin.Security.Twitter.xml
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\Microsoft.Owin.Security.OAuth.xml
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\obj\Debug\BalkanAir.Web.csprojResolveAssemblyReference.cache
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\obj\Debug\BalkanAir.Web.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\obj\Debug\BalkanAir.Web.pdb

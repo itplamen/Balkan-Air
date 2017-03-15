@@ -479,33 +479,25 @@
         private void SeedNotifications()
         {
             string welcomeNotificationContent = "Welcome to Balkan Air! Please, go to your email and confirm your account. " + 
-                "If you lost your confirmation email go to 'Settings' and select 'Send me another confirmation email'!";
-
-            this.Notifications.Add(new Notification()
-            {
-                Content = welcomeNotificationContent,
-                DateCreated = DateTime.Now,
-                Type = NotificationType.Welcome
-            });
+                "If you have lost your confirmation email, go to 'Settings' and select 'Send me another confirmation email'!";
+            this.AddNotification(welcomeNotificationContent, NotificationType.Welcome);
 
             string setAccountNotificationContent = "Thank you for confirming your account! Don't forget to fill all personal " + 
-                "information abou you in order to book flights!";
-
-            this.Notifications.Add(new Notification()
-            {
-                Content = setAccountNotificationContent,
-                DateCreated = DateTime.Now,
-                Type = NotificationType.AccountConfirmation
-            });
+                "information about you, in order to book flights later!";
+            this.AddNotification(setAccountNotificationContent, NotificationType.AccountConfirmation);
 
             string newFlightBooked = "You have booked a new flight. Check out your profile and email to find information about " + 
                 "your flight. Don't forget to confirm your booking!";
+            this.AddNotification(newFlightBooked, NotificationType.FlightBooked);
+        }
 
+        private void AddNotification(string content, NotificationType type)
+        {
             this.Notifications.Add(new Notification()
             {
-                Content = newFlightBooked,
+                Content = content,
                 DateCreated = DateTime.Now,
-                Type = NotificationType.FlightBooked
+                Type = type
             });
         }
 

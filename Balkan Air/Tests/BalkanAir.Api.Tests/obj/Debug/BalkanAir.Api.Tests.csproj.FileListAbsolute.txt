@@ -1,4 +1,3 @@
-D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\obj\Debug\BalkanAir.Api.Tests.csprojResolveAssemblyReference.cache
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\ApplicationInsights.config
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\roslyn\csc.exe
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -84,5 +83,6 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\System.Web.Http.WebHost.xml
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.xml
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Ninject.Web.xml
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\obj\Debug\BalkanAir.Api.Tests.csprojResolveAssemblyReference.cache
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\obj\Debug\BalkanAir.Api.Tests.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\obj\Debug\BalkanAir.Api.Tests.pdb

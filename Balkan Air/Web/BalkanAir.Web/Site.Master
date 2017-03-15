@@ -114,7 +114,7 @@
                                 <li><a href="<%= Page.ResolveUrl(Pages.ROUTES_MANAGEMENT) %>">Routes Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.SEATS_MANAGEMENT) %>">Seats Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.TRAVEL_CLASSES_MANAGEMENT) %>">Travel Classes Management</a></li>
-                                <li><a href="<%= Page.ResolveUrl(Pages.USERS_MANAGEMENT) %>">User Notification Managements</a></li>
+                                <li><a href="<%= Page.ResolveUrl(Pages.USER_NOTIFICATIONS_MANAGEMENT) %>">User Notification Managements</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.USER_ROLES_MANAGEMENT) %>">User Roles Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.USERS_MANAGEMENT) %>">Users Management</a></li>
                                 <li><a href="<%= Page.ResolveUrl(Pages.SEND_MAIL) %>">Send Mail</a></li>
@@ -162,7 +162,7 @@
                                                     <li class="<%# Item.IsRead ? "read" : "unread" %>">
                                                         <a href="<%= Page.ResolveUrl(Pages.NOTIFICATIONS) + "?id=" %><%# Item.NotificationId %>">
                                                             <span class="notificationContentSpan">
-                                                                <%#: Item.Notification.Content %>
+                                                                <%# Item.Notification.Content %>
                                                                 <br />
                                                             </span>
                                                             <small class="notificationDateSmall">Received on <%#: Item.DateReceived.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) %>
@@ -170,7 +170,7 @@
 
                                                                 <span>
                                                                     <%# Item.IsRead ? "Read on " + Item.DateRead.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) + 
-                                                                    "at " + Item.DateRead.ToString("HH:mm", CultureInfo.InvariantCulture) : null %>
+                                                                    " at " + Item.DateRead.ToString("HH:mm", CultureInfo.InvariantCulture) : null %>
                                                                 </span>
                                                             </small>
                                                         </a>

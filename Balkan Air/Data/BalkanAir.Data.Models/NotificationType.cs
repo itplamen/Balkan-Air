@@ -5,6 +5,8 @@
         Welcome,
         AccountConfirmation,
         FlightBooked,
+        AddedNewFlight,
+        AddedNewNews,
         Other
     }
 }

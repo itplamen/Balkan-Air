@@ -32,25 +32,33 @@
                     <%#: this.GetUserRole(Item.Roles) %>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="UserSettings.FirstName" HeaderText="First Name" />
-            <asp:BoundField DataField="UserSettings.LastName" HeaderText="Last Name" />
-            <asp:BoundField DataField="UserSettings.DateOfBirth" HeaderText="Date Of Birth" />
+            <asp:BoundField DataField="UserSettings.FirstName" HeaderText="First name" />
+            <asp:BoundField DataField="UserSettings.LastName" HeaderText="Last name" />
+            <asp:BoundField DataField="UserSettings.DateOfBirth" HeaderText="Date of birth" />
             <asp:BoundField DataField="UserSettings.Gender" HeaderText="Gender" />
-            <asp:BoundField DataField="UserSettings.IdentityDocumentNumber" HeaderText="Identity Document Number" />
+            <asp:BoundField DataField="UserSettings.IdentityDocumentNumber" HeaderText="Identity document number" />
             <asp:BoundField DataField="UserSettings.Nationality" HeaderText="Nationality" />
             <asp:BoundField DataField="UserSettings.FullAddress" HeaderText="Address" />
-            <asp:BoundField DataField="CreatedOn" HeaderText="Created On" />
-            <asp:BoundField DataField="DeletedOn" HeaderText="Deleted On" />
-            <asp:TemplateField HeaderText="Last Login">
+            <asp:BoundField DataField="CreatedOn" HeaderText="Created on" />
+            <asp:BoundField DataField="DeletedOn" HeaderText="Deleted on" />
+            <asp:TemplateField HeaderText="Last login">
                 <ItemTemplate>
                     <%#: Item.UserSettings.LastLogin %>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Last Logout">
+            <asp:TemplateField HeaderText="Last logout">
                 <ItemTemplate>
                     <%#: Item.UserSettings.LastLogout %>
                 </ItemTemplate>
             </asp:TemplateField>
+            <asp:CheckBoxField DataField="UserSettings.ReceiveEmailWhenNewNews" 
+                HeaderText="Receive email when there is a new news" />
+            <asp:CheckBoxField DataField="UserSettings.ReceiveEmailWhenNewFlight" 
+                HeaderText="Receive email when there is a new flight" />
+            <asp:CheckBoxField DataField="UserSettings.ReceiveNotificationWhenNewNews" 
+                HeaderText="Receive notification when there is a new news" />
+            <asp:CheckBoxField DataField="UserSettings.ReceiveNotificationWhenNewFlight" 
+                HeaderText="Receive notification when there is a new flight" />
             <asp:CheckBoxField DataField="IsDeleted" HeaderText="Is Deleted" />
 
             <asp:CommandField ShowEditButton="true" ControlStyle-CssClass="btn btn-info" />
