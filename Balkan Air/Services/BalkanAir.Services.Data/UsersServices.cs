@@ -78,6 +78,10 @@
                 userToUpdate.UserSettings.IdentityDocumentNumber = user.UserSettings.IdentityDocumentNumber;
                 userToUpdate.UserSettings.Nationality = user.UserSettings.Nationality;
                 userToUpdate.UserSettings.FullAddress = user.UserSettings.FullAddress;
+                userToUpdate.UserSettings.ReceiveEmailWhenNewNews = user.UserSettings.ReceiveEmailWhenNewNews;
+                userToUpdate.UserSettings.ReceiveEmailWhenNewFlight = user.UserSettings.ReceiveEmailWhenNewFlight;
+                userToUpdate.UserSettings.ReceiveNotificationWhenNewNews = user.UserSettings.ReceiveNotificationWhenNewNews;
+                userToUpdate.UserSettings.ReceiveNotificationWhenNewFlight = user.UserSettings.ReceiveNotificationWhenNewFlight;
                 userToUpdate.IsDeleted = user.IsDeleted;
 
                 if (!userToUpdate.IsDeleted && userToUpdate.DeletedOn != null)

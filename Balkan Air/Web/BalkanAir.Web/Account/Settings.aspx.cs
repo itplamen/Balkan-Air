@@ -1,28 +1,37 @@
 ﻿namespace BalkanAir.Web.Account
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Web;
     using System.Web.UI;
-    using System.Web.UI.WebControls;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
 
+    using Ninject;
+
     using Data.Models;
+    using Services.Data.Contracts;
 
     public partial class Settings : Page
     {
-        private User user;
+        [Inject]
+        public IUsersServices UsersServices { get; set; }
+
+        protected ApplicationUserManager Manager
+        {
+            get { return Context.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+        }
+
+        protected User CurrentUser
+        {
+            get{ return this.Manager.FindById(this.Context.User.Identity.GetUserId()); }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                this.user = this.GetCurrentUser();
-
-                if (this.user != null && !this.user.EmailConfirmed)
+                if (this.CurrentUser != null && !this.CurrentUser.EmailConfirmed)
                 {
                     this.IsEmailConfirmedLiteral.Text = "No!";
                     this.SendConfirmationEmailLinkButton.Visible = true;
@@ -31,29 +40,39 @@
                 {
                     this.IsEmailConfirmedLiteral.Text = "Yes!";
                 }
-            }   
-        }
 
-        protected string GetUserEmail()
-        {
-            return this.GetCurrentUser().Email;
+                this.ReceiveEmailWhenNewNewsCheckBox.Checked = this.CurrentUser.UserSettings
+                    .ReceiveEmailWhenNewNews;
+
+                this.ReceiveEmailWhenNewFlightCheckBox.Checked = this.CurrentUser.UserSettings
+                    .ReceiveEmailWhenNewFlight;
+
+                this.ReceiveNotificationWhenNewNewsCheckBox.Checked = this.CurrentUser.UserSettings
+                    .ReceiveNotificationWhenNewNews;
+
+                this.ReceiveNotificationWhenNewFlightCheckBox.Checked = this.CurrentUser.UserSettings
+                    .ReceiveNotificationWhenNewFlight;
+            }   
         }
 
         protected void SaveSettingsBtn_Click(object sender, EventArgs e)
         {
+            if (this.Page.IsValid)
+            {
+                this.CurrentUser.UserSettings.ReceiveEmailWhenNewNews = 
+                    this.ReceiveEmailWhenNewNewsCheckBox.Checked;
 
-            //this.ReceiveEmailWhenNewNewsCheckBox.Checked
-        }
+                this.CurrentUser.UserSettings.ReceiveEmailWhenNewFlight = 
+                    this.ReceiveEmailWhenNewFlightCheckBox.Checked;
 
-        private ApplicationUserManager GetManager()
-        {
-            return Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-        }
+                this.CurrentUser.UserSettings.ReceiveNotificationWhenNewNews = 
+                    this.ReceiveNotificationWhenNewNewsCheckBox.Checked;
 
-        private User GetCurrentUser()
-        {
-            var manager = this.GetManager();
-            return manager.FindById(this.Context.User.Identity.GetUserId());
+                this.CurrentUser.UserSettings.ReceiveNotificationWhenNewFlight = 
+                    this.ReceiveNotificationWhenNewFlightCheckBox.Checked;
+
+                this.UsersServices.UpdateUser(this.CurrentUser.Id, this.CurrentUser);
+            }
         }
     }
 }

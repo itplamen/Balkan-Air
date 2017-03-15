@@ -12,7 +12,7 @@
                     <strong class="text-primary">Email</strong>
                 </div>
                 <div class="col-xs-7">
-                    <span class="text-white"><%: this.GetUserEmail() %></span>
+                    <span class="text-white"><%: this.CurrentUser.Email %></span>
                 </div>
             </div>
             <div class="row">
@@ -40,7 +40,29 @@
                     <strong class="text-primary">Registration</strong>
                 </div>
                 <div class="col-xs-7">
-                    <span class="text-white">aaaaaaaaaaaaa12.11.2011 22:00</span>
+                    <span class="text-white">
+                        <%: this.CurrentUser.CreatedOn %>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 text-right">
+                    <strong class="text-primary">Last login</strong>
+                </div>
+                <div class="col-xs-7">
+                    <span class="text-white">
+                        <%: this.CurrentUser.UserSettings.LastLogin %>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 text-right">
+                    <strong class="text-primary">Last logout</strong>
+                </div>
+                <div class="col-xs-7">
+                    <span class="text-white">
+                        <%: this.CurrentUser.UserSettings.LastLogout %>
+                    </span>
                 </div>
             </div>
             <div class="row">
