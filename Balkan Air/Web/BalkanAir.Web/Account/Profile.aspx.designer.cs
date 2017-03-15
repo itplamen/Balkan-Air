@@ -76,6 +76,15 @@ namespace BalkanAir.Web.Account {
         protected global::System.Web.UI.WebControls.TextBox DatepickerTextBox;
         
         /// <summary>
+        /// DateOfBirthCalendar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender DateOfBirthCalendar;
+        
+        /// <summary>
         /// GenderDropDownList control.
         /// </summary>
         /// <remarks>

@@ -232,6 +232,7 @@ input[type="tel"], input[type="select"], input[type="time"] {
     height: 60px;
     width: 180px;
 }
+
 #DepartureDateFancyTextBox {
     float: left;
 }
@@ -1467,7 +1468,6 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
     height: 25px; 
     top: 5px;
     left: 120px; 
-     
 }
 
 #UpcomingTripsPanel .divBox a {
@@ -1635,16 +1635,26 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
     cursor: pointer;
 }
 
-.fancyTextBox input[type="text"], .fancyTextBox input[type="password"], .fancyTextBox select {
+.fancyTextBox input[type="text"], .fancyTextBox input[type="password"], 
+.fancyTextBox select, .fancyTextBox textarea {
     border: 0;
     display: block; 
     width: 100%;
     cursor: pointer;
 }
 
-.fancyTextBox input[type=text]:focus, .fancyTextBox input[type="password"]:focus, .fancyTextBox select:focus {
+.fancyTextBox textarea {
+    width: 98%;
+}
+
+.fancyTextBox input[type=text]:focus, .fancyTextBox input[type="password"]:focus, 
+.fancyTextBox select:focus, .fancyTextBox textarea:focus {
     outline: none;
     cursor: pointer;
+}
+
+#PhoneNumberFancyTextBox {
+    float: left;
 }
 
 #PersonalDetailsDiv #DateOfBirthCalendarIconSpan {

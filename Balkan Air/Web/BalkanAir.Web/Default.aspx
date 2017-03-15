@@ -38,32 +38,28 @@
                 <asp:HiddenField ID="DestinationAirportIdHiddenField" runat="server" />
 
                 <div class="fancyTextBox" id="DepartureDateFancyTextBox">
-            <asp:Label CssClass="label" runat="server" Text="Departure:" AssociatedControlID="DepartureDateTextBox" />
-            <asp:TextBox ID="DepartureDateTextBox" runat="server" placeholder="Date" ClientIDMode="Static" />
-        </div>
+                    <asp:Label CssClass="label" runat="server" Text="Departure:" AssociatedControlID="DepartureDateTextBox" />
+                    <asp:TextBox ID="DepartureDateTextBox" runat="server" placeholder="Date" ClientIDMode="Static" />
+                </div>
 
-        <ajaxToolkit:CalendarExtender ID="DepartureCalendar" ClientIDMode="Static" runat="server"
-            TargetControlID="DepartureDateTextBox"
-            CssClass="CalendarExtender"
-            Format="d MMM yyyy"
-            PopupButtonID="DepartureDateTextBox" />
+                <ajaxToolkit:CalendarExtender ID="DepartureCalendar" ClientIDMode="Static" runat="server"
+                    TargetControlID="DepartureDateTextBox"
+                    CssClass="CalendarExtender"
+                    Format="d MMM yyyy" />
 
-        <asp:Panel runat="server" CssClass="fancyTextBox" ID="ArrivalDateFancyTextBox" ClientIDMode="Static">
-            <asp:Label CssClass="label" runat="server" Text="Arrival:" AssociatedControlID="ArrivalDateTextBox" />
-            <asp:TextBox ID="ArrivalDateTextBox" runat="server" placeholder="Date" ClientIDMode="Static" />
-        </asp:Panel>
+                <asp:Panel runat="server" CssClass="fancyTextBox" ID="ArrivalDateFancyTextBox" ClientIDMode="Static">
+                    <asp:Label CssClass="label" runat="server" Text="Arrival:" AssociatedControlID="ArrivalDateTextBox" />
+                    <asp:TextBox ID="ArrivalDateTextBox" runat="server" placeholder="Date" ClientIDMode="Static" />
+                </asp:Panel>
 
-        <ajaxToolkit:CalendarExtender ID="ArrivalCalendar" runat="server"
-            TargetControlID="ArrivalDateTextBox"
-            CssClass="CalendarExtender"
-            Format="d MMM yyyy"
-            PopupButtonID="ArrivalDateTextBox" />
+                <ajaxToolkit:CalendarExtender ID="ArrivalCalendar" runat="server"
+                    TargetControlID="ArrivalDateTextBox"
+                    CssClass="CalendarExtender"
+                    Format="d MMM yyyy" />
             </ContentTemplate>
         </asp:UpdatePanel>
 
         <asp:CustomValidator ID="InvalidDatesCustomValidator" Display="Dynamic" ForeColor="Red" ClientIDMode="Static" runat="server" />
-
-        
 
         <div class="buttonBox">
             <asp:Button ID="SearchBtn" runat="server" ClientIDMode="Static" Text="Search" OnClick="OnFlightSearchButtonClicked" />

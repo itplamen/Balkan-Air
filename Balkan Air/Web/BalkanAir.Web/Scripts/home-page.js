@@ -2,20 +2,29 @@
     'use strict';
 
     // Click events can't fire, because of the UpdatePanel. The solution is to use Sys.WebForms.PageRequestManage.
-    var pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
+    var pageRequestManager = Sys.WebForms.PageRequestManager.getInstance(),
+        $fancyTextBox = $('.fancyTextBox');
 
     // Re-bind jQuery events.
     pageRequestManager.add_endRequest(function () {
         $('#DepartureFancyTextBox').click(showDepartureAirports);
         $('#DestinationFancyTextBox').click(showDestinationAirports);
     });
+
+    $fancyTextBox.click(function () {
+        $(this).css('border', '3px solid #C5027C');
+        $(this).children().not('label').focus();
+    });
+
+    $fancyTextBox.children().not('label').blur(function () {
+        $(this).parent().css('border', '3px solid #E0E0E0');
+        $(this).children().not('label').blur();
+    });
 });
 
 $(document).ready(function () {
     var BORDER_COLOR_INITIAL = 'rgb(224, 224, 224)',
-        BORDER_COLOR_ON_CLICK = 'rgb(197, 2, 124)',
-        $departureDateTextBox = $('#DepartureDateTextBox'),
-        $arrivalDateTextBox = $('#ArrivalDateTextBox');
+        BORDER_COLOR_ON_CLICK = 'rgb(197, 2, 124)';
 
     $('.homeSlider').slick({
         arrows: false,
@@ -32,12 +41,6 @@ $(document).ready(function () {
     // Bind jQuery events initially.
     $('#DepartureFancyTextBox').click(showDepartureAirports);
     $('#DestinationFancyTextBox').click(showDestinationAirports);
-
-    $departureDateTextBox
-        .add($arrivalDateTextBox)
-        .click(function () {
-            $(this).parent().css('border-color', BORDER_COLOR_ON_CLICK);
-        });
 
     $(document).mouseup(function (e) {
         var $departureAirportsDiv = $("#DepartureAirportsDiv"),
@@ -58,19 +61,9 @@ $(document).ready(function () {
             $destinationAirportsDiv.hide();
             $('#DestinationFancyTextBox').css('border-color', BORDER_COLOR_INITIAL);
         }
-
-        if ($departureDateTextBox.parent().css('border-color') == BORDER_COLOR_ON_CLICK) {
-            $departureDateTextBox.parent().css('border-color', BORDER_COLOR_INITIAL);
-        }
-
-        if ($arrivalDateTextBox.parent().css('border-color') == BORDER_COLOR_ON_CLICK) {
-            $arrivalDateTextBox.parent().css('border-color', BORDER_COLOR_INITIAL);
-        }
     });
 
     $('#SearchBtn').click(areAllFieldsFilled);
-
-    
 });
 
 function showDepartureAirports() {

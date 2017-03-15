@@ -97,17 +97,15 @@
             <asp:TextBox runat="server" ID="LastNameTextBox" ClientIDMode="Static" />
         </div>
 
-        <div class=" fancyTextBox">
+        <div class="fancyTextBox">
             <asp:Label Text="DATE OF BIRTH" runat="server" AssociatedControlID="DatepickerTextBox" />
-            <asp:TextBox runat="server" ID="DatepickerTextBox" ClientIDMode="Static" />
+            <asp:TextBox runat="server" ID="DatepickerTextBox" ClientIDMode="Static" ReadOnly="true" />
         </div>
-
-        <span id="DateOfBirthCalendarIconSpan" class="glyphicon glyphicon-calendar"></span>
-        <ajaxToolkit:CalendarExtender runat="server"
+ 
+        <ajaxToolkit:CalendarExtender ID="DateOfBirthCalendar" runat="server"
             TargetControlID="DatepickerTextBox"
             CssClass="CalendarExtender"
-            Format="d/MM/yyyy"
-            PopupButtonID="DepartureCalendarIconSpan" />
+            Format="d/MM/yyyy" />
 
         <div class="fancyTextBox">
             <asp:Label Text="GENDER" runat="server" AssociatedControlID="GenderDropDownList" />
@@ -131,14 +129,14 @@
     <div id="ContactDetailsDiv">
         <h4>CONTACT DETAILS</h4>
 
-        <div class="fancyTextBox">
+        <div class="fancyTextBox" id="PhoneNumberFancyTextBox">
             <asp:Label Text="PHONE NUMBER" runat="server" AssociatedControlID="PhoneNumberTextBox" />
             <asp:TextBox runat="server" ID="PhoneNumberTextBox" ClientIDMode="Static" />
         </div>
 
         <div class="fancyTextBox">
             <asp:Label Text="FULL ADDRESS" runat="server" AssociatedControlID="FullAddressTextBox" />
-            <asp:TextBox runat="server" ID="FullAddressTextBox" />
+            <asp:TextBox runat="server" ID="FullAddressTextBox" TextMode="MultiLine" Rows="5" ClientIDMode="Static" />
         </div>
     </div>
 
@@ -146,15 +144,14 @@
         <asp:Button ID="SavePersonalInfoDataBtn" ClientIDMode="Static" Text="SAVE" runat="server"
             OnClick="SavePersonalInfoDataBtn_Click" />
     </div>
+</asp:Content>
 
-
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
     <script type="text/javascript">
         function uploadComplete(sender) {
             location.reload();
         }
     </script>
-</asp:Content>
 
-<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
     <script src="../Scripts/Account/profile.js" type="text/javascript"></script>
 </asp:Content>

@@ -42,6 +42,9 @@
         {
             if (!this.Page.IsPostBack)
             {
+                this.DateOfBirthCalendar.EndDate = DateTime.Now;
+
+
                 this.BindGenderDropDownList();
                 this.BindNationalityDropDownList();
 
