@@ -4,6 +4,9 @@
 
     using BalkanAir.Data.Models;
 
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+
     public static class TestObjectFactory
     {
         public static InMemoryRepository<AircraftManufacturer> GetAircraftManufacturersRepository(int numberOfManufacturers = 25)
@@ -110,6 +113,23 @@
             }
 
             return userNotifications;
+        }
+
+        public static InMemoryRepository<User> GetUsersRepository(int numberOfUsers = 25)
+        {
+            var users = new InMemoryRepository<User>();
+
+            for (int i = 0; i < numberOfUsers; i++)
+            {
+                users.Add(new User()
+                {
+                    Id = "user id " + i,
+                    Email = i + "_user_email@test.bg",
+                    UserName = i + "_user_email@test.bg"
+                });
+            }
+
+            return users;
         }
     }
 }

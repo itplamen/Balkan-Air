@@ -47,7 +47,8 @@
                 throw new ArgumentNullException(ErrorMessages.NULL_OR_EMPTY_EMAIL);
             }
 
-            return this.users.All().FirstOrDefault(u => u.Email == email);
+            return this.users.All()
+                .FirstOrDefault(u => u.Email == email);
         }
 
         public IQueryable<User> GetAll()
