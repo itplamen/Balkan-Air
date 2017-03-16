@@ -83,8 +83,13 @@
                     <asp:Label CssClass="label" runat="server" Text="YY" AssociatedControlID="YearsPaymentDropDown" />
                     <br />
 
-                    <asp:DropDownList ID="MonthsPaymentDropDown" ClientIDMode="Static" runat="server" />
-                    <asp:DropDownList ID="YearsPaymentDropDown" ClientIDMode="Static" runat="server" />
+                    <asp:UpdatePanel runat="server" UpdateMode="Always">
+                        <ContentTemplate>
+                            <asp:DropDownList ID="MonthsPaymentDropDown" ClientIDMode="Static" runat="server" />
+                            <asp:DropDownList ID="YearsPaymentDropDown" ClientIDMode="Static" runat="server"
+                                AutoPostBack="true" OnSelectedIndexChanged="YearsPaymentDropDown_SelectedIndexChanged" />
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
 
                 <div class="fancyTextBox">
@@ -106,7 +111,7 @@
         </div>
 
         <div id="PayAndBookNowDiv">
-            <asp:Button ID="PayAndBookNowBtn" Text="PAY AND BOOK NOW" runat="server" ClientIDMode="Static" 
+            <asp:Button ID="PayAndBookNowBtn" Text="PAY AND BOOK NOW" runat="server" ClientIDMode="Static"
                 OnClick="PayAndBookNowBtn_Click" />
         </div>
     </asp:Panel>

@@ -1,6 +1,7 @@
 namespace BalkanAir.Web.Booking
 {
     using System;
+    using System.Globalization;
     using System.Linq;
     using System.Text;
     using System.Web;
@@ -17,7 +18,6 @@ namespace BalkanAir.Web.Booking
     using Data.Helper;
     using Data.Models;
     using Services.Data.Contracts;
-    using System.Globalization;
 
     public partial class Payment : Page
     {
@@ -98,7 +98,8 @@ namespace BalkanAir.Web.Booking
                     this.FilledProfileDetailsRequiredPanel.Visible = false;
                     this.PaymentDetailsPanel.Visible = true;
                     this.FillPaymentDetailsFields();
-                    this.BindCardDateExpirationDropDowns();
+                    this.BindMontsDropDown(DateTime.Now.Month);
+                    this.BindYearsDropDowns();
 
                     decimal totalPrice = 0;
 
@@ -113,6 +114,24 @@ namespace BalkanAir.Web.Booking
 
                     this.TotalPriceLabel.Text = "Total price: &#8364; " + totalPrice;
                 }
+            }
+        }
+
+        protected void YearsPaymentDropDown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var yearsDropDown = sender as DropDownList;
+
+            if (yearsDropDown != null)
+            {
+                int selectedYear = int.Parse(yearsDropDown.SelectedItem.Value);
+                int startMonth = 1;
+
+                if (selectedYear == DateTime.Now.Year)
+                {
+                    startMonth = DateTime.Now.Month;
+                }
+               
+                this.BindMontsDropDown(startMonth);
             }
         }
 
@@ -181,15 +200,19 @@ namespace BalkanAir.Web.Booking
             this.NationalityDropDownList.SelectedValue = countryId.ToString();
         }
 
-        private void BindCardDateExpirationDropDowns()
+        private void BindMontsDropDown(int startMonth)
         {
-            int startingMonth = 1;
-            int numberOfMonths = 12;
-            this.MonthsPaymentDropDown.DataSource = Enumerable.Range(startingMonth, numberOfMonths);
-            this.MonthsPaymentDropDown.DataBind();
+            int lastMonth = 12;
 
+            this.MonthsPaymentDropDown.DataSource = Enumerable.Range(startMonth, lastMonth - startMonth + 1);
+            this.MonthsPaymentDropDown.DataBind();
+        }
+
+        private void BindYearsDropDowns()
+        {
             int startingYear = DateTime.Now.Year;
             int numberOfYears = 10;
+
             this.YearsPaymentDropDown.DataSource = Enumerable.Range(startingYear, numberOfYears);
             this.YearsPaymentDropDown.DataBind();
         }
