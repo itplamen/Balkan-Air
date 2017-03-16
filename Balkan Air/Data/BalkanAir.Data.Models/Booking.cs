@@ -40,6 +40,9 @@
         [Required]
         public int TravelClassId { get; set; }
 
+        [Required]
+        public BookingStatus Status { get; set; }
+
         public bool IsDeleted { get; set; }
 
         [Required]

@@ -32,6 +32,11 @@
             <asp:BoundField DataField="SeatNumber" SortExpression="SeatNumber" HeaderText="Seat" />
             <asp:BoundField DataField="TotalPrice" SortExpression="TotalPrice" HeaderText="Price (&#8364;)" />
             <asp:BoundField DataField="TravelClassId" SortExpression="TravelClassId" HeaderText="Travel Class Id" />
+            <asp:TemplateField HeaderText="Status" SortExpression="Status">
+                <ItemTemplate>
+                    <%#: Item.Status.ToString() %>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="UserId" SortExpression="UserId" HeaderText="User Id" />
             <asp:TemplateField HeaderText="Passenger">
                 <ItemTemplate>

@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Aircraft.cs" />
     <Compile Include="AircraftManufacturer.cs" />
+    <Compile Include="BookingStatus.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="Fare.cs" />
     <Compile Include="FlightLeg.cs" />

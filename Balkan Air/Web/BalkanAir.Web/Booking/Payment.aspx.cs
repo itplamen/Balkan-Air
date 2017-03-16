@@ -220,6 +220,7 @@ namespace BalkanAir.Web.Booking
             booking.DateOfBooking = DateTime.Now;
             booking.UserId = this.CurrentUser.Id;
             booking.ConfirmationCode = new Generator(new BalkanAirDbContext()).GetUniqueBookingConfirmationCode();
+            booking.Status = BookingStatus.Unconfirmed;
 
             this.BookingsServices.AddBooking(booking);
 
