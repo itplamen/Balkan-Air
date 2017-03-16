@@ -16,6 +16,7 @@ namespace BalkanAir.Web.Booking
     using Data.Helper;
     using Data.Models;
     using Services.Data.Contracts;
+    using System.Text;
 
     public partial class Payment : Page
     {
@@ -238,12 +239,19 @@ namespace BalkanAir.Web.Booking
 
         private void SendFlightConfirmationMail(string passenger)
         {
-            string messageBody = "Dear, " + passenger.Trim() + ",";
-            messageBody += "<br /><br />Thank you for booking with Bulgaria Air. The departure of your flight is fast approaching. "
-                + "You can find in your profile some useful information as well as a reminder of your flight dates and times!";
+            string code = this.Manager.GenerateUserToken(TokenPurposes.FLIGHT_CONFIRMATION, this.CurrentUser.Id);
+            string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, this.CurrentUser.Id, this.Request);
+
+            StringBuilder messageBody = new StringBuilder();
+            messageBody.Append("Dear, " + passenger.Trim() + ",");
+            messageBody.Append("<br /><br />Thank you for booking with Balkan Air. " + 
+                "The departure of your flight is fast approaching. You can find in your " + 
+                "profile some useful information as well as a reminder of your flight dates and times!");
+            messageBody.Append("<br /><br /><strong>Please, click the following link to confirm your flight!</strong>");
+            messageBody.Append("<br /><a href =\"" + callbackUrl + "\">Click here to confirm your flight.</a>");
 
             var mailSender = MailSender.Instance;
-            mailSender.SendMail(this.CurrentUser.Email, "Flight reminder!", messageBody);
+            mailSender.SendMail(this.CurrentUser.Email, "Confirm your flight!", messageBody.ToString());
         }
 
         private void SendFlightBookedNotification(string userId)

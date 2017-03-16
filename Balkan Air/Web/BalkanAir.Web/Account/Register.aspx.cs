@@ -52,7 +52,7 @@
                 string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
 
                 string messageBody = "Hello, " + user.Email.Trim() + ",";
-                messageBody += "<br /><br />Please click the following link to confirm your account!";
+                messageBody += "<br /><br />Please, click the following link to confirm your account!";
                 messageBody += "<br /><a href =\"" + callbackUrl + "\">Click here to confirm your account.</a>";
 
                 var mailSender = MailSender.Instance;

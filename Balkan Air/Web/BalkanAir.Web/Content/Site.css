@@ -1502,13 +1502,13 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
 }
 
 .flightDateSpan {
-    bottom: 10px;
+    top: 10px;
     left: 350px;
 }
 
 .flightTimeSpan {
-    top: 10px;
-    left: 250px;
+    bottom: 10px;
+    left: 230px;
 }
 
 .bookingStatus {
