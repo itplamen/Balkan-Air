@@ -12,6 +12,8 @@ namespace BalkanAir.Web.Booking
     using Ninject;
 
     using Common;
+    using Data;
+    using Data.Helper;
     using Data.Models;
     using Services.Data.Contracts;
 
@@ -217,7 +219,8 @@ namespace BalkanAir.Web.Booking
             booking.LegInstance = null;
             booking.DateOfBooking = DateTime.Now;
             booking.UserId = this.CurrentUser.Id;
-           
+            booking.ConfirmationCode = new Generator(new BalkanAirDbContext()).GetUniqueBookingConfirmationCode();
+
             this.BookingsServices.AddBooking(booking);
 
             var seat = new Seat()

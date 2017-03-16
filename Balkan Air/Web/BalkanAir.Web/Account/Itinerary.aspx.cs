@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using System.Web.ModelBinding;
     using System.Web.UI;
     using System.Web.UI.WebControls;
@@ -11,8 +10,8 @@
     using Ninject;
 
     using Common;
-    using Services.Data.Contracts;
     using Data.Models;
+    using Services.Data.Contracts;
 
     public partial class Itinerary : Page
     {
@@ -22,7 +21,7 @@
         [Inject]
         public ITravelClassesServices TravelClassesServices { get; set; }
 
-        public Data.Models.Booking ViewItineraryFormView_GetItem([QueryString] int id, string flight)
+        public Data.Models.Booking ViewItineraryFormView_GetItem([QueryString] int id)
         {
             var booking = this.BookingsServices.GetBooking(id);
 
@@ -35,7 +34,16 @@
         }
 
         protected void Page_Load(object sender, EventArgs e)
-        {  
+        {
+            var id = this.Request.QueryString["id"];
+
+            int validId;
+            bool isIdValid = int.TryParse(id, out validId);
+
+            if (!isIdValid)
+            {
+                this.Response.Redirect(Pages.ACCOUNT);
+            }
         }
 
         protected string ShowCabinBags(int bookingId)

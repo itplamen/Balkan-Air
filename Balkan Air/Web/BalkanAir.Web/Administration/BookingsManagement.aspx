@@ -18,6 +18,11 @@
         AllowSorting="true">
         <Columns>
             <asp:BoundField DataField="Id" SortExpression="Id" HeaderText="Id" />
+            <asp:TemplateField HeaderText="Confirmation Code" SortExpression="ConfirmationCode"> 
+                <ItemTemplate>
+                    <%#: Item.ConfirmationCode %>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:TemplateField HeaderText="Date Of Booking" SortExpression="DateOfBooking">
                 <ItemTemplate>
                     <%#: Item.DateOfBooking.ToString("dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture) %>

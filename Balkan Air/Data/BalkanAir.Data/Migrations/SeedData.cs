@@ -371,19 +371,19 @@
         private void SeedFlights()
         {
             // Sofia - Madrid
-            this.Flights.Add(new Flight() { Number = new FlightNumber(this.context).GetUniqueFlightNumber() });
+            this.Flights.Add(new Flight() { Number = new Generator(this.context).GetUniqueFlightNumber() });
 
             //Madrid - Sofia
-            this.Flights.Add(new Flight() { Number = new FlightNumber(this.context).GetUniqueFlightNumber() });
+            this.Flights.Add(new Flight() { Number = new Generator(this.context).GetUniqueFlightNumber() });
 
             // Sofia - Lisbon 
-            this.Flights.Add(new Flight() { Number = new FlightNumber(this.context).GetUniqueFlightNumber() });
+            this.Flights.Add(new Flight() { Number = new Generator(this.context).GetUniqueFlightNumber() });
 
             // Varna - Berlin
-            this.Flights.Add(new Flight() { Number = new FlightNumber(this.context).GetUniqueFlightNumber() });
+            this.Flights.Add(new Flight() { Number = new Generator(this.context).GetUniqueFlightNumber() });
 
             // London - Paris
-            this.Flights.Add(new Flight() { Number = new FlightNumber(this.context).GetUniqueFlightNumber() });
+            this.Flights.Add(new Flight() { Number = new Generator(this.context).GetUniqueFlightNumber() });
 
             //Liverpool - Berlin, Berlin - Ibiza
             //this.Flights.Add(new Flight() { Number = new FlightNumber(this.context).GetUniqueFlightNumber() });
@@ -486,8 +486,8 @@
                 "information about you, in order to book flights later!";
             this.AddNotification(setAccountNotificationContent, NotificationType.AccountConfirmation);
 
-            string newFlightBooked = "You have booked a new flight. Check out your profile and email to find information about " + 
-                "your flight. Don't forget to confirm your booking!";
+            string newFlightBooked = "You have booked a new flight. Check your profile and email to find information about " + 
+                "your travel. Don't forget to confirm your booking!";
             this.AddNotification(newFlightBooked, NotificationType.FlightBooked);
         }
 

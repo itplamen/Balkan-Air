@@ -29,7 +29,7 @@
         </ItemTemplate>
         <EmptyDataTemplate>
             <asp:Panel ID="NoSavedCreditCardsPanel" runat="server" CssClass="warningPanel">
-                <h5>THERE ARE NO SAVED CREDIT CARDS!</h5>
+                <h5>YOU DON'T HAVE ANY SAVED CREDIT CARDS!</h5>
             </asp:Panel>
         </EmptyDataTemplate>
     </asp:ListView>

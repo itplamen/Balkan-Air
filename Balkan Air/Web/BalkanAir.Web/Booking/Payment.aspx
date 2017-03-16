@@ -54,7 +54,6 @@
                     ItemType="BalkanAir.Data.Models.Country"
                     DataValueField="Id"
                     DataTextField="Name" />
-
             </div>
         </div>
 

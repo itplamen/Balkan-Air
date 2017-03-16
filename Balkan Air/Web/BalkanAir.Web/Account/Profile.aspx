@@ -99,7 +99,7 @@
 
         <div class="fancyTextBox">
             <asp:Label Text="DATE OF BIRTH" runat="server" AssociatedControlID="DatepickerTextBox" />
-            <asp:TextBox runat="server" ID="DatepickerTextBox" ClientIDMode="Static" ReadOnly="true" />
+            <asp:TextBox runat="server" ID="DatepickerTextBox" ClientIDMode="Static" />
         </div>
  
         <ajaxToolkit:CalendarExtender ID="DateOfBirthCalendar" runat="server"

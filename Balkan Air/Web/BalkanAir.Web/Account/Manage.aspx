@@ -16,7 +16,7 @@
             ItemType="BalkanAir.Data.Models.Booking"
             SelectMethod="UpcomingTripsRepeater_GetData">
             <ItemTemplate>
-                <a href='<%= Page.ResolveUrl(Pages.ITINERARY) %>?id=<%# Item.Id %>&flight=<%#: Item.LegInstance.FlightLeg.Flight.Number %>'>
+                <a href='<%= Page.ResolveUrl(Pages.ITINERARY) %>?flight=<%#: Item.LegInstance.FlightLeg.Flight.Number %>$passenger=<%#: Item.User.UserSettings.LastName %>'>
                     <div class="divBox">
                         <span class="flightNumberSpan"><%#: Item.LegInstance.FlightLeg.Flight.Number %></span>
                         <span class="fromAirportSpan"><%#: Item.LegInstance.FlightLeg.Route.Origin.Name %></span>

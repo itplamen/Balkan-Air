@@ -12,11 +12,9 @@
     using Microsoft.AspNet.Identity.Owin;
 
     using Ninject;
-    
-    using Common;
+
     using Data.Models;
     using Services.Data.Contracts;
-    using System.Collections;
 
     public partial class Profile : Page
     {
@@ -43,7 +41,7 @@
             if (!this.Page.IsPostBack)
             {
                 this.DateOfBirthCalendar.EndDate = DateTime.Now;
-
+                this.DatepickerTextBox.Attributes.Add("readonly", "readonly");
 
                 this.BindGenderDropDownList();
                 this.BindNationalityDropDownList();
@@ -86,8 +84,6 @@
 
         private void FillPersonalInformation()
         {
-            var pass = this.CurrentUser.PasswordHash;
-
             if (this.CurrentUser.UserSettings.ProfilePicture != null)
             {
                 this.ProfileImage.Src = "data:image/jpeg;base64," + 

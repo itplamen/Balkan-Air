@@ -49,7 +49,7 @@
 
         protected void GenerateFlightNumberBtn_Click(object sender, EventArgs e)
         {
-            this.AddFlightNumberTextBox.Text = new FlightNumber(new BalkanAirDbContext()).GetUniqueFlightNumber();
+            this.AddFlightNumberTextBox.Text = new Generator(new BalkanAirDbContext()).GetUniqueFlightNumber();
         }
 
         protected void CreateFlightBtn_Click(object sender, EventArgs e)

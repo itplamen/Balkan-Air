@@ -17,6 +17,7 @@
         // Booking
         public const int MIN_ROW_NUMBER = 1;
         public const int MAX_ROW_NUMBER = 30;
+        public const int CONFIRMATION_CODE_LENGTH = 6;
 
         // Comments
         public const int COMMENT_CONTENT_LENGHT = 250;

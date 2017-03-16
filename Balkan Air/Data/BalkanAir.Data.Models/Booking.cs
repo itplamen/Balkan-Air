@@ -18,6 +18,11 @@
         public int Id { get; set; }
 
         [Required]
+        [Index(IsUnique = true)]
+        [StringLength(ValidationConstants.CONFIRMATION_CODE_LENGTH)]
+        public string ConfirmationCode { get; set; }
+
+        [Required]
         public DateTime DateOfBooking { get; set; }
 
         [Required]
