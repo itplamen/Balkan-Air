@@ -17,6 +17,9 @@
     public partial class Confirm : Page
     {
         [Inject]
+        public IBookingsServices BookingsServices { get; set; }
+
+        [Inject]
         public INotificationsServices NotificationsServices { get; set; }
 
         [Inject]
@@ -32,42 +35,96 @@
             if (code != null && userId != null)
             {
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                
-                var isFlightConfirmationValid = manager.VerifyUserToken(userId, TokenPurposes.FLIGHT_CONFIRMATION, code);
 
-                if (isFlightConfirmationValid)
+                if (this.IsFlightConfirmation(manager, userId, code))
                 {
-                    this.Page.Title = "Flight Confirmation";
-                    this.StatusMessage = "Thank you for confirming your flight.";
                     return;
                 }
 
-                var result = manager.ConfirmEmail(userId, code);
-
-                if (result.Succeeded)
+                if (this.IsEmailConfirmation(manager, userId, code))
                 {
-                    this.Page.Title = "Account Confirmation";
-                    this.StatusMessage = "Thank you for confirming your account.";
-                    successPanel.Visible = true;
-
-                    bool didUserReceivedSetAccountNotification = this.UserNotificationsServices.GetAll()
-                            .Where(un => un.UserId.Equals(userId) && un.Notification.Type == NotificationType.AccountConfirmation)
-                            .Any();
-
-                    if (!didUserReceivedSetAccountNotification)
-                    {
-                        var accountConfirmationNotification = this.NotificationsServices.GetAll()
-                            .FirstOrDefault(n => n.Type == NotificationType.AccountConfirmation);
-
-                        this.UserNotificationsServices.SendNotification(accountConfirmationNotification.Id, userId);
-                    }
-
                     return;
                 }
             }
 
             successPanel.Visible = false;
             errorPanel.Visible = true;
+        }
+
+        private bool IsFlightConfirmation(ApplicationUserManager manager, string userId, string code)
+        {
+            var isFlightConfirmationValid = false;
+
+            var unconfirmedBookings = this.BookingsServices.GetAll()
+                .Where(b => b.UserId == userId && b.Status == BookingStatus.Unconfirmed)
+                .ToList();
+
+            foreach (var booking in unconfirmedBookings)
+            {
+                string purpose = TokenPurposes.FLIGHT_CONFIRMATION + "#" + booking.ConfirmationCode;
+                isFlightConfirmationValid = manager.VerifyUserToken(userId, purpose, code);
+
+                if (isFlightConfirmationValid)
+                {
+                    this.ConfirmFlight(booking);
+                    break;
+                }
+            }
+
+            return isFlightConfirmationValid;
+        }
+
+        private void ConfirmFlight (Booking booking)
+        {
+            booking.Status = BookingStatus.Confirmed;
+            this.BookingsServices.UpdateBooking(booking.Id, booking);
+
+            this.Page.Title = "Flight Confirmation";
+
+            string flight = booking.LegInstance.FlightLeg.Flight.Number;
+            string from = this.GetOrigin(booking);
+            string to = this.GetDestination(booking);
+
+            this.StatusMessage = string.Format("Thank you for confirming your flight {0} from " +
+                "{1} to {2}, confirmation code {3}!", flight, from, to, booking.ConfirmationCode);
+        }
+
+        private string GetOrigin(Booking booking)
+        {
+            return booking.LegInstance.FlightLeg.Route.Origin.Name + " (" + 
+                   booking.LegInstance.FlightLeg.Route.Origin.Abbreviation + ")";
+        }
+
+        private string GetDestination(Booking booking)
+        {
+            return booking.LegInstance.FlightLeg.Route.Destination.Name + " (" +
+                   booking.LegInstance.FlightLeg.Route.Destination.Abbreviation + ")";
+        }
+
+        private bool IsEmailConfirmation(ApplicationUserManager manager, string userId, string code)
+        {
+            var result = manager.ConfirmEmail(userId, code);
+
+            if (result.Succeeded)
+            {
+                this.Page.Title = "Account Confirmation";
+                this.StatusMessage = "Thank you for confirming your account.";
+                successPanel.Visible = true;
+
+                bool didUserReceivedSetAccountNotification = this.UserNotificationsServices.GetAll()
+                        .Where(un => un.UserId.Equals(userId) && un.Notification.Type == NotificationType.AccountConfirmation)
+                        .Any();
+
+                if (!didUserReceivedSetAccountNotification)
+                {
+                    var accountConfirmationNotification = this.NotificationsServices.GetAll()
+                        .FirstOrDefault(n => n.Type == NotificationType.AccountConfirmation);
+
+                    this.UserNotificationsServices.SendNotification(accountConfirmationNotification.Id, userId);
+                }
+            }
+
+            return result.Succeeded;
         }
     }
 }

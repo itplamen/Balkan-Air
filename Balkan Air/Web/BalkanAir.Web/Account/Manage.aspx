@@ -16,16 +16,18 @@
             ItemType="BalkanAir.Data.Models.Booking"
             SelectMethod="UpcomingTripsRepeater_GetData">
             <ItemTemplate>
-                <a href='<%= Page.ResolveUrl(Pages.ITINERARY) %>?flight=<%#: Item.LegInstance.FlightLeg.Flight.Number %>$passenger=<%#: Item.User.UserSettings.LastName %>'>
+                <a href='<%= Page.ResolveUrl(Pages.ITINERARY) %>?number=<%#: Item.ConfirmationCode %>&passenger=<%#: Item.User.UserSettings.LastName %>'>
+
                     <div class="divBox">
-                        <span class="flightNumberSpan"><%#: Item.LegInstance.FlightLeg.Flight.Number %></span>
+                        <span class="flightNumberSpan"><%#: Item.ConfirmationCode %></span>
                         <span class="fromAirportSpan"><%#: Item.LegInstance.FlightLeg.Route.Origin.Name %></span>
                         <input type="image" class="airplaneFlyOutImage" alt="Airplane image" src="../Content/Images/airplane_fly_out_image.png" />
                         <span class="toAirportSpan"><%#: Item.LegInstance.FlightLeg.Route.Destination.Name %></span>
                         <span class="flightDateSpan"><%#: Item.LegInstance.DepartureDateTime.ToString("dddd dd, MMMM", CultureInfo.InvariantCulture) %></span>
                         <span class="flightTimeSpan"><%#: Item.LegInstance.DepartureDateTime.ToString("HH:mm", CultureInfo.InvariantCulture) %></span>
-                        <span class="bookingStatus">Confirmed</span>
+                        <span class="bookingStatus"><%#: Item.Status.ToString() %></span>
                     </div>
+
                 </a>
             </ItemTemplate>
         </asp:Repeater>

@@ -4,14 +4,18 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.ModelBinding;
+    using System.Web;
     using System.Web.UI;
     using System.Web.UI.WebControls;
+
+    using Microsoft.AspNet.Identity.Owin;
 
     using Ninject;
 
     using Common;
     using Data.Models;
     using Services.Data.Contracts;
+    using Microsoft.AspNet.Identity;
 
     public partial class Itinerary : Page
     {
@@ -21,9 +25,29 @@
         [Inject]
         public ITravelClassesServices TravelClassesServices { get; set; }
 
-        public Data.Models.Booking ViewItineraryFormView_GetItem([QueryString] int id)
+        private ApplicationUserManager Manager
         {
-            var booking = this.BookingsServices.GetBooking(id);
+            get
+            {
+                return Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+        }
+
+        private User CurrentUser
+        {
+            get
+            {
+                return this.Manager.FindById(this.Context.User.Identity.GetUserId());
+            }
+        }
+
+
+        public Data.Models.Booking ViewItineraryFormView_GetItem([QueryString] string number, [QueryString]string passenger)
+        {
+            var booking = this.BookingsServices.GetAll()
+                .FirstOrDefault(b => b.UserId == this.CurrentUser.Id && 
+                                     b.ConfirmationCode.Trim().ToLower() == number.ToLower() && 
+                                     b.User.UserSettings.LastName.Trim().ToLower() == passenger.ToLower());
 
             if (booking == null)
             {
@@ -35,12 +59,10 @@
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var id = this.Request.QueryString["id"];
+            var itineraryNumber = this.Request.QueryString["number"];
+            var passenger = this.Request.QueryString["passenger"];
 
-            int validId;
-            bool isIdValid = int.TryParse(id, out validId);
-
-            if (!isIdValid)
+            if (itineraryNumber == null || passenger == null)
             {
                 this.Response.Redirect(Pages.ACCOUNT);
             }

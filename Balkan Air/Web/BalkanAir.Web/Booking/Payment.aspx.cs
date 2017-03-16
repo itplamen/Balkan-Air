@@ -2,6 +2,7 @@ namespace BalkanAir.Web.Booking
 {
     using System;
     using System.Linq;
+    using System.Text;
     using System.Web;
     using System.Web.UI;
     using System.Web.UI.WebControls;
@@ -16,7 +17,7 @@ namespace BalkanAir.Web.Booking
     using Data.Helper;
     using Data.Models;
     using Services.Data.Contracts;
-    using System.Text;
+    using System.Globalization;
 
     public partial class Payment : Page
     {
@@ -40,6 +41,9 @@ namespace BalkanAir.Web.Booking
 
         [Inject]
         public ISeatsServices SeatsServices { get; set; }
+
+        [Inject]
+        public ILegInstancesServices LegInstancesServices { get; set; }
 
         private Booking OneWayRouteBooking
         {
@@ -121,11 +125,6 @@ namespace BalkanAir.Web.Booking
                 this.BookNow(this.ReturnRouteBooking);
             }
 
-            var passenger = this.CurrentUser.UserSettings.FirstName + " " + this.CurrentUser.UserSettings.LastName;
-            this.SendFlightConfirmationMail(passenger);
-
-            this.SendFlightBookedNotification(this.CurrentUser.Id);
-
             if (this.SaveCreditCardCheckBox.Checked)
             {
                 this.SaveCreditCard();
@@ -139,9 +138,8 @@ namespace BalkanAir.Web.Booking
 
         private bool IsBookingValid(Booking booking)
         {
-            if (this.OneWayRouteBooking == null || this.OneWayRouteBooking.LegInstanceId == 0 ||
-                    this.OneWayRouteBooking.TravelClassId == 0 || this.OneWayRouteBooking.Row == 0 ||
-                    string.IsNullOrEmpty(this.OneWayRouteBooking.SeatNumber))
+            if (booking == null || booking.LegInstanceId == 0 || booking.TravelClassId == 0 || 
+                booking.Row == 0 || string.IsNullOrEmpty(booking.SeatNumber))
             {
                 return false;
             }
@@ -235,34 +233,65 @@ namespace BalkanAir.Web.Booking
             };
 
             this.SeatsServices.AddSeat(seat);
+
+            this.SendFlightBookedNotification();
+            this.SendFlightConfirmationMail(booking);
         }
 
-        private void SendFlightConfirmationMail(string passenger)
-        {
-            string code = this.Manager.GenerateUserToken(TokenPurposes.FLIGHT_CONFIRMATION, this.CurrentUser.Id);
-            string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, this.CurrentUser.Id, this.Request);
-
-            StringBuilder messageBody = new StringBuilder();
-            messageBody.Append("Dear, " + passenger.Trim() + ",");
-            messageBody.Append("<br /><br />Thank you for booking with Balkan Air. " + 
-                "The departure of your flight is fast approaching. You can find in your " + 
-                "profile some useful information as well as a reminder of your flight dates and times!");
-            messageBody.Append("<br /><br /><strong>Please, click the following link to confirm your flight!</strong>");
-            messageBody.Append("<br /><a href =\"" + callbackUrl + "\">Click here to confirm your flight.</a>");
-
-            var mailSender = MailSender.Instance;
-            mailSender.SendMail(this.CurrentUser.Email, "Confirm your flight!", messageBody.ToString());
-        }
-
-        private void SendFlightBookedNotification(string userId)
+        private void SendFlightBookedNotification()
         {
             var flightBookedNotification = this.NotificationsServices.GetAll()
                 .FirstOrDefault(n => n.Type == NotificationType.FlightBooked);
 
             if (flightBookedNotification != null)
             {
-                this.UserNotificationsServices.SendNotification(flightBookedNotification.Id, userId);
+                this.UserNotificationsServices.SendNotification(flightBookedNotification.Id, this.CurrentUser.Id);
             }
+        }
+
+        private void SendFlightConfirmationMail(Booking booking)
+        {
+            string purpose = TokenPurposes.FLIGHT_CONFIRMATION + "#" + booking.ConfirmationCode;
+            string code = this.Manager.GenerateUserToken(purpose, this.CurrentUser.Id);
+            string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, this.CurrentUser.Id, this.Request);
+            string messageBody = this.GetMessageBody(callbackUrl, booking);
+
+            var mailSender = MailSender.Instance;
+            mailSender.SendMail(this.CurrentUser.Email, "Confirm your flight!", messageBody);
+        }
+        
+        private string GetMessageBody(string callbackUrl, Booking booking)
+        {
+            var passenger = this.CurrentUser.UserSettings.FirstName + " " + this.CurrentUser.UserSettings.LastName;
+
+            StringBuilder messageBody = new StringBuilder();
+            messageBody.Append("Dear, " + passenger.Trim() + ",");
+            messageBody.Append("<br /><br />Thank you for booking with Balkan Air. " +
+                "The departure of your flight is fast approaching. You can find in your " +
+                "profile some useful information as well as a reminder of your flight dates and times!");
+            messageBody.Append("<br /><br /><strong>FLIGHT DETAILS</strong>");
+            messageBody.Append(this.GetFlightDetails(booking));
+            messageBody.Append("<br /><br /><strong>Please, click the following link to confirm your flight!</strong>");
+            messageBody.Append("<br /><a href =\"" + callbackUrl + "\">Click here to confirm your flight.</a>");
+
+            return messageBody.ToString();
+        }
+
+        private string GetFlightDetails(Booking booking)
+        {
+            var legInstance = this.LegInstancesServices.GetLegInstance(booking.LegInstanceId);
+
+            StringBuilder flightDetails = new StringBuilder();
+            flightDetails.Append("<br />Confirmation Code: " + booking.ConfirmationCode);
+            flightDetails.Append("<br />Flight: " + legInstance.FlightLeg.Flight.Number);
+            flightDetails.Append("<br />Origin: " + legInstance.FlightLeg.Route.Origin.Name + " (" + 
+                                                    legInstance.FlightLeg.Route.Origin.Abbreviation + ")");
+            flightDetails.Append("<br />Destination: " + legInstance.FlightLeg.Route.Destination.Name + " (" + 
+                                                         legInstance.FlightLeg.Route.Destination.Abbreviation + ")");
+            flightDetails.Append("<br />Departure: " + legInstance.DepartureDateTime
+                                                       .ToString("dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture));
+
+            return flightDetails.ToString();
         }
 
         private void SaveCreditCard()

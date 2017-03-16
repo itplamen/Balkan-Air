@@ -196,7 +196,7 @@
 
                 if (this.ReturnRouteFlightsPanel.Visible)
                 {
-                    legInstanceId = int.Parse(this.OneWayRouteSelectedFlightIdHiddenField.Value);
+                    legInstanceId = int.Parse(this.ReturnRouteSelectedFlightIdHiddenField.Value);
 
                     Booking returnRouteBooking = new Booking()
                     {

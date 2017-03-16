@@ -68,6 +68,7 @@
                 bookingToUpdate.TravelClassId = booking.TravelClassId;
                 bookingToUpdate.UserId = booking.UserId;
                 bookingToUpdate.LegInstanceId = booking.LegInstanceId;
+                bookingToUpdate.Status = booking.Status;
                 bookingToUpdate.IsDeleted = booking.IsDeleted;
 
                 this.bookings.SaveChanges();

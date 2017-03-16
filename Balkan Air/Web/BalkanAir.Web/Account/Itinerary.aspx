@@ -14,9 +14,9 @@
                 <div id="TravelPlanHeaderDiv">
                     <h3>Travel plan</h3>
                     <span class="statusSpan">STATUS</span>
-                    <span class="statusTextSpan">Confimed</span>
+                    <span class="statusTextSpan"><%#: Item.Status.ToString() %></span>
                     <span class="confirmationCodeSpan">CONFIRMATION CODE</span>
-                    <span class="confirmationCodeTextSpan">K9RYUJ</span>
+                    <span class="confirmationCodeTextSpan"><%#: Item.ConfirmationCode %></span>
                 </div>
                 <div id="TravelPlanFlightInfoDiv">
                     <span class="flightNumberSpan"><%#: Item.LegInstance.FlightLeg.Flight.Number %></span>
