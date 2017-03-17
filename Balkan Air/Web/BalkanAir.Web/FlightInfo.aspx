@@ -46,12 +46,12 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Departure">
                 <ItemTemplate>
-                    <%#: Item.DepartureDateTime.ToString("dd.MMMM.yyyy -> H:mm", CultureInfo.InvariantCulture) %>
+                    <%#: Item.DepartureDateTime.ToString("dd.MMMM.yyyy H:mm", CultureInfo.InvariantCulture) %>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Arrival">
                 <ItemTemplate>
-                    <%#: Item.ArrivalDateTime.ToString("dd.MMMM.yyyy -> H:mm", CultureInfo.InvariantCulture) %>
+                    <%#: Item.ArrivalDateTime.ToString("dd.MMMM.yyyy H:mm", CultureInfo.InvariantCulture) %>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:BoundField DataField="Duration" HeaderText="Duration" />

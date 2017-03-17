@@ -3,10 +3,12 @@
     using System;
     using System.Linq;
     using System.Web.ModelBinding;
+    using System.Web;
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
     using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
 
     using Ninject;
 
@@ -27,6 +29,11 @@
         public IUsersServices UsersServices { get; set; }
 
         protected int NumberOfComments { get; private set; }
+
+        private ApplicationUserManager Manager
+        {
+            get { return Context.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+        }
 
         public Data.Models.News ViewNewsFormView_GetItem([QueryString]string id)
         {
@@ -132,15 +139,23 @@
             }
 
             var user = this.UsersServices.GetUser(userId);
+            var commentAuthor = string.Empty;
 
             if (!string.IsNullOrEmpty(user.UserSettings.FirstName) && !string.IsNullOrEmpty(user.UserSettings.LastName))
             {
-                return user.UserSettings.FirstName + " " + user.UserSettings.LastName;
+                commentAuthor = user.UserSettings.FirstName + " " + user.UserSettings.LastName;
             }
             else
             {
-                return user.Email;
+                commentAuthor = user.Email;
             }
+
+            if (this.Manager.IsInRole(user.Id, UserRolesConstants.ADMINISTRATOR_ROLE))
+            {
+                commentAuthor += " (" + UserRolesConstants.ADMINISTRATOR_ROLE + ")";
+            }
+
+            return commentAuthor;
         }
 
         protected bool IsIconVisible(string userId)
