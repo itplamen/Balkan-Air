@@ -6,7 +6,6 @@
 
     using Ninject;
 
-    using Data;
     using Data.Helper;
     using Data.Models;
     using Services.Data.Contracts;
@@ -15,6 +14,9 @@
     {
         [Inject]
         public IFlightsServices FlightsServices { get; set; }
+
+        [Inject]
+        public INumberGenerator NumberGenerator { get; set; }
 
         public IQueryable<Flight> FlightsGridView_GetData()
         {
@@ -49,7 +51,7 @@
 
         protected void GenerateFlightNumberBtn_Click(object sender, EventArgs e)
         {
-            this.AddFlightNumberTextBox.Text = new Generator(new BalkanAirDbContext()).GetUniqueFlightNumber();
+            this.AddFlightNumberTextBox.Text = this.NumberGenerator.GetUniqueFlightNumber();
         }
 
         protected void CreateFlightBtn_Click(object sender, EventArgs e)

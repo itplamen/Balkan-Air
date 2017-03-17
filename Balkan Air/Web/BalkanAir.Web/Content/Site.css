@@ -1360,11 +1360,11 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
 
 /****************** FightInfo.aspx ******************/
 
-#DepartureFancyTextBox {
-    height: 55px;
+#SearchConcreteFlightPanel #DepartureFancyTextBox {
+    height: 60px;
 }
 
-#DepartureFancyTextBox input[type="text"] {
+#SearchConcreteFlightPanel  #DepartureFancyTextBox input[type="text"] {
     margin-left: 9px;
 }
 

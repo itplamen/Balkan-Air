@@ -45,6 +45,9 @@ namespace BalkanAir.Web.Booking
         [Inject]
         public ILegInstancesServices LegInstancesServices { get; set; }
 
+        [Inject]
+        public INumberGenerator NumberGenerator { get; set; }
+
         private Booking OneWayRouteBooking
         {
             get
@@ -241,7 +244,7 @@ namespace BalkanAir.Web.Booking
             booking.LegInstance = null;
             booking.DateOfBooking = DateTime.Now;
             booking.UserId = this.CurrentUser.Id;
-            booking.ConfirmationCode = new Generator(new BalkanAirDbContext()).GetUniqueBookingConfirmationCode();
+            booking.ConfirmationCode = this.NumberGenerator.GetUniqueBookingConfirmationCode();
             booking.Status = BookingStatus.Unconfirmed;
 
             this.BookingsServices.AddBooking(booking);

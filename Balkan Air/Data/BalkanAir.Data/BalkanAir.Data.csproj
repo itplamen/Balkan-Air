@@ -58,7 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BalkanAirDbContext.cs" />
-    <Compile Include="Helper\Generator.cs" />
+    <Compile Include="Helper\NumberGenerator.cs" />
+    <Compile Include="Helper\INumberGenerator.cs" />
     <Compile Include="IBalkanAirDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedData.cs" />

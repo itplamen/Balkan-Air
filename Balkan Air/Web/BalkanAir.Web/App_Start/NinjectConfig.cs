@@ -14,6 +14,7 @@ namespace BalkanAir.Web.App_Start
 
     using Common;
     using Data;
+    using Data.Helper;
     using Data.Repositories;
     using Data.Repositories.Contracts;
     using Infrastructure;
@@ -71,6 +72,8 @@ namespace BalkanAir.Web.App_Start
         {
             kernel.Bind(typeof(IBalkanAirDbContext)).To(typeof(BalkanAirDbContext));
             kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
+
+            kernel.Bind(typeof(INumberGenerator)).To(typeof(NumberGenerator));
 
             kernel.Bind(b => b.From(Assemblies.SERVICES_DATA)
                               .SelectAllClasses()

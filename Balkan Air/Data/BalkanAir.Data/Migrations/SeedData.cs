@@ -371,19 +371,19 @@
         private void SeedFlights()
         {
             // Sofia - Madrid
-            this.Flights.Add(new Flight() { Number = new Generator(this.context).GetUniqueFlightNumber() });
+            this.Flights.Add(new Flight() { Number = new NumberGenerator(this.context).GetUniqueFlightNumber() });
 
             //Madrid - Sofia
-            this.Flights.Add(new Flight() { Number = new Generator(this.context).GetUniqueFlightNumber() });
+            this.Flights.Add(new Flight() { Number = new NumberGenerator(this.context).GetUniqueFlightNumber() });
 
             // Sofia - Lisbon 
-            this.Flights.Add(new Flight() { Number = new Generator(this.context).GetUniqueFlightNumber() });
+            this.Flights.Add(new Flight() { Number = new NumberGenerator(this.context).GetUniqueFlightNumber() });
 
             // Varna - Berlin
-            this.Flights.Add(new Flight() { Number = new Generator(this.context).GetUniqueFlightNumber() });
+            this.Flights.Add(new Flight() { Number = new NumberGenerator(this.context).GetUniqueFlightNumber() });
 
             // London - Paris
-            this.Flights.Add(new Flight() { Number = new Generator(this.context).GetUniqueFlightNumber() });
+            this.Flights.Add(new Flight() { Number = new NumberGenerator(this.context).GetUniqueFlightNumber() });
 
             //Liverpool - Berlin, Berlin - Ibiza
             //this.Flights.Add(new Flight() { Number = new FlightNumber(this.context).GetUniqueFlightNumber() });
