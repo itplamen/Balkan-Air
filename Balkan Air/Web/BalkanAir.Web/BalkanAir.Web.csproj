@@ -748,6 +748,7 @@
     <Compile Include="Areas\Api\Models\TravelClasses\TravelClassRequestModel.cs" />
     <Compile Include="Areas\Api\Models\TravelClasses\TravelClassSimpleResponseModel.cs" />
     <Compile Include="Areas\Api\Models\Users\UsersResponseModel.cs" />
+    <Compile Include="Areas\Api\Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Booking\Extras.aspx.cs">
       <DependentUpon>Extras.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

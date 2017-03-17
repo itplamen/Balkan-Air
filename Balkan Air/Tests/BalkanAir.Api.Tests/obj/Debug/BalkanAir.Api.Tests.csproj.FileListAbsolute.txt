@@ -39,6 +39,7 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Microsoft.Owin.Security.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Microsoft.AspNet.FriendlyUrls.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Microsoft.Owin.Security.OAuth.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\AjaxControlToolkit.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Ninject.dll
@@ -74,6 +75,7 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Microsoft.Owin.Security.xml
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Microsoft.AspNet.FriendlyUrls.xml
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Microsoft.Owin.Security.OAuth.xml
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.xml
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Ninject.xml
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\AutoMapper.xml

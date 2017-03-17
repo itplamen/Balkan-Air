@@ -10,8 +10,8 @@
     using Data.Common;
     using Data.Models;
     using Models.Categories;
-    using Services.Data.Contracts;
     using Services.Common;
+    using Services.Data.Contracts;
 
     [EnableCors("*", "*", "*")]
     [Authorize(Roles = UserRolesConstants.ADMINISTRATOR_ROLE)]
@@ -25,6 +25,7 @@
         }
 
         [HttpPost]
+        [Route("Api/Categories/Create")]
         public IHttpActionResult Create(CategoryRequestModel category)
         {
             if (!this.ModelState.IsValid)

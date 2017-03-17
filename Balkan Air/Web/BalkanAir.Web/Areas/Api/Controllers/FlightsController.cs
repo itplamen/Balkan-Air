@@ -12,11 +12,11 @@
 
     using Data.Common;
     using Data.Models;
-    using BalkanAir.Services.Data.Contracts;
+    using Services.Data.Contracts;
     using Models.Flights;
 
     [EnableCors("*", "*", "*")]
-   // [Authorize(Roles = GlobalConstants.ADMINISTRATOR_ROLE)]
+    [Authorize(Roles = UserRolesConstants.ADMINISTRATOR_ROLE)]
     public class FlightsController : ApiController
     {
         [Inject]
