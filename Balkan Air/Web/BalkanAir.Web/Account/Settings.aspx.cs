@@ -11,6 +11,7 @@
 
     using Data.Models;
     using Services.Data.Contracts;
+    using Common;
 
     public partial class Settings : Page
     {
@@ -53,6 +54,19 @@
                 this.ReceiveNotificationWhenNewFlightCheckBox.Checked = this.CurrentUser.UserSettings
                     .ReceiveNotificationWhenNewFlight;
             }   
+        }
+
+        protected void SendAnotherConfirmationEmailLinkButton_Click(object sender, EventArgs e)
+        {
+            string code = this.Manager.GenerateEmailConfirmationToken(this.CurrentUser.Id);
+            string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, this.CurrentUser.Id, Request);
+
+            string messageBody = "Hello, " + this.CurrentUser.Email.Trim() + ",";
+            messageBody += "<br /><br />Please click the following link to confirm your account!";
+            messageBody += "<br /><a href =\"" + callbackUrl + "\">Click here to confirm your account.</a>";
+
+            var mailSender = MailSender.Instance;
+            mailSender.SendMail(this.CurrentUser.Email, "Confirm your account!", messageBody);
         }
 
         protected void SaveSettingsBtn_Click(object sender, EventArgs e)

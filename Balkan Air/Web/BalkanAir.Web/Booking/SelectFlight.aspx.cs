@@ -61,6 +61,16 @@
             }
         }
 
+        private ApplicationUserManager Manager
+        {
+            get { return Context.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+        }
+
+        private User CurrentUser
+        {
+            get { return this.Manager.FindById(this.Context.User.Identity.GetUserId()); }
+        }
+
         private DateTime DepartureDate { get; set; }
 
         private DateTime ArrivalDate { get; set; }
@@ -152,6 +162,12 @@
             if (!this.User.Identity.IsAuthenticated)
             {
                 this.SignInRequiredPanel.Visible = true;
+                return;
+            }
+            else if (this.User.Identity.IsAuthenticated && !this.CurrentUser.EmailConfirmed)
+            {
+                this.ConfirmEmailPanel.Visible = true;
+                return;
             }
 
             if (string.IsNullOrEmpty(this.OneWayRouteSelectedFlightIdHiddenField.Value) ||
@@ -245,17 +261,6 @@
             this.ReturnRouteSelectedFlightIdHiddenField.Value = this.ReturnRouteCurrentFlightInfoIdHiddenField.Value;
 
             this.ShowFlightInfo(currentFlightId, this.ReturnFlightDetailsFormView, this.ReturnFlightTravelClassesRepeater);
-        }
-
-        private ApplicationUserManager GetManager()
-        {
-            return Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-        }
-
-        private User GetCurrentUser()
-        {
-            var manager = this.GetManager();
-            return manager.FindById(this.Context.User.Identity.GetUserId());
         }
 
         private void AddDaysWithNoFlightToSlider(List<LegInstance> legInstances)

@@ -23,7 +23,7 @@
                     <span class="text-white">
                         <asp:Literal ID="IsEmailConfirmedLiteral" runat="server" />
                         <asp:LinkButton ID="SendConfirmationEmailLinkButton" Visible="false" runat="server"
-                            Text="Send me another confirmation email." />
+                            Text="Send me another confirmation email." OnClick="SendAnotherConfirmationEmailLinkButton_Click" />
                     </span>
                 </div>
             </div>

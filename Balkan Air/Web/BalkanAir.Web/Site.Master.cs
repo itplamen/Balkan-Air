@@ -157,11 +157,11 @@
                 if (this.User != null && this.Manager.IsInRole(this.User.Id, UserRolesConstants.ADMINISTRATOR_ROLE))
                 {
                     this.AdministrationMenu.Visible = true;
+                }
 
-                    if (!this.User.EmailConfirmed)
-                    {
-                        this.EmailNotConfirmedPanel.Visible = true;
-                    }
+                if (this.User != null && !this.User.EmailConfirmed)
+                {
+                    this.EmailNotConfirmedPanel.Visible = true;
                 }
 
                 string curretnUrl = HttpContext.Current.Request.Url.AbsolutePath;

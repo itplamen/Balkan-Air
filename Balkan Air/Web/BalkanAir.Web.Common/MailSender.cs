@@ -9,7 +9,8 @@
     {
         private const string SEND_FROM_EMAIL = "itplamen@gmail.com";
         private const string SEND_FROM_NAME = "Balkan Air Bulgaria";
-        private const string PASSWORD = "__YOUR_PASSWORD_HERE__";
+        //private const string PASSWORD = "__YOUR_PASSWORD_HERE__";
+        private const string PASSWORD = "Common1ypeSys1em";
 
         private const string HOST = "smtp.gmail.com";
         private const int PORT = 587;

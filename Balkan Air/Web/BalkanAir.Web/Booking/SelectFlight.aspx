@@ -229,13 +229,17 @@
         </div>
 
         <asp:Panel ID="SignInRequiredPanel" Visible="false" CssClass="warningPanel" runat="server" ClientIDMode="Static">
-            <h5>YOU NEED TO SIGN IN TO CONTINUE.</h5>
+            <h5>YOU NEED TO SIGN IN TO CONTINUE!</h5>
 
             <asp:Button ID="CreateNewAccountToContinueBtn" ClientIDMode="Static" UseSubmitBehavior="false"
                 Text="CREATE A NEW ACCOUNT TO CONTINUE" runat="server" PostBackUrl="~/Account/Register.aspx" />
 
             <asp:Button ID="SignInToContinueBtn" ClientIDMode="Static" Text="SIGN IN" runat="server" UseSubmitBehavior="false"
                 PostBackUrl="~/Account/Login.aspx" />
+        </asp:Panel>
+
+        <asp:Panel ID="ConfirmEmailPanel" Visible="false" CssClass="warningPanel" runat="server" ClientIDMode="Static">
+            <h5>YOU NEED TO CONFIRM YOUR EMAIL TO CONTINUE!</h5>
         </asp:Panel>
     </asp:Panel>
 </asp:Content>
