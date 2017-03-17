@@ -68,7 +68,7 @@
             else
             {
                 legInstances = this.LegInstancesServices.GetAll()
-                .Where(f => !f.IsDeleted)
+                .Where(l => !l.IsDeleted)
                 .ToList();
             }
 
