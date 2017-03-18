@@ -4,7 +4,7 @@
 
     using Infrastructure.Mapping;
 
-    public class UpdateNewsRequestModel : IMapFrom<BalkanAir.Data.Models.News>
+    public class UpdateNewsRequestModel : IMapFrom<Data.Models.News>
     {
         [Required]
         public int Id { get; set; }

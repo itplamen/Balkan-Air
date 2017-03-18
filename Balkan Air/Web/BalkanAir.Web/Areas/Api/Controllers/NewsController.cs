@@ -10,18 +10,23 @@
     using Ninject;
 
     using Data.Common;
-    using BalkanAir.Services.Data.Contracts;
     using Models.News;
+    using Services.Common;
+    using Services.Data.Contracts;
 
     [EnableCors("*", "*", "*")]
     [Authorize(Roles = UserRolesConstants.ADMINISTRATOR_ROLE)]
     public class NewsController : ApiController
     {
-        [Inject]
-        public ICategoriesServices CategoriesServices { get; set; }
+        private readonly INewsServices newsServices;
+
+        public NewsController(INewsServices newsServices)
+        {
+            this.newsServices = newsServices;
+        }
 
         [Inject]
-        public INewsServices NewsServices { get; set; }
+        public ICategoriesServices CategoriesServices { get; set; }
 
         [HttpPost]
         public IHttpActionResult Create(NewsRequestModel news)
@@ -31,8 +36,8 @@
                 return this.BadRequest(this.ModelState);
             }
 
-            var newsToAdd = Mapper.Map<BalkanAir.Data.Models.News>(news);
-            var addedNewsId = this.NewsServices.AddNews(newsToAdd);
+            var newsToAdd = Mapper.Map<Data.Models.News>(news);
+            var addedNewsId = this.newsServices.AddNews(newsToAdd);
 
             return this.Ok(addedNewsId);
         }
@@ -41,8 +46,9 @@
         [AllowAnonymous]
         public IHttpActionResult All()
         {
-            var news = this.NewsServices.GetAll()
-                .ProjectTo<NewsResponseModel>();
+            var news = this.newsServices.GetAll()
+                .ProjectTo<NewsResponseModel>()
+                .ToList();
 
             return this.Ok(news);
         }
@@ -51,7 +57,12 @@
         [AllowAnonymous]
         public IHttpActionResult Get(int id)
         {
-            var news = this.NewsServices.GetAll()
+            if (id <= 0)
+            {
+                return this.BadRequest(ErrorMessages.INVALID_ID);
+            }
+
+            var news = this.newsServices.GetAll()
                 .ProjectTo<NewsResponseModel>()
                 .FirstOrDefault(n => n.Id == id);
 
@@ -67,16 +78,16 @@
         [AllowAnonymous]
         public IHttpActionResult GetLatestNews(int count = 5)
         {
-            var latestNews = this.NewsServices.GetAll()
-                .ProjectTo<NewsResponseModel>()
+            if (count <= 0)
+            {
+                return this.BadRequest(ErrorMessages.INVALID_COUNT_VALUE);
+            }
+
+            var latestNews = this.newsServices.GetAll()
                 .Where(n => !n.IsDeleted)
                 .OrderByDescending(n => n.DateCreated)
+                .ProjectTo<NewsResponseModel>()
                 .Take(count);
-
-            if (latestNews == null)
-            {
-                return this.NotFound();
-            }
 
             return this.Ok(latestNews);
         }
@@ -85,24 +96,26 @@
         [AllowAnonymous]
         public IHttpActionResult GetLatesByCategory(int count, string category)
         {
-            var byCategory = this.CategoriesServices.GetAll()
-                .FirstOrDefault(c => c.Name.ToLower() == category.ToLower());
-
-            if (byCategory == null)
+            if (count <= 0)
             {
-                return this.BadRequest("Invalid category!");
+                return this.BadRequest(ErrorMessages.INVALID_COUNT_VALUE);
             }
 
-            var latestNews = this.NewsServices.GetAll()
-                .ProjectTo<NewsResponseModel>()
-                .Where(n => !n.IsDeleted && n.Category.Name.ToLower() == byCategory.Name.ToLower())
+            if (string.IsNullOrEmpty(category))
+            {
+                return this.BadRequest(ErrorMessages.CATEGORY_NAME_CANNOT_BE_NULL_OR_EMPTY);
+            }
+
+            if (!this.CategoriesServices.GetAll().Any(c => c.Name.ToLower() == category.ToLower()))
+            {
+                return this.BadRequest(ErrorMessages.INVALID_CATEGORY_NAME);
+            }
+
+            var latestNews = this.newsServices.GetAll()
+                .Where(n => !n.IsDeleted && n.Category.Name.ToLower() == category.ToLower())
                 .OrderByDescending(n => n.DateCreated)
+                .ProjectTo<NewsResponseModel>()
                 .Take(count);
-
-            if (latestNews == null)
-            {
-                return this.NotFound();
-            }
 
             return this.Ok(latestNews);
         }
@@ -110,13 +123,18 @@
         [HttpPut]
         public IHttpActionResult Update(int id, UpdateNewsRequestModel news)
         {
+            if (id <= 0)
+            {
+                return this.BadRequest(ErrorMessages.INVALID_ID);
+            }
+
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
 
-            var newsToUpdate = Mapper.Map<BalkanAir.Data.Models.News>(news);
-            var updatedNews = this.NewsServices.UpdateNews(id, newsToUpdate);
+            var newsToUpdate = Mapper.Map<Data.Models.News>(news);
+            var updatedNews = this.newsServices.UpdateNews(id, newsToUpdate);
 
             if (updatedNews == null)
             {
@@ -129,7 +147,12 @@
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            var deletedNews = this.NewsServices.DeleteNews(id);
+            if (id <= 0)
+            {
+                return this.BadRequest(ErrorMessages.INVALID_ID);
+            }
+
+            var deletedNews = this.newsServices.DeleteNews(id);
 
             if (deletedNews == null)
             {

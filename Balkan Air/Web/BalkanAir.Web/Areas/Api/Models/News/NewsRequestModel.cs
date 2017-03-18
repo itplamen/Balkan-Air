@@ -7,7 +7,7 @@
 
     using Infrastructure.Mapping;
 
-    public class NewsRequestModel : IMapFrom<BalkanAir.Data.Models.News>, IHaveCustomMappings
+    public class NewsRequestModel : IMapFrom<Data.Models.News>, IHaveCustomMappings
     {
         [Required]
         [MaxLength(100)]

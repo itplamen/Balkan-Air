@@ -51,8 +51,9 @@
 
         public IEnumerable<Data.Models.News> LatestNewsRepeater_GetData()
         {
-            return this.NewsServices.GetAll().
-                Where(n => !n.IsDeleted)
+            return this.NewsServices.GetAll()
+                .Where(n => !n.IsDeleted)
+                .OrderByDescending(n => n.DateCreated)
                 .Take(3)
                 .ToList();
         }

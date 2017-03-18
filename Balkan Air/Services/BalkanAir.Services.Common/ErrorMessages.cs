@@ -17,6 +17,9 @@
         public const string NULL_OR_EMPTY_FLIGHT_NUMBER = "Flight number cannot be null or empty!";
         public const string NULL_OR_EMPTY_FLIGHT_STATUS = "Flight status cannot be null or empty!";
 
+        // News
+        public const string INVALID_COUNT_VALUE = "Count cannot be zero or negative!";
+
         // UserNotifications
         public const string NULL_OR_EMPTY_LIST_OF_USERS = "Cannot send notification to null or empty list of users!";
 
