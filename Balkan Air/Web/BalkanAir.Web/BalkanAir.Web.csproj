@@ -745,6 +745,7 @@
     <Compile Include="Areas\Api\Models\Flights\FlightRequestModel.cs" />
     <Compile Include="Areas\Api\Models\Flights\FlightResponseModel.cs" />
     <Compile Include="Areas\Api\Models\Flights\FlightSimpleResponseModel.cs" />
+    <Compile Include="Areas\Api\Models\Flights\UpdateFlightRequestModel.cs" />
     <Compile Include="Areas\Api\Models\News\NewsRequestModel.cs" />
     <Compile Include="Areas\Api\Models\News\NewsResponseModel.cs" />
     <Compile Include="Areas\Api\Models\News\NewsSimpleResponseModel.cs" />

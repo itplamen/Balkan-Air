@@ -8,19 +8,22 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
-    using Ninject;
-
     using Data.Common;
     using Data.Models;
-    using Services.Data.Contracts;
     using Models.Flights;
+    using Services.Common;
+    using Services.Data.Contracts;
 
     [EnableCors("*", "*", "*")]
     [Authorize(Roles = UserRolesConstants.ADMINISTRATOR_ROLE)]
     public class FlightsController : ApiController
     {
-        [Inject]
-        public IFlightsServices FlightsServices { get; set; }
+        private readonly ILegInstancesServices legInstancesServices;
+
+        public FlightsController(ILegInstancesServices legInstancesServices)
+        {
+            this.legInstancesServices = legInstancesServices;
+        }
 
         [HttpPost]
         public IHttpActionResult Create(FlightRequestModel flight)
@@ -30,8 +33,8 @@
                 return this.BadRequest(this.ModelState);
             }
 
-            var flightToAdd = Mapper.Map<Flight>(flight);
-            var addedFlightId = this.FlightsServices.AddFlight(flightToAdd);
+            var flightToAdd = Mapper.Map<LegInstance>(flight);
+            var addedFlightId = this.legInstancesServices.AddLegInstance(flightToAdd);
 
             return this.Ok(addedFlightId);
         }
@@ -40,10 +43,11 @@
         [AllowAnonymous]
         public IHttpActionResult All()
         {
-            var flights = this.FlightsServices.GetAll()
+            var flights = this.legInstancesServices.GetAll()
                 .ProjectTo<FlightResponseModel>()
-                .OrderByDescending(f => f.Departure);
-
+                .OrderByDescending(l => l.Departure)
+                .ToList();
+                
             return this.Ok(flights);
         }
 
@@ -51,7 +55,12 @@
         [AllowAnonymous]
         public IHttpActionResult Get(int id)
         {
-            var flight = this.FlightsServices.GetAll()
+            if (id <= 0)
+            {
+                return this.BadRequest(ErrorMessages.INVALID_ID);
+            }
+
+            var flight = this.legInstancesServices.GetAll()
                 .ProjectTo<FlightResponseModel>()
                 .FirstOrDefault(f => f.Id == id);
 
@@ -67,14 +76,16 @@
         [AllowAnonymous]
         public IHttpActionResult GetByFlightNumber(string flightNumber)
         {
-            var flight = this.FlightsServices.GetAll()
-                .ProjectTo<FlightResponseModel>()
-                .FirstOrDefault(f => f.Number.ToLower() == flightNumber.ToLower());
-
-            if (flight == null)
+            if (string.IsNullOrEmpty(flightNumber))
             {
-                return this.NotFound();
+                return this.BadRequest(ErrorMessages.NULL_OR_EMPTY_FLIGHT_NUMBER);
             }
+
+            var flight = this.legInstancesServices.GetAll()
+                .ProjectTo<FlightResponseModel>()
+                .Where(f => f.Number.ToLower() == flightNumber.ToLower())
+                .OrderByDescending(f => f.Departure)
+                .ToList();
 
             return this.Ok(flight);
         }
@@ -83,14 +94,16 @@
         [AllowAnonymous]
         public IHttpActionResult GetByFlightStatus(string flightStatus)
         {
-            var flights = this.FlightsServices.GetAll()
-                .ProjectTo<FlightResponseModel>()
-                .Where(f => f.FlightStatus.Name.ToLower() == flightStatus.ToLower());
-
-            if (flights == null)
+            if (string.IsNullOrEmpty(flightStatus))
             {
-                return this.NotFound();
+                return this.BadRequest(ErrorMessages.NULL_OR_EMPTY_FLIGHT_STATUS);
             }
+
+            var flights = this.legInstancesServices.GetAll()
+                .ProjectTo<FlightResponseModel>()
+                .Where(f => f.FlightStatus.Name.ToLower() == flightStatus.ToLower())
+                .OrderByDescending(f => f.Departure)
+                .ToList();
 
             return this.Ok(flights);
         }
@@ -99,14 +112,16 @@
         [AllowAnonymous]
         public IHttpActionResult GetByDepartureAirport(string airportAbbreviation)
         {
-            var flights = this.FlightsServices.GetAll()
-                .ProjectTo<FlightResponseModel>()
-                .Where(f => f.DepartureAirport.Abbreviation.ToLower() == airportAbbreviation.ToLower());
-
-            if (flights == null)
+            if (string.IsNullOrEmpty(airportAbbreviation))
             {
-                return this.NotFound();
+                return this.BadRequest(ErrorMessages.ABBREVIATION_CANNOT_BE_NULL_OR_EMPTY);
             }
+
+            var flights = this.legInstancesServices.GetAll()
+                .ProjectTo<FlightResponseModel>()
+                .Where(f => f.DepartureAirport.Abbreviation.ToLower() == airportAbbreviation.ToLower())
+                .OrderByDescending(f => f.Departure)
+                .ToList();
 
             return this.Ok(flights);
         }
@@ -115,31 +130,35 @@
         [AllowAnonymous]
         public IHttpActionResult GetByArrivalAirport(string airportAbbreviation)
         {
-            var flights = this.FlightsServices.GetAll()
-                .ProjectTo<FlightResponseModel>()
-                .Where(f => f.ArrivalAirport.Abbreviation.ToLower() == airportAbbreviation.ToLower());
-
-            if (flights == null)
+            if (string.IsNullOrEmpty(airportAbbreviation))
             {
-                return this.NotFound();
+                return this.BadRequest(ErrorMessages.ABBREVIATION_CANNOT_BE_NULL_OR_EMPTY);
             }
+
+            var flights = this.legInstancesServices.GetAll()
+                .ProjectTo<FlightResponseModel>()
+                .Where(f => f.ArrivalAirport.Abbreviation.ToLower() == airportAbbreviation.ToLower())
+                .OrderByDescending(f => f.Departure)
+                .ToList();
 
             return this.Ok(flights);
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public IHttpActionResult GetByRoute(string departureAbbreviation, string arrivalAbbreviation)
+        public IHttpActionResult GetByRoute(string originAbbreviation, string destinationAbbreviation)
         {
-            var flights = this.FlightsServices.GetAll()
-                .ProjectTo<FlightResponseModel>()
-                .Where(f => f.DepartureAirport.Abbreviation.ToLower() == departureAbbreviation.ToLower() && 
-                    f.ArrivalAirport.Abbreviation.ToLower() == arrivalAbbreviation.ToLower());
-
-            if (flights == null)
+            if (string.IsNullOrEmpty(originAbbreviation) || string.IsNullOrEmpty(destinationAbbreviation))
             {
-                return this.NotFound();
+                return this.BadRequest(ErrorMessages.ABBREVIATION_CANNOT_BE_NULL_OR_EMPTY);
             }
+
+            var flights = this.legInstancesServices.GetAll()
+                .ProjectTo<FlightResponseModel>()
+                .Where(f => f.DepartureAirport.Abbreviation.ToLower() == originAbbreviation.ToLower() &&
+                            f.ArrivalAirport.Abbreviation.ToLower() == destinationAbbreviation.ToLower())
+                .OrderByDescending(f => f.Departure)
+                .ToList();
 
             return this.Ok(flights);
         }
@@ -148,28 +167,30 @@
         [AllowAnonymous]
         public IHttpActionResult GetFromDateTime(DateTime dateTime)
         {
-            var flights = this.FlightsServices.GetAll()
+            var flights = this.legInstancesServices.GetAll()
                 .ProjectTo<FlightResponseModel>()
-                .Where(f => f.Departure.Equals(dateTime));
-
-            if (flights == null)
-            {
-                return this.NotFound();
-            }
+                .Where(f => f.Departure.Equals(dateTime))
+                .OrderByDescending(f => f.Departure)
+                .ToList();
 
             return this.Ok(flights);
         }
 
         [HttpPut]
-        public IHttpActionResult Update(int id, FlightRequestModel flight)
+        public IHttpActionResult Update(int id, UpdateFlightRequestModel flight)
         {
+            if (id <= 0)
+            {
+                return this.BadRequest(ErrorMessages.INVALID_ID);
+            }
+
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
 
-            var flightToUpdate = Mapper.Map<Flight>(flight);
-            var updatedFlight = this.FlightsServices.UpdateFlight(id, flightToUpdate);
+            var flightToUpdate = Mapper.Map<LegInstance>(flight);
+            var updatedFlight = this.legInstancesServices.UpdateLegInstance(id, flightToUpdate);
 
             if (updatedFlight == null)
             {
@@ -182,7 +203,12 @@
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            var deletedFlight = this.FlightsServices.DeleteFlight(id);
+            if (id <= 0)
+            {
+                return this.BadRequest(ErrorMessages.INVALID_ID);
+            }
+
+            var deletedFlight = this.legInstancesServices.DeleteLegInstance(id);
 
             if (deletedFlight == null)
             {

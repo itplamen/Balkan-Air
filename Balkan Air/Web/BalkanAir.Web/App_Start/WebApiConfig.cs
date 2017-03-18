@@ -59,8 +59,12 @@
                 name: "GetFareByRouteAbbreviations",
                 routeTemplate: "Api/{controller}/{originAbbreviation}/{destinationAbbreviation}",
                 defaults: new { action = "GetByRoute" },
-                constraints: new { originAbbreviation = @"\b[a-zA-Z]{3}\b", destinationAbbreviation = @"\b[a-zA-Z]{3}\b",
-                    httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
+                constraints: new
+                {
+                    originAbbreviation = @"\b[a-zA-Z]{3}\b",
+                    destinationAbbreviation = @"\b[a-zA-Z]{3}\b",
+                    httpMethod = new HttpMethodConstraint(HttpMethod.Get)
+                });
         }
 
         public static void RegisterFlightRoutes(HttpConfiguration config)
@@ -91,12 +95,12 @@
 
             config.Routes.MapHttpRoute(
                name: "GetFlightByRoute",
-               routeTemplate: "Api/{controller}/Route/{departureAbbreviation}/{arrivalAbbreviation}",
+               routeTemplate: "Api/{controller}/Route/{originAbbreviation}/{destinationAbbreviation}",
                defaults: new { controller = "Flights", action = "GetByRoute" },
                constraints: new
                {
-                   departureAbbreviation = @"\b[a-zA-Z]{3}\b",
-                   arrivalAbbreviation = @"\b[a-zA-Z]{3}\b",
+                   originAbbreviation = @"\b[a-zA-Z]{3}\b",
+                   destinationAbbreviation = @"\b[a-zA-Z]{3}\b",
                    httpMethod = new HttpMethodConstraint(HttpMethod.Get)
                });
 

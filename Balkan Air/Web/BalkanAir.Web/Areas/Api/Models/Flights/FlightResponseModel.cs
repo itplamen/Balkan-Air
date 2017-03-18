@@ -13,7 +13,7 @@
     using Infrastructure.Mapping;
     using TravelClasses;
 
-    public class FlightResponseModel : IMapFrom<Flight>, IHaveCustomMappings
+    public class FlightResponseModel : IMapFrom<LegInstance>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -55,15 +55,20 @@
                 }
 
                 return this.TravelClasses
-                    .FirstOrDefault(tr => tr.Type == TravelClassType.Economy.ToString())
-                    .Price;
+                    .Min(t => t.Price);
             }
         }
 
         public void CreateMappings(IConfiguration config)
         {
-            //config.CreateMap<Flight, FlightResponseModel>()
-            //    .ForMember(f => f.NumberOfBookings, opt => opt.MapFrom(f => f.Bookings.Count));
+            config.CreateMap<LegInstance, FlightResponseModel>()
+                .ForMember(f => f.Number, opt  => opt.MapFrom(f => f.FlightLeg.Flight.Number))
+                .ForMember(f => f.Departure, opt => opt.MapFrom(f => f.DepartureDateTime))
+                .ForMember(f => f.Arrival, opt => opt.MapFrom(f => f.ArrivalDateTime))
+                .ForMember(f => f.DepartureAirport, opt => opt.MapFrom(f => f.FlightLeg.Route.Origin))
+                .ForMember(f => f.ArrivalAirport, opt => opt.MapFrom(f => f.FlightLeg.Route.Destination))
+                .ForMember(f => f.TravelClasses, opt => opt.MapFrom(f => f.Aircraft.TravelClasses))
+                .ForMember(f => f.NumberOfBookings, opt => opt.MapFrom(f => f.Bookings.Count));
         }
     }
 }

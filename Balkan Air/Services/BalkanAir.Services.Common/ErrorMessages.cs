@@ -14,8 +14,8 @@
         public const string INVALID_CATEGORY_NAME = "Invalid category name!";
 
         // Flight
-        public const string INVALID_FLIGHT_NUMBER = "Flight number cannot be null or empty!";
-        public const string INVALID_FLIGHT_STATUS = "Flight status cannot be null or empty!";
+        public const string NULL_OR_EMPTY_FLIGHT_NUMBER = "Flight number cannot be null or empty!";
+        public const string NULL_OR_EMPTY_FLIGHT_STATUS = "Flight status cannot be null or empty!";
 
         // UserNotifications
         public const string NULL_OR_EMPTY_LIST_OF_USERS = "Cannot send notification to null or empty list of users!";
