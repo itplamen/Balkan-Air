@@ -1,13 +1,14 @@
-﻿using AutoMapper;
-using BalkanAir.Web.Infrastructure.Mapping;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Web;
-
-namespace BalkanAir.Web.App_Start
+﻿namespace BalkanAir.Web.App_Start
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+
+    using AutoMapper;
+
+    using Infrastructure.Mapping;
+
     public static class AutoMapperConfig
     {
         public static void RegisterMappings(params Assembly[] assemblies)

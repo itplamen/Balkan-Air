@@ -12,6 +12,7 @@
 
             RegisterDefaultRoutes(config);
             RegisterAirportAndCountryRountes(config);
+            RegisterFareRoutes(config);
             RegisterFlightRoutes(config);
             RegisterNewsRoutes(config);
         }
@@ -50,6 +51,16 @@
                 routeTemplate: "Api/{controller}/{abbreviation}",
                 defaults: new { action = "GetByAbbreviation" },
                 constraints: new { abbreviation = @"\b[a-zA-Z]{2,3}\b", httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
+        }
+
+        public static void RegisterFareRoutes(HttpConfiguration config)
+        {
+            config.Routes.MapHttpRoute(
+                name: "GetFareByRouteAbbreviations",
+                routeTemplate: "Api/{controller}/{originAbbreviation}/{destinationAbbreviation}",
+                defaults: new { action = "GetByRoute" },
+                constraints: new { originAbbreviation = @"\b[a-zA-Z]{3}\b", destinationAbbreviation = @"\b[a-zA-Z]{3}\b",
+                    httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
         }
 
         public static void RegisterFlightRoutes(HttpConfiguration config)

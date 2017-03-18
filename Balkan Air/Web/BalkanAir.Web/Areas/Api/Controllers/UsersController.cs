@@ -1,5 +1,6 @@
 ﻿namespace BalkanAir.Web.Areas.Api.Controllers
 {
+    using System.Linq;
     using System.Web.Http;
     using System.Web.Http.Cors;
 
@@ -8,12 +9,11 @@
 
     using Ninject;
 
-
     using Data.Common;
+    using Data.Models;
     using Services.Data.Contracts;
     using Models.Users;
-    using Data.Models;
-    using System.Linq;
+    
 
     [EnableCors("*", "*", "*")]
     //[Authorize(Roles = GlobalConstants.ADMINISTRATOR_ROLE)]
