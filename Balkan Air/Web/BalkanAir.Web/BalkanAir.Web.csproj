@@ -701,6 +701,7 @@
     <Compile Include="Areas\Api\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Api\Controllers\CountriesController.cs" />
     <Compile Include="Areas\Api\Controllers\FaresController.cs" />
+    <Compile Include="Areas\Api\Controllers\FlightLegsController.cs" />
     <Compile Include="Areas\Api\Controllers\FlightsController.cs" />
     <Compile Include="Areas\Api\Controllers\NewsController.cs" />
     <Compile Include="Areas\Api\Controllers\UsersController.cs" />
@@ -741,6 +742,10 @@
     <Compile Include="Areas\Api\Models\Fares\FareRequestModel.cs" />
     <Compile Include="Areas\Api\Models\Fares\FareResponseModel.cs" />
     <Compile Include="Areas\Api\Models\Fares\UpdateFareRequestModel.cs" />
+    <Compile Include="Areas\Api\Models\FlightLegs\FlightLegRequestModel.cs" />
+    <Compile Include="Areas\Api\Models\FlightLegs\FlightLegResponseModel.cs" />
+    <Compile Include="Areas\Api\Models\FlightLegs\UpdateFlightLegRequestModel.cs" />
+    <Compile Include="Areas\Api\Models\FlightNumbers\FlightNumberSimpleResponseModel.cs" />
     <Compile Include="Areas\Api\Models\FlightStatuses\FlightStatusSimpleResponseModel.cs" />
     <Compile Include="Areas\Api\Models\Flights\FlightRequestModel.cs" />
     <Compile Include="Areas\Api\Models\Flights\FlightResponseModel.cs" />
