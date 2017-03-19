@@ -12,6 +12,7 @@
     using Web.Areas.Api.Models.Airports;
     using Web.Areas.Api.Models.Categories;
     using Web.Areas.Api.Models.Countries;
+    using Web.Areas.Api.Models.Fares;
 
     public static class TestObjectFactory
     {
@@ -75,6 +76,31 @@
         }.AsQueryable();
 
         private static Country nullableCountry = null;
+
+        private static IQueryable<Fare> fares = new List<Fare>()
+        {
+            new Fare()
+            {
+                Id = 1,
+                Price = 1m,
+                RouteId = 1,
+                Route = new Route()
+                {
+                    Origin = new Airport()
+                    {
+                        Name = "Test Origin",
+                        Abbreviation = "ABC"
+                    },
+                    Destination = new Airport()
+                    {
+                        Name = "Test Destination",
+                        Abbreviation = "DEF"
+                    }
+                }
+            }
+        }.AsQueryable();
+
+        private static Fare nullableFare = null;
 
         public static IAircraftManufacturersServices GetAircraftManufacturersServices()
         {
@@ -155,7 +181,7 @@
                     It.Is<int>(i => i >= NOT_FOUND_ID),
                     It.IsAny<Airport>()))
                 .Returns(nullableAirport);
-            
+
             airportsServices.Setup(a => a.UpdateAirport(
                     It.Is<int>(i => i == CORRECT_ID),
                     It.IsAny<Airport>()))
@@ -230,10 +256,42 @@
                 .Returns(nullableCountry);
 
             countriesServices.Setup(c => c.DeleteCountry(
-                It.Is<int>(i => i == CORRECT_ID)))
+                    It.Is<int>(i => i == CORRECT_ID)))
                 .Returns(new Country() { Id = 1 });
 
             return countriesServices.Object;
+        }
+
+        public static IFaresServices GetFaresServices()
+        {
+            var faresServices = new Mock<IFaresServices>();
+
+            faresServices.Setup(f => f.AddFare(
+                    It.IsAny<Fare>()))
+                .Returns(1);
+
+            faresServices.Setup(f => f.GetAll())
+                .Returns(fares);
+
+            faresServices.Setup(f => f.UpdateFare(
+                    It.Is<int>(i => i >= NOT_FOUND_ID),
+                    It.IsAny<Fare>()))
+                .Returns(nullableFare);
+
+            faresServices.Setup(f => f.UpdateFare(
+                    It.Is<int>(i => i == CORRECT_ID),
+                    It.IsAny<Fare>()))
+                .Returns(new Fare() { Id = 1 });
+
+            faresServices.Setup(f => f.DeleteFare(
+                    It.Is<int>(i => i >= NOT_FOUND_ID)))
+                .Returns(nullableFare);
+
+            faresServices.Setup(f => f.DeleteFare(
+                    It.Is<int>(i => i == CORRECT_ID)))
+                .Returns(new Fare() { Id = 1 });
+
+            return faresServices.Object;
         }
 
         public static AircraftManufacturerRequestModel GetInvalidAircraftManufacturerRequestModel()
@@ -248,7 +306,7 @@
 
         public static UpdateAircraftManufacturerRequestModel GetInvalidUpdateAircraftManufacturerRequestModel()
         {
-            return new UpdateAircraftManufacturerRequestModel() { Name = "OOOOOOOOOO LOOOOONG NAAAAAAAAME TEST" };
+            return new UpdateAircraftManufacturerRequestModel() { Name = "TOOOOOOOOOO LOOOOONG NAAAAAAAAME TEST" };
         }
 
         public static UpdateAircraftManufacturerRequestModel GetValidUpdateAircraftManufacturerRequestModel()
@@ -338,7 +396,7 @@
 
         public static UpdateCategoryRequestModel GetInvalidUpdateCategoryRequestModel()
         {
-            return new UpdateCategoryRequestModel() {IsDeleted = false };
+            return new UpdateCategoryRequestModel() { IsDeleted = false };
         }
 
         public static UpdateCategoryRequestModel GetValidUpdateCategoryRequestModel()
@@ -380,5 +438,35 @@
                 IsDeleted = true
             };
         }
-    } 
+
+        public static FareRequestModel GetInvalidFareRequestModel()
+        {
+            return new FareRequestModel() { Price = -1m, RouteId = -1 };
+        }
+
+        public static FareRequestModel GetValidFareRequestModel()
+        {
+            return new FareRequestModel()
+            {
+                Price = 1m,
+                RouteId = 1
+            };
+        }
+
+        public static UpdateFareRequestModel GetInvalidUpdateFareRequestModel()
+        {
+            return new UpdateFareRequestModel() { Price = -1m };
+        }
+
+        public static UpdateFareRequestModel GetValidUpdateFareRequestModel()
+        {
+            return new UpdateFareRequestModel()
+            {
+                Id = 1,
+                Price = 1m,
+                RouteId = 1,
+                IsDeleted = true
+            };
+        }
+    }
 }

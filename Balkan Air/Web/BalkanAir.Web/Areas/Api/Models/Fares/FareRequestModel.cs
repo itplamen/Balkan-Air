@@ -8,6 +8,7 @@
     public class FareRequestModel : IMapFrom<Fare>
     {
         [Required]
+        [Range(0, 100000)]
         public decimal Price { get; set; }
 
         [Required]

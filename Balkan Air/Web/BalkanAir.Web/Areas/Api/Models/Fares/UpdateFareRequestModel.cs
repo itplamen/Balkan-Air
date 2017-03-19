@@ -11,6 +11,7 @@
         public int Id { get; set; }
 
         [Required]
+        [Range(0, 100000)]
         public decimal Price { get; set; }
 
         [Required]

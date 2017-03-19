@@ -1,16 +1,16 @@
 ﻿namespace BalkanAir.Api.Tests.ControllerTests
 {
     using System.Collections.Generic;
-    using Services.Data.Contracts;
     using System.Web.Http;
     using System.Web.Http.Results;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    using Services.Common;
+    using Services.Data.Contracts;
     using TestObjects;
     using Web.Areas.Api.Controllers;
     using Web.Areas.Api.Models.Airports;
-    using Services.Common;
 
     [TestClass]
     public class AirportsControllerTests
