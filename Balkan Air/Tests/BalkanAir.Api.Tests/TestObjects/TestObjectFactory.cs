@@ -1,5 +1,6 @@
 ﻿namespace BalkanAir.Api.Tests.TestObjects
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -13,6 +14,7 @@
     using Web.Areas.Api.Models.Categories;
     using Web.Areas.Api.Models.Countries;
     using Web.Areas.Api.Models.Fares;
+    using Web.Areas.Api.Models.Flights;
 
     public static class TestObjectFactory
     {
@@ -101,6 +103,39 @@
         }.AsQueryable();
 
         private static Fare nullableFare = null;
+
+        private static IQueryable<LegInstance> flights = new List<LegInstance>()
+        {
+            new LegInstance()
+            {
+                Id = 1,
+                DepartureDateTime = new DateTime(2017, 1, 1, 1, 1, 1),
+                ArrivalDateTime = DateTime.Now,
+                Price = 1m,
+                FlightLegId = 1,
+                FlightStatusId = 1,
+                AircraftId = 1,
+                Aircraft = new Aircraft(),
+                FlightStatus = new FlightStatus()
+                {
+                    Name = "Test"
+                },
+                FlightLeg = new FlightLeg()
+                {
+                    Flight = new Flight()
+                    {
+                        Number = "Test12"
+                    },
+                    Route = new Route()
+                    {
+                        Origin = new Airport() { Abbreviation = "ABC" },
+                        Destination = new Airport() { Abbreviation = "DEF" }
+                    }
+                }
+            }
+        }.AsQueryable();
+
+        private static LegInstance nullableFlight = null;
 
         public static IAircraftManufacturersServices GetAircraftManufacturersServices()
         {
@@ -294,6 +329,38 @@
             return faresServices.Object;
         }
 
+        public static ILegInstancesServices GetFlightServices()
+        {
+            var flightsServices = new Mock<ILegInstancesServices>();
+
+            flightsServices.Setup(f => f.AddLegInstance(
+                    It.IsAny<LegInstance>()))
+                .Returns(1);
+
+            flightsServices.Setup(f => f.GetAll())
+                .Returns(flights);
+
+            flightsServices.Setup(f => f.UpdateLegInstance(
+                    It.Is<int>(i => i >= NOT_FOUND_ID),
+                    It.IsAny<LegInstance>()))
+                .Returns(nullableFlight);
+
+            flightsServices.Setup(f => f.UpdateLegInstance(
+                    It.Is<int>(i => i == CORRECT_ID),
+                    It.IsAny<LegInstance>()))
+                .Returns(new LegInstance() { Id = 1 });
+
+            flightsServices.Setup(f => f.DeleteLegInstance(
+                    It.Is<int>(i => i >= NOT_FOUND_ID)))
+                .Returns(nullableFlight);
+
+            flightsServices.Setup(f => f.DeleteLegInstance(
+                    It.Is<int>(i => i == CORRECT_ID)))
+                .Returns(new LegInstance() { Id = 1 });
+
+            return flightsServices.Object;
+        }
+
         public static AircraftManufacturerRequestModel GetInvalidAircraftManufacturerRequestModel()
         {
             return new AircraftManufacturerRequestModel() { Name = "TOOOOOOOOOO LOOOOONG NAAAAAAAAME TEST" };
@@ -465,6 +532,44 @@
                 Id = 1,
                 Price = 1m,
                 RouteId = 1,
+                IsDeleted = true
+            };
+        }
+
+        public static FlightRequestModel GetInvalidFlightRequestModel()
+        {
+            return new FlightRequestModel() { Price = -1m };
+        }
+
+        public static FlightRequestModel GetValidFlightRequestModel()
+        {
+            return new FlightRequestModel()
+            {
+                Departure = DateTime.Now,
+                Arrival = DateTime.Now,
+                Price = 1m,
+                FlightLegId = 1,
+                FlightStatusId = 1,
+                AircraftId = 1
+            };
+        }
+
+        public static UpdateFlightRequestModel GetInvalidUpdateFlightRequestModel()
+        {
+            return new UpdateFlightRequestModel() { Price = -1m };
+        }
+
+        public static UpdateFlightRequestModel GetValidUpdateFlightRequestModel()
+        {
+            return new UpdateFlightRequestModel()
+            {
+                Id = 1,
+                Departure = DateTime.Now,
+                Arrival = DateTime.Now,
+                Price = 1m,
+                FlightLegId = 1,
+                FlightStatusId = 1,
+                AircraftId = 1,
                 IsDeleted = true
             };
         }

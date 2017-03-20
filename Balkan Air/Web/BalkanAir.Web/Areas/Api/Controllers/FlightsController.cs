@@ -44,8 +44,8 @@
         public IHttpActionResult All()
         {
             var flights = this.legInstancesServices.GetAll()
+                .OrderByDescending(l => l.DepartureDateTime)
                 .ProjectTo<FlightResponseModel>()
-                .OrderByDescending(l => l.Departure)
                 .ToList();
                 
             return this.Ok(flights);
@@ -82,9 +82,9 @@
             }
 
             var flight = this.legInstancesServices.GetAll()
+                .Where(f => f.FlightLeg.Flight.Number.ToLower() == flightNumber.ToLower())
+                .OrderByDescending(f => f.DepartureDateTime)
                 .ProjectTo<FlightResponseModel>()
-                .Where(f => f.Number.ToLower() == flightNumber.ToLower())
-                .OrderByDescending(f => f.Departure)
                 .ToList();
 
             return this.Ok(flight);
@@ -100,9 +100,9 @@
             }
 
             var flights = this.legInstancesServices.GetAll()
-                .ProjectTo<FlightResponseModel>()
                 .Where(f => f.FlightStatus.Name.ToLower() == flightStatus.ToLower())
-                .OrderByDescending(f => f.Departure)
+                .OrderByDescending(f => f.DepartureDateTime)
+                .ProjectTo<FlightResponseModel>()
                 .ToList();
 
             return this.Ok(flights);
@@ -118,9 +118,9 @@
             }
 
             var flights = this.legInstancesServices.GetAll()
+                .Where(f => f.FlightLeg.Route.Origin.Abbreviation.ToLower() == airportAbbreviation.ToLower())
+                .OrderByDescending(f => f.DepartureDateTime)
                 .ProjectTo<FlightResponseModel>()
-                .Where(f => f.DepartureAirport.Abbreviation.ToLower() == airportAbbreviation.ToLower())
-                .OrderByDescending(f => f.Departure)
                 .ToList();
 
             return this.Ok(flights);
@@ -136,9 +136,9 @@
             }
 
             var flights = this.legInstancesServices.GetAll()
+                .Where(f => f.FlightLeg.Route.Destination.Abbreviation.ToLower() == airportAbbreviation.ToLower())
+                .OrderByDescending(f => f.DepartureDateTime)
                 .ProjectTo<FlightResponseModel>()
-                .Where(f => f.ArrivalAirport.Abbreviation.ToLower() == airportAbbreviation.ToLower())
-                .OrderByDescending(f => f.Departure)
                 .ToList();
 
             return this.Ok(flights);
@@ -154,10 +154,10 @@
             }
 
             var flights = this.legInstancesServices.GetAll()
+                .Where(f => f.FlightLeg.Route.Origin.Abbreviation.ToLower() == originAbbreviation.ToLower() &&
+                            f.FlightLeg.Route.Destination.Abbreviation.ToLower() == destinationAbbreviation.ToLower())
+                .OrderByDescending(f => f.DepartureDateTime)
                 .ProjectTo<FlightResponseModel>()
-                .Where(f => f.DepartureAirport.Abbreviation.ToLower() == originAbbreviation.ToLower() &&
-                            f.ArrivalAirport.Abbreviation.ToLower() == destinationAbbreviation.ToLower())
-                .OrderByDescending(f => f.Departure)
                 .ToList();
 
             return this.Ok(flights);
@@ -165,12 +165,12 @@
 
         [HttpGet]
         [AllowAnonymous]
-        public IHttpActionResult GetFromDateTime(DateTime dateTime)
+        public IHttpActionResult GetByDepartureDateTime(DateTime dateTime)
         {
             var flights = this.legInstancesServices.GetAll()
+                .Where(f => f.DepartureDateTime.Equals(dateTime))
+                .OrderByDescending(f => f.DepartureDateTime)
                 .ProjectTo<FlightResponseModel>()
-                .Where(f => f.Departure.Equals(dateTime))
-                .OrderByDescending(f => f.Departure)
                 .ToList();
 
             return this.Ok(flights);

@@ -107,7 +107,7 @@
             config.Routes.MapHttpRoute(
                name: "GetFlightByDateTime",
                routeTemplate: "Api/{controller}/DateTime/{dateTime}",
-               defaults: new { controller = "Flights", action = "GetFromDateTime" },
+               defaults: new { controller = "Flights", action = "GetByDepartureDateTime" },
                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
         }
 

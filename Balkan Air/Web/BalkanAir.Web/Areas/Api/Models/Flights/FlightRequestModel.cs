@@ -17,6 +17,7 @@
         public DateTime Arrival { get; set; }
 
         [Required]
+        [Range(0, 100000)]
         public decimal Price { get; set; }
 
         [Required]
