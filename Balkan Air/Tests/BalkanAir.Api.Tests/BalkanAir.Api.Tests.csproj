@@ -100,7 +100,8 @@
     <Compile Include="ControllerTests\FlightsControllerTests.cs" />
     <Compile Include="IntegrationTests\AirportsIntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RouteTests\AirportsControllerTests.cs" />
+    <Compile Include="RouteTests\AirportsRouteTests.cs" />
+    <Compile Include="RouteTests\FlightsRouteTests.cs" />
     <Compile Include="TestInitialize.cs" />
     <Compile Include="TestObjects\TestObjectFactory.cs" />
   </ItemGroup>

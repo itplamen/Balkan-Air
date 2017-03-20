@@ -8,11 +8,12 @@
     using MyTested.WebApi.Exceptions;
 
     using Newtonsoft.Json;
+
     using TestObjects;
     using Web.Areas.Api.Controllers;
 
     [TestClass]
-    public class AirportsControllerTests
+    public class AirportsRouteTests
     {
         private const string CREATE_PATH = "/Api/Airports/Create/";
         private const string GET_PATH_WITH_INVALID_ACTION = "/Api/Airport/";

@@ -11,12 +11,11 @@
 
     using Data.Common;
     using Data.Models;
-    using Services.Data.Contracts;
     using Models.Users;
-    
+    using Services.Data.Contracts;
 
     [EnableCors("*", "*", "*")]
-    //[Authorize(Roles = GlobalConstants.ADMINISTRATOR_ROLE)]
+    [Authorize(Roles = UserRolesConstants.ADMINISTRATOR_ROLE)]
     public class UsersController : ApiController
     {
         [Inject]
