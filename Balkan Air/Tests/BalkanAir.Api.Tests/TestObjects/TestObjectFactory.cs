@@ -30,8 +30,6 @@
             }
         }.AsQueryable();
 
-        private static AircraftManufacturer nullableAircraftManufacturer = null;
-
         private static IQueryable<Aircraft> aircrafts = new List<Aircraft>()
         {
             new Aircraft()
@@ -41,8 +39,6 @@
                 TotalSeats = 1
             }
         }.AsQueryable();
-
-        private static Aircraft nullabelAircraft = null;
 
         private static IQueryable<Airport> airports = new List<Airport>()
         {
@@ -54,8 +50,6 @@
             }
         }.AsQueryable();
 
-        private static Airport nullableAirport = null;
-
         private static IQueryable<Category> categories = new List<Category>()
         {
             new Category()
@@ -64,8 +58,6 @@
                 Name = "Category Test"
             }
         }.AsQueryable();
-
-        private static Category nullableCategory = null;
 
         private static IQueryable<Country> countries = new List<Country>()
         {
@@ -76,8 +68,6 @@
                 Abbreviation = "CT"
             }
         }.AsQueryable();
-
-        private static Country nullableCountry = null;
 
         private static IQueryable<Fare> fares = new List<Fare>()
         {
@@ -101,8 +91,6 @@
                 }
             }
         }.AsQueryable();
-
-        private static Fare nullableFare = null;
 
         private static IQueryable<LegInstance> flights = new List<LegInstance>()
         {
@@ -151,7 +139,7 @@
             aircraftManufacturersServices.Setup(am => am.UpdateManufacturer(
                     It.Is<int>(i => i >= NOT_FOUND_ID),
                     It.IsAny<AircraftManufacturer>()))
-                .Returns(nullableAircraftManufacturer);
+                .Returns<AircraftManufacturer>(null);
 
             aircraftManufacturersServices.Setup(am => am.UpdateManufacturer(
                     It.Is<int>(i => i == CORRECT_ID),
@@ -160,7 +148,7 @@
 
             aircraftManufacturersServices.Setup(am => am.DeleteManufacturer(
                     It.Is<int>(i => i >= NOT_FOUND_ID)))
-                .Returns(nullableAircraftManufacturer);
+                .Returns<AircraftManufacturer>(null);
 
             aircraftManufacturersServices.Setup(am => am.DeleteManufacturer(
                     It.Is<int>(i => i == CORRECT_ID)))
@@ -183,7 +171,7 @@
             aircraftsServices.Setup(a => a.UpdateAircraft(
                     It.Is<int>(i => i >= NOT_FOUND_ID),
                     It.IsAny<Aircraft>()))
-                .Returns(nullabelAircraft);
+                .Returns<Aircraft>(null);
 
             aircraftsServices.Setup(a => a.UpdateAircraft(
                     It.Is<int>(i => i == CORRECT_ID),
@@ -192,7 +180,7 @@
 
             aircraftsServices.Setup(a => a.DeleteAircraft(
                     It.Is<int>(i => i >= NOT_FOUND_ID)))
-                .Returns(nullabelAircraft);
+                .Returns<Aircraft>(null);
 
             aircraftsServices.Setup(a => a.DeleteAircraft(
                 It.Is<int>(i => i == CORRECT_ID)))
@@ -215,7 +203,7 @@
             airportsServices.Setup(a => a.UpdateAirport(
                     It.Is<int>(i => i >= NOT_FOUND_ID),
                     It.IsAny<Airport>()))
-                .Returns(nullableAirport);
+                .Returns<Airport>(null);
 
             airportsServices.Setup(a => a.UpdateAirport(
                     It.Is<int>(i => i == CORRECT_ID),
@@ -224,7 +212,7 @@
 
             airportsServices.Setup(a => a.DeleteAirport(
                     It.Is<int>(i => i >= NOT_FOUND_ID)))
-                .Returns(nullableAirport);
+                .Returns<Airport>(null);
 
             airportsServices.Setup(a => a.DeleteAirport(
                     It.Is<int>(i => i == CORRECT_ID)))
@@ -247,7 +235,7 @@
             categoriesServices.Setup(c => c.UpdateCategory(
                     It.Is<int>(i => i >= NOT_FOUND_ID),
                     It.IsAny<Category>()))
-                .Returns(nullableCategory);
+                .Returns<Category>(null);
 
             categoriesServices.Setup(c => c.UpdateCategory(
                 It.Is<int>(i => i == CORRECT_ID),
@@ -256,7 +244,7 @@
 
             categoriesServices.Setup(c => c.DeleteCategory(
                     It.Is<int>(i => i >= NOT_FOUND_ID)))
-                .Returns(nullableCategory);
+                .Returns<Category>(null);
 
             categoriesServices.Setup(c => c.DeleteCategory(
                 It.Is<int>(i => i == CORRECT_ID)))
@@ -279,7 +267,7 @@
             countriesServices.Setup(c => c.UpdateCountry(
                     It.Is<int>(i => i >= NOT_FOUND_ID),
                     It.IsAny<Country>()))
-                .Returns(nullableCountry);
+                .Returns<Country>(null);
 
             countriesServices.Setup(c => c.UpdateCountry(
                     It.Is<int>(i => i == CORRECT_ID),
@@ -288,7 +276,7 @@
 
             countriesServices.Setup(c => c.DeleteCountry(
                     It.Is<int>(i => i >= NOT_FOUND_ID)))
-                .Returns(nullableCountry);
+                .Returns<Country>(null);
 
             countriesServices.Setup(c => c.DeleteCountry(
                     It.Is<int>(i => i == CORRECT_ID)))
@@ -311,7 +299,7 @@
             faresServices.Setup(f => f.UpdateFare(
                     It.Is<int>(i => i >= NOT_FOUND_ID),
                     It.IsAny<Fare>()))
-                .Returns(nullableFare);
+                .Returns<Fare>(null);
 
             faresServices.Setup(f => f.UpdateFare(
                     It.Is<int>(i => i == CORRECT_ID),
@@ -320,7 +308,7 @@
 
             faresServices.Setup(f => f.DeleteFare(
                     It.Is<int>(i => i >= NOT_FOUND_ID)))
-                .Returns(nullableFare);
+                .Returns<Fare>(null);
 
             faresServices.Setup(f => f.DeleteFare(
                     It.Is<int>(i => i == CORRECT_ID)))

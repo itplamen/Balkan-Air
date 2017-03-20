@@ -4,9 +4,6 @@
 
     using BalkanAir.Data.Models;
 
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-
     public static class TestObjectFactory
     {
         public static InMemoryRepository<AircraftManufacturer> GetAircraftManufacturersRepository(int numberOfManufacturers = 25)
