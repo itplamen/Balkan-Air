@@ -18,6 +18,8 @@ namespace BalkanAir.Web.App_Start
     using Data.Repositories;
     using Data.Repositories.Contracts;
     using Infrastructure;
+    using NinjectBindingsModules;
+    using WebFormsMvp.Binder;
 
     public static class NinjectConfig 
     {
@@ -75,6 +77,10 @@ namespace BalkanAir.Web.App_Start
 
             kernel.Bind(typeof(INumberGenerator)).To(typeof(NumberGenerator));
 
+            kernel.Load(new MvpNinjectModule());
+
+            PresenterBinder.Factory = kernel.Get<IPresenterFactory>();
+            
             kernel.Bind(b => b.From(Assemblies.SERVICES_DATA)
                               .SelectAllClasses()
                               .BindDefaultInterface());

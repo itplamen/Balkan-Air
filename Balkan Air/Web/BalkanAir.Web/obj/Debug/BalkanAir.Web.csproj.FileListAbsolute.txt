@@ -230,3 +230,12 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\Microsoft.Owi
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\obj\Debug\BalkanAir.Web.csprojResolveAssemblyReference.cache
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\obj\Debug\BalkanAir.Web.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\obj\Debug\BalkanAir.Web.pdb
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Mvp.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\Castle.Core.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\Ninject.Extensions.Factory.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\WebFormsMvp.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Mvp.pdb
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\Castle.Core.xml
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\Ninject.Extensions.Factory.xml
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\WebFormsMvp.pdb
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\WebFormsMvp.xml
