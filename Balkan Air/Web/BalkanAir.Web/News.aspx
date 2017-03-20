@@ -45,7 +45,7 @@
                 </a>
             </ItemTemplate>
             <FooterTemplate>
-                <asp:Label ID="NoNewsForCategoryLabel" ClientIDMode="Static" Text="There is no news for this category!"
+                <asp:Label ID="NoNewsForCategoryLabel" ClientIDMode="Static" Text="There are no news for this category!"
                     Visible="<%# ((Repeater)Container.NamingContainer).Items.Count == 0 %>" runat="server" />
             </FooterTemplate>
         </asp:Repeater>

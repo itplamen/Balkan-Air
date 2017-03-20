@@ -1,40 +1,33 @@
 ﻿namespace BalkanAir.Web
 {
     using System;
-    using System.Linq;
-    using System.Web.UI;
     using System.Web.UI.WebControls;
 
-    using Ninject;
-
-    using Services.Data.Contracts;
-    using WebFormsMvp.Web;
-    using Mvp.News;
     using WebFormsMvp;
+    using WebFormsMvp.Web;
+
+    using Mvp.EventArgs;
+    using Mvp.Models;
+    using Mvp.Presenters;
+    using Mvp.ViewContracts;
 
     [PresenterBinding(typeof(NewsPresenter))]
     public partial class News : MvpPage<NewsViewModel>, INewsView
     {
-        //[Inject]
-        //public ICategoriesServices CategoriesServices { get; set; }
-
-        //[Inject]
-        //public INewsServices NewsServices { get; set; }
-
+        public event EventHandler OnCategoriesGetData;
         public event EventHandler OnNewsGetData;
+        public event EventHandler<NewsEventArgs> OnNewsByCategoryGetData;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.Page.IsPostBack)
             {
-                //this.ShowNewsByCategoryDropDownList.DataSource = this.CategoriesServices.GetAll()
-                //    .Where(c => !c.IsDeleted)
-                //    .OrderBy(c => c.Name)
-                //    .ToList();
-                //this.ShowNewsByCategoryDropDownList.DataBind();
-                //this.ShowNewsByCategoryDropDownList.Items.Insert(0, new ListItem("-- All --", "0"));
+                this.OnCategoriesGetData?.Invoke(sender, e);
 
-                
+                this.ShowNewsByCategoryDropDownList.DataSource = this.Model.Categories;
+                this.ShowNewsByCategoryDropDownList.DataBind();
+                this.ShowNewsByCategoryDropDownList.Items.Insert(0, new ListItem("-- All --", "0"));
+
                 this.BindAllNewsToRepeater();
             }
         }
@@ -43,18 +36,17 @@
         {
             int selectedCategoryId = int.Parse(this.ShowNewsByCategoryDropDownList.SelectedItem.Value);
 
-            // Default value selected --All--
+            // Default value selected -- All --
             if (selectedCategoryId == 0)
             {
                 this.BindAllNewsToRepeater();
             }
             else
             {
-                //this.NewsRepeater.DataSource = this.NewsServices.GetAll()
-                //    .Where(a => !a.IsDeleted && a.CategoryId == selectedCategoryId)
-                //    .OrderBy(a => a.DateCreated)
-                //    .ToList();
-                //this.NewsRepeater.DataBind();
+                this.OnNewsByCategoryGetData?.Invoke(sender, new NewsEventArgs(selectedCategoryId));
+
+                this.NewsRepeater.DataSource = this.Model.News;
+                this.NewsRepeater.DataBind();
             }
         }
 
@@ -62,10 +54,7 @@
         {
             this.OnNewsGetData?.Invoke(null, null);
 
-            this.NewsRepeater.DataSource = this.Model.News
-                .Where(a => !a.IsDeleted)
-                .OrderByDescending(a => a.DateCreated)
-                .ToList();
+            this.NewsRepeater.DataSource = this.Model.News;
             this.NewsRepeater.DataBind();
         }
     }

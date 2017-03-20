@@ -44,10 +44,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="News\INewsView.cs" />
-    <Compile Include="News\NewsPresenter.cs" />
-    <Compile Include="News\NewsViewModel.cs" />
+    <Compile Include="EventArgs\NewsEventArgs.cs" />
+    <Compile Include="Models\CategoriesViewModel.cs" />
+    <Compile Include="Presenters\CategoriesPresenter.cs" />
+    <Compile Include="Presenters\NewsPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewContracts\ICategoriesView.cs" />
+    <Compile Include="ViewContracts\INewsView.cs" />
+    <Compile Include="Models\NewsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -62,6 +66,7 @@
       <Name>BalkanAir.Services.Data</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
