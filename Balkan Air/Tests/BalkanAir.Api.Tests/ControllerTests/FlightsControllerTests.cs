@@ -286,7 +286,7 @@
             var result = this.flightsController.Delete(-1);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
-            Assert.AreEqual(typeof(BadRequestErrorMessageResult), result);
+            Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
             Assert.AreEqual(ErrorMessages.INVALID_ID, badRequestResult.Message);
         }
 

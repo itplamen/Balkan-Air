@@ -16,37 +16,37 @@
     public class AircraftManufacturersControllerTests
     {
         private IAircraftManufacturersServices aircraftManufacturersServices;
+        private AircraftManufacturersController manufacturersController;
 
         [TestInitialize]
         public void TestInitialize()
         {
             this.aircraftManufacturersServices = TestObjectFactory.GetAircraftManufacturersServices();
+            this.manufacturersController = new AircraftManufacturersController(this.aircraftManufacturersServices);
         }
 
         [TestMethod]
         public void CreateShouldValidateModelState()
         {
-            var controller = new AircraftManufacturersController(this.aircraftManufacturersServices);
-            controller.Configuration = new HttpConfiguration();
+            this.manufacturersController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetInvalidAircraftManufacturerRequestModel();
-            controller.Validate(model);
+            this.manufacturersController.Validate(model);
 
-            var result = controller.Create(model);
+            var result = this.manufacturersController.Create(model);
 
-            Assert.IsFalse(controller.ModelState.IsValid);
+            Assert.IsFalse(this.manufacturersController.ModelState.IsValid);
         }
 
         [TestMethod]
         public void CreateShouldReturnBadRequestWithInvalidModel()
         {
-            var controller = new AircraftManufacturersController(this.aircraftManufacturersServices);
-            controller.Configuration = new HttpConfiguration();
+            this.manufacturersController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetInvalidAircraftManufacturerRequestModel();
-            controller.Validate(model);
+            this.manufacturersController.Validate(model);
 
-            var result = controller.Create(model);
+            var result = this.manufacturersController.Create(model);
 
             Assert.AreEqual(typeof(InvalidModelStateResult), result.GetType());
         }
@@ -54,13 +54,12 @@
         [TestMethod]
         public void CreateShouldReturnOkResultWithId()
         {
-            var controller = new AircraftManufacturersController(this.aircraftManufacturersServices);
-            controller.Configuration = new HttpConfiguration();
+            this.manufacturersController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetValidAircraftManufacturerRequestModel();
-            controller.Validate(model);
+            this.manufacturersController.Validate(model);
 
-            var result = controller.Create(model);
+            var result = this.manufacturersController.Create(model);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
@@ -70,9 +69,7 @@
         [TestMethod]
         public void GetAllShouldReturnOkResultWithData()
         {
-            var controller = new AircraftManufacturersController(this.aircraftManufacturersServices);
-
-            var result = controller.All();
+            var result = this.manufacturersController.All();
             var okResult = result as OkNegotiatedContentResult<List<AircraftManufacturerResponseModel>>;
 
             Assert.IsNotNull(okResult);
@@ -82,9 +79,7 @@
         [TestMethod]
         public void GetByIdShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var controller = new AircraftManufacturersController(this.aircraftManufacturersServices);
-
-            var result = controller.Get(-1);
+            var result = this.manufacturersController.Get(-1);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -94,9 +89,7 @@
         [TestMethod]
         public void GetByIdShouldReturnNotFound()
         {
-            var controller = new AircraftManufacturersController(this.aircraftManufacturersServices);
-
-            var result = controller.Get(10);
+            var result = this.manufacturersController.Get(10);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -104,9 +97,7 @@
         [TestMethod]
         public void GetByIdShouldReturnOkResultWithData()
         {
-            var controller = new AircraftManufacturersController(this.aircraftManufacturersServices);
-
-            var result = controller.Get(1);
+            var result = this.manufacturersController.Get(1);
             var okResult = result as OkNegotiatedContentResult<AircraftManufacturerResponseModel>;
 
             Assert.IsNotNull(okResult);
@@ -117,9 +108,7 @@
         [TestMethod]
         public void UpdateShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var controller = new AircraftManufacturersController(this.aircraftManufacturersServices);
-
-            var result = controller.Update(0, TestObjectFactory.GetInvalidUpdateAircraftManufacturerRequestModel());
+            var result = this.manufacturersController.Update(0, TestObjectFactory.GetInvalidUpdateAircraftManufacturerRequestModel());
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -129,27 +118,25 @@
         [TestMethod]
         public void UpdateShouldValidateModelState()
         {
-            var controller = new AircraftManufacturersController(this.aircraftManufacturersServices);
-            controller.Configuration = new HttpConfiguration();
+            this.manufacturersController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetInvalidUpdateAircraftManufacturerRequestModel();
-            controller.Validate(model);
+            this.manufacturersController.Validate(model);
 
-            var result = controller.Update(1, model);
+            var result = this.manufacturersController.Update(1, model);
 
-            Assert.IsFalse(controller.ModelState.IsValid);
+            Assert.IsFalse(this.manufacturersController.ModelState.IsValid);
         }
 
         [TestMethod]
         public void UpdateShouldReturnBadRequestWithInvalidModel()
         {
-            var controller = new AircraftManufacturersController(this.aircraftManufacturersServices);
-            controller.Configuration = new HttpConfiguration();
+            this.manufacturersController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetInvalidUpdateAircraftManufacturerRequestModel();
-            controller.Validate(model);
+            this.manufacturersController.Validate(model);
 
-            var result = controller.Update(1, model);
+            var result = this.manufacturersController.Update(1, model);
 
             Assert.AreEqual(typeof(InvalidModelStateResult), result.GetType());
         }
@@ -157,13 +144,12 @@
         [TestMethod]
         public void UpdateShouldReturnNotFound()
         {
-            var controller = new AircraftManufacturersController(this.aircraftManufacturersServices);
-            controller.Configuration = new HttpConfiguration();
+            this.manufacturersController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetValidUpdateAircraftManufacturerRequestModel();
-            controller.Validate(model);
+            this.manufacturersController.Validate(model);
 
-            var result = controller.Update(10, model);
+            var result = this.manufacturersController.Update(10, model);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -171,13 +157,12 @@
         [TestMethod]
         public void UpdateShouldReturnOkResultWithId()
         {
-            var controller = new AircraftManufacturersController(this.aircraftManufacturersServices);
-            controller.Configuration = new HttpConfiguration();
+            this.manufacturersController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetValidUpdateAircraftManufacturerRequestModel();
-            controller.Validate(model);
+            this.manufacturersController.Validate(model);
 
-            var result = controller.Update(model.Id, model);
+            var result = this.manufacturersController.Update(model.Id, model);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
@@ -187,9 +172,7 @@
         [TestMethod]
         public void DeleteShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var controller = new AircraftManufacturersController(this.aircraftManufacturersServices);
-
-            var result = controller.Delete(-1);
+            var result = this.manufacturersController.Delete(-1);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -199,9 +182,7 @@
         [TestMethod]
         public void DeleteShouldReturnNotFound()
         {
-            var controller = new AircraftManufacturersController(this.aircraftManufacturersServices);
-
-            var result = controller.Delete(10);
+            var result = this.manufacturersController.Delete(10);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -209,9 +190,7 @@
         [TestMethod]
         public void DeleteShouldReturnOkResultWithId()
         {
-            var controller = new AircraftManufacturersController(this.aircraftManufacturersServices);
-
-            var result = controller.Delete(1);
+            var result = this.manufacturersController.Delete(1);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);

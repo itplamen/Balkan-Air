@@ -16,37 +16,37 @@
     public class FaresControllerTests
     {
         private IFaresServices faresServices;
+        private FaresController faresController;
 
         [TestInitialize]
         public void TestInitialize()
         {
             this.faresServices = TestObjectFactory.GetFaresServices();
+            this.faresController = new FaresController(this.faresServices);
         }
 
         [TestMethod]
         public void CreateShouldValidateModelState()
         {
-            var controller = new FaresController(this.faresServices);
-            controller.Configuration = new HttpConfiguration();
+            this.faresController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetInvalidFareRequestModel();
-            controller.Validate(model);
+            this.faresController.Validate(model);
 
-            var result = controller.Create(model);
+            var result = this.faresController.Create(model);
 
-            Assert.IsFalse(controller.ModelState.IsValid);
+            Assert.IsFalse(this.faresController.ModelState.IsValid);
         }
 
         [TestMethod]
         public void CreateShouldReturnBadRequestWithInvalidModel()
         {
-            var controller = new FaresController(this.faresServices);
-            controller.Configuration = new HttpConfiguration();
+            this.faresController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetInvalidFareRequestModel();
-            controller.Validate(model);
+            this.faresController.Validate(model);
 
-            var result = controller.Create(model);
+            var result = this.faresController.Create(model);
 
             Assert.AreEqual(typeof(InvalidModelStateResult), result.GetType());
         }
@@ -54,13 +54,12 @@
         [TestMethod]
         public void CreateShouldReturnOkResultWithId()
         {
-            var controller = new FaresController(this.faresServices);
-            controller.Configuration = new HttpConfiguration();
+            this.faresController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetValidFareRequestModel();
-            controller.Validate(model);
+            this.faresController.Validate(model);
 
-            var result = controller.Create(model);
+            var result = this.faresController.Create(model);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
@@ -70,9 +69,7 @@
         [TestMethod]
         public void GetAllShouldReturnOkResultWithData()
         {
-            var controller = new FaresController(this.faresServices);
-
-            var result = controller.All();
+            var result = this.faresController.All();
             var okResult = result as OkNegotiatedContentResult<List<FareResponseModel>>;
 
             Assert.IsNotNull(okResult);
@@ -82,9 +79,7 @@
         [TestMethod]
         public void GetByIdShouldReturnBadRequestWithInvalidIdMessage()
         {
-            var controller = new FaresController(this.faresServices);
-
-            var result = controller.Get(-1);
+            var result = this.faresController.Get(-1);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -94,9 +89,7 @@
         [TestMethod]
         public void GetByIdShouldReturnNotFound()
         {
-            var controller = new FaresController(this.faresServices);
-
-            var result = controller.Get(10);
+            var result = this.faresController.Get(10);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -104,9 +97,7 @@
         [TestMethod]
         public void GetByIdShouldReturnOkResultWithData()
         {
-            var controller = new FaresController(this.faresServices);
-
-            var result = controller.Get(1);
+            var result = this.faresController.Get(1);
             var okResult = result as OkNegotiatedContentResult<FareResponseModel>;
 
             Assert.IsNotNull(okResult);
@@ -119,9 +110,7 @@
         [TestMethod]
         public void GetByRouteShouldReturnBadRequestWithInvalidMessage()
         {
-            var cotnroller = new FaresController(this.faresServices);
-
-            var result = cotnroller.GetByRoute("origin", null);
+            var result = this.faresController.GetByRoute("origin", null);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -131,9 +120,7 @@
         [TestMethod]
         public void GetByRouteShouldReturnOkResultWithData()
         {
-            var controller = new FaresController(this.faresServices);
-
-            var result = controller.GetByRoute("ABC", "DEF");
+            var result = this.faresController.GetByRoute("ABC", "DEF");
             var okResult = result as OkNegotiatedContentResult<List<FareResponseModel>>;
 
             Assert.IsNotNull(okResult);
@@ -143,11 +130,9 @@
         [TestMethod]
         public void UpdateShouldReturnBadRequestWithInvalidIdMessage()
         {
-            var controller = new FaresController(this.faresServices);
-
             var validModel = TestObjectFactory.GetValidUpdateFareRequestModel();
 
-            var result = controller.Update(-1, validModel);
+            var result = this.faresController.Update(-1, validModel);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -157,27 +142,25 @@
         [TestMethod]
         public void UpdateShouldValidateModelState()
         {
-            var controller = new FaresController(this.faresServices);
-            controller.Configuration = new HttpConfiguration();
+            this.faresController.Configuration = new HttpConfiguration();
 
             var invalidModel = TestObjectFactory.GetInvalidUpdateFareRequestModel();
-            controller.Validate(invalidModel);
+            this.faresController.Validate(invalidModel);
 
-            var result = controller.Update(1, invalidModel);
+            var result = this.faresController.Update(1, invalidModel);
 
-            Assert.IsFalse(controller.ModelState.IsValid);
+            Assert.IsFalse(this.faresController.ModelState.IsValid);
         }
 
         [TestMethod]
         public void UpdateShouldReturnBadRequestWithInvalidModel()
         {
-            var controller = new FaresController(this.faresServices);
-            controller.Configuration = new HttpConfiguration();
+            this.faresController.Configuration = new HttpConfiguration();
 
             var invalidModel = TestObjectFactory.GetInvalidUpdateFareRequestModel();
-            controller.Validate(invalidModel);
+            this.faresController.Validate(invalidModel);
 
-            var result = controller.Update(1, invalidModel);
+            var result = this.faresController.Update(1, invalidModel);
 
             Assert.AreEqual(typeof(InvalidModelStateResult), result.GetType());
         }
@@ -185,13 +168,12 @@
         [TestMethod]
         public void UpdateShouldReturnNotFound()
         {
-            var controller = new FaresController(this.faresServices);
-            controller.Configuration = new HttpConfiguration();
+            this.faresController.Configuration = new HttpConfiguration();
 
             var validModel = TestObjectFactory.GetValidUpdateFareRequestModel();
-            controller.Validate(validModel);
+            this.faresController.Validate(validModel);
 
-            var result = controller.Update(10, validModel);
+            var result = this.faresController.Update(10, validModel);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -199,13 +181,12 @@
         [TestMethod]
         public void UpdateShouldReturOkResultWithId()
         {
-            var controller = new FaresController(this.faresServices);
-            controller.Configuration = new HttpConfiguration();
+            this.faresController.Configuration = new HttpConfiguration();
 
             var validModel = TestObjectFactory.GetValidUpdateFareRequestModel();
-            controller.Validate(validModel);
+            this.faresController.Validate(validModel);
 
-            var result = controller.Update(1, validModel);
+            var result = this.faresController.Update(1, validModel);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
@@ -215,9 +196,7 @@
         [TestMethod]
         public void DeleteShouldReturnBadRequestWithInvalidIdMessage()
         {
-            var controller = new FaresController(this.faresServices);
-
-            var result = controller.Delete(-1);
+            var result = this.faresController.Delete(-1);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -227,9 +206,7 @@
         [TestMethod]
         public void DeleteShouldReturnNotFound()
         {
-            var controller = new FaresController(this.faresServices);
-
-            var result = controller.Delete(10);
+            var result = this.faresController.Delete(10);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -237,9 +214,7 @@
         [TestMethod]
         public void DeleteShouldReturnOkResultWithId()
         {
-            var controller = new FaresController(this.faresServices);
-
-            var result = controller.Delete(1);
+            var result = this.faresController.Delete(1);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);

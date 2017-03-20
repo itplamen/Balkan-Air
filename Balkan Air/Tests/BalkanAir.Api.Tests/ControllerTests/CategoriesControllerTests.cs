@@ -16,37 +16,37 @@
     public class CategoriesControllerTests
     {
         private ICategoriesServices categoriesServices;
+        private CategoriesController categoriesController;
 
         [TestInitialize]
         public void TestInitialize()
         {
             this.categoriesServices = TestObjectFactory.GetCategoriesServices();
+            this.categoriesController = new CategoriesController(this.categoriesServices);
         }
 
         [TestMethod]
         public void CreateShouldValidateModelState()
         {
-            var controller = new CategoriesController(this.categoriesServices);
-            controller.Configuration = new HttpConfiguration();
+            this.categoriesController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetInvalidCategoryRequesModel();
-            controller.Validate(model);
+            this.categoriesController.Validate(model);
 
-            var result = controller.Create(model);
+            var result = this.categoriesController.Create(model);
 
-            Assert.IsFalse(controller.ModelState.IsValid);
+            Assert.IsFalse(this.categoriesController.ModelState.IsValid);
         }
 
         [TestMethod]
         public void CreateShouldReturnBadRequestWithInvalidModel()
         {
-            var controller = new CategoriesController(this.categoriesServices);
-            controller.Configuration = new HttpConfiguration();
+            this.categoriesController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetInvalidCategoryRequesModel();
-            controller.Validate(model);
+            this.categoriesController.Validate(model);
 
-            var result = controller.Create(model);
+            var result = this.categoriesController.Create(model);
 
             Assert.AreEqual(typeof(InvalidModelStateResult), result.GetType());
         }
@@ -54,13 +54,12 @@
         [TestMethod]
         public void CreateShouldReturnOkResultWithId()
         {
-            var controller = new CategoriesController(this.categoriesServices);
-            controller.Configuration = new HttpConfiguration();
+            this.categoriesController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetValidCategoryRequesModel();
-            controller.Validate(model);
+            this.categoriesController.Validate(model);
 
-            var result = controller.Create(model);
+            var result = this.categoriesController.Create(model);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
@@ -70,9 +69,7 @@
         [TestMethod]
         public void GetAllShouldReturnOkResultWithData()
         {
-            var controller = new CategoriesController(this.categoriesServices);
-
-            var result = controller.All();
+            var result = this.categoriesController.All();
             var okResult = result as OkNegotiatedContentResult<List<CategoryResponseModel>>;
 
             Assert.IsNotNull(okResult);
@@ -82,9 +79,7 @@
         [TestMethod]
         public void GetByIdShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var controller = new CategoriesController(this.categoriesServices);
-
-            var result = controller.Get(0);
+            var result = this.categoriesController.Get(0);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -94,9 +89,7 @@
         [TestMethod]
         public void GetByIdShouldReturnNotFound()
         {
-            var controller = new CategoriesController(this.categoriesServices);
-
-            var result = controller.Get(10);
+            var result = this.categoriesController.Get(10);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -104,9 +97,7 @@
         [TestMethod]
         public void GetByIdShouldReturnOkResultWithData()
         {
-            var controller = new CategoriesController(this.categoriesServices);
-
-            var result = controller.Get(1);
+            var result = this.categoriesController.Get(1);
             var okResult = result as OkNegotiatedContentResult<CategoryResponseModel>;
 
             Assert.IsNotNull(okResult);
@@ -117,9 +108,7 @@
         [TestMethod]
         public void GetCategoryByNameShouldReturnBadRequestWithNameNotNullOrEmptyMessage()
         {
-            var controller = new CategoriesController(this.categoriesServices);
-
-            var result = controller.GetCategoryByName(null);
+            var result = this.categoriesController.GetCategoryByName(null);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -129,9 +118,7 @@
         [TestMethod]
         public void GetCategoryByNameShouldReturnBadRequestWithInvalidCategoryNameMessage()
         {
-            var controller = new CategoriesController(this.categoriesServices);
-
-            var result = controller.GetCategoryByName("Invaid Category Name");
+            var result = this.categoriesController.GetCategoryByName("Invaid Category Name");
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -141,9 +128,7 @@
         [TestMethod]
         public void GetCategoryByNameShouldReturnOkResultWithData()
         {
-            var controller = new CategoriesController(this.categoriesServices);
-
-            var result = controller.GetCategoryByName("Category Test");
+            var result = this.categoriesController.GetCategoryByName("Category Test");
             var okResult = result as OkNegotiatedContentResult<CategoryResponseModel>;
 
             Assert.IsNotNull(okResult);
@@ -154,9 +139,7 @@
         [TestMethod]
         public void UpdateShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var controller = new CategoriesController(this.categoriesServices);
-
-            var result = controller.Update(0, TestObjectFactory.GetInvalidUpdateCategoryRequestModel());
+            var result = this.categoriesController.Update(0, TestObjectFactory.GetInvalidUpdateCategoryRequestModel());
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -166,27 +149,25 @@
         [TestMethod]
         public void UpdateShouldValidateModelState()
         {
-            var controller = new CategoriesController(this.categoriesServices);
-            controller.Configuration = new HttpConfiguration();
+            this.categoriesController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetInvalidUpdateCategoryRequestModel();
-            controller.Validate(model);
+            this.categoriesController.Validate(model);
 
-            var result = controller.Update(1, model);
+            var result = this.categoriesController.Update(1, model);
 
-            Assert.IsFalse(controller.ModelState.IsValid);
+            Assert.IsFalse(this.categoriesController.ModelState.IsValid);
         }
 
         [TestMethod]
         public void UpdateShouldReturnBadRequestWithInvalidModel()
         {
-            var controller = new CategoriesController(this.categoriesServices);
-            controller.Configuration = new HttpConfiguration();
+            this.categoriesController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetInvalidUpdateCategoryRequestModel();
-            controller.Validate(model);
+            this.categoriesController.Validate(model);
 
-            var result = controller.Update(1, model);
+            var result = this.categoriesController.Update(1, model);
 
             Assert.AreEqual(typeof(InvalidModelStateResult), result.GetType());
         }
@@ -194,13 +175,12 @@
         [TestMethod]
         public void UpdateShouldReturnNotFound()
         {
-            var controller = new CategoriesController(this.categoriesServices);
-            controller.Configuration = new HttpConfiguration();
+            this.categoriesController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetValidUpdateCategoryRequestModel();
-            controller.Validate(model);
+            this.categoriesController.Validate(model);
 
-            var result = controller.Update(10, model);
+            var result = this.categoriesController.Update(10, model);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -208,13 +188,12 @@
         [TestMethod]
         public void UpdateShouldReturnOkResultWithId()
         {
-            var controller = new CategoriesController(this.categoriesServices);
-            controller.Configuration = new HttpConfiguration();
+            this.categoriesController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetValidUpdateCategoryRequestModel();
-            controller.Validate(model);
+            this.categoriesController.Validate(model);
 
-            var result = controller.Update(model.Id, model);
+            var result = this.categoriesController.Update(model.Id, model);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
@@ -224,9 +203,7 @@
         [TestMethod]
         public void DeleteShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var controller = new CategoriesController(this.categoriesServices);
-
-            var result = controller.Delete(-1);
+            var result = this.categoriesController.Delete(-1);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -236,9 +213,7 @@
         [TestMethod]
         public void DeleteShouldReturnNotFound()
         {
-            var controller = new CategoriesController(this.categoriesServices);
-
-            var result = controller.Delete(10);
+            var result = this.categoriesController.Delete(10);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -246,9 +221,7 @@
         [TestMethod]
         public void DeleteShouldReturnOkResultWithId()
         {
-            var controller = new CategoriesController(this.categoriesServices);
-
-            var result = controller.Delete(1);
+            var result = this.categoriesController.Delete(1);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);

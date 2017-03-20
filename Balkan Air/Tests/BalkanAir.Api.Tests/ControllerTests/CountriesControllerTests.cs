@@ -16,37 +16,37 @@
     public class CountriesControllerTests
     {
         private ICountriesServices countriesServices;
+        private CountriesController countriesController;
 
         [TestInitialize]
         public void TestInitialize()
         {
             this.countriesServices = TestObjectFactory.GetCountriesServices();
+            this.countriesController = new CountriesController(this.countriesServices);
         }
 
         [TestMethod]
         public void CreateShouldValidateModelState()
         {
-            var controller = new CountriesController(this.countriesServices);
-            controller.Configuration = new HttpConfiguration();
+            this.countriesController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetInvalidCountryRequesModel();
-            controller.Validate(model);
+            this.countriesController.Validate(model);
 
-            var result = controller.Create(model);
+            var result = this.countriesController.Create(model);
 
-            Assert.IsFalse(controller.ModelState.IsValid);
+            Assert.IsFalse(this.countriesController.ModelState.IsValid);
         }
 
         [TestMethod]
         public void CreateShouldReturnBadRequestWithInvalidModel()
         {
-            var controller = new CountriesController(this.countriesServices);
-            controller.Configuration = new HttpConfiguration();
+            this.countriesController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetInvalidCountryRequesModel();
-            controller.Validate(model);
+            this.countriesController.Validate(model);
 
-            var result = controller.Create(model);
+            var result = this.countriesController.Create(model);
 
             Assert.AreEqual(typeof(InvalidModelStateResult), result.GetType());
         }
@@ -54,13 +54,12 @@
         [TestMethod]
         public void CreateShouldReturnOkResultWithId()
         {
-            var controller = new CountriesController(this.countriesServices);
-            controller.Configuration = new HttpConfiguration();
+            this.countriesController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetValidCountryRequesModel();
-            controller.Validate(model);
+            this.countriesController.Validate(model);
 
-            var result = controller.Create(model);
+            var result = this.countriesController.Create(model);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
@@ -70,9 +69,7 @@
         [TestMethod]
         public void GetAllShouldReturnOkResultWithData()
         {
-            var controller = new CountriesController(this.countriesServices);
-
-            var result = controller.All();
+            var result = this.countriesController.All();
             var okResult = result as OkNegotiatedContentResult<List<CountryResponseModel>>;
 
             Assert.IsNotNull(okResult);
@@ -82,9 +79,7 @@
         [TestMethod]
         public void GetByIdShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var controller = new CountriesController(this.countriesServices);
-
-            var result = controller.Get(0);
+            var result = this.countriesController.Get(0);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -94,9 +89,7 @@
         [TestMethod]
         public void GetByIdShouldReturnNotFound()
         {
-            var controller = new CountriesController(this.countriesServices);
-
-            var result = controller.Get(10);
+            var result = this.countriesController.Get(10);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -104,9 +97,7 @@
         [TestMethod]
         public void GetByIdShouldReturnOkResultWithData()
         {
-            var controller = new CountriesController(this.countriesServices);
-
-            var result = controller.Get(1);
+            var result = this.countriesController.Get(1);
             var okResult = result as OkNegotiatedContentResult<CountryResponseModel>;
 
             Assert.IsNotNull(okResult);
@@ -118,9 +109,7 @@
         [TestMethod]
         public void GetByAbbreviationShouldReturnBadRequesWithInvalidAbbreviationMessage()
         {
-            var controller = new CountriesController(this.countriesServices);
-
-            var result = controller.GetByAbbreviation(null);
+            var result = this.countriesController.GetByAbbreviation(null);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -130,9 +119,7 @@
         [TestMethod]
         public void GetByAbbreviationShouldReturnNotFound()
         {
-            var controller = new CountriesController(this.countriesServices);
-
-            var result = controller.GetByAbbreviation("IK");
+            var result = this.countriesController.GetByAbbreviation("IK");
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -140,9 +127,7 @@
         [TestMethod]
         public void GetByAbbreviationShouldReturnOkResultWithData()
         {
-            var controller = new CountriesController(this.countriesServices);
-
-            var result = controller.GetByAbbreviation("CT");
+            var result = this.countriesController.GetByAbbreviation("CT");
             var okResult = result as OkNegotiatedContentResult<CountryResponseModel>;
 
             Assert.IsNotNull(okResult);
@@ -154,9 +139,7 @@
         [TestMethod]
         public void UpdateShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var controller = new CountriesController(this.countriesServices);
-
-            var result = controller.Update(0, TestObjectFactory.GetInvalidUpdateCountryRequestModel());
+            var result = this.countriesController.Update(0, TestObjectFactory.GetInvalidUpdateCountryRequestModel());
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -166,27 +149,25 @@
         [TestMethod]
         public void UpdateShouldValidateModelState()
         {
-            var controller = new CountriesController(this.countriesServices);
-            controller.Configuration = new HttpConfiguration();
+            this.countriesController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetInvalidUpdateCountryRequestModel();
-            controller.Validate(model);
+            this.countriesController.Validate(model);
 
-            var result = controller.Update(1, model);
+            var result = this.countriesController.Update(1, model);
 
-            Assert.IsFalse(controller.ModelState.IsValid);
+            Assert.IsFalse(this.countriesController.ModelState.IsValid);
         }
 
         [TestMethod]
         public void UpdateShouldReturnBadRequestWithInvalidModel()
         {
-            var controller = new CountriesController(this.countriesServices);
-            controller.Configuration = new HttpConfiguration();
+            this.countriesController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetInvalidUpdateCountryRequestModel();
-            controller.Validate(model);
+            this.countriesController.Validate(model);
 
-            var result = controller.Update(1, model);
+            var result = this.countriesController.Update(1, model);
 
             Assert.AreEqual(typeof(InvalidModelStateResult), result.GetType());
         }
@@ -194,13 +175,12 @@
         [TestMethod]
         public void UpdateShouldReturnNotFound()
         {
-            var controller = new CountriesController(this.countriesServices);
-            controller.Configuration = new HttpConfiguration();
+            this.countriesController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetValidUpdateCountryRequestModel();
-            controller.Validate(model);
+            this.countriesController.Validate(model);
 
-            var result = controller.Update(10, model);
+            var result = this.countriesController.Update(10, model);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -208,13 +188,12 @@
         [TestMethod]
         public void UpdateShouldReturnOkResultWithId()
         {
-            var controller = new CountriesController(this.countriesServices);
-            controller.Configuration = new HttpConfiguration();
+            this.countriesController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetValidUpdateCountryRequestModel();
-            controller.Validate(model);
+            this.countriesController.Validate(model);
 
-            var result = controller.Update(model.Id, model);
+            var result = this.countriesController.Update(model.Id, model);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
@@ -224,9 +203,7 @@
         [TestMethod]
         public void DeleteShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var controller = new CountriesController(this.countriesServices);
-
-            var result = controller.Delete(-1);
+            var result = this.countriesController.Delete(-1);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -236,9 +213,7 @@
         [TestMethod]
         public void DeleteShouldReturnNotFound()
         {
-            var controller = new CountriesController(this.countriesServices);
-
-            var result = controller.Delete(10);
+            var result = this.countriesController.Delete(10);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -246,9 +221,7 @@
         [TestMethod]
         public void DeleteShouldReturnOkResultWithId()
         {
-            var controller = new CountriesController(this.countriesServices);
-
-            var result = controller.Delete(1);
+            var result = this.countriesController.Delete(1);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);

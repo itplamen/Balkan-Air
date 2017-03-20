@@ -16,37 +16,37 @@
     public class AirportsControllerTests
     {
         private IAirportsServices airportsServices;
+        private AirportsController airportsController;
 
         [TestInitialize]
         public void TestInitialize()
         {
             this.airportsServices = TestObjectFactory.GetAirportsServices();
+            this.airportsController = new AirportsController(this.airportsServices);
         }
 
         [TestMethod]
         public void CreateShouldValidateModelState()
         {
-            var controller = new AirportsController(this.airportsServices);
-            controller.Configuration = new HttpConfiguration();
+            this.airportsController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetInvalidAirportRequesModel();
-            controller.Validate(model);
+            this.airportsController.Validate(model);
 
-            var result = controller.Create(model);
+            var result = this.airportsController.Create(model);
 
-            Assert.IsFalse(controller.ModelState.IsValid);
+            Assert.IsFalse(this.airportsController.ModelState.IsValid);
         }
 
         [TestMethod]
         public void CreateShouldReturnBadRequestWithInvalidModel()
         {
-            var controller = new AirportsController(this.airportsServices);
-            controller.Configuration = new HttpConfiguration();
+            this.airportsController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetInvalidAirportRequesModel();
-            controller.Validate(model);
+            this.airportsController.Validate(model);
 
-            var result = controller.Create(model);
+            var result = this.airportsController.Create(model);
 
             Assert.AreEqual(typeof(InvalidModelStateResult), result.GetType());
         }
@@ -54,13 +54,12 @@
         [TestMethod]
         public void CreateShouldReturnOkResultWithId()
         {
-            var controller = new AirportsController(this.airportsServices);
-            controller.Configuration = new HttpConfiguration();
+            this.airportsController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetValidAirportRequesModel();
-            controller.Validate(model);
+            this.airportsController.Validate(model);
 
-            var result = controller.Create(model);
+            var result = this.airportsController.Create(model);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
@@ -69,10 +68,8 @@
 
         [TestMethod]
         public void GetAllShouldReturnOkResultWithData()
-        {
-            var controller = new AirportsController(this.airportsServices);
-            
-            var result = controller.All();
+        {            
+            var result = this.airportsController.All();
             var okResult = result as OkNegotiatedContentResult<List<AirportResponseModel>>;
            
             Assert.IsNotNull(okResult);
@@ -82,9 +79,7 @@
         [TestMethod]
         public void GetByIdShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var controller = new AirportsController(this.airportsServices);
-
-            var result = controller.Get(0);
+            var result = this.airportsController.Get(0);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -94,9 +89,7 @@
         [TestMethod]
         public void GetByIdShouldReturnNotFound()
         {
-            var controller = new AirportsController(this.airportsServices);
-
-            var result = controller.Get(10);
+            var result = this.airportsController.Get(10);
             
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -104,9 +97,7 @@
         [TestMethod]
         public void GetByIdShouldReturnOkResultWithData()
         {
-            var controller = new AirportsController(this.airportsServices);
-
-            var result = controller.Get(1);
+            var result = this.airportsController.Get(1);
             var okResult = result as OkNegotiatedContentResult<AirportResponseModel>;
 
             Assert.IsNotNull(okResult);
@@ -118,9 +109,7 @@
         [TestMethod]
         public void GetByAbbreviationShouldReturnBadRequesWithInvalidAbbreviationMessage()
         {
-            var controller = new AirportsController(this.airportsServices);
-
-            var result = controller.GetByAbbreviation(null);
+            var result = this.airportsController.GetByAbbreviation(null);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -130,9 +119,7 @@
         [TestMethod]
         public void GetByAbbreviationShouldReturnNotFound()
         {
-            var controller = new AirportsController(this.airportsServices);
-
-            var result = controller.GetByAbbreviation("ppp");
+            var result = this.airportsController.GetByAbbreviation("ppp");
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -140,9 +127,7 @@
         [TestMethod]
         public void GetByAbbreviationShouldReturnOkResultWithData()
         {
-            var controller = new AirportsController(this.airportsServices);
-
-            var result = controller.GetByAbbreviation("ABC");
+            var result = this.airportsController.GetByAbbreviation("ABC");
             var okResult = result as OkNegotiatedContentResult<AirportResponseModel>;
 
             Assert.IsNotNull(okResult);
@@ -154,9 +139,7 @@
         [TestMethod]
         public void UpdateShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var controller = new AirportsController(this.airportsServices);
-
-            var result = controller.Update(0, TestObjectFactory.GetInvalidUpdateAirportRequestModel());
+            var result = this.airportsController.Update(0, TestObjectFactory.GetInvalidUpdateAirportRequestModel());
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -166,27 +149,25 @@
         [TestMethod]
         public void UpdateShouldValidateModelState()
         {
-            var controller = new AirportsController(this.airportsServices);
-            controller.Configuration = new HttpConfiguration();
+            this.airportsController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetInvalidUpdateAirportRequestModel();
-            controller.Validate(model);
+            this.airportsController.Validate(model);
 
-            var result = controller.Update(1, model);
+            var result = this.airportsController.Update(1, model);
 
-            Assert.IsFalse(controller.ModelState.IsValid);
+            Assert.IsFalse(this.airportsController.ModelState.IsValid);
         }
 
         [TestMethod]
         public void UpdateShouldReturnBadRequestWithInvalidModel()
         {
-            var controller = new AirportsController(this.airportsServices);
-            controller.Configuration = new HttpConfiguration();
+            this.airportsController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetInvalidUpdateAirportRequestModel();
-            controller.Validate(model);
+            this.airportsController.Validate(model);
 
-            var result = controller.Update(1, model);
+            var result = this.airportsController.Update(1, model);
 
             Assert.AreEqual(typeof(InvalidModelStateResult), result.GetType());
         }
@@ -194,13 +175,12 @@
         [TestMethod]
         public void UpdateShouldReturnNotFound()
         {
-            var controller = new AirportsController(this.airportsServices);
-            controller.Configuration = new HttpConfiguration();
+            this.airportsController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetValidUpdateAirportRequestModel();
-            controller.Validate(model);
+            this.airportsController.Validate(model);
 
-            var result = controller.Update(10, model);
+            var result = this.airportsController.Update(10, model);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -208,13 +188,12 @@
         [TestMethod]
         public void UpdateShouldReturnOkResultWithId()
         {
-            var controller = new AirportsController(this.airportsServices);
-            controller.Configuration = new HttpConfiguration();
+            this.airportsController.Configuration = new HttpConfiguration();
 
             var model = TestObjectFactory.GetValidUpdateAirportRequestModel();
-            controller.Validate(model);
+            this.airportsController.Validate(model);
 
-            var result = controller.Update(model.Id, model);
+            var result = this.airportsController.Update(model.Id, model);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
@@ -224,9 +203,7 @@
         [TestMethod]
         public void DeleteShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var controller = new AirportsController(this.airportsServices);
-
-            var result = controller.Delete(-1);
+            var result = this.airportsController.Delete(-1);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -235,10 +212,8 @@
 
         [TestMethod]
         public void DeleteShouldReturnNotFound()
-        {
-            var controller = new AirportsController(this.airportsServices);
-           
-            var result = controller.Delete(10);
+        {           
+            var result = this.airportsController.Delete(10);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -246,9 +221,7 @@
         [TestMethod]
         public void DeleteShouldReturnOkResultWithId()
         {
-            var controller = new AirportsController(this.airportsServices);
-
-            var result = controller.Delete(1);
+            var result = this.airportsController.Delete(1);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);

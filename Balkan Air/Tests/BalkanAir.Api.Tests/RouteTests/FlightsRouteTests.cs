@@ -153,7 +153,7 @@
                 .Routes()
                 .ShouldMap(GET_PATH + nullableFlightNumber)
                 .WithHttpMethod(HttpMethod.Get)
-                .To<FlightsController>(f => f.GetByFlightNumber(null));
+                .To<FlightsController>(f => f.GetByFlightNumber(nullableFlightNumber));
         }
 
         [TestMethod]
@@ -242,7 +242,7 @@
                 .Routes()
                 .ShouldMap(GET_BY_DEPARTURE_AIRPORT + nullableAbbreviation)
                 .WithHttpMethod(HttpMethod.Get)
-                .To<FlightsController>(f => f.GetByDepartureAirport(null));
+                .To<FlightsController>(f => f.GetByDepartureAirport(nullableAbbreviation));
         }
 
         [TestMethod]
@@ -306,7 +306,7 @@
                 .Routes()
                 .ShouldMap(GET_BY_ARRIVAL_AIRPORT + nullableAbbreviation)
                 .WithHttpMethod(HttpMethod.Get)
-                .To<FlightsController>(f => f.GetByArrivalAirport(null));
+                .To<FlightsController>(f => f.GetByArrivalAirport(nullableAbbreviation));
         }
 
         [TestMethod]
@@ -391,7 +391,7 @@
 
         [TestMethod]
         [ExpectedException(typeof(RouteAssertionException))]
-        public void UpdateShouldThrowExceptionWithRouteDoesNotExistWhenActionIsInvalid()
+        public void UpdateShouldThrowExceptionWithRouteDoesNotExistWhenHttpMethodIsInvalid()
         {
             var updateFlightRequestModel = TestObjectFactory.GetValidUpdateFlightRequestModel();
             var jsonContent = JsonConvert.SerializeObject(updateFlightRequestModel);
@@ -464,7 +464,7 @@
 
         [TestMethod]
         [ExpectedException(typeof(RouteAssertionException))]
-        public void DeleteShouldThrowExceptionWithRouteDoesNotExistWhenActionIsInvalid()
+        public void DeleteShouldThrowExceptionWithRouteDoesNotExistWhenHttpMethodIsInvalid()
         {
             var validId = 1;
             var invalidHttpMethod = HttpMethod.Post;
