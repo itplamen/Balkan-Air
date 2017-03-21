@@ -32,7 +32,11 @@
 
         public void AircraftsGridView_UpdateItem(int id)
         {
-            this.OnAircraftsUpdateItem?.Invoke(null, new AircraftsEventArgs() { Id = id });
+            this.OnAircraftsUpdateItem?.Invoke(null, new AircraftsEventArgs()
+            {
+                Id = id,
+                AircraftManufacturerId = int.Parse(this.ManufacturerIdHiddenField.Value)
+            });
         }
 
         public void AircraftsGridView_DeleteItem(int id)

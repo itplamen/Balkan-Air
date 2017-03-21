@@ -40,6 +40,15 @@ namespace BalkanAir.Web.Administration {
         protected global::System.Web.UI.WebControls.GridView AirportsGridView;
         
         /// <summary>
+        /// CountryIdHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField CountryIdHiddenField;
+        
+        /// <summary>
         /// AirportNameTextBox control.
         /// </summary>
         /// <remarks>

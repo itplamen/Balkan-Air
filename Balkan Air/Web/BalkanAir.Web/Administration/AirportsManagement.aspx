@@ -31,11 +31,11 @@
                     <%#: Item.Country.Name %>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:DropDownList ID="CountriesDropDownList" runat="server"
+                    <asp:DropDownList ID="CountriesDropDownList" runat="server" ClientIDMode="Static"
                         ItemType="BalkanAir.Data.Models.Country"
                         DataValueField="Id"
                         DataTextField="Name"
-                        SelectedValue="<%#: BindItem.CountryId %>"
+                        SelectedValue="<%#: Item.CountryId %>"
                         SelectMethod="CountryDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
@@ -58,6 +58,8 @@
             <h4>No airports found!</h4>
         </EmptyDataTemplate>
     </asp:GridView>
+
+    <asp:HiddenField ID="CountryIdHiddenField" runat="server" ClientIDMode="Static" />   
 
     <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Name length must be in the range [2 - 50]!" Type="String"
         ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{2,50}$" ValidationGroup="CreateAirport"
@@ -90,4 +92,15 @@
                 UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
         </p>
     </asp:Panel>
+</asp:Content>
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
+    <script type="text/javascript">
+        $(function () {
+            $('#CountriesDropDownList').change(function () {
+                var manufacturerId = $(this).find(':selected').val();
+
+                $('#CountryIdHiddenField').val(manufacturerId);
+            });
+        });
+    </script>
 </asp:Content>

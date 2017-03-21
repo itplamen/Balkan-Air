@@ -29,11 +29,11 @@
                     <%#: Item.AircraftManufacturer.Name %>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:DropDownList ID="ManufacturersDropDownList" runat="server"
+                    <asp:DropDownList ID="ManufacturersDropDownList" runat="server" ClientIDMode="Static"
                         ItemType="BalkanAir.Data.Models.AircraftManufacturer"
                         DataValueField="Id"
                         DataTextField="Name"
-                        SelectedValue="<%#: BindItem.AircraftManufacturerId %>"
+                        SelectedValue="<%#: Item.AircraftManufacturerId %>"
                         SelectMethod="AircraftManufacturersDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
@@ -58,6 +58,8 @@
             <h4>No aircrafts found!</h4>
         </EmptyDataTemplate>
     </asp:GridView>
+
+    <asp:HiddenField ID="ManufacturerIdHiddenField" runat="server" ClientIDMode="Static" />
 
     <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Model length must be in the range [3 - 20]!" Type="String"
         ForeColor="Red" runat="server" ValidationExpression="^[\s\S]{3,20}$" ValidationGroup="CreateNewAircraft"
@@ -90,4 +92,15 @@
                 UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
         </p>
     </asp:Panel>
+</asp:Content>
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
+    <script type="text/javascript">
+        $(function () {
+            $('#ManufacturersDropDownList').change(function () {
+                var manufacturerId = $(this).find(':selected').val();
+
+                $('#ManufacturerIdHiddenField').val(manufacturerId);
+            });
+        });
+    </script>
 </asp:Content>

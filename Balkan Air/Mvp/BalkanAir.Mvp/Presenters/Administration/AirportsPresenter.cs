@@ -59,6 +59,7 @@
 
             if (this.View.ModelState.IsValid)
             {
+                airport.CountryId = e.CountryId;
                 this.airportsServices.UpdateAirport(e.Id, airport);
             }
         }

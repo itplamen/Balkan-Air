@@ -60,6 +60,7 @@
 
             if (this.View.ModelState.IsValid)
             {
+                aircraft.AircraftManufacturerId = e.AircraftManufacturerId;
                 this.aircraftsServices.UpdateAircraft(e.Id, aircraft);
             }
         }

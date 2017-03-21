@@ -83,17 +83,6 @@
                     }
                 }
 
-                // Determine the sections to render
-                if (HasPassword(manager))
-                {
-                    ChangePassword.Visible = true;
-                }
-                else
-                {
-                    CreatePassword.Visible = true;
-                    ChangePassword.Visible = false;
-                }
-
                 // Render success message
                 var message = Request.QueryString["m"];
                 if (message != null)
