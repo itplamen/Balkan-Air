@@ -2,60 +2,51 @@
 {
     using System;
     using System.Linq;
-    using System.Web.UI;
 
-    using Ninject;
+    using WebFormsMvp;
+    using WebFormsMvp.Web;
 
     using Data.Models;
-    using Services.Data.Contracts;
+    using Mvp.EventArgs.Administration;
+    using Mvp.Models.Administration;
+    using Mvp.Presenters.Administration;
+    using Mvp.ViewContracts.Administration;
 
-    public partial class CategoriesManagement : Page
+    [PresenterBinding(typeof(CategoriesManagementPresenter))]
+    public partial class CategoriesManagement : MvpPage<CategoriesManagementViewModel>, ICategoriesManagementView
     {
-        [Inject]
-        public ICategoriesServices CategoriesServices { get; set; }
+        public event EventHandler OnCategoriesGetData;
+        public event EventHandler<CategoriesManagementEventArgs> OnCategoriesUpdateItem;
+        public event EventHandler<CategoriesManagementEventArgs> OnCategoriesDeleteItem;
+        public event EventHandler<CategoriesManagementEventArgs> OnCategoriesAddItem;
 
         public IQueryable<Category> CategoriesGridView_GetData()
         {
-            return this.CategoriesServices.GetAll()
-                .OrderBy(c => c.Name);
+            this.OnCategoriesGetData?.Invoke(null, null);
+
+            return this.Model.Categories;
         }
 
         public void CategoriesGridView_UpdateItem(int id)
         {
-            var category = this.CategoriesServices.GetCategory(id);
-            
-            if (category == null)
-            {
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
-                return;
-            }
-
-            TryUpdateModel(category);
-
-            if (ModelState.IsValid)
-            {
-                this.CategoriesServices.UpdateCategory(id, category);
-            }
+            this.OnCategoriesUpdateItem?.Invoke(null, new CategoriesManagementEventArgs() { Id = id });
         }
 
         public void CategoriesGridView_DeleteItem(int id)
         {
-            this.CategoriesServices.DeleteCategory(id);
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
+            this.OnCategoriesDeleteItem?.Invoke(null, new CategoriesManagementEventArgs() { Id = id });
         }
 
         protected void CreateCategoryBtn_Click(object sender, EventArgs e)
         {
             if (this.Page.IsValid)
             {
-                var category = new Category() { Name = this.CategoryNameTextBox.Text };
-                int id = this.CategoriesServices.AddCategory(category);
+                var categoriesEventArgs = new CategoriesManagementEventArgs() { Name = this.CategoryNameTextBox.Text };
+
+                this.OnCategoriesAddItem?.Invoke(sender, categoriesEventArgs);
 
                 this.SuccessPanel.Visible = true;
-                this.AddedCategoryIdLiteral.Text = id.ToString();
+                this.AddedCategoryIdLiteral.Text = categoriesEventArgs.Id.ToString();
 
                 this.ClearFields();
             }
