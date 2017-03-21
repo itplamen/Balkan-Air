@@ -1,21 +1,8 @@
-﻿using System;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using BalkanAir.Web.Models;
-
-namespace BalkanAir.Web.Models
+﻿namespace BalkanAir.Web.App_Start
 {
-   
-}
+    using System;
+    using System.Web;
 
-#region Helpers
-namespace BalkanAir.Web
-{
     public static class IdentityHelper
     {
         // Used for XSRF when linking external logins
@@ -69,4 +56,3 @@ namespace BalkanAir.Web
         }
     }
 }
-#endregion

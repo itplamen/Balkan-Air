@@ -706,6 +706,7 @@
       <DependentUpon>SendMail.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\AutoMapperConfig.cs" />
+    <Compile Include="App_Start\IdentityHelper.cs" />
     <Compile Include="App_Start\NinjectBindingsModules\MvpNinjectModule.cs" />
     <Compile Include="App_Start\PresenterFactories\ICustomPresenterFactory.cs" />
     <Compile Include="App_Start\PresenterFactories\WebFormsMvpPresenterFactory.cs" />
@@ -834,7 +835,6 @@
     <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
     <Compile Include="Infrastructure\ObjectFactory.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Administration\FlightsManagement.aspx.cs">
       <DependentUpon>FlightsManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -4,8 +4,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Owin;
-using BalkanAir.Web.Models;
 using BalkanAir.Data.Models;
+using BalkanAir.Web.App_Start;
 
 namespace BalkanAir.Web.Account
 {

@@ -2,77 +2,60 @@
 {
     using System;
     using System.Linq;
-    using System.Web.UI;
 
-    using Ninject;
+    using WebFormsMvp;
+    using WebFormsMvp.Web;
 
     using Data.Models;
-    using Services.Data.Contracts;
-    using System.Collections.Generic;
-    using System.Web.UI.WebControls;
 
-    public partial class AircraftManufacturersManagement : Page
+    using Mvp.EventArgs.Administration;
+    using Mvp.Models.Administration;
+    using Mvp.Presenters.Administration;
+    using Mvp.ViewContracts.Administration;
+  
+    [PresenterBinding(typeof(AircraftManufacturersPresenter))]
+    public partial class AircraftManufacturersManagement : MvpPage<AircraftManufacturersViewModel>, IAircraftManufacturersView
     {
-        [Inject]
-        public IAircraftManufacturersServices AircraftManufacturersServices { get; set; }
-
-        [Inject]
-        public IAircraftsServices AircraftsServices { get; set; }
+        public event EventHandler OnAircraftManufacturersGetData;
+        public event EventHandler<AircraftManufacturersEventArgs> OnAircraftManufacturersUpdateItem;
+        public event EventHandler<AircraftManufacturersEventArgs> OnAircraftManufacturersDeleteItem;
+        public event EventHandler<AircraftManufacturersEventArgs> OnAircraftManufacturersAddItem;
+        public event EventHandler OnAircraftsGetData;
 
         public IQueryable<AircraftManufacturer> AircraftsManufacturersGridView_GetData()
         {
-            return this.AircraftManufacturersServices.GetAll()
-                .OrderBy(a => a.Name);
+            this.OnAircraftManufacturersGetData?.Invoke(null, null);
+
+            return this.Model.AircraftManufacturers; 
         }
 
         public void AircraftsManufacturersGridView_UpdateItem(int id)
         {
-            var manufacturer = this.AircraftManufacturersServices.GetManufacturer(id);
-
-            if (manufacturer == null)
-            {
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
-                return;
-            }
-
-            TryUpdateModel(manufacturer);
-            if (ModelState.IsValid)
-            {
-                this.AircraftManufacturersServices.UpdateManufacturer(id, manufacturer);
-            }
+            this.OnAircraftManufacturersUpdateItem?.Invoke(null, new AircraftManufacturersEventArgs() { Id = id });
         }
 
         public void AircraftsManufacturersGridView_DeleteItem(int id)
         {
-            this.AircraftManufacturersServices.DeleteManufacturer(id);
+            this.OnAircraftManufacturersDeleteItem?.Invoke(null, new AircraftManufacturersEventArgs() { Id = id });
         }
 
         public IQueryable<object> AircraftsListBox_GetData()
         {
-            var aircrafts = this.AircraftsServices.GetAll()
-                .Where(a => !a.IsDeleted)
-                .Select(a => new
-                {
-                    Id = a.Id,
-                    AircraftInfo = "Id:" + a.Id + " " + a.AircraftManufacturer.Name + " " + a.Model
-                });
+            this.OnAircraftsGetData?.Invoke(null, null);
 
-            return aircrafts;
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
+            return this.Model.Aircrafts;
         }
 
         protected void CreateAircraftManufacturerBtn_Click(object sender, EventArgs e)
         {
-            if (Page.IsValid)
+            if (this.Page.IsValid)
             {
-                var manufacturer = new AircraftManufacturer() { Name = this.AircraftManufacturerNameTextBox.Text };
-                int id = this.AircraftManufacturersServices.AddManufacturer(manufacturer);
+                var eventArgs = new AircraftManufacturersEventArgs() { Name = this.AircraftManufacturerNameTextBox.Text };
+
+                this.OnAircraftManufacturersAddItem?.Invoke(sender, eventArgs);
 
                 this.SuccessPanel.Visible = true;
-                this.AddedManufacturerIdLiteral.Text = id.ToString();
+                this.AddedManufacturerIdLiteral.Text = eventArgs.Id.ToString();
 
                 this.ClearFields();
             }

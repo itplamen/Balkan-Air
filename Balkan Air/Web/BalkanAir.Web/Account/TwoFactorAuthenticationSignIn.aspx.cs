@@ -7,8 +7,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using BalkanAir.Web.Models;
 using BalkanAir.Data.Models;
+using BalkanAir.Web.App_Start;
 
 namespace BalkanAir.Web.Account
 {

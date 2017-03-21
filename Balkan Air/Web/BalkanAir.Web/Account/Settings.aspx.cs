@@ -12,6 +12,7 @@
     using Data.Models;
     using Services.Data.Contracts;
     using Common;
+    using App_Start;
 
     public partial class Settings : Page
     {

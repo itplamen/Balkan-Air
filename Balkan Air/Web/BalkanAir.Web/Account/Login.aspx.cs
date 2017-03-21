@@ -10,6 +10,7 @@
 
     using Common;
     using Services.Data.Contracts;
+    using App_Start;
 
     public partial class Login : Page
     {

@@ -43,7 +43,7 @@
             }
             else
             {
-                this.OnNewsByCategoryGetData?.Invoke(sender, new NewsEventArgs(selectedCategoryId));
+                this.OnNewsByCategoryGetData?.Invoke(sender, new NewsEventArgs() { Id = selectedCategoryId });
 
                 this.NewsRepeater.DataSource = this.Model.News;
                 this.NewsRepeater.DataBind();

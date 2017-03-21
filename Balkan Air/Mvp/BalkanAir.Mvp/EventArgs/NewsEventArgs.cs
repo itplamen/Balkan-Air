@@ -2,11 +2,6 @@
 {
     public class NewsEventArgs
     {
-        public NewsEventArgs(int id)
-        {
-            this.Id = id;
-        }
-
-        public int Id { get; private set; }
+        public int Id { get; set; }
     }
 }

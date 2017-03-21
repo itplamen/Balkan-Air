@@ -18,6 +18,7 @@ namespace BalkanAir.Web.Booking
     using Data.Helper;
     using Data.Models;
     using Services.Data.Contracts;
+    using App_Start;
 
     public partial class Payment : Page
     {
