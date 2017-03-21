@@ -10,12 +10,12 @@
     using Services.Data.Contracts;
     using ViewContracts.Administration;
 
-    public class AircraftsPresenter : Presenter<IAircraftsView>
+    public class AircraftsManagementPresenter : Presenter<IAircraftsManagementView>
     {
         private readonly IAircraftsServices aircraftsServices;
         private readonly IAircraftManufacturersServices aircraftManufacturersServices;
 
-        public AircraftsPresenter(IAircraftsView view, IAircraftsServices aircraftsServices, 
+        public AircraftsManagementPresenter(IAircraftsManagementView view, IAircraftsServices aircraftsServices, 
             IAircraftManufacturersServices aircraftManufacturersServices)
             : base(view)
         {
@@ -46,7 +46,7 @@
                 .ThenBy(a => a.Model);
         }
 
-        private void View_OnAircraftsUpdateItem(object sender, AircraftsEventArgs e)
+        private void View_OnAircraftsUpdateItem(object sender, AircraftsManagementEventArgs e)
         {
             var aircraft = this.aircraftsServices.GetAircraft(e.Id);
 
@@ -65,12 +65,12 @@
             }
         }
 
-        private void View_OnAircraftsDeleteItem(object sender, AircraftsEventArgs e)
+        private void View_OnAircraftsDeleteItem(object sender, AircraftsManagementEventArgs e)
         {
             this.aircraftsServices.DeleteAircraft(e.Id);
         }
 
-        private void View_OnAircraftsAddItem(object sender, AircraftsEventArgs e)
+        private void View_OnAircraftsAddItem(object sender, AircraftsManagementEventArgs e)
         {
             var aircraft = new Aircraft()
             {

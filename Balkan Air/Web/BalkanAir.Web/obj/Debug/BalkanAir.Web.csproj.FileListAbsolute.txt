@@ -113,6 +113,8 @@ C:\Users\itplamen\Desktop\Balkan Air\Web\BalkanAir.Web\bin\System.Web.Http.Cors.
 C:\Users\itplamen\Desktop\Balkan Air\Web\BalkanAir.Web\bin\System.Web.Http.Cors.xml
 C:\Users\itplamen\Desktop\Balkan Air\Web\BalkanAir.Web\bin\AutoMapper.dll
 C:\Users\itplamen\Desktop\Balkan Air\Web\BalkanAir.Web\bin\AutoMapper.xml
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Mvp.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\Microsoft.AI.Agent.Intercept.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\ApplicationInsights.config
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\roslyn\csc.exe
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -137,14 +139,12 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\AutoMapper.dl
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Data.Common.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Data.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Data.Models.dll
-D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Mvp.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Services.Common.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Services.Data.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Web.Common.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\Castle.Core.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\EntityFramework.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\EntityFramework.SqlServer.dll
-D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\Microsoft.AI.Agent.Intercept.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\Microsoft.AI.DependencyCollector.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\Microsoft.AI.PerfCounterCollector.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\Microsoft.AI.ServerTelemetryChannel.dll

@@ -4,7 +4,7 @@
 
     using Data.Models;
 
-    public class AircraftsViewModels
+    public class AircraftsManagementViewModels
     {
         public IQueryable<Aircraft> Aircrafts { get; set; }
 

@@ -14,13 +14,13 @@
     using Mvp.Presenters.Administration;
     using Mvp.ViewContracts.Administration;
 
-    [PresenterBinding(typeof(AircraftsPresenter))]
-    public partial class AircraftsManagement : MvpPage<AircraftsViewModels>, IAircraftsView
+    [PresenterBinding(typeof(AircraftsManagementPresenter))]
+    public partial class AircraftsManagement : MvpPage<AircraftsManagementViewModels>, IAircraftsManagementView
     {
         public event EventHandler OnAircraftsGetData;
-        public event EventHandler<AircraftsEventArgs> OnAircraftsUpdateItem;
-        public event EventHandler<AircraftsEventArgs> OnAircraftsDeleteItem;
-        public event EventHandler<AircraftsEventArgs> OnAircraftsAddItem;
+        public event EventHandler<AircraftsManagementEventArgs> OnAircraftsUpdateItem;
+        public event EventHandler<AircraftsManagementEventArgs> OnAircraftsDeleteItem;
+        public event EventHandler<AircraftsManagementEventArgs> OnAircraftsAddItem;
         public event EventHandler OnAircraftManufacturersGetData;
 
         public IQueryable<Aircraft> AircraftsGridView_GetData()
@@ -32,7 +32,7 @@
 
         public void AircraftsGridView_UpdateItem(int id)
         {
-            this.OnAircraftsUpdateItem?.Invoke(null, new AircraftsEventArgs()
+            this.OnAircraftsUpdateItem?.Invoke(null, new AircraftsManagementEventArgs()
             {
                 Id = id,
                 AircraftManufacturerId = int.Parse(this.ManufacturerIdHiddenField.Value)
@@ -41,7 +41,7 @@
 
         public void AircraftsGridView_DeleteItem(int id)
         {
-            this.OnAircraftsDeleteItem?.Invoke(null, new AircraftsEventArgs() { Id = id });
+            this.OnAircraftsDeleteItem?.Invoke(null, new AircraftsManagementEventArgs() { Id = id });
         }
 
         public IQueryable<AircraftManufacturer> AircraftManufacturersDropDownList_GetData()
@@ -63,7 +63,7 @@
         {
             if (this.Page.IsValid)
             {
-                var eventArgs = new AircraftsEventArgs()
+                var eventArgs = new AircraftsManagementEventArgs()
                 {
                     Model = this.AircraftModelTextBox.Text.ToUpper(),
                     TotalSeats = int.Parse(this.TotalSeatsTextBox.Text),

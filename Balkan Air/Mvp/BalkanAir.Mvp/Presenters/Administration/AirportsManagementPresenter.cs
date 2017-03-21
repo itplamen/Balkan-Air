@@ -10,12 +10,12 @@
     using Services.Data.Contracts;
     using ViewContracts.Administration;
 
-    public class AirportsPresenter : Presenter<IAirportsView>
+    public class AirportsManagementPresenter : Presenter<IAirportsManagementView>
     {
         private readonly IAirportsServices airportsServices;
         private readonly ICountriesServices countriesServices;
 
-        public AirportsPresenter(IAirportsView view, IAirportsServices airportsServices, ICountriesServices countriesServices)
+        public AirportsManagementPresenter(IAirportsManagementView view, IAirportsServices airportsServices, ICountriesServices countriesServices)
             : base(view)
         {
             if (airportsServices == null)
@@ -45,7 +45,7 @@
                 .ThenBy(a => a.Abbreviation);
         }
 
-        private void View_OnAirprotsUpdateItem(object sender, AirportsEventArgs e)
+        private void View_OnAirprotsUpdateItem(object sender, AirportsManagementEventArgs e)
         {
             var airport = this.airportsServices.GetAirport(e.Id);
 
@@ -64,12 +64,12 @@
             }
         }
 
-        private void View_OnAirportsDeleteItem(object sender, AirportsEventArgs e)
+        private void View_OnAirportsDeleteItem(object sender, AirportsManagementEventArgs e)
         {
             this.airportsServices.DeleteAirport(e.Id);
         }
 
-        private void View_OnAirprotsAddItem(object sender, AirportsEventArgs e)
+        private void View_OnAirprotsAddItem(object sender, AirportsManagementEventArgs e)
         {
             var airport = new Airport()
             {

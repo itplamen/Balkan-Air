@@ -10,12 +10,12 @@
     using Services.Data.Contracts;
     using ViewContracts.Administration;
 
-    public class AircraftManufacturersPresenter : Presenter<IAircraftManufacturersView>
+    public class AircraftManufacturersManagementPresenter : Presenter<IAircraftManufacturersManagementView>
     {
         private readonly IAircraftManufacturersServices aircraftManufacturersServices;
         private readonly IAircraftsServices aircraftsServices;
 
-        public AircraftManufacturersPresenter(IAircraftManufacturersView view,
+        public AircraftManufacturersManagementPresenter(IAircraftManufacturersManagementView view,
             IAircraftManufacturersServices aircraftManufacturersServices, IAircraftsServices aircraftsServices)
             : base(view)
         {
@@ -45,7 +45,7 @@
                 .OrderBy(a => a.Name);
         }
 
-        private void View_OnAircraftManufacturersUpdateItem(object sender, AircraftManufacturersEventArgs e)
+        private void View_OnAircraftManufacturersUpdateItem(object sender, AircraftManufacturersManagementEventArgs e)
         {
             var manufacturer = this.aircraftManufacturersServices.GetManufacturer(e.Id);
 
@@ -63,7 +63,7 @@
             }
         }
 
-        private void View_OnAircraftManufacturersDeleteItem(object sender, AircraftManufacturersEventArgs e)
+        private void View_OnAircraftManufacturersDeleteItem(object sender, AircraftManufacturersManagementEventArgs e)
         {
             this.aircraftManufacturersServices.DeleteManufacturer(e.Id);
         }
@@ -79,7 +79,7 @@
                 });
         }
 
-        private void View_OnAircraftManufacturersAddItem(object sender, AircraftManufacturersEventArgs e)
+        private void View_OnAircraftManufacturersAddItem(object sender, AircraftManufacturersManagementEventArgs e)
         {
             var manufacturer = new AircraftManufacturer() { Name = e.Name };
             e.Id = this.aircraftManufacturersServices.AddManufacturer(manufacturer);

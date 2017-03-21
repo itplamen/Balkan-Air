@@ -3,60 +3,47 @@
     using System;
     using System.Drawing;
     using System.Linq;
-    using System.Web.UI;
 
-    using Ninject;
+    using WebFormsMvp;
+    using WebFormsMvp.Web;
 
     using Data.Models;
-    using Services.Data.Contracts;
+    using Mvp.EventArgs.Administration;
+    using Mvp.Models.Administration;
+    using Mvp.Presenters.Administration;
+    using Mvp.ViewContracts.Administration;
 
-    public partial class BaggageManagement : Page
+    [PresenterBinding(typeof(BaggageManagementPresenter))]
+    public partial class BaggageManagement : MvpPage<BaggageManagementViewModel>, IBaggageManagementView
     {
-        [Inject]
-        public IBaggageServices BaggageServices { get; set; }
-
-        [Inject]
-        public IBookingsServices BookingsServices { get; set; }
+        public event EventHandler OnBaggageGetData;
+        public event EventHandler<BaggageManagementEventArgs> OnBaggageUpdateItem;
+        public event EventHandler<BaggageManagementEventArgs> OnBaggageDeleteItem;
+        public event EventHandler<BaggageManagementEventArgs> OnBaggageAddItem;
+        public event EventHandler OnBookingsGetData;
 
         public IQueryable<Baggage> BaggageGridView_GetData()
         {
-            return this.BaggageServices.GetAll();   
+            this.OnBaggageGetData?.Invoke(null, null);
+
+            return this.Model.Baggage;
         }
 
         public void BaggageGridView_UpdateItem(int id)
         {
-            var baggage = this.BaggageServices.GetBaggage(id);
-            
-            if (baggage == null)
-            {
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
-                return;
-            }
-
-            TryUpdateModel(baggage);
-
-            if (ModelState.IsValid)
-            {
-                this.BaggageServices.UpdateBaggage(id, baggage);
-            }
+            this.OnBaggageUpdateItem?.Invoke(null, new BaggageManagementEventArgs() { Id = id });
         }
 
         public void BaggageGridView_DeleteItem(int id)
         {
-            this.BaggageServices.DeleteBaggage(id);
+            this.OnBaggageDeleteItem?.Invoke(null, new BaggageManagementEventArgs() { Id = id });
         }
 
         public IQueryable<object> BookingsDropDownList_GetData()
         {
-            var bookings = this.BookingsServices.GetAll()
-                .Where(b => !b.IsDeleted)
-                .Select(b => new
-                {
-                    Id = b.Id,
-                    BookingInfo = "Id: " + b.Id + ", " + b.User.UserSettings.FirstName + " " + b.User.UserSettings.LastName
-                });
+            this.OnBookingsGetData?.Invoke(null, null);
 
-            return bookings;
+            return this.Model.Bookings;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -84,7 +71,7 @@
                     return;
                 }
 
-                var baggage = new Baggage()
+                var bagEventArgs = new BaggageManagementEventArgs()
                 {
                     Type = type,
                     MaxKilograms = int.Parse(this.MaxKilogramsTextBox.Text),
@@ -93,10 +80,10 @@
                     BookingId = int.Parse(this.BookingsDropDownList.SelectedItem.Value)
                 };
 
-                int id = this.BaggageServices.AddBaggage(baggage);
+                this.OnBaggageAddItem?.Invoke(sender, bagEventArgs);
 
                 this.SuccessPanel.Visible = true;
-                this.AddedBagIdLiteral.Text = id.ToString();
+                this.AddedBagIdLiteral.Text = bagEventArgs.Id.ToString();
 
                 this.ClearFields();
             }

@@ -13,13 +13,13 @@
     using Mvp.Presenters.Administration;
     using Mvp.ViewContracts.Administration;
   
-    [PresenterBinding(typeof(AircraftManufacturersPresenter))]
-    public partial class AircraftManufacturersManagement : MvpPage<AircraftManufacturersViewModel>, IAircraftManufacturersView
+    [PresenterBinding(typeof(AircraftManufacturersManagementPresenter))]
+    public partial class AircraftManufacturersManagement : MvpPage<AircraftManufacturersManagementViewModel>, IAircraftManufacturersManagementView
     {
         public event EventHandler OnAircraftManufacturersGetData;
-        public event EventHandler<AircraftManufacturersEventArgs> OnAircraftManufacturersUpdateItem;
-        public event EventHandler<AircraftManufacturersEventArgs> OnAircraftManufacturersDeleteItem;
-        public event EventHandler<AircraftManufacturersEventArgs> OnAircraftManufacturersAddItem;
+        public event EventHandler<AircraftManufacturersManagementEventArgs> OnAircraftManufacturersUpdateItem;
+        public event EventHandler<AircraftManufacturersManagementEventArgs> OnAircraftManufacturersDeleteItem;
+        public event EventHandler<AircraftManufacturersManagementEventArgs> OnAircraftManufacturersAddItem;
         public event EventHandler OnAircraftsGetData;
 
         public IQueryable<AircraftManufacturer> AircraftsManufacturersGridView_GetData()
@@ -31,12 +31,12 @@
 
         public void AircraftsManufacturersGridView_UpdateItem(int id)
         {
-            this.OnAircraftManufacturersUpdateItem?.Invoke(null, new AircraftManufacturersEventArgs() { Id = id });
+            this.OnAircraftManufacturersUpdateItem?.Invoke(null, new AircraftManufacturersManagementEventArgs() { Id = id });
         }
 
         public void AircraftsManufacturersGridView_DeleteItem(int id)
         {
-            this.OnAircraftManufacturersDeleteItem?.Invoke(null, new AircraftManufacturersEventArgs() { Id = id });
+            this.OnAircraftManufacturersDeleteItem?.Invoke(null, new AircraftManufacturersManagementEventArgs() { Id = id });
         }
 
         public IQueryable<object> AircraftsListBox_GetData()
@@ -50,7 +50,7 @@
         {
             if (this.Page.IsValid)
             {
-                var eventArgs = new AircraftManufacturersEventArgs() { Name = this.AircraftManufacturerNameTextBox.Text };
+                var eventArgs = new AircraftManufacturersManagementEventArgs() { Name = this.AircraftManufacturerNameTextBox.Text };
 
                 this.OnAircraftManufacturersAddItem?.Invoke(sender, eventArgs);
 

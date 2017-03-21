@@ -13,13 +13,13 @@
     using Mvp.Presenters.Administration;
     using Mvp.ViewContracts.Administration;
 
-    [PresenterBinding(typeof(AirportsPresenter))]
-    public partial class AirportsManagement : MvpPage<AirportsViewModel>, IAirportsView
+    [PresenterBinding(typeof(AirportsManagementPresenter))]
+    public partial class AirportsManagement : MvpPage<AirportsManagementViewModel>, IAirportsManagementView
     {
         public event EventHandler OnAirprotsGetData;
-        public event EventHandler<AirportsEventArgs> OnAirportsUpdateItem;
-        public event EventHandler<AirportsEventArgs> OnAirportsDeleteItem;
-        public event EventHandler<AirportsEventArgs> OnAirprotsAddItem;
+        public event EventHandler<AirportsManagementEventArgs> OnAirportsUpdateItem;
+        public event EventHandler<AirportsManagementEventArgs> OnAirportsDeleteItem;
+        public event EventHandler<AirportsManagementEventArgs> OnAirprotsAddItem;
         public event EventHandler OnCountriesGetData;
 
         public IQueryable<Airport> AirportsGridView_GetData()
@@ -31,7 +31,7 @@
 
         public void AirportsGridView_UpdateItem(int id)
         {
-            this.OnAirportsUpdateItem?.Invoke(null, new AirportsEventArgs()
+            this.OnAirportsUpdateItem?.Invoke(null, new AirportsManagementEventArgs()
             {
                 Id = id,
                 CountryId = int.Parse(this.CountryIdHiddenField.Value)
@@ -40,7 +40,7 @@
 
         public void AirportsGridView_DeleteItem(int id)
         {
-            this.OnAirportsDeleteItem?.Invoke(null, new AirportsEventArgs() { Id = id });
+            this.OnAirportsDeleteItem?.Invoke(null, new AirportsManagementEventArgs() { Id = id });
         }
 
         public IQueryable<Country> CountryDropDownList_GetData()
@@ -65,7 +65,7 @@
                     return;
                 }
 
-                var airportsEventArgs = new AirportsEventArgs()
+                var airportsEventArgs = new AirportsManagementEventArgs()
                 {
                     Name = this.AirportNameTextBox.Text,
                     Abbreviation = this.AbbreviationTextBox.Text.ToUpper(),

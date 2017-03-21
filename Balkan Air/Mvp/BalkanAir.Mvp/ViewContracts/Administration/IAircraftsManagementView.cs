@@ -8,15 +8,15 @@
     using EventArgs.Administration;
     using Models.Administration;
 
-    public interface IAircraftsView : IView<AircraftsViewModels>
+    public interface IAircraftsManagementView : IView<AircraftsManagementViewModels>
     {
         event EventHandler OnAircraftsGetData;
 
-        event EventHandler<AircraftsEventArgs> OnAircraftsUpdateItem;
+        event EventHandler<AircraftsManagementEventArgs> OnAircraftsUpdateItem;
 
-        event EventHandler<AircraftsEventArgs> OnAircraftsDeleteItem;
+        event EventHandler<AircraftsManagementEventArgs> OnAircraftsDeleteItem;
 
-        event EventHandler<AircraftsEventArgs> OnAircraftsAddItem;
+        event EventHandler<AircraftsManagementEventArgs> OnAircraftsAddItem;
 
         event EventHandler OnAircraftManufacturersGetData;
 

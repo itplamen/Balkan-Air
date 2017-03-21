@@ -8,15 +8,15 @@
     using EventArgs.Administration;
     using Models.Administration;
 
-    public interface IAirportsView : IView<AirportsViewModel>
+    public interface IAirportsManagementView : IView<AirportsManagementViewModel>
     {
         event EventHandler OnAirprotsGetData;
 
-        event EventHandler<AirportsEventArgs> OnAirportsUpdateItem;
+        event EventHandler<AirportsManagementEventArgs> OnAirportsUpdateItem;
 
-        event EventHandler<AirportsEventArgs> OnAirportsDeleteItem;
+        event EventHandler<AirportsManagementEventArgs> OnAirportsDeleteItem;
 
-        event EventHandler<AirportsEventArgs> OnAirprotsAddItem;
+        event EventHandler<AirportsManagementEventArgs> OnAirprotsAddItem;
 
         event EventHandler OnCountriesGetData;
 
