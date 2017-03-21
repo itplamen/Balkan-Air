@@ -3,67 +3,56 @@
     using System;
     using System.Drawing;
     using System.Linq;
-    using System.Web.UI;
 
-    using Ninject;
+    using WebFormsMvp;
+    using WebFormsMvp.Web;
 
     using Data.Models;
-    using Services.Data.Contracts;
-    using System.Web.UI.WebControls;
+    using Mvp.EventArgs.Administration;
+    using Mvp.Models.Administration;
+    using Mvp.Presenters.Administration;
+    using Mvp.ViewContracts.Administration;
 
-    public partial class AirportsManagement : Page
+    [PresenterBinding(typeof(AirportsPresenter))]
+    public partial class AirportsManagement : MvpPage<AirportsViewModel>, IAirportsView
     {
-        [Inject]
-        public ICountriesServices CountriesServices { get; set; }
-
-        [Inject]
-        public IAirportsServices AirportsServices { get; set; }
+        public event EventHandler OnAirprotsGetData;
+        public event EventHandler<AirportsEventArgs> OnAirportsUpdateItem;
+        public event EventHandler<AirportsEventArgs> OnAirportsDeleteItem;
+        public event EventHandler<AirportsEventArgs> OnAirprotsAddItem;
+        public event EventHandler OnCountriesGetData;
 
         public IQueryable<Airport> AirportsGridView_GetData()
         {
-            return this.AirportsServices.GetAll()
-                .OrderBy(a => a.Name)
-                .ThenBy(a => a.Abbreviation);
+            this.OnAirprotsGetData?.Invoke(null, null);
+
+            return this.Model.Airports;
         }
 
         public void AirportsGridView_UpdateItem(int id)
         {
-            var airport = this.AirportsServices.GetAirport(id);
-
-            if (airport == null)
-            {
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
-                return;
-            }
-
-            TryUpdateModel(airport);
-            if (ModelState.IsValid)
-            {
-                this.AirportsServices.UpdateAirport(id, airport);
-            }
+            this.OnAirportsUpdateItem?.Invoke(null, new AirportsEventArgs() { Id = id });
         }
 
         public void AirportsGridView_DeleteItem(int id)
         {
-            this.AirportsServices.DeleteAirport(id);
+            this.OnAirportsDeleteItem?.Invoke(null, new AirportsEventArgs() { Id = id });
         }
 
         public IQueryable<Country> CountryDropDownList_GetData()
         {
-            return this.CountriesServices.GetAll()
-                .Where(c => !c.IsDeleted)
-                .OrderBy(c => c.Name);
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
+            this.OnCountriesGetData?.Invoke(null, null);
+            
+            return this.Model.Countries;
         }
 
         protected void CreateAirportBtn_Click(object sender, EventArgs e)
         {
-            if (Page.IsValid)
+            if (this.Page.IsValid)
             {
-                bool doesAbbreviationExist = this.AirportsServices.GetAll()
+                this.OnAirprotsGetData?.Invoke(sender, e);
+
+                bool doesAbbreviationExist = this.Model.Airports
                     .Any(a => a.Abbreviation.ToLower() == this.AbbreviationTextBox.Text.ToLower());
 
                 if (doesAbbreviationExist)
@@ -72,17 +61,17 @@
                     return;
                 }
 
-                var airport = new Airport()
+                var airportsEventArgs = new AirportsEventArgs()
                 {
                     Name = this.AirportNameTextBox.Text,
                     Abbreviation = this.AbbreviationTextBox.Text.ToUpper(),
                     CountryId = int.Parse(this.CountryDropDownList.SelectedItem.Value)
                 };
 
-                int id = this.AirportsServices.AddAirport(airport);
+                this.OnAirprotsAddItem?.Invoke(sender, airportsEventArgs);
 
                 this.SuccessPanel.Visible = true;
-                this.AddedAirportIdLiteral.Text = id.ToString();
+                this.AddedAirportIdLiteral.Text = airportsEventArgs.Id.ToString();
 
                 this.ClearFields();
             }
@@ -99,16 +88,6 @@
             this.AbbreviationTextBox.Text = string.Empty;
             this.AbbreviationTextBox.BorderColor = Color.Empty;
             this.CountryDropDownList.SelectedIndex = 0;
-        }
-
-        protected void CountriesDropDownList_DataBinding(object sender, EventArgs e)
-        {
-            DropDownList dddd = sender as DropDownList;
-
-            if (true)
-            {
-
-            }
         }
     }
 }
