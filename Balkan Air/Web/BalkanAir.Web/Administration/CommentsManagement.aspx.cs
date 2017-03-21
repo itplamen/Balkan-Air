@@ -2,48 +2,38 @@
 {
     using System;
     using System.Linq;
-    using System.Web.UI;
 
-    using Ninject;
+    using WebFormsMvp;
+    using WebFormsMvp.Web;
 
     using Data.Models;
-    using Services.Data.Contracts;
+    using Mvp.EventArgs.Administration;
+    using Mvp.Models.Administration;
+    using Mvp.Presenters.Administration;
+    using Mvp.ViewContracts.Administration;
 
-    public partial class CommentsManagement : Page
+    [PresenterBinding(typeof(CommentsManagementPresenter))]
+    public partial class CommentsManagement : MvpPage<CommentsManagementViewModel>, ICommentsManagementView
     {
-        [Inject]
-        public ICommentsServices CommentsServices { get; set; }
+        public event EventHandler OnCommentsGetData;
+        public event EventHandler<CommentsManagementEventArgs> OnCommentsUpdateItem;
+        public event EventHandler<CommentsManagementEventArgs> OnCommentsDeleteItem;
 
         public IQueryable<Comment> CommentsGridView_GetData()
         {
-            return this.CommentsServices.GetAll()
-                .OrderByDescending(c => c.DateOfComment);
+            this.OnCommentsGetData?.Invoke(null, null);
+
+            return this.Model.Comments;
         }
 
         public void CommentsGridView_UpdateItem(int id)
         {
-            var comment = this.CommentsServices.GetComment(id);
-            
-            if (comment == null)
-            {
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
-                return;
-            }
-
-            TryUpdateModel(comment);
-            if (ModelState.IsValid)
-            {
-                this.CommentsServices.UpdateComment(id, comment);
-            }
+            this.OnCommentsUpdateItem?.Invoke(null, new CommentsManagementEventArgs() { Id = id });
         }
 
         public void CommentsGridView_DeleteItem(int id)
         {
-            this.CommentsServices.DeleteComment(id);
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
+            this.OnCommentsDeleteItem?.Invoke(null, new CommentsManagementEventArgs() { Id = id });
         }
     }
 }
