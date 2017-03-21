@@ -36,7 +36,8 @@
                         DataValueField="Id"
                         DataTextField="Name"
                         SelectedValue="<%#: BindItem.CountryId %>"
-                        SelectMethod="CountryDropDownList_GetData" />
+                        SelectMethod="CountryDropDownList_GetData"
+                        OnDataBinding="CountriesDropDownList_DataBinding" />
                 </EditItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Origins">

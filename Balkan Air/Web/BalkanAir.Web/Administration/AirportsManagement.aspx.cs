@@ -9,6 +9,7 @@
 
     using Data.Models;
     using Services.Data.Contracts;
+    using System.Web.UI.WebControls;
 
     public partial class AirportsManagement : Page
     {
@@ -98,6 +99,16 @@
             this.AbbreviationTextBox.Text = string.Empty;
             this.AbbreviationTextBox.BorderColor = Color.Empty;
             this.CountryDropDownList.SelectedIndex = 0;
+        }
+
+        protected void CountriesDropDownList_DataBinding(object sender, EventArgs e)
+        {
+            DropDownList dddd = sender as DropDownList;
+
+            if (true)
+            {
+
+            }
         }
     }
 }

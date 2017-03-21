@@ -5,10 +5,10 @@
 
     using WebFormsMvp;
 
+    using Data.Models;
     using EventArgs.Administration;
     using Services.Data.Contracts;
     using ViewContracts.Administration;
-    using Data.Models;
 
     public class AircraftManufacturersPresenter : Presenter<IAircraftManufacturersView>
     {
@@ -70,23 +70,19 @@
 
         private void View_OnAircraftsGetData(object sender, EventArgs e)
         {
-            var aircrafts = this.aircraftsServices.GetAll()
+            this.View.Model.Aircrafts = this.aircraftsServices.GetAll()
                 .Where(a => !a.IsDeleted)
                 .Select(a => new
                 {
                     Id = a.Id,
                     AircraftInfo = "Id:" + a.Id + " " + a.AircraftManufacturer.Name + " " + a.Model
                 });
-
-            this.View.Model.Aircrafts = aircrafts;
         }
 
         private void View_OnAircraftManufacturersAddItem(object sender, AircraftManufacturersEventArgs e)
         {
             var manufacturer = new AircraftManufacturer() { Name = e.Name };
-            int id = this.aircraftManufacturersServices.AddManufacturer(manufacturer);
-
-            e.Id = id;
+            e.Id = this.aircraftManufacturersServices.AddManufacturer(manufacturer);
         }
     }
 }

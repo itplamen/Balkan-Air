@@ -2,56 +2,49 @@
 {
     using System;
     using System.Linq;
-    using System.Web.UI;
 
-    using Ninject;
+    using WebFormsMvp;
+    using WebFormsMvp.Web;
 
     using Data.Common;
     using Data.Models;
-    using Services.Data.Contracts;
 
-    public partial class AircraftsManagement : Page
+    using Mvp.EventArgs.Administration;
+    using Mvp.Models.Administration;
+    using Mvp.Presenters.Administration;
+    using Mvp.ViewContracts.Administration;
+
+    [PresenterBinding(typeof(AircraftsPresenter))]
+    public partial class AircraftsManagement : MvpPage<AircraftsViewModels>, IAircraftsView
     {
-        [Inject]
-        public IAircraftManufacturersServices AircraftManufacturersServices { get; set; }
-
-        [Inject]
-        public IAircraftsServices AircraftsServices { get; set; }
+        public event EventHandler OnAircraftsGetData;
+        public event EventHandler<AircraftsEventArgs> OnAircraftsUpdateItem;
+        public event EventHandler<AircraftsEventArgs> OnAircraftsDeleteItem;
+        public event EventHandler<AircraftsEventArgs> OnAircraftsAddItem;
+        public event EventHandler OnAircraftManufacturersGetData;
 
         public IQueryable<Aircraft> AircraftsGridView_GetData()
         {
-            return this.AircraftsServices.GetAll()
-                .OrderBy(a => a.AircraftManufacturer.Name)
-                .ThenBy(a => a.Model);
+            this.OnAircraftsGetData?.Invoke(null, null);
+
+            return this.Model.Aircrafts;
         }
 
         public void AircraftsGridView_UpdateItem(int id)
         {
-            var aircraft = this.AircraftsServices.GetAircraft(id);
-
-            if (aircraft == null)
-            {
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
-                return;
-            }
-
-            TryUpdateModel(aircraft);
-            if (ModelState.IsValid)
-            {
-                this.AircraftsServices.UpdateAircraft(id, aircraft);
-            }
+            this.OnAircraftsUpdateItem?.Invoke(null, new AircraftsEventArgs() { Id = id });
         }
 
         public void AircraftsGridView_DeleteItem(int id)
         {
-            this.AircraftsServices.DeleteAircraft(id);
+            this.OnAircraftsDeleteItem?.Invoke(null, new AircraftsEventArgs() { Id = id });
         }
 
         public IQueryable<AircraftManufacturer> AircraftManufacturersDropDownList_GetData()
         {
-            return this.AircraftManufacturersServices.GetAll()
-                .Where(a => !a.IsDeleted)
-                .OrderBy(a => a.Name);
+            this.OnAircraftManufacturersGetData?.Invoke(null, null);
+
+            return this.Model.AircraftManufacturer;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -64,19 +57,19 @@
 
         protected void CreateAircraftBtn_Click(object sender, EventArgs e)
         {
-            if (Page.IsValid)
+            if (this.Page.IsValid)
             {
-                var aircraft = new Aircraft()
+                var eventArgs = new AircraftsEventArgs()
                 {
                     Model = this.AircraftModelTextBox.Text.ToUpper(),
                     TotalSeats = int.Parse(this.TotalSeatsTextBox.Text),
                     AircraftManufacturerId = int.Parse(this.AircraftManufacturersDropDownList.SelectedItem.Value)
                 };
 
-                int id = this.AircraftsServices.AddAircraft(aircraft);
+                this.OnAircraftsAddItem?.Invoke(sender, eventArgs);
 
                 this.SuccessPanel.Visible = true;
-                this.AddedAircraftIdLiteral.Text = id.ToString();
+                this.AddedAircraftIdLiteral.Text = eventArgs.Id.ToString();
 
                 this.ClearFields();
             }
