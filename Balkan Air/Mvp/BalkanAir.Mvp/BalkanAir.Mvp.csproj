@@ -49,16 +49,19 @@
     <Compile Include="EventArgs\Administration\AircraftsManagementEventArgs.cs" />
     <Compile Include="EventArgs\Administration\AirportsManagementEventArgs.cs" />
     <Compile Include="EventArgs\Administration\BaggageManagementEventArgs.cs" />
+    <Compile Include="EventArgs\Administration\BookingsManagementEventArgs.cs" />
     <Compile Include="EventArgs\NewsEventArgs.cs" />
     <Compile Include="Models\Administration\AircraftManufacturersManagementViewModel.cs" />
     <Compile Include="Models\Administration\AircraftsManagementViewModels.cs" />
     <Compile Include="Models\Administration\AirportsManagementViewModel.cs" />
     <Compile Include="Models\Administration\BaggageManagementViewModel.cs" />
+    <Compile Include="Models\Administration\BookingsManagementViewModel.cs" />
     <Compile Include="Models\CategoriesViewModel.cs" />
     <Compile Include="Presenters\Administration\AircraftManufacturersManagementPresenter.cs" />
     <Compile Include="Presenters\Administration\AircraftsManagementPresenter.cs" />
     <Compile Include="Presenters\Administration\AirportsManagementPresenter.cs" />
     <Compile Include="Presenters\Administration\BaggageManagementPresenter.cs" />
+    <Compile Include="Presenters\Administration\BookingsManagementPresenter.cs" />
     <Compile Include="Presenters\CategoriesPresenter.cs" />
     <Compile Include="Presenters\NewsPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,6 +69,7 @@
     <Compile Include="ViewContracts\Administration\IAircraftsManagementView.cs" />
     <Compile Include="ViewContracts\Administration\IAirportsManagementView.cs" />
     <Compile Include="ViewContracts\Administration\IBaggageManagementView.cs" />
+    <Compile Include="ViewContracts\Administration\IBookingsManagementView.cs" />
     <Compile Include="ViewContracts\ICategoriesView.cs" />
     <Compile Include="ViewContracts\INewsView.cs" />
     <Compile Include="Models\NewsViewModel.cs" />

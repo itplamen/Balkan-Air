@@ -2,47 +2,38 @@
 {
     using System;
     using System.Linq;
-    using System.Web.UI;
 
-    using Ninject;
+    using WebFormsMvp;
+    using WebFormsMvp.Web;
 
     using Data.Models;
-    using Services.Data.Contracts;
+    using Mvp.EventArgs.Administration;
+    using Mvp.Models.Administration;
+    using Mvp.Presenters.Administration;
+    using Mvp.ViewContracts.Administration;
 
-    public partial class BookingsManagement : Page
+    [PresenterBinding(typeof(BookingsManagementPresenter))]
+    public partial class BookingsManagement : MvpPage<BookingsManagementViewModel>, IBookingsManagementView
     {
-        [Inject]
-        public IBookingsServices BookingsServices { get; set; }
+        public event EventHandler OnBookingsGetData;
+        public event EventHandler<BookingsManagementEventArgs> OnBookingsUpdateItem;
+        public event EventHandler<BookingsManagementEventArgs> OnBookingsDeleteItem;
 
         public IQueryable<Booking> BookingsGridView_GetData()
         {
-            return this.BookingsServices.GetAll();
+            this.OnBookingsGetData?.Invoke(null, null);
+
+            return this.Model.Bookings;
         }
 
         public void BookingsGridView_UpdateItem(int id)
         {
-            var booking = this.BookingsServices.GetBooking(id);
-
-            if (booking == null)
-            {
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
-                return;
-            }
-
-            TryUpdateModel(booking);
-            if (ModelState.IsValid)
-            {
-                this.BookingsServices.UpdateBooking(id, booking);
-            }
+            this.OnBookingsUpdateItem?.Invoke(null, new BookingsManagementEventArgs() { Id = id });
         }
 
         public void BookingsGridView_DeleteItem(int id)
         {
-            this.BookingsServices.DeleteBooking(id);
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
+            this.OnBookingsDeleteItem?.Invoke(null, new BookingsManagementEventArgs() { Id = id });
         }
     }
 }
