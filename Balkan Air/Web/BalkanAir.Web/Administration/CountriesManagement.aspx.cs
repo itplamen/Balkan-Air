@@ -3,56 +3,48 @@
     using System;
     using System.Drawing;
     using System.Linq;
-    using System.Web.UI;
 
-    using Ninject;
+    using WebFormsMvp;
+    using WebFormsMvp.Web;
 
     using Data.Models;
-    using Services.Data.Contracts;
+    using Mvp.EventArgs.Administration;
+    using Mvp.Models.Administration;
+    using Mvp.Presenters.Administration;
+    using Mvp.ViewContracts.Administration;
 
-    public partial class CountriesManagement : Page
+    [PresenterBinding(typeof(CountriesManagementPresenter))]
+    public partial class CountriesManagement : MvpPage<CountriesManagementViewModel>, ICountriesManagementView
     {
-        [Inject]
-        public ICountriesServices CountriesServices { get; set; }
+        public event EventHandler OnCountriesGetData;
+        public event EventHandler<CountriesManagementEventArgs> OnCountriesUpdateItem;
+        public event EventHandler<CountriesManagementEventArgs> OnCountriesDeleteItem;
+        public event EventHandler<CountriesManagementEventArgs> OnCountriesAddItem;
 
         public IQueryable<Country> CountriesGridView_GetData()
         {
-            return this.CountriesServices.GetAll()
-                .OrderBy(c => c.Name)
-                .ThenBy(c => c.Abbreviation);
+            this.OnCountriesGetData?.Invoke(null, null);
+
+            return this.Model.Countries;
         }
 
         public void CountriesGridView_UpdateItem(int id)
         {
-            var country = this.CountriesServices.GetCountry(id);
-
-            if (country == null)
-            {
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
-                return;
-            }
-
-            TryUpdateModel(country);
-            if (ModelState.IsValid)
-            {
-                this.CountriesServices.UpdateCountry(id, country);
-            }
+            this.OnCountriesUpdateItem?.Invoke(null, new CountriesManagementEventArgs() { Id = id });   
         }
 
         public void CountriesGridView_DeleteItem(int id)
         {
-            this.CountriesServices.DeleteCountry(id);
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
+            this.OnCountriesDeleteItem?.Invoke(null, new CountriesManagementEventArgs() { Id = id });
         }
 
         protected void CreateCountrytBtn_Click(object sender, EventArgs e)
         {
-            if (Page.IsValid)
+            if (this.Page.IsValid)
             {
-                var doesAbbreviationExist = this.CountriesServices.GetAll()
+                this.OnCountriesGetData?.Invoke(sender, e);
+
+                var doesAbbreviationExist = this.Model.Countries
                     .Any(c => c.Abbreviation.ToLower() == this.AbbreviationNameTextBox.Text.ToLower());
 
                 if (doesAbbreviationExist)
@@ -61,16 +53,16 @@
                     return;
                 }
 
-                var country = new Country()
+                var countryEventArgs = new CountriesManagementEventArgs()
                 {
                     Name = this.CountryNameTextBox.Text,
                     Abbreviation = this.AbbreviationNameTextBox.Text.ToUpper()
                 };
 
-                int id = this.CountriesServices.AddCountry(country);
+                this.OnCountriesAddItem?.Invoke(null, countryEventArgs);
 
                 this.SuccessPanel.Visible = true;
-                this.AddedCountryIdLiteral.Text = id.ToString();
+                this.AddedCountryIdLiteral.Text = countryEventArgs.Id.ToString();
 
                 this.ClearFields();
             }
