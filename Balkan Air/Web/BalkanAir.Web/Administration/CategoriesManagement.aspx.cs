@@ -41,12 +41,12 @@
         {
             if (this.Page.IsValid)
             {
-                var categoriesEventArgs = new CategoriesManagementEventArgs() { Name = this.CategoryNameTextBox.Text };
+                var categoryEventArgs = new CategoriesManagementEventArgs() { Name = this.CategoryNameTextBox.Text };
 
-                this.OnCategoriesAddItem?.Invoke(sender, categoriesEventArgs);
+                this.OnCategoriesAddItem?.Invoke(sender, categoryEventArgs);
 
                 this.SuccessPanel.Visible = true;
-                this.AddedCategoryIdLiteral.Text = categoriesEventArgs.Id.ToString();
+                this.AddedCategoryIdLiteral.Text = categoryEventArgs.Id.ToString();
 
                 this.ClearFields();
             }

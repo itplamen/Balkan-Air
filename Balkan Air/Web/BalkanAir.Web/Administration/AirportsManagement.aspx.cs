@@ -65,17 +65,17 @@
                     return;
                 }
 
-                var airportsEventArgs = new AirportsManagementEventArgs()
+                var airportEventArgs = new AirportsManagementEventArgs()
                 {
                     Name = this.AirportNameTextBox.Text,
                     Abbreviation = this.AbbreviationTextBox.Text.ToUpper(),
                     CountryId = int.Parse(this.CountryDropDownList.SelectedItem.Value)
                 };
 
-                this.OnAirprotsAddItem?.Invoke(sender, airportsEventArgs);
+                this.OnAirprotsAddItem?.Invoke(sender, airportEventArgs);
 
                 this.SuccessPanel.Visible = true;
-                this.AddedAirportIdLiteral.Text = airportsEventArgs.Id.ToString();
+                this.AddedAirportIdLiteral.Text = airportEventArgs.Id.ToString();
 
                 this.ClearFields();
             }

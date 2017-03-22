@@ -30,10 +30,10 @@
                     <%#: "Id:" + Item.RouteId + ", " + Item.Route.Origin.Name + " -> " + Item.Route.Destination.Name %>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:DropDownList ID="EditRoutesDropDownList" runat="server"
+                    <asp:DropDownList ID="EditRoutesDropDownList" runat="server" ClientIDMode="Static"
                         DataValueField="Id"
                         DataTextField="RouteInfo"
-                        SelectedValue="<%#: BindItem.RouteId %>"
+                        SelectedValue="<%#: Item.RouteId %>"
                         SelectMethod="RoutesDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
@@ -46,6 +46,8 @@
             <h4>No fares found!</h4>
         </EmptyDataTemplate>
     </asp:GridView>
+
+    <asp:HiddenField ID="RouteIdHiddenField" runat="server" ClientIDMode="Static" />
 
     <asp:Panel runat="server" CssClass="administrationAddEntityPanel">
         <h3>Add new fare</h3>
@@ -65,4 +67,22 @@
                 UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
         </p>
     </asp:Panel>
+</asp:Content>
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
+    <script type="text/javascript">
+        $(function () {
+            var $editRoutesDropDownList = $('#EditRoutesDropDownList'),
+                $routeIdHiddenField = $('#RouteIdHiddenField');
+
+            setHiddenField();
+
+            $editRoutesDropDownList.change(setHiddenField);
+            
+            function setHiddenField() {
+                var routeId = $editRoutesDropDownList.find(':selected').val();
+
+                $routeIdHiddenField.val(routeId);
+            }
+        });
+    </script>
 </asp:Content>

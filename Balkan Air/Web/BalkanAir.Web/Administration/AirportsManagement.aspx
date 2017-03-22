@@ -96,11 +96,18 @@
 <asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
     <script type="text/javascript">
         $(function () {
-            $('#CountriesDropDownList').change(function () {
-                var manufacturerId = $(this).find(':selected').val();
+            var $countriesDropDownList = $('#CountriesDropDownList'),
+                $countryIdHiddenField = $('#CountryIdHiddenField');
 
-                $('#CountryIdHiddenField').val(manufacturerId);
-            });
+            setHiddenField();
+
+            $countriesDropDownList.change(setHiddenField);
+
+            function setHiddenField() {
+                var routeId = $countriesDropDownList.find(':selected').val();
+
+                $countryIdHiddenField.val(routeId);
+            }
         });
     </script>
 </asp:Content>

@@ -7,8 +7,8 @@
 
     using Data.Models;
     using EventArgs.Administration;
-    using ViewContracts.Administration;
     using Services.Data.Contracts;
+    using ViewContracts.Administration;
 
     public class CountriesManagementPresenter : Presenter<ICountriesManagementView>
     {

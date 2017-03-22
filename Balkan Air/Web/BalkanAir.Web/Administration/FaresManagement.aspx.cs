@@ -4,62 +4,50 @@
     using System.Drawing;
     using System.Linq;
 
-    using Ninject;
+    using WebFormsMvp;
+    using WebFormsMvp.Web;
 
     using Data.Models;
-    using Services.Data.Contracts;
+    using Mvp.EventArgs.Administration;
+    using Mvp.Models.Administration;
+    using Mvp.Presenters.Administration;
+    using Mvp.ViewContracts.Administration;
 
-    public partial class FaresManagement : System.Web.UI.Page
+    [PresenterBinding(typeof(FaresManagementPresenter))]
+    public partial class FaresManagement : MvpPage<FaresManagementViewModel>, IFaresManagementView
     {
-        [Inject]
-        public IFaresServices FaresServices { get; set; }
-
-        [Inject]
-        public IRoutesServices RoutesServices { get; set; }
+        public event EventHandler OnFaresGetData;
+        public event EventHandler<FaresManagementEventArgs> OnFaresUpdateItem;
+        public event EventHandler<FaresManagementEventArgs> OnFaresDeleteItem;
+        public event EventHandler<FaresManagementEventArgs> OnFaresAddItem;
+        public event EventHandler OnRoutesGetData;
 
         public IQueryable<Fare> FaresGridView_GetData()
         {
-            return this.FaresServices.GetAll();
+            this.OnFaresGetData?.Invoke(null, null);
+
+            return this.Model.Fares;    
         }
 
         public void FaresGridView_UpdateItem(int id)
         {
-            var fare = this.FaresServices.GetFare(id);
-
-            if (fare == null)
+            this.OnFaresUpdateItem?.Invoke(null, new FaresManagementEventArgs()
             {
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
-                return;
-            }
-
-            TryUpdateModel(fare);
-
-            if (ModelState.IsValid)
-            {
-                this.FaresServices.UpdateFare(id, fare);
-            }
+                Id = id,
+                RouteId = int.Parse(this.RouteIdHiddenField.Value)
+            });
         }
 
         public void FaresGridView_DeleteItem(int id)
         {
-            this.FaresServices.DeleteFare(id);
+            this.OnFaresDeleteItem?.Invoke(null, new FaresManagementEventArgs() { Id = id });
         }
 
         public IQueryable<object> RoutesDropDownList_GetData()
         {
-            return this.RoutesServices.GetAll()
-                .Where(r => !r.IsDeleted)
-                .OrderBy(r => r.Origin.Name)
-                .ThenBy(r => r.Destination.Name)
-                .Select(r => new
-                {
-                    Id = r.Id,
-                    RouteInfo = "Id:" + r.Id + " " + r.Origin.Name + " -> " + r.Destination.Name
-                });
-        }
+            this.OnRoutesGetData?.Invoke(null, null);
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
+            return this.Model.Routes;
         }
 
         protected void CreateFaretBtn_Click(object sender, EventArgs e)
@@ -68,16 +56,16 @@
 
             if (this.Page.IsValid && price != -1)
             {
-                var fare = new Fare()
+                var fareEventArgs = new FaresManagementEventArgs()
                 {
                     Price = price,
-                    RouteId = int.Parse(this.AddRoutesDropDownList.SelectedItem.Value)    
+                    RouteId = int.Parse(this.AddRoutesDropDownList.SelectedItem.Value)
                 };
 
-                int id = this.FaresServices.AddFare(fare);
+                this.OnFaresAddItem?.Invoke(sender, fareEventArgs);
 
                 this.SuccessPanel.Visible = true;
-                this.AddedFareIdLiteral.Text = id.ToString();
+                this.AddedFareIdLiteral.Text = fareEventArgs.Id.ToString();
 
                 this.ClearFields();
             }
