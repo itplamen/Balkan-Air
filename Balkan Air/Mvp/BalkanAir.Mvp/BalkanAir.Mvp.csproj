@@ -75,6 +75,7 @@
     <Compile Include="EventArgs\Administration\FlightsManagementEventArgs.cs" />
     <Compile Include="EventArgs\Administration\FlightStatusesManagementEventArgs.cs" />
     <Compile Include="EventArgs\Administration\LegInstancesManagementEventArgs.cs" />
+    <Compile Include="EventArgs\Administration\NotificationsManagementEventArgs.cs" />
     <Compile Include="EventArgs\NewsEventArgs.cs" />
     <Compile Include="Models\Administration\AircraftManufacturersManagementViewModel.cs" />
     <Compile Include="Models\Administration\AircraftsManagementViewModels.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Models\Administration\FlightsManagementViewModel.cs" />
     <Compile Include="Models\Administration\FlightStatusesManagementViewModel.cs" />
     <Compile Include="Models\Administration\LegInstancesManagementViewModel.cs" />
+    <Compile Include="Models\Administration\NotificationsManagementViewModel.cs" />
     <Compile Include="Presenters\Administration\AircraftManufacturersManagementPresenter.cs" />
     <Compile Include="Presenters\Administration\AircraftsManagementPresenter.cs" />
     <Compile Include="Presenters\Administration\AirportsManagementPresenter.cs" />
@@ -102,6 +104,7 @@
     <Compile Include="Presenters\Administration\FlightsManagementPresenter.cs" />
     <Compile Include="Presenters\Administration\FlightStatusesManagementPresenter.cs" />
     <Compile Include="Presenters\Administration\LegInstancesManagementPresenter.cs" />
+    <Compile Include="Presenters\Administration\NotificationsManagementPresenter.cs" />
     <Compile Include="Presenters\NewsPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewContracts\Administration\IAircraftManufacturersManagementView.cs" />
@@ -117,6 +120,7 @@
     <Compile Include="ViewContracts\Administration\IFlightsManagementView.cs" />
     <Compile Include="ViewContracts\Administration\IFlightStatusesManagementView.cs" />
     <Compile Include="ViewContracts\Administration\ILegInstancesManagementView.cs" />
+    <Compile Include="ViewContracts\Administration\INotificationsManagementView.cs" />
     <Compile Include="ViewContracts\INewsView.cs" />
     <Compile Include="Models\NewsViewModel.cs" />
   </ItemGroup>

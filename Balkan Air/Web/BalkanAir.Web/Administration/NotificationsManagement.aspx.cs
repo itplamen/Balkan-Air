@@ -2,42 +2,39 @@
 {
     using System;
     using System.Linq;
-    using System.Web.UI;
 
-    using Ninject;
+    using WebFormsMvp;
+    using WebFormsMvp.Web;
 
     using Data.Models;
-    using Services.Data.Contracts;
-
-    public partial class NotificationsManagement : Page
+    using Mvp.EventArgs.Administration;
+    using Mvp.Models.Administration;
+    using Mvp.Presenters.Administration;
+    using Mvp.ViewContracts.Administration;
+    
+    [PresenterBinding(typeof(NotificationsManagementPresenter))]
+    public partial class NotificationsManagement : MvpPage<NotificationsManagementViewModel>, INotificationsManagementView
     {
-        [Inject]
-        public INotificationsServices NotificationsServices { get; set; }
+        public event EventHandler OnNotificationsGetData;
+        public event EventHandler<NotificationsManagementEventArgs> OnNotificationsUpdateItem;
+        public event EventHandler<NotificationsManagementEventArgs> OnNotificationsDeleteItem;
+        public event EventHandler<NotificationsManagementEventArgs> OnNotificationsAddItem;
 
         public IQueryable<Notification> NotificationsGridView_GetData()
         {
-            return this.NotificationsServices.GetAll();
+            this.OnNotificationsGetData?.Invoke(null, null);
+
+            return this.Model.Notifications;
         }
 
         public void NotificationsGridView_UpdateItem(int id)
         {
-            var notification = this.NotificationsServices.GetNotification(id);
-            if (notification == null)
-            {
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
-                return;
-            }
-
-            TryUpdateModel(notification);
-            if (ModelState.IsValid)
-            {
-                this.NotificationsServices.UpdateNotification(id, notification);
-            }
+            this.OnNotificationsUpdateItem?.Invoke(null, new NotificationsManagementEventArgs() { Id = id });
         }
 
         public void NotificationsGridView_DeleteItem(int id)
         {
-            this.NotificationsServices.DeleteNotification(id);
+            this.OnNotificationsDeleteItem?.Invoke(null, new NotificationsManagementEventArgs() { Id = id });
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -65,17 +62,17 @@
                     return;
                 }
 
-                var notification = new Notification()
+                var notificationEventArgs = new NotificationsManagementEventArgs()
                 {
                     Content = this.ContentAjaxHtmlEditor.Content,
                     DateCreated = DateTime.Now,
                     Type = selectedType
                 };
 
-                int id = this.NotificationsServices.AddNotification(notification);
+                this.OnNotificationsAddItem?.Invoke(null, notificationEventArgs);
 
                 this.SuccessPanel.Visible = true;
-                this.AddedNotificationIdLiteral.Text = id.ToString();
+                this.AddedNotificationIdLiteral.Text = notificationEventArgs.Id.ToString();
 
                 this.ClearFeilds();
             }

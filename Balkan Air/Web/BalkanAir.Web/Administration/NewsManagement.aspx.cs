@@ -105,10 +105,6 @@
                 .OrderBy(c => c.Name);
         }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-        }
-
         protected void AddNewsButton_Click(object sender, EventArgs e)
         {
             this.NewsListView.InsertItemPosition = InsertItemPosition.LastItem;
