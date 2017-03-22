@@ -29,10 +29,10 @@
                     <%#: "Id:" + Item.OriginId + ", " + Item.Origin.Name + " (" + Item.Origin.Abbreviation + ")" %>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:DropDownList ID="EditOriginDropDownList" runat="server"
+                    <asp:DropDownList ID="EditOriginDropDownList" runat="server" ClientIDMode="Static"
                         DataValueField="Id"
                         DataTextField="AirportInfo"
-                        SelectedValue="<%#: BindItem.OriginId %>"
+                        SelectedValue="<%#: Item.OriginId %>"
                         SelectMethod="AirportsDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
@@ -41,10 +41,10 @@
                     <%#: "Id:" + Item.DestinationId + ", " + Item.Destination.Name + " (" + Item.Destination.Abbreviation + ")" %>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:DropDownList ID="EditDestinationDropDownList" runat="server"
+                    <asp:DropDownList ID="EditDestinationDropDownList" runat="server" ClientIDMode="Static"
                         DataValueField="Id"
                         DataTextField="AirportInfo"
-                        SelectedValue="<%#: BindItem.DestinationId %>"
+                        SelectedValue="<%#: Item.DestinationId %>"
                         SelectMethod="AirportsDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
@@ -68,6 +68,9 @@
             <h4>No routes found!</h4>
         </EmptyDataTemplate>
     </asp:GridView>
+
+    <asp:HiddenField ID="OriginIdHiddenField" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="DestinationIdHiddenField" runat="server" ClientIDMode="Static" />
 
     <asp:CustomValidator ID="InvalidOriginAndDestinationCustomValidator" ErrorMessage="Origin and destination cannot be same!"
         Display="Dynamic" ForeColor="Red" runat="server" />
@@ -99,4 +102,36 @@
                 UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
         </p>
     </asp:Panel>
+</asp:Content>
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
+    <script type="text/javascript">
+        $(function () {
+            var $editOriginDropDownList = $('#EditOriginDropDownList'),
+                $editDestinationDropDownList = $('#EditDestinationDropDownList'),
+                $originIdHiddenField = $('#OriginIdHiddenField'),
+                $destinationIdHiddenField = $('#DestinationIdHiddenField');
+
+            setAllHiddenFields();
+
+            $editOriginDropDownList.change(setOriginHiddenField);
+            $editA$originIdHiddenFieldrrivalAirportDropDownList.change(setDestinationHiddenField);
+
+            function setAllHiddenFields() {
+                setOriginHiddenField();
+                setDestinationHiddenField();
+            }
+
+            function setOriginHiddenField() {
+                var originId = $editOriginDropDownList.find(':selected').val();
+
+                $originIdHiddenField.val(originId);
+            }
+
+            function setDestinationHiddenField() {
+                var destinationId = $editDestinationDropDownList.find(':selected').val();
+
+                $destinationIdHiddenField.val(destinationId);
+            }
+        });
+    </script>
 </asp:Content>

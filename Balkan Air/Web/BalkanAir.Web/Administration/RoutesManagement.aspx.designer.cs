@@ -40,6 +40,24 @@ namespace BalkanAir.Web.Administration {
         protected global::System.Web.UI.WebControls.GridView RoutesGridView;
         
         /// <summary>
+        /// OriginIdHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField OriginIdHiddenField;
+        
+        /// <summary>
+        /// DestinationIdHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField DestinationIdHiddenField;
+        
+        /// <summary>
         /// InvalidOriginAndDestinationCustomValidator control.
         /// </summary>
         /// <remarks>

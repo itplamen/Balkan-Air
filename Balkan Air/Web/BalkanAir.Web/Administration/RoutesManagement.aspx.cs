@@ -2,66 +2,52 @@
 {
     using System;
     using System.Linq;
-    using System.Web.UI;
 
-    using Ninject;
+    using WebFormsMvp;
+    using WebFormsMvp.Web;
 
     using Data.Models;
-    using Services.Data.Contracts;
+    using Mvp.EventArgs.Administration;
+    using Mvp.Models.Administration;
+    using Mvp.Presenters.Administration;
+    using Mvp.ViewContracts.Administration;
 
-    public partial class RoutesManagement : Page
+    [PresenterBinding(typeof(RoutesManagementPresenter))]
+    public partial class RoutesManagement : MvpPage<RoutesManagementViewModel>, IRoutesManagementView
     {
-        [Inject]
-        public IAirportsServices AirportsServices { get; set; }
-
-        [Inject]
-        public IRoutesServices RoutesServices { get; set; }
+        public event EventHandler OnRoutesGetData;
+        public event EventHandler<RoutesManagementEventArgs> OnRoutesUpdateItem;
+        public event EventHandler<RoutesManagementEventArgs> OnRoutesDeleteItem;
+        public event EventHandler<RoutesManagementEventArgs> OnRoutesAddItem;
+        public event EventHandler OnAirportsGetData;
 
         public IQueryable<Route> RoutesGridView_GetData()
         {
-            return this.RoutesServices.GetAll()
-                .OrderBy(r => r.Origin.Name)
-                .ThenBy(r => r.Destination.Name);
+            this.OnRoutesGetData?.Invoke(null, null);
+
+            return this.Model.Routes;
         }
 
         public void RoutesGridView_UpdateItem(int id)
         {
-            var route = this.RoutesServices.GetRoute(id);
-            
-            if (route == null)
+            this.OnRoutesUpdateItem?.Invoke(null, new RoutesManagementEventArgs()
             {
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
-                return;
-            }
-
-            TryUpdateModel(route);
-
-            if (ModelState.IsValid)
-            {
-                this.RoutesServices.UpdateRoute(id, route);
-            }
+                Id = id,
+                OriginId = int.Parse(this.OriginIdHiddenField.Value),
+                DestinationId = int.Parse(this.DestinationIdHiddenField.Value)
+            });
         }
 
         public void RoutesGridView_DeleteItem(int id)
         {
-            this.RoutesServices.DeleteRoute(id);
+            this.OnRoutesDeleteItem?.Invoke(null, new RoutesManagementEventArgs() { Id = id });
         }
 
         public IQueryable<object> AirportsDropDownList_GetData()
         {
-            return this.AirportsServices.GetAll()
-                .Where(a => !a.IsDeleted)
-                .OrderBy(a => a.Name)
-                .ThenBy(a => a.Abbreviation)
-                .Select(a => new
-                {
-                    Id = a.Id,
-                    AirportInfo = "Id:" + a.Id + ", " + a.Name + " (" + a.Abbreviation + ")"
-                });
-        }
+            this.OnAirportsGetData?.Invoke(null, null);
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
+            return this.Model.Airports;
         }
 
         protected void CreateRoutetBtn_Click(object sender, EventArgs e)
@@ -82,17 +68,17 @@
                     return;
                 }
 
-                var route = new Route()
+                var routeEventArgs = new RoutesManagementEventArgs()
                 {
                     OriginId = int.Parse(this.AddOriginDropDownList.SelectedItem.Value),
                     DestinationId = int.Parse(this.AddDestinationDropDownList.SelectedItem.Value),
                     DistanceInKm = distance
                 };
 
-                int id = this.RoutesServices.AddRoute(route);
+                this.OnRoutesAddItem?.Invoke(null, routeEventArgs);
 
                 this.SuccessPanel.Visible = true;
-                this.AddedRouteIdLiteral.Text = id.ToString();
+                this.AddedRouteIdLiteral.Text = routeEventArgs.Id.ToString();
 
                 this.ClearFields();
             }
