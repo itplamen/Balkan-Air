@@ -37,10 +37,10 @@
                             Item.FlightLeg.ScheduledArrivalDateTime + ")" %>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:DropDownList ID="EditFlightLegDropDownList" runat="server"
+                    <asp:DropDownList ID="EditFlightLegDropDownList" runat="server" ClientIDMode="Static"
                         DataValueField="Id"
                         DataTextField="FlightLegInfo"
-                        SelectedValue="<%#: BindItem.FlightLegId %>"
+                        SelectedValue="<%#: Item.FlightLegId %>"
                         SelectMethod="FlightLegDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
@@ -49,11 +49,11 @@
                     <%#: "Id:" + Item.FlightStatusId + ", " + Item.FlightStatus.Name %>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:DropDownList ID="EditFlightStatusDropDownList" runat="server"
+                    <asp:DropDownList ID="EditFlightStatusDropDownList" runat="server" ClientIDMode="Static"
                         ItemType="BalkanAir.Data.Models.FlightStatus"
                         DataValueField="Id"
                         DataTextField="Name"
-                        SelectedValue="<%#: BindItem.FlightStatusId %>"
+                        SelectedValue="<%#: Item.FlightStatusId %>"
                         SelectMethod="FlightStatusDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
@@ -62,10 +62,10 @@
                     <%#: "Id:" + Item.AircraftId + ", " + Item.Aircraft.AircraftManufacturer.Name + " " + Item.Aircraft.Model %>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:DropDownList ID="EditAircraftDropDownList" runat="server"
+                    <asp:DropDownList ID="EditAircraftDropDownList" runat="server" ClientIDMode="Static"
                         DataValueField="Id"
                         DataTextField="AircraftInfo"
-                        SelectedValue="<%#: BindItem.AircraftId %>"
+                        SelectedValue="<%#: Item.AircraftId %>"
                         SelectMethod="AircraftDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
@@ -93,6 +93,10 @@
             <h4>No leg instances found!</h4>
         </EmptyDataTemplate>
     </asp:GridView>
+    
+    <asp:HiddenField ID="FlightLegIdHiddenField" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="FlightStatusIdHiddenField" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="AircraftIdHiddenField" runat="server" ClientIDMode="Static" />
 
     <asp:RequiredFieldValidator ErrorMessage="Departure date is required!" ControlToValidate="LegInstanceDepartureDateTextBox"
         ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan" ValidationGroup="CreateLegInstance" />
@@ -174,4 +178,46 @@
                 UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
         </p>
     </asp:Panel>
+</asp:Content>
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
+    <script type="text/javascript">
+        $(function () {
+            var $editFlightLegDropDownList = $('#EditFlightLegDropDownList'),
+                $editFlightStatusDropDownList = $('#EditFlightStatusDropDownList'),
+                $editAircraftDropDownList = $('#EditAircraftDropDownList'),
+                $flightLegIdHiddenField = $('#FlightLegIdHiddenField'),
+                $flightStatusIdHiddenField = $('#FlightStatusIdHiddenField'),
+                $aircraftIdHiddenField = $('#AircraftIdHiddenField');
+
+            setAllHiddenFields();
+
+            $editFlightLegDropDownList.change(setFlightLegHiddenField);
+            $editFlightStatusDropDownList.change(setFlightStatusHiddenField);
+            $editAircraftDropDownList.change(setAircraftHiddenField);
+
+            function setAllHiddenFields() {
+                setFlightLegHiddenField();
+                setFlightStatusHiddenField();
+                setAircraftHiddenField();
+            }
+
+            function setFlightLegHiddenField() {
+                var flightLegId = $editFlightLegDropDownList.find(':selected').val();
+
+                $flightLegIdHiddenField.val(flightLegId);
+            }
+
+            function setFlightStatusHiddenField() {
+                var flightStatusId = $editFlightStatusDropDownList.find(':selected').val();
+
+                $flightStatusIdHiddenField.val(flightStatusId);
+            }
+
+            function setAircraftHiddenField() {
+                var aircraftId = $editAircraftDropDownList.find(':selected').val();
+
+                $aircraftIdHiddenField.val(aircraftId);
+            }
+        });
+    </script>
 </asp:Content>

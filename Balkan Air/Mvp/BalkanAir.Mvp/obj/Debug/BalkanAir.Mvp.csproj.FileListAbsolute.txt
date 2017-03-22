@@ -18,3 +18,8 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\BalkanA
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\obj\Debug\BalkanAir.Mvp.csprojResolveAssemblyReference.cache
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\obj\Debug\BalkanAir.Mvp.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\obj\Debug\BalkanAir.Mvp.pdb
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\BalkanAir.Mvp.dll.config
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\BalkanAir.Web.Common.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\EntityFramework.SqlServer.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\BalkanAir.Web.Common.pdb
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\EntityFramework.SqlServer.xml
