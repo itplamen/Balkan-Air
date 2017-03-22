@@ -2,123 +2,86 @@
 {
     using System;
     using System.Linq;
-    using System.Web.UI;
 
-    using Ninject;
+    using WebFormsMvp;
+    using WebFormsMvp.Web;
 
     using Data.Models;
-    using Services.Data.Contracts;
-    
-    public partial class FlightLegsManagement : Page
+    using Mvp.EventArgs.Administration;
+    using Mvp.Models.Administration;
+    using Mvp.Presenters.Administration;
+    using Mvp.ViewContracts.Administration;
+
+    [PresenterBinding(typeof(FlightLegsManagementPresenter))]
+    public partial class FlightLegsManagement : MvpPage<FlightLegsManagementViewModel>, IFlightLegsManagementView
     {
-        [Inject]
-        public IAirportsServices AirportsServices { get; set; }
-
-        [Inject]
-        public IFlightLegsServices FlightLegsServices { get; set; }
-
-        [Inject]
-        public IFlightsServices FlightsServices { get; set; }
-
-        [Inject]
-        public ILegInstancesServices LegInstancesServices { get; set; }
-
-        [Inject]
-        public IRoutesServices RoutesServices { get; set; }
+        public event EventHandler OnFlightLegsGetData;
+        public event EventHandler<FlightLegsManagementEventArgs> OnFlightLegsUpdateItem;
+        public event EventHandler<FlightLegsManagementEventArgs> OnFlightLegsDeleteItem;
+        public event EventHandler<FlightLegsManagementEventArgs> OnFlightLegsAddItem;
+        public event EventHandler OnAirportsGetData;
+        public event EventHandler OnFlightsGetData;
+        public event EventHandler OnRoutesGetData;
+        public event EventHandler OnLegInstancesGetData;
+        public event EventHandler<FlightLegsManagementEventArgs> OnAirportGetItem;
 
         public IQueryable<FlightLeg> FlightLegsGridView_GetData()
         {
-            return this.FlightLegsServices.GetAll();
+            this.OnFlightLegsGetData?.Invoke(null, null);
+
+            return this.Model.FlightLegs;
         }
 
         public void FlightLegsGridView_UpdateItem(int id)
         {
-            var flightLeg = this.FlightLegsServices.GetFlightLeg(id);
-            
-            if (flightLeg == null)
+            this.OnFlightLegsUpdateItem?.Invoke(null, new FlightLegsManagementEventArgs()
             {
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
-                return;
-            }
-
-            TryUpdateModel(flightLeg);
-
-            if (ModelState.IsValid)
-            {
-                this.FlightLegsServices.UpdateFlightLeg(id, flightLeg);
-            }
+                Id = id,
+                DepartureAirportId = int.Parse(this.DepartureAirportIdHiddenField.Value),
+                ArrivalAirportId = int.Parse(this.ArrivalAirportIdHiddenField.Value),
+                FlightId = int.Parse(this.FlightIdHiddenField.Value),
+                RouteId = int.Parse(this.RouteIdHiddenField.Value)
+            });
         }
 
         public void FlightLegsGridView_DeleteItem(int id)
         {
-            this.FlightLegsServices.DeleteFlightLeg(id);
+            this.OnFlightLegsDeleteItem?.Invoke(null, new FlightLegsManagementEventArgs() { Id = id });
         }
 
         public IQueryable<object> AirportsDropDownList_GetData()
         {
-            return this.AirportsServices.GetAll()
-                .OrderBy(a => a.Name)
-                .ThenBy(a => a.Abbreviation)
-                .Select(a => new
-                {
-                    Id = a.Id,
-                    AirportInfo = "Id:" + a.Id + ", " + a.Name + " (" + a.Abbreviation + ")"
-                });
+            this.OnAirportsGetData?.Invoke(null, null);
+
+            return this.Model.Airports; 
         }
 
         public IQueryable<object> FlightsDropDownList_GetData()
         {
-            return this.FlightsServices.GetAll()
-                .OrderBy(f => f.Id)
-                .Select(f => new
-                {
-                    Id = f.Id,
-                    FlightInfo = "Id:" + f.Id + " " + f.Number
-                });
+            this.OnFlightsGetData?.Invoke(null, null);
+
+            return this.Model.Flights; 
         }
 
-        public IQueryable<object> RoutesDropDownList()
+        public IQueryable<object> RoutesDropDownList_GetData()
         {
-            return this.RoutesServices.GetAll()
-                .OrderBy(r => r.Origin.Name)
-                .ThenBy(r => r.Destination.Name)
-                .Select(r => new
-                {
-                    Id = r.Id,
-                    RouteInfo = "Id:" + r.Id + " " + r.Origin.Name + " (" + r.Origin.Abbreviation + ")  -> " + 
-                                r.Destination.Name + " (" + r.Destination.Abbreviation + ")"
-                });
+            this.OnRoutesGetData?.Invoke(null, null);
+
+            return this.Model.Routes;
         }
 
         public IQueryable<object> LegInstancesListBox_GetData()
         {
-            var legInstances = this.LegInstancesServices.GetAll()
-                .Where(l => !l.IsDeleted)
-                .OrderBy(l => l.DepartureDateTime)
-                .Select(l => new
-                {
-                    Id = l.Id,
-                    LegInstanceInfo = "Id:" + l.Id + " " + l.DepartureDateTime + " -> " + 
-                                        l.ArrivalDateTime + ", " + l.FlightStatus.Name
-                });
+            this.OnLegInstancesGetData?.Invoke(null, null);
 
-            return legInstances;
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
+            return this.Model.LegInstances;
         }
 
         protected string GetAirport(int airportId)
         {
-            var airport = this.AirportsServices.GetAirport(airportId);
+            this.OnAirportGetItem?.Invoke(null, new FlightLegsManagementEventArgs() { AirportId = airportId });
 
-            if (airport == null)
-            {
-                return "Airport not foud!";
-            }
-
-            return "Id:" + airport.Id + " " + airport.Name + " (" + airport.Abbreviation + ")";
+            return this.Model.AirportInfo;
         }
 
         protected void CreateFlightLegBtn_Click(object sender, EventArgs e)
@@ -139,7 +102,7 @@
                 this.IsDateTimeAfterDateTimeNow(scheduledDepartureDateTime) && 
                 this.IsDateTimeAfterDateTimeNow(scheduledDepartureDateTime) && this.Page.IsValid)
             {
-                var newFlightLeg = new FlightLeg()
+                var flightLegEventArgs = new FlightLegsManagementEventArgs()
                 {
                     DepartureAirportId = int.Parse(this.AddDepartureAirportDropDownList.SelectedItem.Value),
                     ScheduledDepartureDateTime = scheduledDepartureDateTime,
@@ -149,10 +112,10 @@
                     RouteId = int.Parse(this.AddRoutesDropDownList.SelectedItem.Value)
                 };
 
-                int id = this.FlightLegsServices.AddFlightLeg(newFlightLeg);
+                this.OnFlightLegsAddItem?.Invoke(sender, flightLegEventArgs);
 
                 this.SuccessPanel.Visible = true;
-                this.AddedFlightLegIdLiteral.Text = id.ToString();
+                this.AddedFlightLegIdLiteral.Text = flightLegEventArgs.Id.ToString();
 
                 this.ClearFields();
             }

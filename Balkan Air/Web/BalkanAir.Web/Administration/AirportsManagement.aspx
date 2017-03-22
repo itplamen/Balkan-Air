@@ -104,9 +104,9 @@
             $countriesDropDownList.change(setHiddenField);
 
             function setHiddenField() {
-                var routeId = $countriesDropDownList.find(':selected').val();
+                var countryId = $countriesDropDownList.find(':selected').val();
 
-                $countryIdHiddenField.val(routeId);
+                $countryIdHiddenField.val(countryId);
             }
         });
     </script>

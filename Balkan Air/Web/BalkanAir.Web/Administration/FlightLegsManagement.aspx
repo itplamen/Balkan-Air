@@ -32,10 +32,10 @@
                     <%#: this.GetAirport(Item.DepartureAirportId) %>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:DropDownList ID="EditDepartureAirportDropDownList" runat="server"
+                    <asp:DropDownList ID="EditDepartureAirportDropDownList" runat="server" ClientIDMode="Static"
                         DataValueField="Id"
                         DataTextField="AirportInfo"
-                        SelectedValue="<%#: BindItem.DepartureAirportId %>"
+                        SelectedValue="<%#: Item.DepartureAirportId %>"
                         SelectMethod="AirportsDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
@@ -49,10 +49,10 @@
                     <%#: this.GetAirport(Item.ArrivalAirportId) %>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:DropDownList ID="EditArrivalAirportDropDownList" runat="server"
+                    <asp:DropDownList ID="EditArrivalAirportDropDownList" runat="server" ClientIDMode="Static"
                         DataValueField="Id"
                         DataTextField="AirportInfo"
-                        SelectedValue="<%#: BindItem.DepartureAirportId %>"
+                        SelectedValue="<%#: Item.ArrivalAirportId %>"
                         SelectMethod="AirportsDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
@@ -66,10 +66,10 @@
                     <%#: "Id:" + Item.FlightId + " " + Item.Flight.Number %>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:DropDownList ID="EditFlightDropDownList" runat="server"
+                    <asp:DropDownList ID="EditFlightDropDownList" runat="server" ClientIDMode="Static"
                         DataValueField="Id"
                         DataTextField="FlightInfo"
-                        SelectedValue="<%#: BindItem.FlightId %>"
+                        SelectedValue="<%#: Item.FlightId %>"
                         SelectMethod="FlightsDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
@@ -79,11 +79,11 @@
                             Item.Route.Destination.Name + " (" + Item.Route.Destination.Abbreviation + ")" %>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:DropDownList ID="RoutesDropDownList" runat="server"
+                    <asp:DropDownList ID="RoutesDropDownList" runat="server" ClientIDMode="Static"
                         DataValueField="Id"
                         DataTextField="RouteInfo"
-                        SelectedValue="<%#: BindItem.RouteId %>"
-                        SelectMethod="RoutesDropDownList" />
+                        SelectedValue="<%#: Item.RouteId %>"
+                        SelectMethod="RoutesDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Leg Instances">
@@ -101,6 +101,11 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
+    <asp:HiddenField ID="DepartureAirportIdHiddenField" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="ArrivalAirportIdHiddenField" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="FlightIdHiddenField" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="RouteIdHiddenField" runat="server" ClientIDMode="Static" />
+ 
     <asp:RequiredFieldValidator ErrorMessage="Departure date is required!" ControlToValidate="ScheduledDepartureDateTextBox"
         ForeColor="Red" Display="Dynamic" runat="server" CssClass="validatorSpan" ValidationGroup="CreateNewFlightLeg" />
 
@@ -172,7 +177,7 @@
         <asp:DropDownList ID="AddRoutesDropDownList" runat="server"
             DataValueField="Id"
             DataTextField="RouteInfo"
-            SelectMethod="RoutesDropDownList" />
+            SelectMethod="RoutesDropDownList_GetData" />
 
         <p>
             <asp:Button ID="CreateFlightLegBtn" ValidationGroup="CreateNewFlightLeg" runat="server" Text="Create"
@@ -182,4 +187,55 @@
         </p>
     </asp:Panel>
 </asp:Content>
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
+    <script type="text/javascript">
+        $(function () {
+            var $editDepartureAirportDropDownList = $('#EditDepartureAirportDropDownList'),
+                $editArrivalAirportDropDownList = $('#EditArrivalAirportDropDownList'),
+                $editFlightDropDownList = $('#EditFlightDropDownList'),
+                $routesDropDownList = $('#RoutesDropDownList'),
+                $departureAirportIdHiddenField = $('#DepartureAirportIdHiddenField'),
+                $arrivalAirportIdHiddenField = $('#ArrivalAirportIdHiddenField'),
+                $flightIdHiddenField = $('#FlightIdHiddenField'),
+                $routeIdHiddenField = $('#RouteIdHiddenField');
 
+            setAllHiddenFields();
+
+            $editDepartureAirportDropDownList.change(setDepartureAirportHiddenField);
+            $editArrivalAirportDropDownList.change(setArrivalAirportHiddenField);
+            $editFlightDropDownList.change(setFlightHiddenField);
+            $routesDropDownList.change(setRouteHiddenField);
+
+            function setAllHiddenFields() {
+                setDepartureAirportHiddenField();
+                setArrivalAirportHiddenField();
+                setFlightHiddenField();
+                setRouteHiddenField();
+            }
+
+            function setDepartureAirportHiddenField() {
+                var departureAirportId = $editDepartureAirportDropDownList.find(':selected').val();
+
+                $departureAirportIdHiddenField.val(departureAirportId);
+            }
+
+            function setArrivalAirportHiddenField() {
+                var arrivalAirportId = $editArrivalAirportDropDownList.find(':selected').val();
+
+                $arrivalAirportIdHiddenField.val(arrivalAirportId);
+            }
+
+            function setFlightHiddenField() {
+                var flightId = $editFlightDropDownList.find(':selected').val();
+
+                $flightIdHiddenField.val(flightId);
+            }
+
+            function setRouteHiddenField() {
+                var routeId = $routesDropDownList.find(':selected').val();
+
+                $routeIdHiddenField.val(routeId);
+            }
+        });
+    </script>
+</asp:Content>
