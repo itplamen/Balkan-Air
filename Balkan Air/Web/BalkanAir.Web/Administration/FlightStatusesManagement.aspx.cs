@@ -3,55 +3,48 @@
     using System;
     using System.Drawing;
     using System.Linq;
-    using System.Web.UI;
 
-    using Ninject;
+    using WebFormsMvp;
+    using WebFormsMvp.Web;
 
     using Data.Models;
-    using Services.Data.Contracts;
+    using Mvp.EventArgs.Administration;
+    using Mvp.Models.Administration;
+    using Mvp.Presenters.Administration;
+    using Mvp.ViewContracts.Administration;
 
-    public partial class FlightStatusesManagement : Page
+    [PresenterBinding(typeof(FlightStatusesManagementPresenter))]
+    public partial class FlightStatusesManagement : MvpPage<FlightStatusesManagementViewModel>, IFlightStatusesManagementView
     {
-        [Inject]
-        public IFlightStatusesServices FlightStatusesServices { get; set; }
+        public event EventHandler OnFlightStatusesGetData;
+        public event EventHandler<FlightStatusesManagementEventArgs> OnFlightStatusesUpdateItem;
+        public event EventHandler<FlightStatusesManagementEventArgs> OnFlightStatusesDeleteItem;
+        public event EventHandler<FlightStatusesManagementEventArgs> OnFlightStatusesAddItem;
 
         public IQueryable<FlightStatus> FlightStatusesGridView_GetData()
         {
-            return this.FlightStatusesServices.GetAll()
-                .OrderBy(fs => fs.Name);
+            this.OnFlightStatusesGetData?.Invoke(null, null);
+
+            return this.Model.FlightStatuses;
         }
 
         public void FlightStatusesGridView_UpdateItem(int id)
         {
-            var flightStatus = this.FlightStatusesServices.GetFlightStatus(id);
-
-            if (flightStatus == null)
-            {
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
-                return;
-            }
-
-            TryUpdateModel(flightStatus);
-            if (ModelState.IsValid)
-            {
-                this.FlightStatusesServices.UpdateFlightStatus(id, flightStatus);
-            }
+            this.OnFlightStatusesUpdateItem?.Invoke(null, new FlightStatusesManagementEventArgs() { Id = id });
         }
 
         public void FlightStatusesGridView_DeleteItem(int id)
         {
-            this.FlightStatusesServices.DeleteFlightStatus(id);
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
+            this.OnFlightStatusesDeleteItem?.Invoke(null, new FlightStatusesManagementEventArgs() { Id = id });
         }
 
         protected void CreateFlightStatustBtn_Click(object sender, EventArgs e)
         {
             if (this.Page.IsValid)
             {
-                var doesFlightStatusExist = this.FlightStatusesServices.GetAll()
+                this.OnFlightStatusesGetData?.Invoke(sender, e);
+
+                var doesFlightStatusExist = this.Model.FlightStatuses
                    .Any(fs => fs.Name.ToLower() == this.FlightStatusNameTextBox.Text.ToLower());
 
                 if (doesFlightStatusExist)
@@ -60,11 +53,11 @@
                     return;
                 }
 
-                var flightStatus = new FlightStatus() { Name = this.FlightStatusNameTextBox.Text };
-                int id = this.FlightStatusesServices.AddFlightStatus(flightStatus);
+                var flightStatusEventArgs = new FlightStatusesManagementEventArgs() { Name = this.FlightStatusNameTextBox.Text };
+                this.OnFlightStatusesAddItem?.Invoke(sender, flightStatusEventArgs);
 
                 this.SuccessPanel.Visible = true;
-                this.AddedFLightStatusIdLiteral.Text = id.ToString();
+                this.AddedFLightStatusIdLiteral.Text = flightStatusEventArgs.Id.ToString();
                 
                 this.ClearFields();
             }
