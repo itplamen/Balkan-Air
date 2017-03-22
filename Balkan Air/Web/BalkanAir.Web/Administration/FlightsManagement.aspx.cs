@@ -2,67 +2,61 @@
 {
     using System;
     using System.Linq;
-    using System.Web.UI;
 
-    using Ninject;
+    using WebFormsMvp;
+    using WebFormsMvp.Web;
 
-    using Data.Helper;
     using Data.Models;
-    using Services.Data.Contracts;
+    using Mvp.EventArgs.Administration;
+    using Mvp.Models.Administration;
+    using Mvp.Presenters.Administration;
+    using Mvp.ViewContracts.Administration;
 
-    public partial class FlightsManagement : Page
+    [PresenterBinding(typeof(FlightsManagementPresenter))]
+    public partial class FlightsManagement : MvpPage<FlightsManagementViewModel>, IFlightsManagementView
     {
-        [Inject]
-        public IFlightsServices FlightsServices { get; set; }
-
-        [Inject]
-        public INumberGenerator NumberGenerator { get; set; }
+        public event EventHandler OnFlightsGetData;
+        public event EventHandler<FlightsManagementEventArgs> OnFlightsUpdateItem;
+        public event EventHandler<FlightsManagementEventArgs> OnFlightsDeleteItem;
+        public event EventHandler<FlightsManagementEventArgs> OnFlightsAddItem;
+        public event EventHandler<FlightsManagementEventArgs> OnUniqueFlightNumberGetItem;
 
         public IQueryable<Flight> FlightsGridView_GetData()
         {
-            return this.FlightsServices.GetAll();
+            this.OnFlightsGetData?.Invoke(null, null);
+
+            return this.Model.Flights;
         }
 
         public void FlightsGridView_UpdateItem(int id)
         {
-            var flight = this.FlightsServices.GetFlight(id);
-
-            if (flight == null)
-            {
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
-                return;
-            }
-
-            TryUpdateModel(flight);
-            if (ModelState.IsValid)
-            {
-                this.FlightsServices.UpdateFlight(id, flight);
-            }
+            this.OnFlightsUpdateItem?.Invoke(null, new FlightsManagementEventArgs() { Id = id });
         }
 
         public void FlightsGridView_DeleteItem(int id)
         {
-            this.FlightsServices.DeleteFlight(id);
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
+            this.OnFlightsDeleteItem?.Invoke(null, new FlightsManagementEventArgs() { Id = id });
         }
 
         protected void GenerateFlightNumberBtn_Click(object sender, EventArgs e)
         {
-            this.AddFlightNumberTextBox.Text = this.NumberGenerator.GetUniqueFlightNumber();
+            var flightEventArgs = new FlightsManagementEventArgs();
+
+            this.OnUniqueFlightNumberGetItem?.Invoke(sender, flightEventArgs);
+
+            this.AddFlightNumberTextBox.Text = flightEventArgs.Number;
         }
 
         protected void CreateFlightBtn_Click(object sender, EventArgs e)
         {
             if (this.Page.IsValid)
             {
-                var newFlight = new Flight() { Number = this.AddFlightNumberTextBox.Text.ToUpper() };
-                int id = this.FlightsServices.AddFlight(newFlight);
+                var flightEventArgs = new FlightsManagementEventArgs() { Number = this.AddFlightNumberTextBox.Text.ToUpper() };
+
+                this.OnFlightsAddItem?.Invoke(sender, flightEventArgs);
 
                 this.SuccessPanel.Visible = true;
-                this.AddedFlightIdLiteral.Text = id.ToString();
+                this.AddedFlightIdLiteral.Text = flightEventArgs.Id.ToString();
             }
         }
 
