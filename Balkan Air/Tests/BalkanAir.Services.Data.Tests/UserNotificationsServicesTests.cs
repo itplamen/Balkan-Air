@@ -22,7 +22,7 @@
         [TestInitialize]
         public void TestInitialize()
         {
-            this.userNotificationsRepository = TestObjectFactory.GetUserNotificationsRepository();
+            this.userNotificationsRepository = TestObjectFactoryRepositories.GetUserNotificationsRepository();
             this.userNotificationsServices = new UserNotificationsServices(this.userNotificationsRepository);
             this.userNotification = new UserNotification()
             {

@@ -21,7 +21,7 @@
         [TestInitialize]
         public void TestInitialize()
         {
-            this.baggageRepository = TestObjectFactory.GetBaggageRepository();
+            this.baggageRepository = TestObjectFactoryRepositories.GetBaggageRepository();
             this.baggageServices = new BaggageServices(this.baggageRepository);
             this.bag = new Baggage()
             {

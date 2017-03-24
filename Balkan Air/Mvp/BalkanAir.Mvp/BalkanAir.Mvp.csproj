@@ -150,7 +150,16 @@
       <Name>BalkanAir.Web.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="EventArgs\Account\" />
+    <Folder Include="EventArgs\Booking\" />
+    <Folder Include="Models\Account\" />
+    <Folder Include="Models\Booking\" />
+    <Folder Include="Presenters\Account\" />
+    <Folder Include="Presenters\Booking\" />
+    <Folder Include="ViewContracts\Account\" />
+    <Folder Include="ViewContracts\Booking\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

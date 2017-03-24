@@ -18,6 +18,7 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Data.Models.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Services.Common.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Services.Data.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Tests.Common.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Web.Common.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Web.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Castle.Core.dll
@@ -62,6 +63,7 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Services.Data.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Web.Common.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Web.pdb
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Tests.Common.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Castle.Core.xml
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Microsoft.Owin.xml
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Microsoft.Owin.Hosting.xml

@@ -30,7 +30,7 @@
         [ExpectedException(typeof(RouteAssertionException))]
         public void CreateShouldThrowExceptionWithRouteDoesNotExistWhenHttpMethodIsInvalid()
         {
-            var flightRequestModel = TestObjectFactory.GetValidFlightRequestModel();
+            var flightRequestModel = TestObjectFactoryDataTransferModels.GetValidFlightRequestModel();
             string jsonContent = JsonConvert.SerializeObject(flightRequestModel);
 
             var invalidHttpMethod = HttpMethod.Get;
@@ -47,7 +47,7 @@
         [TestMethod]
         public void CreateShouldMapCorrectAction()
         {
-            var flightRequestModel = TestObjectFactory.GetValidFlightRequestModel();
+            var flightRequestModel = TestObjectFactoryDataTransferModels.GetValidFlightRequestModel();
             string jsonContent = JsonConvert.SerializeObject(flightRequestModel);
 
             MyWebApi
@@ -338,7 +338,7 @@
         [ExpectedException(typeof(RouteAssertionException))]
         public void UpdateShouldThrowExceptionWithRouteDoesNotExistWhenIdIsNegative()
         {
-            var updateFlightRequestModel = TestObjectFactory.GetValidUpdateFlightRequestModel();
+            var updateFlightRequestModel = TestObjectFactoryDataTransferModels.GetValidUpdateFlightRequestModel();
             var jsonContent = JsonConvert.SerializeObject(updateFlightRequestModel);
 
             var negativeId = -1;
@@ -356,7 +356,7 @@
         [ExpectedException(typeof(RouteAssertionException))]
         public void UpdateShouldThrowExceptionWithDifferenParameterWhenIdDoesNotMatch()
         {
-            var updateFlightRequestModel = TestObjectFactory.GetValidUpdateFlightRequestModel();
+            var updateFlightRequestModel = TestObjectFactoryDataTransferModels.GetValidUpdateFlightRequestModel();
             var jsonContent = JsonConvert.SerializeObject(updateFlightRequestModel);
 
             var pathId = 1;
@@ -375,7 +375,7 @@
         [ExpectedException(typeof(RouteAssertionException))]
         public void UpdateShouldThrowExceptionWithRouteDoesNotExistWhenIdIsNotInteger()
         {
-            var updateFlightRequestModel = TestObjectFactory.GetValidUpdateFlightRequestModel();
+            var updateFlightRequestModel = TestObjectFactoryDataTransferModels.GetValidUpdateFlightRequestModel();
             var jsonContent = JsonConvert.SerializeObject(updateFlightRequestModel);
 
             var notIntegerId = "a";
@@ -393,7 +393,7 @@
         [ExpectedException(typeof(RouteAssertionException))]
         public void UpdateShouldThrowExceptionWithRouteDoesNotExistWhenHttpMethodIsInvalid()
         {
-            var updateFlightRequestModel = TestObjectFactory.GetValidUpdateFlightRequestModel();
+            var updateFlightRequestModel = TestObjectFactoryDataTransferModels.GetValidUpdateFlightRequestModel();
             var jsonContent = JsonConvert.SerializeObject(updateFlightRequestModel);
 
             var invalidHttpMethod = HttpMethod.Post;
@@ -410,7 +410,7 @@
         [TestMethod]
         public void UpdateShouldMapCorrectAction()
         {
-            var updateFlightRequestModel = TestObjectFactory.GetValidUpdateFlightRequestModel();
+            var updateFlightRequestModel = TestObjectFactoryDataTransferModels.GetValidUpdateFlightRequestModel();
             var jsonContent = JsonConvert.SerializeObject(updateFlightRequestModel);
 
             MyWebApi

@@ -6,6 +6,9 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    using Moq;
+
+    using BalkanAir.Tests.Common.TestObjects;
     using Services.Common;
     using Services.Data.Contracts;
     using TestObjects;
@@ -15,14 +18,14 @@
     [TestClass]
     public class FaresControllerTests
     {
-        private IFaresServices faresServices;
+        private Mock<IFaresServices> faresServices;
         private FaresController faresController;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.faresServices = TestObjectFactory.GetFaresServices();
-            this.faresController = new FaresController(this.faresServices);
+            this.faresServices = TestObjectFactoryServices.GetFaresServices();
+            this.faresController = new FaresController(this.faresServices.Object);
         }
 
         [TestMethod]
@@ -30,7 +33,7 @@
         {
             this.faresController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetInvalidFareRequestModel();
+            var model = TestObjectFactoryDataTransferModels.GetInvalidFareRequestModel();
             this.faresController.Validate(model);
 
             var result = this.faresController.Create(model);
@@ -43,7 +46,7 @@
         {
             this.faresController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetInvalidFareRequestModel();
+            var model = TestObjectFactoryDataTransferModels.GetInvalidFareRequestModel();
             this.faresController.Validate(model);
 
             var result = this.faresController.Create(model);
@@ -56,7 +59,7 @@
         {
             this.faresController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetValidFareRequestModel();
+            var model = TestObjectFactoryDataTransferModels.GetValidFareRequestModel();
             this.faresController.Validate(model);
 
             var result = this.faresController.Create(model);
@@ -130,7 +133,7 @@
         [TestMethod]
         public void UpdateShouldReturnBadRequestWithInvalidIdMessage()
         {
-            var validModel = TestObjectFactory.GetValidUpdateFareRequestModel();
+            var validModel = TestObjectFactoryDataTransferModels.GetValidUpdateFareRequestModel();
 
             var result = this.faresController.Update(-1, validModel);
             var badRequestResult = result as BadRequestErrorMessageResult;
@@ -144,7 +147,7 @@
         {
             this.faresController.Configuration = new HttpConfiguration();
 
-            var invalidModel = TestObjectFactory.GetInvalidUpdateFareRequestModel();
+            var invalidModel = TestObjectFactoryDataTransferModels.GetInvalidUpdateFareRequestModel();
             this.faresController.Validate(invalidModel);
 
             var result = this.faresController.Update(1, invalidModel);
@@ -157,7 +160,7 @@
         {
             this.faresController.Configuration = new HttpConfiguration();
 
-            var invalidModel = TestObjectFactory.GetInvalidUpdateFareRequestModel();
+            var invalidModel = TestObjectFactoryDataTransferModels.GetInvalidUpdateFareRequestModel();
             this.faresController.Validate(invalidModel);
 
             var result = this.faresController.Update(1, invalidModel);
@@ -170,7 +173,7 @@
         {
             this.faresController.Configuration = new HttpConfiguration();
 
-            var validModel = TestObjectFactory.GetValidUpdateFareRequestModel();
+            var validModel = TestObjectFactoryDataTransferModels.GetValidUpdateFareRequestModel();
             this.faresController.Validate(validModel);
 
             var result = this.faresController.Update(10, validModel);
@@ -183,7 +186,7 @@
         {
             this.faresController.Configuration = new HttpConfiguration();
 
-            var validModel = TestObjectFactory.GetValidUpdateFareRequestModel();
+            var validModel = TestObjectFactoryDataTransferModels.GetValidUpdateFareRequestModel();
             this.faresController.Validate(validModel);
 
             var result = this.faresController.Update(1, validModel);

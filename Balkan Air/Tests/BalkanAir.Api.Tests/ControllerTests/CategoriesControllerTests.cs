@@ -6,6 +6,9 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    using Moq;
+
+    using BalkanAir.Tests.Common.TestObjects;
     using Services.Common;
     using Services.Data.Contracts;
     using TestObjects;
@@ -15,14 +18,14 @@
     [TestClass]
     public class CategoriesControllerTests
     {
-        private ICategoriesServices categoriesServices;
+        private Mock<ICategoriesServices> categoriesServices;
         private CategoriesController categoriesController;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.categoriesServices = TestObjectFactory.GetCategoriesServices();
-            this.categoriesController = new CategoriesController(this.categoriesServices);
+            this.categoriesServices = TestObjectFactoryServices.GetCategoriesServices();
+            this.categoriesController = new CategoriesController(this.categoriesServices.Object);
         }
 
         [TestMethod]
@@ -30,7 +33,7 @@
         {
             this.categoriesController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetInvalidCategoryRequesModel();
+            var model = TestObjectFactoryDataTransferModels.GetInvalidCategoryRequesModel();
             this.categoriesController.Validate(model);
 
             var result = this.categoriesController.Create(model);
@@ -43,7 +46,7 @@
         {
             this.categoriesController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetInvalidCategoryRequesModel();
+            var model = TestObjectFactoryDataTransferModels.GetInvalidCategoryRequesModel();
             this.categoriesController.Validate(model);
 
             var result = this.categoriesController.Create(model);
@@ -56,7 +59,7 @@
         {
             this.categoriesController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetValidCategoryRequesModel();
+            var model = TestObjectFactoryDataTransferModels.GetValidCategoryRequesModel();
             this.categoriesController.Validate(model);
 
             var result = this.categoriesController.Create(model);
@@ -139,7 +142,7 @@
         [TestMethod]
         public void UpdateShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var result = this.categoriesController.Update(0, TestObjectFactory.GetInvalidUpdateCategoryRequestModel());
+            var result = this.categoriesController.Update(0, TestObjectFactoryDataTransferModels.GetInvalidUpdateCategoryRequestModel());
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -151,7 +154,7 @@
         {
             this.categoriesController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetInvalidUpdateCategoryRequestModel();
+            var model = TestObjectFactoryDataTransferModels.GetInvalidUpdateCategoryRequestModel();
             this.categoriesController.Validate(model);
 
             var result = this.categoriesController.Update(1, model);
@@ -164,7 +167,7 @@
         {
             this.categoriesController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetInvalidUpdateCategoryRequestModel();
+            var model = TestObjectFactoryDataTransferModels.GetInvalidUpdateCategoryRequestModel();
             this.categoriesController.Validate(model);
 
             var result = this.categoriesController.Update(1, model);
@@ -177,7 +180,7 @@
         {
             this.categoriesController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetValidUpdateCategoryRequestModel();
+            var model = TestObjectFactoryDataTransferModels.GetValidUpdateCategoryRequestModel();
             this.categoriesController.Validate(model);
 
             var result = this.categoriesController.Update(10, model);
@@ -190,7 +193,7 @@
         {
             this.categoriesController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetValidUpdateCategoryRequestModel();
+            var model = TestObjectFactoryDataTransferModels.GetValidUpdateCategoryRequestModel();
             this.categoriesController.Validate(model);
 
             var result = this.categoriesController.Update(model.Id, model);

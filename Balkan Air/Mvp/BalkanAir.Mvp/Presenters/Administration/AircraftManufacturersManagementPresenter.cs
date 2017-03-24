@@ -36,7 +36,7 @@
             this.View.OnAircraftManufacturersUpdateItem += this.View_OnAircraftManufacturersUpdateItem;
             this.View.OnAircraftManufacturersDeleteItem += this.View_OnAircraftManufacturersDeleteItem;
             this.View.OnAircraftManufacturersAddItem += this.View_OnAircraftManufacturersAddItem;
-            this.View.OnAircraftsGetData += View_OnAircraftsGetData;
+            this.View.OnAircraftsGetData += this.View_OnAircraftsGetData;
         }
 
         private void View_OnAircraftManufacturersGetData(object sender, EventArgs e)
@@ -68,6 +68,12 @@
             this.aircraftManufacturersServices.DeleteManufacturer(e.Id);
         }
 
+        private void View_OnAircraftManufacturersAddItem(object sender, AircraftManufacturersManagementEventArgs e)
+        {
+            var manufacturer = new AircraftManufacturer() { Name = e.Name };
+            e.Id = this.aircraftManufacturersServices.AddManufacturer(manufacturer);
+        }
+
         private void View_OnAircraftsGetData(object sender, EventArgs e)
         {
             this.View.Model.Aircrafts = this.aircraftsServices.GetAll()
@@ -77,12 +83,6 @@
                     Id = a.Id,
                     AircraftInfo = "Id:" + a.Id + " " + a.AircraftManufacturer.Name + " " + a.Model
                 });
-        }
-
-        private void View_OnAircraftManufacturersAddItem(object sender, AircraftManufacturersManagementEventArgs e)
-        {
-            var manufacturer = new AircraftManufacturer() { Name = e.Name };
-            e.Id = this.aircraftManufacturersServices.AddManufacturer(manufacturer);
         }
     }
 }

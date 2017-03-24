@@ -21,7 +21,7 @@
         [TestInitialize]
         public void TestInitialize()
         {
-            this.countriesRepository = TestObjectFactory.GetCountriesRepository();
+            this.countriesRepository = TestObjectFactoryRepositories.GetCountriesRepository();
             this.countriesServices = new CountriesServices(this.countriesRepository);
             this.country = new Country()
             {

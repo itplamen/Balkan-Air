@@ -21,7 +21,7 @@
         [TestInitialize]
         public void TestInitialize()
         {
-            this.usersRepository = TestObjectFactory.GetUsersRepository();
+            this.usersRepository = TestObjectFactoryRepositories.GetUsersRepository();
             this.usersServices = new UsersServices(this.usersRepository);
 
             this.user = new User()

@@ -6,6 +6,9 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    using Moq;
+
+    using BalkanAir.Tests.Common.TestObjects;
     using Services.Common;
     using Services.Data.Contracts;
     using TestObjects;
@@ -15,14 +18,14 @@
     [TestClass]
     public class CountriesControllerTests
     {
-        private ICountriesServices countriesServices;
+        private Mock<ICountriesServices> countriesServices;
         private CountriesController countriesController;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.countriesServices = TestObjectFactory.GetCountriesServices();
-            this.countriesController = new CountriesController(this.countriesServices);
+            this.countriesServices = TestObjectFactoryServices.GetCountriesServices();
+            this.countriesController = new CountriesController(this.countriesServices.Object);
         }
 
         [TestMethod]
@@ -30,7 +33,7 @@
         {
             this.countriesController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetInvalidCountryRequesModel();
+            var model = TestObjectFactoryDataTransferModels.GetInvalidCountryRequesModel();
             this.countriesController.Validate(model);
 
             var result = this.countriesController.Create(model);
@@ -43,7 +46,7 @@
         {
             this.countriesController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetInvalidCountryRequesModel();
+            var model = TestObjectFactoryDataTransferModels.GetInvalidCountryRequesModel();
             this.countriesController.Validate(model);
 
             var result = this.countriesController.Create(model);
@@ -56,7 +59,7 @@
         {
             this.countriesController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetValidCountryRequesModel();
+            var model = TestObjectFactoryDataTransferModels.GetValidCountryRequesModel();
             this.countriesController.Validate(model);
 
             var result = this.countriesController.Create(model);
@@ -139,7 +142,7 @@
         [TestMethod]
         public void UpdateShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var result = this.countriesController.Update(0, TestObjectFactory.GetInvalidUpdateCountryRequestModel());
+            var result = this.countriesController.Update(0, TestObjectFactoryDataTransferModels.GetInvalidUpdateCountryRequestModel());
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -151,7 +154,7 @@
         {
             this.countriesController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetInvalidUpdateCountryRequestModel();
+            var model = TestObjectFactoryDataTransferModels.GetInvalidUpdateCountryRequestModel();
             this.countriesController.Validate(model);
 
             var result = this.countriesController.Update(1, model);
@@ -164,7 +167,7 @@
         {
             this.countriesController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetInvalidUpdateCountryRequestModel();
+            var model = TestObjectFactoryDataTransferModels.GetInvalidUpdateCountryRequestModel();
             this.countriesController.Validate(model);
 
             var result = this.countriesController.Update(1, model);
@@ -177,7 +180,7 @@
         {
             this.countriesController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetValidUpdateCountryRequestModel();
+            var model = TestObjectFactoryDataTransferModels.GetValidUpdateCountryRequestModel();
             this.countriesController.Validate(model);
 
             var result = this.countriesController.Update(10, model);
@@ -190,7 +193,7 @@
         {
             this.countriesController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetValidUpdateCountryRequestModel();
+            var model = TestObjectFactoryDataTransferModels.GetValidUpdateCountryRequestModel();
             this.countriesController.Validate(model);
 
             var result = this.countriesController.Update(model.Id, model);

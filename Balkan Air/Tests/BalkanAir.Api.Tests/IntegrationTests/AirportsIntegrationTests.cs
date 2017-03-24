@@ -1,13 +1,13 @@
 ﻿namespace BalkanAir.Api.Tests.IntegrationTests
 {
+    using System;
+    using System.Net;
     using System.Net.Http;
+    using System.Threading;
     using System.Web.Http;
     using System.Web.Http.Routing;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System;
-    using System.Threading;
-    using System.Net;
 
     [TestClass]
     public class AirportsIntegrationTests

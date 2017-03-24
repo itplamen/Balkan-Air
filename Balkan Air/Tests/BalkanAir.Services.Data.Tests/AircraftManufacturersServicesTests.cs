@@ -21,7 +21,7 @@
         [TestInitialize]
         public void TestInitialize()
         {
-            this.manufacturersRepository = TestObjectFactory.GetAircraftManufacturersRepository();
+            this.manufacturersRepository = TestObjectFactoryRepositories.GetAircraftManufacturersRepository();
             this.aircraftManufacturersServices = new AircraftManufacturersServices(this.manufacturersRepository);
             this.aircraftManufacturer = new AircraftManufacturer()
             {

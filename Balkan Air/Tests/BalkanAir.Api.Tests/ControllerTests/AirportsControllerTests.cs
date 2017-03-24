@@ -6,6 +6,9 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    using Moq;
+
+    using BalkanAir.Tests.Common.TestObjects;
     using Services.Common;
     using Services.Data.Contracts;
     using TestObjects;
@@ -15,14 +18,14 @@
     [TestClass]
     public class AirportsControllerTests
     {
-        private IAirportsServices airportsServices;
+        private Mock<IAirportsServices> airportsServices;
         private AirportsController airportsController;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.airportsServices = TestObjectFactory.GetAirportsServices();
-            this.airportsController = new AirportsController(this.airportsServices);
+            this.airportsServices = TestObjectFactoryServices.GetAirportsServices();
+            this.airportsController = new AirportsController(this.airportsServices.Object);
         }
 
         [TestMethod]
@@ -30,7 +33,7 @@
         {
             this.airportsController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetInvalidAirportRequesModel();
+            var model = TestObjectFactoryDataTransferModels.GetInvalidAirportRequesModel();
             this.airportsController.Validate(model);
 
             var result = this.airportsController.Create(model);
@@ -43,7 +46,7 @@
         {
             this.airportsController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetInvalidAirportRequesModel();
+            var model = TestObjectFactoryDataTransferModels.GetInvalidAirportRequesModel();
             this.airportsController.Validate(model);
 
             var result = this.airportsController.Create(model);
@@ -56,7 +59,7 @@
         {
             this.airportsController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetValidAirportRequesModel();
+            var model = TestObjectFactoryDataTransferModels.GetValidAirportRequesModel();
             this.airportsController.Validate(model);
 
             var result = this.airportsController.Create(model);
@@ -139,7 +142,7 @@
         [TestMethod]
         public void UpdateShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var result = this.airportsController.Update(0, TestObjectFactory.GetInvalidUpdateAirportRequestModel());
+            var result = this.airportsController.Update(0, TestObjectFactoryDataTransferModels.GetInvalidUpdateAirportRequestModel());
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -151,7 +154,7 @@
         {
             this.airportsController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetInvalidUpdateAirportRequestModel();
+            var model = TestObjectFactoryDataTransferModels.GetInvalidUpdateAirportRequestModel();
             this.airportsController.Validate(model);
 
             var result = this.airportsController.Update(1, model);
@@ -164,7 +167,7 @@
         {
             this.airportsController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetInvalidUpdateAirportRequestModel();
+            var model = TestObjectFactoryDataTransferModels.GetInvalidUpdateAirportRequestModel();
             this.airportsController.Validate(model);
 
             var result = this.airportsController.Update(1, model);
@@ -177,7 +180,7 @@
         {
             this.airportsController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetValidUpdateAirportRequestModel();
+            var model = TestObjectFactoryDataTransferModels.GetValidUpdateAirportRequestModel();
             this.airportsController.Validate(model);
 
             var result = this.airportsController.Update(10, model);
@@ -190,7 +193,7 @@
         {
             this.airportsController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactory.GetValidUpdateAirportRequestModel();
+            var model = TestObjectFactoryDataTransferModels.GetValidUpdateAirportRequestModel();
             this.airportsController.Validate(model);
 
             var result = this.airportsController.Update(model.Id, model);

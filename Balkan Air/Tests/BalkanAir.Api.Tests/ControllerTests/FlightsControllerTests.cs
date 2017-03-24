@@ -7,23 +7,25 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    using BalkanAir.Tests.Common.TestObjects;
     using Services.Common;
     using Services.Data.Contracts;
     using TestObjects;
     using Web.Areas.Api.Controllers;
     using Web.Areas.Api.Models.Flights;
+    using Moq;
 
     [TestClass]
     public class FlightsControllerTests
     {
-        private ILegInstancesServices flightsServices;
+        private Mock<ILegInstancesServices> flightsServices;
         private FlightsController flightsController;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.flightsServices = TestObjectFactory.GetFlightServices();
-            this.flightsController = new FlightsController(this.flightsServices);
+            this.flightsServices = TestObjectFactoryServices.GetFlightServices();
+            this.flightsController = new FlightsController(this.flightsServices.Object);
         }
 
         [TestMethod]
@@ -31,7 +33,7 @@
         {
             this.flightsController.Configuration = new HttpConfiguration();
 
-            var invalidModel = TestObjectFactory.GetInvalidFlightRequestModel();
+            var invalidModel = TestObjectFactoryDataTransferModels.GetInvalidFlightRequestModel();
             this.flightsController.Validate(invalidModel);
 
             var result = this.flightsController.Create(invalidModel);
@@ -44,7 +46,7 @@
         {
             this.flightsController.Configuration = new HttpConfiguration();
 
-            var invalidModel = TestObjectFactory.GetInvalidFlightRequestModel();
+            var invalidModel = TestObjectFactoryDataTransferModels.GetInvalidFlightRequestModel();
             this.flightsController.Validate(invalidModel);
 
             var result = this.flightsController.Create(invalidModel);
@@ -57,7 +59,7 @@
         {
             this.flightsController.Configuration = new HttpConfiguration();
 
-            var validModel = TestObjectFactory.GetValidFlightRequestModel();
+            var validModel = TestObjectFactoryDataTransferModels.GetValidFlightRequestModel();
             this.flightsController.Validate(validModel);
 
             var result = this.flightsController.Create(validModel);
@@ -218,7 +220,7 @@
         [TestMethod]
         public void UpdateShouldReturnBadRequestWithInvalidIdMessage()
         {
-            var validModel = TestObjectFactory.GetValidUpdateFlightRequestModel();
+            var validModel = TestObjectFactoryDataTransferModels.GetValidUpdateFlightRequestModel();
             var result = this.flightsController.Update(-1, validModel);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
@@ -231,7 +233,7 @@
         {
             this.flightsController.Configuration = new HttpConfiguration();
 
-            var invalidModel = TestObjectFactory.GetInvalidUpdateFlightRequestModel();
+            var invalidModel = TestObjectFactoryDataTransferModels.GetInvalidUpdateFlightRequestModel();
             this.flightsController.Validate(invalidModel);
 
             var result = this.flightsController.Update(1, invalidModel);
@@ -244,7 +246,7 @@
         {
             this.flightsController.Configuration = new HttpConfiguration();
 
-            var invalidModel = TestObjectFactory.GetInvalidUpdateFlightRequestModel();
+            var invalidModel = TestObjectFactoryDataTransferModels.GetInvalidUpdateFlightRequestModel();
             this.flightsController.Validate(invalidModel);
 
             var result = this.flightsController.Update(1, invalidModel);
@@ -257,7 +259,7 @@
         {
             this.flightsController.Configuration = new HttpConfiguration();
 
-            var validModel = TestObjectFactory.GetValidUpdateFlightRequestModel();
+            var validModel = TestObjectFactoryDataTransferModels.GetValidUpdateFlightRequestModel();
             this.flightsController.Validate(validModel);
 
             var result = this.flightsController.Update(10, validModel);
@@ -270,7 +272,7 @@
         {
             this.flightsController.Configuration = new HttpConfiguration();
 
-            var validModel = TestObjectFactory.GetValidUpdateFlightRequestModel();
+            var validModel = TestObjectFactoryDataTransferModels.GetValidUpdateFlightRequestModel();
             this.flightsController.Validate(validModel);
 
             var result = this.flightsController.Update(1, validModel);

@@ -21,7 +21,7 @@
         [TestInitialize]
         public void TestInitialize()
         {
-            this.airportsRepository = TestObjectFactory.GetAirportsRepository();
+            this.airportsRepository = TestObjectFactoryRepositories.GetAirportsRepository();
             this.airportsServices = new AirportsServices(this.airportsRepository);
             this.airport = new Airport()
             {
