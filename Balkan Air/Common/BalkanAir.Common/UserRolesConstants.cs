@@ -1,4 +1,4 @@
-﻿namespace BalkanAir.Data.Common
+﻿namespace BalkanAir.Common
 {
     public static class UserRolesConstants
     {

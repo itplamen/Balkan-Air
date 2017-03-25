@@ -134,11 +134,10 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\Antlr3.Runtim
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\AspNet.ScriptManager.bootstrap.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\AspNet.ScriptManager.jQuery.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\AutoMapper.dll
-D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Data.Common.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Common.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Data.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Data.Models.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Mvp.dll
-D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Services.Common.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Services.Data.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Web.Common.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\Castle.Core.dll
@@ -189,11 +188,10 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\System.Web.Pr
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\WebActivatorEx.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\WebFormsMvp.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\WebGrease.dll
-D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Data.Common.pdb
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Common.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Data.Models.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Data.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Mvp.pdb
-D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Services.Common.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Services.Data.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\BalkanAir.Web.Common.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Web\BalkanAir.Web\bin\AutoMapper.xml

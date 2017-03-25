@@ -7,13 +7,14 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    using Moq;
+
     using BalkanAir.Tests.Common.TestObjects;
-    using Services.Common;
+    using Common;
     using Services.Data.Contracts;
     using TestObjects;
     using Web.Areas.Api.Controllers;
     using Web.Areas.Api.Models.Flights;
-    using Moq;
 
     [TestClass]
     public class FlightsControllerTests

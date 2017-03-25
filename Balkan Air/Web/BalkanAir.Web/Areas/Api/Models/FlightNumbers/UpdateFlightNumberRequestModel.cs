@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using Data.Common;
+    using BalkanAir.Common;
     using Data.Models;
     using Infrastructure.Mapping;
     

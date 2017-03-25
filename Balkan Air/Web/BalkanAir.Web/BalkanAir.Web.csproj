@@ -884,9 +884,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\BalkanAir.Data.Common\BalkanAir.Data.Common.csproj">
-      <Project>{F9E825F6-A4D5-4328-BCD8-FF05CDB86737}</Project>
-      <Name>BalkanAir.Data.Common</Name>
+    <ProjectReference Include="..\..\Common\BalkanAir.Common\BalkanAir.Common.csproj">
+      <Project>{3d781ee7-ef41-45ba-99e4-6d21f0de3b2e}</Project>
+      <Name>BalkanAir.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\BalkanAir.Data.Models\BalkanAir.Data.Models.csproj">
       <Project>{3e67705b-24a5-47c5-90f1-e54a45c0f81c}</Project>
@@ -899,10 +899,6 @@
     <ProjectReference Include="..\..\Mvp\BalkanAir.Mvp\BalkanAir.Mvp.csproj">
       <Project>{2F740AC4-F367-4121-A3CB-B0B61DA8AE88}</Project>
       <Name>BalkanAir.Mvp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\BalkanAir.Services.Common\BalkanAir.Services.Common.csproj">
-      <Project>{1E23C3F5-2483-4B5C-95E7-1A2D2CD77FB1}</Project>
-      <Name>BalkanAir.Services.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\BalkanAir.Services.Data\BalkanAir.Services.Data.csproj">
       <Project>{df4db207-0cce-4542-9ff1-f662daf0cc14}</Project>

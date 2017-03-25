@@ -1,6 +1,7 @@
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\BalkanAir.Mvp.dll.config
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\BalkanAir.Mvp.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\BalkanAir.Mvp.pdb
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\BalkanAir.Common.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\BalkanAir.Data.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\BalkanAir.Data.Models.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\BalkanAir.Services.Data.dll
@@ -10,6 +11,7 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\EntityF
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\WebFormsMvp.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\BalkanAir.Common.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\BalkanAir.Data.Models.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\BalkanAir.Data.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Mvp\BalkanAir.Mvp\bin\Debug\BalkanAir.Services.Data.pdb

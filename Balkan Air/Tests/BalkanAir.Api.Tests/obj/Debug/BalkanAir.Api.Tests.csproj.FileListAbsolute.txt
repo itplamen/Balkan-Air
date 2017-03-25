@@ -14,9 +14,9 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Api.Tests.dll.config
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Api.Tests.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Api.Tests.pdb
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Common.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Data.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Data.Models.dll
-D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Services.Common.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Services.Data.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Tests.Common.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Web.Common.dll
@@ -57,9 +57,9 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Microsoft.Web.Infrastructure.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\Ninject.Extensions.Factory.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\System.Web.Cors.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Common.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Data.Models.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Data.pdb
-D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Services.Common.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Services.Data.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Web.Common.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Api.Tests\bin\Debug\BalkanAir.Web.pdb

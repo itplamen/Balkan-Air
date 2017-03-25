@@ -1,6 +1,7 @@
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Mvp.Tests\bin\Debug\BalkanAir.Mvp.Tests.dll.config
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Mvp.Tests\bin\Debug\BalkanAir.Mvp.Tests.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Mvp.Tests\bin\Debug\BalkanAir.Mvp.Tests.pdb
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Mvp.Tests\bin\Debug\BalkanAir.Common.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Mvp.Tests\bin\Debug\BalkanAir.Data.Models.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Mvp.Tests\bin\Debug\BalkanAir.Mvp.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Mvp.Tests\bin\Debug\BalkanAir.Services.Data.dll
@@ -14,6 +15,7 @@ D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Mvp.Tests\bin\Debug
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Mvp.Tests\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Mvp.Tests\bin\Debug\BalkanAir.Data.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Mvp.Tests\bin\Debug\BalkanAir.Web.Common.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Mvp.Tests\bin\Debug\BalkanAir.Common.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Mvp.Tests\bin\Debug\BalkanAir.Data.Models.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Mvp.Tests\bin\Debug\BalkanAir.Mvp.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Tests\BalkanAir.Mvp.Tests\bin\Debug\BalkanAir.Services.Data.pdb

@@ -8,10 +8,9 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
-    using Data.Common;
+    using BalkanAir.Common;
     using Data.Models;
     using Models.Flights;
-    using Services.Common;
     using Services.Data.Contracts;
 
     [EnableCors("*", "*", "*")]

@@ -8,10 +8,9 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
-    using Data.Common;
+    using BalkanAir.Common;
     using Data.Models;
     using Models.FlightLegs;
-    using Services.Common;
 
     /// <summary>
     /// This controller must be accessible only from the Administrator.

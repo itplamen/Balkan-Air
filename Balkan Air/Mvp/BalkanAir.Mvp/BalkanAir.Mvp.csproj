@@ -133,6 +133,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\BalkanAir.Common\BalkanAir.Common.csproj">
+      <Project>{3D781EE7-EF41-45BA-99E4-6D21F0DE3B2E}</Project>
+      <Name>BalkanAir.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\BalkanAir.Data.Models\BalkanAir.Data.Models.csproj">
       <Project>{3e67705b-24a5-47c5-90f1-e54a45c0f81c}</Project>
       <Name>BalkanAir.Data.Models</Name>

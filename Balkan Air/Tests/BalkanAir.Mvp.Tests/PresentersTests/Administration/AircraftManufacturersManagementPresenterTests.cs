@@ -8,6 +8,7 @@
     using Moq;
 
     using BalkanAir.Tests.Common.TestObjects;
+    using Common;
     using Data.Models;
     using EventArgs.Administration;
     using Presenters.Administration;
@@ -66,10 +67,10 @@
             this.aircraftManufacturersView.Raise(a => a.OnAircraftManufacturersUpdateItem += null,
                 new AircraftManufacturersManagementEventArgs() { Id = invalidId });
 
-            string expectedError = string.Format("Item with id {0} was not found", invalidId);
-            string result = this.aircraftManufacturersView.Object.ModelState[""].Errors[0].ErrorMessage;
-            Assert.AreEqual(1, this.aircraftManufacturersView.Object.ModelState[""].Errors.Count);
-            Assert.AreEqual(expectedError, result);
+            string expectedError = string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, invalidId);
+
+            Assert.AreEqual(1, this.aircraftManufacturersView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors.Count);
+            Assert.AreEqual(expectedError, this.aircraftManufacturersView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors[0].ErrorMessage);
         }
 
         [TestMethod]

@@ -17,12 +17,12 @@ C:\Users\itplamen\Desktop\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\Balkan
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\BalkanAir.Data.Models.dll.config
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\BalkanAir.Data.Models.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\BalkanAir.Data.Models.pdb
-D:\GitHub Repositories\Balkan-Air\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\BalkanAir.Data.Common.dll
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\BalkanAir.Common.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\EntityFramework.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\EntityFramework.SqlServer.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
-D:\GitHub Repositories\Balkan-Air\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\BalkanAir.Data.Common.pdb
+D:\GitHub Repositories\Balkan-Air\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\BalkanAir.Common.pdb
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\EntityFramework.xml
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\EntityFramework.SqlServer.xml
 D:\GitHub Repositories\Balkan-Air\Balkan Air\Data\BalkanAir.Data.Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml

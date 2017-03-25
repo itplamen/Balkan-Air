@@ -9,7 +9,7 @@
     using Moq;
 
     using BalkanAir.Tests.Common.TestObjects;
-    using Services.Common;
+    using Common;
     using Services.Data.Contracts;
     using TestObjects;
     using Web.Areas.Api.Controllers;
