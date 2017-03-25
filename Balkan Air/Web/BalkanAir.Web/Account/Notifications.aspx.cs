@@ -15,6 +15,7 @@
     using BalkanAir.Services.Data.Contracts;
     using System.Web.ModelBinding;
     using Common;
+    using Auth;
 
     public partial class Notifications : Page
     {

@@ -2,13 +2,13 @@
 {
     using System;
 
-    using Web.Areas.Api.Models.AircraftManufacturers;
-    using Web.Areas.Api.Models.Aircrafts;
-    using Web.Areas.Api.Models.Airports;
-    using Web.Areas.Api.Models.Categories;
-    using Web.Areas.Api.Models.Countries;
-    using Web.Areas.Api.Models.Fares;
-    using Web.Areas.Api.Models.Flights;
+    using Models.AircraftManufacturers;
+    using Models.Aircrafts;
+    using Models.Airports;
+    using Models.Categories;
+    using Models.Countries;
+    using Models.Fares;
+    using Models.Flights;
 
     public static class TestObjectFactoryDataTransferModels
     {

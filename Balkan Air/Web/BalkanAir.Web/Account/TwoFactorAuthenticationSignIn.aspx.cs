@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using BalkanAir.Data.Models;
 using BalkanAir.Web.App_Start;
+using BalkanAir.Auth;
 
 namespace BalkanAir.Web.Account
 {

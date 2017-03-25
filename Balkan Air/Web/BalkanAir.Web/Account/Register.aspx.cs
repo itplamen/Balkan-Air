@@ -15,6 +15,7 @@
     using Data.Models;
     using Services.Data.Contracts;
     using App_Start;
+    using Auth;
 
     public partial class Register : Page
     {

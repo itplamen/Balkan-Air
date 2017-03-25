@@ -17,7 +17,7 @@
         [AssemblyInitialize]
         public static void AssemblyInitialize(TestContext context)
         {
-            AutoMapperConfig.RegisterMappings(Assembly.Load(Assemblies.BALKAN_AIR_WEB));
+            AutoMapperConfig.RegisterMappings(Assembly.Load(Assemblies.BALKAN_AIR_API));
 
             var config = new HttpConfiguration();
             WebApiConfig.Register(config);

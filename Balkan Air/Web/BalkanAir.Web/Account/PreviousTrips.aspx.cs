@@ -12,7 +12,8 @@
     using Ninject;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
-     
+    using Auth;
+
     public partial class PreviousTrips : Page
     {
         [Inject]

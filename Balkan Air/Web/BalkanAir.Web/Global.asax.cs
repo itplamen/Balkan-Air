@@ -18,7 +18,7 @@
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             DbConfig.Initialize();
-            AutoMapperConfig.RegisterMappings(Assembly.Load(Assemblies.BALKAN_AIR_WEB));
+            AutoMapperConfig.RegisterMappings(Assembly.Load(Assemblies.BALKAN_AIR_API));
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }

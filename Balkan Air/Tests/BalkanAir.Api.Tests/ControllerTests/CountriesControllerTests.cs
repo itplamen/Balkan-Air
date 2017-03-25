@@ -10,10 +10,10 @@
 
     using BalkanAir.Tests.Common.TestObjects;
     using Common;
+    using Controllers;
+    using Models.Countries;
     using Services.Data.Contracts;
     using TestObjects;
-    using Web.Areas.Api.Controllers;
-    using Web.Areas.Api.Models.Countries;
 
     [TestClass]
     public class CountriesControllerTests

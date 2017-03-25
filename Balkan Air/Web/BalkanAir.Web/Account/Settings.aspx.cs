@@ -13,6 +13,7 @@
     using Services.Data.Contracts;
     using Common;
     using App_Start;
+    using Auth;
 
     public partial class Settings : Page
     {

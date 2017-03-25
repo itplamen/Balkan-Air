@@ -6,6 +6,7 @@ using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using BalkanAir.Web.App_Start;
+using BalkanAir.Auth;
 
 namespace BalkanAir.Web.Account
 {

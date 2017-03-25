@@ -110,6 +110,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Api\BalkanAir.Api\BalkanAir.Api.csproj">
+      <Project>{8787dbdd-5cd5-4ad6-8efe-b7d7c7589dc5}</Project>
+      <Name>BalkanAir.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\BalkanAir.Common\BalkanAir.Common.csproj">
       <Project>{3d781ee7-ef41-45ba-99e4-6d21f0de3b2e}</Project>
       <Name>BalkanAir.Common</Name>

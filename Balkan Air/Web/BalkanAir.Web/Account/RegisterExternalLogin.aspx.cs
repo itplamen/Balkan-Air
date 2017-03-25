@@ -6,6 +6,7 @@ using Microsoft.Owin.Security;
 using Owin;
 using BalkanAir.Data.Models;
 using BalkanAir.Web.App_Start;
+using BalkanAir.Auth;
 
 namespace BalkanAir.Web.Account
 {

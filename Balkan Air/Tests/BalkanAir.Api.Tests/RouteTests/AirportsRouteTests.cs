@@ -9,8 +9,8 @@
 
     using Newtonsoft.Json;
 
+    using Controllers;
     using TestObjects;
-    using Web.Areas.Api.Controllers;
 
     [TestClass]
     public class AirportsRouteTests

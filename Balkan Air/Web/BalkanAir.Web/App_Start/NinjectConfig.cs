@@ -17,9 +17,9 @@ namespace BalkanAir.Web.App_Start
     using Data.Helper;
     using Data.Repositories;
     using Data.Repositories.Contracts;
-    using Infrastructure;
     using NinjectBindingsModules;
     using WebFormsMvp.Binder;
+    using Api.Infrastructure;
 
     public static class NinjectConfig 
     {

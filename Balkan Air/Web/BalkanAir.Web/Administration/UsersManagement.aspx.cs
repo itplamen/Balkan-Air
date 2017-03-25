@@ -15,6 +15,7 @@
     using System.Web;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.AspNet.Identity;
+    using Auth;
 
     public partial class UsersManagement : Page
     {

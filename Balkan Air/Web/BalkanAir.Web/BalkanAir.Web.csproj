@@ -706,32 +706,10 @@
       <DependentUpon>SendMail.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\AutoMapperConfig.cs" />
-    <Compile Include="App_Start\IdentityHelper.cs" />
     <Compile Include="App_Start\NinjectBindingsModules\MvpNinjectModule.cs" />
     <Compile Include="App_Start\PresenterFactories\ICustomPresenterFactory.cs" />
     <Compile Include="App_Start\PresenterFactories\WebFormsMvpPresenterFactory.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Areas\Api\Controllers\AircraftManufacturersController.cs" />
-    <Compile Include="Areas\Api\Controllers\AircraftsController.cs" />
-    <Compile Include="Areas\Api\Controllers\AirportsController.cs" />
-    <Compile Include="Areas\Api\Controllers\CategoriesController.cs" />
-    <Compile Include="Areas\Api\Controllers\CountriesController.cs" />
-    <Compile Include="Areas\Api\Controllers\FaresController.cs" />
-    <Compile Include="Areas\Api\Controllers\FlightLegsController.cs" />
-    <Compile Include="Areas\Api\Controllers\FlightNumbersController.cs" />
-    <Compile Include="Areas\Api\Controllers\FlightsController.cs" />
-    <Compile Include="Areas\Api\Controllers\NewsController.cs" />
-    <Compile Include="Areas\Api\Controllers\UsersController.cs" />
-    <Compile Include="Areas\Api\Models\AircraftManufacturers\AircraftManufacturerRequestModel.cs" />
-    <Compile Include="Areas\Api\Models\AircraftManufacturers\AircraftManufacturerResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\AircraftManufacturers\AircraftManufacturerSimpleResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\AircraftManufacturers\UpdateAircraftManufacturerRequestModel.cs" />
-    <Compile Include="Areas\Api\Models\Aircrafts\AircraftRequesModel.cs" />
-    <Compile Include="Areas\Api\Models\Aircrafts\AircraftResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\Aircrafts\AircraftSimpleResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\Aircrafts\UpdateAircraftRequestModel.cs" />
-    <Compile Include="Areas\Api\Models\Airports\AirportRequestModel.cs" />
-    <Compile Include="Areas\Api\Models\Airports\AirportResponseModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -741,45 +719,10 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\DbConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\NinjectWeb.cs" />
     <Compile Include="App_Start\NinjectConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Areas\Api\Models\Airports\AirportSimpleResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\Airports\UpdateAirportRequestModel.cs" />
-    <Compile Include="Areas\Api\Models\Categories\CategoryRequestModel.cs" />
-    <Compile Include="Areas\Api\Models\Categories\CategoryResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\Categories\CategorySimpleResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\Categories\UpdateCategoryRequestModel.cs" />
-    <Compile Include="Areas\Api\Models\Countries\CountryRequestModel.cs" />
-    <Compile Include="Areas\Api\Models\Countries\CountryResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\Countries\CountrySimpleResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\Countries\UpdateCountryRequestModel.cs" />
-    <Compile Include="Areas\Api\Models\Fares\FareRequestModel.cs" />
-    <Compile Include="Areas\Api\Models\Fares\FareResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\Fares\UpdateFareRequestModel.cs" />
-    <Compile Include="Areas\Api\Models\FlightLegs\FlightLegRequestModel.cs" />
-    <Compile Include="Areas\Api\Models\FlightLegs\FlightLegResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\FlightLegs\FlightLegSimpleResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\FlightLegs\UpdateFlightLegRequestModel.cs" />
-    <Compile Include="Areas\Api\Models\FlightNumbers\FlightNumberResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\FlightNumbers\FlightNumberSimpleResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\FlightNumbers\UpdateFlightNumberRequestModel.cs" />
-    <Compile Include="Areas\Api\Models\FlightStatuses\FlightStatusSimpleResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\Flights\FlightRequestModel.cs" />
-    <Compile Include="Areas\Api\Models\Flights\FlightResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\Flights\FlightSimpleResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\Flights\UpdateFlightRequestModel.cs" />
-    <Compile Include="Areas\Api\Models\News\NewsRequestModel.cs" />
-    <Compile Include="Areas\Api\Models\News\NewsResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\News\NewsSimpleResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\News\UpdateNewsRequestModel.cs" />
-    <Compile Include="Areas\Api\Models\Routes\RouteSimpleResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\TravelClasses\TravelClassRequestModel.cs" />
-    <Compile Include="Areas\Api\Models\TravelClasses\TravelClassSimpleResponseModel.cs" />
-    <Compile Include="Areas\Api\Models\Users\UsersResponseModel.cs" />
-    <Compile Include="Areas\Api\Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Booking\Extras.aspx.cs">
       <DependentUpon>Extras.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -832,9 +775,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
-    <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
-    <Compile Include="Infrastructure\ObjectFactory.cs" />
     <Compile Include="Administration\FlightsManagement.aspx.cs">
       <DependentUpon>FlightsManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -884,6 +824,14 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Api\BalkanAir.Api\BalkanAir.Api.csproj">
+      <Project>{8787DBDD-5CD5-4AD6-8EFE-B7D7C7589DC5}</Project>
+      <Name>BalkanAir.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Auth\BalkanAir.Auth\BalkanAir.Auth.csproj">
+      <Project>{b43bfd68-93a3-4537-8a12-6ba4479c4021}</Project>
+      <Name>BalkanAir.Auth</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\BalkanAir.Common\BalkanAir.Common.csproj">
       <Project>{3d781ee7-ef41-45ba-99e4-6d21f0de3b2e}</Project>
       <Name>BalkanAir.Common</Name>

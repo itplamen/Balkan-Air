@@ -1,4 +1,5 @@
-﻿using BalkanAir.Data.Models;
+﻿using BalkanAir.Auth;
+using BalkanAir.Data.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
