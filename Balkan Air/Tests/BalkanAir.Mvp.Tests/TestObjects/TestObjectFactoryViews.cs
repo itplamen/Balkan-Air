@@ -70,5 +70,20 @@
 
             return baggageManagementView;
         }
+
+        public static Mock<IBookingsManagementView> GetBookingsManagementView()
+        {
+            var bookingsManagementView = new Mock<IBookingsManagementView>();
+
+            ModelStateDictionary = new ModelStateDictionary();
+
+            bookingsManagementView.Setup(b => b.Model)
+                .Returns(new BookingsManagementViewModel());
+
+            bookingsManagementView.Setup(b => b.ModelState)
+                .Returns(ModelStateDictionary);
+
+            return bookingsManagementView;
+        }
     }
 }

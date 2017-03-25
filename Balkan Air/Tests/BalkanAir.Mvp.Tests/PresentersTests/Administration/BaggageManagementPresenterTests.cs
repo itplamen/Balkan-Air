@@ -145,7 +145,7 @@
             this.baggageView.Raise(b => b.OnBaggageDeleteItem += null, 
                 new BaggageManagementEventArgs() { Id = validId });
 
-            this.baggageServices.Verify(a => a.DeleteBaggage(validId), Times.Once);
+            this.baggageServices.Verify(b => b.DeleteBaggage(validId), Times.Once);
         }
 
         [TestMethod]
@@ -174,7 +174,7 @@
                 BookingId = bookingId
             };
 
-            this.baggageView.Raise(a => a.OnBaggageAddItem += null, bagEventArgs);
+            this.baggageView.Raise(b => b.OnBaggageAddItem += null, bagEventArgs);
 
             var expectedId = 1;
 
