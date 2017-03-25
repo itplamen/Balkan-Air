@@ -5,6 +5,7 @@
 
     using WebFormsMvp;
 
+    using Common;
     using Data.Models;
     using EventArgs.Administration;
     using Services.Data.Contracts;
@@ -15,7 +16,8 @@
         private readonly IAirportsServices airportsServices;
         private readonly ICountriesServices countriesServices;
 
-        public AirportsManagementPresenter(IAirportsManagementView view, IAirportsServices airportsServices, ICountriesServices countriesServices)
+        public AirportsManagementPresenter(IAirportsManagementView view, IAirportsServices airportsServices, 
+            ICountriesServices countriesServices)
             : base(view)
         {
             if (airportsServices == null)
@@ -47,11 +49,17 @@
 
         private void View_OnAirprotsUpdateItem(object sender, AirportsManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(AirportsManagementEventArgs));
+            }
+
             var airport = this.airportsServices.GetAirport(e.Id);
 
             if (airport == null)
             {
-                this.View.ModelState.AddModelError("", String.Format("Item with id {0} was not found", e.Id));
+                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                    string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
                 return;
             }
 
@@ -59,6 +67,11 @@
 
             if (this.View.ModelState.IsValid)
             {
+                if (e.CountryId <= 0)
+                {
+                    throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
+                }
+
                 airport.CountryId = e.CountryId;
                 this.airportsServices.UpdateAirport(e.Id, airport);
             }
@@ -66,11 +79,21 @@
 
         private void View_OnAirportsDeleteItem(object sender, AirportsManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(AirportsManagementEventArgs));
+            }
+
             this.airportsServices.DeleteAirport(e.Id);
         }
 
         private void View_OnAirprotsAddItem(object sender, AirportsManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(AirportsManagementEventArgs));
+            }
+
             var airport = new Airport()
             {
                 Name = e.Name,

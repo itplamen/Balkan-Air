@@ -110,7 +110,7 @@
 
             this.aircraftsView
                 .Verify(a => a.TryUpdateModel(
-                    It.Is<Aircraft>(m => m.Id == validId && m.AircraftManufacturerId == validManufacturerId)),
+                    It.Is<Aircraft>(ar => ar.Id == validId && ar.AircraftManufacturerId == validManufacturerId)),
                     Times.Once);
         }
 
@@ -216,7 +216,7 @@
         }
 
         [TestMethod]
-        public void GetManufacturersShouldAddManufacturersToViewModelWhenOnGetDataEventIsRaised()
+        public void GeDataShouldAddManufacturersToViewModelWhenOnGetDataEventIsRaised()
         {
             this.aircraftsView.Raise(a => a.OnAircraftManufacturersGetData += null, EventArgs.Empty);
 

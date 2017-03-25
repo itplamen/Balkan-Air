@@ -181,7 +181,7 @@
         }
 
         [TestMethod]
-        public void GetAircraftsShouldAddAircraftsToViewModelWhenOnGetDataEventIsRaised()
+        public void GetDataShouldAddAircraftsToViewModelWhenOnGetDataEventIsRaised()
         {
             this.aircraftManufacturersView.Raise(a => a.OnAircraftsGetData += null, EventArgs.Empty);
 

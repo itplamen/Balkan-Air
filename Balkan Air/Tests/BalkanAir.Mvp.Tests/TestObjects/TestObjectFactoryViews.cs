@@ -40,5 +40,20 @@
 
             return aircraftsManagementView;
         }
+
+        public static Mock<IAirportsManagementView> GetAirportsManagementView()
+        {
+            var airportsManagementView = new Mock<IAirportsManagementView>();
+
+            ModelStateDictionary = new ModelStateDictionary();
+
+            airportsManagementView.Setup(a => a.Model)
+                .Returns(new AirportsManagementViewModel());
+
+            airportsManagementView.Setup(a => a.ModelState)
+                .Returns(ModelStateDictionary);
+
+            return airportsManagementView;
+        }
     }
 }

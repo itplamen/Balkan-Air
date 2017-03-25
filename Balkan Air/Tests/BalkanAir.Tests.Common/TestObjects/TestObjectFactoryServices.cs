@@ -99,6 +99,14 @@
             airportsServices.Setup(a => a.GetAll())
                 .Returns(TestObjectFactoryDataModels.Airports);
 
+            airportsServices.Setup(a => a.GetAirport(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<Airport>(null);
+
+            airportsServices.Setup(a => a.GetAirport(
+                    It.Is<int>(i => i == VALID_ID)))
+                .Returns(new Airport() { Id = VALID_ID });
+
             airportsServices.Setup(a => a.UpdateAirport(
                     It.Is<int>(i => i != VALID_ID),
                     It.IsAny<Airport>()))
