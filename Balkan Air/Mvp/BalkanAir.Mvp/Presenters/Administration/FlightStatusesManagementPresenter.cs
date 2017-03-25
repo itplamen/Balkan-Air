@@ -5,16 +5,18 @@
 
     using WebFormsMvp;
 
+    using Common;
+    using Data.Models;
     using EventArgs.Administration;
     using Services.Data.Contracts;
     using ViewContracts.Administration;
-    using Data.Models;
 
     public class FlightStatusesManagementPresenter : Presenter<IFlightStatusesManagementView>
     {
         private readonly IFlightStatusesServices flightStatusesServices;
 
-        public FlightStatusesManagementPresenter(IFlightStatusesManagementView view, IFlightStatusesServices flightStatusesServices) 
+        public FlightStatusesManagementPresenter(IFlightStatusesManagementView view, 
+            IFlightStatusesServices flightStatusesServices) 
             : base(view)
         {
             if (flightStatusesServices == null)
@@ -38,11 +40,17 @@
 
         private void View_OnFlightStatusesUpdateItem(object sender, FlightStatusesManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(FlightStatusesManagementEventArgs));
+            }
+
             var flightStatus = this.flightStatusesServices.GetFlightStatus(e.Id);
 
             if (flightStatus == null)
             {
-                this.View.ModelState.AddModelError("", String.Format("Item with id {0} was not found", e.Id));
+                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                    string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
                 return;
             }
 
@@ -56,11 +64,21 @@
 
         private void View_OnFlightStatusesDeleteItem(object sender, FlightStatusesManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(FlightStatusesManagementEventArgs));
+            }
+
             this.flightStatusesServices.DeleteFlightStatus(e.Id);
         }
 
         private void View_OnFlightStatusesAddItem(object sender, FlightStatusesManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(FlightStatusesManagementEventArgs));
+            }
+
             var flightStatus = new FlightStatus()
             {
                 Name = e.Name

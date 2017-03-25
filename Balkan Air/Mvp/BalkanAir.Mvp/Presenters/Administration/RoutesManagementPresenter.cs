@@ -5,6 +5,7 @@
 
     using WebFormsMvp;
 
+    using Common;
     using Data.Models;
     using EventArgs.Administration;
     using Services.Data.Contracts;
@@ -48,11 +49,17 @@
 
         private void View_OnRoutesUpdateItem(object sender, RoutesManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(RoutesManagementEventArgs));
+            }
+
             var route = this.routesServices.GetRoute(e.Id);
 
             if (route == null)
             {
-                this.View.ModelState.AddModelError("", String.Format("Item with id {0} was not found", e.Id));
+                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                    string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
                 return;
             }
 
@@ -60,6 +67,11 @@
 
             if (this.View.ModelState.IsValid)
             {
+                if (route.OriginId <= 0)
+                {
+                    throw new IndexOutOfRangeException(ErrorMessages.INVALID_ID);
+                }
+
                 route.OriginId = e.OriginId;
                 route.DestinationId = e.DestinationId;
 
@@ -69,11 +81,21 @@
 
         private void View_OnRoutesDeleteItem(object sender, RoutesManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(RoutesManagementEventArgs));
+            }
+
             this.routesServices.DeleteRoute(e.Id);
         }
 
         private void View_OnRoutesAddItem(object sender, RoutesManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(RoutesManagementEventArgs));
+            }
+
             var route = new Route()
             {
                 OriginId = e.OriginId,

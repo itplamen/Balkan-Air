@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class FlightLegsManagementEventArgs
+    public class FlightLegsManagementEventArgs : EventArgs
     {
         public int Id { get; set; }
 

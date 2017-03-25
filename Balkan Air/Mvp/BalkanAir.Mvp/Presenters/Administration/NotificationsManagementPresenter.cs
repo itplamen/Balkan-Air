@@ -4,6 +4,7 @@
 
     using WebFormsMvp;
 
+    using Common;
     using Data.Models;
     using EventArgs.Administration;
     using Services.Data.Contracts;
@@ -13,7 +14,8 @@
     {
         private readonly INotificationsServices notificationsServices;
 
-        public NotificationsManagementPresenter(INotificationsManagementView view, INotificationsServices notificationsServices) 
+        public NotificationsManagementPresenter(INotificationsManagementView view, 
+            INotificationsServices notificationsServices) 
             : base(view)
         {
             if (notificationsServices == null)
@@ -36,11 +38,17 @@
 
         private void View_OnNotificationsUpdateItem(object sender, NotificationsManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(NotificationsManagementEventArgs));
+            }
+
             var notification = this.notificationsServices.GetNotification(e.Id);
 
             if (notification == null)
             {
-                this.View.ModelState.AddModelError("", String.Format("Item with id {0} was not found", e.Id));
+                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                    string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
                 return;
             }
 
@@ -54,11 +62,21 @@
 
         private void View_OnNotificationsDeleteItem(object sender, NotificationsManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(NotificationsManagementEventArgs));
+            }
+
             this.notificationsServices.DeleteNotification(e.Id);
         }
 
         private void View_OnNotificationsAddItem(object sender, NotificationsManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(NotificationsManagementEventArgs));
+            }
+
             var notification = new Notification()
             {
                 Content = e.Content,

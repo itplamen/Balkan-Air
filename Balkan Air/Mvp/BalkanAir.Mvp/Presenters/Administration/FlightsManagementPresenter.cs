@@ -4,6 +4,7 @@
 
     using WebFormsMvp;
 
+    using Common;
     using Data.Helper;
     using Data.Models;
     using EventArgs.Administration;
@@ -46,11 +47,17 @@
 
         private void View_OnFlightsUpdateItem(object sender, FlightsManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(FlightsManagementEventArgs));
+            }
+
             var flight = this.flightsServices.GetFlight(e.Id);
 
             if (flight == null)
             {
-                this.View.ModelState.AddModelError("", String.Format("Item with id {0} was not found", e.Id));
+                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                    string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
                 return;
             }
 
@@ -64,11 +71,21 @@
 
         private void View_OnFlightsDeleteItem(object sender, FlightsManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(FlightsManagementEventArgs));
+            }
+
             this.flightsServices.DeleteFlight(e.Id);
         }
 
         private void View_OnFlightsAddItem(object sender, FlightsManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(FlightsManagementEventArgs));
+            }
+
             var flight = new Flight()
             {
                 Number = e.Number
@@ -79,6 +96,11 @@
 
         private void View_OnUniqueFlightNumberGetItem(object sender, FlightsManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(FlightsManagementEventArgs));
+            }
+
             e.Number = this.numberGenerator.GetUniqueFlightNumber();
         }
     }

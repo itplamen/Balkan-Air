@@ -8,6 +8,7 @@
 
     using WebFormsMvp;
 
+    using Common;
     using Data.Models;
     using EventArgs.Administration;
     using Services.Data.Contracts;
@@ -106,11 +107,17 @@
 
         private void View_OnLegInstancesUpdateItem(object sender, LegInstancesManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(LegInstancesManagementEventArgs));
+            }
+
             var legInstance = this.legInstancesServices.GetLegInstance(e.Id);
 
             if (legInstance == null)
             {
-                this.View.ModelState.AddModelError("", String.Format("Item with id {0} was not found", e.Id));
+                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                    string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
                 return;
             }
 
@@ -128,11 +135,21 @@
 
         private void View_OnLegInstancesDeleteItem(object sender, LegInstancesManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(LegInstancesManagementEventArgs));
+            }
+
             this.legInstancesServices.DeleteLegInstance(e.Id);
         }
 
         private void View_OnLegInstancesAddItem(object sender, LegInstancesManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(LegInstancesManagementEventArgs));
+            }
+
             decimal price = this.faresServices.GetFare(e.FareId).Price;
 
             var legInstance = new LegInstance()
@@ -189,13 +206,24 @@
                                f.Route.Destination.Name + " (" + f.Route.Destination.Abbreviation + "), \u20AC" + f.Price
                 });
         }
+
         private void View_OnAirportInfoGetItem(object sender, LegInstancesManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(LegInstancesManagementEventArgs));
+            }
+
             this.View.Model.AirportInfo = this.GetAirport(e.AirportId);
         }
 
         private void View_OnSendNotificationToSubscribedUsers(object sender, LegInstancesManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(LegInstancesManagementEventArgs));
+            }
+
             var legInstance = this.legInstancesServices.GetLegInstance(e.Id);
 
             var notificationId = this.AddNotification(legInstance);

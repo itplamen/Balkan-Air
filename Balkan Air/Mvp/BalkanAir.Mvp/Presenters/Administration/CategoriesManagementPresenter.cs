@@ -5,10 +5,11 @@
 
     using WebFormsMvp;
 
+    using Common;
+    using Data.Models;
     using EventArgs.Administration;
     using Services.Data.Contracts;
     using ViewContracts.Administration;
-    using Data.Models;
 
     public class CategoriesManagementPresenter : Presenter<ICategoriesManagementView>
     {
@@ -38,11 +39,17 @@
 
         private void View_OnCategoriesUpdateItem(object sender, CategoriesManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(CategoriesManagementEventArgs));
+            }
+
             var category = this.categoriesServices.GetCategory(e.Id);
 
             if (category == null)
             {
-                this.View.ModelState.AddModelError("", String.Format("Item with id {0} was not found", e.Id));
+                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                    string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
                 return;
             }
 
@@ -56,15 +63,22 @@
 
         private void View_OnCategoriesDeleteItem(object sender, CategoriesManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(CategoriesManagementEventArgs));
+            }
+
             this.categoriesServices.DeleteCategory(e.Id);
         }
 
         private void View_OnCategoriesAddItem(object sender, CategoriesManagementEventArgs e)
         {
-            var category = new Category()
+            if (e == null)
             {
-                Name = e.Name
-            };
+                throw new ArgumentNullException(nameof(CategoriesManagementEventArgs));
+            }
+
+            var category = new Category() { Name = e.Name };
 
             e.Id = this.categoriesServices.AddCategory(category);
         }

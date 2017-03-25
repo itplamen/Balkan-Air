@@ -4,7 +4,7 @@
 
     using Data.Models;
     
-    public class NotificationsManagementEventArgs
+    public class NotificationsManagementEventArgs : EventArgs
     {
         public int Id { get; set; }
 

@@ -5,6 +5,7 @@
 
     using WebFormsMvp;
 
+    using Common;
     using Data.Models;
     using EventArgs.Administration;
     using Services.Data.Contracts;
@@ -32,11 +33,17 @@
 
         private void View_OnCountriesUpdateItem(object sender, CountriesManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(CountriesManagementEventArgs));
+            }
+
             var country = this.countriesServices.GetCountry(e.Id);
 
             if (country == null)
             {
-                this.View.ModelState.AddModelError("", String.Format("Item with id {0} was not found", e.Id));
+                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                    string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
                 return;
             }
 
@@ -48,20 +55,23 @@
             }
         }
 
-        private void View_OnCountriesGetData(object sender, EventArgs e)
-        {
-            this.View.Model.Countries = this.countriesServices.GetAll()
-                .OrderBy(c => c.Name)
-                .ThenBy(c => c.Abbreviation);
-        }
-
         private void View_OnCountriesDeleteItem(object sender, CountriesManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(CountriesManagementEventArgs));
+            }
+
             this.countriesServices.DeleteCountry(e.Id);
         }
 
         private void View_OnCountriesAddItem(object sender, CountriesManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(CountriesManagementEventArgs));
+            }
+
             var country = new Country()
             {
                 Name = e.Name,
@@ -69,6 +79,13 @@
             };
 
             e.Id = this.countriesServices.AddCountry(country);
+        }
+
+        private void View_OnCountriesGetData(object sender, EventArgs e)
+        {
+            this.View.Model.Countries = this.countriesServices.GetAll()
+                .OrderBy(c => c.Name)
+                .ThenBy(c => c.Abbreviation);
         }
     }
 }

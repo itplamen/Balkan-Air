@@ -5,6 +5,7 @@
 
     using WebFormsMvp;
 
+    using Common;
     using Data.Models;
     using EventArgs.Administration;
     using Services.Data.Contracts;
@@ -73,11 +74,17 @@
 
         private void View_OnFlightLegsUpdateItem(object sender, FlightLegsManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(FlightLegsManagementEventArgs));
+            }
+
             var flightLeg = this.flightLegsServices.GetFlightLeg(e.Id);
 
             if (flightLeg == null)
             {
-                this.View.ModelState.AddModelError("", String.Format("Item with id {0} was not found", e.Id));
+                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                    string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
                 return;
             }
 
@@ -96,11 +103,21 @@
 
         private void View_OnFlightLegsDeleteItem(object sender, FlightLegsManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(FlightLegsManagementEventArgs));
+            }
+
             this.flightLegsServices.DeleteFlightLeg(e.Id);
         }
 
         private void View_OnFlightLegsAddItem(object sender, FlightLegsManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(FlightLegsManagementEventArgs));
+            }
+
             var newFlightLeg = new FlightLeg()
             {
                 DepartureAirportId = e.DepartureAirportId,
@@ -165,6 +182,11 @@
 
         private void View_OnAirportGetItem(object sender, FlightLegsManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(FlightLegsManagementEventArgs));
+            }
+
             var airport = this.airportsServices.GetAirport(e.AirportId);
 
             if (airport == null)

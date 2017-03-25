@@ -5,6 +5,7 @@
 
     using WebFormsMvp;
 
+    using Common;
     using Data.Models;
     using EventArgs.Administration;
     using Services.Data.Contracts;
@@ -15,7 +16,8 @@
         private readonly IFaresServices faresServices;
         private readonly IRoutesServices routesServices;
 
-        public FaresManagementPresenter(IFaresManagementView view, IFaresServices faresServices, IRoutesServices routesServices)
+        public FaresManagementPresenter(IFaresManagementView view, IFaresServices faresServices, 
+            IRoutesServices routesServices)
             : base(view)
         {
             if (faresServices == null)
@@ -45,11 +47,17 @@
 
         private void View_OnFaresUpdateItem(object sender, FaresManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(FaresManagementEventArgs));
+            }
+
             var fare = this.faresServices.GetFare(e.Id);
 
             if (fare == null)
             {
-                this.View.ModelState.AddModelError("", String.Format("Item with id {0} was not found", e.Id));
+                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                    string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
                 return;
             }
 
@@ -57,6 +65,11 @@
 
             if (this.View.ModelState.IsValid)
             {
+                if (fare.RouteId <= 0)
+                {
+                    throw new IndexOutOfRangeException(ErrorMessages.INVALID_ID);
+                }
+
                 fare.RouteId = e.RouteId;
                 this.faresServices.UpdateFare(e.Id, fare);
             }
@@ -64,11 +77,21 @@
 
         private void View_OnFaresDeleteItem(object sender, FaresManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(FaresManagementEventArgs));
+            }
+
             this.faresServices.DeleteFare(e.Id);
         }
 
         private void View_OnFaresAddItem(object sender, FaresManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(FaresManagementEventArgs));
+            }
+
             var fare = new Fare()
             {
                 Price = e.Price,

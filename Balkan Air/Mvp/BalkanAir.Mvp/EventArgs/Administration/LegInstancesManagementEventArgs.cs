@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class LegInstancesManagementEventArgs
+    public class LegInstancesManagementEventArgs : EventArgs
     {
         public int Id { get; set; }
 

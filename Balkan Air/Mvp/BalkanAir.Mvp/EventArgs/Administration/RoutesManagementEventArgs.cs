@@ -1,6 +1,8 @@
 ﻿namespace BalkanAir.Mvp.EventArgs.Administration
 {
-    public class RoutesManagementEventArgs
+    using System;
+
+    public class RoutesManagementEventArgs : EventArgs
     {
         public int Id { get; set; }
 

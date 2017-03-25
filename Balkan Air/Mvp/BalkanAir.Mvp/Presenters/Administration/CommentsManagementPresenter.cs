@@ -5,6 +5,7 @@
 
     using WebFormsMvp;
 
+    using Common;
     using EventArgs.Administration;
     using Services.Data.Contracts;
     using ViewContracts.Administration;
@@ -36,11 +37,17 @@
 
         private void View_OnCommentsUpdateItem(object sender, CommentsManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(CommentsManagementEventArgs));
+            }
+
             var comment = this.commentsServices.GetComment(e.Id);
 
             if (comment == null)
             {
-                this.View.ModelState.AddModelError("", String.Format("Item with id {0} was not found", e.Id));
+                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                    string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
                 return;
             }
 
@@ -54,6 +61,11 @@
 
         private void View_OnCommentsDeleteItem(object sender, CommentsManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(CommentsManagementEventArgs));
+            }
+
             this.commentsServices.DeleteComment(e.Id);
         }
     }
