@@ -8,6 +8,6 @@
     {
         public IQueryable<Aircraft> Aircrafts { get; set; }
 
-        public IQueryable<AircraftManufacturer> AircraftManufacturer { get; set; }
+        public IQueryable<AircraftManufacturer> AircraftManufacturers { get; set; }
     }
 }

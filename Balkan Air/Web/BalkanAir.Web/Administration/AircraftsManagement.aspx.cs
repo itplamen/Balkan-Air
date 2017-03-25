@@ -47,7 +47,7 @@
         {
             this.OnAircraftManufacturersGetData?.Invoke(null, null);
 
-            return this.Model.AircraftManufacturer;
+            return this.Model.AircraftManufacturers;
         }
 
         protected void Page_Load(object sender, EventArgs e)

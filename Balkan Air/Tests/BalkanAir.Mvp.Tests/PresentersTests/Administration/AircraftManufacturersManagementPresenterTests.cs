@@ -160,7 +160,7 @@
         }
 
         [TestMethod]
-        public void AddItemShouldAddManufacturerAndReturnIdWhenOnAddItemEventIsRaiser()
+        public void AddItemShouldAddManufacturerAndReturnIdWhenOnAddItemEventIsRaised()
         {
             var manufacturerName = "Test Manufacturer";
             var manufacturerEventArgs = new AircraftManufacturersManagementEventArgs()

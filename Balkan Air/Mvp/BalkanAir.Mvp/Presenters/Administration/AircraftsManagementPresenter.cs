@@ -49,6 +49,11 @@
 
         private void View_OnAircraftsUpdateItem(object sender, AircraftsManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(AircraftsManagementEventArgs));
+            }
+
             var aircraft = this.aircraftsServices.GetAircraft(e.Id);
 
             if (aircraft == null)
@@ -61,6 +66,11 @@
 
             if (this.View.ModelState.IsValid)
             {
+                if (e.AircraftManufacturerId <= 0)
+                {
+                    throw new ArgumentOutOfRangeException(ErrorMessages.INVALID_ID);
+                }
+
                 aircraft.AircraftManufacturerId = e.AircraftManufacturerId;
                 this.aircraftsServices.UpdateAircraft(e.Id, aircraft);
             }
@@ -68,11 +78,21 @@
 
         private void View_OnAircraftsDeleteItem(object sender, AircraftsManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(AircraftsManagementEventArgs));
+            }
+
             this.aircraftsServices.DeleteAircraft(e.Id);
         }
 
         private void View_OnAircraftsAddItem(object sender, AircraftsManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(AircraftsManagementEventArgs));
+            }
+
             var aircraft = new Aircraft()
             {
                 Model = e.Model,
@@ -85,7 +105,7 @@
 
         private void View_OnAircraftManufacturersGetData(object sender, EventArgs e)
         {
-            this.View.Model.AircraftManufacturer = this.aircraftManufacturersServices.GetAll()
+            this.View.Model.AircraftManufacturers = this.aircraftManufacturersServices.GetAll()
                 .Where(a => !a.IsDeleted)
                 .OrderBy(a => a.Name);
         }
