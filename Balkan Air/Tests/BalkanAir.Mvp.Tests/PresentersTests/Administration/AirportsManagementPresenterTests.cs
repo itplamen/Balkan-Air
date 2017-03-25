@@ -108,10 +108,9 @@
                     CountryId = validCountryId
                 });
 
-            this.airportsView
-                .Verify(a => a.TryUpdateModel(
-                    It.Is<Airport>(ar => ar.Id == validId && ar.CountryId == validCountryId)),
-                    Times.Once);
+            this.airportsView.Verify(a => a.TryUpdateModel(
+                It.Is<Airport>(ar => ar.Id == validId && ar.CountryId == validCountryId)),
+                Times.Once);
         }
 
         [TestMethod]
@@ -155,11 +154,10 @@
                     CountryId = validCountryId
                 });
 
-            this.airportsServices
-                .Verify(a => a.UpdateAirport(
-                    validId,
-                    It.Is<Airport>(ar => ar.Id == validId && ar.CountryId == validCountryId)),
-                    Times.Once);
+            this.airportsServices.Verify(a => a.UpdateAirport(
+                validId,
+                It.Is<Airport>(ar => ar.Id == validId && ar.CountryId == validCountryId)),
+                Times.Once);
         }
 
         [TestMethod]
@@ -206,11 +204,10 @@
 
             var expectedId = 1;
 
-            this.airportsServices
-                .Verify(a => a.AddAirport(
-                    It.Is<Airport>(ar => ar.Name == name && ar.Abbreviation == abbreviation &&
-                                          ar.CountryId == countryId)),
-                    Times.Once);
+            this.airportsServices.Verify(a => a.AddAirport(
+                It.Is<Airport>(ar => ar.Name == name && ar.Abbreviation == abbreviation &&
+                    ar.CountryId == countryId)),
+                Times.Once);
 
             Assert.AreEqual(expectedId, airportEventArgs.Id);
         }

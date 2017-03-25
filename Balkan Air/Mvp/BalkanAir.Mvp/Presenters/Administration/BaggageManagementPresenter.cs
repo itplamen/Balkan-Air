@@ -5,6 +5,7 @@
 
     using WebFormsMvp;
 
+    using Common;
     using Data.Models;
     using EventArgs.Administration;
     using Services.Data.Contracts;
@@ -46,11 +47,17 @@
 
         private void View_OnBaggageUpdateItem(object sender, BaggageManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(BaggageManagementEventArgs));
+            }
+
             var baggage = this.baggageServices.GetBaggage(e.Id);
 
             if (baggage == null)
             {
-                this.View.ModelState.AddModelError("", String.Format("Item with id {0} was not found", e.Id));
+                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                    string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
                 return;
             }
 
@@ -64,11 +71,21 @@
 
         private void View_OnBaggageDeleteItem(object sender, BaggageManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(BaggageManagementEventArgs));
+            }
+
             this.baggageServices.DeleteBaggage(e.Id);
         }
 
         private void View_OnBaggageAddItem(object sender, BaggageManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(BaggageManagementEventArgs));
+            }
+
             var bag = new Baggage()
             {
                 Type = e.Type,
@@ -88,7 +105,8 @@
                 .Select(b => new
                 {
                     Id = b.Id,
-                    BookingInfo = "Id: " + b.Id + ", " + b.User.UserSettings.FirstName + " " + b.User.UserSettings.LastName
+                    BookingInfo = "Id: " + b.Id + ", " + b.User.UserSettings.FirstName + 
+                                  " " + b.User.UserSettings.LastName
                 });
         }
     }

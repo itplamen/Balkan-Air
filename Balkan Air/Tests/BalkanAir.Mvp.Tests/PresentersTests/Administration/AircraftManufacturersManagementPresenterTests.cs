@@ -104,8 +104,8 @@
             this.aircraftManufacturersView.Raise(a => a.OnAircraftManufacturersUpdateItem += null,
                 new AircraftManufacturersManagementEventArgs() { Id = validId });
 
-            this.aircraftManufacturersView
-                .Verify(a => a.TryUpdateModel(It.Is<AircraftManufacturer>(m => m.Id == validId)), Times.Once);
+            this.aircraftManufacturersView.Verify(a => a.TryUpdateModel(
+                It.Is<AircraftManufacturer>(m => m.Id == validId)), Times.Once);
         }
 
         [TestMethod]
@@ -118,8 +118,8 @@
             this.aircraftManufacturersView.Raise(a => a.OnAircraftManufacturersUpdateItem += null,
                 new AircraftManufacturersManagementEventArgs() { Id = validId });
 
-            this.aircraftManufacturersServices
-                .Verify(a => a.UpdateManufacturer(validId, It.IsAny<AircraftManufacturer>()), Times.Never);
+            this.aircraftManufacturersServices.Verify(a => a.UpdateManufacturer(
+                validId, It.IsAny<AircraftManufacturer>()), Times.Never);
         }
 
         [TestMethod]
@@ -129,8 +129,8 @@
             this.aircraftManufacturersView.Raise(a => a.OnAircraftManufacturersUpdateItem += null,
                 new AircraftManufacturersManagementEventArgs() { Id = validId });
 
-            this.aircraftManufacturersServices
-                .Verify(a => a.UpdateManufacturer(validId, It.Is<AircraftManufacturer>(m => m.Id == validId)), Times.Once);
+            this.aircraftManufacturersServices.Verify(a => a.UpdateManufacturer(
+                validId, It.Is<AircraftManufacturer>(m => m.Id == validId)), Times.Once);
         }
 
         [TestMethod]
@@ -173,9 +173,8 @@
 
             var expectedId = 1;
 
-            this.aircraftManufacturersServices
-                .Verify(a => a.AddManufacturer(
-                    It.Is<AircraftManufacturer>(d => d.Name == manufacturerName)), Times.Once);
+            this.aircraftManufacturersServices.Verify(a => a.AddManufacturer(
+                It.Is<AircraftManufacturer>(d => d.Name == manufacturerName)), Times.Once);
 
             Assert.AreEqual(expectedId, manufacturerEventArgs.Id);
         }

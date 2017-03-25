@@ -38,6 +38,34 @@
             }
         }.AsQueryable();
 
+        public static IQueryable<Baggage> Baggage = new List<Baggage>()
+        {
+            new Baggage()
+            {
+                Id = 1,
+                Type = BaggageType.Cabin,
+                Price = 1,
+                BookingId = 1
+            }
+        }.AsQueryable();
+
+        public static IQueryable<Booking> Bookings = new List<Booking>()
+        {
+            new Booking()
+            {
+                Id = 1,
+                User = new User()
+                {
+                    UserSettings = new UserSettings()
+                    {
+                        FirstName = "Test First Name",
+                        LastName = "Test Last Name"
+                    }
+                },
+                LegInstanceId = 1
+            }
+        }.AsQueryable();
+
         public static IQueryable<Category> Categories = new List<Category>()
         {
             new Category()

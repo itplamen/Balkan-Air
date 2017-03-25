@@ -1,8 +1,10 @@
 ﻿namespace BalkanAir.Mvp.EventArgs.Administration
 {
-    using BalkanAir.Data.Models;
+    using System;
 
-    public class BaggageManagementEventArgs
+    using Data.Models;
+
+    public class BaggageManagementEventArgs : EventArgs
     {
         public int Id { get; set; }
 

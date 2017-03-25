@@ -55,5 +55,20 @@
 
             return airportsManagementView;
         }
+
+        public static Mock<IBaggageManagementView> GetBaggageManagementView()
+        {
+            var baggageManagementView = new Mock<IBaggageManagementView>();
+
+            ModelStateDictionary = new ModelStateDictionary();
+
+            baggageManagementView.Setup(b => b.Model)
+                .Returns(new BaggageManagementViewModel());
+
+            baggageManagementView.Setup(b => b.ModelState)
+                .Returns(ModelStateDictionary);
+
+            return baggageManagementView;
+        }
     }
 }

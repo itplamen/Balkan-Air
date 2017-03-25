@@ -128,6 +128,86 @@
             return airportsServices;
         }
 
+        public static Mock<IBaggageServices> GetBaggageServices()
+        {
+            var baggageServices = new Mock<IBaggageServices>();
+
+            baggageServices.Setup(b => b.AddBaggage(
+                    It.IsAny<Baggage>()))
+                .Returns(VALID_ID);
+
+            baggageServices.Setup(b => b.GetAll())
+                .Returns(TestObjectFactoryDataModels.Baggage);
+
+            baggageServices.Setup(b => b.GetBaggage(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<Baggage>(null);
+
+            baggageServices.Setup(b => b.GetBaggage(
+                    It.Is<int>(i => i == VALID_ID)))
+                .Returns(new Baggage() { Id = VALID_ID });
+
+            baggageServices.Setup(b => b.UpdateBaggage(
+                    It.Is<int>(i => i != VALID_ID),
+                    It.IsAny<Baggage>()))
+                .Returns<Baggage>(null);
+
+            baggageServices.Setup(b => b.UpdateBaggage(
+                    It.Is<int>(i => i == VALID_ID),
+                    It.IsAny<Baggage>()))
+                .Returns(new Baggage() { Id = VALID_ID });
+
+            baggageServices.Setup(a => a.DeleteBaggage(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<Baggage>(null);
+
+            baggageServices.Setup(b => b.DeleteBaggage(
+                    It.Is<int>(i => i == VALID_ID)))
+                .Returns(new Baggage() { Id = VALID_ID });
+
+            return baggageServices;
+        }
+
+        public static Mock<IBookingsServices> GetBookingsServices()
+        {
+            var bookingsServices = new Mock<IBookingsServices>();
+
+            bookingsServices.Setup(b => b.AddBooking(
+                    It.IsAny<Booking>()))
+                .Returns(VALID_ID);
+
+            bookingsServices.Setup(b => b.GetAll())
+                .Returns(TestObjectFactoryDataModels.Bookings);
+
+            bookingsServices.Setup(b => b.GetBooking(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<Booking>(null);
+
+            bookingsServices.Setup(b => b.GetBooking(
+                    It.Is<int>(i => i == VALID_ID)))
+                .Returns(new Booking() { Id = VALID_ID });
+
+            bookingsServices.Setup(b => b.UpdateBooking(
+                    It.Is<int>(i => i != VALID_ID),
+                    It.IsAny<Booking>()))
+                .Returns<Booking>(null);
+
+            bookingsServices.Setup(b => b.UpdateBooking(
+                    It.Is<int>(i => i == VALID_ID),
+                    It.IsAny<Booking>()))
+                .Returns(new Booking() { Id = VALID_ID });
+
+            bookingsServices.Setup(b => b.DeleteBooking(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<Booking>(null);
+
+            bookingsServices.Setup(b => b.DeleteBooking(
+                    It.Is<int>(i => i == VALID_ID)))
+                .Returns(new Booking() { Id = VALID_ID });
+
+            return bookingsServices;
+        }
+
         public static Mock<ICategoriesServices> GetCategoriesServices()
         {
             var categoriesServices = new Mock<ICategoriesServices>();

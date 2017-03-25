@@ -108,10 +108,10 @@
                     AircraftManufacturerId = validManufacturerId
                 });
 
-            this.aircraftsView
-                .Verify(a => a.TryUpdateModel(
-                    It.Is<Aircraft>(ar => ar.Id == validId && ar.AircraftManufacturerId == validManufacturerId)),
-                    Times.Once);
+            this.aircraftsView.Verify(a => a.TryUpdateModel(
+                It.Is<Aircraft>(ar => ar.Id == validId && 
+                    ar.AircraftManufacturerId == validManufacturerId)),
+                Times.Once);
         }
 
         [TestMethod]
@@ -155,11 +155,10 @@
                     AircraftManufacturerId = validManufacturerId
                 });
 
-            this.aircraftsServices
-                .Verify(a => a.UpdateAircraft(
-                    validId, 
-                    It.Is<Aircraft>(ar => ar.Id == validId && ar.AircraftManufacturerId == validManufacturerId)), 
-                    Times.Once);
+            this.aircraftsServices.Verify(a => a.UpdateAircraft(
+                validId, 
+                It.Is<Aircraft>(ar => ar.Id == validId && ar.AircraftManufacturerId == validManufacturerId)), 
+                Times.Once);
         }
 
         [TestMethod]
@@ -206,11 +205,10 @@
 
             var expectedId = 1;
 
-            this.aircraftsServices
-                .Verify(a => a.AddAircraft(
-                    It.Is<Aircraft>(ar => ar.Model == model && ar.TotalSeats == totalSeats &&
-                                          ar.AircraftManufacturerId == manufacturerId)),
-                    Times.Once);
+            this.aircraftsServices.Verify(a => a.AddAircraft(
+                It.Is<Aircraft>(ar => ar.Model == model && ar.TotalSeats == totalSeats &&
+                    ar.AircraftManufacturerId == manufacturerId)),
+                Times.Once);
 
             Assert.AreEqual(expectedId, aircraftEventArgs.Id);
         }
