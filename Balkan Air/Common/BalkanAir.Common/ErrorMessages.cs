@@ -7,12 +7,12 @@
         public const string ENTITY_CANNOT_BE_NULL = "Entity cannot be null!";
         public const string MODEL_ERROR_KEY = "key";
         public const string MODEL_ERROR_MESSAGE = "Item with id {0} was not found";
+        public const string NULL_OR_EMPTY_ENTITY_NAME = "Name cannot be null or empty!";
 
         // Airports and countries
         public const string ABBREVIATION_CANNOT_BE_NULL_OR_EMPTY = "Abbreviation cannot be null or empty!";
 
         // Categories
-        public const string CATEGORY_NAME_CANNOT_BE_NULL_OR_EMPTY = "Category name cannot be null or empty!";
         public const string INVALID_CATEGORY_NAME = "Invalid category name!";
 
         // Flight

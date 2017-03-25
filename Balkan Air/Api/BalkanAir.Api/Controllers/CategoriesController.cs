@@ -78,7 +78,7 @@
         {
             if (string.IsNullOrEmpty(categoryName))
             {
-                return this.BadRequest(ErrorMessages.CATEGORY_NAME_CANNOT_BE_NULL_OR_EMPTY);
+                return this.BadRequest(ErrorMessages.NULL_OR_EMPTY_ENTITY_NAME);
             }
 
             var category = this.categoriesServices.GetAll()

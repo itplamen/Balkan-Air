@@ -60,6 +60,14 @@
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void UpdateItemShouldThrowExceptionWhenEventArgsIsNull()
+        {
+            this.aircraftManufacturersView.Raise(a => a.OnAircraftManufacturersUpdateItem += null,
+                It.Is<AircraftManufacturersManagementEventArgs>(null));
+        }
+
+        [TestMethod]
         public void UpdateItemShouldAddModelErrorToModelStateWhenIdIsInvalidAndItemIsNotFound()
         {
             var invalidId = -1;
@@ -89,7 +97,7 @@
         }
 
         [TestMethod]
-        public void UpdateItemShouldPerformTryUpdateModelWhenItemFound()
+        public void UpdateItemShouldPerformTryUpdateModelWhenItemIsFound()
         {
             var validId = 1;
 
@@ -126,6 +134,14 @@
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteItemShouldThrowExceptionWhenEventArgsIsNull()
+        {
+            this.aircraftManufacturersView.Raise(a => a.OnAircraftManufacturersDeleteItem += null,
+                It.Is<AircraftManufacturersManagementEventArgs>(null));
+        }
+
+        [TestMethod]
         public void DeleteItemShouldDeleteManufacturerWhenOnDeleteItemEventIsRaised()
         {
             var validId = 1;
@@ -133,6 +149,14 @@
                 new AircraftManufacturersManagementEventArgs() { Id = validId });
 
             this.aircraftManufacturersServices.Verify(a => a.DeleteManufacturer(validId), Times.Once);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void AddItemShouldThrowExceptionWhenEventArgsIsNull()
+        {
+            this.aircraftManufacturersView.Raise(a => a.OnAircraftManufacturersAddItem += null,
+                It.Is<AircraftManufacturersManagementEventArgs>(null));
         }
 
         [TestMethod]

@@ -48,6 +48,11 @@
 
         private void View_OnAircraftManufacturersUpdateItem(object sender, AircraftManufacturersManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(AircraftManufacturersManagementEventArgs));
+            }
+
             var manufacturer = this.aircraftManufacturersServices.GetManufacturer(e.Id);
 
             if (manufacturer == null)
@@ -66,11 +71,26 @@
 
         private void View_OnAircraftManufacturersDeleteItem(object sender, AircraftManufacturersManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(AircraftManufacturersManagementEventArgs));
+            }
+
             this.aircraftManufacturersServices.DeleteManufacturer(e.Id);
         }
 
         private void View_OnAircraftManufacturersAddItem(object sender, AircraftManufacturersManagementEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(AircraftManufacturersManagementEventArgs));
+            }
+
+            if (string.IsNullOrEmpty(e.Name))
+            {
+                throw new ArgumentNullException(ErrorMessages.NULL_OR_EMPTY_ENTITY_NAME);
+            }
+
             var manufacturer = new AircraftManufacturer() { Name = e.Name };
             e.Id = this.aircraftManufacturersServices.AddManufacturer(manufacturer);
         }

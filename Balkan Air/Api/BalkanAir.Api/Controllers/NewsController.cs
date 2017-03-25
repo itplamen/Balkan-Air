@@ -102,7 +102,7 @@
 
             if (string.IsNullOrEmpty(category))
             {
-                return this.BadRequest(ErrorMessages.CATEGORY_NAME_CANNOT_BE_NULL_OR_EMPTY);
+                return this.BadRequest(ErrorMessages.NULL_OR_EMPTY_ENTITY_NAME);
             }
 
             if (!this.CategoriesServices.GetAll().Any(c => c.Name.ToLower() == category.ToLower()))

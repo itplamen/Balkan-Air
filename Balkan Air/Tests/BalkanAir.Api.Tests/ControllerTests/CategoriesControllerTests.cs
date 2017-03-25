@@ -115,7 +115,7 @@
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
-            Assert.AreEqual(ErrorMessages.CATEGORY_NAME_CANNOT_BE_NULL_OR_EMPTY, badRequestResult.Message);
+            Assert.AreEqual(ErrorMessages.NULL_OR_EMPTY_ENTITY_NAME, badRequestResult.Message);
         }
 
         [TestMethod]

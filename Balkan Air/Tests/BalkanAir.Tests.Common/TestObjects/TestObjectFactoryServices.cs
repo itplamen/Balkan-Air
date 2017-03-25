@@ -59,6 +59,14 @@
             aircraftsServices.Setup(a => a.GetAll())
                 .Returns(TestObjectFactoryDataModels.Aircrafts);
 
+            aircraftsServices.Setup(a => a.GetAircraft(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<Aircraft>(null);
+
+            aircraftsServices.Setup(a => a.GetAircraft(
+                    It.Is<int>(i => i == VALID_ID)))
+                .Returns(new Aircraft() { Id = VALID_ID });
+
             aircraftsServices.Setup(a => a.UpdateAircraft(
                     It.Is<int>(i => i != VALID_ID),
                     It.IsAny<Aircraft>()))
