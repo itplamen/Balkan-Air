@@ -15,15 +15,30 @@
         {
             var aircraftManufacturersManagementView = new Mock<IAircraftManufacturersManagementView>();
 
-            aircraftManufacturersManagementView.Setup(a => a.Model)
-                .Returns(new AircraftManufacturersManagementViewModel());
-
             ModelStateDictionary = new ModelStateDictionary();
 
+            aircraftManufacturersManagementView.Setup(a => a.Model)
+                .Returns(new AircraftManufacturersManagementViewModel());
+ 
             aircraftManufacturersManagementView.Setup(a => a.ModelState)
                 .Returns(ModelStateDictionary);
 
             return aircraftManufacturersManagementView;
         } 
+
+        public static Mock<IAircraftsManagementView> GetAircraftsManagementView()
+        {
+            var aircraftsManagementView = new Mock<IAircraftsManagementView>();
+
+            ModelStateDictionary = new ModelStateDictionary();
+
+            aircraftsManagementView.Setup(a => a.Model)
+                .Returns(new AircraftsManagementViewModels());
+
+            aircraftsManagementView.Setup(a => a.ModelState)
+                .Returns(ModelStateDictionary);
+
+            return aircraftsManagementView;
+        }
     }
 }
