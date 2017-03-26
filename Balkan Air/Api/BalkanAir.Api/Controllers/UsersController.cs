@@ -4,10 +4,7 @@
     using System.Web.Http;
     using System.Web.Http.Cors;
 
-    using AutoMapper;
     using AutoMapper.QueryableExtensions;
-
-    using Ninject;
 
     using Common;
     using Data.Models;
@@ -15,55 +12,59 @@
     using Services.Data.Contracts;
 
     [EnableCors("*", "*", "*")]
-    [Authorize(Roles = UserRolesConstants.ADMINISTRATOR_ROLE)]
     public class UsersController : ApiController
     {
-        [Inject]
-        public IUsersServices UsersServices { get; set; }
+        private readonly IUsersServices usersServices;
+        
+        public UsersController(IUsersServices usersServices)
+        {
+            this.usersServices = usersServices;
+        }
 
         [HttpGet]
-        [AllowAnonymous]
         public IHttpActionResult All()
         {
-            var users = this.UsersServices.GetAll()
-                .ProjectTo<UsersResponseModel>();
+            var users = this.usersServices.GetAll()
+                .Where(u => !u.IsDeleted)
+                .OrderBy(u => u.UserSettings.FirstName)
+                .ThenBy(u => u.UserSettings.LastName)
+                .ProjectTo<UsersResponseModel>()
+                .ToList();
 
             return this.Ok(users);
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IHttpActionResult GetUsersByGender(string gender)
         {
             if (gender.ToLower() != Gender.Male.ToString().ToLower() && 
                 gender.ToLower() != Gender.Female.ToString().ToLower())
             {
-                return this.BadRequest("Invalid gender!");
+                return this.BadRequest(ErrorMessages.INVALID_GENDER);
             }
 
-            var users = this.UsersServices.GetAll()
+            var users = this.usersServices.GetAll()
                 .Where(u => !u.IsDeleted && u.UserSettings.Gender.ToString().ToLower() == gender.ToLower())
-                .ProjectTo<UsersResponseModel>();
+                .ProjectTo<UsersResponseModel>()
+                .ToList();
 
             return this.Ok(users);
         }
 
-        //[HttpGet]
-        //[AllowAnonymous]
-        //public IHttpActionResult GetUsersByNationality(string nationality)
-        //{
-        //    if (gender.ToLower() != Gender.Male.ToString().ToLower() &&
-        //        gender.ToLower() != Gender.Female.ToString().ToLower())
-        //    {
-        //        return this.BadRequest("Invalid gender!");
-        //    }
+        [HttpGet]
+        public IHttpActionResult GetUsersByNationality(string nationality)
+        {
+            if (string.IsNullOrEmpty(nationality))
+            {
+                return this.BadRequest(ErrorMessages.NULL_OR_EMPTY_NATIONALITY);
+            }
 
-        //    var users = this.UsersServices.GetAll()
-        //        .Where(u => !u.IsDeleted && u.UserSettings.Gender.ToString().ToLower() == gender.ToLower())
-        //        .ProjectTo<UsersResponseModel>();
+            var users = this.usersServices.GetAll()
+                .Where(u => !u.IsDeleted && u.UserSettings.Nationality.ToLower() == nationality.ToLower())
+                .ProjectTo<UsersResponseModel>()
+                .ToList();
 
-        //    return this.Ok(users);
-        //}
-
+            return this.Ok(users);
+        }
     }
 }

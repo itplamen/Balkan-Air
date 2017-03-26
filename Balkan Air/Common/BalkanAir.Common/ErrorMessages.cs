@@ -29,6 +29,8 @@
         // Users
         public const string NULL_OR_EMPTY_EMAIL = "Email cannot be null or empty!";
         public const string INVALID_IMAGE_TO_UPLOAD = "Invalid image to upload!";
+        public const string INVALID_GENDER = "Invalid gender!";
+        public const string NULL_OR_EMPTY_NATIONALITY = "Nationality cannot be null or empty!";
 
         // Users, Roles
         public const string NULL_OR_EMPTY_ID = "ID cannot be null or emtpy!";

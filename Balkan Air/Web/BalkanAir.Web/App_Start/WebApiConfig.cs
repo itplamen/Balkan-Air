@@ -15,6 +15,7 @@
             RegisterFareRoutes(config);
             RegisterFlightRoutes(config);
             RegisterNewsRoutes(config);
+            RegisterUserRoutes(config);
         }
 
         public static void RegisterDefaultRoutes(HttpConfiguration config)
@@ -123,6 +124,21 @@
                name: "GetLatestNewsByCategory",
                routeTemplate: "Api/{controller}/Latest/{count}/{category}",
                defaults: new { controller = "News", action = "GetLatesByCategory" },
+               constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
+        }
+
+        public static void RegisterUserRoutes(HttpConfiguration config)
+        {
+            config.Routes.MapHttpRoute(
+               name: "GetUsersByGender",
+               routeTemplate: "Api/{controller}/Gender/{gender}",
+               defaults: new { controller = "Users", action = "GetUsersByGender" },
+               constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
+
+            config.Routes.MapHttpRoute(
+               name: "GetUsersByNationality",
+               routeTemplate: "Api/{controller}/Nationality/{nationality}",
+               defaults: new { controller = "Users", action = "GetUsersByNationality" },
                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
         }
     }

@@ -72,10 +72,6 @@
                 });
         }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-        }  
-
         protected string GetTravelClass(int travelClassId)
         {
             var travelClass = this.TravelClassesServices.GetTravelClass(travelClassId);

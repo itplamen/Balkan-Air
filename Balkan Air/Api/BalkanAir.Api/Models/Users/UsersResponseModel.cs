@@ -15,13 +15,13 @@
 
         public string Nationality { get; set; }
 
-        public int NumberOfBookings { get; set; }
-
         public void CreateMappings(IConfiguration config)
         {
             config.CreateMap<User, UsersResponseModel>()
+                .ForMember(u => u.FirstName, opt => opt.MapFrom(u => u.UserSettings.FirstName))
+                .ForMember(u => u.LastName, opt => opt.MapFrom(u => u.UserSettings.LastName))
                 .ForMember(u => u.Gender, opt => opt.MapFrom(u => u.UserSettings.Gender.ToString()))
-                .ForMember(u => u.NumberOfBookings, opt => opt.MapFrom(u => u.UserSettings.Bookings.Count));
+                .ForMember(u => u.Nationality, opt => opt.MapFrom(u => u.UserSettings.Nationality));
         }
     }
 }
