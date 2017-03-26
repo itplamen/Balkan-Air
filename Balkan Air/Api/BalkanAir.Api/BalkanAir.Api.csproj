@@ -128,6 +128,7 @@
     <Compile Include="Controllers\FlightNumbersController.cs" />
     <Compile Include="Controllers\FlightsController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\RoutesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
@@ -171,7 +172,10 @@
     <Compile Include="Models\News\NewsResponseModel.cs" />
     <Compile Include="Models\News\NewsSimpleResponseModel.cs" />
     <Compile Include="Models\News\UpdateNewsRequestModel.cs" />
+    <Compile Include="Models\Routes\RouteRequestModel.cs" />
+    <Compile Include="Models\Routes\RouteResponseModel.cs" />
     <Compile Include="Models\Routes\RouteSimpleResponseModel.cs" />
+    <Compile Include="Models\Routes\UpdateRouteRequestModel.cs" />
     <Compile Include="Models\TravelClasses\TravelClassRequestModel.cs" />
     <Compile Include="Models\TravelClasses\TravelClassSimpleResponseModel.cs" />
     <Compile Include="Models\Users\UsersResponseModel.cs" />
