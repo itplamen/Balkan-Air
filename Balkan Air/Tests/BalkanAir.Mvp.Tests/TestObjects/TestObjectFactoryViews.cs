@@ -85,5 +85,20 @@
 
             return bookingsManagementView;
         }
+
+        public static Mock<ICategoriesManagementView> GetCategoriesManagementView()
+        {
+            var categoriesManagementView = new Mock<ICategoriesManagementView>();
+
+            ModelStateDictionary = new ModelStateDictionary();
+
+            categoriesManagementView.Setup(b => b.Model)
+                .Returns(new CategoriesManagementViewModel());
+
+            categoriesManagementView.Setup(b => b.ModelState)
+                .Returns(ModelStateDictionary);
+
+            return categoriesManagementView;
+        }
     }
 }

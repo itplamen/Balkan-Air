@@ -219,6 +219,14 @@
             categoriesServices.Setup(c => c.GetAll())
                 .Returns(TestObjectFactoryDataModels.Categories);
 
+            categoriesServices.Setup(c => c.GetCategory(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<Category>(null);
+
+            categoriesServices.Setup(c => c.GetCategory(
+                    It.Is<int>(i => i == VALID_ID)))
+                .Returns(new Category() { Id = VALID_ID });
+
             categoriesServices.Setup(c => c.UpdateCategory(
                     It.Is<int>(i => i != VALID_ID),
                     It.IsAny<Category>()))
