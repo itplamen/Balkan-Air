@@ -16,6 +16,7 @@
             RegisterFlightRoutes(config);
             RegisterNewsRoutes(config);
             RegisterUserRoutes(config);
+            RegisterTravelClassRoutes(config);
         }
 
         public static void RegisterDefaultRoutes(HttpConfiguration config)
@@ -140,6 +141,21 @@
                routeTemplate: "Api/{controller}/Nationality/{nationality}",
                defaults: new { controller = "Users", action = "GetUsersByNationality" },
                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
+        }
+
+        public static void RegisterTravelClassRoutes(HttpConfiguration config)
+        {
+            config.Routes.MapHttpRoute(
+               name: "GetByType",
+               routeTemplate: "Api/{controller}/Type/{type}",
+               defaults: new { controller = "TravelClasses", action = "GetByType" },
+               constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
+
+            config.Routes.MapHttpRoute(
+               name: "GetByAircraftId",
+               routeTemplate: "Api/{controller}/AircraftId/{aircraftId}",
+               defaults: new { controller = "TravelClasses", action = "GetByAircraftId" },
+               constraints: new { aircraftId = @"\d+", httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
         }
     }
 }

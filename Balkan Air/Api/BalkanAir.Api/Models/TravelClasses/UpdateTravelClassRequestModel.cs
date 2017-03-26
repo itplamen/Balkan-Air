@@ -9,8 +9,11 @@
     using Data.Models;
     using Infrastructure.Mapping;
 
-    public class TravelClassRequestModel : IMapFrom<TravelClass>, IHaveCustomMappings
+    public class UpdateTravelClassRequestModel : IMapFrom<TravelClass>, IHaveCustomMappings
     {
+        [Key]
+        public int Id { get; set; }
+
         [Required]
         public string Type { get; set; }
 
@@ -49,9 +52,12 @@
         [Required]
         public int AircraftId { get; set; }
 
+        [Required]
+        public bool IsDeleted { get; set; }
+
         public void CreateMappings(IConfiguration config)
         {
-            config.CreateMap<TravelClassRequestModel, TravelClass>()
+            config.CreateMap<UpdateTravelClassRequestModel, TravelClass>()
                 .ForMember(t => t.Type, opt => opt.MapFrom(t => Enum.Parse(typeof(TravelClassType), t.Type)));
         }
     }

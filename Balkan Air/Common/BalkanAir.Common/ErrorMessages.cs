@@ -23,6 +23,9 @@
         // News
         public const string INVALID_COUNT_VALUE = "Count cannot be zero or negative!";
 
+        // TravelClass
+        public const string NULL_OR_EMPTY_TYPE = "Type cannot be null or empty!";
+
         // UserNotifications
         public const string NULL_OR_EMPTY_LIST_OF_USERS = "Cannot send notification to null or empty list of users!";
 
