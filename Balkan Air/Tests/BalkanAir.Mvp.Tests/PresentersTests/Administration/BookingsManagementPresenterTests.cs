@@ -28,6 +28,7 @@
         {
             this.bookingsView = TestObjectFactoryViews.GetBookingsManagementView();
             this.bookingsServices = TestObjectFactoryServices.GetBookingsServices();
+
             this.presenter = new BookingsManagementPresenter(this.bookingsView.Object, 
                 this.bookingsServices.Object);
         }

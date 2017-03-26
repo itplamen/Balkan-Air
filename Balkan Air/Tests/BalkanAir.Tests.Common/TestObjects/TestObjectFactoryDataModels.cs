@@ -108,13 +108,36 @@
             }
         }.AsQueryable();
 
-        public static IQueryable<LegInstance> Flights = new List<LegInstance>()
+        public static IQueryable<FlightLeg> FlightLegs = new List<FlightLeg>()
+        {
+            new FlightLeg()
+            {
+                Id = 1,
+                DepartureAirportId = 1,
+                ScheduledDepartureDateTime = DateTime.Now,
+                ArrivalAirportId = 1,
+                ScheduledArrivalDateTime = DateTime.Now,
+                FlightId = 1,
+                RouteId = 1
+            }
+        }.AsQueryable();
+
+        public static IQueryable<Flight> Flights = new List<Flight>()
+        {
+            new Flight()
+            {
+                Id = 1,
+                Number = "ABCDEF"
+            }
+        }.AsQueryable();
+
+        public static IQueryable<LegInstance> LegInstances = new List<LegInstance>()
         {
             new LegInstance()
             {
                 Id = 1,
                 DepartureDateTime = new DateTime(2017, 1, 1, 1, 1, 1),
-                ArrivalDateTime = DateTime.Now,
+                ArrivalDateTime = new DateTime(2017, 1, 1, 1, 1, 1),
                 Price = 1m,
                 FlightLegId = 1,
                 FlightStatusId = 1,
@@ -135,6 +158,24 @@
                         Origin = new Airport() { Abbreviation = "ABC" },
                         Destination = new Airport() { Abbreviation = "DEF" }
                     }
+                }
+            }
+        }.AsQueryable();
+
+        public static IQueryable<Route> Routes = new List<Route>()
+        {
+            new Route()
+            {
+                Id = 1,
+                Origin = new Airport()
+                {
+                    Name = "Test Origin",
+                    Abbreviation = "ABC"
+                },
+                Destination = new Airport()
+                {
+                    Name = "Test Destination",
+                    Abbreviation = "DEF"
                 }
             }
         }.AsQueryable();

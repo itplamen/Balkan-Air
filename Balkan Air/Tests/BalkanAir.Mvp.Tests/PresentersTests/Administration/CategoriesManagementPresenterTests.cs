@@ -28,6 +28,7 @@
         {
             this.categoriesView = TestObjectFactoryViews.GetCategoriesManagementView();
             this.categoriesServices = TestObjectFactoryServices.GetCategoriesServices();
+
             this.presenter = new CategoriesManagementPresenter(this.categoriesView.Object,
                 this.categoriesServices.Object);
         }

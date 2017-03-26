@@ -30,6 +30,7 @@
             this.aircraftManufacturersView = TestObjectFactoryViews.GetAircraftManufacturersManagementView();
             this.aircraftManufacturersServices = TestObjectFactoryServices.GetAircraftManufacturersServices();
             this.aircraftsServices = TestObjectFactoryServices.GetAircraftsServices();
+
             this.presenter = new AircraftManufacturersManagementPresenter(this.aircraftManufacturersView.Object,
                 this.aircraftManufacturersServices.Object, this.aircraftsServices.Object);
         }

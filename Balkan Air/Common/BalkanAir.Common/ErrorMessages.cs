@@ -11,6 +11,7 @@
 
         // Airports and countries
         public const string ABBREVIATION_CANNOT_BE_NULL_OR_EMPTY = "Abbreviation cannot be null or empty!";
+        public const string AIRPORT_NOT_FOUND = "Airport not foud!";
 
         // Categories
         public const string INVALID_CATEGORY_NAME = "Invalid category name!";

@@ -30,6 +30,7 @@
             this.baggageView = TestObjectFactoryViews.GetBaggageManagementView();
             this.baggageServices = TestObjectFactoryServices.GetBaggageServices();
             this.bookingsServices = TestObjectFactoryServices.GetBookingsServices();
+
             this.presenter = new BaggageManagementPresenter(this.baggageView.Object,
                 this.baggageServices.Object, this.bookingsServices.Object);
         }

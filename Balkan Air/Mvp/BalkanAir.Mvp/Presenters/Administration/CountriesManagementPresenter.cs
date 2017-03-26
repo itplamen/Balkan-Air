@@ -31,6 +31,14 @@
             this.View.OnCountriesAddItem += this.View_OnCountriesAddItem;
         }
 
+
+        private void View_OnCountriesGetData(object sender, EventArgs e)
+        {
+            this.View.Model.Countries = this.countriesServices.GetAll()
+                .OrderBy(c => c.Name)
+                .ThenBy(c => c.Abbreviation);
+        }
+
         private void View_OnCountriesUpdateItem(object sender, CountriesManagementEventArgs e)
         {
             if (e == null)
@@ -79,13 +87,6 @@
             };
 
             e.Id = this.countriesServices.AddCountry(country);
-        }
-
-        private void View_OnCountriesGetData(object sender, EventArgs e)
-        {
-            this.View.Model.Countries = this.countriesServices.GetAll()
-                .OrderBy(c => c.Name)
-                .ThenBy(c => c.Abbreviation);
         }
     }
 }

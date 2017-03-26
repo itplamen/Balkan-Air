@@ -69,6 +69,7 @@
     <Compile Include="PresentersTests\Administration\BaggageManagementPresenterTests.cs" />
     <Compile Include="PresentersTests\Administration\BookingsManagementPresenterTests.cs" />
     <Compile Include="PresentersTests\Administration\CategoriesManagementPresenterTests.cs" />
+    <Compile Include="PresentersTests\Administration\FlightLegsManagementPresenterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestObjects\TestObjectFactoryViews.cs" />
   </ItemGroup>

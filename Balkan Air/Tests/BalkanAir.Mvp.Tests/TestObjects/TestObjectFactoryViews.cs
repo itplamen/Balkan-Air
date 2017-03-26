@@ -100,5 +100,20 @@
 
             return categoriesManagementView;
         }
+
+        public static Mock<IFlightLegsManagementView> GetFlightLegsManagementView()
+        {
+            var flightLegsManagementView = new Mock<IFlightLegsManagementView>();
+
+            ModelStateDictionary = new ModelStateDictionary();
+
+            flightLegsManagementView.Setup(f => f.Model)
+                .Returns(new FlightLegsManagementViewModel());
+
+            flightLegsManagementView.Setup(f => f.ModelState)
+                .Returns(ModelStateDictionary);
+
+            return flightLegsManagementView;
+        }
     }
 }

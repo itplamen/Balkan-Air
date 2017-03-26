@@ -30,6 +30,7 @@
             this.airportsView = TestObjectFactoryViews.GetAirportsManagementView();
             this.airportsServices = TestObjectFactoryServices.GetAirportsServices();
             this.countriesServices = TestObjectFactoryServices.GetCountriesServices();
+
             this.presenter = new AirportsManagementPresenter(this.airportsView.Object,
                 this.airportsServices.Object, this.countriesServices.Object);
         }

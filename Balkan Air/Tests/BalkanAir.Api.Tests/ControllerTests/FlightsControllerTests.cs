@@ -25,7 +25,7 @@
         [TestInitialize]
         public void TestInitialize()
         {
-            this.flightsServices = TestObjectFactoryServices.GetFlightServices();
+            this.flightsServices = TestObjectFactoryServices.GetLegInstancesServices();
             this.flightsController = new FlightsController(this.flightsServices.Object);
         }
 

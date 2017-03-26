@@ -34,7 +34,7 @@
                 throw new ArgumentNullException(nameof(IAirportsServices));
             }
 
-            if (flightLegsServices == null)
+            if (flightsServices == null)
             {
                 throw new ArgumentNullException(nameof(IFlightsServices));
             }
@@ -169,7 +169,7 @@
 
         private void View_OnLegInstancesGetData(object sender, EventArgs e)
         {
-            var legInstances = this.legInstancesServices.GetAll()
+            this.View.Model.LegInstances = this.legInstancesServices.GetAll()
                 .Where(l => !l.IsDeleted)
                 .OrderBy(l => l.DepartureDateTime)
                 .Select(l => new
@@ -191,10 +191,12 @@
 
             if (airport == null)
             {
-                this.View.Model.AirportInfo = "Airport not foud!";
+                this.View.Model.AirportInfo = ErrorMessages.AIRPORT_NOT_FOUND;
             }
-
-            this.View.Model.AirportInfo = "Id:" + airport.Id + " " + airport.Name + " (" + airport.Abbreviation + ")";
+            else
+            {
+                this.View.Model.AirportInfo = "Id:" + airport.Id + " " + airport.Name + " (" + airport.Abbreviation + ")";
+            }
         }
     }
 }

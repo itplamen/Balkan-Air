@@ -259,6 +259,14 @@
             countriesServices.Setup(c => c.GetAll())
                 .Returns(TestObjectFactoryDataModels.Countries);
 
+            countriesServices.Setup(c => c.GetCountry(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<Country>(null);
+
+            countriesServices.Setup(c => c.GetCountry(
+                    It.Is<int>(i => i == VALID_ID)))
+                .Returns(new Country() { Id = VALID_ID });
+
             countriesServices.Setup(c => c.UpdateCountry(
                     It.Is<int>(i => i != VALID_ID),
                     It.IsAny<Country>()))
@@ -291,6 +299,14 @@
             faresServices.Setup(f => f.GetAll())
                 .Returns(TestObjectFactoryDataModels.Fares);
 
+            faresServices.Setup(f => f.GetFare(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<Fare>(null);
+
+            faresServices.Setup(f => f.GetFare(
+                    It.Is<int>(i => i == VALID_ID)))
+                .Returns(new Fare() { Id = VALID_ID });
+
             faresServices.Setup(f => f.UpdateFare(
                     It.Is<int>(i => i != VALID_ID),
                     It.IsAny<Fare>()))
@@ -312,36 +328,164 @@
             return faresServices;
         }
 
-        public static Mock<ILegInstancesServices> GetFlightServices()
+        public static Mock<IFlightsServices> GetFlightsServices()
         {
-            var flightsServices = new Mock<ILegInstancesServices>();
+            var flightsServices = new Mock<IFlightsServices>();
 
-            flightsServices.Setup(f => f.AddLegInstance(
-                    It.IsAny<LegInstance>()))
+            flightsServices.Setup(f => f.AddFlight(
+                    It.IsAny<Flight>()))
                 .Returns(VALID_ID);
 
             flightsServices.Setup(f => f.GetAll())
                 .Returns(TestObjectFactoryDataModels.Flights);
 
-            flightsServices.Setup(f => f.UpdateLegInstance(
+            flightsServices.Setup(f => f.GetFlight(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<Flight>(null);
+
+            flightsServices.Setup(a => a.GetFlight(
+                    It.Is<int>(i => i == VALID_ID)))
+                .Returns(new Flight() { Id = VALID_ID });
+
+            flightsServices.Setup(a => a.UpdateFlight(
+                    It.Is<int>(i => i != VALID_ID),
+                    It.IsAny<Flight>()))
+                .Returns<Flight>(null);
+
+            flightsServices.Setup(a => a.UpdateFlight(
+                    It.Is<int>(i => i == VALID_ID),
+                    It.IsAny<Flight>()))
+                .Returns(new Flight() { Id = VALID_ID });
+
+            flightsServices.Setup(a => a.DeleteFlight(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<Flight>(null);
+
+            flightsServices.Setup(a => a.DeleteFlight(
+                It.Is<int>(i => i == VALID_ID)))
+                .Returns(new Flight() { Id = VALID_ID });
+
+            return flightsServices;
+        }
+
+        public static Mock<IFlightLegsServices> GetFlightLegsServices()
+        {
+            var flightLegsServices = new Mock<IFlightLegsServices>();
+
+            flightLegsServices.Setup(f => f.AddFlightLeg(
+                    It.IsAny<FlightLeg>()))
+                .Returns(VALID_ID);
+
+            flightLegsServices.Setup(f => f.GetAll())
+                .Returns(TestObjectFactoryDataModels.FlightLegs);
+
+            flightLegsServices.Setup(f => f.GetFlightLeg(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<FlightLeg>(null);
+
+            flightLegsServices.Setup(a => a.GetFlightLeg(
+                    It.Is<int>(i => i == VALID_ID)))
+                .Returns(new FlightLeg() { Id = VALID_ID });
+
+            flightLegsServices.Setup(a => a.UpdateFlightLeg(
+                    It.Is<int>(i => i != VALID_ID),
+                    It.IsAny<FlightLeg>()))
+                .Returns<FlightLeg>(null);
+
+            flightLegsServices.Setup(a => a.UpdateFlightLeg(
+                    It.Is<int>(i => i == VALID_ID),
+                    It.IsAny<FlightLeg>()))
+                .Returns(new FlightLeg() { Id = VALID_ID });
+
+            flightLegsServices.Setup(a => a.DeleteFlightLeg(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<FlightLeg>(null);
+
+            flightLegsServices.Setup(a => a.DeleteFlightLeg(
+                It.Is<int>(i => i == VALID_ID)))
+                .Returns(new FlightLeg() { Id = VALID_ID });
+
+            return flightLegsServices;
+        }
+
+        public static Mock<ILegInstancesServices> GetLegInstancesServices()
+        {
+            var legInstancesServices = new Mock<ILegInstancesServices>();
+
+            legInstancesServices.Setup(l => l.AddLegInstance(
+                    It.IsAny<LegInstance>()))
+                .Returns(VALID_ID);
+
+            legInstancesServices.Setup(l => l.GetAll())
+                .Returns(TestObjectFactoryDataModels.LegInstances);
+
+            legInstancesServices.Setup(l => l.GetLegInstance(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<LegInstance>(null);
+
+            legInstancesServices.Setup(l => l.GetLegInstance(
+                    It.Is<int>(i => i == VALID_ID)))
+                .Returns(new LegInstance() { Id = VALID_ID });
+
+            legInstancesServices.Setup(l => l.UpdateLegInstance(
                     It.Is<int>(i => i != VALID_ID),
                     It.IsAny<LegInstance>()))
                 .Returns<LegInstance>(null);
 
-            flightsServices.Setup(f => f.UpdateLegInstance(
+            legInstancesServices.Setup(l => l.UpdateLegInstance(
                     It.Is<int>(i => i == VALID_ID),
                     It.IsAny<LegInstance>()))
                 .Returns(new LegInstance() { Id = VALID_ID });
 
-            flightsServices.Setup(f => f.DeleteLegInstance(
+            legInstancesServices.Setup(l => l.DeleteLegInstance(
                     It.Is<int>(i => i != VALID_ID)))
                 .Returns<LegInstance>(null);
 
-            flightsServices.Setup(f => f.DeleteLegInstance(
+            legInstancesServices.Setup(l => l.DeleteLegInstance(
                     It.Is<int>(i => i == VALID_ID)))
                 .Returns(new LegInstance() { Id = VALID_ID });
 
-            return flightsServices;
+            return legInstancesServices;
+        }
+
+        public static Mock<IRoutesServices> GetRoutesServices()
+        {
+            var routesServices = new Mock<IRoutesServices>();
+
+            routesServices.Setup(r => r.AddRoute(
+                    It.IsAny<Route>()))
+                .Returns(VALID_ID);
+
+            routesServices.Setup(r => r.GetAll())
+                .Returns(TestObjectFactoryDataModels.Routes);
+
+            routesServices.Setup(r => r.GetRoute(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<Route>(null);
+
+            routesServices.Setup(r => r.GetRoute(
+                    It.Is<int>(i => i == VALID_ID)))
+                .Returns(new Route() { Id = VALID_ID });
+
+            routesServices.Setup(r => r.UpdateRoute(
+                    It.Is<int>(i => i != VALID_ID),
+                    It.IsAny<Route>()))
+                .Returns<Route>(null);
+
+            routesServices.Setup(l => l.UpdateRoute(
+                    It.Is<int>(i => i == VALID_ID),
+                    It.IsAny<Route>()))
+                .Returns(new Route() { Id = VALID_ID });
+
+            routesServices.Setup(l => l.DeleteRoute(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<Route>(null);
+
+            routesServices.Setup(l => l.DeleteRoute(
+                    It.Is<int>(i => i == VALID_ID)))
+                .Returns(new Route() { Id = VALID_ID });
+
+            return routesServices;
         }
     }
 }
