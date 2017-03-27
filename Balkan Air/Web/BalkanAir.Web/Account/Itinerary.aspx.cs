@@ -1,61 +1,57 @@
 ﻿namespace BalkanAir.Web.Account
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.ModelBinding;
     using System.Web;
-    using System.Web.UI;
-    using System.Web.UI.WebControls;
-
+    using System.Web.ModelBinding;
+    
+    using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
 
-    using Ninject;
+    using WebFormsMvp;
+    using WebFormsMvp.Web;
 
     using Auth;
     using Common;
     using Data.Models;
-    using Services.Data.Contracts;
-    using Microsoft.AspNet.Identity;
+    using Mvp.EventArgs.Account;
+    using Mvp.Models.Account;
+    using Mvp.Presenters.Account;
+    using Mvp.ViewContracts.Account;
 
-    public partial class Itinerary : Page
+    [PresenterBinding(typeof(ItineraryPresenter))]
+    public partial class Itinerary : MvpPage<ItineraryViewModel>, IItineraryView
     {
-        [Inject]
-        public IBookingsServices BookingsServices { get; set; }
-
-        [Inject]
-        public ITravelClassesServices TravelClassesServices { get; set; }
+        public event EventHandler<ItineraryEventArgs> OnItinerariesGetItem;
+        public event EventHandler<ItineraryEventArgs> OnCabinBagsInfoShow;
+        public event EventHandler<ItineraryEventArgs> OnCheckedInBagsInfoShow;
+        public event EventHandler<ItineraryEventArgs> OnEquipmentBagsInfoShow;
+        public event EventHandler<ItineraryEventArgs> OnTravelClassInfoShow;
 
         private ApplicationUserManager Manager
         {
-            get
-            {
-                return Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
+            get{ return Context.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
         }
 
         private User CurrentUser
         {
-            get
-            {
-                return this.Manager.FindById(this.Context.User.Identity.GetUserId());
-            }
+            get { return this.Manager.FindById(this.Context.User.Identity.GetUserId()); }
         }
-
 
         public Data.Models.Booking ViewItineraryFormView_GetItem([QueryString] string number, [QueryString]string passenger)
         {
-            var booking = this.BookingsServices.GetAll()
-                .FirstOrDefault(b => b.UserId == this.CurrentUser.Id && 
-                                     b.ConfirmationCode.Trim().ToLower() == number.ToLower() && 
-                                     b.User.UserSettings.LastName.Trim().ToLower() == passenger.ToLower());
+            this.OnItinerariesGetItem?.Invoke(null, new ItineraryEventArgs()
+            {
+                UserId = this.CurrentUser.Id,
+                Number = number,
+                Passenger = passenger
+            });
 
-            if (booking == null)
+            if (this.Model.Booking == null)
             {
                 this.Response.Redirect(Pages.ACCOUNT);
             }
 
-            return booking;
+            return this.Model.Booking;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -71,96 +67,43 @@
 
         protected string ShowCabinBags(int bookingId)
         {
-            var cabinBags = this.GetBaggages(bookingId, BaggageType.Cabin);
+            this.OnCabinBagsInfoShow?.Invoke(null, new ItineraryEventArgs()
+            {
+                BookingId = bookingId
+            });
 
-            if (cabinBags == null || cabinBags.Count == 0)
-            {
-                throw new ArgumentNullException("Cabing bags cannot be null! Passenger is allowed to take at least 1 cabin bag!");
-            }
-            else if (cabinBags.Count == 1)
-            {
-                return cabinBags.Count + " x cabin bag " + cabinBags[0].Size;
-            }
-            else
-            {
-                return cabinBags.Count + " x cabin bags " + cabinBags[0].Size;
-            }
+            return this.Model.CabinBagsInfo;
         }
 
         protected string ShowCheckedInBags(int bookingId)
         {
-            var checkedInBags = this.GetBaggages(bookingId, BaggageType.CheckedIn);
+            this.OnCheckedInBagsInfoShow?.Invoke(null, new ItineraryEventArgs()
+            {
+                BookingId = bookingId
+            });
 
-            if (checkedInBags == null || checkedInBags.Count == 0)
-            {
-                return "NO CHECKED-IN BAGS!";
-            }
-
-            if (checkedInBags.Count == 1)
-            {
-                return checkedInBags.Count + " x checked-in bag " + checkedInBags[0].MaxKilograms + " KG";
-            }
-            else
-            {
-                return checkedInBags.Count + " x checked-in bags " + checkedInBags[0].MaxKilograms + " KG";
-            }
+            return this.Model.CheckedInBagsInfo;
         }
 
         protected string ShowEquipmentBags(int bookingId, BaggageType type)
         {
-            var equiptment = GetBaggages(bookingId, type);
-            var typeAsString = this.GetEqyipmentTypeAsString(type);
+            this.OnEquipmentBagsInfoShow?.Invoke(null, new ItineraryEventArgs()
+            {
+                BookingId = bookingId,
+                BaggageType = type
+            });
 
-            if (equiptment == null || equiptment.Count == 0)
-            {
-                return "NO " + typeAsString.ToUpper() + "!";
-            }
-            else
-            {
-                return equiptment.Count + " x " + typeAsString + " allowed";
-            }
+            return this.Model.EquipmentBagsInfo;
         }
 
         protected string ShowTravelClass(int bookingId)
         {
-            int travelClassId = this.BookingsServices.GetBooking(bookingId).TravelClassId;
-            var travelClass = this.TravelClassesServices.GetTravelClass(travelClassId);
-
-            return travelClass.Type.ToString() + " Class ";
-        }
-
-        private IList<Baggage> GetBaggages(int bookingId, BaggageType type)
-        {
-            return this.BookingsServices.GetBooking(bookingId)
-                .Baggage
-                .Where(b => b.Type == type)
-                .ToList();
-        }
-
-        /// <summary>
-        /// Converts baggage equipment type to string.
-        /// </summary>
-        /// <param name="type">Baggage type.</param>
-        /// <returns>Baggage type as string.</returns>
-        /// <example>
-        /// BabyEquipment => baby equipment
-        /// SportsEquipment => sports equipment
-        /// MusicEquipment => music equipment
-        /// </example>
-        private string GetEqyipmentTypeAsString(BaggageType type)
-        {
-            if (type != BaggageType.BabyEquipment && type != BaggageType.SportsEquipment 
-                && type != BaggageType.MusicEquipment)
+            this.OnTravelClassInfoShow?.Invoke(null, new ItineraryEventArgs()
             {
-                throw new ArgumentException("Invalid baggage type!");
-            }
+                BookingId = bookingId
+            });
 
-            string typeAsString = type.ToString().ToLower();
-
-            int startIndex = typeAsString.IndexOf("equipment");
-            string intervalToInsert = " ";
-
-            return typeAsString.Insert(startIndex, intervalToInsert);
+            return this.Model.TravelClassInfo;
         }
     }
 }

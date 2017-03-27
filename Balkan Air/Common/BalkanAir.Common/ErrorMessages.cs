@@ -13,6 +13,10 @@
         public const string ABBREVIATION_CANNOT_BE_NULL_OR_EMPTY = "Abbreviation cannot be null or empty!";
         public const string AIRPORT_NOT_FOUND = "Airport not foud!";
 
+        // Baggage
+        public const string NULL_CABIN_BAGS = "Cabing bags cannot be null! Passenger is allowed to take at least 1 cabin bag!";
+        public const string INVALID_BAGGAGE_EQUIPMENT_TYPE = "Invalid baggage type!";
+
         // Categories
         public const string INVALID_CATEGORY_NAME = "Invalid category name!";
 
