@@ -25,6 +25,7 @@
 
         // TravelClass
         public const string NULL_OR_EMPTY_TYPE = "Type cannot be null or empty!";
+        public const string TRAVEL_CLASS_NOT_FOUND = "Travel class not found!";
 
         // UserNotifications
         public const string NULL_OR_EMPTY_LIST_OF_USERS = "Cannot send notification to null or empty list of users!";

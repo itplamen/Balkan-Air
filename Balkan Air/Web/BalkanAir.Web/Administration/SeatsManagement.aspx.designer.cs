@@ -40,6 +40,24 @@ namespace BalkanAir.Web.Administration {
         protected global::System.Web.UI.WebControls.GridView SeatsGridView;
         
         /// <summary>
+        /// TravelClassIdHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField TravelClassIdHiddenField;
+        
+        /// <summary>
+        /// LegInstanceIdHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField LegInstanceIdHiddenField;
+        
+        /// <summary>
         /// RowTextBox control.
         /// </summary>
         /// <remarks>
@@ -85,13 +103,13 @@ namespace BalkanAir.Web.Administration {
         protected global::System.Web.UI.WebControls.DropDownList AddLegInstanceDropDown;
         
         /// <summary>
-        /// CreateAirportBtn control.
+        /// CreateSeatBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CreateAirportBtn;
+        protected global::System.Web.UI.WebControls.Button CreateSeatBtn;
         
         /// <summary>
         /// CancelBtn control.

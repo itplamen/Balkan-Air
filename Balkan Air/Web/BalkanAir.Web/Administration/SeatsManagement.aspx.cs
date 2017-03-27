@@ -2,93 +2,75 @@
 {
     using System;
     using System.Linq;
-    using System.Web.UI;
 
-    using Ninject;
+    using WebFormsMvp;
+    using WebFormsMvp.Web;
 
     using Data.Models;
-    using Services.Data.Contracts;
+    using Mvp.EventArgs.Administration;
+    using Mvp.Models.Administration;
+    using Mvp.ViewContracts.Administration;
+    using Mvp.Presenters.Administration;
 
-    public partial class SeatsManagement : Page
+    [PresenterBinding(typeof(SeatsManagementPresenter))]
+    public partial class SeatsManagement : MvpPage<SeatsManagementViewModel>, ISeatsManagementView
     {
-        [Inject]
-        public ILegInstancesServices LegInstancesServices { get; set; }
-
-        [Inject]
-        public ISeatsServices SeatsServices { get; set; }
-
-        [Inject]
-        public ITravelClassesServices TravelClassesServices { get; set; }
+        public event EventHandler OnSeatsGetData;
+        public event EventHandler<SeatsManagementEventArgs> OnSeatsUpdateItem;
+        public event EventHandler<SeatsManagementEventArgs> OnSeatsDeleteItem;
+        public event EventHandler<SeatsManagementEventArgs> OnSeatsAddItem;
+        public event EventHandler OnTravelClassesGetData;
+        public event EventHandler OnLegInstancesGetData;
+        public event EventHandler<SeatsManagementEventArgs> OnTravelClassInfoGetItem;
 
         public IQueryable<Seat> SeatsGridView_GetData()
         {
-            return this.SeatsServices.GetAll();
+            this.OnSeatsGetData?.Invoke(null, null);
+
+            return this.Model.Seats;
         }
 
         public void SeatsGridView_UpdateItem(int id)
         {
-            var seat = this.SeatsServices.GetSeat(id);
-
-            if (seat == null)
+            this.OnSeatsUpdateItem?.Invoke(null, new SeatsManagementEventArgs()
             {
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
-                return;
-            }
-
-            TryUpdateModel(seat);
-            if (ModelState.IsValid)
-            {
-                this.SeatsServices.UpdateSeat(id, seat);
-            }
+                Id = id,
+                TravelClassId = int.Parse(this.TravelClassIdHiddenField.Value),
+                LegInstanceId = int.Parse(this.LegInstanceIdHiddenField.Value)
+            });
         }
 
         public void SeatsGridView_DeleteItem(int id)
         {
-            this.SeatsServices.DeleteSeat(id);
+            this.OnSeatsDeleteItem?.Invoke(null, new SeatsManagementEventArgs() { Id = id });
         }
 
         public IQueryable<object> TravelClassDropDownList_GetData()
         {
-            return this.TravelClassesServices.GetAll()
-                .Where(t => !t.IsDeleted)
-                .OrderBy(t => t.AircraftId)
-                .Select(t => new
-                {
-                    Id = t.Id,
-                    TravelClassInfo = "Id:" + t.Id + " " + t.Type.ToString() + " class " + t.NumberOfRows + " rows"
-                });
+            this.OnTravelClassesGetData?.Invoke(null, null);
+
+            return this.Model.TravelClasses;
         }
 
         public IQueryable<object> LegInstanceDropDown_GetData()
         {
-            return this.LegInstancesServices.GetAll()
-                .Where(l => !l.IsDeleted)
-                .OrderBy(l => l.DepartureDateTime)
-                .ThenBy(l => l.ArrivalDateTime)
-                .Select(l => new
-                {
-                    Id = l.Id,
-                    LegInstanceInfo = "Id:" + l.Id + ", " + l.DepartureDateTime + " -> " + l.ArrivalDateTime
-                });
+            this.OnLegInstancesGetData?.Invoke(null, null);
+
+            return this.Model.LegInstances;
         }
 
         protected string GetTravelClass(int travelClassId)
         {
-            var travelClass = this.TravelClassesServices.GetTravelClass(travelClassId);
+            this.OnTravelClassInfoGetItem?.Invoke(null, new SeatsManagementEventArgs() { TravelClassId = travelClassId });
 
-            if (travelClass == null)
-            {
-                return "No travel class found!";
-            }
-
-            return "Id:" + travelClass.Id + " " + travelClass.Type.ToString() + " class " + travelClass.NumberOfRows + " rows";
+            return this.Model.TravelClassInfo;
         }
 
-        protected void CreateAirportBtn_Click(object sender, EventArgs e)
+        protected void CreateSeatBtn_Click(object sender, EventArgs e)
         {
             if (this.Page.IsValid)
             {
-                var seat = new Seat()
+                var seatEventArgs = new SeatsManagementEventArgs()
                 {
                     Row = int.Parse(this.RowTextBox.Text),
                     Number = this.SeatNumberTextBox.Text.ToUpper(),
@@ -97,10 +79,10 @@
                     LegInstanceId = int.Parse(this.AddLegInstanceDropDown.SelectedItem.Value)
                 };
 
-                int id = this.SeatsServices.AddSeat(seat);
+                this.OnSeatsAddItem?.Invoke(sender, seatEventArgs);
 
                 this.SuccessPanel.Visible = true;
-                this.AddedSeatIdLiteral.Text = id.ToString();
+                this.AddedSeatIdLiteral.Text = seatEventArgs.Id.ToString();
 
                 this.ClearFields();
             }

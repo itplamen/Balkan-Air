@@ -77,7 +77,9 @@
     <Compile Include="EventArgs\Administration\LegInstancesManagementEventArgs.cs" />
     <Compile Include="EventArgs\Administration\NotificationsManagementEventArgs.cs" />
     <Compile Include="EventArgs\Administration\RoutesManagementEventArgs.cs" />
+    <Compile Include="EventArgs\Administration\SeatsManagementEventArgs.cs" />
     <Compile Include="EventArgs\NewsEventArgs.cs" />
+    <Compile Include="Models\Administration\AdministrationHomeViewModel.cs" />
     <Compile Include="Models\Administration\AircraftManufacturersManagementViewModel.cs" />
     <Compile Include="Models\Administration\AircraftsManagementViewModels.cs" />
     <Compile Include="Models\Administration\AirportsManagementViewModel.cs" />
@@ -93,6 +95,8 @@
     <Compile Include="Models\Administration\LegInstancesManagementViewModel.cs" />
     <Compile Include="Models\Administration\NotificationsManagementViewModel.cs" />
     <Compile Include="Models\Administration\RoutesManagementViewModel.cs" />
+    <Compile Include="Models\Administration\SeatsManagementViewModel.cs" />
+    <Compile Include="Presenters\Administration\AdministrationHomePresenter.cs" />
     <Compile Include="Presenters\Administration\AircraftManufacturersManagementPresenter.cs" />
     <Compile Include="Presenters\Administration\AircraftsManagementPresenter.cs" />
     <Compile Include="Presenters\Administration\AirportsManagementPresenter.cs" />
@@ -108,8 +112,10 @@
     <Compile Include="Presenters\Administration\LegInstancesManagementPresenter.cs" />
     <Compile Include="Presenters\Administration\NotificationsManagementPresenter.cs" />
     <Compile Include="Presenters\Administration\RoutesManagementPresenter.cs" />
+    <Compile Include="Presenters\Administration\SeatsManagementPresenter.cs" />
     <Compile Include="Presenters\NewsPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewContracts\Administration\IAdministrationHomeView.cs" />
     <Compile Include="ViewContracts\Administration\IAircraftManufacturersManagementView.cs" />
     <Compile Include="ViewContracts\Administration\IAircraftsManagementView.cs" />
     <Compile Include="ViewContracts\Administration\IAirportsManagementView.cs" />
@@ -125,6 +131,7 @@
     <Compile Include="ViewContracts\Administration\ILegInstancesManagementView.cs" />
     <Compile Include="ViewContracts\Administration\INotificationsManagementView.cs" />
     <Compile Include="ViewContracts\Administration\IRoutesManagementView.cs" />
+    <Compile Include="ViewContracts\Administration\ISeatsManagementView.cs" />
     <Compile Include="ViewContracts\INewsView.cs" />
     <Compile Include="Models\NewsViewModel.cs" />
   </ItemGroup>

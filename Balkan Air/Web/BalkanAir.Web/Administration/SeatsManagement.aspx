@@ -32,10 +32,10 @@
                     <%#: this.GetTravelClass(Item.TravelClassId) %>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:DropDownList ID="EditTravelClassDropDownList" runat="server"
+                    <asp:DropDownList ID="EditTravelClassDropDownList" runat="server" ClientIDMode="Static"
                         DataValueField="Id"
                         DataTextField="TravelClassInfo"
-                        SelectedValue="<%#: BindItem.TravelClassId %>"
+                        SelectedValue="<%#: Item.TravelClassId %>"
                         SelectMethod="TravelClassDropDownList_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
@@ -44,10 +44,10 @@
                     <%#: "Id:" + Item.LegInstanceId + ", " + Item.LegInstance.DepartureDateTime + " -> " + Item.LegInstance.ArrivalDateTime %>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:DropDownList ID="EditLegInstanceDropDown" runat="server"
+                    <asp:DropDownList ID="EditLegInstanceDropDown" runat="server" ClientIDMode="Static"
                         DataValueField="Id"
                         DataTextField="LegInstanceInfo"
-                        SelectedValue="<%#: BindItem.LegInstanceId %>"
+                        SelectedValue="<%#: Item.LegInstanceId %>"
                         SelectMethod="LegInstanceDropDown_GetData" />
                 </EditItemTemplate>
             </asp:TemplateField>
@@ -61,6 +61,9 @@
         </EmptyDataTemplate>
     </asp:GridView>
 
+    <asp:HiddenField ID="TravelClassIdHiddenField" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="LegInstanceIdHiddenField" runat="server" ClientIDMode="Static" />
+ 
     <asp:RangeValidator ErrorMessage="Row must be in the range [1 - 30]!" ControlToValidate="RowTextBox" runat="server"
         ForeColor="Red" MinimumValue="1" MaximumValue="30" Type="Integer" CssClass="validatorSpan" ValidationGroup="CreateNewSeat" />
 
@@ -89,10 +92,42 @@
             SelectMethod="LegInstanceDropDown_GetData" />
 
         <p>
-            <asp:Button ID="CreateAirportBtn" runat="server" Text="Create" CssClass="btn btn-info" ValidationGroup="CreateNewSeat"
-                OnClick="CreateAirportBtn_Click" />
+            <asp:Button ID="CreateSeatBtn" runat="server" Text="Create" CssClass="btn btn-info" ValidationGroup="CreateNewSeat"
+                OnClick="CreateSeatBtn_Click" />
             <asp:Button ID="CancelBtn" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-danger"
                 UseSubmitBehavior="false" OnClick="CancelBtn_Click" />
         </p>
     </asp:Panel>
+</asp:Content>
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="JavaScriptContent" runat="server">
+    <script type="text/javascript">
+        $(function () {
+            var $editTravelClassDropDownList = $('#EditTravelClassDropDownList'),
+                $editLegInstanceDropDown = $('#EditLegInstanceDropDown'),
+                $travelClassIdHiddenField = $('#TravelClassIdHiddenField'),
+                $legInstanceIdHiddenField = $('#LegInstanceIdHiddenField');
+
+            setAllHiddenFields();
+
+            $editTravelClassDropDownList.change(setTravelClasssHiddenField);
+            $editLegInstanceDropDown.change(setLegInstaceHiddenField);
+            
+            function setAllHiddenFields() {
+                setTravelClasssHiddenField();
+                setLegInstaceHiddenField();
+            }
+
+            function setTravelClasssHiddenField() {
+                var travelClassId = $editTravelClassDropDownList.find(':selected').val();
+
+                $travelClassIdHiddenField.val(travelClassId);
+            }
+
+            function setLegInstaceHiddenField() {
+                var legInstanceId = $editLegInstanceDropDown.find(':selected').val();
+
+                $legInstanceIdHiddenField.val(legInstanceId);
+            }
+        });
+    </script>
 </asp:Content>
