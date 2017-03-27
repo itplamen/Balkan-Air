@@ -13,9 +13,9 @@
 
     using Ninject;
 
+    using Auth;
     using Data.Models;
     using Services.Data.Contracts;
-    using Auth;
 
     public partial class Profile : Page
     {

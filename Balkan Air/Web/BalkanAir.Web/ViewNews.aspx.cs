@@ -12,11 +12,11 @@
 
     using Ninject;
 
+    using Auth;
     using Common;
     using BalkanAir.Common;
     using Data.Models;
     using Services.Data.Contracts;
-    using Auth;
 
     public partial class ViewNews : Page
     {

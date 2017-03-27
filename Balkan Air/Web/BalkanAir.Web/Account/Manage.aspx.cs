@@ -11,20 +11,16 @@
 
     using Ninject;
 
+    using Auth;
     using Data.Models;
     using Services.Data.Contracts;
-    using Auth;
 
     public partial class Manage : Page
     {
         [Inject]
         public IBookingsServices BookingsServices { get; set; }
 
-        protected string SuccessMessage
-        {
-            get;
-            private set;
-        }
+        protected string SuccessMessage { get; private set; }
 
         private ApplicationUserManager Manager
         {

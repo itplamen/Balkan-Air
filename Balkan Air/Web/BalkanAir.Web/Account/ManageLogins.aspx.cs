@@ -1,41 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using BalkanAir.Auth;
-
-namespace BalkanAir.Web.Account
+﻿namespace BalkanAir.Web.Account
 {
-    public partial class ManageLogins : System.Web.UI.Page
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.UI;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+
+    using Auth;
+
+    public partial class ManageLogins : Page
     {
-        protected string SuccessMessage
-        {
-            get;
-            private set;
-        }
-        protected bool CanRemoveExternalLogins
-        {
-            get;
-            private set;
-        }
+        protected string SuccessMessage { get; private set; }
 
-        private bool HasPassword(ApplicationUserManager manager)
-        {
-            return manager.HasPassword(User.Identity.GetUserId());
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            CanRemoveExternalLogins = manager.GetLogins(User.Identity.GetUserId()).Count() > 1;
-
-            SuccessMessage = String.Empty;
-            successMessage.Visible = !String.IsNullOrEmpty(SuccessMessage);
-        }
+        protected bool CanRemoveExternalLogins { get; private set; }
 
         public IEnumerable<UserLoginInfo> GetLogins()
         {
@@ -58,6 +38,20 @@ namespace BalkanAir.Web.Account
                 msg = "?m=RemoveLoginSuccess";
             }
             Response.Redirect("~/Account/ManageLogins" + msg);
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            CanRemoveExternalLogins = manager.GetLogins(User.Identity.GetUserId()).Count() > 1;
+
+            SuccessMessage = String.Empty;
+            successMessage.Visible = !String.IsNullOrEmpty(SuccessMessage);
+        }
+
+        private bool HasPassword(ApplicationUserManager manager)
+        {
+            return manager.HasPassword(User.Identity.GetUserId());
         }
     }
 }

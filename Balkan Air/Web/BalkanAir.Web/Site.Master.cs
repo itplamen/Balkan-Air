@@ -14,12 +14,11 @@
 
     using Ninject;
 
+    using Auth;
     using BalkanAir.Common;
     using Common;
     using Data.Models;
     using Services.Data.Contracts;
-    using App_Start;
-    using Auth;
 
     public partial class SiteMaster : MasterPage
     {

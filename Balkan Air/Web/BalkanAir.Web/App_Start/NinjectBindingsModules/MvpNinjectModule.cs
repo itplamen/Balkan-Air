@@ -18,7 +18,6 @@
     {
         public override void Load()
         {
-
             this.Bind<IPresenterFactory>()
                 .To<WebFormsMvpPresenterFactory>()
                 .InSingletonScope();

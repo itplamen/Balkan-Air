@@ -12,11 +12,11 @@
 
     using Ninject;
 
+    using Auth;
     using Common;
     using Data.Models;
     using Services.Data.Contracts;
     using Microsoft.AspNet.Identity;
-    using Auth;
 
     public partial class Itinerary : Page
     {

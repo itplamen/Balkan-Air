@@ -2,8 +2,8 @@
 {
     using System.Data.Entity;
 
-    using BalkanAir.Data;
-    using BalkanAir.Data.Migrations;
+    using Data;
+    using Data.Migrations;
 
     public class DbConfig
     {

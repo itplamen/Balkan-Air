@@ -31,7 +31,8 @@
         public static IQueryable<Airport> Airports = new List<Airport>()
         {
             new Airport()
-            {   Id = 1,
+            {
+                Id = 1,
                 Name = "Test Name",
                 Abbreviation = "ABC",
                 CountryId = 1

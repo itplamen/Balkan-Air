@@ -1,6 +1,5 @@
 ﻿namespace BalkanAir.Web.Administration
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.UI;
@@ -27,10 +26,6 @@
             return this.UsersServices.GetAll()
                 .Where(u => u.Roles.Select(r => r.RoleId).Contains(administratorRole.Id))
                 .ToList();
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
         }
     }
 }

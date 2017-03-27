@@ -14,7 +14,6 @@
         public const string SELECT_SEAT = "~/Booking/SelectSeat";
         public const string PAYMENT = "~/Booking/Payment";
 
-
         /******************** Account *******************/
 
         public const string LOGIN = "~/Account/Login";
@@ -27,7 +26,6 @@
         public const string NOTIFICATIONS = "~/Account/Notifications";
         public const string CHANGE_PASSWORD = "~/Account/ChangePassword";
         public const string ITINERARY = "~/Account/Itinerary";
-
 
         /******************** Administration *******************/
 

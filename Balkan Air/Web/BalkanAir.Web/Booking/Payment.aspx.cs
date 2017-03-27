@@ -13,13 +13,11 @@ namespace BalkanAir.Web.Booking
 
     using Ninject;
 
+    using Auth;
     using Common;
-    using Data;
     using Data.Helper;
     using Data.Models;
     using Services.Data.Contracts;
-    using App_Start;
-    using Auth;
 
     public partial class Payment : Page
     {

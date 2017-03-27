@@ -1,21 +1,20 @@
 ﻿namespace BalkanAir.Web.Account
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Web;
+    using System.Web.ModelBinding;
     using System.Web.UI;
-    using System.Web.UI.WebControls;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
+
     using Ninject;
 
-    using Data.Models;
-    using BalkanAir.Services.Data.Contracts;
-    using System.Web.ModelBinding;
-    using Common;
     using Auth;
+    using Common;
+    using Data.Models;
+    using Services.Data.Contracts;
 
     public partial class Notifications : Page
     {

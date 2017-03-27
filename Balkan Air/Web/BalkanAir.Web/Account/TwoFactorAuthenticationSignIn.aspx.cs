@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using BalkanAir.Data.Models;
-using BalkanAir.Web.App_Start;
-using BalkanAir.Auth;
-
-namespace BalkanAir.Web.Account
+﻿namespace BalkanAir.Web.Account
 {
-    public partial class TwoFactorAuthenticationSignIn : System.Web.UI.Page
+    using System;
+    using System.Linq;
+    using System.Web;
+    using System.Web.UI;
+    using System.Web.UI.WebControls;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+
+    using Auth;
+    using Data.Models;
+
+    public partial class TwoFactorAuthenticationSignIn : Page
     {
         private ApplicationSignInManager signinManager;
         private ApplicationUserManager manager;

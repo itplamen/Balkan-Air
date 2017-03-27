@@ -1,16 +1,17 @@
-﻿using System;
-using System.Web;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Owin;
-using BalkanAir.Data.Models;
-using BalkanAir.Web.App_Start;
-using BalkanAir.Auth;
-
-namespace BalkanAir.Web.Account
+﻿namespace BalkanAir.Web.Account
 {
-    public partial class RegisterExternalLogin : System.Web.UI.Page
+    using System;
+    using System.Web;
+    using System.Web.UI;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
+
+    using Auth;
+    using Data.Models;
+   
+    public partial class RegisterExternalLogin : Page
     {
         protected string ProviderName
         {

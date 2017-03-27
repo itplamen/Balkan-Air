@@ -722,7 +722,6 @@
     <Compile Include="App_Start\NinjectWeb.cs" />
     <Compile Include="App_Start\NinjectConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Booking\Extras.aspx.cs">
       <DependentUpon>Extras.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -804,7 +803,6 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
-    <Compile Include="Startup.cs" />
     <Compile Include="ViewNews.aspx.cs">
       <DependentUpon>ViewNews.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

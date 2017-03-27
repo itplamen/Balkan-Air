@@ -23,6 +23,7 @@
         {
             return this.TravelClassesServices.GetAll();
         }
+
         public void TravelClassesGridView_UpdateItem(int id)
         {
             var travelClass = this.TravelClassesServices.GetTravelClass(id);

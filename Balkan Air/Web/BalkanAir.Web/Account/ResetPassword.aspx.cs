@@ -10,20 +10,15 @@
 
     using Ninject;
 
-    using Services.Data.Contracts;
-    using App_Start;
     using Auth;
+    using Services.Data.Contracts;
 
     public partial class ResetPassword : Page
     {
         [Inject]
         public IUsersServices UsersServices { get; set; }
 
-        protected string StatusMessage
-        {
-            get;
-            private set;
-        }
+        protected string StatusMessage { get; private set; }
 
         protected void Reset_Click(object sender, EventArgs e)
         {

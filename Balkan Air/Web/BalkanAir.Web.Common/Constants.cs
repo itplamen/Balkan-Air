@@ -21,7 +21,6 @@
         public const string SELECTED_ROW = "selectedRow";
         public const string SELECTED_SEAT_NUMBER = "selectedSeatNumber";
 
-
         /******************** Account/Profile *******************/
 
         public const string BAG_PRICE_ATTR = "data-price";

@@ -6,6 +6,7 @@
     using System.Reflection;
 
     using AutoMapper;
+
     using Api.Infrastructure.Mapping;
 
     public static class AutoMapperConfig

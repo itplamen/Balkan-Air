@@ -1,27 +1,22 @@
 ﻿namespace BalkanAir.Web.Account
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Web;
     using System.Web.UI;
-    using System.Web.UI.WebControls;
 
-    using BalkanAir.Data.Models;
-    using BalkanAir.Services.Data.Contracts;
-    using Ninject;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
+
+    using Ninject;
+
     using Auth;
+    using Data.Models;
+    using Services.Data.Contracts;
 
     public partial class PreviousTrips : Page
     {
         [Inject]
         public IBookingsServices BookingsServices { get; set; }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-        }
 
         public IQueryable<Booking> PreviousTripsListView_GetData()
         {

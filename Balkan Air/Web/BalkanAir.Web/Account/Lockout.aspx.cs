@@ -1,17 +1,16 @@
-﻿using BalkanAir.Auth;
-using BalkanAir.Data.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-
-namespace BalkanAir.Web.Account
+﻿namespace BalkanAir.Web.Account
 {
-    public partial class Lockout : System.Web.UI.Page
+    using System;
+    using System.Web;
+    using System.Web.UI;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+
+    using Auth;
+    using Data.Models;
+
+    public partial class Lockout : Page
     {
         protected ApplicationUserManager Manager
         {

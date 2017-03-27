@@ -14,7 +14,7 @@
         private const string HOST = "smtp.gmail.com";
         private const int PORT = 587;
 
-        private string MESSAGE_FOOTER = "<br /><br /><i>Best regards, <br />" +
+        private const string MESSAGE_FOOTER = "<br /><br /><i>Best regards, <br />" +
             "<span style=\"color:#C5027C; font-size: 15px;\"><strong>Balkan Air Bulgaria</strong></span></i>";
 
         private static readonly object SyncRoot = new object();

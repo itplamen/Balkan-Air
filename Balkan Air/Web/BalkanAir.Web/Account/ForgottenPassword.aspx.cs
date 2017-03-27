@@ -10,19 +10,14 @@
 
     using Ninject;
 
+    using Auth;
     using Common;
     using Services.Data.Contracts;
-    using App_Start;
-    using Auth;
 
     public partial class ForgotPassword : Page
     {
         [Inject]
         public IUsersServices UsersServices { get; set; }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-        }
 
         protected void Forgot(object sender, EventArgs e)
         {

@@ -6,16 +6,13 @@
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
-    using Common;
+
     using Auth;
+    using Common;
 
     public partial class ChangePassword : Page
     {
-        protected string SuccessMessage
-        {
-            get;
-            private set;
-        }
+        protected string SuccessMessage { get; private set; }
 
         private bool HasPassword(ApplicationUserManager manager)
         {
