@@ -6,6 +6,7 @@
         public const string ABOUT = "~/About";
         public const string NEWS = "~/News";
         public const string CONTACT = "~/Contact";
+        public const string DEVELOPERS = "~/Developers";
         public const string VIEW_NEWS = "~/ViewNews";
         public const string FLIGHT_INFO = "~/FlightInfo";
         public const string SELECT_FLIGHT = "~/Booking/SelectFlight";

@@ -25,7 +25,7 @@ input[type="tel"], input[type="select"], input[type="time"] {
         padding: 0;
     }
 }
-
+ 
 .profileIcon {
     width: 30px; 
     height: 30px;
@@ -1963,7 +1963,7 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
 }
 
 
-/****************** ViewNews ******************/
+/****************** ViewNews.aspx ******************/
 
 .viewNewsImage {
     width: 100%; 
@@ -2009,6 +2009,61 @@ div.flightDatesDiv.noFlightDatesDiv.slick-current .price {
 
 #EditCommentTextBox {
     margin-top: 10px; 
+} 
+
+
+/****************** Developers.aspx ******************/
+.apiDiv {
+    margin-bottom: 70px;
+}  
+
+#ApiOverviewOrderedList {
+    margin-bottom: 50px;
+}
+
+#ApiOverviewOrderedList li {
+    text-decoration: underline;
+}
+
+#ApiOverviewOrderedList li a {
+    color: inherit;
+}
+
+#ApiOverviewOrderedList li a:hover {
+    color: #4585f8;
+}
+ 
+pre {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}
+ 
+.apiTableInfo {
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    width: 100%; 
+}
+
+.apiTableInfo tr td, .apiTableInfo tr th {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 30px;
+}
+
+.apiTableInfo tr td {
+    border-bottom: 1px solid #ccc;
+}
+
+.apiTableInfo tr th {
+    border-bottom: 3px solid gray;
+}
+
+.variableTd {
+    font-style: italic;
+    font-family: monospace;
 }
 
 /****************** Calendar ******************/
