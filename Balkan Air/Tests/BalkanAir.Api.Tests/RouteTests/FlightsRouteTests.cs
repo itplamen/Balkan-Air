@@ -349,7 +349,7 @@
                 .WithJsonContent(jsonContent)
                 .And()
                 .WithHttpMethod(HttpMethod.Put)
-                .To<FlightsController>(a => a.Update(negativeId, updateFlightRequestModel));
+                .To<FlightsController>(f => f.Update(negativeId, updateFlightRequestModel));
         }
 
         [TestMethod]
@@ -368,7 +368,7 @@
                 .WithJsonContent(jsonContent)
                 .And()
                 .WithHttpMethod(HttpMethod.Put)
-                .To<FlightsController>(a => a.Update(methodId, updateFlightRequestModel));
+                .To<FlightsController>(f => f.Update(methodId, updateFlightRequestModel));
         }
 
         [TestMethod]
@@ -386,7 +386,7 @@
                 .WithJsonContent(jsonContent)
                 .And()
                 .WithHttpMethod(HttpMethod.Put)
-                .To<FlightsController>(a => a.Update(updateFlightRequestModel.Id, updateFlightRequestModel));
+                .To<FlightsController>(f => f.Update(updateFlightRequestModel.Id, updateFlightRequestModel));
         }
 
         [TestMethod]
@@ -404,7 +404,7 @@
                 .WithJsonContent(jsonContent)
                 .And()
                 .WithHttpMethod(invalidHttpMethod)
-                .To<FlightsController>(a => a.Update(updateFlightRequestModel.Id, updateFlightRequestModel));
+                .To<FlightsController>(f => f.Update(updateFlightRequestModel.Id, updateFlightRequestModel));
         }
 
         [TestMethod]
@@ -419,7 +419,7 @@
                 .WithJsonContent(jsonContent)
                 .And()
                 .WithHttpMethod(HttpMethod.Put)
-                .To<FlightsController>(a => a.Update(updateFlightRequestModel.Id, updateFlightRequestModel));
+                .To<FlightsController>(f => f.Update(updateFlightRequestModel.Id, updateFlightRequestModel));
         }
 
         [TestMethod]
@@ -432,7 +432,7 @@
                 .Routes()
                 .ShouldMap(DELETE_PATH + negativeId)
                 .WithHttpMethod(HttpMethod.Delete)
-                .To<FlightsController>(a => a.Delete(negativeId));
+                .To<FlightsController>(f => f.Delete(negativeId));
         }
 
         [TestMethod]
@@ -446,7 +446,7 @@
                 .Routes()
                 .ShouldMap(DELETE_PATH + pathId)
                 .WithHttpMethod(HttpMethod.Delete)
-                .To<FlightsController>(a => a.Delete(methodId));
+                .To<FlightsController>(f => f.Delete(methodId));
         }
 
         [TestMethod]
@@ -459,7 +459,7 @@
                 .Routes()
                 .ShouldMap(DELETE_PATH + notIntegerId)
                 .WithHttpMethod(HttpMethod.Delete)
-                .To<FlightsController>(a => a.Delete(1));
+                .To<FlightsController>(f => f.Delete(1));
         }
 
         [TestMethod]
@@ -473,7 +473,7 @@
                 .Routes()
                 .ShouldMap(DELETE_PATH + validId)
                 .WithHttpMethod(invalidHttpMethod)
-                .To<FlightsController>(a => a.Delete(validId));
+                .To<FlightsController>(f => f.Delete(validId));
         }
 
         [TestMethod]
@@ -485,7 +485,7 @@
                 .Routes()
                 .ShouldMap(DELETE_PATH + validId)
                 .WithHttpMethod(HttpMethod.Delete)
-                .To<FlightsController>(a => a.Delete(validId));
+                .To<FlightsController>(f => f.Delete(validId));
         }
     }
 }

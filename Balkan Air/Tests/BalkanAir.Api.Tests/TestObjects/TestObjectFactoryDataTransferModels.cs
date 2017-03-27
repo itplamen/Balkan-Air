@@ -9,6 +9,7 @@
     using Models.Countries;
     using Models.Fares;
     using Models.Flights;
+    using Models.News;
 
     public static class TestObjectFactoryDataTransferModels
     {
@@ -221,6 +222,38 @@
                 FlightLegId = 1,
                 FlightStatusId = 1,
                 AircraftId = 1,
+                IsDeleted = true
+            };
+        }
+
+        public static NewsRequestModel GetInvalidNewsRequestModel()
+        {
+            return new NewsRequestModel() { Title = null };
+        }
+
+        public static NewsRequestModel GetValidNewsRequestModel()
+        {
+            return new NewsRequestModel()
+            {
+                Title = "Test News Title",
+                Content = "Test News Content",
+                CategoryId = 1
+            };
+        }
+
+        public static UpdateNewsRequestModel GetInvalidUpdateNewsRequestModel()
+        {
+            return new UpdateNewsRequestModel() { Title = null };
+        }
+
+        public static UpdateNewsRequestModel GetValidUpdateNewsRequestModel()
+        {
+            return new UpdateNewsRequestModel()
+            {
+                Id = 1,
+                Title = "Test News Title",
+                Content = "Test News Content",
+                CategoryId = 1,
                 IsDeleted = true
             };
         }

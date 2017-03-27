@@ -16,15 +16,7 @@
         [Inject]
         public IUsersServices UsersServices { get; set; }
 
-        protected string SuccessMessage
-        {
-            get;
-            private set;
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-        }
+        protected string SuccessMessage { get; private set; }
 
         public IQueryable<object> UsersListBox_GetData()
         {
