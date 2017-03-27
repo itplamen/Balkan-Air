@@ -13,11 +13,12 @@
     using Moq;
     using Services.Data.Contracts;
     using System.Linq;
+    using BalkanAir.Tests.Common.TestObjects;
+    using Services.Data.Tests.TestObjects;
 
     [TestClass]
     public class AirportsIntegrationTests
     {
-        private static Random rand = new Random();
         private string inMemoryServerUrl = "http://localhost:12345";
 
         [TestMethod]
@@ -52,18 +53,12 @@
             //    Assert.AreEqual(HttpStatusCode.OK, result.StatusCode);
             //}
 
-            //var repo = new Mock<IRepository<Airport>>();
-            //Airport[] airprots = { new Airport(), new Airport(), new Airport() };
+            var server = new InMemoryHttpServer<Airport>(this.inMemoryServerUrl, TestObjectFactoryRepositories.GetAirportsRepository());
 
-            //repo.Setup(a => a.All())
-            //    .Returns(airprots.AsQueryable());
+            var response = server.CreateGetRequest("/api/airports");
 
-            //var server = new InMemoryHttpServer<Airport>(this.inMemoryServerUrl, repo.Object);
-
-            //var response = server.CreateGetRequest("/api/airports");
-
-            //Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            //Assert.IsNotNull(response.Content);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsNotNull(response.Content);
         }
     }
 }

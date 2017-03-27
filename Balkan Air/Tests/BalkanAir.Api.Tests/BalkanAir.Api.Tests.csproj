@@ -99,8 +99,6 @@
     <Compile Include="ControllerTests\FaresControllerTests.cs" />
     <Compile Include="ControllerTests\FlightsControllerTests.cs" />
     <Compile Include="IntegrationTests\AirportsIntegrationTests.cs" />
-    <Compile Include="IntegrationTests\InMemoryHttpServer.cs" />
-    <Compile Include="IntegrationTests\TestBugsDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RouteTests\AirportsRouteTests.cs" />
     <Compile Include="RouteTests\FaresRouteTests.cs" />
@@ -141,6 +139,10 @@
     <ProjectReference Include="..\..\Web\BalkanAir.Web\BalkanAir.Web.csproj">
       <Project>{7c7e6503-71d4-445a-85a7-47f7bc581d1d}</Project>
       <Name>BalkanAir.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BalkanAir.Services.Data.Tests\BalkanAir.Services.Data.Tests.csproj">
+      <Project>{ADEDE80E-C226-4E8A-97A0-8B1055E55C9B}</Project>
+      <Name>BalkanAir.Services.Data.Tests</Name>
     </ProjectReference>
     <ProjectReference Include="..\BalkanAir.Tests.Common\BalkanAir.Tests.Common.csproj">
       <Project>{bf6973d6-2fcb-4506-9357-d22649f3c737}</Project>
