@@ -1,27 +1,36 @@
 ﻿namespace BalkanAir.Web.Account
 {
+    using System;
     using System.Linq;
-    using System.Web.UI;
 
-    using Ninject;
+    using WebFormsMvp;
+    using WebFormsMvp.Web;
 
     using Data.Models;
-    using Services.Data.Contracts;
+    using Mvp.EventArgs.Account;
+    using Mvp.Models.Account;
+    using Mvp.Presenters.Account;
+    using Mvp.ViewContracts.Account;
 
-    public partial class CreditCards : Page
+    [PresenterBinding(typeof(CreditCardsPresenter))]
+    public partial class CreditCards : MvpPage<CreditCardsViewModel>, ICreditCardsView
     {
-        [Inject]
-        public ICreditCardsServices CreditCardsServices { get; set; }
+        public event EventHandler OnCreditCardsGetData;
+        public event EventHandler<CreditCardsEventArgs> OnCreditCardsDeleteItem;
 
         public IQueryable<CreditCard> CreditCardsListView_GetData()
         {
-            return this.CreditCardsServices.GetAll()
-                .Where(c => !c.IsDeleted);
+            this.OnCreditCardsGetData?.Invoke(null, null);
+
+            return this.Model.CreditCards;
         }
 
         public void CreditCardsListView_DeleteItem(int id)
         {
-            this.CreditCardsServices.Delete(id);
+            this.OnCreditCardsDeleteItem?.Invoke(null, new CreditCardsEventArgs()
+            {
+                Id = id
+            });
         }
     }
 }
