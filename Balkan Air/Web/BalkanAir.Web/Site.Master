@@ -349,7 +349,10 @@
 
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> Balkan Air Bulgaria. All rights reserved. </p>
+                <p>
+                    &copy; <%: DateTime.Now.Year %> Balkan Air Bulgaria. All rights reserved.  
+                    Developed by <a id="DevelopedByLink" target="_blank" href="https://github.com/itplamen">itplamen</a>
+                </p>
             </footer>
         </div>
 

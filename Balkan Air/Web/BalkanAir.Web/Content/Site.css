@@ -25,6 +25,11 @@ input[type="tel"], input[type="select"], input[type="time"] {
         padding: 0;
     }
 }
+
+#DevelopedByLink {
+    color: inherit;
+    font-weight: bold;
+}
  
 .profileIcon {
     width: 30px; 
