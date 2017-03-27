@@ -389,7 +389,7 @@
             //this.Flights.Add(new Flight() { Number = new FlightNumber(this.context).GetUniqueFlightNumber() });
         }
 
-        private void SeedFlightLegs ()
+        private void SeedFlightLegs()
         {
             // Sofia - Madrid
             this.AddFlightLeg(1, new DateTime(2017, 4, 1, 17, 30, 00), 6, new DateTime(2017, 4, 1, 20, 30, 00), 1, 1);
@@ -505,7 +505,7 @@
         {
             this.News.Add(new News()
             {
-                Category = Categories[0],
+                Category = this.Categories[0],
                 Title = "New Sofia - Budapest route launched",
                 Content = "<p>Balkan Air launched a new route from Sofia (SOF) to Budapest (BUD), with a three times weekly " +
                 "service beginning in October, as part of its winter 2017 schedule which will go on sale soon.</p>" +
