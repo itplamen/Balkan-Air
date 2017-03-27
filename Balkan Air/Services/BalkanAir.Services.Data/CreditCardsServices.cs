@@ -52,7 +52,7 @@
 
             var creditCard = this.creditCards.GetById(id);
 
-            if (creditCards != null)
+            if (creditCard != null)
             {
                 creditCard.IsDeleted = true;
                 this.creditCards.SaveChanges();

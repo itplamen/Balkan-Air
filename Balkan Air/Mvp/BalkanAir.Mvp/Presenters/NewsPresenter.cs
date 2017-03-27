@@ -48,7 +48,7 @@
             this.View.Model.News = this.newsServices.GetAll()
                 .Where(n => !n.IsDeleted)
                 .OrderByDescending(n => n.DateCreated)
-                .ToList(); ;
+                .ToList();
         }
 
         private void View_OnNewsByCategoryGetData(object sender, NewsEventArgs e)

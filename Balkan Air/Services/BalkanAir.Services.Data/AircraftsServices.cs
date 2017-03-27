@@ -59,7 +59,7 @@
 
             var aircraftToUpdate = this.aircraftsRepository.GetById(id);
 
-            if (aircraftsRepository != null)
+            if (aircraftToUpdate != null)
             {
                 aircraftToUpdate.Model = aircraft.Model;
                 aircraftToUpdate.TotalSeats = aircraft.TotalSeats;
@@ -91,4 +91,3 @@
         }
     }
 }
-         

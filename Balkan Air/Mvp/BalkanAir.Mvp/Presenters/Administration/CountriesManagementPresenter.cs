@@ -31,7 +31,6 @@
             this.View.OnCountriesAddItem += this.View_OnCountriesAddItem;
         }
 
-
         private void View_OnCountriesGetData(object sender, EventArgs e)
         {
             this.View.Model.Countries = this.countriesServices.GetAll()

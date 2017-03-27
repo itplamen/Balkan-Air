@@ -6,7 +6,7 @@
 
     public class LegInstancesManagementViewModel
     {
-        public IQueryable<LegInstance> LegInstances;
+        public IQueryable<LegInstance> LegInstances { get; set; }
 
         public IQueryable<object> FlightLegs { get; set; }
 
