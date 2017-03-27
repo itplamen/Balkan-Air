@@ -14,8 +14,7 @@
     {
         private readonly INotificationsServices notificationsServices;
 
-        public NotificationsManagementPresenter(INotificationsManagementView view, 
-            INotificationsServices notificationsServices) 
+        public NotificationsManagementPresenter(INotificationsManagementView view, INotificationsServices notificationsServices) 
             : base(view)
         {
             if (notificationsServices == null)
@@ -47,8 +46,10 @@
 
             if (notification == null)
             {
-                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                this.View.ModelState.AddModelError(
+                    ErrorMessages.MODEL_ERROR_KEY, 
                     string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
+
                 return;
             }
 

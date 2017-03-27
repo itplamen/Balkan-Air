@@ -16,8 +16,7 @@
         private readonly IFaresServices faresServices;
         private readonly IRoutesServices routesServices;
 
-        public FaresManagementPresenter(IFaresManagementView view, IFaresServices faresServices, 
-            IRoutesServices routesServices)
+        public FaresManagementPresenter(IFaresManagementView view, IFaresServices faresServices, IRoutesServices routesServices)
             : base(view)
         {
             if (faresServices == null)
@@ -56,8 +55,10 @@
 
             if (fare == null)
             {
-                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                this.View.ModelState.AddModelError(
+                    ErrorMessages.MODEL_ERROR_KEY,    
                     string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
+
                 return;
             }
 

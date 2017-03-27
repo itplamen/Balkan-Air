@@ -1,9 +1,55 @@
 <stylecopresultscache>
   <version>12</version>
+  <sourcecode name="CreditCardsEventArgs.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.27 15:42:32.828</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ItineraryEventArgs.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.27 17:02:21.656</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
   <sourcecode name="AircraftManufacturersManagementEventArgs.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.24 17:06:50.934</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -26,7 +72,7 @@
   <sourcecode name="AircraftsManagementEventArgs.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.25 15:25:55.038</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -49,7 +95,7 @@
   <sourcecode name="AirportsManagementEventArgs.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.25 18:23:00.343</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -72,7 +118,7 @@
   <sourcecode name="BaggageManagementEventArgs.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.25 21:36:32.288</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -95,7 +141,7 @@
   <sourcecode name="BookingsManagementEventArgs.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.25 23:18:47.367</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -118,7 +164,7 @@
   <sourcecode name="CategoriesManagementEventArgs.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.26 00:09:49.089</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -141,7 +187,7 @@
   <sourcecode name="CommentsManagementEventArgs.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.26 00:08:32.426</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -164,7 +210,7 @@
   <sourcecode name="CountriesManagementEventArgs.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.26 00:08:40.392</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -187,7 +233,7 @@
   <sourcecode name="FaresManagementEventArgs.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.26 00:08:49.364</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -210,7 +256,7 @@
   <sourcecode name="FlightLegsManagementEventArgs.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.26 00:08:57.409</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -233,7 +279,7 @@
   <sourcecode name="FlightsManagementEventArgs.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.26 00:09:06.504</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -256,7 +302,7 @@
   <sourcecode name="FlightStatusesManagementEventArgs.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.26 00:09:14.313</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -279,7 +325,7 @@
   <sourcecode name="LegInstancesManagementEventArgs.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.26 00:09:19.223</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -302,7 +348,7 @@
   <sourcecode name="NotificationsManagementEventArgs.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.26 00:09:24.754</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -325,8 +371,31 @@
   <sourcecode name="RoutesManagementEventArgs.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.26 00:09:38.956</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
+  <sourcecode name="SeatsManagementEventArgs.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.27 15:10:04.907</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -348,8 +417,77 @@
   <sourcecode name="NewsEventArgs.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.21 02:10:12.279</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
+  <sourcecode name="CreditCardsViewModel.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.27 15:35:58.544</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ItineraryViewModel.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.27 17:07:00.539</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AdministrationHomeViewModel.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.27 14:27:51.926</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -371,7 +509,7 @@
   <sourcecode name="AircraftManufacturersManagementViewModel.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.21 21:09:59.745</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -394,7 +532,7 @@
   <sourcecode name="AircraftsManagementViewModels.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.25 18:01:11.538</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -417,7 +555,7 @@
   <sourcecode name="AirportsManagementViewModel.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.21 21:13:25.619</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -440,7 +578,7 @@
   <sourcecode name="BaggageManagementViewModel.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.21 21:53:20.568</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -463,7 +601,7 @@
   <sourcecode name="BookingsManagementViewModel.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.21 22:18:18.629</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -486,7 +624,7 @@
   <sourcecode name="CategoriesManagementViewModel.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.21 22:36:29.755</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -509,7 +647,7 @@
   <sourcecode name="CommentsManagementViewModel.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.21 22:59:47.197</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -532,7 +670,7 @@
   <sourcecode name="CountriesManagementViewModel.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.21 23:35:02.462</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -555,7 +693,7 @@
   <sourcecode name="FaresManagementViewModel.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.22 11:55:44.169</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -578,7 +716,7 @@
   <sourcecode name="FlightLegsManagementViewModel.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.22 15:18:54.989</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -601,7 +739,7 @@
   <sourcecode name="FlightsManagementViewModel.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.22 17:29:09.871</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -624,8 +762,31 @@
   <sourcecode name="FlightStatusesManagementViewModel.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.22 18:14:09.494</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
+  <sourcecode name="LegInstancesManagementViewModel.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.27 09:36:14.025</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -647,7 +808,7 @@
   <sourcecode name="NotificationsManagementViewModel.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.22 21:56:17.704</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -670,8 +831,31 @@
   <sourcecode name="RoutesManagementViewModel.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.22 22:23:08.270</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
+  <sourcecode name="SeatsManagementViewModel.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.27 14:42:00.955</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -693,7 +877,7 @@
   <sourcecode name="NewsViewModel.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.21 02:10:17.790</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -713,11 +897,11 @@
     </timestamps>
     <violations />
   </sourcecode>
-  <sourcecode name="AircraftManufacturersManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
+  <sourcecode name="CreditCardsPresenter.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
-      <sourceFile>2017.03.25 17:07:59.508</sourceFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.27 15:47:47.491</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -740,28 +924,13 @@
         <line>6</line>
         <warning>False</warning>
       </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParametersMustBeOnSameLineOrSeparateLines" ruleCheckId="SA1117">
-        <context>All constructor parameters must be placed on the same line, or each parameter must be placed on a separate line.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the constructor parameters are on separate lines, the first parameter must begin on the line beneath the name of the constructor.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParameterMustFollowComma" ruleCheckId="SA1115">
-        <context>The parameter must begin on the line after the previous parameter.</context>
-        <line>20</line>
-        <warning>False</warning>
-      </violation>
     </violations>
   </sourcecode>
-  <sourcecode name="AircraftsManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
+  <sourcecode name="NewsPresenter.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
-      <sourceFile>2017.03.25 18:01:10.471</sourceFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.27 09:34:05.230</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -782,579 +951,6 @@
       <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
         <context>Using directives must be sorted alphabetically by the namespaces.</context>
         <line>6</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParametersMustBeOnSameLineOrSeparateLines" ruleCheckId="SA1117">
-        <context>All constructor parameters must be placed on the same line, or each parameter must be placed on a separate line.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the constructor parameters are on separate lines, the first parameter must begin on the line beneath the name of the constructor.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParameterMustFollowComma" ruleCheckId="SA1115">
-        <context>The parameter must begin on the line after the previous parameter.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
-  </sourcecode>
-  <sourcecode name="AirportsManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
-    <timestamps>
-      <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
-      <sourceFile>2017.03.25 19:01:05.696</sourceFile>
-      <parser>2017.03.27 08:55:58.560</parser>
-      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
-      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
-      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
-      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
-      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
-      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
-      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
-      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
-      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
-      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
-      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
-      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
-      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
-      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
-    </timestamps>
-    <violations>
-      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
-        <context>Using directives must be sorted alphabetically by the namespaces.</context>
-        <line>6</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParametersMustBeOnSameLineOrSeparateLines" ruleCheckId="SA1117">
-        <context>All constructor parameters must be placed on the same line, or each parameter must be placed on a separate line.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the constructor parameters are on separate lines, the first parameter must begin on the line beneath the name of the constructor.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParameterMustFollowComma" ruleCheckId="SA1115">
-        <context>The parameter must begin on the line after the previous parameter.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the method parameters are on separate lines, the first parameter must begin on the line beneath the name of the method.</context>
-        <line>61</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
-  </sourcecode>
-  <sourcecode name="BaggageManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
-    <timestamps>
-      <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
-      <sourceFile>2017.03.25 23:19:29.464</sourceFile>
-      <parser>2017.03.27 08:55:58.560</parser>
-      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
-      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
-      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
-      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
-      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
-      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
-      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
-      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
-      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
-      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
-      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
-      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
-      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
-      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
-    </timestamps>
-    <violations>
-      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
-        <context>Using directives must be sorted alphabetically by the namespaces.</context>
-        <line>6</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParametersMustBeOnSameLineOrSeparateLines" ruleCheckId="SA1117">
-        <context>All constructor parameters must be placed on the same line, or each parameter must be placed on a separate line.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the constructor parameters are on separate lines, the first parameter must begin on the line beneath the name of the constructor.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParameterMustFollowComma" ruleCheckId="SA1115">
-        <context>The parameter must begin on the line after the previous parameter.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the method parameters are on separate lines, the first parameter must begin on the line beneath the name of the method.</context>
-        <line>59</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
-  </sourcecode>
-  <sourcecode name="BookingsManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
-    <timestamps>
-      <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
-      <sourceFile>2017.03.25 23:18:28.301</sourceFile>
-      <parser>2017.03.27 08:55:58.560</parser>
-      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
-      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
-      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
-      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
-      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
-      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
-      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
-      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
-      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
-      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
-      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
-      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
-      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
-      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
-    </timestamps>
-    <violations>
-      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
-        <context>Using directives must be sorted alphabetically by the namespaces.</context>
-        <line>5</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the method parameters are on separate lines, the first parameter must begin on the line beneath the name of the method.</context>
-        <line>47</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
-  </sourcecode>
-  <sourcecode name="CategoriesManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
-    <timestamps>
-      <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
-      <sourceFile>2017.03.26 00:29:08.291</sourceFile>
-      <parser>2017.03.27 08:55:58.560</parser>
-      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
-      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
-      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
-      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
-      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
-      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
-      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
-      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
-      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
-      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
-      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
-      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
-      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
-      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
-    </timestamps>
-    <violations>
-      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
-        <context>Using directives must be sorted alphabetically by the namespaces.</context>
-        <line>6</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the method parameters are on separate lines, the first parameter must begin on the line beneath the name of the method.</context>
-        <line>51</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
-  </sourcecode>
-  <sourcecode name="CommentsManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
-    <timestamps>
-      <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
-      <sourceFile>2017.03.26 00:27:20.237</sourceFile>
-      <parser>2017.03.27 08:55:58.560</parser>
-      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
-      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
-      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
-      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
-      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
-      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
-      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
-      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
-      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
-      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
-      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
-      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
-      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
-      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
-    </timestamps>
-    <violations>
-      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
-        <context>Using directives must be sorted alphabetically by the namespaces.</context>
-        <line>6</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the method parameters are on separate lines, the first parameter must begin on the line beneath the name of the method.</context>
-        <line>49</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
-  </sourcecode>
-  <sourcecode name="FaresManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
-    <timestamps>
-      <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
-      <sourceFile>2017.03.26 15:23:29.830</sourceFile>
-      <parser>2017.03.27 08:55:58.560</parser>
-      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
-      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
-      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
-      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
-      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
-      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
-      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
-      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
-      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
-      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
-      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
-      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
-      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
-      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
-    </timestamps>
-    <violations>
-      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
-        <context>Using directives must be sorted alphabetically by the namespaces.</context>
-        <line>6</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParametersMustBeOnSameLineOrSeparateLines" ruleCheckId="SA1117">
-        <context>All constructor parameters must be placed on the same line, or each parameter must be placed on a separate line.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the constructor parameters are on separate lines, the first parameter must begin on the line beneath the name of the constructor.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParameterMustFollowComma" ruleCheckId="SA1115">
-        <context>The parameter must begin on the line after the previous parameter.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the method parameters are on separate lines, the first parameter must begin on the line beneath the name of the method.</context>
-        <line>59</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
-  </sourcecode>
-  <sourcecode name="FlightLegsManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
-    <timestamps>
-      <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
-      <sourceFile>2017.03.26 18:02:08.747</sourceFile>
-      <parser>2017.03.27 08:55:58.560</parser>
-      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
-      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
-      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
-      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
-      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
-      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
-      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
-      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
-      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
-      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
-      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
-      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
-      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
-      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
-    </timestamps>
-    <violations>
-      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
-        <context>Using directives must be sorted alphabetically by the namespaces.</context>
-        <line>6</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParametersMustBeOnSameLineOrSeparateLines" ruleCheckId="SA1117">
-        <context>All constructor parameters must be placed on the same line, or each parameter must be placed on a separate line.</context>
-        <line>22</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the constructor parameters are on separate lines, the first parameter must begin on the line beneath the name of the constructor.</context>
-        <line>22</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParameterMustFollowComma" ruleCheckId="SA1115">
-        <context>The parameter must begin on the line after the previous parameter.</context>
-        <line>22</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParameterMustFollowComma" ruleCheckId="SA1115">
-        <context>The parameter must begin on the line after the previous parameter.</context>
-        <line>23</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the method parameters are on separate lines, the first parameter must begin on the line beneath the name of the method.</context>
-        <line>86</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
-  </sourcecode>
-  <sourcecode name="FlightsManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
-    <timestamps>
-      <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
-      <sourceFile>2017.03.26 00:21:48.605</sourceFile>
-      <parser>2017.03.27 08:55:58.560</parser>
-      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
-      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
-      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
-      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
-      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
-      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
-      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
-      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
-      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
-      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
-      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
-      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
-      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
-      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
-    </timestamps>
-    <violations>
-      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
-        <context>Using directives must be sorted alphabetically by the namespaces.</context>
-        <line>5</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParametersMustBeOnSameLineOrSeparateLines" ruleCheckId="SA1117">
-        <context>All constructor parameters must be placed on the same line, or each parameter must be placed on a separate line.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the constructor parameters are on separate lines, the first parameter must begin on the line beneath the name of the constructor.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParameterMustFollowComma" ruleCheckId="SA1115">
-        <context>The parameter must begin on the line after the previous parameter.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the method parameters are on separate lines, the first parameter must begin on the line beneath the name of the method.</context>
-        <line>59</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
-  </sourcecode>
-  <sourcecode name="FlightStatusesManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
-    <timestamps>
-      <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
-      <sourceFile>2017.03.26 00:19:28.688</sourceFile>
-      <parser>2017.03.27 08:55:58.560</parser>
-      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
-      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
-      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
-      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
-      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
-      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
-      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
-      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
-      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
-      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
-      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
-      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
-      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
-      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
-    </timestamps>
-    <violations>
-      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
-        <context>Using directives must be sorted alphabetically by the namespaces.</context>
-        <line>6</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the constructor parameters are on separate lines, the first parameter must begin on the line beneath the name of the constructor.</context>
-        <line>18</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the method parameters are on separate lines, the first parameter must begin on the line beneath the name of the method.</context>
-        <line>52</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
-  </sourcecode>
-  <sourcecode name="LegInstancesManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
-    <timestamps>
-      <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
-      <sourceFile>2017.03.26 00:16:17.292</sourceFile>
-      <parser>2017.03.27 08:55:58.560</parser>
-      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
-      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
-      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
-      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
-      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
-      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
-      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
-      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
-      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
-      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
-      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
-      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
-      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
-      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
-    </timestamps>
-    <violations>
-      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
-        <context>Using directives must be sorted alphabetically by the namespaces.</context>
-        <line>9</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParametersMustBeOnSameLineOrSeparateLines" ruleCheckId="SA1117">
-        <context>All constructor parameters must be placed on the same line, or each parameter must be placed on a separate line.</context>
-        <line>30</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the constructor parameters are on separate lines, the first parameter must begin on the line beneath the name of the constructor.</context>
-        <line>30</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParameterMustFollowComma" ruleCheckId="SA1115">
-        <context>The parameter must begin on the line after the previous parameter.</context>
-        <line>30</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParameterMustFollowComma" ruleCheckId="SA1115">
-        <context>The parameter must begin on the line after the previous parameter.</context>
-        <line>31</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParameterMustFollowComma" ruleCheckId="SA1115">
-        <context>The parameter must begin on the line after the previous parameter.</context>
-        <line>32</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParameterMustFollowComma" ruleCheckId="SA1115">
-        <context>The parameter must begin on the line after the previous parameter.</context>
-        <line>33</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the method parameters are on separate lines, the first parameter must begin on the line beneath the name of the method.</context>
-        <line>119</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParametersMustBeOnSameLineOrSeparateLines" ruleCheckId="SA1117">
-        <context>All method parameters must be placed on the same line, or each parameter must be placed on a separate line.</context>
-        <line>292</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the method parameters are on separate lines, the first parameter must begin on the line beneath the name of the method.</context>
-        <line>292</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParameterMustFollowComma" ruleCheckId="SA1115">
-        <context>The parameter must begin on the line after the previous parameter.</context>
-        <line>293</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
-  </sourcecode>
-  <sourcecode name="NotificationsManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
-    <timestamps>
-      <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
-      <sourceFile>2017.03.26 00:17:44.203</sourceFile>
-      <parser>2017.03.27 08:55:58.560</parser>
-      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
-      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
-      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
-      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
-      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
-      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
-      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
-      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
-      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
-      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
-      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
-      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
-      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
-      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
-    </timestamps>
-    <violations>
-      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
-        <context>Using directives must be sorted alphabetically by the namespaces.</context>
-        <line>5</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the constructor parameters are on separate lines, the first parameter must begin on the line beneath the name of the constructor.</context>
-        <line>17</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the method parameters are on separate lines, the first parameter must begin on the line beneath the name of the method.</context>
-        <line>50</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
-  </sourcecode>
-  <sourcecode name="RoutesManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
-    <timestamps>
-      <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
-      <sourceFile>2017.03.26 00:12:58.940</sourceFile>
-      <parser>2017.03.27 08:55:58.560</parser>
-      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
-      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
-      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
-      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
-      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
-      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
-      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
-      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
-      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
-      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
-      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
-      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
-      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
-      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
-    </timestamps>
-    <violations>
-      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
-        <context>Using directives must be sorted alphabetically by the namespaces.</context>
-        <line>6</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParametersMustBeOnSameLineOrSeparateLines" ruleCheckId="SA1117">
-        <context>All constructor parameters must be placed on the same line, or each parameter must be placed on a separate line.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the constructor parameters are on separate lines, the first parameter must begin on the line beneath the name of the constructor.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParameterMustFollowComma" ruleCheckId="SA1115">
-        <context>The parameter must begin on the line after the previous parameter.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the method parameters are on separate lines, the first parameter must begin on the line beneath the name of the method.</context>
-        <line>61</line>
         <warning>False</warning>
       </violation>
     </violations>
@@ -1362,7 +958,7 @@
   <sourcecode name="AssemblyInfo.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.20 17:04:28.948</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -1382,10 +978,97 @@
     </timestamps>
     <violations />
   </sourcecode>
+  <sourcecode name="ICreditCardsView.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.27 15:43:32.696</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>5</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="IItineraryView.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.27 17:07:19.694</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>5</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="IAdministrationHomeView.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.27 14:29:39.159</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>5</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
   <sourcecode name="IAircraftManufacturersManagementView.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.24 21:52:18.427</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -1414,7 +1097,7 @@
   <sourcecode name="IAircraftsManagementView.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.21 21:11:50.475</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -1443,7 +1126,7 @@
   <sourcecode name="IAirportsManagementView.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.21 21:12:20.780</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -1472,7 +1155,7 @@
   <sourcecode name="IBaggageManagementView.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.21 21:53:46.194</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -1501,7 +1184,7 @@
   <sourcecode name="IBookingsManagementView.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.21 22:18:41.752</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -1535,7 +1218,7 @@
   <sourcecode name="ICategoriesManagementView.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.21 22:50:43.712</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -1564,7 +1247,7 @@
   <sourcecode name="ICommentsManagementView.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.21 23:12:47.891</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -1593,7 +1276,7 @@
   <sourcecode name="ICountriesManagementView.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.21 23:35:41.921</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -1622,7 +1305,7 @@
   <sourcecode name="IFaresManagementView.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.22 11:55:59.857</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -1651,7 +1334,7 @@
   <sourcecode name="IFlightLegsManagementView.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.22 15:18:58.521</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -1680,7 +1363,7 @@
   <sourcecode name="IFlightsManagementView.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.22 17:53:54.082</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -1709,7 +1392,7 @@
   <sourcecode name="IFlightStatusesManagementView.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.22 18:16:14.312</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -1738,7 +1421,7 @@
   <sourcecode name="ILegInstancesManagementView.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.22 20:15:59.066</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -1767,7 +1450,7 @@
   <sourcecode name="INotificationsManagementView.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.22 21:52:02.953</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -1796,8 +1479,37 @@
   <sourcecode name="IRoutesManagementView.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.22 22:31:02.256</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>6</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="ISeatsManagementView.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.27 15:21:53.641</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -1825,7 +1537,7 @@
   <sourcecode name="INewsView.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
       <sourceFile>2017.03.21 02:10:14.677</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
@@ -1851,11 +1563,40 @@
       </violation>
     </violations>
   </sourcecode>
-  <sourcecode name="NewsPresenter.cs" parser="StyleCop.CSharp.CsParser">
+  <sourcecode name="ItineraryPresenter.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
-      <sourceFile>2017.03.27 09:34:05.230</sourceFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.28 02:38:56.470</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>7</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="AdministrationHomePresenter.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.28 02:39:10.660</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -1880,37 +1621,11 @@
       </violation>
     </violations>
   </sourcecode>
-  <project key="-1701784861">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
-  <sourcecode name="LegInstancesManagementViewModel.cs" parser="StyleCop.CSharp.CsParser">
+  <sourcecode name="AircraftManufacturersManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
-      <sourceFile>2017.03.27 09:36:14.025</sourceFile>
-      <parser>2017.03.27 08:55:58.560</parser>
-      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
-      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
-      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
-      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
-      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
-      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
-      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
-      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
-      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
-      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
-      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
-      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
-      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
-      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
-    </timestamps>
-    <violations />
-  </sourcecode>
-  <sourcecode name="CountriesManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
-    <timestamps>
-      <styleCop>2017.03.27 08:55:58.560</styleCop>
-      <settingsFile>2017.03.27 09:33:44.763</settingsFile>
-      <sourceFile>2017.03.27 09:36:03.350</sourceFile>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.28 02:39:20.013</sourceFile>
       <parser>2017.03.27 08:55:58.560</parser>
       <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -1933,9 +1648,442 @@
         <line>6</line>
         <warning>False</warning>
       </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="SplitParametersMustStartOnLineAfterDeclaration" ruleCheckId="SA1116">
-        <context>If the method parameters are on separate lines, the first parameter must begin on the line beneath the name of the method.</context>
-        <line>52</line>
+    </violations>
+  </sourcecode>
+  <sourcecode name="AircraftsManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.28 02:39:29.167</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>6</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="AirportsManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.28 02:43:14.220</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>6</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="BaggageManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.28 02:43:36.876</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>6</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="BookingsManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.28 02:43:52.906</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>5</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="CategoriesManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.28 02:44:02.425</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>6</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="CommentsManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.28 02:44:15.303</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>6</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="CountriesManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.28 02:44:24.458</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>6</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="FaresManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.28 02:44:43.196</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>6</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="FlightLegsManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.28 02:44:58.404</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>6</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="FlightsManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.28 02:45:07.629</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>5</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="FlightStatusesManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.28 02:45:13.190</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>6</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="LegInstancesManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.28 02:45:20.262</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>9</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <project key="-1701784861">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="NotificationsManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.28 02:46:07.337</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>5</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="RoutesManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.28 02:46:01.637</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>6</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="SeatsManagementPresenter.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017.03.27 08:55:58.560</styleCop>
+      <settingsFile>2017.03.28 02:38:02.158</settingsFile>
+      <sourceFile>2017.03.28 02:45:55.131</sourceFile>
+      <parser>2017.03.27 08:55:58.560</parser>
+      <StyleCop.CSharp.DocumentationRules>2017.03.27 08:55:58.560</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1102430215</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017.03.27 08:55:58.560</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017.03.27 08:55:58.560</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017.03.27 08:55:58.560</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>6</line>
         <warning>False</warning>
       </violation>
     </violations>

@@ -15,8 +15,7 @@
     {
         private readonly IFlightStatusesServices flightStatusesServices;
 
-        public FlightStatusesManagementPresenter(IFlightStatusesManagementView view, 
-            IFlightStatusesServices flightStatusesServices) 
+        public FlightStatusesManagementPresenter(IFlightStatusesManagementView view, IFlightStatusesServices flightStatusesServices) 
             : base(view)
         {
             if (flightStatusesServices == null)
@@ -49,8 +48,10 @@
 
             if (flightStatus == null)
             {
-                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                this.View.ModelState.AddModelError(
+                    ErrorMessages.MODEL_ERROR_KEY, 
                     string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
+
                 return;
             }
 

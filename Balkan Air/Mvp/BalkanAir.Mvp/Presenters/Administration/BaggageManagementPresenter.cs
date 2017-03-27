@@ -16,7 +16,9 @@
         private readonly IBaggageServices baggageServices;
         private readonly IBookingsServices bookingsServices;
 
-        public BaggageManagementPresenter(IBaggageManagementView view, IBaggageServices baggageServices, 
+        public BaggageManagementPresenter(
+            IBaggageManagementView view, 
+            IBaggageServices baggageServices, 
             IBookingsServices bookingsServices) 
             : base(view)
         {
@@ -56,8 +58,10 @@
 
             if (baggage == null)
             {
-                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                this.View.ModelState.AddModelError(
+                    ErrorMessages.MODEL_ERROR_KEY, 
                     string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
+
                 return;
             }
 

@@ -16,8 +16,10 @@
         private readonly IAircraftManufacturersServices aircraftManufacturersServices;
         private readonly IAircraftsServices aircraftsServices;
 
-        public AircraftManufacturersManagementPresenter(IAircraftManufacturersManagementView view,
-            IAircraftManufacturersServices aircraftManufacturersServices, IAircraftsServices aircraftsServices)
+        public AircraftManufacturersManagementPresenter(
+            IAircraftManufacturersManagementView view,
+            IAircraftManufacturersServices aircraftManufacturersServices, 
+            IAircraftsServices aircraftsServices)
             : base(view)
         {
             if (aircraftManufacturersServices == null)

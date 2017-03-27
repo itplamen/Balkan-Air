@@ -19,8 +19,12 @@
         private readonly IRoutesServices routesServices;
         private readonly ILegInstancesServices legInstancesServices;
 
-        public FlightLegsManagementPresenter(IFlightLegsManagementView view, IFlightLegsServices flightLegsServices,
-            IAirportsServices airportsServices, IFlightsServices flightsServices, IRoutesServices routesServices, 
+        public FlightLegsManagementPresenter(
+            IFlightLegsManagementView view, 
+            IFlightLegsServices flightLegsServices,
+            IAirportsServices airportsServices, 
+            IFlightsServices flightsServices, 
+            IRoutesServices routesServices, 
             ILegInstancesServices legInstancesServices)
             : base(view)
         {
@@ -83,8 +87,10 @@
 
             if (flightLeg == null)
             {
-                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                this.View.ModelState.AddModelError(
+                    ErrorMessages.MODEL_ERROR_KEY, 
                     string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
+
                 return;
             }
 

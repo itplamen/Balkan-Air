@@ -14,7 +14,9 @@
         private readonly IUsersServices usersServices;
         private readonly IUserRolesServices userRolesServices;
 
-        public AdministrationHomePresenter(IAdministrationHomeView view, IUsersServices usersServices,
+        public AdministrationHomePresenter(
+            IAdministrationHomeView view, 
+            IUsersServices usersServices,
             IUserRolesServices userRolesServices) 
             : base(view)
         {

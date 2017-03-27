@@ -17,7 +17,9 @@
         private readonly IBookingsServices bookingsServices;
         private readonly ITravelClassesServices travelClassesServices;
 
-        public ItineraryPresenter(IItineraryView view, IBookingsServices bookingsServices,
+        public ItineraryPresenter(
+            IItineraryView view, 
+            IBookingsServices bookingsServices, 
             ITravelClassesServices travelClassesServices) 
             : base(view)
         {

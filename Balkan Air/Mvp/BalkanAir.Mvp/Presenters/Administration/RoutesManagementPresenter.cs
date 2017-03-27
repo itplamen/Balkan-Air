@@ -16,7 +16,9 @@
         private readonly IRoutesServices routesServices;
         private readonly IAirportsServices airportsServices;
 
-        public RoutesManagementPresenter(IRoutesManagementView view, IRoutesServices routesServices, 
+        public RoutesManagementPresenter(
+            IRoutesManagementView view, 
+            IRoutesServices routesServices, 
             IAirportsServices airportsServices) 
             : base(view)
         {
@@ -58,8 +60,10 @@
 
             if (route == null)
             {
-                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                this.View.ModelState.AddModelError(
+                    ErrorMessages.MODEL_ERROR_KEY, 
                     string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
+
                 return;
             }
 

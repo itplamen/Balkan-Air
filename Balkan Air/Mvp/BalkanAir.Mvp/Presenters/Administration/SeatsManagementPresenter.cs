@@ -17,8 +17,11 @@
         private readonly ISeatsServices seatsServices;
         private readonly ITravelClassesServices travelClassesServices;
 
-        public SeatsManagementPresenter(ISeatsManagementView view, ILegInstancesServices legInstancesServices,
-            ISeatsServices seatsServices, ITravelClassesServices travelClassesServices) 
+        public SeatsManagementPresenter(
+            ISeatsManagementView view, 
+            ILegInstancesServices legInstancesServices,
+            ISeatsServices seatsServices, 
+            ITravelClassesServices travelClassesServices) 
             : base(view)
         {
             if (legInstancesServices == null)
@@ -65,8 +68,10 @@
 
             if (seat == null)
             {
-                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                this.View.ModelState.AddModelError(
+                    ErrorMessages.MODEL_ERROR_KEY, 
                     string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
+
                 return;
             }
 

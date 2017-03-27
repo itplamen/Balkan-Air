@@ -27,10 +27,17 @@
         private readonly IUsersServices usersServices;
         private readonly IAirportsServices airportsServices;
 
-        public LegInstancesManagementPresenter(ILegInstancesManagementView view, ILegInstancesServices legInstancesServices,
-            IFlightLegsServices flightLegsServices, IFlightStatusesServices flightStatusesServices, IFaresServices faresServices,
-            IAircraftsServices aircraftsServices, IUserNotificationsServices userNotificationsServices,
-            INotificationsServices notificationsServices, IUsersServices usersServices, IAirportsServices airportsServices) 
+        public LegInstancesManagementPresenter(
+            ILegInstancesManagementView view, 
+            ILegInstancesServices legInstancesServices,
+            IFlightLegsServices flightLegsServices, 
+            IFlightStatusesServices flightStatusesServices, 
+            IFaresServices faresServices,
+            IAircraftsServices aircraftsServices, 
+            IUserNotificationsServices userNotificationsServices,
+            INotificationsServices notificationsServices, 
+            IUsersServices usersServices, 
+            IAirportsServices airportsServices) 
             : base(view)
         {
             if (legInstancesServices == null)
@@ -116,8 +123,10 @@
 
             if (legInstance == null)
             {
-                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                this.View.ModelState.AddModelError(
+                    ErrorMessages.MODEL_ERROR_KEY, 
                     string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
+
                 return;
             }
 
@@ -289,8 +298,13 @@
             string date = legInstance.DepartureDateTime.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture);
             string time = legInstance.DepartureDateTime.ToString("HH:mm", CultureInfo.InvariantCulture);
 
-            return string.Format(@"Added a new flight ""{0}, from {1} to {2}, departure on {3} at {4}""!",
-                flightLeg.Flight.Number, origin, destination, date, time);
+            return string.Format(
+                @"Added a new flight ""{0}, from {1} to {2}, departure on {3} at {4}""!",
+                flightLeg.Flight.Number, 
+                origin, 
+                destination, 
+                date, 
+                time);
         }
 
         private FlightLeg GetFlightLeg(int id)

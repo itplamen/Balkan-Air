@@ -16,7 +16,9 @@
         private readonly IAirportsServices airportsServices;
         private readonly ICountriesServices countriesServices;
 
-        public AirportsManagementPresenter(IAirportsManagementView view, IAirportsServices airportsServices, 
+        public AirportsManagementPresenter(
+            IAirportsManagementView view, 
+            IAirportsServices airportsServices, 
             ICountriesServices countriesServices)
             : base(view)
         {
@@ -58,8 +60,10 @@
 
             if (airport == null)
             {
-                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                this.View.ModelState.AddModelError(
+                    ErrorMessages.MODEL_ERROR_KEY, 
                     string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
+
                 return;
             }
 

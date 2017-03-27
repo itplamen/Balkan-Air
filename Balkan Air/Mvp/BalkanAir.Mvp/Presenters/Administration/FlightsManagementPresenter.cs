@@ -16,7 +16,9 @@
         private readonly IFlightsServices flightsServices;
         private readonly INumberGenerator numberGenerator;
 
-        public FlightsManagementPresenter(IFlightsManagementView view, IFlightsServices flightsServices, 
+        public FlightsManagementPresenter(
+            IFlightsManagementView view, 
+            IFlightsServices flightsServices, 
             INumberGenerator numberGenerator) 
             : base(view)
         {
@@ -56,8 +58,10 @@
 
             if (flight == null)
             {
-                this.View.ModelState.AddModelError(ErrorMessages.MODEL_ERROR_KEY, 
+                this.View.ModelState.AddModelError(
+                    ErrorMessages.MODEL_ERROR_KEY, 
                     string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, e.Id));
+
                 return;
             }
 

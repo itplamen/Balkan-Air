@@ -16,7 +16,9 @@
         private readonly IAircraftsServices aircraftsServices;
         private readonly IAircraftManufacturersServices aircraftManufacturersServices;
 
-        public AircraftsManagementPresenter(IAircraftsManagementView view, IAircraftsServices aircraftsServices, 
+        public AircraftsManagementPresenter(
+            IAircraftsManagementView view, 
+            IAircraftsServices aircraftsServices, 
             IAircraftManufacturersServices aircraftManufacturersServices)
             : base(view)
         {
