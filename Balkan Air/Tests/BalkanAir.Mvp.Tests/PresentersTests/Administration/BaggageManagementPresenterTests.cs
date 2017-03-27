@@ -39,16 +39,14 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConstructorShouldThrowExceptionWhenBaggageServicesIsNull()
         {
-            var presenter = new BaggageManagementPresenter(this.baggageView.Object,
-                null, this.bookingsServices.Object);
+            var presenter = new BaggageManagementPresenter(this.baggageView.Object, null, this.bookingsServices.Object);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConstructorShouldThrowExceptionWhenBookingsServicesIsNull()
         {
-            var presenter = new BaggageManagementPresenter(this.baggageView.Object,
-                this.baggageServices.Object, null);
+            var presenter = new BaggageManagementPresenter(this.baggageView.Object, this.baggageServices.Object, null);
         }
 
         [TestMethod]
@@ -64,8 +62,7 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void UpdateItemShouldThrowExceptionWhenEventArgsIsNull()
         {
-            this.baggageView.Raise(b => b.OnBaggageUpdateItem += null,
-                It.Is<BaggageManagementEventArgs>(null));
+            this.baggageView.Raise(b => b.OnBaggageUpdateItem += null, It.Is<BaggageManagementEventArgs>(null));
         }
 
         [TestMethod]
@@ -73,16 +70,12 @@
         {
             var invalidId = -1;
 
-            this.baggageView.Raise(b => b.OnBaggageUpdateItem += null, 
-                new BaggageManagementEventArgs() { Id = invalidId });
+            this.baggageView.Raise(b => b.OnBaggageUpdateItem += null, new BaggageManagementEventArgs() { Id = invalidId });
 
             string expectedError = string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, invalidId);
 
-            Assert.AreEqual(1, this.baggageView
-                .Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors.Count);
-
-            Assert.AreEqual(expectedError, this.baggageView
-                .Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors[0].ErrorMessage);
+            Assert.AreEqual(1, this.baggageView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors.Count);
+            Assert.AreEqual(expectedError, this.baggageView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -90,8 +83,7 @@
         {
             var invalidId = -1;
 
-            this.baggageView.Raise(b => b.OnBaggageUpdateItem += null, 
-                new BaggageManagementEventArgs() { Id = invalidId });
+            this.baggageView.Raise(b => b.OnBaggageUpdateItem += null, new BaggageManagementEventArgs() { Id = invalidId });
 
             this.baggageView.Verify(b => b.TryUpdateModel(It.IsAny<Baggage>()), Times.Never);
         }
@@ -101,8 +93,7 @@
         {
             var validId = 1;
 
-            this.baggageView.Raise(b => b.OnBaggageUpdateItem += null, 
-                new BaggageManagementEventArgs() { Id = validId });
+            this.baggageView.Raise(b => b.OnBaggageUpdateItem += null, new BaggageManagementEventArgs() { Id = validId });
 
             this.baggageView.Verify(b => b.TryUpdateModel(It.Is<Baggage>(m => m.Id == validId)), Times.Once);
         }
@@ -114,8 +105,7 @@
 
             var validId = 1;
 
-            this.baggageView.Raise(b => b.OnBaggageUpdateItem += null, 
-                new BaggageManagementEventArgs() { Id = validId });
+            this.baggageView.Raise(b => b.OnBaggageUpdateItem += null, new BaggageManagementEventArgs() { Id = validId });
 
             this.baggageServices.Verify(b => b.UpdateBaggage(validId, It.IsAny<Baggage>()), Times.Never);
         }
@@ -125,8 +115,7 @@
         {
             var validId = 1;
 
-            this.baggageView.Raise(b => b.OnBaggageUpdateItem += null, 
-                new BaggageManagementEventArgs() { Id = validId });
+            this.baggageView.Raise(b => b.OnBaggageUpdateItem += null, new BaggageManagementEventArgs() { Id = validId });
 
             this.baggageServices.Verify(b => b.UpdateBaggage(validId, It.Is<Baggage>(m => m.Id == validId)), Times.Once);
         }
@@ -135,16 +124,14 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void DeleteItemShouldThrowExceptionWhenEventArgsIsNull()
         {
-            this.baggageView.Raise(b => b.OnBaggageDeleteItem += null, 
-                It.Is<BaggageManagementEventArgs>(null));
+            this.baggageView.Raise(b => b.OnBaggageDeleteItem += null, It.Is<BaggageManagementEventArgs>(null));
         }
 
         [TestMethod]
         public void DeleteItemShouldDeleteBaggageWhenOnDeleteItemEventIsRaised()
         {
             var validId = 1;
-            this.baggageView.Raise(b => b.OnBaggageDeleteItem += null, 
-                new BaggageManagementEventArgs() { Id = validId });
+            this.baggageView.Raise(b => b.OnBaggageDeleteItem += null, new BaggageManagementEventArgs() { Id = validId });
 
             this.baggageServices.Verify(b => b.DeleteBaggage(validId), Times.Once);
         }
@@ -153,8 +140,7 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddItemShouldThrowExceptionWhenEventArgsIsNull()
         {
-            this.baggageView.Raise(b => b.OnBaggageAddItem += null, 
-                It.Is<BaggageManagementEventArgs>(null));
+            this.baggageView.Raise(b => b.OnBaggageAddItem += null, It.Is<BaggageManagementEventArgs>(null));
         }
 
         [TestMethod]

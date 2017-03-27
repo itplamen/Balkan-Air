@@ -28,9 +28,7 @@
         {
             this.bookingsView = TestObjectFactoryViews.GetBookingsManagementView();
             this.bookingsServices = TestObjectFactoryServices.GetBookingsServices();
-
-            this.presenter = new BookingsManagementPresenter(this.bookingsView.Object, 
-                this.bookingsServices.Object);
+            this.presenter = new BookingsManagementPresenter(this.bookingsView.Object, this.bookingsServices.Object);
         }
 
         [TestMethod]
@@ -53,8 +51,7 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void UpdateItemShouldThrowExceptionWhenEventArgsIsNull()
         {
-            this.bookingsView.Raise(b => b.OnBookingsUpdateItem += null,
-                It.Is<BookingsManagementEventArgs>(null));
+            this.bookingsView.Raise(b => b.OnBookingsUpdateItem += null, It.Is<BookingsManagementEventArgs>(null));
         }
 
         [TestMethod]
@@ -62,16 +59,12 @@
         {
             var invalidId = -1;
 
-            this.bookingsView.Raise(b => b.OnBookingsUpdateItem += null,
-                new BookingsManagementEventArgs() { Id = invalidId });
+            this.bookingsView.Raise(b => b.OnBookingsUpdateItem += null, new BookingsManagementEventArgs() { Id = invalidId });
 
             string expectedError = string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, invalidId);
 
-            Assert.AreEqual(1, this.bookingsView
-                .Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors.Count);
-
-            Assert.AreEqual(expectedError, this.bookingsView
-                .Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors[0].ErrorMessage);
+            Assert.AreEqual(1, this.bookingsView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors.Count);
+            Assert.AreEqual(expectedError, this.bookingsView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -79,8 +72,7 @@
         {
             var invalidId = -1;
 
-            this.bookingsView.Raise(b => b.OnBookingsUpdateItem += null,
-                new BookingsManagementEventArgs() { Id = invalidId });
+            this.bookingsView.Raise(b => b.OnBookingsUpdateItem += null, new BookingsManagementEventArgs() { Id = invalidId });
 
             this.bookingsView.Verify(b => b.TryUpdateModel(It.IsAny<Booking>()), Times.Never);
         }
@@ -90,8 +82,7 @@
         {
             var validId = 1;
 
-            this.bookingsView.Raise(b => b.OnBookingsUpdateItem += null,
-                new BookingsManagementEventArgs() { Id = validId });
+            this.bookingsView.Raise(b => b.OnBookingsUpdateItem += null, new BookingsManagementEventArgs() { Id = validId });
 
             this.bookingsView.Verify(b => b.TryUpdateModel(It.Is<Booking>(m => m.Id == validId)), Times.Once);
         }
@@ -103,8 +94,7 @@
 
             var validId = 1;
 
-            this.bookingsView.Raise(b => b.OnBookingsUpdateItem += null,
-                new BookingsManagementEventArgs() { Id = validId });
+            this.bookingsView.Raise(b => b.OnBookingsUpdateItem += null, new BookingsManagementEventArgs() { Id = validId });
 
             this.bookingsServices.Verify(b => b.UpdateBooking(validId, It.IsAny<Booking>()), Times.Never);
         }
@@ -114,27 +104,23 @@
         {
             var validId = 1;
 
-            this.bookingsView.Raise(b => b.OnBookingsUpdateItem += null,
-                new BookingsManagementEventArgs() { Id = validId });
+            this.bookingsView.Raise(b => b.OnBookingsUpdateItem += null, new BookingsManagementEventArgs() { Id = validId });
 
-            this.bookingsServices
-                .Verify(b => b.UpdateBooking(validId, It.Is<Booking>(m => m.Id == validId)), Times.Once);
+            this.bookingsServices.Verify(b => b.UpdateBooking(validId, It.Is<Booking>(m => m.Id == validId)), Times.Once);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void DeleteItemShouldThrowExceptionWhenEventArgsIsNull()
         {
-            this.bookingsView.Raise(b => b.OnBookingsDeleteItem += null,
-                It.Is<BookingsManagementEventArgs>(null));
+            this.bookingsView.Raise(b => b.OnBookingsDeleteItem += null, It.Is<BookingsManagementEventArgs>(null));
         }
 
         [TestMethod]
         public void DeleteItemShouldDeleteBookingWhenOnDeleteItemEventIsRaised()
         {
             var validId = 1;
-            this.bookingsView.Raise(b => b.OnBookingsDeleteItem += null,
-                new BookingsManagementEventArgs() { Id = validId });
+            this.bookingsView.Raise(b => b.OnBookingsDeleteItem += null, new BookingsManagementEventArgs() { Id = validId });
 
             this.bookingsServices.Verify(b => b.DeleteBooking(validId), Times.Once);
         }

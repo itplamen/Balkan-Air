@@ -101,8 +101,7 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void UpdateItemShouldThrowExceptionWhenEventArgsIsNull()
         {
-            this.flightLegsView.Raise(f => f.OnFlightLegsUpdateItem += null,
-                It.Is<FlightLegsManagementEventArgs>(null));
+            this.flightLegsView.Raise(f => f.OnFlightLegsUpdateItem += null, It.Is<FlightLegsManagementEventArgs>(null));
         }
 
         [TestMethod]
@@ -110,16 +109,12 @@
         {
             var invalidId = -1;
 
-            this.flightLegsView.Raise(f => f.OnFlightLegsUpdateItem += null,
-                new FlightLegsManagementEventArgs() { Id = invalidId });
+            this.flightLegsView.Raise(f => f.OnFlightLegsUpdateItem += null, new FlightLegsManagementEventArgs() { Id = invalidId });
 
             string expectedError = string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, invalidId);
 
-            Assert.AreEqual(1, this.flightLegsView
-                .Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors.Count);
-
-            Assert.AreEqual(expectedError, this.flightLegsView
-                .Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors[0].ErrorMessage);
+            Assert.AreEqual(1, this.flightLegsView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors.Count);
+            Assert.AreEqual(expectedError, this.flightLegsView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -127,8 +122,7 @@
         {
             var invalidId = -1;
 
-            this.flightLegsView.Raise(f => f.OnFlightLegsUpdateItem += null,
-                new FlightLegsManagementEventArgs() { Id = invalidId });
+            this.flightLegsView.Raise(f => f.OnFlightLegsUpdateItem += null, new FlightLegsManagementEventArgs() { Id = invalidId });
 
             this.flightLegsView.Verify(f => f.TryUpdateModel(It.IsAny<FlightLeg>()), Times.Never);
         }
@@ -166,11 +160,9 @@
 
             var validId = 1;
 
-            this.flightLegsView.Raise(f => f.OnFlightLegsUpdateItem += null,
-                new FlightLegsManagementEventArgs() { Id = validId });
+            this.flightLegsView.Raise(f => f.OnFlightLegsUpdateItem += null, new FlightLegsManagementEventArgs() { Id = validId });
 
-            this.flightLegsServices
-                .Verify(f => f.UpdateFlightLeg(validId, It.IsAny<FlightLeg>()), Times.Never);
+            this.flightLegsServices.Verify(f => f.UpdateFlightLeg(validId, It.IsAny<FlightLeg>()), Times.Never);
         }
 
         [TestMethod]
@@ -204,16 +196,14 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void DeleteItemShouldThrowExceptionWhenEventArgsIsNull()
         {
-            this.flightLegsView.Raise(f => f.OnFlightLegsDeleteItem += null,
-                It.Is<FlightLegsManagementEventArgs>(null));
+            this.flightLegsView.Raise(f => f.OnFlightLegsDeleteItem += null, It.Is<FlightLegsManagementEventArgs>(null));
         }
 
         [TestMethod]
         public void DeleteItemShouldDeleteFlightLegWhenOnDeleteItemEventIsRaised()
         {
             var validId = 1;
-            this.flightLegsView.Raise(f => f.OnFlightLegsDeleteItem += null,
-                new FlightLegsManagementEventArgs() { Id = validId });
+            this.flightLegsView.Raise(f => f.OnFlightLegsDeleteItem += null, new FlightLegsManagementEventArgs() { Id = validId });
 
             this.flightLegsServices.Verify(f => f.DeleteFlightLeg(validId), Times.Once);
         }
@@ -222,8 +212,7 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddItemShouldThrowExceptionWhenEventArgsIsNull()
         {
-            this.flightLegsView.Raise(f => f.OnFlightLegsAddItem += null,
-                It.Is<FlightLegsManagementEventArgs>(null));
+            this.flightLegsView.Raise(f => f.OnFlightLegsAddItem += null, It.Is<FlightLegsManagementEventArgs>(null));
         }
 
         [TestMethod]
@@ -275,8 +264,7 @@
             this.flightLegsView.Raise(f => f.OnFlightsGetData += null, EventArgs.Empty);
 
             Assert.IsTrue(this.flightLegsView.Object.Model.Flights.ToList().Any());
-            Enumerable.SequenceEqual(TestObjectFactoryDataModels.Flights.ToList(),
-                this.flightLegsView.Object.Model.Flights.ToList());
+            Enumerable.SequenceEqual(TestObjectFactoryDataModels.Flights.ToList(), this.flightLegsView.Object.Model.Flights.ToList());
         }
 
         [TestMethod]
@@ -285,8 +273,7 @@
             this.flightLegsView.Raise(r => r.OnRoutesGetData += null, EventArgs.Empty);
 
             Assert.IsTrue(this.flightLegsView.Object.Model.Routes.ToList().Any());
-            Enumerable.SequenceEqual(TestObjectFactoryDataModels.Routes.ToList(),
-                this.flightLegsView.Object.Model.Routes.ToList());
+            Enumerable.SequenceEqual(TestObjectFactoryDataModels.Routes.ToList(), this.flightLegsView.Object.Model.Routes.ToList());
         }
 
         [TestMethod]
@@ -303,8 +290,7 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetAirportItemShouldThrowExceptionWhenEventArgsIsNull()
         {
-            this.flightLegsView.Raise(f => f.OnAirportGetItem += null,
-                It.Is<FlightLegsManagementEventArgs>(null));
+            this.flightLegsView.Raise(f => f.OnAirportGetItem += null, It.Is<FlightLegsManagementEventArgs>(null));
         }
 
         [TestMethod]
@@ -312,7 +298,7 @@
         {
             var invalidAirportId = -1;
 
-            this.flightLegsView.Raise(a => a.OnAirportGetItem += null,
+            this.flightLegsView.Raise(a => a.OnAirportGetItem += null, 
                 new FlightLegsManagementEventArgs() { AirportId = invalidAirportId });
 
             Assert.AreEqual(ErrorMessages.AIRPORT_NOT_FOUND, this.flightLegsView.Object.Model.AirportInfo);
