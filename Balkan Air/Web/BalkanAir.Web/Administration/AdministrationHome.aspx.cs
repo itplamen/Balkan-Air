@@ -1,31 +1,26 @@
 ﻿namespace BalkanAir.Web.Administration
 {
+    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.UI;
 
-    using Ninject;
+    using WebFormsMvp;
+    using WebFormsMvp.Web;
 
-    using BalkanAir.Common;
     using Data.Models;
-    using Services.Data.Contracts;
+    using Mvp.Models.Administration;
+    using Mvp.Presenters.Administration;
+    using Mvp.ViewContracts.Administration;
 
-    public partial class AdministrationHome : Page
+    [PresenterBinding(typeof(AdministrationHomePresenter))]
+    public partial class AdministrationHome : MvpPage<AdministrationHomeViewModel>, IAdministrationHomeView
     {
-        [Inject]
-        public IUsersServices UsersServices { get; set; }
-
-        [Inject]
-        public IUserRolesServices UserRolesServices { get; set; }
+        public event EventHandler OnAdministratorsGetData;
 
         public IEnumerable<User> AdministratorsRepeater_GetData()
         {
-            var administratorRole = this.UserRolesServices.GetAll()
-                .FirstOrDefault(r => r.Name == UserRolesConstants.ADMINISTRATOR_ROLE);
+            this.OnAdministratorsGetData?.Invoke(null, null);
 
-            return this.UsersServices.GetAll()
-                .Where(u => u.Roles.Select(r => r.RoleId).Contains(administratorRole.Id))
-                .ToList();
+            return this.Model.Administrators;
         }
     }
 }
