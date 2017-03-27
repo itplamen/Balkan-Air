@@ -13,20 +13,20 @@
     using TestObjects;
 
     [TestClass]
-    public class AirportsRouteTests
+    public class FaresRouteTests
     {
-        private const string CREATE_PATH = "/Api/Airports/Create/";
-        private const string GET_PATH_WITH_INVALID_ACTION = "/Api/Airport/";
-        private const string GET_PATH = "/Api/Airports/";
-        private const string UPDATE_PATH = "/Api/Airports/Update/";
-        private const string DELETE_PATH = "/Api/Airports/Delete/";
+        private const string CREATE_PATH = "/Api/Fares/Create/";
+        private const string GET_PATH_WITH_INVALID_ACTION = "/Api/Fare/";
+        private const string GET_PATH = "/Api/Fares/";
+        private const string UPDATE_PATH = "/Api/Fares/Update/";
+        private const string DELETE_PATH = "/Api/Fares/Delete/";
 
         [TestMethod]
         [ExpectedException(typeof(RouteAssertionException))]
         public void CreateShouldThrowExceptionWithRouteDoesNotExistWhenHttpMethodIsInvalid()
         {
-            var airportRequestModel = TestObjectFactoryDataTransferModels.GetValidAirportRequesModel();
-            string jsonContent = JsonConvert.SerializeObject(airportRequestModel);
+            var fareRequestModel = TestObjectFactoryDataTransferModels.GetValidFareRequestModel();
+            string jsonContent = JsonConvert.SerializeObject(fareRequestModel);
 
             var invalidHttpMethod = HttpMethod.Get;
 
@@ -36,14 +36,14 @@
                 .WithJsonContent(jsonContent)
                 .And()
                 .WithHttpMethod(invalidHttpMethod)
-                .To<AirportsController>(a => a.Create(airportRequestModel));
+                .To<FaresController>(f => f.Create(fareRequestModel));
         }
 
         [TestMethod]
         public void CreateShouldMapCorrectAction()
         {
-            var airportRequestModel = TestObjectFactoryDataTransferModels.GetValidAirportRequesModel();
-            string jsonContent = JsonConvert.SerializeObject(airportRequestModel);
+            var fareRequestModel = TestObjectFactoryDataTransferModels.GetValidFareRequestModel();
+            string jsonContent = JsonConvert.SerializeObject(fareRequestModel);
 
             MyWebApi
                 .Routes()
@@ -51,7 +51,7 @@
                 .WithJsonContent(jsonContent)
                 .And()
                 .WithHttpMethod(HttpMethod.Post)
-                .To<AirportsController>(a => a.Create(airportRequestModel));
+                .To<FaresController>(f => f.Create(fareRequestModel));
         }
 
         [TestMethod]
@@ -62,7 +62,7 @@
                 .Routes()
                 .ShouldMap(GET_PATH_WITH_INVALID_ACTION)
                 .WithHttpMethod(HttpMethod.Get)
-                .To<AirportsController>(a => a.All());
+                .To<FaresController>(f => f.All());
         }
 
         [TestMethod]
@@ -73,7 +73,7 @@
                 .Routes()
                 .ShouldMap(GET_PATH)
                 .WithHttpMethod(HttpMethod.Get)
-                .To<AircraftsController>(a => a.All());
+                .To<FlightsController>(f => f.All());
         }
 
         [TestMethod]
@@ -83,7 +83,7 @@
                 .Routes()
                 .ShouldMap(GET_PATH)
                 .WithHttpMethod(HttpMethod.Get)
-                .To<AirportsController>(a => a.All());
+                .To<FaresController>(f => f.All());
         }
 
         [TestMethod]
@@ -96,7 +96,7 @@
                 .Routes()
                 .ShouldMap(GET_PATH + negativeId)
                 .WithHttpMethod(HttpMethod.Get)
-                .To<AirportsController>(a => a.Get(negativeId));
+                .To<FaresController>(f => f.Get(negativeId));
         }
 
         [TestMethod]
@@ -110,7 +110,7 @@
                 .Routes()
                 .ShouldMap(GET_PATH + pathId)
                 .WithHttpMethod(HttpMethod.Get)
-                .To<AirportsController>(a => a.Get(methodId));
+                .To<FaresController>(f => f.Get(methodId));
         }
 
         [TestMethod]
@@ -123,7 +123,7 @@
                 .Routes()
                 .ShouldMap(GET_PATH + notIntegerId)
                 .WithHttpMethod(HttpMethod.Get)
-                .To<AirportsController>(a => a.Get(1));
+                .To<FaresController>(f => f.Get(1));
         }
 
         [TestMethod]
@@ -135,78 +135,126 @@
                 .Routes()
                 .ShouldMap(GET_PATH + validId)
                 .WithHttpMethod(HttpMethod.Get)
-                .To<AirportsController>(a => a.Get(validId));
+                .To<FaresController>(f => f.Get(validId));
         }
 
         [TestMethod]
         [ExpectedException(typeof(RouteAssertionException))]
-        public void GetByAbbreviationShouldThrowExceptionWithRouteDoesNotExistWhenAbbreviationIsTooLong()
+        public void GetByRouteShouldThrowExceptionWithRouteDoesNotExistWhenOriginAbbreviationIsTooLong()
         {
-            var longAbbreviation = "Too long abbreviation";
+            var longOriginAbbreviation = "Too long abbreviation";
+            var validDestinationAbbreviation = "sof";
 
             MyWebApi
                 .Routes()
-                .ShouldMap(GET_PATH + longAbbreviation)
+                .ShouldMap(GET_PATH + longOriginAbbreviation + "/" + validDestinationAbbreviation)
                 .WithHttpMethod(HttpMethod.Get)
-                .To<AirportsController>(a => a.GetByAbbreviation(longAbbreviation));
+                .To<FaresController>(f => f.GetByRoute(longOriginAbbreviation, validDestinationAbbreviation));
         }
 
         [TestMethod]
         [ExpectedException(typeof(RouteAssertionException))]
-        public void GetByAbbreviationShouldThrowExceptionWithRouteDoesNotExistWhenAbbreviationIsTooShort()
+        public void GetByRouteShouldThrowExceptionWithRouteDoesNotExistWhenOriginAbbreviationIsTooShort()
         {
-            var shortAbbreviation = "S";
+            var shortOriginAbbreviation = "s";
+            var validDestinationAbbreviation = "sof";
 
             MyWebApi
                 .Routes()
-                .ShouldMap(GET_PATH + shortAbbreviation)
+                .ShouldMap(GET_PATH + shortOriginAbbreviation + "/" + validDestinationAbbreviation)
                 .WithHttpMethod(HttpMethod.Get)
-                .To<AirportsController>(a => a.GetByAbbreviation(shortAbbreviation));
+                .To<FaresController>(f => f.GetByRoute(shortOriginAbbreviation, validDestinationAbbreviation));
         }
 
         [TestMethod]
         [ExpectedException(typeof(RouteAssertionException))]
-        public void GetByAbbreviationShouldThrowExceptionWithRouteDoesNotExistWhenAbbreviationIsNotString()
+        public void GetByRouteShouldThrowExceptionWithRouteDoesNotExistWhenOriginAbbreviationIsNull()
         {
-            var notStringAbbreviation = "123";
+            var nullableOriginAbbreviation = string.Empty;
+            var validDestinationAbbreviation = "sof";
 
             MyWebApi
                 .Routes()
-                .ShouldMap(GET_PATH + notStringAbbreviation)
+                .ShouldMap(GET_PATH + nullableOriginAbbreviation + "/" + validDestinationAbbreviation)
                 .WithHttpMethod(HttpMethod.Get)
-                .To<AirportsController>(a => a.GetByAbbreviation(notStringAbbreviation));
+                .To<FaresController>(f => f.GetByRoute(nullableOriginAbbreviation, validDestinationAbbreviation));
         }
 
         [TestMethod]
         [ExpectedException(typeof(RouteAssertionException))]
-        public void GetByAbbreviationShouldThrowExceptionWithActionNotMatchWhenAbbreviationIsNull()
+        public void GetByRouteShouldThrowExceptionWithRouteDoesNotExistWhenOriginAbbreviationIsNotString()
         {
-            string nullableAbbreviation = string.Empty;
+            var invalidOriginAbbreviation = "1";
+            var validDestinationAbbreviation = "sof";
 
             MyWebApi
                 .Routes()
-                .ShouldMap(GET_PATH + nullableAbbreviation)
+                .ShouldMap(GET_PATH + invalidOriginAbbreviation + "/" + validDestinationAbbreviation)
                 .WithHttpMethod(HttpMethod.Get)
-                .To<AirportsController>(a => a.GetByAbbreviation(nullableAbbreviation));
+                .To<FaresController>(f => f.GetByRoute(invalidOriginAbbreviation, validDestinationAbbreviation));
         }
 
         [TestMethod]
-        public void GetByAbbreviationShouldMapCorrectAction()
+        [ExpectedException(typeof(RouteAssertionException))]
+        public void GetByRouteShouldThrowExceptionWithRouteDoesNotExistWhenDestinationAbbreviationIsTooLong()
         {
-            var shortAbbreviation = "SOF";
+            var validOriginAbbreviation = "sof";
+            var longDestinationAbbreviation = "Tooo long abbreviation";
 
             MyWebApi
                 .Routes()
-                .ShouldMap(GET_PATH + shortAbbreviation)
+                .ShouldMap(GET_PATH + validOriginAbbreviation + "/" + longDestinationAbbreviation)
                 .WithHttpMethod(HttpMethod.Get)
-                .To<AirportsController>(a => a.GetByAbbreviation(shortAbbreviation));
+                .To<FaresController>(f => f.GetByRoute(validOriginAbbreviation, longDestinationAbbreviation));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(RouteAssertionException))]
+        public void GetByRouteShouldThrowExceptionWithRouteDoesNotExistWhenDestinationAbbreviationIsTooShort()
+        {
+            var validOriginAbbreviation = "sof";
+            var shortDestinationAbbreviation = "s";
+
+            MyWebApi
+                .Routes()
+                .ShouldMap(GET_PATH + validOriginAbbreviation + "/" + shortDestinationAbbreviation)
+                .WithHttpMethod(HttpMethod.Get)
+                .To<FaresController>(f => f.GetByRoute(validOriginAbbreviation, shortDestinationAbbreviation));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(RouteAssertionException))]
+        public void GetByRouteShouldThrowExceptionWithRouteDoesNotExistWhenDestinationAbbreviationIsNull()
+        {
+            var validOriginAbbreviation = "sof";
+            var nullableDestinationAbbreviation = string.Empty;
+
+            MyWebApi
+                .Routes()
+                .ShouldMap(GET_PATH + validOriginAbbreviation + "/" + nullableDestinationAbbreviation)
+                .WithHttpMethod(HttpMethod.Get)
+                .To<FaresController>(f => f.GetByRoute(validOriginAbbreviation, nullableDestinationAbbreviation));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(RouteAssertionException))]
+        public void GetByRouteShouldThrowExceptionWithRouteDoesNotExistWhenDestinationAbbreviationIsNotString()
+        {
+            var validOriginAbbreviation = "sof";
+            var notStringDestinationAbbreviation = "1";
+
+            MyWebApi
+                .Routes()
+                .ShouldMap(GET_PATH + validOriginAbbreviation + "/" + notStringDestinationAbbreviation)
+                .WithHttpMethod(HttpMethod.Get)
+                .To<FaresController>(f => f.GetByRoute(validOriginAbbreviation, notStringDestinationAbbreviation));
         }
 
         [TestMethod]
         [ExpectedException(typeof(RouteAssertionException))]
         public void UpdateShouldThrowExceptionWithRouteDoesNotExistWhenIdIsNegative()
         {
-            var updateRequestModel = TestObjectFactoryDataTransferModels.GetValidUpdateAirportRequestModel();
+            var updateRequestModel = TestObjectFactoryDataTransferModels.GetValidUpdateFareRequestModel();
             var jsonContent = JsonConvert.SerializeObject(updateRequestModel);
 
             var negativeId = -1;
@@ -217,14 +265,14 @@
                 .WithJsonContent(jsonContent)
                 .And()
                 .WithHttpMethod(HttpMethod.Put)
-                .To<AirportsController>(a => a.Update(negativeId, updateRequestModel));
+                .To<FaresController>(f => f.Update(negativeId, updateRequestModel));
         }
 
         [TestMethod]
         [ExpectedException(typeof(RouteAssertionException))]
         public void UpdateShouldThrowExceptionWithDifferenParameterWhenIdDoesNotMatch()
         {
-            var updateRequestModel = TestObjectFactoryDataTransferModels.GetValidUpdateAirportRequestModel();
+            var updateRequestModel = TestObjectFactoryDataTransferModels.GetValidUpdateFareRequestModel();
             var jsonContent = JsonConvert.SerializeObject(updateRequestModel);
 
             var pathId = 1;
@@ -236,14 +284,14 @@
                 .WithJsonContent(jsonContent)
                 .And()
                 .WithHttpMethod(HttpMethod.Put)
-                .To<AirportsController>(a => a.Update(methodId, updateRequestModel));
+                .To<FaresController>(f => f.Update(methodId, updateRequestModel));
         }
 
         [TestMethod]
         [ExpectedException(typeof(RouteAssertionException))]
         public void UpdateShouldThrowExceptionWithRouteDoesNotExistWhenIdIsNotInteger()
         {
-            var updateRequestModel = TestObjectFactoryDataTransferModels.GetValidUpdateAirportRequestModel();
+            var updateRequestModel = TestObjectFactoryDataTransferModels.GetValidUpdateFareRequestModel();
             var jsonContent = JsonConvert.SerializeObject(updateRequestModel);
 
             var notIntegerId = "a";
@@ -254,14 +302,14 @@
                 .WithJsonContent(jsonContent)
                 .And()
                 .WithHttpMethod(HttpMethod.Put)
-                .To<AirportsController>(a => a.Update(updateRequestModel.Id, updateRequestModel));
+                .To<FaresController>(f => f.Update(updateRequestModel.Id, updateRequestModel));
         }
 
         [TestMethod]
         [ExpectedException(typeof(RouteAssertionException))]
         public void UpdateShouldThrowExceptionWithRouteDoesNotExistWhenHttpMethodIsInvalid()
         {
-            var updateRequestModel = TestObjectFactoryDataTransferModels.GetValidUpdateAirportRequestModel();
+            var updateRequestModel = TestObjectFactoryDataTransferModels.GetValidUpdateFareRequestModel();
             var jsonContent = JsonConvert.SerializeObject(updateRequestModel);
 
             var invalidHttpMethod = HttpMethod.Post;
@@ -272,13 +320,13 @@
                 .WithJsonContent(jsonContent)
                 .And()
                 .WithHttpMethod(invalidHttpMethod)
-                .To<AirportsController>(a => a.Update(updateRequestModel.Id, updateRequestModel));
+                .To<FaresController>(f => f.Update(updateRequestModel.Id, updateRequestModel));
         }
 
         [TestMethod]
         public void UpdateShouldMapCorrectAction()
         {
-            var updateRequestModel = TestObjectFactoryDataTransferModels.GetValidUpdateAirportRequestModel();
+            var updateRequestModel = TestObjectFactoryDataTransferModels.GetValidUpdateFareRequestModel();
             var jsonContent = JsonConvert.SerializeObject(updateRequestModel);
 
             MyWebApi
@@ -287,7 +335,7 @@
                 .WithJsonContent(jsonContent)
                 .And()
                 .WithHttpMethod(HttpMethod.Put)
-                .To<AirportsController>(a => a.Update(updateRequestModel.Id, updateRequestModel));
+                .To<FaresController>(f => f.Update(updateRequestModel.Id, updateRequestModel));
         }
 
         [TestMethod]
@@ -300,7 +348,7 @@
                 .Routes()
                 .ShouldMap(DELETE_PATH + negativeId)
                 .WithHttpMethod(HttpMethod.Delete)
-                .To<AirportsController>(a => a.Delete(negativeId));
+                .To<FaresController>(f => f.Delete(negativeId));
         }
 
         [TestMethod]
@@ -327,7 +375,7 @@
                 .Routes()
                 .ShouldMap(DELETE_PATH + notIntegerId)
                 .WithHttpMethod(HttpMethod.Delete)
-                .To<AirportsController>(a => a.Delete(1));
+                .To<FaresController>(f => f.Delete(1));
         }
 
         [TestMethod]
@@ -341,7 +389,7 @@
                 .Routes()
                 .ShouldMap(DELETE_PATH + validId)
                 .WithHttpMethod(invalidHttpMethod)
-                .To<AirportsController>(a => a.Delete(validId));
+                .To<FaresController>(f => f.Delete(validId));
         }
 
         [TestMethod]
@@ -353,7 +401,7 @@
                 .Routes()
                 .ShouldMap(DELETE_PATH + validId)
                 .WithHttpMethod(HttpMethod.Delete)
-                .To<AirportsController>(a => a.Delete(validId));
+                .To<FaresController>(f => f.Delete(validId));
         }
     }
 }
