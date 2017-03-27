@@ -27,7 +27,7 @@
 
         public FlightStatusSimpleResponseModel FlightStatus { get; set; }
 
-        public AircraftSimpleResponseModel  Aircraft { get; set; }
+        public AircraftSimpleResponseModel Aircraft { get; set; }
     
         public AirportSimpleResponseModel DepartureAirport { get; set; }
 

@@ -7,8 +7,6 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
-    using Ninject;
-
     using Common;
     using Models.News;
     using Services.Data.Contracts;
@@ -18,14 +16,13 @@
     public class NewsController : ApiController
     {
         private readonly INewsServices newsServices;
+        private readonly ICategoriesServices categoriesServices;
 
-        public NewsController(INewsServices newsServices)
+        public NewsController(INewsServices newsServices, ICategoriesServices categoriesServices)
         {
             this.newsServices = newsServices;
+            this.categoriesServices = categoriesServices;
         }
-
-        [Inject]
-        public ICategoriesServices CategoriesServices { get; set; }
 
         [HttpPost]
         public IHttpActionResult Create(NewsRequestModel news)
@@ -105,7 +102,7 @@
                 return this.BadRequest(ErrorMessages.NULL_OR_EMPTY_ENTITY_NAME);
             }
 
-            if (!this.CategoriesServices.GetAll().Any(c => c.Name.ToLower() == category.ToLower()))
+            if (!this.categoriesServices.GetAll().Any(c => c.Name.ToLower() == category.ToLower()))
             {
                 return this.BadRequest(ErrorMessages.INVALID_CATEGORY_NAME);
             }

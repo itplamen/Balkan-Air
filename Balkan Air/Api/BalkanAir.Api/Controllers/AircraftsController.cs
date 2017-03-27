@@ -13,7 +13,7 @@
     using Services.Data.Contracts;
 
     [EnableCors("*", "*", "*")]
-    [Authorize (Roles = UserRolesConstants.ADMINISTRATOR_ROLE)]
+    [Authorize(Roles = UserRolesConstants.ADMINISTRATOR_ROLE)]
     public class AircraftsController : ApiController
     {
         private readonly IAircraftsServices aircraftsServices;

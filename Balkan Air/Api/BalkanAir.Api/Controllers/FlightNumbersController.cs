@@ -1,6 +1,5 @@
 ﻿namespace BalkanAir.Api.Controllers
 {
-    using Services.Data.Contracts;
     using System.Linq;
     using System.Web.Http;
     using System.Web.Http.Cors;
@@ -8,12 +7,11 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
-    using Ninject;
-
     using Common;
     using Data.Helper;
     using Data.Models;
     using Models.FlightNumbers;
+    using Services.Data.Contracts;
 
     /// <summary>
     /// This controller must be accessible only from the Administrator.
@@ -24,19 +22,18 @@
     public class FlightNumbersController : ApiController
     {
         private readonly IFlightsServices flightsServices;
+        private readonly INumberGenerator numberGenerator;
 
-        [Inject]
-        public INumberGenerator NumberGenerator { get; set; }
-
-        public FlightNumbersController(IFlightsServices flightsServices)
+        public FlightNumbersController(IFlightsServices flightsServices, INumberGenerator numberGenerator)
         {
             this.flightsServices = flightsServices;
+            this.numberGenerator = numberGenerator;
         }
 
         [HttpPost]
         public IHttpActionResult Create()
         {
-            var flightNumberToAdd = new Flight() { Number = this.NumberGenerator.GetUniqueFlightNumber() };
+            var flightNumberToAdd = new Flight() { Number = this.numberGenerator.GetUniqueFlightNumber() };
             var addedFlightNumberId = this.flightsServices.AddFlight(flightNumberToAdd);
 
             return this.Ok(addedFlightNumberId);

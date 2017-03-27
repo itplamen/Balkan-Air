@@ -21,7 +21,7 @@
 
         public void CreateMappings(IConfiguration config)
         {
-            config.CreateMap<NewsRequestModel, BalkanAir.Data.Models.News> ()
+            config.CreateMap<NewsRequestModel, Data.Models.News>()
                 .ForMember(n => n.DateCreated, opt => opt.MapFrom(n => DateTime.Now));
         }
     }

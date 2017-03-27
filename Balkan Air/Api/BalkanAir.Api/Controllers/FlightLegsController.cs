@@ -1,6 +1,5 @@
 ﻿namespace BalkanAir.Api.Controllers
 {
-    using Services.Data.Contracts;
     using System.Linq;
     using System.Web.Http;
     using System.Web.Http.Cors;
@@ -11,11 +10,12 @@
     using Common;
     using Data.Models;
     using Models.FlightLegs;
+    using Services.Data.Contracts;
 
     /// <summary>
     /// This controller must be accessible only from the Administrator.
     /// </summary>
-    
+
     [EnableCors("*", "*", "*")]
     [Authorize(Roles = UserRolesConstants.ADMINISTRATOR_ROLE)]
     public class FlightLegsController : ApiController
