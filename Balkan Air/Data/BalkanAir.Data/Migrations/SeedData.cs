@@ -132,17 +132,44 @@
         {
             for (int aircraftId = 1; aircraftId <= this.Aircrafts.Count; aircraftId++)
             {
-                this.AddTravelClass(TravelClassType.Economy, SNACK, 4.99m, aircraftId, ValidationConstants.ECONOMY_CLASS_NUMBER_OF_ROWS,
+                this.AddTravelClass(
+                    TravelClassType.Economy, 
+                    SNACK, 
+                    4.99m, 
+                    aircraftId, 
+                    ValidationConstants.ECONOMY_CLASS_NUMBER_OF_ROWS,
                     ValidationConstants.ECONOMY_CLASS_NUMBER_OF_SEATS);
-                this.AddTravelClass(TravelClassType.Business, MENU, 17m, aircraftId, ValidationConstants.FIRST_AND_BUSINESS_CLASS_NUMBER_OF_ROWS_FOR_EACH,
-                    ValidationConstants.FIRST_AND_BUSINESS_CLASS_NUMBER_OF_SEATS_FOR_EACH, true);
-                this.AddTravelClass(TravelClassType.First, MENU, 22m, aircraftId, ValidationConstants.FIRST_AND_BUSINESS_CLASS_NUMBER_OF_ROWS_FOR_EACH,
-                    ValidationConstants.FIRST_AND_BUSINESS_CLASS_NUMBER_OF_SEATS_FOR_EACH, true, true);
+
+                this.AddTravelClass(
+                    TravelClassType.Business, 
+                    MENU, 
+                    17m, 
+                    aircraftId, 
+                    ValidationConstants.FIRST_AND_BUSINESS_CLASS_NUMBER_OF_ROWS_FOR_EACH,
+                    ValidationConstants.FIRST_AND_BUSINESS_CLASS_NUMBER_OF_SEATS_FOR_EACH, 
+                    true);
+
+                this.AddTravelClass(
+                    TravelClassType.First, 
+                    MENU, 
+                    22m, 
+                    aircraftId, 
+                    ValidationConstants.FIRST_AND_BUSINESS_CLASS_NUMBER_OF_ROWS_FOR_EACH,
+                    ValidationConstants.FIRST_AND_BUSINESS_CLASS_NUMBER_OF_SEATS_FOR_EACH, 
+                    true, 
+                    true);
             }
         }
 
-        private void AddTravelClass(TravelClassType type, string meal, decimal price, int aircraftId, int numberOfRows,
-            int numberOfSeats, bool priorityBoarding = false, bool earnMiles = false)
+        private void AddTravelClass(
+            TravelClassType type, 
+            string meal, 
+            decimal price, 
+            int aircraftId, 
+            int numberOfRows,
+            int numberOfSeats, 
+            bool priorityBoarding = false, 
+            bool earnMiles = false)
         {
             this.TravelClasses.Add(new TravelClass()
             {
@@ -329,13 +356,6 @@
                 OriginId = 15,
                 DestinationId = 17
             });
-
-            //// Liverpool - Berlin, Berlin - Ibiza
-            //this.Routes.Add(new Route()
-            //{
-            //    OriginId = 1,
-            //    DestinationId = 3
-            //});
         }
 
         private void SeedFares()
@@ -373,7 +393,7 @@
             // Sofia - Madrid
             this.Flights.Add(new Flight() { Number = new NumberGenerator(this.context).GetUniqueFlightNumber() });
 
-            //Madrid - Sofia
+            // Madrid - Sofia
             this.Flights.Add(new Flight() { Number = new NumberGenerator(this.context).GetUniqueFlightNumber() });
 
             // Sofia - Lisbon 
@@ -384,9 +404,6 @@
 
             // London - Paris
             this.Flights.Add(new Flight() { Number = new NumberGenerator(this.context).GetUniqueFlightNumber() });
-
-            //Liverpool - Berlin, Berlin - Ibiza
-            //this.Flights.Add(new Flight() { Number = new FlightNumber(this.context).GetUniqueFlightNumber() });
         }
 
         private void SeedFlightLegs()
@@ -405,13 +422,16 @@
 
             // London - Paris
             this.AddFlightLeg(15, new DateTime(2017, 4, 1, 18, 10, 00), 17, new DateTime(2017, 4, 1, 20, 00, 00), 5, 5);
-
-            // Liverpool - Berlin, Berlin - Ibiza
-            //this.AddFlightLeg(16, new TimeSpan(8, 15, 00), 13, new TimeSpan(10, 15, 00), 8, 3);
         }
 
-        private void AddFlightLeg(int departureAirportId, DateTime initialScheduledDepartureDateTime, int arrivalAirportId,
-            DateTime initialScheduledArrivalDateTime, int flightId, int routeId, int numberOfFlightLegs = 10)
+        private void AddFlightLeg(
+            int departureAirportId, 
+            DateTime initialScheduledDepartureDateTime, 
+            int arrivalAirportId,
+            DateTime initialScheduledArrivalDateTime, 
+            int flightId, 
+            int routeId, 
+            int numberOfFlightLegs = 10)
         {
             int day = 1;
 

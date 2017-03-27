@@ -1,64 +1,30 @@
-﻿namespace BalkanAir.Api.Tests.IntegrationTests
-{
-    using System;
-    using System.Net;
-    using System.Net.Http;
-    using System.Threading;
-    using System.Web.Http;
-    using System.Web.Http.Routing;
+﻿//namespace BalkanAir.Api.Tests.IntegrationTests
+//{
+//    using System.Net;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Data.Repositories.Contracts;
-    using Data.Models;
-    using Moq;
-    using Services.Data.Contracts;
-    using System.Linq;
-    using BalkanAir.Tests.Common.TestObjects;
-    using Services.Data.Tests.TestObjects;
+//    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    [TestClass]
-    public class AirportsIntegrationTests
-    {
-        private string inMemoryServerUrl = "http://localhost:12345";
+//    using BalkanAir.Tests.Common.TestObjects;
+//    using Data.Models;
+//    using Services.Data.Tests.TestObjects;
 
-        [TestMethod]
-        public void GetByIdShouldReturnCorrectResponse()
-        {
-            //var config = new HttpConfiguration();
-            //config.MapHttpAttributeRoutes();
+//    [TestClass]
+//    public class AirportsIntegrationTests
+//    {
+//        private const string IN_MEMORY_SERVER_URL = "http://localhost:12345";
+//        private const string GET_REQUEST_URL = "/Api/Airports";
 
-            //config.Routes.MapHttpRoute(
-            //    name: "DefaultApiGet",
-            //    routeTemplate: "Api/{controller}",
-            //    defaults: new { action = "All" },
-            //    constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
-            //);
+//        [TestMethod]
+//        public void GetByIdShouldReturnCorrectResponse()
+//        {
+//            var server = new InMemoryHttpServer<Airport>(
+//                IN_MEMORY_SERVER_URL, 
+//                TestObjectFactoryRepositories.GetAirportsRepository());
 
-            //config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
+//            var response = server.CreateGetRequest(GET_REQUEST_URL);
 
-            //var httpServder = new HttpServer(config);
-            //var httpInvoker = new HttpMessageInvoker(httpServder);
-
-            //using (httpInvoker)
-            //{
-            //    var request = new HttpRequestMessage()
-            //    {
-            //        RequestUri = new Uri("http://test.com/api/airports/"),
-            //        Method = HttpMethod.Get
-            //    };
-
-            //    var result = httpInvoker.SendAsync(request, CancellationToken.None).Result;
-
-            //    Assert.IsNotNull(result);
-            //    Assert.AreEqual(HttpStatusCode.OK, result.StatusCode);
-            //}
-
-            var server = new InMemoryHttpServer<Airport>(this.inMemoryServerUrl, TestObjectFactoryRepositories.GetAirportsRepository());
-
-            var response = server.CreateGetRequest("/api/airports");
-
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.IsNotNull(response.Content);
-        }
-    }
-}
+//            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+//            Assert.IsNotNull(response.Content);
+//        }
+//    }
+//}
