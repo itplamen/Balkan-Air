@@ -57,6 +57,10 @@
       <Project>{3E67705B-24A5-47C5-90F1-E54A45C0F81C}</Project>
       <Name>BalkanAir.Data.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\BalkanAir.Data\BalkanAir.Data.csproj">
+      <Project>{51D02D44-DAE7-4226-927C-356AE94FCE43}</Project>
+      <Name>BalkanAir.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\BalkanAir.Services.Data\BalkanAir.Services.Data.csproj">
       <Project>{DF4DB207-0CCE-4542-9FF1-F662DAF0CC14}</Project>
       <Name>BalkanAir.Services.Data</Name>

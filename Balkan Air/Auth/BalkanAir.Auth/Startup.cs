@@ -12,6 +12,7 @@ using BalkanAir.Data;
 using BalkanAir.Data.Models;
 
 [assembly: OwinStartupAttribute(typeof(BalkanAir.Auth.Startup))]
+
 namespace BalkanAir.Auth
 {
     public class Startup

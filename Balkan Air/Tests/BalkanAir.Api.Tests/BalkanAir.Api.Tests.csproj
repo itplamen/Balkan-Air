@@ -99,6 +99,8 @@
     <Compile Include="ControllerTests\FaresControllerTests.cs" />
     <Compile Include="ControllerTests\FlightsControllerTests.cs" />
     <Compile Include="IntegrationTests\AirportsIntegrationTests.cs" />
+    <Compile Include="IntegrationTests\InMemoryHttpServer.cs" />
+    <Compile Include="IntegrationTests\TestBugsDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RouteTests\AirportsRouteTests.cs" />
     <Compile Include="RouteTests\FaresRouteTests.cs" />
