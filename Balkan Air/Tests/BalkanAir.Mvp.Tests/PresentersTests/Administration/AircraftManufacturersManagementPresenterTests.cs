@@ -42,15 +42,19 @@
         public void ConstructorShouldThrowExceptionWhenAircraftManufacturersServicesIsNull()
         {
             var presenter = new AircraftManufacturersManagementPresenter(
-                this.aircraftManufacturersView.Object, null, this.aircraftsServices.Object);
+                this.aircraftManufacturersView.Object, 
+                null, 
+                this.aircraftsServices.Object);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConstructorShouldThrowExceptionWhenAircraftsServicesIsNull()
         {
-            var presenter = new AircraftManufacturersManagementPresenter(this.aircraftManufacturersView.Object,
-                this.aircraftManufacturersServices.Object, null);
+            var presenter = new AircraftManufacturersManagementPresenter(
+                this.aircraftManufacturersView.Object,
+                this.aircraftManufacturersServices.Object, 
+                null);
         }
 
         [TestMethod]
@@ -58,7 +62,8 @@
         {
             this.aircraftManufacturersView.Raise(a => a.OnAircraftManufacturersGetData += null, EventArgs.Empty);
 
-            CollectionAssert.AreEquivalent(TestObjectFactoryDataModels.AircraftManufacturers.ToList(),
+            CollectionAssert.AreEquivalent(
+                TestObjectFactoryDataModels.AircraftManufacturers.ToList(),
                 this.aircraftManufacturersView.Object.Model.AircraftManufacturers.ToList());
         }
 
@@ -66,7 +71,8 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void UpdateItemShouldThrowExceptionWhenEventArgsIsNull()
         {
-            this.aircraftManufacturersView.Raise(a => a.OnAircraftManufacturersUpdateItem += null,
+            this.aircraftManufacturersView.Raise(
+                a => a.OnAircraftManufacturersUpdateItem += null,
                 It.Is<AircraftManufacturersManagementEventArgs>(null));
         }
 
@@ -75,13 +81,20 @@
         {
             var invalidId = -1;
 
-            this.aircraftManufacturersView.Raise(a => a.OnAircraftManufacturersUpdateItem += null,
+            this.aircraftManufacturersView.Raise(
+                a => a.OnAircraftManufacturersUpdateItem += null,
                 new AircraftManufacturersManagementEventArgs() { Id = invalidId });
 
-            string expectedError = string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, invalidId);
+            int expectedErrorCount = 1;
+            string expectedErrorMessage = string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, invalidId);
 
-            Assert.AreEqual(1, this.aircraftManufacturersView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors.Count);
-            Assert.AreEqual(expectedError, this.aircraftManufacturersView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors[0].ErrorMessage);
+            Assert.AreEqual(
+                expectedErrorCount, 
+                this.aircraftManufacturersView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors.Count);
+
+            Assert.AreEqual(
+                expectedErrorMessage, 
+                this.aircraftManufacturersView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -89,7 +102,8 @@
         {
             var invalidId = -1;
 
-            this.aircraftManufacturersView.Raise(a => a.OnAircraftManufacturersUpdateItem += null,
+            this.aircraftManufacturersView.Raise(
+                a => a.OnAircraftManufacturersUpdateItem += null,
                 new AircraftManufacturersManagementEventArgs() { Id = invalidId });
 
             this.aircraftManufacturersView.Verify(a => a.TryUpdateModel(It.IsAny<AircraftManufacturer>()), Times.Never);
@@ -100,10 +114,13 @@
         {
             var validId = 1;
 
-            this.aircraftManufacturersView.Raise(a => a.OnAircraftManufacturersUpdateItem += null,
+            this.aircraftManufacturersView.Raise(
+                a => a.OnAircraftManufacturersUpdateItem += null,
                 new AircraftManufacturersManagementEventArgs() { Id = validId });
 
-            this.aircraftManufacturersView.Verify(a => a.TryUpdateModel(It.Is<AircraftManufacturer>(m => m.Id == validId)), Times.Once);
+            this.aircraftManufacturersView.Verify(
+                a => a.TryUpdateModel(It.Is<AircraftManufacturer>(m => m.Id == validId)), 
+                Times.Once);
         }
 
         [TestMethod]
@@ -113,27 +130,34 @@
 
             var validId = 1;
 
-            this.aircraftManufacturersView.Raise(a => a.OnAircraftManufacturersUpdateItem += null,
+            this.aircraftManufacturersView.Raise(
+                a => a.OnAircraftManufacturersUpdateItem += null,
                 new AircraftManufacturersManagementEventArgs() { Id = validId });
 
-            this.aircraftManufacturersServices.Verify(a => a.UpdateManufacturer(validId, It.IsAny<AircraftManufacturer>()), Times.Never);
+            this.aircraftManufacturersServices.Verify(
+                a => a.UpdateManufacturer(validId, It.IsAny<AircraftManufacturer>()), 
+                Times.Never);
         }
 
         [TestMethod]
         public void UpdateItemShouldCallUpdateManufacturerWhenItemIsFoundAndModelStateIsValid()
         {
             var validId = 1;
-            this.aircraftManufacturersView.Raise(a => a.OnAircraftManufacturersUpdateItem += null,
+            this.aircraftManufacturersView.Raise(
+                a => a.OnAircraftManufacturersUpdateItem += null,
                 new AircraftManufacturersManagementEventArgs() { Id = validId });
 
-            this.aircraftManufacturersServices.Verify(a => a.UpdateManufacturer(validId, It.Is<AircraftManufacturer>(m => m.Id == validId)), Times.Once);
+            this.aircraftManufacturersServices.Verify(
+                a => a.UpdateManufacturer(validId, It.Is<AircraftManufacturer>(m => m.Id == validId)), 
+                Times.Once);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void DeleteItemShouldThrowExceptionWhenEventArgsIsNull()
         {
-            this.aircraftManufacturersView.Raise(a => a.OnAircraftManufacturersDeleteItem += null,
+            this.aircraftManufacturersView.Raise(
+                a => a.OnAircraftManufacturersDeleteItem += null,
                 It.Is<AircraftManufacturersManagementEventArgs>(null));
         }
 
@@ -141,7 +165,8 @@
         public void DeleteItemShouldDeleteManufacturerWhenOnDeleteItemEventIsRaised()
         {
             var validId = 1;
-            this.aircraftManufacturersView.Raise(a => a.OnAircraftManufacturersDeleteItem += null,
+            this.aircraftManufacturersView.Raise(
+                a => a.OnAircraftManufacturersDeleteItem += null,
                 new AircraftManufacturersManagementEventArgs() { Id = validId });
 
             this.aircraftManufacturersServices.Verify(a => a.DeleteManufacturer(validId), Times.Once);
@@ -151,7 +176,8 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddItemShouldThrowExceptionWhenEventArgsIsNull()
         {
-            this.aircraftManufacturersView.Raise(a => a.OnAircraftManufacturersAddItem += null,
+            this.aircraftManufacturersView.Raise(
+                a => a.OnAircraftManufacturersAddItem += null,
                 It.Is<AircraftManufacturersManagementEventArgs>(null));
         }
 
@@ -168,8 +194,9 @@
 
             var expectedId = 1;
 
-            this.aircraftManufacturersServices.Verify(a => a.AddManufacturer(
-                It.Is<AircraftManufacturer>(d => d.Name == manufacturerName)), Times.Once);
+            this.aircraftManufacturersServices.Verify(
+                a => a.AddManufacturer(It.Is<AircraftManufacturer>(d => d.Name == manufacturerName)), 
+                Times.Once);
 
             Assert.AreEqual(expectedId, manufacturerEventArgs.Id);
         }
@@ -180,7 +207,8 @@
             this.aircraftManufacturersView.Raise(a => a.OnAircraftsGetData += null, EventArgs.Empty);
 
             Assert.IsTrue(this.aircraftManufacturersView.Object.Model.Aircrafts.ToList().Any());
-            Enumerable.SequenceEqual(TestObjectFactoryDataModels.Aircrafts.ToList(), 
+            Enumerable.SequenceEqual(
+                TestObjectFactoryDataModels.Aircrafts.ToList(), 
                 this.aircraftManufacturersView.Object.Model.Aircrafts.ToList());
         }
     }

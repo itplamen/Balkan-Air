@@ -31,8 +31,10 @@
             this.baggageServices = TestObjectFactoryServices.GetBaggageServices();
             this.bookingsServices = TestObjectFactoryServices.GetBookingsServices();
 
-            this.presenter = new BaggageManagementPresenter(this.baggageView.Object,
-                this.baggageServices.Object, this.bookingsServices.Object);
+            this.presenter = new BaggageManagementPresenter(
+                this.baggageView.Object,
+                this.baggageServices.Object,
+                this.bookingsServices.Object);
         }
 
         [TestMethod]
@@ -54,7 +56,8 @@
         {
             this.baggageView.Raise(b => b.OnBaggageGetData += null, EventArgs.Empty);
 
-            CollectionAssert.AreEquivalent(TestObjectFactoryDataModels.Baggage.ToList(),
+            CollectionAssert.AreEquivalent(
+                TestObjectFactoryDataModels.Baggage.ToList(),
                 this.baggageView.Object.Model.Baggage.ToList());
         }
 
@@ -72,10 +75,16 @@
 
             this.baggageView.Raise(b => b.OnBaggageUpdateItem += null, new BaggageManagementEventArgs() { Id = invalidId });
 
-            string expectedError = string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, invalidId);
+            int expectedErrorCount = 1;
+            string expectedErrorMessage = string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, invalidId);
 
-            Assert.AreEqual(1, this.baggageView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors.Count);
-            Assert.AreEqual(expectedError, this.baggageView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors[0].ErrorMessage);
+            Assert.AreEqual(
+                expectedErrorCount, 
+                this.baggageView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors.Count);
+
+            Assert.AreEqual(
+                expectedErrorMessage, 
+                this.baggageView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -165,8 +174,9 @@
 
             var expectedId = 1;
 
-            this.baggageServices.Verify(b => b.AddBaggage(
-                It.Is<Baggage>(m => m.Type == type && m.MaxKilograms == maxKilograms && 
+            this.baggageServices.Verify(
+                b => b.AddBaggage(
+                    It.Is<Baggage>(m => m.Type == type && m.MaxKilograms == maxKilograms && 
                     m.Size == size && m.Price == price && m.BookingId == bookingId)),
                 Times.Once);
 
@@ -179,7 +189,8 @@
             this.baggageView.Raise(b => b.OnBookingsGetData += null, EventArgs.Empty);
 
             Assert.IsTrue(this.baggageView.Object.Model.Bookings.ToList().Any());
-            Enumerable.SequenceEqual(TestObjectFactoryDataModels.Bookings.ToList(),
+            Enumerable.SequenceEqual(
+                TestObjectFactoryDataModels.Bookings.ToList(),
                 this.baggageView.Object.Model.Bookings.ToList());
         }
     }

@@ -972,9 +972,6 @@
     </timestamps>
     <violations />
   </sourcecode>
-  <project key="-618353241">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
   <sourcecode name="AircraftsServices.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017.03.27 08:55:58.560</styleCop>
@@ -1044,4 +1041,7 @@
     </timestamps>
     <violations />
   </sourcecode>
+  <project key="-618353241">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
 </stylecopresultscache>

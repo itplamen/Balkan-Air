@@ -43,7 +43,8 @@
         {
             this.bookingsView.Raise(b => b.OnBookingsGetData += null, EventArgs.Empty);
 
-            CollectionAssert.AreEquivalent(TestObjectFactoryDataModels.Bookings.ToList(),
+            CollectionAssert.AreEquivalent(
+                TestObjectFactoryDataModels.Bookings.ToList(),
                 this.bookingsView.Object.Model.Bookings.ToList());
         }
 
@@ -61,10 +62,16 @@
 
             this.bookingsView.Raise(b => b.OnBookingsUpdateItem += null, new BookingsManagementEventArgs() { Id = invalidId });
 
-            string expectedError = string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, invalidId);
+            int expectedErrorCount = 1;
+            string expectedErrorMessage = string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, invalidId);
 
-            Assert.AreEqual(1, this.bookingsView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors.Count);
-            Assert.AreEqual(expectedError, this.bookingsView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors[0].ErrorMessage);
+            Assert.AreEqual(
+                expectedErrorCount, 
+                this.bookingsView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors.Count);
+
+            Assert.AreEqual(
+                expectedErrorMessage, 
+                this.bookingsView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -72,7 +79,9 @@
         {
             var invalidId = -1;
 
-            this.bookingsView.Raise(b => b.OnBookingsUpdateItem += null, new BookingsManagementEventArgs() { Id = invalidId });
+            this.bookingsView.Raise(
+                b => b.OnBookingsUpdateItem += null, 
+                new BookingsManagementEventArgs() { Id = invalidId });
 
             this.bookingsView.Verify(b => b.TryUpdateModel(It.IsAny<Booking>()), Times.Never);
         }
@@ -82,7 +91,9 @@
         {
             var validId = 1;
 
-            this.bookingsView.Raise(b => b.OnBookingsUpdateItem += null, new BookingsManagementEventArgs() { Id = validId });
+            this.bookingsView.Raise(
+                b => b.OnBookingsUpdateItem += null, 
+                new BookingsManagementEventArgs() { Id = validId });
 
             this.bookingsView.Verify(b => b.TryUpdateModel(It.Is<Booking>(m => m.Id == validId)), Times.Once);
         }
@@ -94,7 +105,9 @@
 
             var validId = 1;
 
-            this.bookingsView.Raise(b => b.OnBookingsUpdateItem += null, new BookingsManagementEventArgs() { Id = validId });
+            this.bookingsView.Raise(
+                b => b.OnBookingsUpdateItem += null, 
+                new BookingsManagementEventArgs() { Id = validId });
 
             this.bookingsServices.Verify(b => b.UpdateBooking(validId, It.IsAny<Booking>()), Times.Never);
         }

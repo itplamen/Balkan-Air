@@ -31,22 +31,30 @@
             this.airportsServices = TestObjectFactoryServices.GetAirportsServices();
             this.countriesServices = TestObjectFactoryServices.GetCountriesServices();
 
-            this.presenter = new AirportsManagementPresenter(this.airportsView.Object,
-                this.airportsServices.Object, this.countriesServices.Object);
+            this.presenter = new AirportsManagementPresenter(
+                this.airportsView.Object,
+                this.airportsServices.Object, 
+                this.countriesServices.Object);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConstructorShouldThrowExceptionWhenAirportsServicesIsNull()
         {
-            var presenter = new AirportsManagementPresenter(this.airportsView.Object, null, this.countriesServices.Object);
+            var presenter = new AirportsManagementPresenter(
+                this.airportsView.Object, 
+                null, 
+                this.countriesServices.Object);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConstructorShouldThrowExceptionWhenCountriesServicesIsNull()
         {
-            var presenter = new AirportsManagementPresenter(this.airportsView.Object, this.airportsServices.Object, null);
+            var presenter = new AirportsManagementPresenter(
+                this.airportsView.Object, 
+                this.airportsServices.Object, 
+                null);
         }
 
         [TestMethod]
@@ -54,7 +62,8 @@
         {
             this.airportsView.Raise(a => a.OnAirprotsGetData += null, EventArgs.Empty);
 
-            CollectionAssert.AreEquivalent(TestObjectFactoryDataModels.Airports.ToList(),
+            CollectionAssert.AreEquivalent(
+                TestObjectFactoryDataModels.Airports.ToList(),
                 this.airportsView.Object.Model.Airports.ToList());
         }
 
@@ -70,12 +79,20 @@
         {
             var invalidId = -1;
 
-            this.airportsView.Raise(a => a.OnAirportsUpdateItem += null, new AirportsManagementEventArgs() { Id = invalidId });
+            this.airportsView.Raise(
+                a => a.OnAirportsUpdateItem += null, 
+                new AirportsManagementEventArgs() { Id = invalidId });
 
-            string expectedError = string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, invalidId);
+            int expectedErrorCount = 1;
+            string expectedErrorMessage = string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, invalidId);
 
-            Assert.AreEqual(1, this.airportsView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors.Count);
-            Assert.AreEqual(expectedError, this.airportsView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors[0].ErrorMessage);
+            Assert.AreEqual(
+                expectedErrorCount, 
+                this.airportsView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors.Count);
+
+            Assert.AreEqual(
+                expectedErrorMessage, 
+                this.airportsView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -83,7 +100,9 @@
         {
             var invalidId = -1;
 
-            this.airportsView.Raise(a => a.OnAirportsUpdateItem += null, new AirportsManagementEventArgs() { Id = invalidId });
+            this.airportsView.Raise(
+                a => a.OnAirportsUpdateItem += null, 
+                new AirportsManagementEventArgs() { Id = invalidId });
 
             this.airportsView.Verify(a => a.TryUpdateModel(It.IsAny<Airport>()), Times.Never);
         }
@@ -94,15 +113,16 @@
             var validId = 1;
             var validCountryId = 1;
 
-            this.airportsView.Raise(a => a.OnAirportsUpdateItem += null,
+            this.airportsView.Raise(
+                a => a.OnAirportsUpdateItem += null,
                 new AirportsManagementEventArgs()
                 {
                     Id = validId,
                     CountryId = validCountryId
                 });
 
-            this.airportsView.Verify(a => a.TryUpdateModel(
-                It.Is<Airport>(ar => ar.Id == validId && ar.CountryId == validCountryId)),
+            this.airportsView.Verify(
+                a => a.TryUpdateModel(It.Is<Airport>(ar => ar.Id == validId && ar.CountryId == validCountryId)),
                 Times.Once);
         }
 
@@ -113,7 +133,9 @@
 
             var validId = 1;
 
-            this.airportsView.Raise(a => a.OnAirportsUpdateItem += null, new AirportsManagementEventArgs() { Id = validId });
+            this.airportsView.Raise(
+                a => a.OnAirportsUpdateItem += null, 
+                new AirportsManagementEventArgs() { Id = validId });
 
             this.airportsServices.Verify(a => a.UpdateAirport(validId, It.IsAny<Airport>()), Times.Never);
         }
@@ -125,11 +147,13 @@
             var validId = 1;
             var invalidCountryId = -1;
 
-            this.airportsView.Raise(a => a.OnAirportsUpdateItem += null, new AirportsManagementEventArgs()
-            {
-                Id = validId,
-                CountryId = invalidCountryId
-            });
+            this.airportsView.Raise(
+                a => a.OnAirportsUpdateItem += null, 
+                new AirportsManagementEventArgs()
+                {
+                    Id = validId,
+                    CountryId = invalidCountryId
+                });
         }
 
         [TestMethod]
@@ -138,15 +162,18 @@
             var validId = 1;
             var validCountryId = 1;
 
-            this.airportsView.Raise(a => a.OnAirportsUpdateItem += null, new AirportsManagementEventArgs()
-            {
-                Id = validId,
-                CountryId = validCountryId
-            });
+            this.airportsView.Raise(
+                a => a.OnAirportsUpdateItem += null, 
+                new AirportsManagementEventArgs()
+                {
+                    Id = validId,
+                    CountryId = validCountryId
+                });
 
-            this.airportsServices.Verify(a => a.UpdateAirport(
-                validId,
-                It.Is<Airport>(ar => ar.Id == validId && ar.CountryId == validCountryId)),
+            this.airportsServices.Verify(
+                a => a.UpdateAirport(
+                    validId, 
+                    It.Is<Airport>(ar => ar.Id == validId && ar.CountryId == validCountryId)),
                 Times.Once);
         }
 
@@ -161,7 +188,9 @@
         public void DeleteItemShouldDeleteAirportWhenOnDeleteItemEventIsRaised()
         {
             var validId = 1;
-            this.airportsView.Raise(a => a.OnAirportsDeleteItem += null, new AirportsManagementEventArgs() { Id = validId });
+            this.airportsView.Raise(
+                a => a.OnAirportsDeleteItem += null, 
+                new AirportsManagementEventArgs() { Id = validId });
 
             this.airportsServices.Verify(a => a.DeleteAirport(validId), Times.Once);
         }
@@ -191,8 +220,10 @@
 
             var expectedId = 1;
 
-            this.airportsServices.Verify(a => a.AddAirport(
-                It.Is<Airport>(ar => ar.Name == name && ar.Abbreviation == abbreviation && ar.CountryId == countryId)),
+            this.airportsServices.Verify(
+                a => a.AddAirport(
+                    It.Is<Airport>(ar => ar.Name == name && 
+                    ar.Abbreviation == abbreviation && ar.CountryId == countryId)),
                 Times.Once);
 
             Assert.AreEqual(expectedId, airportEventArgs.Id);
@@ -204,7 +235,8 @@
             this.airportsView.Raise(a => a.OnCountriesGetData += null, EventArgs.Empty);
 
             Assert.IsTrue(this.airportsView.Object.Model.Countries.ToList().Any());
-            CollectionAssert.AreEquivalent(TestObjectFactoryDataModels.Countries.ToList(),
+            CollectionAssert.AreEquivalent(
+                TestObjectFactoryDataModels.Countries.ToList(),
                 this.airportsView.Object.Model.Countries.ToList());
         }
     }

@@ -29,7 +29,8 @@
             this.categoriesView = TestObjectFactoryViews.GetCategoriesManagementView();
             this.categoriesServices = TestObjectFactoryServices.GetCategoriesServices();
 
-            this.presenter = new CategoriesManagementPresenter(this.categoriesView.Object,
+            this.presenter = new CategoriesManagementPresenter(
+                this.categoriesView.Object,
                 this.categoriesServices.Object);
         }
 
@@ -45,7 +46,8 @@
         {
             this.categoriesView.Raise(c => c.OnCategoriesGetData += null, EventArgs.Empty);
 
-            CollectionAssert.AreEquivalent(TestObjectFactoryDataModels.Categories.ToList(),
+            CollectionAssert.AreEquivalent(
+                TestObjectFactoryDataModels.Categories.ToList(),
                 this.categoriesView.Object.Model.Categories.ToList());
         }
 
@@ -61,12 +63,20 @@
         {
             var invalidId = -1;
 
-            this.categoriesView.Raise(c => c.OnCategoriesUpdateItem += null, new CategoriesManagementEventArgs() { Id = invalidId });
+            this.categoriesView.Raise(
+                c => c.OnCategoriesUpdateItem += null, 
+                new CategoriesManagementEventArgs() { Id = invalidId });
 
-            string expectedError = string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, invalidId);
+            int expectedErrorCount = 1;
+            string expectedErrorMessage = string.Format(ErrorMessages.MODEL_ERROR_MESSAGE, invalidId);
 
-            Assert.AreEqual(1, this.categoriesView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors.Count);
-            Assert.AreEqual(expectedError, this.categoriesView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors[0].ErrorMessage);
+            Assert.AreEqual(
+                expectedErrorCount, 
+                this.categoriesView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors.Count);
+
+            Assert.AreEqual(
+                expectedErrorMessage, 
+                this.categoriesView.Object.ModelState[ErrorMessages.MODEL_ERROR_KEY].Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -74,7 +84,9 @@
         {
             var invalidId = -1;
 
-            this.categoriesView.Raise(c => c.OnCategoriesUpdateItem += null, new CategoriesManagementEventArgs() { Id = invalidId });
+            this.categoriesView.Raise(
+                c => c.OnCategoriesUpdateItem += null, 
+                new CategoriesManagementEventArgs() { Id = invalidId });
 
             this.categoriesView.Verify(c => c.TryUpdateModel(It.IsAny<Category>()), Times.Never);
         }
@@ -84,7 +96,9 @@
         {
             var validId = 1;
 
-            this.categoriesView.Raise(c => c.OnCategoriesUpdateItem += null, new CategoriesManagementEventArgs() { Id = validId });
+            this.categoriesView.Raise(
+                c => c.OnCategoriesUpdateItem += null, 
+                new CategoriesManagementEventArgs() { Id = validId });
 
             this.categoriesView.Verify(c => c.TryUpdateModel(It.Is<Category>(ct => ct.Id == validId)), Times.Once);
         }
@@ -96,7 +110,9 @@
 
             var validId = 1;
 
-            this.categoriesView.Raise(c => c.OnCategoriesUpdateItem += null, new CategoriesManagementEventArgs() { Id = validId });
+            this.categoriesView.Raise(
+                c => c.OnCategoriesUpdateItem += null, 
+                new CategoriesManagementEventArgs() { Id = validId });
 
             this.categoriesServices.Verify(c => c.UpdateCategory(validId, It.IsAny<Category>()), Times.Never);
         }
@@ -106,7 +122,9 @@
         {
             var validId = 1;
 
-            this.categoriesView.Raise(c => c.OnCategoriesUpdateItem += null, new CategoriesManagementEventArgs() { Id = validId });
+            this.categoriesView.Raise(
+                c => c.OnCategoriesUpdateItem += null, 
+                new CategoriesManagementEventArgs() { Id = validId });
 
             this.categoriesServices.Verify(c => c.UpdateCategory(validId, It.Is<Category>(m => m.Id == validId)), Times.Once);
         }
@@ -122,7 +140,9 @@
         public void DeleteItemShouldDeleteCategoryWhenOnDeleteItemEventIsRaised()
         {
             var validId = 1;
-            this.categoriesView.Raise(c => c.OnCategoriesDeleteItem += null, new CategoriesManagementEventArgs() { Id = validId });
+            this.categoriesView.Raise(
+                c => c.OnCategoriesDeleteItem += null, 
+                new CategoriesManagementEventArgs() { Id = validId });
 
             this.categoriesServices.Verify(a => a.DeleteCategory(validId), Times.Once);
         }
@@ -138,11 +158,7 @@
         public void AddItemShouldAddCategoryAndReturnIdWhenOnAddItemEventIsRaised()
         {
             var name = "Test Name";
-
-            var categoryEventArgs = new CategoriesManagementEventArgs()
-            {
-                Name = name
-            };
+            var categoryEventArgs = new CategoriesManagementEventArgs() { Name = name };
 
             this.categoriesView.Raise(c => c.OnCategoriesAddItem += null, categoryEventArgs);
 
