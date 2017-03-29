@@ -34,7 +34,7 @@
             {
                 Id = 1,
                 Name = "Test Name",
-                Abbreviation = "ABC",
+                Abbreviation = Constants.AIRPORT_VALID_ABBREVIATION,
                 CountryId = 1
             }
         }.AsQueryable();

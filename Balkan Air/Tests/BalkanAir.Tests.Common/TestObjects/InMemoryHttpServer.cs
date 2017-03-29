@@ -5,6 +5,7 @@
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Web.Http;
+    using System.Web.Http.Routing;
     using System.Threading.Tasks;
 
     using Newtonsoft.Json;
@@ -71,6 +72,24 @@
             return response;
         }
 
+        public HttpResponseMessage post(string requestUrl, IEnumerable<KeyValuePair<string, string>> postData)
+        {
+            var content = new FormUrlEncodedContent(postData);
+            content.Headers.Clear();
+            content.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
+            
+
+            var url = requestUrl;
+            var request = new HttpRequestMessage();
+            request.RequestUri = new Uri(baseUrl + url);
+ 
+            request.Method = HttpMethod.Post;
+            request.Content = new StringContent(JsonConvert.SerializeObject(content));
+
+            var response = this.client.SendAsync(request).Result;
+            return response;
+        }
+
         public HttpResponseMessage CreatePutRequest(string requestUrl, object data, string mediaType = "application/json")
         {
             var url = requestUrl;
@@ -99,7 +118,7 @@
         private void AddHttpRoutes(HttpRouteCollection routeCollection)
         {
             var routes = GetRoutes();
-            routes.ForEach(route => routeCollection.MapHttpRoute(route.Name, route.Template, route.Defaults));
+            routes.ForEach(r => routeCollection.MapHttpRoute(r.Name, r.Template, r.Defaults, r.Constraints));
         }
 
         private List<Route> GetRoutes()
@@ -107,26 +126,40 @@
             return new List<Route>
             {
                 new Route(
-                    "DefaultApi",
-                    "api/{controller}/{id}",
-                    new { id = RouteParameter.Optional })
-            };
+                    "DefaultApiGetAll",
+                    "Api/{controller}",
+                    new { action = "All" },
+                    new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }),
+                new Route(
+                    "DefaultApiGetWithId",
+                    "Api/{controller}/{id}",
+                    new { action = "Get" },
+                    new { id = @"\d+", httpMethod = new HttpMethodConstraint(HttpMethod.Get) }),
+                new Route(
+                    "GetAirportAndCountryByAbbreviation",
+                    "Api/{controller}/{abbreviation}",
+                    new { action = "GetByAbbreviation" },
+                    new { abbreviation = @"\b[a-zA-Z]{2,3}\b", httpMethod = new HttpMethodConstraint(HttpMethod.Get) })
+                };
         }
 
         private class Route
         {
-            public Route(string name, string template, object defaults)
+            public Route(string name, string template, object defaults, object constraints)
             {
                 this.Name = name;
                 this.Template = template;
                 this.Defaults = defaults;
+                this.Constraints = constraints;
             }
-
-            public object Defaults { get; set; }
 
             public string Name { get; set; }
 
+            public object Defaults { get; set; }
+
             public string Template { get; set; }
+
+            public object Constraints { get; set; }
         }
     }
 }

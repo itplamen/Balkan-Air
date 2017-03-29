@@ -38,7 +38,7 @@
 
             // Default value selected -- All --
             if (selectedCategoryId == 0)
-            {
+            { 
                 this.BindAllNewsToRepeater();
             }
             else

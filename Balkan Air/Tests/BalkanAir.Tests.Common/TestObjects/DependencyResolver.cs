@@ -6,7 +6,7 @@
 
     using Api.Controllers;
     using Data.Repositories.Contracts;
-    
+
     public class DependencyResolver<T> : IDependencyResolver 
         where T : class
     {
