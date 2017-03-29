@@ -8,6 +8,7 @@
 
     using BalkanAir.Tests.Common;
     using BalkanAir.Tests.Common.TestObjects;
+    using Common;
     using Data.Models;
     using Services.Data.Tests.TestObjects;
 
@@ -29,7 +30,7 @@
         }
 
         [TestMethod]
-        public void GetAllShouldReturnStatus404NotFoundWhenRequestUrlIsInvalid()
+        public void GetAllShouldNotMapCorrectActionAndReturnStatus404NotFoundWhenRequestUrlIsInvalid()
         {
             var response = this.server.CreateGetRequest(INVALID_GET_REQUEST_URL);
 
@@ -39,7 +40,7 @@
         }
 
         [TestMethod]
-        public void GetAllShouldReturnStatus200OkWithData()
+        public void GetAllShouldMapCorrectActionAndReturnStatus200OkWithData()
         {
             var response = this.server.CreateGetRequest(GET_REQUEST_URL);
 
@@ -50,7 +51,7 @@
         }  
 
         [TestMethod]
-        public void GetByIdShouldReturnStatus400BadRequestWhenIdIsZero()
+        public void GetByIdShouldMapCorrectActionAndReturnStatus400BadRequestWhenIdIsZero()
         {
             var invalidId = 0;
 
@@ -59,6 +60,7 @@
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
             Assert.IsFalse(response.IsSuccessStatusCode);
             Assert.AreEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
+            Assert.IsTrue(response.Content.ReadAsStringAsync().Result.Contains(ErrorMessages.INVALID_ID));
         }
 
         [TestMethod]
@@ -74,7 +76,7 @@
         }
 
         [TestMethod]
-        public void GetByIdShouldReturnStatus404NotFoundWhenThereIsNoAirportWithThisId()
+        public void GetByIdShouldMapCorrectActionAndReturnStatus404NotFoundWhenThereIsNoAirportWithThisId()
         {
             var noSuchId = 1000;
 
@@ -86,7 +88,7 @@
         }
 
         [TestMethod]
-        public void GetByIdShouldReturnStatus200OkWithData()
+        public void GetByIdShouldMapCorrectActionAndReturnStatus200OkWithData()
         {
             var validId = 1;
 
@@ -123,7 +125,7 @@
         }
 
         [TestMethod]
-        public void GetByAbbreviationShouldReturnStatus404NotFoundWhenThereIsNoAirportWithThisAbbreviation()
+        public void GetByAbbreviationShouldMapCorrectActionAndReturnStatus404NotFoundWhenThereIsNoAirportWithThisAbbreviation()
         {
             var noSuchAbbreviation = "aaa";
 
@@ -135,7 +137,7 @@
         }
 
         [TestMethod]
-        public void GetByAbbreviationShouldReturnStatus200OkWithData()
+        public void GetByAbbreviationShouldMapCorrectActionAndReturnStatus200OkWithData()
         {
             var validAbbreviation = Constants.AIRPORT_VALID_ABBREVIATION;
 
