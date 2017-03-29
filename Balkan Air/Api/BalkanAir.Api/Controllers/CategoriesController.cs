@@ -87,7 +87,7 @@
 
             if (category == null)
             {
-                return this.BadRequest(ErrorMessages.INVALID_CATEGORY_NAME);
+                return this.NotFound();
             }
 
             return this.Ok(category);

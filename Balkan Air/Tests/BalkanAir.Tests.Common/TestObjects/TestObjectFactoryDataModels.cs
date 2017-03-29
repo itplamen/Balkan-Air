@@ -72,7 +72,7 @@
             new Category()
             {
                 Id = 1,
-                Name = "Category Test"
+                Name = Constants.CATEGORY_VALID_NAME
             }
         }.AsQueryable();
 

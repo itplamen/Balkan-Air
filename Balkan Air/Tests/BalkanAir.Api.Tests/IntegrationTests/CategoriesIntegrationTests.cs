@@ -4,26 +4,25 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using BalkanAir.Tests.Common;
     using BalkanAir.Tests.Common.TestObjects;
     using Data.Models;
     using Services.Data.Tests.TestObjects;
 
     [TestClass]
-    public class AirportsIntegrationTests
+    public class CategoriesIntegrationTests
     {
         private const string IN_MEMORY_SERVER_URL = "http://localhost:12345";
-        private const string GET_REQUEST_URL = "/Api/Airports/";
-        private const string INVALID_GET_REQUEST_URL = "/Api/Airport/";
+        private const string GET_REQUEST_URL = "/Api/Categories/";
+        private const string INVALID_GET_REQUEST_URL = "/Api/Category/";
 
-        private InMemoryHttpServer<Airport> server;
+        private InMemoryHttpServer<Category> server;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.server = new InMemoryHttpServer<Airport>(
+            this.server = new InMemoryHttpServer<Category>(
                 IN_MEMORY_SERVER_URL,
-                TestObjectFactoryRepositories.GetAirportsRepository());
+                TestObjectFactoryRepositories.GetCategoriesRepository());
         }
 
         [TestMethod]
@@ -43,7 +42,7 @@
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsTrue(response.IsSuccessStatusCode);
             Assert.IsNotNull(response.Content);
-        }  
+        }
 
         [TestMethod]
         public void GetByIdShouldReturnStatus400BadRequestWhenIdIsZero()
@@ -68,12 +67,12 @@
         }
 
         [TestMethod]
-        public void GetByIdShouldReturnStatus404NotFoundWhenThereIsNoAirportWithThisId()
+        public void GetByIdShouldReturnStatus404NotFoundWhenThereIsNoCategotytWithThisId()
         {
             var noSuchId = 1000;
 
             var response = this.server.CreateGetRequest(GET_REQUEST_URL + noSuchId);
-            
+
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
             Assert.IsFalse(response.IsSuccessStatusCode);
             Assert.IsNull(response.Content);
@@ -89,52 +88,6 @@
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsTrue(response.IsSuccessStatusCode);
             Assert.IsNotNull(response.Content);
-        }
-
-        [TestMethod]
-        public void GetByAbbreviationShouldNotMapCorrectActionAndReturnStatus404NotFoundtWhenAbbreviationIsTooShort()
-        {
-            var tooShortAbbreviation = "a";
-
-            var response = this.server.CreateGetRequest(GET_REQUEST_URL + tooShortAbbreviation);
-
-            Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
-            Assert.IsFalse(response.IsSuccessStatusCode);
-        }
-
-        [TestMethod]
-        public void GetByAbbreviationShouldNotMapCorrectActionAndReturnStatus404NotFoundtWhenAbbreviationIsTooLong()
-        {
-            var abbreviation = "abcdefg";
-
-            var response = this.server.CreateGetRequest(GET_REQUEST_URL + abbreviation);
-
-            Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
-            Assert.IsFalse(response.IsSuccessStatusCode);
-        }
-
-        [TestMethod]
-        public void GetByAbbreviationShouldReturnStatus404NotFoundWhenThereIsNoAirportWithThisAbbreviation()
-        {
-            var noSuchAbbreviation = "aaa";
-
-            var response = this.server.CreateGetRequest(GET_REQUEST_URL + noSuchAbbreviation);
-
-            Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
-            Assert.IsFalse(response.IsSuccessStatusCode);
-            Assert.IsNull(response.Content);
-        }
-
-        [TestMethod]
-        public void GetByAbbreviationShouldReturnStatus200OkWithData()
-        {
-            var validAbbreviation = Constants.AIRPORT_VALID_ABBREVIATION;
-
-            var response = this.server.CreateGetRequest(GET_REQUEST_URL + validAbbreviation);
-
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.IsTrue(response.IsSuccessStatusCode);
-            Assert.IsNotNull(response.Content);  
         }
     }
 }

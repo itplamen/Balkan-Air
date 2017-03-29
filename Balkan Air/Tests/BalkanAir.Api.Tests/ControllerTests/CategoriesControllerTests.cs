@@ -119,13 +119,11 @@
         }
 
         [TestMethod]
-        public void GetCategoryByNameShouldReturnBadRequestWithInvalidCategoryNameMessage()
+        public void GetCategoryByNameShouldReturnNotFoundWhenThereIsNoCategoryWithThisName()
         {
             var result = this.categoriesController.GetCategoryByName("Invaid Category Name");
-            var badRequestResult = result as BadRequestErrorMessageResult;
 
-            Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
-            Assert.AreEqual(ErrorMessages.INVALID_CATEGORY_NAME, badRequestResult.Message);
+            Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
 
         [TestMethod]

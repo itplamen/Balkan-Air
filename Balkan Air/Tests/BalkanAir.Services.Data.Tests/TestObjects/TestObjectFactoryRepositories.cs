@@ -77,6 +77,22 @@
             return bags;
         }
 
+        public static InMemoryRepository<Category> GetCategoriesRepository(int numberOfCategories = 25)
+        {
+            var categories = new InMemoryRepository<Category>();
+
+            for (int i = 0; i < numberOfCategories; i++)
+            {
+                categories.Add(new Category()
+                {
+                    Id = i,
+                    Name = "Test Category Name"
+                });
+            }
+
+            return categories;
+        }
+
         public static InMemoryRepository<Country> GetCountriesRepository(int numberOfCountries = 25)
         {
             var countries = new InMemoryRepository<Country>();

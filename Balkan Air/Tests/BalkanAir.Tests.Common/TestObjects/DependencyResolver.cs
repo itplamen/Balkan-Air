@@ -40,6 +40,11 @@
                 return new AirportsController(TestObjectFactoryServices.GetAirportsServices().Object);
             }
 
+            if (serviceType == typeof(CategoriesController))
+            {
+                return new CategoriesController(TestObjectFactoryServices.GetCategoriesServices().Object);
+            }
+
             return null;
         }
 

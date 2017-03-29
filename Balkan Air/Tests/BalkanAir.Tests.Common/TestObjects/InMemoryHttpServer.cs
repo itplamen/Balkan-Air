@@ -12,7 +12,7 @@
 
     using Data.Repositories.Contracts;
 
-    public class InMemoryHttpServer<T> 
+    public class InMemoryHttpServer<T>
         where T : class
     {
         private readonly HttpClient client;
@@ -25,11 +25,11 @@
             var config = new HttpConfiguration();
             this.AddHttpRoutes(config.Routes);
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
-            
-            var resolver = new DependencyResolver<T>(); 
+
+            var resolver = new DependencyResolver<T>();
             resolver.Repository = repository;
             config.DependencyResolver = resolver;
-            
+
             var server = new HttpServer(config);
             this.client = new HttpClient(server);
         }
@@ -77,12 +77,12 @@
             var content = new FormUrlEncodedContent(postData);
             content.Headers.Clear();
             content.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
-            
+
 
             var url = requestUrl;
             var request = new HttpRequestMessage();
             request.RequestUri = new Uri(baseUrl + url);
- 
+
             request.Method = HttpMethod.Post;
             request.Content = new StringContent(JsonConvert.SerializeObject(content));
 
@@ -140,7 +140,7 @@
                     "Api/{controller}/{abbreviation}",
                     new { action = "GetByAbbreviation" },
                     new { abbreviation = @"\b[a-zA-Z]{2,3}\b", httpMethod = new HttpMethodConstraint(HttpMethod.Get) })
-                };
+                }; 
         }
 
         private class Route
