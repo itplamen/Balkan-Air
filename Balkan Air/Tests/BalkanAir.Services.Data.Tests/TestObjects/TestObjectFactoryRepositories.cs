@@ -127,6 +127,25 @@
             return fares;
         }
 
+        public static InMemoryRepository<LegInstance> GetLegInstancesRepository(int numberOfLegInstances = 25)
+        {
+            var legInstances = new InMemoryRepository<LegInstance>();
+
+            for (int i = 0; i < numberOfLegInstances; i++)
+            {
+                legInstances.Add(new LegInstance()
+                {
+                    Id = i,
+                    DepartureDateTime = new DateTime(2017, 1, 1),
+                    ArrivalDateTime = new DateTime(2017, 1, 1),
+                    Price = 1,
+                    FlightLegId = 1
+                });
+            }
+
+            return legInstances;
+        }
+
         public static InMemoryRepository<UserNotification> GetUserNotificationsRepository(int numberOfNotifications = 25)
         {
             var userNotifications = new InMemoryRepository<UserNotification>();

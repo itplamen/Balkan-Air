@@ -80,13 +80,18 @@
                 return this.BadRequest(ErrorMessages.NULL_OR_EMPTY_FLIGHT_NUMBER);
             }
 
-            var flight = this.legInstancesServices.GetAll()
+            var flights = this.legInstancesServices.GetAll()
                 .Where(f => f.FlightLeg.Flight.Number.ToLower() == flightNumber.ToLower())
                 .OrderByDescending(f => f.DepartureDateTime)
                 .ProjectTo<FlightResponseModel>()
                 .ToList();
 
-            return this.Ok(flight);
+            if (flights == null || flights.Count == 0)
+            {
+                return this.NotFound();
+            }
+
+            return this.Ok(flights);
         }
 
         [HttpGet]
@@ -103,6 +108,11 @@
                 .OrderByDescending(f => f.DepartureDateTime)
                 .ProjectTo<FlightResponseModel>()
                 .ToList();
+
+            if (flights == null || flights.Count == 0)
+            {
+                return this.NotFound();
+            }
 
             return this.Ok(flights);
         }
@@ -122,6 +132,11 @@
                 .ProjectTo<FlightResponseModel>()
                 .ToList();
 
+            if (flights == null || flights.Count == 0)
+            {
+                return this.NotFound();
+            }
+
             return this.Ok(flights);
         }
 
@@ -139,6 +154,11 @@
                 .OrderByDescending(f => f.DepartureDateTime)
                 .ProjectTo<FlightResponseModel>()
                 .ToList();
+
+            if (flights == null || flights.Count == 0)
+            {
+                return this.NotFound();
+            }
 
             return this.Ok(flights);
         }
@@ -159,6 +179,11 @@
                 .ProjectTo<FlightResponseModel>()
                 .ToList();
 
+            if (flights == null || flights.Count == 0)
+            {
+                return this.NotFound();
+            }
+
             return this.Ok(flights);
         }
 
@@ -171,6 +196,11 @@
                 .OrderByDescending(f => f.DepartureDateTime)
                 .ProjectTo<FlightResponseModel>()
                 .ToList();
+
+            if (flights == null || flights.Count == 0)
+            {
+                return this.NotFound();
+            }
 
             return this.Ok(flights);
         }

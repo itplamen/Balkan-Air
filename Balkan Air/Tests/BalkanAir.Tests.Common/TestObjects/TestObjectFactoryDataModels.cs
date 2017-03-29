@@ -146,18 +146,18 @@
                 Aircraft = new Aircraft(),
                 FlightStatus = new FlightStatus()
                 {
-                    Name = "Test"
+                    Name = Constants.FLIGHT_VALID_STATUS
                 },
                 FlightLeg = new FlightLeg()
                 {
                     Flight = new Flight()
                     {
-                        Number = "Test12"
+                        Number = Constants.FLIGHT_VALID_NUMBER
                     },
                     Route = new Route()
                     {
-                        Origin = new Airport() { Abbreviation = "ABC" },
-                        Destination = new Airport() { Abbreviation = "DEF" }
+                        Origin = new Airport() { Abbreviation = Constants.ROUTE_VALID_ORIGIN_ABBREVIATION },
+                        Destination = new Airport() { Abbreviation = Constants.ROUTE_VALID_DESTINATION_ABBREVIATION }
                     }
                 }
             }

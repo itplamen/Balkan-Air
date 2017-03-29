@@ -55,6 +55,11 @@
                 return new FaresController(TestObjectFactoryServices.GetFaresServices().Object);
             }
 
+            if (serviceType == typeof(FlightsController))
+            {
+                return new FlightsController(TestObjectFactoryServices.GetLegInstancesServices().Object);
+            }
+
             return null;
         }
 

@@ -149,8 +149,43 @@
                         originAbbreviation = @"\b[a-zA-Z]{3}\b",
                         destinationAbbreviation = @"\b[a-zA-Z]{3}\b",
                         httpMethod = new HttpMethodConstraint(HttpMethod.Get)
-                    })
-            }; 
+                    }),
+                new Route(
+                    "GetFlightByFlightNumber",
+                    "Api/Flights/{flightNumber}",
+                    new { controller = "Flights", action = "GetByFlightNumber" },
+                    new { flightNumber = @"^[a-zA-Z0-9]+$", httpMethod = new HttpMethodConstraint(HttpMethod.Get) }),
+                new Route(
+                    "GetFlightByFlightStatus",
+                    "Api/{controller}/Status/{flightStatus}",
+                    new { controller = "Flights", action = "GetByFlightStatus" },
+                    new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }),
+                new Route(
+                    "GetFlightByDepartureAirport",
+                    "Api/{controller}/Departures/{airportAbbreviation}",
+                    new { controller = "Flights", action = "GetByDepartureAirport" },
+                    new { airportAbbreviation = @"\b[a-zA-Z]{3}\b", httpMethod = new HttpMethodConstraint(HttpMethod.Get) }),
+                new Route(
+                    "GetFlightByArrivalAirport",
+                    "Api/{controller}/Arrivals/{airportAbbreviation}",
+                    new { controller = "Flights", action = "GetByArrivalAirport" },
+                    new { airportAbbreviation = @"\b[a-zA-Z]{3}\b", httpMethod = new HttpMethodConstraint(HttpMethod.Get) }),
+                new Route(
+                    "GetFlightByRoute",
+                    "Api/{controller}/Route/{originAbbreviation}/{destinationAbbreviation}",
+                    new { controller = "Flights", action = "GetByRoute" },
+                    new
+                    {
+                        originAbbreviation = @"\b[a-zA-Z]{3}\b",
+                        destinationAbbreviation = @"\b[a-zA-Z]{3}\b",
+                        httpMethod = new HttpMethodConstraint(HttpMethod.Get)
+                    }),
+                new Route(
+                    "GetFlightByDateTime",
+                    "Api/{controller}/DateTime/{dateTime}",
+                    new { controller = "Flights", action = "GetByDepartureDateTime" },
+                    new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) })
+                };
         }
 
         private class Route

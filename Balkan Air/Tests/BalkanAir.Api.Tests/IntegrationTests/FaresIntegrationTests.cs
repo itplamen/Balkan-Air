@@ -165,11 +165,11 @@
         [TestMethod]
         public void GetByRouteShouldReturnStatus404NotFoundWhenThereIsNoFareWithThisOriginAbbreviation()
         {
-            var soSuchOriginAbbreviation = "sof";
+            var noSuchOriginAbbreviation = "sof";
 
             var response = this.server.CreateGetRequest(
                 GET_REQUEST_URL +
-                soSuchOriginAbbreviation + "/" +
+                noSuchOriginAbbreviation + "/" +
                 Constants.ROUTE_VALID_DESTINATION_ABBREVIATION);
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
@@ -180,12 +180,12 @@
         [TestMethod]
         public void GetByRouteShouldReturnStatus404NotFoundWhenThereIsNoFareWithThisDestinationAbbreviation()
         {
-            var soSuchDestinationAbbreviation = "qwe";
+            var noSuchDestinationAbbreviation = "qwe";
 
             var response = this.server.CreateGetRequest(
                 GET_REQUEST_URL +
                 Constants.ROUTE_VALID_ORIGIN_ABBREVIATION + "/" +
-                soSuchDestinationAbbreviation);
+                noSuchDestinationAbbreviation);
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
             Assert.IsFalse(response.IsSuccessStatusCode);
