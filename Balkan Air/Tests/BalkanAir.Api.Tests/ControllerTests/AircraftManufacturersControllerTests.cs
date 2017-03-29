@@ -109,7 +109,7 @@
             var okResult = result as OkNegotiatedContentResult<AircraftManufacturerResponseModel>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(Constants.VALID_ID, okResult.Content.Id);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content.Id);
             Assert.AreEqual(Constants.MANUFACTURER_VALID_NAME, okResult.Content.Name);
         }
 
@@ -131,7 +131,7 @@
             var model = TestObjectFactoryDataTransferModels.GetInvalidUpdateAircraftManufacturerRequestModel();
             this.manufacturersController.Validate(model);
 
-            var result = this.manufacturersController.Update(Constants.VALID_ID, model);
+            var result = this.manufacturersController.Update(Constants.ENTITY_VALID_ID, model);
 
             Assert.IsFalse(this.manufacturersController.ModelState.IsValid);
         }
@@ -144,7 +144,7 @@
             var invalidModel = TestObjectFactoryDataTransferModels.GetInvalidUpdateAircraftManufacturerRequestModel();
             this.manufacturersController.Validate(invalidModel);
 
-            var result = this.manufacturersController.Update(Constants.VALID_ID, invalidModel);
+            var result = this.manufacturersController.Update(Constants.ENTITY_VALID_ID, invalidModel);
 
             Assert.AreEqual(typeof(InvalidModelStateResult), result.GetType());
         }

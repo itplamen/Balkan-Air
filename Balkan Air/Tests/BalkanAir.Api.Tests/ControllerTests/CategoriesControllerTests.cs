@@ -8,6 +8,7 @@
 
     using Moq;
 
+    using BalkanAir.Tests.Common;
     using BalkanAir.Tests.Common.TestObjects;
     using Common;
     using Controllers;
@@ -66,7 +67,7 @@
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content);
         }
 
         [TestMethod]
@@ -74,9 +75,10 @@
         {
             var result = this.categoriesController.All();
             var okResult = result as OkNegotiatedContentResult<List<CategoryResponseModel>>;
+            var expectedCategoriesCount = 1;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Count);
+            Assert.AreEqual(expectedCategoriesCount, okResult.Content.Count);
         }
 
         [TestMethod]
@@ -92,7 +94,8 @@
         [TestMethod]
         public void GetByIdShouldReturnNotFound()
         {
-            var result = this.categoriesController.Get(10);
+            var notFoundId = 10;
+            var result = this.categoriesController.Get(notFoundId);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -100,12 +103,12 @@
         [TestMethod]
         public void GetByIdShouldReturnOkResultWithData()
         {
-            var result = this.categoriesController.Get(1);
+            var result = this.categoriesController.Get(Constants.ENTITY_VALID_ID);
             var okResult = result as OkNegotiatedContentResult<CategoryResponseModel>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Id);
-            Assert.AreEqual("Category Test", okResult.Content.Name);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content.Id);
+            Assert.AreEqual(Constants.CATEGORY_VALID_NAME, okResult.Content.Name);
         }
 
         [TestMethod]
@@ -121,7 +124,8 @@
         [TestMethod]
         public void GetCategoryByNameShouldReturnNotFoundWhenThereIsNoCategoryWithThisName()
         {
-            var result = this.categoriesController.GetCategoryByName("Invaid Category Name");
+            var invalidCategoryName = "invalid category name";
+            var result = this.categoriesController.GetCategoryByName(invalidCategoryName);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -129,18 +133,23 @@
         [TestMethod]
         public void GetCategoryByNameShouldReturnOkResultWithData()
         {
-            var result = this.categoriesController.GetCategoryByName("Category Test");
+            var result = this.categoriesController.GetCategoryByName(Constants.CATEGORY_VALID_NAME);
             var okResult = result as OkNegotiatedContentResult<CategoryResponseModel>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Id);
-            Assert.AreEqual("Category Test", okResult.Content.Name);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content.Id);
+            Assert.AreEqual(Constants.CATEGORY_VALID_NAME, okResult.Content.Name);
         }
 
         [TestMethod]
         public void UpdateShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var result = this.categoriesController.Update(0, TestObjectFactoryDataTransferModels.GetInvalidUpdateCategoryRequestModel());
+            var invalidId = -1;
+
+            var result = this.categoriesController.Update(
+                invalidId, 
+                TestObjectFactoryDataTransferModels.GetInvalidUpdateCategoryRequestModel());
+
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -155,7 +164,7 @@
             var model = TestObjectFactoryDataTransferModels.GetInvalidUpdateCategoryRequestModel();
             this.categoriesController.Validate(model);
 
-            var result = this.categoriesController.Update(1, model);
+            var result = this.categoriesController.Update(Constants.ENTITY_VALID_ID, model);
 
             Assert.IsFalse(this.categoriesController.ModelState.IsValid);
         }
@@ -168,7 +177,7 @@
             var model = TestObjectFactoryDataTransferModels.GetInvalidUpdateCategoryRequestModel();
             this.categoriesController.Validate(model);
 
-            var result = this.categoriesController.Update(1, model);
+            var result = this.categoriesController.Update(Constants.ENTITY_VALID_ID, model);
 
             Assert.AreEqual(typeof(InvalidModelStateResult), result.GetType());
         }
@@ -181,7 +190,8 @@
             var model = TestObjectFactoryDataTransferModels.GetValidUpdateCategoryRequestModel();
             this.categoriesController.Validate(model);
 
-            var result = this.categoriesController.Update(10, model);
+            var notFoundId = 10;
+            var result = this.categoriesController.Update(notFoundId, model);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -204,7 +214,8 @@
         [TestMethod]
         public void DeleteShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var result = this.categoriesController.Delete(-1);
+            var invalidId = -1;
+            var result = this.categoriesController.Delete(invalidId);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -214,7 +225,8 @@
         [TestMethod]
         public void DeleteShouldReturnNotFound()
         {
-            var result = this.categoriesController.Delete(10);
+            var notFoundId = 10;
+            var result = this.categoriesController.Delete(notFoundId);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -222,11 +234,11 @@
         [TestMethod]
         public void DeleteShouldReturnOkResultWithId()
         {
-            var result = this.categoriesController.Delete(1);
+            var result = this.categoriesController.Delete(Constants.ENTITY_VALID_ID);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content);
         }
     }
 }

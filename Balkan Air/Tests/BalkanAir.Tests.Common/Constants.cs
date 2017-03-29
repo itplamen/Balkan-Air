@@ -10,10 +10,12 @@
         // Aircraft Manufacturers
         public const string MANUFACTURER_VALID_NAME = "Manufacturer Name Test";
 
-        // Aircraft
+        // Aircrafts
         public const string AIRCRAFT_VALID_MODEL = "Aircraft Model Test";
         public const int AIRCRAFT_TOTAL_SEATS = 1;
 
+        // Airprots
+        public const string AIRPROT_VALID_NAME = "Airport Name Test";
         public const string AIRPORT_VALID_ABBREVIATION = "ABC";
 
         public const string CATEGORY_VALID_NAME = "Category Test";

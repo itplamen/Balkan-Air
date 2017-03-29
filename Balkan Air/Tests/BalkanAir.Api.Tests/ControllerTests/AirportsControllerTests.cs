@@ -8,6 +8,7 @@
 
     using Moq;
 
+    using BalkanAir.Tests.Common;
     using BalkanAir.Tests.Common.TestObjects;
     using Common;
     using Controllers;
@@ -66,7 +67,7 @@
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content);
         }
 
         [TestMethod]
@@ -74,15 +75,17 @@
         {            
             var result = this.airportsController.All();
             var okResult = result as OkNegotiatedContentResult<List<AirportResponseModel>>;
-           
+            var expectedAirportsCount = 1;
+
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Count);
+            Assert.AreEqual(expectedAirportsCount, okResult.Content.Count);
         }
 
         [TestMethod]
         public void GetByIdShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var result = this.airportsController.Get(0);
+            var invalidId = -1;
+            var result = this.airportsController.Get(invalidId);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -92,7 +95,8 @@
         [TestMethod]
         public void GetByIdShouldReturnNotFound()
         {
-            var result = this.airportsController.Get(10);
+            var notFoundId = 10;
+            var result = this.airportsController.Get(notFoundId);
             
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -100,13 +104,13 @@
         [TestMethod]
         public void GetByIdShouldReturnOkResultWithData()
         {
-            var result = this.airportsController.Get(1);
+            var result = this.airportsController.Get(Constants.ENTITY_VALID_ID);
             var okResult = result as OkNegotiatedContentResult<AirportResponseModel>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Id);
-            Assert.AreEqual("Test Name", okResult.Content.Name);
-            Assert.AreEqual("ABC", okResult.Content.Abbreviation);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content.Id);
+            Assert.AreEqual(Constants.AIRPROT_VALID_NAME, okResult.Content.Name);
+            Assert.AreEqual(Constants.AIRPORT_VALID_ABBREVIATION, okResult.Content.Abbreviation);
         }
 
         [TestMethod]
@@ -122,7 +126,8 @@
         [TestMethod]
         public void GetByAbbreviationShouldReturnNotFound()
         {
-            var result = this.airportsController.GetByAbbreviation("ppp");
+            var notFoundAbbreviation = "ppp";
+            var result = this.airportsController.GetByAbbreviation(notFoundAbbreviation);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -130,13 +135,13 @@
         [TestMethod]
         public void GetByAbbreviationShouldReturnOkResultWithData()
         {
-            var result = this.airportsController.GetByAbbreviation("ABC");
+            var result = this.airportsController.GetByAbbreviation(Constants.AIRPORT_VALID_ABBREVIATION);
             var okResult = result as OkNegotiatedContentResult<AirportResponseModel>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Id);
-            Assert.AreEqual("Test Name", okResult.Content.Name);
-            Assert.AreEqual("ABC", okResult.Content.Abbreviation);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content.Id);
+            Assert.AreEqual(Constants.AIRPROT_VALID_NAME, okResult.Content.Name);
+            Assert.AreEqual(Constants.AIRPORT_VALID_ABBREVIATION, okResult.Content.Abbreviation);
         }
 
         [TestMethod]
@@ -157,7 +162,7 @@
             var model = TestObjectFactoryDataTransferModels.GetInvalidUpdateAirportRequestModel();
             this.airportsController.Validate(model);
 
-            var result = this.airportsController.Update(1, model);
+            var result = this.airportsController.Update(Constants.ENTITY_VALID_ID, model);
 
             Assert.IsFalse(this.airportsController.ModelState.IsValid);
         }
@@ -170,7 +175,7 @@
             var model = TestObjectFactoryDataTransferModels.GetInvalidUpdateAirportRequestModel();
             this.airportsController.Validate(model);
 
-            var result = this.airportsController.Update(1, model);
+            var result = this.airportsController.Update(Constants.ENTITY_VALID_ID, model);
 
             Assert.AreEqual(typeof(InvalidModelStateResult), result.GetType());
         }
@@ -183,7 +188,8 @@
             var model = TestObjectFactoryDataTransferModels.GetValidUpdateAirportRequestModel();
             this.airportsController.Validate(model);
 
-            var result = this.airportsController.Update(10, model);
+            var notFoundId = 10;
+            var result = this.airportsController.Update(notFoundId, model);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -206,7 +212,8 @@
         [TestMethod]
         public void DeleteShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var result = this.airportsController.Delete(-1);
+            var invalidId = -1;
+            var result = this.airportsController.Delete(invalidId);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -215,8 +222,9 @@
 
         [TestMethod]
         public void DeleteShouldReturnNotFound()
-        {           
-            var result = this.airportsController.Delete(10);
+        {
+            var notFoundId = 10;
+            var result = this.airportsController.Delete(notFoundId);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -224,11 +232,11 @@
         [TestMethod]
         public void DeleteShouldReturnOkResultWithId()
         {
-            var result = this.airportsController.Delete(1);
+            var result = this.airportsController.Delete(Constants.ENTITY_VALID_ID);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content);
         }
     }
 }

@@ -33,7 +33,7 @@
             new Airport()
             {
                 Id = 1,
-                Name = "Test Name",
+                Name = Constants.AIRPROT_VALID_NAME,
                 Abbreviation = Constants.AIRPORT_VALID_ABBREVIATION,
                 CountryId = 1
             }
