@@ -9,20 +9,20 @@
     using Services.Data.Tests.TestObjects;
 
     [TestClass]
-    public class AircraftManufacturersIntegrationTests
+    public class AircraftsIntegrationTests
     {
         private const string IN_MEMORY_SERVER_URL = "http://localhost:12345";
-        private const string GET_REQUEST_URL = "/Api/AircraftManufacturers/";
-        private const string INVALID_GET_REQUEST_URL = "/Api/AircraftManufacturer/";
+        private const string GET_REQUEST_URL = "/Api/Aircrafts/";
+        private const string INVALID_GET_REQUEST_URL = "/Api/Aircraft/";
 
-        private InMemoryHttpServer<AircraftManufacturer> server;
+        private InMemoryHttpServer<Aircraft> server;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.server = new InMemoryHttpServer<AircraftManufacturer>(
+            this.server = new InMemoryHttpServer<Aircraft>(
                 IN_MEMORY_SERVER_URL,
-                TestObjectFactoryRepositories.GetAircraftManufacturersRepository());
+                TestObjectFactoryRepositories.GetAircraftsRepository());
         }
 
         [TestMethod]
@@ -67,7 +67,7 @@
         }
 
         [TestMethod]
-        public void GetByIdShouldReturnStatus404NotFoundWhenThereIsNoManufacturerWithThisId()
+        public void GetByIdShouldReturnStatus404NotFoundWhenThereIsNoAircraftWithThisId()
         {
             var noSuchId = 1000;
 

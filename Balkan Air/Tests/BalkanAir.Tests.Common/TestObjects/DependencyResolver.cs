@@ -29,7 +29,12 @@
             {
                 return new AircraftManufacturersController(TestObjectFactoryServices.GetAircraftManufacturersServices().Object);
             }
-             
+
+            if (serviceType == typeof(AircraftsController))
+            {
+                return new AircraftsController(TestObjectFactoryServices.GetAircraftsServices().Object);
+            }
+
             if (serviceType == typeof(AirportsController))
             {
                 return new AirportsController(TestObjectFactoryServices.GetAirportsServices().Object);

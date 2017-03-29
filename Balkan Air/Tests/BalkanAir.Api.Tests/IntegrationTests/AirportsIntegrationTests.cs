@@ -14,7 +14,7 @@
     {
         private const string IN_MEMORY_SERVER_URL = "http://localhost:12345";
         private const string GET_REQUEST_URL = "/Api/Airports/";
-        private const string INVALID_GET_REQUEST_URL = "/Api/Airport";
+        private const string INVALID_GET_REQUEST_URL = "/Api/Airport/";
 
         private InMemoryHttpServer<Airport> server;
 
