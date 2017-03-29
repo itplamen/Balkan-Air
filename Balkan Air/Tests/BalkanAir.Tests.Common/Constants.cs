@@ -28,7 +28,7 @@
         // Fares
         public const int FARE_VALID_PRICE = 1;
     
-        // Flights
+        // Leg Instances
         public const string FLIGHT_VALID_STATUS = "Test";
         public const string FLIGHT_VALID_NUMBER = "TEST12";
 

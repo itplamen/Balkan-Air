@@ -9,6 +9,7 @@
 
     using Moq;
 
+    using BalkanAir.Tests.Common;
     using BalkanAir.Tests.Common.TestObjects;
     using Common;
     using Controllers;
@@ -67,7 +68,7 @@
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content);
         }
 
         [TestMethod]
@@ -75,15 +76,17 @@
         {
             var result = this.flightsController.All();
             var okResult = result as OkNegotiatedContentResult<List<FlightResponseModel>>;
+            var expectedFlightsCount = 1;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Count);
+            Assert.AreEqual(expectedFlightsCount, okResult.Content.Count);
         }
 
         [TestMethod]
         public void GetByIdShouldReturnBadRequestWithInvalidIdMessage()
         {
-            var result = this.flightsController.Get(-1);
+            var invalidId = -1;
+            var result = this.flightsController.Get(invalidId);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -93,7 +96,8 @@
         [TestMethod]
         public void GetByIdShouldReturnNotFound()
         {
-            var result = this.flightsController.Get(10);
+            var notFoundId = 10;
+            var result = this.flightsController.Get(notFoundId);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -101,11 +105,11 @@
         [TestMethod]
         public void GetByIdShouldReturnOkResultWithData()
         {
-            var result = this.flightsController.Get(1);
+            var result = this.flightsController.Get(Constants.ENTITY_VALID_ID);
             var okResult = result as OkNegotiatedContentResult<FlightResponseModel>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Id);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content.Id);
         }
 
         [TestMethod]
@@ -121,11 +125,13 @@
         [TestMethod]
         public void GetByFlightNumberShouldReturnOkResultWithData()
         {
-            var result = this.flightsController.GetByFlightNumber("Test12");
+            var result = this.flightsController.GetByFlightNumber(Constants.FLIGHT_VALID_NUMBER);
             var okResult = result as OkNegotiatedContentResult<List<FlightResponseModel>>;
 
+            var expectedFlightsCount = 1;
+
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Count);
+            Assert.AreEqual(expectedFlightsCount, okResult.Content.Count);
         }
 
         [TestMethod]
@@ -141,11 +147,13 @@
         [TestMethod]
         public void GetByFlightStatusShouldReturnOkResultWithData()
         {
-            var result = this.flightsController.GetByFlightStatus("Test");
+            var result = this.flightsController.GetByFlightStatus(Constants.FLIGHT_VALID_STATUS);
             var okResult = result as OkNegotiatedContentResult<List<FlightResponseModel>>;
 
+            var expectedFlightsCount = 1;
+
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Count);
+            Assert.AreEqual(expectedFlightsCount, okResult.Content.Count);
         }
 
         [TestMethod]
@@ -161,11 +169,13 @@
         [TestMethod]
         public void GetByDepartureAirportShouldReturnOkResultWithData()
         {
-            var result = this.flightsController.GetByDepartureAirport("ABC");
+            var result = this.flightsController.GetByDepartureAirport(Constants.ROUTE_VALID_ORIGIN_ABBREVIATION);
             var okResult = result as OkNegotiatedContentResult<List<FlightResponseModel>>;
 
+            var expectedFlightsCount = 1;
+
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Count);
+            Assert.AreEqual(expectedFlightsCount, okResult.Content.Count);
         }
 
         [TestMethod]
@@ -181,17 +191,22 @@
         [TestMethod]
         public void GetByArrivalAirportShouldReturnOkResultWithData()
         {
-            var result = this.flightsController.GetByArrivalAirport("DEF");
+            var result = this.flightsController.GetByArrivalAirport(Constants.ROUTE_VALID_DESTINATION_ABBREVIATION);
             var okResult = result as OkNegotiatedContentResult<List<FlightResponseModel>>;
 
+            var expectedFlightsCount = 1;
+
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Count);
+            Assert.AreEqual(expectedFlightsCount, okResult.Content.Count);
         }
 
         [TestMethod]
         public void GetByRouteShouldReturnBadRequestWithInvalidAbbreviationMessage()
         {
-            var result = this.flightsController.GetByRoute(null, "DEF");
+            var result = this.flightsController.GetByRoute(
+                null,
+                Constants.ROUTE_VALID_DESTINATION_ABBREVIATION);
+
             var badRequestMessage = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -201,11 +216,16 @@
         [TestMethod]
         public void GetByRouteShouldReturnOkResultWithData()
         {
-            var result = this.flightsController.GetByRoute("ABC", "DEF");
+            var result = this.flightsController.GetByRoute(
+                Constants.ROUTE_VALID_ORIGIN_ABBREVIATION,
+                Constants.ROUTE_VALID_DESTINATION_ABBREVIATION);
+
             var okResult = result as OkNegotiatedContentResult<List<FlightResponseModel>>;
 
+            var expectedFlightsCount = 1;
+
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Count);
+            Assert.AreEqual(expectedFlightsCount, okResult.Content.Count);
         }
 
         [TestMethod]
@@ -214,15 +234,19 @@
             var result = this.flightsController.GetByDepartureDateTime(new DateTime(2017, 1, 1, 1, 1, 1));
             var okResult = result as OkNegotiatedContentResult<List<FlightResponseModel>>;
 
+            var expectedFlightsCount = 1;
+
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Count);
+            Assert.AreEqual(expectedFlightsCount, okResult.Content.Count);
         }
 
         [TestMethod]
         public void UpdateShouldReturnBadRequestWithInvalidIdMessage()
         {
             var validModel = TestObjectFactoryDataTransferModels.GetValidUpdateFlightRequestModel();
-            var result = this.flightsController.Update(-1, validModel);
+            var invalidId = -1;
+
+            var result = this.flightsController.Update(invalidId, validModel);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -237,7 +261,7 @@
             var invalidModel = TestObjectFactoryDataTransferModels.GetInvalidUpdateFlightRequestModel();
             this.flightsController.Validate(invalidModel);
 
-            var result = this.flightsController.Update(1, invalidModel);
+            var result = this.flightsController.Update(Constants.ENTITY_VALID_ID, invalidModel);
 
             Assert.IsFalse(this.flightsController.ModelState.IsValid);
         }
@@ -250,7 +274,7 @@
             var invalidModel = TestObjectFactoryDataTransferModels.GetInvalidUpdateFlightRequestModel();
             this.flightsController.Validate(invalidModel);
 
-            var result = this.flightsController.Update(1, invalidModel);
+            var result = this.flightsController.Update(Constants.ENTITY_VALID_ID, invalidModel);
 
             Assert.AreEqual(typeof(InvalidModelStateResult), result.GetType());
         }
@@ -263,7 +287,8 @@
             var validModel = TestObjectFactoryDataTransferModels.GetValidUpdateFlightRequestModel();
             this.flightsController.Validate(validModel);
 
-            var result = this.flightsController.Update(10, validModel);
+            var notFoundId = 10;
+            var result = this.flightsController.Update(notFoundId, validModel);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -276,7 +301,7 @@
             var validModel = TestObjectFactoryDataTransferModels.GetValidUpdateFlightRequestModel();
             this.flightsController.Validate(validModel);
 
-            var result = this.flightsController.Update(1, validModel);
+            var result = this.flightsController.Update(Constants.ENTITY_VALID_ID, validModel);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
@@ -286,7 +311,8 @@
         [TestMethod]
         public void DeleteShouldReturnBadRequestWithInvalidIdMessage()
         {
-            var result = this.flightsController.Delete(-1);
+            var invalidId = -1;
+            var result = this.flightsController.Delete(invalidId);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -296,7 +322,8 @@
         [TestMethod]
         public void DeleteShouldReturnNotFound()
         {
-            var result = this.flightsController.Delete(10);
+            var notFoundId = 10;
+            var result = this.flightsController.Delete(notFoundId);
             
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -304,11 +331,11 @@
         [TestMethod]
         public void DeleteShouldReturnOkResultWithId()
         {
-            var result = this.flightsController.Delete(1);
+            var result = this.flightsController.Delete(Constants.ENTITY_VALID_ID);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content);
         }
     }
 }
