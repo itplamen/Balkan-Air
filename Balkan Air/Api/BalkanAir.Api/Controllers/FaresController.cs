@@ -88,6 +88,11 @@
                 .ProjectTo<FareResponseModel>()
                 .ToList();
 
+            if (fares == null || fares.Count == 0)
+            {
+                return this.NotFound();
+            }
+
             return this.Ok(fares);
         }
 

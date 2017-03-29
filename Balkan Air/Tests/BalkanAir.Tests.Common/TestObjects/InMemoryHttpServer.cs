@@ -139,8 +139,18 @@
                     "GetAirportAndCountryByAbbreviation",
                     "Api/{controller}/{abbreviation}",
                     new { action = "GetByAbbreviation" },
-                    new { abbreviation = @"\b[a-zA-Z]{2,3}\b", httpMethod = new HttpMethodConstraint(HttpMethod.Get) })
-                }; 
+                    new { abbreviation = @"\b[a-zA-Z]{2,3}\b", httpMethod = new HttpMethodConstraint(HttpMethod.Get) }),
+                new Route(
+                    "GetFareByRouteAbbreviations",
+                    "Api/{controller}/{originAbbreviation}/{destinationAbbreviation}",
+                    new { action = "GetByRoute" },
+                    new
+                    {
+                        originAbbreviation = @"\b[a-zA-Z]{3}\b",
+                        destinationAbbreviation = @"\b[a-zA-Z]{3}\b",
+                        httpMethod = new HttpMethodConstraint(HttpMethod.Get)
+                    })
+            }; 
         }
 
         private class Route

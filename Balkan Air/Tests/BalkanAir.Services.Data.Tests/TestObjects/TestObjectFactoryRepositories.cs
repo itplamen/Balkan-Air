@@ -110,6 +110,23 @@
             return countries;
         }
 
+        public static InMemoryRepository<Fare> GetFaresRepository(int numberOfFares = 25)
+        {
+            var fares = new InMemoryRepository<Fare>();
+
+            for (int i = 0; i < numberOfFares; i++)
+            {
+                fares.Add(new Fare()
+                {
+                    Id = i,
+                    Price = 1,
+                    RouteId = i
+                });
+            }
+
+            return fares;
+        }
+
         public static InMemoryRepository<UserNotification> GetUserNotificationsRepository(int numberOfNotifications = 25)
         {
             var userNotifications = new InMemoryRepository<UserNotification>();

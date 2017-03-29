@@ -98,12 +98,12 @@
                     Origin = new Airport()
                     {
                         Name = "Test Origin",
-                        Abbreviation = "ABC"
+                        Abbreviation = Constants.ROUTE_VALID_ORIGIN_ABBREVIATION
                     },
                     Destination = new Airport()
                     {
                         Name = "Test Destination",
-                        Abbreviation = "DEF"
+                        Abbreviation = Constants.ROUTE_VALID_DESTINATION_ABBREVIATION
                     }
                 }
             }

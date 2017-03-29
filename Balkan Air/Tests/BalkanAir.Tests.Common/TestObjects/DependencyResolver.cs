@@ -50,6 +50,11 @@
                 return new CountriesController(TestObjectFactoryServices.GetCountriesServices().Object);
             }
 
+            if (serviceType == typeof(FaresController))
+            {
+                return new FaresController(TestObjectFactoryServices.GetFaresServices().Object);
+            }
+
             return null;
         }
 
