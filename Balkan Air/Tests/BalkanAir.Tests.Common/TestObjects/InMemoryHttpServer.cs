@@ -194,7 +194,17 @@
                     "GetLatestNewsByCategory",
                     "Api/{controller}/Latest/{count}/{category}",
                     new { controller = "News", action = "GetLatesByCategory" },
-                    new { count = @"\d+", httpMethod = new HttpMethodConstraint(HttpMethod.Get) })
+                    new { count = @"\d+", httpMethod = new HttpMethodConstraint(HttpMethod.Get) }),
+                new Route(
+                    "GetByType",
+                    "Api/{controller}/Type/{type}",
+                    new { controller = "TravelClasses", action = "GetByType" },
+                    new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }),
+                new Route(
+                    "GetByAircraftId",
+                    "Api/{controller}/AircraftId/{aircraftId}",
+                    new { controller = "TravelClasses", action = "GetByAircraftId" },
+                    new { aircraftId = @"\d+", httpMethod = new HttpMethodConstraint(HttpMethod.Get) })
                 };
         }
 

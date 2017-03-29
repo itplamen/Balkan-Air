@@ -512,12 +512,12 @@
                     It.IsAny<Route>()))
                 .Returns<Route>(null);
 
-            routesServices.Setup(l => l.UpdateRoute(
+            routesServices.Setup(r => r.UpdateRoute(
                     It.Is<int>(i => i == VALID_ID),
                     It.IsAny<Route>()))
                 .Returns(new Route() { Id = VALID_ID });
 
-            routesServices.Setup(l => l.DeleteRoute(
+            routesServices.Setup(r => r.DeleteRoute(
                     It.Is<int>(i => i != VALID_ID)))
                 .Returns<Route>(null);
 
@@ -526,6 +526,46 @@
                 .Returns(new Route() { Id = VALID_ID });
 
             return routesServices;
+        }
+
+        public static Mock<ITravelClassesServices> GetTravelClassesServices()
+        {
+            var travelClassesServices = new Mock<ITravelClassesServices>();
+
+            travelClassesServices.Setup(t => t.AddTravelClass(
+                    It.IsAny<TravelClass>()))
+                .Returns(VALID_ID);
+
+            travelClassesServices.Setup(t => t.GetAll())
+                .Returns(TestObjectFactoryDataModels.TravelClasses);
+
+            travelClassesServices.Setup(t => t.GetTravelClass(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<TravelClass>(null);
+
+            travelClassesServices.Setup(t => t.GetTravelClass(
+                    It.Is<int>(i => i == VALID_ID)))
+                .Returns(new TravelClass() { Id = VALID_ID });
+
+            travelClassesServices.Setup(t => t.UpdateTravelClass(
+                    It.Is<int>(i => i != VALID_ID),
+                    It.IsAny<TravelClass>()))
+                .Returns<TravelClass>(null);
+
+            travelClassesServices.Setup(t => t.UpdateTravelClass(
+                    It.Is<int>(i => i == VALID_ID),
+                    It.IsAny<TravelClass>()))
+                .Returns(new TravelClass() { Id = VALID_ID });
+
+            travelClassesServices.Setup(t => t.DeleteTravelClass(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<TravelClass>(null);
+
+            travelClassesServices.Setup(t => t.DeleteTravelClass(
+                    It.Is<int>(i => i == VALID_ID)))
+                .Returns(new TravelClass() { Id = VALID_ID });
+
+            return travelClassesServices;
         }
     }
 }

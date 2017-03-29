@@ -196,5 +196,22 @@
                 }
             }
         }.AsQueryable();
+
+        public static IQueryable<TravelClass> TravelClasses = new List<TravelClass>()
+        {
+            new TravelClass()
+            {
+                Id = 1,
+                Type = TravelClassType.Economy,
+                Meal = "Test Meal",
+                NumberOfRows = 5,
+                NumberOfSeats = 20,
+                Price = 1,
+                Aircraft = new Aircraft()
+                {
+                    Id = 1
+                }
+            }
+        }.AsQueryable();
     }
 }

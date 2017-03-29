@@ -72,6 +72,11 @@
                 return new RoutesController(TestObjectFactoryServices.GetRoutesServices().Object);
             }
 
+            if (serviceType == typeof(TravelClassesController))
+            {
+                return new TravelClassesController(TestObjectFactoryServices.GetTravelClassesServices().Object);
+            }
+
             return null;
         }
 

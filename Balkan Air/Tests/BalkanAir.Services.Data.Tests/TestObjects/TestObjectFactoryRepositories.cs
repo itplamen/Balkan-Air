@@ -182,6 +182,26 @@
             return routes;
         }
 
+        public static InMemoryRepository<TravelClass> GetTravelClassesRepository(int numberOfTravelClasses = 25)
+        {
+            var travelClasses = new InMemoryRepository<TravelClass>();
+
+            for (int i = 0; i < numberOfTravelClasses; i++)
+            {
+                travelClasses.Add(new TravelClass()
+                {
+                    Id = i,
+                    Type = TravelClassType.Economy,
+                    Meal = "Meal Test " + i,
+                    NumberOfRows = 5,
+                    NumberOfSeats = 20,
+                    Price = i
+                });
+            }
+
+            return travelClasses;
+        }
+
         public static InMemoryRepository<UserNotification> GetUserNotificationsRepository(int numberOfNotifications = 25)
         {
             var userNotifications = new InMemoryRepository<UserNotification>();

@@ -75,7 +75,7 @@
         }
 
         [TestMethod]
-        public void GetByIdShouldMapCorrectActionAndReturnStatus404NotFoundWhenThereIsNoRoutetWithThisId()
+        public void GetByIdShouldMapCorrectActionAndReturnStatus404NotFoundWhenThereIsNoRouteWithThisId()
         {
             var noSuchId = 1000;
 

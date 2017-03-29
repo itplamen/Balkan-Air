@@ -6,29 +6,28 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using BalkanAir.Tests.Common;
     using BalkanAir.Tests.Common.TestObjects;
     using Common;
     using Data.Models;
     using Services.Data.Tests.TestObjects;
 
     [TestClass]
-    public class NewsIntegrationTests
+    public class TravelClassesIntegrationTests
     {
         private const string IN_MEMORY_SERVER_URL = "http://localhost:12345";
-        private const string GET_REQUEST_URL = "/Api/News/";
-        private const string INVALID_GET_REQUEST_URL = "/Api/New/";
-        private const string GET_LATES_NEWS_REQUEST_URL = "/Api/News/Latest/";
-        private const string GET_LATES_NEWS_BY_CATEGORY_REQUEST_URL = "/Api/News/Latest/{0}/{1}/";
+        private const string GET_REQUEST_URL = "/Api/TravelClasses/";
+        private const string INVALID_GET_REQUEST_URL = "/Api/TravelClass/";
+        private const string GET_BY_TYPE_REQUEST_URL = "/Api/TravelClasses/Type/";
+        private const string GET_BY_AIRCRAFT_ID_REQUEST_URL = "/Api/TravelClasses/AircraftId/";
 
-        private InMemoryHttpServer<News> server;
+        private InMemoryHttpServer<TravelClass> server;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.server = new InMemoryHttpServer<News>(
+            this.server = new InMemoryHttpServer<TravelClass>(
                 IN_MEMORY_SERVER_URL,
-                TestObjectFactoryRepositories.GetNewsRepository());
+                TestObjectFactoryRepositories.GetTravelClassesRepository());
         }
 
         [TestMethod]
@@ -78,7 +77,7 @@
         }
 
         [TestMethod]
-        public void GetByIdShouldMapCorrectActionAndReturnStatus404NotFoundWhenThereIsNoNewsWithThisId()
+        public void GetByIdShouldMapCorrectActionAndReturnStatus404NotFoundWhenThereIsNoTravelClassWithThisId()
         {
             var noSuchId = 1000;
 
@@ -99,15 +98,40 @@
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsTrue(response.IsSuccessStatusCode);
             Assert.IsNotNull(response.Content);
-            Assert.AreNotEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
         }
 
         [TestMethod]
-        public void GetLatestNewsShouldNotMapCorrectActionAndReturnStatus404NotFoundWhenCountIsNegative()
+        public void GetByTypeShouldMapCorrectActionAndReturnStatus404NotFoundWhenTypeIsInvalid()
         {
-            var negativeCount = -1;
+            var noSuchType = "type";
 
-            var response = this.server.CreateGetRequest(GET_LATES_NEWS_REQUEST_URL + negativeCount);
+            var response = this.server.CreateGetRequest(GET_BY_TYPE_REQUEST_URL + noSuchType);
+
+            Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
+            Assert.IsFalse(response.IsSuccessStatusCode);
+            Assert.IsNull(response.Content);
+        }
+
+        [TestMethod]
+        public void GetByTypeShouldMapCorrectActionAndReturnStatus200OkWithData()
+        {
+            var validType = TravelClassType.Economy.ToString();
+
+            var response = this.server.CreateGetRequest(GET_BY_TYPE_REQUEST_URL + validType);
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsTrue(response.IsSuccessStatusCode);
+            Assert.IsNotNull(response.Content);
+            Assert.AreNotEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
+            Assert.IsTrue(response.Content.ReadAsStringAsync().Result.Contains(TravelClassType.Economy.ToString()));
+        }
+
+        [TestMethod]
+        public void GetByAircraftIdShouldNotMapCorrectActionAndReturnStatus404NotFoundWhenAircraftIdIsNegative()
+        {
+            var negativeAircraftId = -1;
+
+            var response = this.server.CreateGetRequest(GET_BY_AIRCRAFT_ID_REQUEST_URL + negativeAircraftId);
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
             Assert.IsFalse(response.IsSuccessStatusCode);
@@ -115,83 +139,41 @@
         }
 
         [TestMethod]
-        public void GetLatestNewsShouldMapCorrectActionAndReturnStatus400BadRequestWhenCountIsZero()
+        public void GetByAircraftIdShouldMapCorrectActionAndReturnStatus400BadRequestWhenAircraftIdIsZero()
         {
-            var invalidCount = 0;
+            var invalidAircraftId = 0;
 
-            var response = this.server.CreateGetRequest(GET_LATES_NEWS_REQUEST_URL + invalidCount);
+            var response = this.server.CreateGetRequest(GET_BY_AIRCRAFT_ID_REQUEST_URL + invalidAircraftId);
 
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
             Assert.IsFalse(response.IsSuccessStatusCode);
             Assert.AreEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
-            Assert.IsTrue(response.Content.ReadAsStringAsync().Result.Contains(ErrorMessages.INVALID_COUNT_VALUE));
+            Assert.IsTrue(response.Content.ReadAsStringAsync().Result.Contains(ErrorMessages.INVALID_ID));
         }
 
         [TestMethod]
-        public void GetLatestNewsShouldReturnStatus200OkWithDataWhenCountIsPositiveNumber()
+        public void GetByAircraftIdShouldMapCorrectActionAndReturnStatus404NotFoundWhenThereIsNoAircraftWithThisId()
         {
-            var validCount = 1;
+            var aircraftId = 1000;
 
-            var response = this.server.CreateGetRequest(GET_LATES_NEWS_REQUEST_URL + validCount);
-
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.IsTrue(response.IsSuccessStatusCode);
-            Assert.IsNotNull(response.Content);
-            Assert.AreNotEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
-        }
-
-        [TestMethod]
-        public void GetLatesByCategoryShouldNotMapCorrectActionAndReturnStatus404NotFoundWhenCountIsNegative()
-        {
-            var negativeCount = -1;
-            var validCategoryName = "category";
-
-            var response = this.server.CreateGetRequest(
-                string.Format(
-                    GET_LATES_NEWS_BY_CATEGORY_REQUEST_URL,
-                    negativeCount,
-                    validCategoryName));
+            var response = this.server.CreateGetRequest(GET_BY_AIRCRAFT_ID_REQUEST_URL + aircraftId);
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
             Assert.IsFalse(response.IsSuccessStatusCode);
-            Assert.IsNotNull(response.Content);
-            Assert.AreEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
+            Assert.IsNull(response.Content);
         }
 
         [TestMethod]
-        public void GetLatesByCategoryShouldMapCorrectActionAndReturnStatus400BadRequestWhenCountZero()
+        public void GetByAircraftIdShouldMapCorrectActionAndReturnStatus200OkWithData()
         {
-            var invalidCount = 0;
-            var validCategoryName = "category";
-            var response = this.server.CreateGetRequest(
-                string.Format(
-                    GET_LATES_NEWS_BY_CATEGORY_REQUEST_URL,
-                    invalidCount,
-                    validCategoryName));
+            var validAircraftId = 1;
 
-            Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
-            Assert.IsFalse(response.IsSuccessStatusCode);
-            Assert.IsNotNull(response.Content);
-            Assert.AreEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
-            Assert.IsTrue(response.Content.ReadAsStringAsync().Result.Contains(ErrorMessages.INVALID_COUNT_VALUE));
-        }
-
-        [TestMethod]
-        public void GetLatesByCategoryShouldMapCorrectActionAndReturnStatus200OkWithData()
-        {
-            var validCount = 1;
-
-            var response = this.server.CreateGetRequest(
-                string.Format(
-                    GET_LATES_NEWS_BY_CATEGORY_REQUEST_URL,
-                    validCount,
-                    Constants.CATEGORY_VALID_NAME));
+            var response = this.server.CreateGetRequest(GET_BY_AIRCRAFT_ID_REQUEST_URL + validAircraftId);
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsTrue(response.IsSuccessStatusCode);
             Assert.IsNotNull(response.Content);
             Assert.AreNotEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
-            Assert.IsTrue(response.Content.ReadAsStringAsync().Result.Contains(Constants.CATEGORY_VALID_NAME));
         }
     }
 }

@@ -21,7 +21,7 @@
         private const string GET_BY_STATUS_REQUEST_URL = "/Api/Flights/Status/"; 
         private const string GET_BY_DEPARTURE_AIRPORT_REQUEST_URL = "/Api/Flights/Departures/";
         private const string GET_BY_ARRIVAL_AIRPORT_REQUEST_URL = "/Api/Flights/Arrivals/";
-        private const string GET_BY_ROUTE_REQUEST_URL = "/Api/Flights/Route/";
+        private const string GET_BY_ROUTE_REQUEST_URL = "/Api/Flights/Route/{0}/{1}/";
         private const string GET_BY_DATE_TIME_REQUEST_URL = "/Api/Flights/DateTime/";
 
         private InMemoryHttpServer<LegInstance> server;
@@ -218,9 +218,10 @@
             var validDestinationAbbreviation = "sof";
 
             var response = this.server.CreateGetRequest(
-                GET_BY_ROUTE_REQUEST_URL +
-                tooShortOriginAbbreviation + "/" +
-                validDestinationAbbreviation);
+                string.Format(
+                    GET_BY_ROUTE_REQUEST_URL,
+                    tooShortOriginAbbreviation,
+                    validDestinationAbbreviation));
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
             Assert.IsFalse(response.IsSuccessStatusCode);
@@ -234,9 +235,10 @@
             var validDestinationAbbreviation = "sof";
 
             var response = this.server.CreateGetRequest(
-                GET_BY_ROUTE_REQUEST_URL +
-                tooLongOriginAbbreviation + "/" +
-                validDestinationAbbreviation);
+                string.Format(
+                    GET_BY_ROUTE_REQUEST_URL,
+                    tooLongOriginAbbreviation,
+                    validDestinationAbbreviation));
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
             Assert.IsFalse(response.IsSuccessStatusCode);
@@ -250,9 +252,10 @@
             var tooShortDestinationAbbreviation = "a";
 
             var response = this.server.CreateGetRequest(
-                GET_BY_ROUTE_REQUEST_URL +
-                validOriginAbbreviation + "/" +
-                tooShortDestinationAbbreviation);
+                string.Format(
+                    GET_BY_ROUTE_REQUEST_URL,
+                    validOriginAbbreviation,
+                    tooShortDestinationAbbreviation));
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
             Assert.IsFalse(response.IsSuccessStatusCode);
@@ -266,9 +269,10 @@
             var tooLongDestinationAbbreviation = "a";
 
             var response = this.server.CreateGetRequest(
-                GET_BY_ROUTE_REQUEST_URL +
-                validOriginAbbreviation + "/" +
-                tooLongDestinationAbbreviation);
+                string.Format(
+                    GET_BY_ROUTE_REQUEST_URL,
+                    validOriginAbbreviation,
+                    tooLongDestinationAbbreviation));
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
             Assert.IsFalse(response.IsSuccessStatusCode);
@@ -281,9 +285,10 @@
             var noSuchOriginAbbreviation = "sof";
 
             var response = this.server.CreateGetRequest(
-                GET_BY_ROUTE_REQUEST_URL +
-                noSuchOriginAbbreviation + "/" +
-                Constants.ROUTE_VALID_DESTINATION_ABBREVIATION);
+                string.Format(
+                    GET_BY_ROUTE_REQUEST_URL,
+                    noSuchOriginAbbreviation,
+                    Constants.ROUTE_VALID_DESTINATION_ABBREVIATION));
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
             Assert.IsFalse(response.IsSuccessStatusCode);
@@ -296,9 +301,10 @@
             var noSuchDestinationAbbreviation = "qwe";
 
             var response = this.server.CreateGetRequest(
-                GET_BY_ROUTE_REQUEST_URL +
-                Constants.ROUTE_VALID_ORIGIN_ABBREVIATION + "/" +
-                noSuchDestinationAbbreviation);
+                string.Format(
+                    GET_BY_ROUTE_REQUEST_URL,
+                    Constants.ROUTE_VALID_ORIGIN_ABBREVIATION,
+                    noSuchDestinationAbbreviation));
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
             Assert.IsFalse(response.IsSuccessStatusCode);
@@ -309,9 +315,10 @@
         public void GetByRouteShouldMapCorrectActionAndReturnStatus200OkWithData()
         {
             var response = this.server.CreateGetRequest(
-                GET_BY_ROUTE_REQUEST_URL +
-                Constants.ROUTE_VALID_ORIGIN_ABBREVIATION + "/" +
-                Constants.ROUTE_VALID_DESTINATION_ABBREVIATION);
+                string.Format(
+                    GET_BY_ROUTE_REQUEST_URL,
+                    Constants.ROUTE_VALID_ORIGIN_ABBREVIATION,
+                    Constants.ROUTE_VALID_DESTINATION_ABBREVIATION));
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsTrue(response.IsSuccessStatusCode);

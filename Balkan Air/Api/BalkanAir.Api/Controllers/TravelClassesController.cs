@@ -85,6 +85,11 @@
                 .ProjectTo<TravelClassResponseModel>()
                 .ToList();
 
+            if (travelClasses == null || travelClasses.Count == 0)
+            {
+                return this.NotFound();
+            }
+
             return this.Ok(travelClasses);
         }
 
@@ -101,6 +106,11 @@
                 .Where(t => t.Aircraft.Id == aircraftId)
                 .ProjectTo<TravelClassResponseModel>()
                 .ToList();
+
+            if (travelClasses == null || travelClasses.Count == 0)
+            {
+                return this.NotFound();
+            }
 
             return this.Ok(travelClasses);
         }
