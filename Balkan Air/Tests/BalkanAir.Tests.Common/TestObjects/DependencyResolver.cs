@@ -25,6 +25,11 @@
 
         public object GetService(Type serviceType)
         {
+            if (serviceType == typeof(AircraftManufacturersController))
+            {
+                return new AircraftManufacturersController(TestObjectFactoryServices.GetAircraftManufacturersServices().Object);
+            }
+             
             if (serviceType == typeof(AirportsController))
             {
                 return new AirportsController(TestObjectFactoryServices.GetAirportsServices().Object);

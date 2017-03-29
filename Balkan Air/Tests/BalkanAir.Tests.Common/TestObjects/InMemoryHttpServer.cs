@@ -25,11 +25,11 @@
             var config = new HttpConfiguration();
             this.AddHttpRoutes(config.Routes);
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
-
-            var resolver = new DependencyResolver<T>();
+            
+            var resolver = new DependencyResolver<T>(); 
             resolver.Repository = repository;
             config.DependencyResolver = resolver;
-
+            
             var server = new HttpServer(config);
             this.client = new HttpClient(server);
         }
