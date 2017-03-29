@@ -8,6 +8,7 @@
 
     using Moq;
 
+    using BalkanAir.Tests.Common;
     using BalkanAir.Tests.Common.TestObjects;
     using Common;
     using Controllers;
@@ -64,9 +65,10 @@
 
             var result = this.manufacturersController.Create(model);
             var okResult = result as OkNegotiatedContentResult<int>;
+            var expectedId = 1;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content);
+            Assert.AreEqual(expectedId, okResult.Content);
         }
 
         [TestMethod]
@@ -74,15 +76,17 @@
         {
             var result = this.manufacturersController.All();
             var okResult = result as OkNegotiatedContentResult<List<AircraftManufacturerResponseModel>>;
+            var expectedManufacturersCount = 1;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Count);
+            Assert.AreEqual(expectedManufacturersCount, okResult.Content.Count);
         }
 
         [TestMethod]
         public void GetByIdShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var result = this.manufacturersController.Get(-1);
+            var invalidId = -1;
+            var result = this.manufacturersController.Get(invalidId);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -92,7 +96,8 @@
         [TestMethod]
         public void GetByIdShouldReturnNotFound()
         {
-            var result = this.manufacturersController.Get(10);
+            var noSuchValidId = 10; 
+            var result = this.manufacturersController.Get(noSuchValidId);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -104,8 +109,8 @@
             var okResult = result as OkNegotiatedContentResult<AircraftManufacturerResponseModel>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Id);
-            Assert.AreEqual("Manufacturer Test", okResult.Content.Name);
+            Assert.AreEqual(Constants.VALID_ID, okResult.Content.Id);
+            Assert.AreEqual(Constants.MANUFACTURER_VALID_NAME, okResult.Content.Name);
         }
 
         [TestMethod]
@@ -126,7 +131,7 @@
             var model = TestObjectFactoryDataTransferModels.GetInvalidUpdateAircraftManufacturerRequestModel();
             this.manufacturersController.Validate(model);
 
-            var result = this.manufacturersController.Update(1, model);
+            var result = this.manufacturersController.Update(Constants.VALID_ID, model);
 
             Assert.IsFalse(this.manufacturersController.ModelState.IsValid);
         }
@@ -136,10 +141,10 @@
         {
             this.manufacturersController.Configuration = new HttpConfiguration();
 
-            var model = TestObjectFactoryDataTransferModels.GetInvalidUpdateAircraftManufacturerRequestModel();
-            this.manufacturersController.Validate(model);
+            var invalidModel = TestObjectFactoryDataTransferModels.GetInvalidUpdateAircraftManufacturerRequestModel();
+            this.manufacturersController.Validate(invalidModel);
 
-            var result = this.manufacturersController.Update(1, model);
+            var result = this.manufacturersController.Update(Constants.VALID_ID, invalidModel);
 
             Assert.AreEqual(typeof(InvalidModelStateResult), result.GetType());
         }
@@ -152,7 +157,8 @@
             var model = TestObjectFactoryDataTransferModels.GetValidUpdateAircraftManufacturerRequestModel();
             this.manufacturersController.Validate(model);
 
-            var result = this.manufacturersController.Update(10, model);
+            var notFoundId = 10;
+            var result = this.manufacturersController.Update(notFoundId, model);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }

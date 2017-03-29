@@ -8,6 +8,7 @@
 
     using Moq;
 
+    using BalkanAir.Tests.Common;
     using BalkanAir.Tests.Common.TestObjects;
     using Common;
     using Controllers;
@@ -64,9 +65,9 @@
 
             var result = this.aircraftsController.Create(model);
             var okResult = result as OkNegotiatedContentResult<int>;
-
+            
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content);
         }
 
         [TestMethod]
@@ -74,9 +75,10 @@
         {
             var result = this.aircraftsController.All();
             var okResult = result as OkNegotiatedContentResult<List<AircraftResponseModel>>;
+            var expectedAircraftsCount = 1;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Count);
+            Assert.AreEqual(expectedAircraftsCount, okResult.Content.Count);
         }
 
         [TestMethod]
@@ -92,7 +94,8 @@
         [TestMethod]
         public void GetByIdShouldReturnNotFound()
         {
-            var result = this.aircraftsController.Get(10);
+            var notFoundId = 10;
+            var result = this.aircraftsController.Get(notFoundId);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -104,9 +107,9 @@
             var okResult = result as OkNegotiatedContentResult<AircraftResponseModel>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Id);
-            Assert.AreEqual("Aircraft Model Test", okResult.Content.Model);
-            Assert.AreEqual(1, okResult.Content.TotalSeats);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content.Id);
+            Assert.AreEqual(Constants.AIRCRAFT_VALID_MODEL, okResult.Content.Model);
+            Assert.AreEqual(Constants.AIRCRAFT_TOTAL_SEATS, okResult.Content.TotalSeats);
         }
 
         [TestMethod]
@@ -127,7 +130,7 @@
             var model = TestObjectFactoryDataTransferModels.GetInvalidUpdateAircraftRequestModel();
             this.aircraftsController.Validate(model);
 
-            var result = this.aircraftsController.Update(1, model);
+            var result = this.aircraftsController.Update(Constants.ENTITY_VALID_ID, model);
 
             Assert.IsFalse(this.aircraftsController.ModelState.IsValid);
         }
@@ -140,7 +143,7 @@
             var model = TestObjectFactoryDataTransferModels.GetInvalidUpdateAircraftRequestModel();
             this.aircraftsController.Validate(model);
 
-            var result = this.aircraftsController.Update(1, model);
+            var result = this.aircraftsController.Update(Constants.ENTITY_VALID_ID, model);
 
             Assert.AreEqual(typeof(InvalidModelStateResult), result.GetType());
         }
@@ -153,7 +156,8 @@
             var model = TestObjectFactoryDataTransferModels.GetValidUpdateAircraftRequestModel();
             this.aircraftsController.Validate(model);
 
-            var result = this.aircraftsController.Update(10, model);
+            var notFoundId = 10;
+            var result = this.aircraftsController.Update(notFoundId, model);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -186,7 +190,8 @@
         [TestMethod]
         public void DeleteShouldReturnNotFound()
         {
-            var result = this.aircraftsController.Delete(10);
+            var notFoundId = 10;
+            var result = this.aircraftsController.Delete(notFoundId);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -198,7 +203,7 @@
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content);
         }
     }
 }

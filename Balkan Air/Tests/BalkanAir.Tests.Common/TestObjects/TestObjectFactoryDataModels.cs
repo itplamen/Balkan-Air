@@ -12,8 +12,8 @@
         {
             new AircraftManufacturer()
             {
-                Id = 1,
-                Name = "Manufacturer Test"
+                Id = Constants.ENTITY_VALID_ID,
+                Name = Constants.MANUFACTURER_VALID_NAME 
             }
         }.AsQueryable();
 
@@ -21,10 +21,10 @@
         {
             new Aircraft()
             {
-                Id = 1,
-                Model = "Aircraft Model Test",
-                TotalSeats = 1,
-                AircraftManufacturer = new AircraftManufacturer() { Name = "Manufacturer Test" }
+                Id = Constants.ENTITY_VALID_ID,
+                Model = Constants.AIRCRAFT_VALID_MODEL,
+                TotalSeats = Constants.AIRCRAFT_TOTAL_SEATS,
+                AircraftManufacturer = new AircraftManufacturer() { Name = Constants.MANUFACTURER_VALID_NAME }
             }
         }.AsQueryable();
 

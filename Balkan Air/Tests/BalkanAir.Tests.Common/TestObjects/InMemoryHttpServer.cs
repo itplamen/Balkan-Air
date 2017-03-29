@@ -4,9 +4,9 @@
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Net.Http.Headers;
+    using System.Threading.Tasks;
     using System.Web.Http;
     using System.Web.Http.Routing;
-    using System.Threading.Tasks;
 
     using Newtonsoft.Json;
 
@@ -38,7 +38,7 @@
         {
             var url = requestUrl;
             var request = new HttpRequestMessage();
-            request.RequestUri = new Uri(baseUrl + url);
+            request.RequestUri = new Uri(this.baseUrl + url);
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType));
             request.Method = HttpMethod.Get;
 
@@ -50,7 +50,7 @@
         {
             var url = requestUrl;
             var request = new HttpRequestMessage();
-            request.RequestUri = new Uri(baseUrl + url);
+            request.RequestUri = new Uri(this.baseUrl + url);
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType));
             request.Method = HttpMethod.Get;
 
@@ -62,7 +62,7 @@
         {
             var url = requestUrl;
             var request = new HttpRequestMessage();
-            request.RequestUri = new Uri(baseUrl + url);
+            request.RequestUri = new Uri(this.baseUrl + url);
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType));
             request.Method = HttpMethod.Post;
             request.Content = new StringContent(JsonConvert.SerializeObject(data));
@@ -72,29 +72,11 @@
             return response;
         }
 
-        public HttpResponseMessage post(string requestUrl, IEnumerable<KeyValuePair<string, string>> postData)
-        {
-            var content = new FormUrlEncodedContent(postData);
-            content.Headers.Clear();
-            content.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
-
-
-            var url = requestUrl;
-            var request = new HttpRequestMessage();
-            request.RequestUri = new Uri(baseUrl + url);
-
-            request.Method = HttpMethod.Post;
-            request.Content = new StringContent(JsonConvert.SerializeObject(content));
-
-            var response = this.client.SendAsync(request).Result;
-            return response;
-        }
-
         public HttpResponseMessage CreatePutRequest(string requestUrl, object data, string mediaType = "application/json")
         {
             var url = requestUrl;
             var request = new HttpRequestMessage();
-            request.RequestUri = new Uri(baseUrl + url);
+            request.RequestUri = new Uri(this.baseUrl + url);
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType));
             request.Method = HttpMethod.Put;
             request.Content = new StringContent(JsonConvert.SerializeObject(data));
@@ -108,7 +90,7 @@
         {
             var url = requestUrl;
             var request = new HttpRequestMessage();
-            request.RequestUri = new Uri(baseUrl + url);
+            request.RequestUri = new Uri(this.baseUrl + url);
             request.Method = HttpMethod.Delete;
 
             var response = this.client.SendAsync(request).Result;
@@ -117,7 +99,7 @@
 
         private void AddHttpRoutes(HttpRouteCollection routeCollection)
         {
-            var routes = GetRoutes();
+            var routes = this.GetRoutes();
             routes.ForEach(r => routeCollection.MapHttpRoute(r.Name, r.Template, r.Defaults, r.Constraints));
         }
 
