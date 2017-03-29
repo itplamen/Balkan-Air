@@ -67,6 +67,11 @@
                     TestObjectFactoryServices.GetCategoriesServices().Object);
             }
 
+            if (serviceType == typeof(RoutesController))
+            {
+                return new RoutesController(TestObjectFactoryServices.GetRoutesServices().Object);
+            }
+
             return null;
         }
 

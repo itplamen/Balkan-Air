@@ -165,6 +165,23 @@
             return news;
         }
 
+        public static InMemoryRepository<Route> GetRoutesRepository(int numberOfRoutes = 25)
+        {
+            var routes = new InMemoryRepository<Route>();
+
+            for (int i = 0; i < numberOfRoutes; i++)
+            {
+                routes.Add(new Route()
+                {
+                    Id = i,
+                    OriginId = i,
+                    DestinationId = i
+                });
+            }
+
+            return routes;
+        }
+
         public static InMemoryRepository<UserNotification> GetUserNotificationsRepository(int numberOfNotifications = 25)
         {
             var userNotifications = new InMemoryRepository<UserNotification>();
