@@ -64,6 +64,11 @@
                 .ProjectTo<UsersResponseModel>()
                 .ToList();
 
+            if (users == null || users.Count == 0)
+            {
+                return this.NotFound();
+            }
+
             return this.Ok(users);
         }
     }

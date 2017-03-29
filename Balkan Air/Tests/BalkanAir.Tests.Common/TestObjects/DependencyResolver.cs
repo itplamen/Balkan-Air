@@ -77,6 +77,11 @@
                 return new TravelClassesController(TestObjectFactoryServices.GetTravelClassesServices().Object);
             }
 
+            if (serviceType == typeof(UsersController))
+            {
+                return new UsersController(TestObjectFactoryServices.GetUsersServices().Object);
+            }
+
             return null;
         }
 

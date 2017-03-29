@@ -567,5 +567,15 @@
 
             return travelClassesServices;
         }
+
+        public static Mock<IUsersServices> GetUsersServices()
+        {
+            var usersServices = new Mock<IUsersServices>();
+
+            usersServices.Setup(u => u.GetAll())
+                .Returns(TestObjectFactoryDataModels.Users);
+
+            return usersServices;
+        }
     }
 }

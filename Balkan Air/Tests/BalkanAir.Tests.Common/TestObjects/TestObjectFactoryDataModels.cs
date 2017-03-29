@@ -213,5 +213,19 @@
                 }
             }
         }.AsQueryable();
+
+        public static IQueryable<User> Users = new List<User>()
+        {
+            new User()
+            {
+                UserSettings = new UserSettings()
+                {
+                    FirstName = "Test First Name",
+                    LastName = "Test Last Name",
+                    Gender = Constants.USER_VALID_GENDER,
+                    Nationality = Constants.USER_VALID_NATIONALITY
+                }       
+            }
+        }.AsQueryable();
     }
 }

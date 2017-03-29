@@ -204,7 +204,17 @@
                     "GetByAircraftId",
                     "Api/{controller}/AircraftId/{aircraftId}",
                     new { controller = "TravelClasses", action = "GetByAircraftId" },
-                    new { aircraftId = @"\d+", httpMethod = new HttpMethodConstraint(HttpMethod.Get) })
+                    new { aircraftId = @"\d+", httpMethod = new HttpMethodConstraint(HttpMethod.Get) }),
+                new Route(
+                    "GetUsersByGender",
+                    "Api/{controller}/Gender/{gender}",
+                    new { controller = "Users", action = "GetUsersByGender" },
+                    new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }),
+                new Route(
+                    "GetUsersByNationality",
+                    "Api/{controller}/Nationality/{nationality}",
+                    new { controller = "Users", action = "GetUsersByNationality" },
+                    new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) })
                 };
         }
 
