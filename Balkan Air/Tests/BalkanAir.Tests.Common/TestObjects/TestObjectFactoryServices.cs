@@ -448,6 +448,46 @@
             return legInstancesServices;
         }
 
+        public static Mock<INewsServices> GetNewsServices()
+        {
+            var newsServices = new Mock<INewsServices>();
+
+            newsServices.Setup(n => n.AddNews(
+                    It.IsAny<News>()))
+                .Returns(VALID_ID);
+
+            newsServices.Setup(n => n.GetAll())
+                .Returns(TestObjectFactoryDataModels.News);
+
+            newsServices.Setup(n => n.GetNews(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<News>(null);
+
+            newsServices.Setup(n => n.GetNews(
+                    It.Is<int>(i => i == VALID_ID)))
+                .Returns(new News() { Id = VALID_ID });
+
+            newsServices.Setup(n => n.UpdateNews(
+                    It.Is<int>(i => i != VALID_ID),
+                    It.IsAny<News>()))
+                .Returns<News>(null);
+
+            newsServices.Setup(n => n.UpdateNews(
+                    It.Is<int>(i => i == VALID_ID),
+                    It.IsAny<News>()))
+                .Returns(new News() { Id = VALID_ID });
+
+            newsServices.Setup(n => n.DeleteNews(
+                    It.Is<int>(i => i != VALID_ID)))
+                .Returns<News>(null);
+
+            newsServices.Setup(n => n.DeleteNews(
+                    It.Is<int>(i => i == VALID_ID)))
+                .Returns(new News() { Id = VALID_ID });
+
+            return newsServices;
+        }
+
         public static Mock<IRoutesServices> GetRoutesServices()
         {
             var routesServices = new Mock<IRoutesServices>();
@@ -481,7 +521,7 @@
                     It.Is<int>(i => i != VALID_ID)))
                 .Returns<Route>(null);
 
-            routesServices.Setup(l => l.DeleteRoute(
+            routesServices.Setup(r => r.DeleteRoute(
                     It.Is<int>(i => i == VALID_ID)))
                 .Returns(new Route() { Id = VALID_ID });
 

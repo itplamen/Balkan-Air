@@ -184,7 +184,17 @@
                     "GetFlightByDateTime",
                     "Api/{controller}/DateTime/{dateTime}",
                     new { controller = "Flights", action = "GetByDepartureDateTime" },
-                    new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) })
+                    new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }),
+                new Route(
+                    "GetLatestNews",
+                    "Api/{controller}/Latest/{count}",
+                    new { controller = "News", action = "GetLatestNews" },
+                    new { count = @"\d+", httpMethod = new HttpMethodConstraint(HttpMethod.Get) }),
+                new Route(
+                    "GetLatestNewsByCategory",
+                    "Api/{controller}/Latest/{count}/{category}",
+                    new { controller = "News", action = "GetLatesByCategory" },
+                    new { count = @"\d+", httpMethod = new HttpMethodConstraint(HttpMethod.Get) })
                 };
         }
 

@@ -118,14 +118,14 @@
             config.Routes.MapHttpRoute(
                name: "GetLatestNews",
                routeTemplate: "Api/{controller}/Latest/{count}",
-               defaults: new { controller = "News", action = "GetLatestNews", count = RouteParameter.Optional },
-               constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
+               defaults: new { controller = "News", action = "GetLatestNews" },
+               constraints: new { count = @"\d+", httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
 
             config.Routes.MapHttpRoute(
                name: "GetLatestNewsByCategory",
                routeTemplate: "Api/{controller}/Latest/{count}/{category}",
                defaults: new { controller = "News", action = "GetLatesByCategory" },
-               constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
+               constraints: new { count = @"\d+", httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
         }
 
         public static void RegisterUserRoutes(HttpConfiguration config)

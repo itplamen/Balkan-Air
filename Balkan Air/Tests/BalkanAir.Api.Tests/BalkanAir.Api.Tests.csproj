@@ -108,6 +108,7 @@
     <Compile Include="IntegrationTests\CountriesIntegrationTests.cs" />
     <Compile Include="IntegrationTests\FaresIntegrationTests.cs" />
     <Compile Include="IntegrationTests\FlightsIntegrationTests.cs" />
+    <Compile Include="IntegrationTests\NewsIntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RouteTests\AirportsRouteTests.cs" />
     <Compile Include="RouteTests\FaresRouteTests.cs" />

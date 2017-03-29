@@ -72,7 +72,7 @@
 
         [HttpGet]
         [AllowAnonymous]
-        public IHttpActionResult GetLatestNews(int count = 5)
+        public IHttpActionResult GetLatestNews(int count)
         {
             if (count <= 0)
             {

@@ -163,6 +163,22 @@
             }
         }.AsQueryable();
 
+        public static IQueryable<News> News = new List<News>()
+        {
+            new News()
+            {
+                Id = 1,
+                Title = "Test News Title",
+                Content = "Test News Content",
+                DateCreated = new DateTime(2017, 1, 1, 1, 1, 1),
+                Category = new Category()
+                {
+                    Id = 1,
+                    Name = Constants.CATEGORY_VALID_NAME
+                }
+            }
+        }.AsQueryable();
+
         public static IQueryable<Route> Routes = new List<Route>()
         {
             new Route()

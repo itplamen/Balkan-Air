@@ -60,6 +60,13 @@
                 return new FlightsController(TestObjectFactoryServices.GetLegInstancesServices().Object);
             }
 
+            if (serviceType == typeof(NewsController))
+            {
+                return new NewsController(
+                    TestObjectFactoryServices.GetNewsServices().Object,
+                    TestObjectFactoryServices.GetCategoriesServices().Object);
+            }
+
             return null;
         }
 

@@ -146,6 +146,25 @@
             return legInstances;
         }
 
+        public static InMemoryRepository<News> GetNewsRepository(int numberOfNews = 25)
+        {
+            var news = new InMemoryRepository<News>();
+
+            for (int i = 0; i < numberOfNews; i++)
+            {
+                news.Add(new News()
+                {
+                    Id = i,
+                    Title = "Test News Title " + i,
+                    Content = "Test News Content " + i,
+                    DateCreated = new DateTime(2017, 1, 1, 1, 1, 1),
+                    CategoryId = i
+                });
+            }
+
+            return news;
+        }
+
         public static InMemoryRepository<UserNotification> GetUserNotificationsRepository(int numberOfNotifications = 25)
         {
             var userNotifications = new InMemoryRepository<UserNotification>();
