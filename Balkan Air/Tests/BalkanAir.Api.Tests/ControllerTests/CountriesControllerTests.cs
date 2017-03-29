@@ -67,7 +67,7 @@
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content);
         }
 
         [TestMethod]
@@ -75,15 +75,17 @@
         {
             var result = this.countriesController.All();
             var okResult = result as OkNegotiatedContentResult<List<CountryResponseModel>>;
+            var expectedCountriesCount = 1;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Count);
+            Assert.AreEqual(expectedCountriesCount, okResult.Content.Count);
         }
 
         [TestMethod]
         public void GetByIdShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var result = this.countriesController.Get(0);
+            var invalidId = -1;
+            var result = this.countriesController.Get(invalidId);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -93,7 +95,8 @@
         [TestMethod]
         public void GetByIdShouldReturnNotFound()
         {
-            var result = this.countriesController.Get(10);
+            var notFoundId = 10;
+            var result = this.countriesController.Get(notFoundId);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -105,8 +108,8 @@
             var okResult = result as OkNegotiatedContentResult<CountryResponseModel>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Id);
-            Assert.AreEqual("Country Test", okResult.Content.Name);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content.Id);
+            Assert.AreEqual(Constants.COUNTRY_VALID_NAME, okResult.Content.Name);
             Assert.AreEqual(Constants.COUNTRY_VALID_ABBREVIATION, okResult.Content.Abbreviation);
         }
 
@@ -123,7 +126,8 @@
         [TestMethod]
         public void GetByAbbreviationShouldReturnNotFound()
         {
-            var result = this.countriesController.GetByAbbreviation("IK");
+            var invalidAbbreviation = "IK";
+            var result = this.countriesController.GetByAbbreviation(invalidAbbreviation);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -131,19 +135,23 @@
         [TestMethod]
         public void GetByAbbreviationShouldReturnOkResultWithData()
         {
-            var result = this.countriesController.GetByAbbreviation("CT");
+            var result = this.countriesController.GetByAbbreviation(Constants.COUNTRY_VALID_ABBREVIATION);
             var okResult = result as OkNegotiatedContentResult<CountryResponseModel>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Id);
-            Assert.AreEqual("Country Test", okResult.Content.Name);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content.Id);
+            Assert.AreEqual(Constants.COUNTRY_VALID_NAME, okResult.Content.Name);
             Assert.AreEqual(Constants.COUNTRY_VALID_ABBREVIATION, okResult.Content.Abbreviation);
         }
 
         [TestMethod]
         public void UpdateShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var result = this.countriesController.Update(0, TestObjectFactoryDataTransferModels.GetInvalidUpdateCountryRequestModel());
+            var invalidId = -1;
+            var result = this.countriesController.Update(
+                invalidId, 
+                TestObjectFactoryDataTransferModels.GetInvalidUpdateCountryRequestModel());
+
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -158,7 +166,7 @@
             var model = TestObjectFactoryDataTransferModels.GetInvalidUpdateCountryRequestModel();
             this.countriesController.Validate(model);
 
-            var result = this.countriesController.Update(1, model);
+            var result = this.countriesController.Update(Constants.ENTITY_VALID_ID, model);
 
             Assert.IsFalse(this.countriesController.ModelState.IsValid);
         }
@@ -171,7 +179,7 @@
             var model = TestObjectFactoryDataTransferModels.GetInvalidUpdateCountryRequestModel();
             this.countriesController.Validate(model);
 
-            var result = this.countriesController.Update(1, model);
+            var result = this.countriesController.Update(Constants.ENTITY_VALID_ID, model);
 
             Assert.AreEqual(typeof(InvalidModelStateResult), result.GetType());
         }
@@ -184,7 +192,8 @@
             var model = TestObjectFactoryDataTransferModels.GetValidUpdateCountryRequestModel();
             this.countriesController.Validate(model);
 
-            var result = this.countriesController.Update(10, model);
+            var notFoundId = 10;
+            var result = this.countriesController.Update(notFoundId, model);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -207,7 +216,8 @@
         [TestMethod]
         public void DeleteShouldReturnBadRequesWithInvalidIdMessage()
         {
-            var result = this.countriesController.Delete(-1);
+            var invalidId = -1;
+            var result = this.countriesController.Delete(invalidId);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -217,7 +227,8 @@
         [TestMethod]
         public void DeleteShouldReturnNotFound()
         {
-            var result = this.countriesController.Delete(10);
+            var notFoundId = 10;
+            var result = this.countriesController.Delete(notFoundId);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -225,11 +236,11 @@
         [TestMethod]
         public void DeleteShouldReturnOkResultWithId()
         {
-            var result = this.countriesController.Delete(1);
+            var result = this.countriesController.Delete(Constants.ENTITY_VALID_ID);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content);
         }
     }
 }

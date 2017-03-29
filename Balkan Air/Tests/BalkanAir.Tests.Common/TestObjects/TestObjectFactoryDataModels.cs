@@ -32,7 +32,7 @@
         {
             new Airport()
             {
-                Id = 1,
+                Id = Constants.ENTITY_VALID_ID,
                 Name = Constants.AIRPROT_VALID_NAME,
                 Abbreviation = Constants.AIRPORT_VALID_ABBREVIATION,
                 CountryId = 1
@@ -71,7 +71,7 @@
         {
             new Category()
             {
-                Id = 1,
+                Id = Constants.ENTITY_VALID_ID,
                 Name = Constants.CATEGORY_VALID_NAME
             }
         }.AsQueryable();
@@ -80,8 +80,8 @@
         {
             new Country()
             {
-                Id = 1,
-                Name = "Country Test",
+                Id = Constants.ENTITY_VALID_ID,
+                Name = Constants.COUNTRY_VALID_NAME,
                 Abbreviation = Constants.COUNTRY_VALID_ABBREVIATION
             }
         }.AsQueryable();
@@ -90,19 +90,19 @@
         {
             new Fare()
             {
-                Id = 1,
-                Price = 1m,
+                Id = Constants.ENTITY_VALID_ID,
+                Price = Constants.FARE_VALID_PRICE,
                 RouteId = 1,
                 Route = new Route()
                 {
                     Origin = new Airport()
                     {
-                        Name = "Test Origin",
+                        Name = Constants.ROUTE_VALID_ORIGIN_NAME,
                         Abbreviation = Constants.ROUTE_VALID_ORIGIN_ABBREVIATION
                     },
                     Destination = new Airport()
                     {
-                        Name = "Test Destination",
+                        Name = Constants.ROUTE_VALID_DESTINATION_NAME,
                         Abbreviation = Constants.ROUTE_VALID_DESTINATION_ABBREVIATION
                     }
                 }

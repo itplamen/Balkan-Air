@@ -8,6 +8,7 @@
 
     using Moq;
 
+    using BalkanAir.Tests.Common;
     using BalkanAir.Tests.Common.TestObjects;
     using Common;
     using Controllers;
@@ -66,7 +67,7 @@
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content);
         }
 
         [TestMethod]
@@ -74,15 +75,17 @@
         {
             var result = this.faresController.All();
             var okResult = result as OkNegotiatedContentResult<List<FareResponseModel>>;
+            var expectedFaresCount = 1;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Count);
+            Assert.AreEqual(expectedFaresCount, okResult.Content.Count);
         }
 
         [TestMethod]
         public void GetByIdShouldReturnBadRequestWithInvalidIdMessage()
         {
-            var result = this.faresController.Get(-1);
+            var invalidId = -1;
+            var result = this.faresController.Get(invalidId);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -92,7 +95,8 @@
         [TestMethod]
         public void GetByIdShouldReturnNotFound()
         {
-            var result = this.faresController.Get(10);
+            var notFoundId = 10;
+            var result = this.faresController.Get(notFoundId);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -100,20 +104,23 @@
         [TestMethod]
         public void GetByIdShouldReturnOkResultWithData()
         {
-            var result = this.faresController.Get(1);
+            var result = this.faresController.Get(Constants.ENTITY_VALID_ID);
             var okResult = result as OkNegotiatedContentResult<FareResponseModel>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Id);
-            Assert.AreEqual(1m, okResult.Content.Price);
-            Assert.AreEqual("Test Origin", okResult.Content.Route.Origin.Name);
-            Assert.AreEqual("Test Destination", okResult.Content.Route.Destination.Name);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content.Id);
+            Assert.AreEqual(Constants.FARE_VALID_PRICE, okResult.Content.Price);
+            Assert.AreEqual(Constants.ROUTE_VALID_ORIGIN_NAME, okResult.Content.Route.Origin.Name);
+            Assert.AreEqual(Constants.ROUTE_VALID_DESTINATION_NAME, okResult.Content.Route.Destination.Name);
         }
 
         [TestMethod]
         public void GetByRouteShouldReturnBadRequestWithInvalidMessage()
         {
-            var result = this.faresController.GetByRoute("origin", null);
+            var result = this.faresController.GetByRoute(
+                Constants.ROUTE_VALID_ORIGIN_ABBREVIATION, 
+                null);
+
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -123,11 +130,15 @@
         [TestMethod]
         public void GetByRouteShouldReturnOkResultWithData()
         {
-            var result = this.faresController.GetByRoute("ABC", "DEF");
+            var result = this.faresController.GetByRoute(
+                Constants.ROUTE_VALID_ORIGIN_ABBREVIATION,
+                Constants.ROUTE_VALID_DESTINATION_ABBREVIATION);
+
             var okResult = result as OkNegotiatedContentResult<List<FareResponseModel>>;
+            var expectedFaresCount = 1;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content.Count);
+            Assert.AreEqual(expectedFaresCount, okResult.Content.Count);
         }
 
         [TestMethod]
@@ -135,7 +146,8 @@
         {
             var validModel = TestObjectFactoryDataTransferModels.GetValidUpdateFareRequestModel();
 
-            var result = this.faresController.Update(-1, validModel);
+            var invalidId = -1;
+            var result = this.faresController.Update(invalidId, validModel);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -150,7 +162,7 @@
             var invalidModel = TestObjectFactoryDataTransferModels.GetInvalidUpdateFareRequestModel();
             this.faresController.Validate(invalidModel);
 
-            var result = this.faresController.Update(1, invalidModel);
+            var result = this.faresController.Update(Constants.ENTITY_VALID_ID, invalidModel);
 
             Assert.IsFalse(this.faresController.ModelState.IsValid);
         }
@@ -163,7 +175,7 @@
             var invalidModel = TestObjectFactoryDataTransferModels.GetInvalidUpdateFareRequestModel();
             this.faresController.Validate(invalidModel);
 
-            var result = this.faresController.Update(1, invalidModel);
+            var result = this.faresController.Update(Constants.ENTITY_VALID_ID, invalidModel);
 
             Assert.AreEqual(typeof(InvalidModelStateResult), result.GetType());
         }
@@ -176,7 +188,8 @@
             var validModel = TestObjectFactoryDataTransferModels.GetValidUpdateFareRequestModel();
             this.faresController.Validate(validModel);
 
-            var result = this.faresController.Update(10, validModel);
+            var notFoundId = 10;
+            var result = this.faresController.Update(notFoundId, validModel);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -189,7 +202,7 @@
             var validModel = TestObjectFactoryDataTransferModels.GetValidUpdateFareRequestModel();
             this.faresController.Validate(validModel);
 
-            var result = this.faresController.Update(1, validModel);
+            var result = this.faresController.Update(Constants.ENTITY_VALID_ID, validModel);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
@@ -199,7 +212,8 @@
         [TestMethod]
         public void DeleteShouldReturnBadRequestWithInvalidIdMessage()
         {
-            var result = this.faresController.Delete(-1);
+            var invalidId = -1;
+            var result = this.faresController.Delete(invalidId);
             var badRequestResult = result as BadRequestErrorMessageResult;
 
             Assert.AreEqual(typeof(BadRequestErrorMessageResult), result.GetType());
@@ -209,7 +223,8 @@
         [TestMethod]
         public void DeleteShouldReturnNotFound()
         {
-            var result = this.faresController.Delete(10);
+            var notFoundId = 10;
+            var result = this.faresController.Delete(notFoundId);
 
             Assert.AreEqual(typeof(NotFoundResult), result.GetType());
         }
@@ -217,11 +232,11 @@
         [TestMethod]
         public void DeleteShouldReturnOkResultWithId()
         {
-            var result = this.faresController.Delete(1);
+            var result = this.faresController.Delete(Constants.ENTITY_VALID_ID);
             var okResult = result as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(okResult);
-            Assert.AreEqual(1, okResult.Content);
+            Assert.AreEqual(Constants.ENTITY_VALID_ID, okResult.Content);
         }
     }
 }
