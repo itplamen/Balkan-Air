@@ -218,10 +218,10 @@
         private void SearchFlight(string departureAirportId, string destinationAirportId,
             DateTime? departureDate, DateTime? arrivalDate)
         {
-            this.Session.Add(Common.Constants.DEPARTURE_AIRPORT_ID, departureAirportId);
-            this.Session.Add(Common.Constants.DESTINATION_AIRPORT_ID, destinationAirportId);
-            this.Session.Add(Common.Constants.DEPARTURE_DATE, departureDate);
-            this.Session.Add(Common.Constants.ARRIVAL_DATE, arrivalDate);
+            this.Session.Add(Common.WebConstants.DEPARTURE_AIRPORT_ID, departureAirportId);
+            this.Session.Add(Common.WebConstants.DESTINATION_AIRPORT_ID, destinationAirportId);
+            this.Session.Add(Common.WebConstants.DEPARTURE_DATE, departureDate);
+            this.Session.Add(Common.WebConstants.ARRIVAL_DATE, arrivalDate);
 
             this.Response.Redirect(Pages.SELECT_FLIGHT);
         }

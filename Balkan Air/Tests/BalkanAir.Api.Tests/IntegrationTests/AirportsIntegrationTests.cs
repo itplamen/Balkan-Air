@@ -1,6 +1,8 @@
 ﻿namespace BalkanAir.Api.Tests.IntegrationTests
 {
     using System.Net;
+    using System.Net.Http;
+    using System.Web.Http;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -33,6 +35,7 @@
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
             Assert.IsFalse(response.IsSuccessStatusCode);
+            Assert.AreEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
         }
 
         [TestMethod]
@@ -43,6 +46,7 @@
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsTrue(response.IsSuccessStatusCode);
             Assert.IsNotNull(response.Content);
+            Assert.AreNotEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
         }  
 
         [TestMethod]
@@ -54,6 +58,7 @@
 
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
             Assert.IsFalse(response.IsSuccessStatusCode);
+            Assert.AreEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
         }
 
         [TestMethod]
@@ -65,6 +70,7 @@
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
             Assert.IsFalse(response.IsSuccessStatusCode);
+            Assert.AreEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
         }
 
         [TestMethod]
@@ -89,6 +95,7 @@
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsTrue(response.IsSuccessStatusCode);
             Assert.IsNotNull(response.Content);
+            Assert.AreNotEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
         }
 
         [TestMethod]
@@ -100,6 +107,7 @@
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
             Assert.IsFalse(response.IsSuccessStatusCode);
+            Assert.AreEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
         }
 
         [TestMethod]
@@ -111,6 +119,7 @@
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
             Assert.IsFalse(response.IsSuccessStatusCode);
+            Assert.AreEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
         }
 
         [TestMethod]
@@ -134,7 +143,8 @@
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsTrue(response.IsSuccessStatusCode);
-            Assert.IsNotNull(response.Content);  
+            Assert.IsNotNull(response.Content);
+            Assert.AreNotEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
         }
     }
 }

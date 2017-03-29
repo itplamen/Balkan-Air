@@ -82,7 +82,7 @@
             {
                 Id = 1,
                 Name = "Country Test",
-                Abbreviation = "CT"
+                Abbreviation = Constants.COUNTRY_VALID_ABBREVIATION
             }
         }.AsQueryable();
 

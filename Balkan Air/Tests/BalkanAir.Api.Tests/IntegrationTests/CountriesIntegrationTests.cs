@@ -6,25 +6,26 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    using BalkanAir.Tests.Common;
     using BalkanAir.Tests.Common.TestObjects;
     using Data.Models;
     using Services.Data.Tests.TestObjects;
 
     [TestClass]
-    public class AircraftManufacturersIntegrationTests
+    public class CountriesIntegrationTests
     {
         private const string IN_MEMORY_SERVER_URL = "http://localhost:12345";
-        private const string GET_REQUEST_URL = "/Api/AircraftManufacturers/";
-        private const string INVALID_GET_REQUEST_URL = "/Api/AircraftManufacturer/";
+        private const string GET_REQUEST_URL = "/Api/Countries/";
+        private const string INVALID_GET_REQUEST_URL = "/Api/Country/";
 
-        private InMemoryHttpServer<AircraftManufacturer> server;
+        private InMemoryHttpServer<Country> server;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.server = new InMemoryHttpServer<AircraftManufacturer>(
+            this.server = new InMemoryHttpServer<Country>(
                 IN_MEMORY_SERVER_URL,
-                TestObjectFactoryRepositories.GetAircraftManufacturersRepository());
+                TestObjectFactoryRepositories.GetCountriesRepository());
         }
 
         [TestMethod]
@@ -73,7 +74,7 @@
         }
 
         [TestMethod]
-        public void GetByIdShouldReturnStatus404NotFoundWhenThereIsNoManufacturerWithThisId()
+        public void GetByIdShouldReturnStatus404NotFoundWhenThereIsNoCountryWithThisId()
         {
             var noSuchId = 1000;
 
@@ -90,6 +91,55 @@
             var validId = 1;
 
             var response = this.server.CreateGetRequest(GET_REQUEST_URL + validId);
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsTrue(response.IsSuccessStatusCode);
+            Assert.IsNotNull(response.Content);
+            Assert.AreNotEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
+        }
+
+        [TestMethod]
+        public void GetByAbbreviationShouldNotMapCorrectActionAndReturnStatus404NotFoundtWhenAbbreviationIsTooShort()
+        {
+            var tooShortAbbreviation = "a";
+
+            var response = this.server.CreateGetRequest(GET_REQUEST_URL + tooShortAbbreviation);
+
+            Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
+            Assert.IsFalse(response.IsSuccessStatusCode);
+            Assert.AreEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
+        }
+
+        [TestMethod]
+        public void GetByAbbreviationShouldNotMapCorrectActionAndReturnStatus404NotFoundtWhenAbbreviationIsTooLong()
+        {
+            var abbreviation = "abcdefg";
+
+            var response = this.server.CreateGetRequest(GET_REQUEST_URL + abbreviation);
+
+            Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
+            Assert.IsFalse(response.IsSuccessStatusCode);
+            Assert.AreEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
+        }
+
+        [TestMethod]
+        public void GetByAbbreviationShouldReturnStatus404NotFoundWhenThereIsNoCountryWithThisAbbreviation()
+        {
+            var noSuchAbbreviation = "fa";
+
+            var response = this.server.CreateGetRequest(GET_REQUEST_URL + noSuchAbbreviation);
+
+            Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
+            Assert.IsFalse(response.IsSuccessStatusCode);
+            Assert.IsNull(response.Content);
+        }
+
+        [TestMethod]
+        public void GetByAbbreviationShouldReturnStatus200OkWithData()
+        {
+            var validAbbreviation = Constants.COUNTRY_VALID_ABBREVIATION;
+
+            var response = this.server.CreateGetRequest(GET_REQUEST_URL + validAbbreviation);
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsTrue(response.IsSuccessStatusCode);

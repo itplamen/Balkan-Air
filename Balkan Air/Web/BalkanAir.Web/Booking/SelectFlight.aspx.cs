@@ -50,7 +50,7 @@
         {
             get
             {
-                return int.Parse(this.Session[Common.Constants.DEPARTURE_AIRPORT_ID].ToString());
+                return int.Parse(this.Session[Common.WebConstants.DEPARTURE_AIRPORT_ID].ToString());
             }
         }
 
@@ -58,7 +58,7 @@
         {
             get
             {
-                return int.Parse(this.Session[Common.Constants.DESTINATION_AIRPORT_ID].ToString());
+                return int.Parse(this.Session[Common.WebConstants.DESTINATION_AIRPORT_ID].ToString());
             }
         }
 
@@ -138,22 +138,22 @@
         {
             if (!this.Page.IsPostBack)
             {
-                if (this.Session[Common.Constants.DEPARTURE_AIRPORT_ID] == null ||
-                    this.Session[Common.Constants.DESTINATION_AIRPORT_ID] == null)
+                if (this.Session[Common.WebConstants.DEPARTURE_AIRPORT_ID] == null ||
+                    this.Session[Common.WebConstants.DESTINATION_AIRPORT_ID] == null)
                 {
                     this.Response.Redirect(Pages.HOME);
                 }
 
-                this.DepartureDate = DateTime.Parse(this.Session[Common.Constants.DEPARTURE_DATE].ToString());
+                this.DepartureDate = DateTime.Parse(this.Session[Common.WebConstants.DEPARTURE_DATE].ToString());
 
-                if (this.Session[Common.Constants.ARRIVAL_DATE] == null)
+                if (this.Session[Common.WebConstants.ARRIVAL_DATE] == null)
                 {
                     this.ReturnRouteFlightsPanel.Visible = false;
                 }
                 else
                 {
                     this.ReturnRouteFlightsPanel.Visible = true;
-                    this.ArrivalDate = DateTime.Parse(this.Session[Common.Constants.ARRIVAL_DATE].ToString());
+                    this.ArrivalDate = DateTime.Parse(this.Session[Common.WebConstants.ARRIVAL_DATE].ToString());
                 }
             }
         }
@@ -209,7 +209,7 @@
                     TravelClassId = int.Parse(this.OneWayRouteSelectedTravelClassIdHiddenField.Value)
                 };
 
-                this.Session.Add(Common.Constants.ONE_WAY_ROUTE_BOOKING, oneWayRouteBooking);
+                this.Session.Add(Common.WebConstants.ONE_WAY_ROUTE_BOOKING, oneWayRouteBooking);
 
                 if (this.ReturnRouteFlightsPanel.Visible)
                 {
@@ -222,7 +222,7 @@
                         TravelClassId = int.Parse(this.ReturnRouteSelectedTravelClassIdHiddenField.Value)
                     };
 
-                    this.Session.Add(Common.Constants.RETURN_ROUTE_BOOKING, returnRouteBooking);
+                    this.Session.Add(Common.WebConstants.RETURN_ROUTE_BOOKING, returnRouteBooking);
                 }
 
                 this.Response.Redirect(Pages.EXTRAS);

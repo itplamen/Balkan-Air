@@ -1,6 +1,6 @@
 ﻿namespace BalkanAir.Web.Common
 {
-    public static class Constants
+    public static class WebConstants
     {
         /******************** Session *******************/
 
@@ -21,7 +21,7 @@
         public const string SELECTED_ROW = "selectedRow";
         public const string SELECTED_SEAT_NUMBER = "selectedSeatNumber";
 
-        /******************** Account/Profile *******************/
+        /******************** Booking *******************/
 
         public const string BAG_PRICE_ATTR = "data-price";
         public const string BAG_KG_ATTR = "value";

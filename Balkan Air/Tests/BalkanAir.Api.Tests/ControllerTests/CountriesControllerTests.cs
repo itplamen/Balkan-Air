@@ -8,6 +8,7 @@
 
     using Moq;
 
+    using BalkanAir.Tests.Common;
     using BalkanAir.Tests.Common.TestObjects;
     using Common;
     using Controllers;
@@ -106,7 +107,7 @@
             Assert.IsNotNull(okResult);
             Assert.AreEqual(1, okResult.Content.Id);
             Assert.AreEqual("Country Test", okResult.Content.Name);
-            Assert.AreEqual("CT", okResult.Content.Abbreviation);
+            Assert.AreEqual(Constants.COUNTRY_VALID_ABBREVIATION, okResult.Content.Abbreviation);
         }
 
         [TestMethod]
@@ -136,7 +137,7 @@
             Assert.IsNotNull(okResult);
             Assert.AreEqual(1, okResult.Content.Id);
             Assert.AreEqual("Country Test", okResult.Content.Name);
-            Assert.AreEqual("CT", okResult.Content.Abbreviation);
+            Assert.AreEqual(Constants.COUNTRY_VALID_ABBREVIATION, okResult.Content.Abbreviation);
         }
 
         [TestMethod]

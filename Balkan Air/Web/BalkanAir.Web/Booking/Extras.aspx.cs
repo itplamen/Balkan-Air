@@ -33,7 +33,7 @@
         {
             get
             {
-                return (Booking)this.Session[Constants.ONE_WAY_ROUTE_BOOKING];
+                return (Booking)this.Session[WebConstants.ONE_WAY_ROUTE_BOOKING];
             }
         }
 
@@ -41,7 +41,7 @@
         {
             get
             {
-                return (Booking)this.Session[Constants.RETURN_ROUTE_BOOKING];
+                return (Booking)this.Session[WebConstants.RETURN_ROUTE_BOOKING];
             }
         }
 
@@ -81,14 +81,14 @@
         {
             if (!this.Page.IsPostBack)
             {
-                var isOneWayRouteSelectedSeat = this.Session[Constants.ONE_WAY_ROUTE_SELECT_SEAT];
-                var isReturnRouteSelectedSeat = this.Session[Constants.RETURN_ROUTE_SELECT_SEAT];
+                var isOneWayRouteSelectedSeat = this.Session[WebConstants.ONE_WAY_ROUTE_SELECT_SEAT];
+                var isReturnRouteSelectedSeat = this.Session[WebConstants.RETURN_ROUTE_SELECT_SEAT];
 
                 if (isOneWayRouteSelectedSeat != null && isReturnRouteSelectedSeat != null && 
                     ((bool)isOneWayRouteSelectedSeat || (bool)isReturnRouteSelectedSeat))
                 {
                     this.SaveBagSelectionAfterSeatSelection(this.OneWayRouteCabinBaggagePanel,
-                        Constants.ONE_WAY_ROUTE_SELECTED_CABIN_BAG);
+                        WebConstants.ONE_WAY_ROUTE_SELECTED_CABIN_BAG);
 
                     this.SaveOtherBagsSelectionAfterSeatSelection(this.OneWayRouteOtherBaggagePanel);
 
@@ -98,13 +98,13 @@
                             this.Session[this.OneWayRouteNumberOfCheckedInBagsHiddenField.ID].ToString();
 
                         this.SaveBagSelectionAfterSeatSelection(this.OneWayRouteCheckedInBaggagePanel,
-                            Constants.ONE_WAY_ROUTE_SELECTED_CHECKED_IN_BAG);
+                            WebConstants.ONE_WAY_ROUTE_SELECTED_CHECKED_IN_BAG);
                     }
 
                     if (this.ReturnRouteBooking != null)
                     {
                         this.SaveBagSelectionAfterSeatSelection(this.ReturnRouteCabinBaggagePanel,
-                            Constants.RETURN_ROUTE_SELECTED_CABIN_BAG);
+                            WebConstants.RETURN_ROUTE_SELECTED_CABIN_BAG);
 
                         this.SaveOtherBagsSelectionAfterSeatSelection(this.ReturnRouteOtherBaggagePanel);
 
@@ -114,7 +114,7 @@
                                this.Session[this.ReturnRouteNumberOfCheckedInBagsHiddenField.ID].ToString();
 
                             this.SaveBagSelectionAfterSeatSelection(this.ReturnRouteCheckedInBaggagePanel,
-                                Constants.RETURN_ROUTE_SELECTED_CHECKED_IN_BAG);
+                                WebConstants.RETURN_ROUTE_SELECTED_CHECKED_IN_BAG);
                         }
                     }
                 }
@@ -154,7 +154,7 @@
                     this.OneWayRouteBabyEquipmentCheckBox, this.OneWayRouteMusicEquipmentCheckBox, 
                     this.OneWayRouteSportsEquipmentCheckBox);
 
-                this.Session.Add(Constants.ONE_WAY_ROUTE_BOOKING, this.OneWayRouteBooking);
+                this.Session.Add(WebConstants.ONE_WAY_ROUTE_BOOKING, this.OneWayRouteBooking);
 
                 if (this.ReturnRouteBooking != null)
                 {
@@ -163,7 +163,7 @@
                     this.ReturnRouteBabyEquipmentCheckBox, this.ReturnRouteMusicEquipmentCheckBox,
                     this.ReturnRouteSportsEquipmentCheckBox);
 
-                    this.Session.Add(Constants.RETURN_ROUTE_BOOKING, this.ReturnRouteBooking);
+                    this.Session.Add(WebConstants.RETURN_ROUTE_BOOKING, this.ReturnRouteBooking);
                 }
 
                 this.Response.Redirect(Pages.PAYMENT);
@@ -173,40 +173,40 @@
         private void AddAttributesToRadioButtons()
         {
             // Checked-in baggage
-            this.OneWayRouteNoneCheckedInBag.Attributes.Add(Constants.BAG_PRICE_ATTR, 
-                Constants.NONE_CHECKED_IN_BAG_PRICE.ToString());
+            this.OneWayRouteNoneCheckedInBag.Attributes.Add(WebConstants.BAG_PRICE_ATTR, 
+                WebConstants.NONE_CHECKED_IN_BAG_PRICE.ToString());
 
-            this.OneWayRoute23KgCheckedInBag.Attributes.Add(Constants.BAG_PRICE_ATTR,
-                Constants.MEDIUM_CHECKED_IN_BAG_PRICE.ToString());
+            this.OneWayRoute23KgCheckedInBag.Attributes.Add(WebConstants.BAG_PRICE_ATTR,
+                WebConstants.MEDIUM_CHECKED_IN_BAG_PRICE.ToString());
 
-            this.OneWayRoute32KgCheckedInBag.Attributes.Add(Constants.BAG_PRICE_ATTR,
-                Constants.LARGE_CHECKED_IN_BAG_PRICE.ToString());
+            this.OneWayRoute32KgCheckedInBag.Attributes.Add(WebConstants.BAG_PRICE_ATTR,
+                WebConstants.LARGE_CHECKED_IN_BAG_PRICE.ToString());
 
             // Cabin baggage
-            this.OneWayRouteSmallCabinBag.Attributes.Add(Constants.BAG_PRICE_ATTR,
-                Constants.SMALL_CABIN_BAG_PRICE.ToString());
+            this.OneWayRouteSmallCabinBag.Attributes.Add(WebConstants.BAG_PRICE_ATTR,
+                WebConstants.SMALL_CABIN_BAG_PRICE.ToString());
 
-            this.OneWayRouteLargeCabinBag.Attributes.Add(Constants.BAG_PRICE_ATTR,
-                Constants.LARGE_CABIN_BAG_PRICE.ToString());
+            this.OneWayRouteLargeCabinBag.Attributes.Add(WebConstants.BAG_PRICE_ATTR,
+                WebConstants.LARGE_CABIN_BAG_PRICE.ToString());
 
             if (this.ReturnRouteBooking != null)
             {
                 // Checked-in baggage
-                this.ReturnRouteNoneCheckedInBag.Attributes.Add(Constants.BAG_PRICE_ATTR,
-                    Constants.NONE_CHECKED_IN_BAG_PRICE.ToString());
+                this.ReturnRouteNoneCheckedInBag.Attributes.Add(WebConstants.BAG_PRICE_ATTR,
+                    WebConstants.NONE_CHECKED_IN_BAG_PRICE.ToString());
 
-                this.ReturnRoute23KgCheckedInBag.Attributes.Add(Constants.BAG_PRICE_ATTR,
-                    Constants.MEDIUM_CHECKED_IN_BAG_PRICE.ToString());
+                this.ReturnRoute23KgCheckedInBag.Attributes.Add(WebConstants.BAG_PRICE_ATTR,
+                    WebConstants.MEDIUM_CHECKED_IN_BAG_PRICE.ToString());
 
-                this.ReturnRoute32KgCheckedInBag.Attributes.Add(Constants.BAG_PRICE_ATTR,
-                    Constants.LARGE_CHECKED_IN_BAG_PRICE.ToString());
+                this.ReturnRoute32KgCheckedInBag.Attributes.Add(WebConstants.BAG_PRICE_ATTR,
+                    WebConstants.LARGE_CHECKED_IN_BAG_PRICE.ToString());
 
                 // Cabin baggage
-                this.ReturnRouteSmallCabinBag.Attributes.Add(Constants.BAG_PRICE_ATTR, 
-                    Constants.SMALL_CABIN_BAG_PRICE.ToString());
+                this.ReturnRouteSmallCabinBag.Attributes.Add(WebConstants.BAG_PRICE_ATTR, 
+                    WebConstants.SMALL_CABIN_BAG_PRICE.ToString());
 
-                this.ReturnRouteLargeCabinBag.Attributes.Add(Constants.BAG_PRICE_ATTR,
-                    Constants.LARGE_CABIN_BAG_PRICE.ToString());
+                this.ReturnRouteLargeCabinBag.Attributes.Add(WebConstants.BAG_PRICE_ATTR,
+                    WebConstants.LARGE_CABIN_BAG_PRICE.ToString());
             }
         }
 
@@ -231,27 +231,27 @@
 
         private void SetOneWayRouteSeatSelectionToSession(bool isSeatSelectionForOneWayRoute = true)
         {
-            this.Session.Add(Constants.ONE_WAY_ROUTE_SELECT_SEAT, isSeatSelectionForOneWayRoute);
-            this.Session.Add(Constants.RETURN_ROUTE_SELECT_SEAT, !isSeatSelectionForOneWayRoute);
+            this.Session.Add(WebConstants.ONE_WAY_ROUTE_SELECT_SEAT, isSeatSelectionForOneWayRoute);
+            this.Session.Add(WebConstants.RETURN_ROUTE_SELECT_SEAT, !isSeatSelectionForOneWayRoute);
         }
 
         private void SaveAllBagsToSessionBeforeSeatSelection()
         {
             this.SaveSelectedBagToSessionBeforeSeatSelection(this.OneWayRouteCheckedInBaggagePanel,
-                Constants.ONE_WAY_ROUTE_SELECTED_CHECKED_IN_BAG);
+                WebConstants.ONE_WAY_ROUTE_SELECTED_CHECKED_IN_BAG);
 
             this.SaveSelectedBagToSessionBeforeSeatSelection(this.OneWayRouteCabinBaggagePanel,
-                Constants.ONE_WAY_ROUTE_SELECTED_CABIN_BAG);
+                WebConstants.ONE_WAY_ROUTE_SELECTED_CABIN_BAG);
 
             this.SaveOtherBagsToSessionBeforeSeatSelection(this.OneWayRouteOtherBaggagePanel);
 
             if (this.ReturnRouteBooking != null)
             {
                 this.SaveSelectedBagToSessionBeforeSeatSelection(this.ReturnRouteCheckedInBaggagePanel,
-                    Constants.RETURN_ROUTE_SELECTED_CHECKED_IN_BAG);
+                    WebConstants.RETURN_ROUTE_SELECTED_CHECKED_IN_BAG);
 
                 this.SaveSelectedBagToSessionBeforeSeatSelection(this.ReturnRouteCabinBaggagePanel,
-                    Constants.RETURN_ROUTE_SELECTED_CABIN_BAG);
+                    WebConstants.RETURN_ROUTE_SELECTED_CABIN_BAG);
 
                 this.SaveOtherBagsToSessionBeforeSeatSelection(this.ReturnRouteOtherBaggagePanel);
             }
@@ -366,8 +366,8 @@
             booking.Baggage.Add(new Baggage()
             {
                 Type = BaggageType.Cabin,
-                Size = selectedCabinBag.Attributes[Constants.BAG_SIZE_ATTR],
-                Price = decimal.Parse(selectedCabinBag.Attributes[Constants.BAG_PRICE_ATTR]),
+                Size = selectedCabinBag.Attributes[WebConstants.BAG_SIZE_ATTR],
+                Price = decimal.Parse(selectedCabinBag.Attributes[WebConstants.BAG_PRICE_ATTR]),
             });
         }
 
@@ -377,14 +377,14 @@
 
             for (int i = 1; i <= numberOfBags; i++)
             {
-                var aaa = int.Parse(selectedCheckedInBag.Attributes[Constants.BAG_KG_ATTR]);
-                var ddd = decimal.Parse(selectedCheckedInBag.Attributes[Constants.BAG_PRICE_ATTR]);
+                var aaa = int.Parse(selectedCheckedInBag.Attributes[WebConstants.BAG_KG_ATTR]);
+                var ddd = decimal.Parse(selectedCheckedInBag.Attributes[WebConstants.BAG_PRICE_ATTR]);
 
                 booking.Baggage.Add(new Baggage()
                 {
                     Type = BaggageType.CheckedIn,
-                    MaxKilograms = int.Parse(selectedCheckedInBag.Attributes[Constants.BAG_KG_ATTR]),
-                    Price = decimal.Parse(selectedCheckedInBag.Attributes[Constants.BAG_PRICE_ATTR])
+                    MaxKilograms = int.Parse(selectedCheckedInBag.Attributes[WebConstants.BAG_KG_ATTR]),
+                    Price = decimal.Parse(selectedCheckedInBag.Attributes[WebConstants.BAG_PRICE_ATTR])
                 });
             }
         }

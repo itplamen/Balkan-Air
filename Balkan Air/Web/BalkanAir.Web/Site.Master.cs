@@ -61,7 +61,7 @@
         {
             get
             {
-                return (Data.Models.Booking)this.Session[Common.Constants.ONE_WAY_ROUTE_BOOKING];
+                return (Data.Models.Booking)this.Session[Common.WebConstants.ONE_WAY_ROUTE_BOOKING];
             }
         }
 
@@ -69,7 +69,7 @@
         {
             get
             {
-                return (Data.Models.Booking)this.Session[Common.Constants.RETURN_ROUTE_BOOKING];
+                return (Data.Models.Booking)this.Session[Common.WebConstants.RETURN_ROUTE_BOOKING];
             }
         }
 
@@ -172,8 +172,8 @@
                     curretnUrl == base.Page.ResolveUrl(Pages.EXTRAS) ||
                     curretnUrl == base.Page.ResolveUrl(Pages.SELECT_SEAT) ||
                     curretnUrl == base.Page.ResolveUrl(Pages.PAYMENT)) &&
-                    (this.Session[Common.Constants.DEPARTURE_AIRPORT_ID] != null &&
-                    this.Session[Common.Constants.DESTINATION_AIRPORT_ID] != null))
+                    (this.Session[Common.WebConstants.DEPARTURE_AIRPORT_ID] != null &&
+                    this.Session[Common.WebConstants.DESTINATION_AIRPORT_ID] != null))
                 {
                     this.ManageItineraryInfo();
                 }
@@ -315,8 +315,8 @@
 
         private void SetAirprotsInfoToItinerary()
         {
-            int departureAirportId = int.Parse(this.Session[Common.Constants.DEPARTURE_AIRPORT_ID].ToString());
-            int destinationAirportId = int.Parse(this.Session[Common.Constants.DESTINATION_AIRPORT_ID].ToString());
+            int departureAirportId = int.Parse(this.Session[Common.WebConstants.DEPARTURE_AIRPORT_ID].ToString());
+            int destinationAirportId = int.Parse(this.Session[Common.WebConstants.DESTINATION_AIRPORT_ID].ToString());
 
             var departureAirport = this.AirportsServices.GetAirport(departureAirportId);
             var destinationAirport = this.AirportsServices.GetAirport(destinationAirportId);

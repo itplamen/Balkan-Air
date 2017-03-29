@@ -136,10 +136,10 @@
                 this.CurrentUser.UserSettings.Gender != Gender.Female)
             {
                 this.GenderDropDownList.Items.Insert(
-                    Common.Constants.GENDER_NOT_SELECTED_INDEX,
+                    Common.WebConstants.GENDER_NOT_SELECTED_INDEX,
                     new ListItem(
-                        Common.Constants.GENDER_NOT_SELECTED_TEXT,
-                        Common.Constants.GENDER_NOT_SELECTED_INDEX.ToString()
+                        Common.WebConstants.GENDER_NOT_SELECTED_TEXT,
+                        Common.WebConstants.GENDER_NOT_SELECTED_INDEX.ToString()
                     )
                 );
             }
@@ -155,10 +155,10 @@
             if (string.IsNullOrEmpty(this.CurrentUser.UserSettings.Nationality))
             {
                 this.NationalityDropDownList.Items.Insert(
-                    Common.Constants.NATIONALITY_NOT_SELECTED_INDEX,
+                    Common.WebConstants.NATIONALITY_NOT_SELECTED_INDEX,
                     new ListItem(
-                        Common.Constants.NATIONALITY_NOT_SELECTED_TEXT,
-                        Common.Constants.NATIONALITY_NOT_SELECTED_INDEX.ToString()
+                        Common.WebConstants.NATIONALITY_NOT_SELECTED_TEXT,
+                        Common.WebConstants.NATIONALITY_NOT_SELECTED_INDEX.ToString()
                     )
                 );
             }

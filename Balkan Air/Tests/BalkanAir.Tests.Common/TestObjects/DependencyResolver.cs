@@ -45,6 +45,11 @@
                 return new CategoriesController(TestObjectFactoryServices.GetCategoriesServices().Object);
             }
 
+            if (serviceType == typeof(CountriesController))
+            {
+                return new CountriesController(TestObjectFactoryServices.GetCountriesServices().Object);
+            }
+
             return null;
         }
 
