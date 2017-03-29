@@ -204,6 +204,8 @@
             Assert.IsTrue(response.IsSuccessStatusCode);
             Assert.IsNotNull(response.Content);
             Assert.AreNotEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
+            Assert.IsTrue(response.Content.ReadAsStringAsync().Result.Contains(Constants.ROUTE_VALID_ORIGIN_ABBREVIATION));
+            Assert.IsTrue(response.Content.ReadAsStringAsync().Result.Contains(Constants.ROUTE_VALID_DESTINATION_ABBREVIATION));
         }
     }
 }

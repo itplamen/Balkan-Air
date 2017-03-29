@@ -145,6 +145,7 @@
             Assert.IsTrue(response.IsSuccessStatusCode);
             Assert.IsNotNull(response.Content);
             Assert.AreNotEqual(typeof(ObjectContent<HttpError>), response.Content.GetType());
+            Assert.IsTrue(response.Content.ReadAsStringAsync().Result.Contains(Constants.COUNTRY_VALID_ABBREVIATION));
         }
     }
 }
