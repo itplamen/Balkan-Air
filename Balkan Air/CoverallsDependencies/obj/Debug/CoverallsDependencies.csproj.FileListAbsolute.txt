@@ -1,4 +1,0 @@
-D:\GitHub Repositories\Balkan-Air\Balkan Air\CoverallsDependencies\bin\Debug\CoverallsDependencies.dll
-D:\GitHub Repositories\Balkan-Air\Balkan Air\CoverallsDependencies\bin\Debug\CoverallsDependencies.pdb
-D:\GitHub Repositories\Balkan-Air\Balkan Air\CoverallsDependencies\obj\Debug\CoverallsDependencies.dll
-D:\GitHub Repositories\Balkan-Air\Balkan Air\CoverallsDependencies\obj\Debug\CoverallsDependencies.pdb

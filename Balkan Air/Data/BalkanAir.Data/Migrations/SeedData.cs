@@ -12,6 +12,7 @@
         private const string SNACK = "Snack";
         private const string MENU = "Menu";
 
+        private const int STARTING_MONTH = 5;
         private const int ADD_THREE_DAYS = 3;
 
         private IBalkanAirDbContext context;
@@ -409,19 +410,19 @@
         private void SeedFlightLegs()
         {
             // Sofia - Madrid
-            this.AddFlightLeg(1, new DateTime(2017, 4, 1, 17, 30, 00), 6, new DateTime(2017, 4, 1, 20, 30, 00), 1, 1);
+            this.AddFlightLeg(1, new DateTime(2017, STARTING_MONTH, 1, 17, 30, 00), 6, new DateTime(2017, STARTING_MONTH, 1, 20, 30, 00), 1, 1);
 
             // Madrid - Sofia
-            this.AddFlightLeg(6, new DateTime(2017, 4, 1, 20, 30, 00), 1, new DateTime(2017, 4, 1, 23, 30, 00), 2, 2);
+            this.AddFlightLeg(6, new DateTime(2017, STARTING_MONTH, 1, 20, 30, 00), 1, new DateTime(2017, STARTING_MONTH, 1, 23, 30, 00), 2, 2);
 
             // Sofia - Lisbon
-            this.AddFlightLeg(1, new DateTime(2017, 4, 1, 14, 45, 00), 3, new DateTime(2017, 4, 1, 19, 30, 00), 3, 3);
+            this.AddFlightLeg(1, new DateTime(2017, STARTING_MONTH, 1, 14, 45, 00), 3, new DateTime(2017, STARTING_MONTH, 1, 19, 30, 00), 3, 3);
 
             // Varna - Berlin
-            this.AddFlightLeg(2, new DateTime(2017, 4, 1, 2, 00, 00), 13, new DateTime(2017, 4, 1, 5, 35, 00), 4, 4);
+            this.AddFlightLeg(2, new DateTime(2017, STARTING_MONTH, 1, 2, 00, 00), 13, new DateTime(2017, STARTING_MONTH, 1, 5, 35, 00), 4, 4);
 
             // London - Paris
-            this.AddFlightLeg(15, new DateTime(2017, 4, 1, 18, 10, 00), 17, new DateTime(2017, 4, 1, 20, 00, 00), 5, 5);
+            this.AddFlightLeg(15, new DateTime(2017, STARTING_MONTH, 1, 18, 10, 00), 17, new DateTime(2017, STARTING_MONTH, 1, 20, 00, 00), 5, 5);
         }
 
         private void AddFlightLeg(
