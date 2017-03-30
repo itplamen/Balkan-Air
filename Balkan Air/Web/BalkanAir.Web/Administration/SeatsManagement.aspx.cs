@@ -16,11 +16,17 @@
     public partial class SeatsManagement : MvpPage<SeatsManagementViewModel>, ISeatsManagementView
     {
         public event EventHandler OnSeatsGetData;
+
         public event EventHandler<SeatsManagementEventArgs> OnSeatsUpdateItem;
+
         public event EventHandler<SeatsManagementEventArgs> OnSeatsDeleteItem;
+
         public event EventHandler<SeatsManagementEventArgs> OnSeatsAddItem;
+
         public event EventHandler OnTravelClassesGetData;
+
         public event EventHandler OnLegInstancesGetData;
+
         public event EventHandler<SeatsManagementEventArgs> OnTravelClassInfoGetItem;
 
         public IQueryable<Seat> SeatsGridView_GetData()

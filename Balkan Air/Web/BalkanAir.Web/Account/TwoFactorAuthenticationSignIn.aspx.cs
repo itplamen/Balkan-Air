@@ -30,6 +30,7 @@
             {
                 Response.Redirect("/Account/Error", true);
             }
+
             var userFactors = manager.GetValidTwoFactorProviders(userId);
             Providers.DataSource = userFactors.Select(x => x).ToList();
             Providers.DataBind();            

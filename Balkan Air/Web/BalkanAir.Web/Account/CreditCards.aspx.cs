@@ -16,6 +16,7 @@
     public partial class CreditCards : MvpPage<CreditCardsViewModel>, ICreditCardsView
     {
         public event EventHandler OnCreditCardsGetData;
+
         public event EventHandler<CreditCardsEventArgs> OnCreditCardsDeleteItem;
 
         public IQueryable<CreditCard> CreditCardsListView_GetData()

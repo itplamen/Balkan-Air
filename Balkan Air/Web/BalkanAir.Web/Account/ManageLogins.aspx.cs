@@ -37,6 +37,7 @@
                 signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
                 msg = "?m=RemoveLoginSuccess";
             }
+
             Response.Redirect("~/Account/ManageLogins" + msg);
         }
 

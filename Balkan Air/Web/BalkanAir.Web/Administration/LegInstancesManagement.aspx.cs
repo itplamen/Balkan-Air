@@ -16,15 +16,25 @@
     public partial class LegInstancesManagement : MvpPage<LegInstancesManagementViewModel>, ILegInstancesManagementView
     {
         public event EventHandler OnLegInstancesGetData;
+
         public event EventHandler<LegInstancesManagementEventArgs> OnLegInstancesUpdateItem;
+
         public event EventHandler<LegInstancesManagementEventArgs> OnLegInstancesDeleteItem;
+
         public event EventHandler<LegInstancesManagementEventArgs> OnLegInstancesAddItem;
+
         public event EventHandler OnFlightLegsGetData;
+
         public event EventHandler OnFlightStatusesGetData;
+
         public event EventHandler OnAircraftsGetData;
+
         public event EventHandler OnFaresGetData;
+
         public event EventHandler<LegInstancesManagementEventArgs> OnAirportInfoGetItem;
+
         public event EventHandler<LegInstancesManagementEventArgs> OnSendNotificationToSubscribedUsers;
+
         public event EventHandler<LegInstancesManagementEventArgs> OnSendMailToSubscribedUsers;
 
         public IQueryable<LegInstance> LegInstancesGridView_GetData()

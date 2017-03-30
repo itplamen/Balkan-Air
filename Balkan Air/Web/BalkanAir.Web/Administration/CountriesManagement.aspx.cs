@@ -17,8 +17,11 @@
     public partial class CountriesManagement : MvpPage<CountriesManagementViewModel>, ICountriesManagementView
     {
         public event EventHandler OnCountriesGetData;
+
         public event EventHandler<CountriesManagementEventArgs> OnCountriesUpdateItem;
+
         public event EventHandler<CountriesManagementEventArgs> OnCountriesDeleteItem;
+
         public event EventHandler<CountriesManagementEventArgs> OnCountriesAddItem;
 
         public IQueryable<Country> CountriesGridView_GetData()

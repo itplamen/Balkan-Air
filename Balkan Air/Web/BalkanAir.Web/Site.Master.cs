@@ -236,51 +236,99 @@
 
             if (this.OneWayRouteBooking != null)
             {
-                this.SetItineraryForBooking(this.OneWayRouteBooking, ref totalCost, this.OutboundFlightSeatLiteral,
-                this.OutboundFlightNumberLiteral, this.OutboundFlightDateTimeLiteral, this.OutboundFlightPriceLiteral,
-                this.OutboundFlightTravelClassPrice, this.OutboundFlightTravelClassLiteral);
+                this.SetItineraryForBooking(
+                    this.OneWayRouteBooking, 
+                    ref totalCost, 
+                    this.OutboundFlightSeatLiteral,
+                    this.OutboundFlightNumberLiteral, 
+                    this.OutboundFlightDateTimeLiteral, 
+                    this.OutboundFlightPriceLiteral,
+                    this.OutboundFlightTravelClassPrice, 
+                    this.OutboundFlightTravelClassLiteral);
 
                 if (this.OneWayRouteBooking.Baggage.Count > 0)
                 {
-                    this.SetCabinBagToItinerary(this.OneWayRouteBooking, ref totalCost, this.OutboundFlightCabinBagLiteral,
-                    this.OutboundFlightCabinBagPriceLiteral);
+                    this.SetCabinBagToItinerary(
+                        this.OneWayRouteBooking, 
+                        ref totalCost, 
+                        this.OutboundFlightCabinBagLiteral,
+                        this.OutboundFlightCabinBagPriceLiteral);
 
-                    this.SetCheckedInBagsToItinerary(this.OneWayRouteBooking, ref totalCost, this.OutboundFlightCheckedIdBagsLiteral,
+                    this.SetCheckedInBagsToItinerary(
+                        this.OneWayRouteBooking, 
+                        ref totalCost, 
+                        this.OutboundFlightCheckedIdBagsLiteral,
                         this.OutboundFlightCheckedIdBagsPricesLiteral);
 
-                    this.SetBagEquipmentsToItinerary(this.OneWayRouteBooking, ref totalCost, BaggageType.BabyEquipment,
-                        this.OutboundFlightBabyEquipmentLiteral, this.OutboundFlightBabyEquipmentPriceLiteral);
+                    this.SetBagEquipmentsToItinerary(
+                        this.OneWayRouteBooking, 
+                        ref totalCost, 
+                        BaggageType.BabyEquipment,
+                        this.OutboundFlightBabyEquipmentLiteral, 
+                        this.OutboundFlightBabyEquipmentPriceLiteral);
 
-                    this.SetBagEquipmentsToItinerary(this.OneWayRouteBooking, ref totalCost, BaggageType.SportsEquipment,
-                        this.OutboundFlightSportsEquipmentLiteral, this.OutboundFlightSportsEquipmentPriceLiteral);
+                    this.SetBagEquipmentsToItinerary(
+                        this.OneWayRouteBooking, 
+                        ref totalCost, 
+                        BaggageType.SportsEquipment,
+                        this.OutboundFlightSportsEquipmentLiteral, 
+                        this.OutboundFlightSportsEquipmentPriceLiteral);
 
-                    this.SetBagEquipmentsToItinerary(this.OneWayRouteBooking, ref totalCost, BaggageType.MusicEquipment,
-                        this.OutboundFlightMusicEquipmentLiteral, this.OutboundFlightMusicEquipmentPriceLiteral);
+                    this.SetBagEquipmentsToItinerary(
+                        this.OneWayRouteBooking, 
+                        ref totalCost, 
+                        BaggageType.MusicEquipment,
+                        this.OutboundFlightMusicEquipmentLiteral, 
+                        this.OutboundFlightMusicEquipmentPriceLiteral);
                 }
             }
 
             if (this.ReturnRouteBooking != null)
             {
-                this.SetItineraryForBooking(this.ReturnRouteBooking, ref totalCost, this.ReturnFlightSeatLiteral,
-                this.ReturnFlightNumberLiteral, this.ReturnFlightDateTimeLiteral, this.ReturnFlightPriceLiteral,
-                this.ReturnFlightTravelClassPrice, this.ReturnFlightTravelClassLiteral);
+                this.SetItineraryForBooking(
+                    this.ReturnRouteBooking, 
+                    ref totalCost, 
+                    this.ReturnFlightSeatLiteral,
+                    this.ReturnFlightNumberLiteral, 
+                    this.ReturnFlightDateTimeLiteral, 
+                    this.ReturnFlightPriceLiteral,
+                    this.ReturnFlightTravelClassPrice, 
+                    this.ReturnFlightTravelClassLiteral);
 
                 if (this.ReturnRouteBooking.Baggage.Count > 0)
                 {
-                    this.SetCabinBagToItinerary(this.ReturnRouteBooking, ref totalCost, this.ReturnFlightCabinBagLiteral,
-                    this.ReturnFlightCabinBagPriceLiteral);
+                    this.SetCabinBagToItinerary(
+                        this.ReturnRouteBooking, 
+                        ref totalCost, 
+                        this.ReturnFlightCabinBagLiteral,
+                        this.ReturnFlightCabinBagPriceLiteral);
 
-                    this.SetCheckedInBagsToItinerary(this.ReturnRouteBooking, ref totalCost, this.ReturnFlightCheckedIdBagsLiteral,
+                    this.SetCheckedInBagsToItinerary(
+                        this.ReturnRouteBooking, 
+                        ref totalCost, 
+                        this.ReturnFlightCheckedIdBagsLiteral,
                         this.ReturnFlightCheckedIdBagsPricesLiteral);
 
-                    this.SetBagEquipmentsToItinerary(this.ReturnRouteBooking, ref totalCost, BaggageType.BabyEquipment,
-                        this.ReturnFlightBabyEquipmentLiteral, this.ReturnFlightBabyEquipmentPriceLiteral);
+                    this.SetBagEquipmentsToItinerary(
+                        this.ReturnRouteBooking,
+                        ref totalCost, 
+                        BaggageType.BabyEquipment,
+                        this.ReturnFlightBabyEquipmentLiteral, 
+                        this.ReturnFlightBabyEquipmentPriceLiteral);
 
-                    this.SetBagEquipmentsToItinerary(this.ReturnRouteBooking, ref totalCost, BaggageType.SportsEquipment,
-                        this.ReturnFlightSportsEquipmentLiteral, this.ReturnFlightSportsEquipmentPriceLiteral);
+                    this.SetBagEquipmentsToItinerary(
+                        this.ReturnRouteBooking, 
+                        ref totalCost, 
+                        BaggageType.SportsEquipment,
+                        this.ReturnFlightSportsEquipmentLiteral, 
+                        this.ReturnFlightSportsEquipmentPriceLiteral);
 
-                    this.SetBagEquipmentsToItinerary(this.ReturnRouteBooking, ref totalCost, BaggageType.MusicEquipment,
-                        this.ReturnFlightMusicEquipmentLiteral, this.ReturnFlightMusicEquipmentPriceLiteral);
+                    this.SetBagEquipmentsToItinerary(
+                        this.ReturnRouteBooking, 
+                        ref totalCost, 
+                        BaggageType.MusicEquipment,
+                        this.ReturnFlightMusicEquipmentLiteral, 
+                        this.ReturnFlightMusicEquipmentPriceLiteral);
                 }
             }
             else
@@ -300,12 +348,24 @@
             this.ItineraryInfoPanel.Visible = true;
         }
 
-        private void SetItineraryForBooking(Data.Models.Booking booking, ref decimal totalCost, Literal seatLiteral,
-            Literal flightNumberLiteral, Literal dateTimeLiteral, Literal flightPriceLiteral, Literal travelClassPriceLiteral,
+        private void SetItineraryForBooking(
+            Data.Models.Booking booking, 
+            ref decimal totalCost, 
+            Literal seatLiteral,
+            Literal flightNumberLiteral, 
+            Literal dateTimeLiteral, 
+            Literal flightPriceLiteral, 
+            Literal travelClassPriceLiteral,
             Literal travelClassLiteral)
         {
-            this.SetSelectedFlightToItinerary(booking, ref totalCost, flightNumberLiteral, dateTimeLiteral,
-                    flightPriceLiteral, travelClassPriceLiteral, travelClassLiteral);
+            this.SetSelectedFlightToItinerary(
+                booking, 
+                ref totalCost, 
+                flightNumberLiteral, 
+                dateTimeLiteral,
+                flightPriceLiteral, 
+                travelClassPriceLiteral, 
+                travelClassLiteral);
 
             if (booking.Row > 0 && !string.IsNullOrEmpty(booking.SeatNumber))
             {
@@ -315,8 +375,8 @@
 
         private void SetAirprotsInfoToItinerary()
         {
-            int departureAirportId = int.Parse(this.Session[Common.WebConstants.DEPARTURE_AIRPORT_ID].ToString());
-            int destinationAirportId = int.Parse(this.Session[Common.WebConstants.DESTINATION_AIRPORT_ID].ToString());
+            int departureAirportId = int.Parse(this.Session[WebConstants.DEPARTURE_AIRPORT_ID].ToString());
+            int destinationAirportId = int.Parse(this.Session[WebConstants.DESTINATION_AIRPORT_ID].ToString());
 
             var departureAirport = this.AirportsServices.GetAirport(departureAirportId);
             var destinationAirport = this.AirportsServices.GetAirport(destinationAirportId);
@@ -331,8 +391,14 @@
             }
         }
 
-        private void SetSelectedFlightToItinerary(Data.Models.Booking booking, ref decimal totalCost, Literal flightNumberLiteral,
-            Literal dateTimeLiteral, Literal flightPriceLiteral, Literal travelClassPriceLiteral, Literal travelClassLiteral)
+        private void SetSelectedFlightToItinerary(
+            Data.Models.Booking booking,
+            ref decimal totalCost, 
+            Literal flightNumberLiteral,
+            Literal dateTimeLiteral, 
+            Literal flightPriceLiteral, 
+            Literal travelClassPriceLiteral, 
+            Literal travelClassLiteral)
         {
             LegInstance selectedLegInstance = this.LegInstancesServices.GetLegInstance(booking.LegInstanceId);
 
@@ -348,7 +414,10 @@
             travelClassLiteral.Text = this.TravelClassesServices.GetTravelClass(booking.TravelClassId).Type.ToString() + " class";
         }
 
-        private void SetCabinBagToItinerary(Data.Models.Booking booking, ref decimal totalCost, Literal cabinBagLiteral,
+        private void SetCabinBagToItinerary(
+            Data.Models.Booking booking, 
+            ref decimal totalCost, 
+            Literal cabinBagLiteral,
             Literal cabinBabPriceLiteral)
         {
             var cabinBag = booking.Baggage
@@ -362,8 +431,11 @@
             }
         }
 
-        private void SetCheckedInBagsToItinerary(Data.Models.Booking booking, ref decimal totalCost,
-            Literal checkedInBagsLiteral, Literal checkedInBagsPricesLiteral)
+        private void SetCheckedInBagsToItinerary(
+            Data.Models.Booking booking, 
+            ref decimal totalCost,
+            Literal checkedInBagsLiteral, 
+            Literal checkedInBagsPricesLiteral)
         {
             var checkedInBags = booking.Baggage
                 .Where(b => b.Type == BaggageType.CheckedIn)
@@ -381,8 +453,12 @@
         }
 
         // Set baby, sports and music equipments to the itenerary info panel. 
-        private void SetBagEquipmentsToItinerary(Data.Models.Booking booking, ref decimal totalCost, BaggageType baggageType,
-            Literal literalInfo, Literal literalPrice)
+        private void SetBagEquipmentsToItinerary(
+            Data.Models.Booking booking, 
+            ref decimal totalCost, 
+            BaggageType baggageType,
+            Literal literalInfo, 
+            Literal literalPrice)
         {
             var equipment = booking.Baggage
                 .FirstOrDefault(b => b.Type == baggageType);

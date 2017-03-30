@@ -16,9 +16,13 @@
     public partial class RoutesManagement : MvpPage<RoutesManagementViewModel>, IRoutesManagementView
     {
         public event EventHandler OnRoutesGetData;
+
         public event EventHandler<RoutesManagementEventArgs> OnRoutesUpdateItem;
+
         public event EventHandler<RoutesManagementEventArgs> OnRoutesDeleteItem;
+
         public event EventHandler<RoutesManagementEventArgs> OnRoutesAddItem;
+
         public event EventHandler OnAirportsGetData;
 
         public IQueryable<Route> RoutesGridView_GetData()

@@ -17,8 +17,11 @@
     public partial class FlightStatusesManagement : MvpPage<FlightStatusesManagementViewModel>, IFlightStatusesManagementView
     {
         public event EventHandler OnFlightStatusesGetData;
+
         public event EventHandler<FlightStatusesManagementEventArgs> OnFlightStatusesUpdateItem;
+
         public event EventHandler<FlightStatusesManagementEventArgs> OnFlightStatusesDeleteItem;
+
         public event EventHandler<FlightStatusesManagementEventArgs> OnFlightStatusesAddItem;
 
         public IQueryable<FlightStatus> FlightStatusesGridView_GetData()

@@ -16,7 +16,9 @@
     public partial class BookingsManagement : MvpPage<BookingsManagementViewModel>, IBookingsManagementView
     {
         public event EventHandler OnBookingsGetData;
+
         public event EventHandler<BookingsManagementEventArgs> OnBookingsUpdateItem;
+
         public event EventHandler<BookingsManagementEventArgs> OnBookingsDeleteItem;
 
         public IQueryable<Booking> BookingsGridView_GetData()

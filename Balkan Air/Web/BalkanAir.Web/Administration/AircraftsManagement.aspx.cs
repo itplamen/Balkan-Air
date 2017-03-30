@@ -17,9 +17,13 @@
     public partial class AircraftsManagement : MvpPage<AircraftsManagementViewModels>, IAircraftsManagementView
     {
         public event EventHandler OnAircraftsGetData;
+
         public event EventHandler<AircraftsManagementEventArgs> OnAircraftsUpdateItem;
+
         public event EventHandler<AircraftsManagementEventArgs> OnAircraftsDeleteItem;
+
         public event EventHandler<AircraftsManagementEventArgs> OnAircraftsAddItem;
+
         public event EventHandler OnAircraftManufacturersGetData;
 
         public IQueryable<Aircraft> AircraftsGridView_GetData()

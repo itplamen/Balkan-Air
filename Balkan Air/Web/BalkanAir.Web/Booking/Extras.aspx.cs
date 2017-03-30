@@ -63,15 +63,21 @@
                 }
                 else
                 {
-                    this.ManageSeatSelection(this.OneWayRouteBooking, this.OneWayRouteSelectedSeat,
-                        this.OneWayRouteSelectedSeatImage, this.OneWayRouteSelectSeatBtn);
+                    this.ManageSeatSelection(
+                        this.OneWayRouteBooking, 
+                        this.OneWayRouteSelectedSeat,
+                        this.OneWayRouteSelectedSeatImage, 
+                        this.OneWayRouteSelectSeatBtn);
 
                     if (this.ReturnRouteBooking != null)
                     {
                         this.ReturnRouteExtrasPanel.Visible = true;
 
-                        this.ManageSeatSelection(this.ReturnRouteBooking, this.ReturnRouteSelectedSeat,
-                            this.ReturnRouteSelectedSeatImage, this.ReturnRouteSelectSeatBtn);
+                        this.ManageSeatSelection(
+                            this.ReturnRouteBooking, 
+                            this.ReturnRouteSelectedSeat,
+                            this.ReturnRouteSelectedSeatImage, 
+                            this.ReturnRouteSelectSeatBtn);
                     }
                 }
             }
@@ -87,8 +93,7 @@
                 if (isOneWayRouteSelectedSeat != null && isReturnRouteSelectedSeat != null && 
                     ((bool)isOneWayRouteSelectedSeat || (bool)isReturnRouteSelectedSeat))
                 {
-                    this.SaveBagSelectionAfterSeatSelection(this.OneWayRouteCabinBaggagePanel,
-                        WebConstants.ONE_WAY_ROUTE_SELECTED_CABIN_BAG);
+                    this.SaveBagSelectionAfterSeatSelection(this.OneWayRouteCabinBaggagePanel, WebConstants.ONE_WAY_ROUTE_SELECTED_CABIN_BAG);
 
                     this.SaveOtherBagsSelectionAfterSeatSelection(this.OneWayRouteOtherBaggagePanel);
 
@@ -97,13 +102,15 @@
                         this.OneWayRouteNumberOfCheckedInBagsHiddenField.Value =
                             this.Session[this.OneWayRouteNumberOfCheckedInBagsHiddenField.ID].ToString();
 
-                        this.SaveBagSelectionAfterSeatSelection(this.OneWayRouteCheckedInBaggagePanel,
+                        this.SaveBagSelectionAfterSeatSelection(
+                            this.OneWayRouteCheckedInBaggagePanel,
                             WebConstants.ONE_WAY_ROUTE_SELECTED_CHECKED_IN_BAG);
                     }
 
                     if (this.ReturnRouteBooking != null)
                     {
-                        this.SaveBagSelectionAfterSeatSelection(this.ReturnRouteCabinBaggagePanel,
+                        this.SaveBagSelectionAfterSeatSelection(
+                            this.ReturnRouteCabinBaggagePanel,
                             WebConstants.RETURN_ROUTE_SELECTED_CABIN_BAG);
 
                         this.SaveOtherBagsSelectionAfterSeatSelection(this.ReturnRouteOtherBaggagePanel);
@@ -149,19 +156,27 @@
         {
             if (this.Page.IsValid)
             {
-                this.AddAllBagsToBooking(this.OneWayRouteBooking, this.OneWayRouteCabinBaggagePanel, 
-                    this.OneWayRouteCheckedInBaggagePanel, this.OneWayRouteNumberOfCheckedInBagsHiddenField, 
-                    this.OneWayRouteBabyEquipmentCheckBox, this.OneWayRouteMusicEquipmentCheckBox, 
+                this.AddAllBagsToBooking(
+                    this.OneWayRouteBooking, 
+                    this.OneWayRouteCabinBaggagePanel, 
+                    this.OneWayRouteCheckedInBaggagePanel, 
+                    this.OneWayRouteNumberOfCheckedInBagsHiddenField, 
+                    this.OneWayRouteBabyEquipmentCheckBox, 
+                    this.OneWayRouteMusicEquipmentCheckBox, 
                     this.OneWayRouteSportsEquipmentCheckBox);
 
                 this.Session.Add(WebConstants.ONE_WAY_ROUTE_BOOKING, this.OneWayRouteBooking);
 
                 if (this.ReturnRouteBooking != null)
                 {
-                    this.AddAllBagsToBooking(this.ReturnRouteBooking, this.ReturnRouteCabinBaggagePanel,
-                    this.ReturnRouteCheckedInBaggagePanel, this.ReturnRouteNumberOfCheckedInBagsHiddenField,
-                    this.ReturnRouteBabyEquipmentCheckBox, this.ReturnRouteMusicEquipmentCheckBox,
-                    this.ReturnRouteSportsEquipmentCheckBox);
+                    this.AddAllBagsToBooking(
+                        this.ReturnRouteBooking, 
+                        this.ReturnRouteCabinBaggagePanel,
+                        this.ReturnRouteCheckedInBaggagePanel, 
+                        this.ReturnRouteNumberOfCheckedInBagsHiddenField,
+                        this.ReturnRouteBabyEquipmentCheckBox, 
+                        this.ReturnRouteMusicEquipmentCheckBox,
+                        this.ReturnRouteSportsEquipmentCheckBox);
 
                     this.Session.Add(WebConstants.RETURN_ROUTE_BOOKING, this.ReturnRouteBooking);
                 }
@@ -328,8 +343,14 @@
             }
         }
 
-        private void AddAllBagsToBooking(Booking booking, Control cabinBagsContext, Control checkedInBagsContext, 
-            HiddenField checkedInBagsCount, CheckBox babyEquipment, CheckBox musicEquipment, CheckBox sportsEquipment)
+        private void AddAllBagsToBooking(
+            Booking booking, 
+            Control cabinBagsContext, 
+            Control checkedInBagsContext, 
+            HiddenField checkedInBagsCount, 
+            CheckBox babyEquipment, 
+            CheckBox musicEquipment, 
+            CheckBox sportsEquipment)
         {
             this.AddCabinBagToBooking(booking, cabinBagsContext);
 

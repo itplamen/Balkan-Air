@@ -17,9 +17,13 @@
     public partial class BaggageManagement : MvpPage<BaggageManagementViewModel>, IBaggageManagementView
     {
         public event EventHandler OnBaggageGetData;
+
         public event EventHandler<BaggageManagementEventArgs> OnBaggageUpdateItem;
+
         public event EventHandler<BaggageManagementEventArgs> OnBaggageDeleteItem;
+
         public event EventHandler<BaggageManagementEventArgs> OnBaggageAddItem;
+
         public event EventHandler OnBookingsGetData;
 
         public IQueryable<Baggage> BaggageGridView_GetData()

@@ -16,9 +16,13 @@
     public partial class FlightsManagement : MvpPage<FlightsManagementViewModel>, IFlightsManagementView
     {
         public event EventHandler OnFlightsGetData;
+
         public event EventHandler<FlightsManagementEventArgs> OnFlightsUpdateItem;
+
         public event EventHandler<FlightsManagementEventArgs> OnFlightsDeleteItem;
+
         public event EventHandler<FlightsManagementEventArgs> OnFlightsAddItem;
+
         public event EventHandler<FlightsManagementEventArgs> OnUniqueFlightNumberGetItem;
 
         public IQueryable<Flight> FlightsGridView_GetData()

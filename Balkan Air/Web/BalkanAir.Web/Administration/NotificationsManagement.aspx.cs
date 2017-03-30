@@ -16,8 +16,11 @@
     public partial class NotificationsManagement : MvpPage<NotificationsManagementViewModel>, INotificationsManagementView
     {
         public event EventHandler OnNotificationsGetData;
+
         public event EventHandler<NotificationsManagementEventArgs> OnNotificationsUpdateItem;
+
         public event EventHandler<NotificationsManagementEventArgs> OnNotificationsDeleteItem;
+
         public event EventHandler<NotificationsManagementEventArgs> OnNotificationsAddItem;
 
         public IQueryable<Notification> NotificationsGridView_GetData()

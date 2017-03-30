@@ -17,9 +17,13 @@
     public partial class FaresManagement : MvpPage<FaresManagementViewModel>, IFaresManagementView
     {
         public event EventHandler OnFaresGetData;
+
         public event EventHandler<FaresManagementEventArgs> OnFaresUpdateItem;
+
         public event EventHandler<FaresManagementEventArgs> OnFaresDeleteItem;
+
         public event EventHandler<FaresManagementEventArgs> OnFaresAddItem;
+
         public event EventHandler OnRoutesGetData;
 
         public IQueryable<Fare> FaresGridView_GetData()

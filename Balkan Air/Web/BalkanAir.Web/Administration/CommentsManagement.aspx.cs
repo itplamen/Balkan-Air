@@ -16,7 +16,9 @@
     public partial class CommentsManagement : MvpPage<CommentsManagementViewModel>, ICommentsManagementView
     {
         public event EventHandler OnCommentsGetData;
+
         public event EventHandler<CommentsManagementEventArgs> OnCommentsUpdateItem;
+
         public event EventHandler<CommentsManagementEventArgs> OnCommentsDeleteItem;
 
         public IQueryable<Comment> CommentsGridView_GetData()

@@ -15,7 +15,9 @@
     public partial class News : MvpPage<NewsViewModel>, INewsView
     {
         public event EventHandler OnCategoriesGetData;
+
         public event EventHandler OnNewsGetData;
+
         public event EventHandler<NewsEventArgs> OnNewsByCategoryGetData;
 
         protected void Page_Load(object sender, EventArgs e)

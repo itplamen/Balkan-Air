@@ -17,9 +17,13 @@
     public partial class AirportsManagement : MvpPage<AirportsManagementViewModel>, IAirportsManagementView
     {
         public event EventHandler OnAirprotsGetData;
+
         public event EventHandler<AirportsManagementEventArgs> OnAirportsUpdateItem;
+
         public event EventHandler<AirportsManagementEventArgs> OnAirportsDeleteItem;
+
         public event EventHandler<AirportsManagementEventArgs> OnAirprotsAddItem;
+
         public event EventHandler OnCountriesGetData;
 
         public IQueryable<Airport> AirportsGridView_GetData()

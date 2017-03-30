@@ -39,6 +39,7 @@
                 RedirectOnFail();
                 return;
             }
+
             if (!IsPostBack)
             {
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
@@ -49,6 +50,7 @@
                     RedirectOnFail();
                     return;
                 }
+
                 var user = manager.Find(loginInfo.Login);
                 if (user != null)
                 {
@@ -94,6 +96,7 @@
             {
                 return;
             }
+
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
             var user = new User() { UserName = email.Text, Email = email.Text };
@@ -106,6 +109,7 @@
                     RedirectOnFail();
                     return;
                 }
+
                 result = manager.AddLogin(user.Id, loginInfo.Login);
                 if (result.Succeeded)
                 {
@@ -119,6 +123,7 @@
                     return;
                 }
             }
+
             AddErrors(result);
         }
 

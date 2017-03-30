@@ -22,9 +22,13 @@
     public partial class Itinerary : MvpPage<ItineraryViewModel>, IItineraryView
     {
         public event EventHandler<ItineraryEventArgs> OnItinerariesGetItem;
+
         public event EventHandler<ItineraryEventArgs> OnCabinBagsInfoShow;
+
         public event EventHandler<ItineraryEventArgs> OnCheckedInBagsInfoShow;
+
         public event EventHandler<ItineraryEventArgs> OnEquipmentBagsInfoShow;
+
         public event EventHandler<ItineraryEventArgs> OnTravelClassInfoShow;
 
         private ApplicationUserManager Manager

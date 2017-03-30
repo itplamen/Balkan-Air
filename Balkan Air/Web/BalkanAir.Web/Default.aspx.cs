@@ -163,8 +163,11 @@
                     return;
                 }
 
-                this.SearchFlight(this.DepartureAirportIdHiddenField.Value, this.DestinationAirportIdHiddenField.Value,
-                    departureDate, arrivalDate);
+                this.SearchFlight(
+                    this.DepartureAirportIdHiddenField.Value, 
+                    this.DestinationAirportIdHiddenField.Value,
+                    departureDate, 
+                    arrivalDate);
             }
         }
 
@@ -215,13 +218,12 @@
             calendar.EndDate = endDate;
         }
 
-        private void SearchFlight(string departureAirportId, string destinationAirportId,
-            DateTime? departureDate, DateTime? arrivalDate)
+        private void SearchFlight(string departureAirportId, string destinationAirportId, DateTime? departureDate, DateTime? arrivalDate)
         {
-            this.Session.Add(Common.WebConstants.DEPARTURE_AIRPORT_ID, departureAirportId);
-            this.Session.Add(Common.WebConstants.DESTINATION_AIRPORT_ID, destinationAirportId);
-            this.Session.Add(Common.WebConstants.DEPARTURE_DATE, departureDate);
-            this.Session.Add(Common.WebConstants.ARRIVAL_DATE, arrivalDate);
+            this.Session.Add(WebConstants.DEPARTURE_AIRPORT_ID, departureAirportId);
+            this.Session.Add(WebConstants.DESTINATION_AIRPORT_ID, destinationAirportId);
+            this.Session.Add(WebConstants.DEPARTURE_DATE, departureDate);
+            this.Session.Add(WebConstants.ARRIVAL_DATE, arrivalDate);
 
             this.Response.Redirect(Pages.SELECT_FLIGHT);
         }

@@ -16,8 +16,11 @@
     public partial class CategoriesManagement : MvpPage<CategoriesManagementViewModel>, ICategoriesManagementView
     {
         public event EventHandler OnCategoriesGetData;
+
         public event EventHandler<CategoriesManagementEventArgs> OnCategoriesUpdateItem;
+
         public event EventHandler<CategoriesManagementEventArgs> OnCategoriesDeleteItem;
+
         public event EventHandler<CategoriesManagementEventArgs> OnCategoriesAddItem;
 
         public IQueryable<Category> CategoriesGridView_GetData()

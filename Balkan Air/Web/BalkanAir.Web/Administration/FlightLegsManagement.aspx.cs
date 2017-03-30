@@ -16,13 +16,21 @@
     public partial class FlightLegsManagement : MvpPage<FlightLegsManagementViewModel>, IFlightLegsManagementView
     {
         public event EventHandler OnFlightLegsGetData;
+
         public event EventHandler<FlightLegsManagementEventArgs> OnFlightLegsUpdateItem;
+
         public event EventHandler<FlightLegsManagementEventArgs> OnFlightLegsDeleteItem;
+
         public event EventHandler<FlightLegsManagementEventArgs> OnFlightLegsAddItem;
+
         public event EventHandler OnAirportsGetData;
+
         public event EventHandler OnFlightsGetData;
+
         public event EventHandler OnRoutesGetData;
+
         public event EventHandler OnLegInstancesGetData;
+
         public event EventHandler<FlightLegsManagementEventArgs> OnAirportGetItem;
 
         public IQueryable<FlightLeg> FlightLegsGridView_GetData()
