@@ -24,10 +24,9 @@
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //CurrentUser.LockoutEnabled = true;
-            //CurrentUser.LockoutEnabled = true;
-            //CurrentUser.LockoutEndDateUtc = DateTime.UtcNow.AddMinutes(42);
-          
+            // CurrentUser.LockoutEnabled = true;
+            // CurrentUser.LockoutEnabled = true;
+            // CurrentUser.LockoutEndDateUtc = DateTime.UtcNow.AddMinutes(42);
         }
     }
 }

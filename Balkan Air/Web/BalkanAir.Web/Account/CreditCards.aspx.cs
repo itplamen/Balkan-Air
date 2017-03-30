@@ -27,10 +27,7 @@
 
         public void CreditCardsListView_DeleteItem(int id)
         {
-            this.OnCreditCardsDeleteItem?.Invoke(null, new CreditCardsEventArgs()
-            {
-                Id = id
-            });
+            this.OnCreditCardsDeleteItem?.Invoke(null, new CreditCardsEventArgs() { Id = id });
         }
     }
 }

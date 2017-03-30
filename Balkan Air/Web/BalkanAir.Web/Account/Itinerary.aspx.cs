@@ -29,7 +29,7 @@
 
         private ApplicationUserManager Manager
         {
-            get{ return Context.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+            get { return Context.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
         }
 
         private User CurrentUser
@@ -39,12 +39,14 @@
 
         public Data.Models.Booking ViewItineraryFormView_GetItem([QueryString] string number, [QueryString]string passenger)
         {
-            this.OnItinerariesGetItem?.Invoke(null, new ItineraryEventArgs()
-            {
-                UserId = this.CurrentUser.Id,
-                Number = number,
-                Passenger = passenger
-            });
+            this.OnItinerariesGetItem?.Invoke(
+                null, 
+                new ItineraryEventArgs()
+                {
+                    UserId = this.CurrentUser.Id,
+                    Number = number,
+                    Passenger = passenger
+                });
 
             if (this.Model.Booking == null)
             {
@@ -67,41 +69,34 @@
 
         protected string ShowCabinBags(int bookingId)
         {
-            this.OnCabinBagsInfoShow?.Invoke(null, new ItineraryEventArgs()
-            {
-                BookingId = bookingId
-            });
+            this.OnCabinBagsInfoShow?.Invoke(null, new ItineraryEventArgs() { BookingId = bookingId });
 
             return this.Model.CabinBagsInfo;
         }
 
         protected string ShowCheckedInBags(int bookingId)
         {
-            this.OnCheckedInBagsInfoShow?.Invoke(null, new ItineraryEventArgs()
-            {
-                BookingId = bookingId
-            });
+            this.OnCheckedInBagsInfoShow?.Invoke(null, new ItineraryEventArgs() { BookingId = bookingId });
 
             return this.Model.CheckedInBagsInfo;
         }
 
         protected string ShowEquipmentBags(int bookingId, BaggageType type)
         {
-            this.OnEquipmentBagsInfoShow?.Invoke(null, new ItineraryEventArgs()
-            {
-                BookingId = bookingId,
-                BaggageType = type
-            });
+            this.OnEquipmentBagsInfoShow?.Invoke(
+                null, 
+                new ItineraryEventArgs()
+                {
+                    BookingId = bookingId,
+                    BaggageType = type
+                });
 
             return this.Model.EquipmentBagsInfo;
         }
 
         protected string ShowTravelClass(int bookingId)
         {
-            this.OnTravelClassInfoShow?.Invoke(null, new ItineraryEventArgs()
-            {
-                BookingId = bookingId
-            });
+            this.OnTravelClassInfoShow?.Invoke(null, new ItineraryEventArgs() { BookingId = bookingId });
 
             return this.Model.TravelClassInfo;
         }

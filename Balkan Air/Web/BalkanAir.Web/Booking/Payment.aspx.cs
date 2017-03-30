@@ -179,12 +179,10 @@ namespace BalkanAir.Web.Booking
             if (string.IsNullOrEmpty(this.CurrentUser.UserSettings.Nationality))
             {
                 this.NationalityDropDownList.Items.Insert(
-                    Common.WebConstants.NATIONALITY_NOT_SELECTED_INDEX,
+                    WebConstants.NATIONALITY_NOT_SELECTED_INDEX,
                     new ListItem(
-                        Common.WebConstants.NATIONALITY_NOT_SELECTED_TEXT,
-                        Common.WebConstants.NATIONALITY_NOT_SELECTED_INDEX.ToString()
-                    )
-                );
+                        WebConstants.NATIONALITY_NOT_SELECTED_TEXT,
+                        WebConstants.NATIONALITY_NOT_SELECTED_INDEX.ToString()));
             }
         }
 

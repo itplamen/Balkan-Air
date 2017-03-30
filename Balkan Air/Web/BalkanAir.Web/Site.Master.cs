@@ -168,12 +168,12 @@
                 string curretnUrl = HttpContext.Current.Request.Url.AbsolutePath;
 
                 // Show itinerary info during flight booking.
-                if ((curretnUrl == base.Page.ResolveUrl(Pages.SELECT_FLIGHT) ||
-                    curretnUrl == base.Page.ResolveUrl(Pages.EXTRAS) ||
-                    curretnUrl == base.Page.ResolveUrl(Pages.SELECT_SEAT) ||
-                    curretnUrl == base.Page.ResolveUrl(Pages.PAYMENT)) &&
-                    (this.Session[Common.WebConstants.DEPARTURE_AIRPORT_ID] != null &&
-                    this.Session[Common.WebConstants.DESTINATION_AIRPORT_ID] != null))
+                if ((curretnUrl == this.Page.ResolveUrl(Pages.SELECT_FLIGHT) ||
+                    curretnUrl == this.Page.ResolveUrl(Pages.EXTRAS) ||
+                    curretnUrl == this.Page.ResolveUrl(Pages.SELECT_SEAT) ||
+                    curretnUrl == this.Page.ResolveUrl(Pages.PAYMENT)) &&
+                    (this.Session[WebConstants.DEPARTURE_AIRPORT_ID] != null &&
+                    this.Session[WebConstants.DESTINATION_AIRPORT_ID] != null))
                 {
                     this.ManageItineraryInfo();
                 }

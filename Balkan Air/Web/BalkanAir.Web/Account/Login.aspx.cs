@@ -22,7 +22,7 @@
             RegisterHyperLink.NavigateUrl = "Register";
             ForgotPasswordHyperLink.NavigateUrl = "ForgottenPassword";
 
-            //OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
+            // OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
 
             if (!string.IsNullOrEmpty(returnUrl))

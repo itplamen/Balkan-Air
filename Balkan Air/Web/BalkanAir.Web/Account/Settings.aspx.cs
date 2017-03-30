@@ -26,7 +26,7 @@
 
         protected User CurrentUser
         {
-            get{ return this.Manager.FindById(this.Context.User.Identity.GetUserId()); }
+            get { return this.Manager.FindById(this.Context.User.Identity.GetUserId()); }
         }
 
         protected void Page_Load(object sender, EventArgs e)

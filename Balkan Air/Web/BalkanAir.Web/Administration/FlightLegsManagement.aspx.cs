@@ -34,14 +34,16 @@
 
         public void FlightLegsGridView_UpdateItem(int id)
         {
-            this.OnFlightLegsUpdateItem?.Invoke(null, new FlightLegsManagementEventArgs()
-            {
-                Id = id,
-                DepartureAirportId = int.Parse(this.DepartureAirportIdHiddenField.Value),
-                ArrivalAirportId = int.Parse(this.ArrivalAirportIdHiddenField.Value),
-                FlightId = int.Parse(this.FlightIdHiddenField.Value),
-                RouteId = int.Parse(this.RouteIdHiddenField.Value)
-            });
+            this.OnFlightLegsUpdateItem?.Invoke(
+                null, 
+                new FlightLegsManagementEventArgs()
+                {
+                    Id = id,
+                    DepartureAirportId = int.Parse(this.DepartureAirportIdHiddenField.Value),
+                    ArrivalAirportId = int.Parse(this.ArrivalAirportIdHiddenField.Value),
+                    FlightId = int.Parse(this.FlightIdHiddenField.Value),
+                    RouteId = int.Parse(this.RouteIdHiddenField.Value)
+                });
         }
 
         public void FlightLegsGridView_DeleteItem(int id)

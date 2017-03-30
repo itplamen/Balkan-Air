@@ -130,9 +130,9 @@
                 {
                     travelClassId = firstClass.Id;
                 }
-                // Third and fourth row for business class
                 else if (row > rowsForFirstClass && row <= rowsForBusinessClass && businessClass != null)
                 {
+                    // Third and fourth row for business class
                     travelClassId = businessClass.Id;
                 }
                 else if (row > rowsForBusinessClass && economyClass != null)

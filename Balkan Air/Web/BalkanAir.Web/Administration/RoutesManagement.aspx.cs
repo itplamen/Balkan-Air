@@ -30,12 +30,14 @@
 
         public void RoutesGridView_UpdateItem(int id)
         {
-            this.OnRoutesUpdateItem?.Invoke(null, new RoutesManagementEventArgs()
-            {
-                Id = id,
-                OriginId = int.Parse(this.OriginIdHiddenField.Value),
-                DestinationId = int.Parse(this.DestinationIdHiddenField.Value)
-            });
+            this.OnRoutesUpdateItem?.Invoke(
+                null, 
+                new RoutesManagementEventArgs()
+                {
+                    Id = id,
+                    OriginId = int.Parse(this.OriginIdHiddenField.Value),
+                    DestinationId = int.Parse(this.DestinationIdHiddenField.Value)
+                });
         }
 
         public void RoutesGridView_DeleteItem(int id)
@@ -104,7 +106,7 @@
 
                 if (!isDistanceValid || (isDistanceValid && distance < 0))
                 {
-                    return - 1;
+                    return -1;
                 }
             }
 

@@ -75,7 +75,7 @@
             return isFlightConfirmationValid;
         }
 
-        private void ConfirmFlight (Booking booking)
+        private void ConfirmFlight(Booking booking)
         {
             booking.Status = BookingStatus.Confirmed;
             this.BookingsServices.UpdateBooking(booking.Id, booking);
@@ -86,8 +86,12 @@
             string from = this.GetOrigin(booking);
             string to = this.GetDestination(booking);
 
-            this.StatusMessage = string.Format("Thank you for confirming your flight {0} from " +
-                "{1} to {2}, confirmation code {3}!", flight, from, to, booking.ConfirmationCode);
+            this.StatusMessage = string.Format(
+                "Thank you for confirming your flight {0} from " + "{1} to {2}, confirmation code {3}!", 
+                flight, 
+                from, 
+                to, 
+                booking.ConfirmationCode);
         }
 
         private string GetOrigin(Booking booking)

@@ -14,6 +14,7 @@
     using Ninject;
 
     using Auth;
+    using Common;
     using Data.Models;
     using Services.Data.Contracts;
 
@@ -138,10 +139,8 @@
                 this.GenderDropDownList.Items.Insert(
                     Common.WebConstants.GENDER_NOT_SELECTED_INDEX,
                     new ListItem(
-                        Common.WebConstants.GENDER_NOT_SELECTED_TEXT,
-                        Common.WebConstants.GENDER_NOT_SELECTED_INDEX.ToString()
-                    )
-                );
+                        WebConstants.GENDER_NOT_SELECTED_TEXT,
+                        WebConstants.GENDER_NOT_SELECTED_INDEX.ToString()));
             }
         }
 
@@ -155,12 +154,10 @@
             if (string.IsNullOrEmpty(this.CurrentUser.UserSettings.Nationality))
             {
                 this.NationalityDropDownList.Items.Insert(
-                    Common.WebConstants.NATIONALITY_NOT_SELECTED_INDEX,
+                    WebConstants.NATIONALITY_NOT_SELECTED_INDEX,
                     new ListItem(
-                        Common.WebConstants.NATIONALITY_NOT_SELECTED_TEXT,
-                        Common.WebConstants.NATIONALITY_NOT_SELECTED_INDEX.ToString()
-                    )
-                );
+                        WebConstants.NATIONALITY_NOT_SELECTED_TEXT,
+                        WebConstants.NATIONALITY_NOT_SELECTED_INDEX.ToString()));
             }
         }
 

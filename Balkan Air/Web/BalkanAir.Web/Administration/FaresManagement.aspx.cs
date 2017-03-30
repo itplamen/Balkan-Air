@@ -31,11 +31,13 @@
 
         public void FaresGridView_UpdateItem(int id)
         {
-            this.OnFaresUpdateItem?.Invoke(null, new FaresManagementEventArgs()
-            {
-                Id = id,
-                RouteId = int.Parse(this.RouteIdHiddenField.Value)
-            });
+            this.OnFaresUpdateItem?.Invoke(
+                null, 
+                new FaresManagementEventArgs()
+                {
+                    Id = id,
+                    RouteId = int.Parse(this.RouteIdHiddenField.Value)
+                });
         }
 
         public void FaresGridView_DeleteItem(int id)

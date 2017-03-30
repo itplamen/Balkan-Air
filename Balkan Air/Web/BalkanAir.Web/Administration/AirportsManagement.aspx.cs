@@ -31,11 +31,13 @@
 
         public void AirportsGridView_UpdateItem(int id)
         {
-            this.OnAirportsUpdateItem?.Invoke(null, new AirportsManagementEventArgs()
-            {
-                Id = id,
-                CountryId = int.Parse(this.CountryIdHiddenField.Value)
-            });
+            this.OnAirportsUpdateItem?.Invoke(
+                null, 
+                new AirportsManagementEventArgs()
+                {
+                    Id = id,
+                    CountryId = int.Parse(this.CountryIdHiddenField.Value)
+                });
         }
 
         public void AirportsGridView_DeleteItem(int id)

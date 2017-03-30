@@ -52,7 +52,7 @@
             HasPhoneNumber = String.IsNullOrEmpty(manager.GetPhoneNumber(User.Identity.GetUserId()));
 
             // Enable this after setting up two-factor authentientication
-            //PhoneNumber.Text = manager.GetPhoneNumber(User.Identity.GetUserId()) ?? String.Empty;
+            // PhoneNumber.Text = manager.GetPhoneNumber(User.Identity.GetUserId()) ?? String.Empty;
 
             TwoFactorEnabled = manager.GetTwoFactorEnabled(User.Identity.GetUserId());
 
@@ -67,7 +67,7 @@
                 if (this.Context.User.Identity.IsAuthenticated)
                 {
                     bool areAnyUpcomingTrips = this.BookingsServices.GetAll()
-                   //.Where(b => b.UserId == this.CurentUser.Id && b.Flight.Departure < DateTime.Now)
+                   // .Where(b => b.UserId == this.CurentUser.Id && b.Flight.Departure < DateTime.Now)
                    .Any();
 
                     if (areAnyUpcomingTrips)
@@ -133,7 +133,7 @@
             Response.Redirect("/Account/Manage");
         }
 
-        //EnableTwoFactorAuthentication 
+        // EnableTwoFactorAuthentication 
         protected void TwoFactorEnable_Click(object sender, EventArgs e)
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();

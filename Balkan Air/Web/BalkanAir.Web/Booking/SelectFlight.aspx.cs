@@ -180,7 +180,7 @@
                 return;
             }
 
-            if(this.ReturnRouteFlightsPanel.Visible &&
+            if (this.ReturnRouteFlightsPanel.Visible && 
                 (string.IsNullOrEmpty(this.ReturnRouteSelectedFlightIdHiddenField.Value) ||
                 string.IsNullOrEmpty(this.ReturnRouteSelectedTravelClassIdHiddenField.Value)))
             {

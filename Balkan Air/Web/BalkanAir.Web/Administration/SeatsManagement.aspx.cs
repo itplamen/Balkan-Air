@@ -32,12 +32,14 @@
 
         public void SeatsGridView_UpdateItem(int id)
         {
-            this.OnSeatsUpdateItem?.Invoke(null, new SeatsManagementEventArgs()
-            {
-                Id = id,
-                TravelClassId = int.Parse(this.TravelClassIdHiddenField.Value),
-                LegInstanceId = int.Parse(this.LegInstanceIdHiddenField.Value)
-            });
+            this.OnSeatsUpdateItem?.Invoke(
+                null, 
+                new SeatsManagementEventArgs()
+                {
+                    Id = id,
+                    TravelClassId = int.Parse(this.TravelClassIdHiddenField.Value),
+                    LegInstanceId = int.Parse(this.LegInstanceIdHiddenField.Value)
+                });
         }
 
         public void SeatsGridView_DeleteItem(int id)
