@@ -1,7 +1,7 @@
 version: 1.0.{build}
 environment:
   COVERALLS_REPO_TOKEN:
-    secure: aIhqBYcC472juVMQD5dvJft55TBSz9nsQ
+    secure: K5OndqqbXT1+prsQ9tw7TcvJLZV7VwcJBZJZ/VJO+bd5XTVYjcWleZEpOmYz4D8t
 before_build:
 - ps: nuget restore ./Balkan Air/Balkan Air.sln
 build:
