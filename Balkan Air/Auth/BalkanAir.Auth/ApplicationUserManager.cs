@@ -31,11 +31,11 @@
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
-                RequiredLength = 1,
+                RequiredLength = 7,
                 RequireNonLetterOrDigit = false,
-                RequireDigit = false,
-                RequireLowercase = false,
-                RequireUppercase = false,
+                RequireDigit = true,
+                RequireLowercase = true,
+                RequireUppercase = true,
             };
 
             // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
