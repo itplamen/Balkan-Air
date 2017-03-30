@@ -20,6 +20,14 @@
         [Inject]
         public IBookingsServices BookingsServices { get; set; }
 
+        public bool HasPhoneNumber { get; private set; }
+
+        public bool TwoFactorEnabled { get; private set; }
+
+        public bool TwoFactorBrowserRemembered { get; private set; }
+
+        public int LoginsCount { get; set; }
+
         protected string SuccessMessage { get; private set; }
 
         private ApplicationUserManager Manager
@@ -32,35 +40,29 @@
             get { return this.Manager.FindById(this.Context.User.Identity.GetUserId()); }
         }
 
-        private bool HasPassword(ApplicationUserManager manager)
+        public IEnumerable<Booking> UpcomingTripsRepeater_GetData()
         {
-            return manager.HasPassword(User.Identity.GetUserId());
+            return this.BookingsServices.GetAll()
+                .Where(b => b.UserId == this.CurentUser.Id && !b.IsDeleted && b.LegInstance.DepartureDateTime > DateTime.Now)
+                .ToList();
         }
-
-        public bool HasPhoneNumber { get; private set; }
-
-        public bool TwoFactorEnabled { get; private set; }
-
-        public bool TwoFactorBrowserRemembered { get; private set; }
-
-        public int LoginsCount { get; set; }
 
         protected void Page_Load()
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
-            HasPhoneNumber = String.IsNullOrEmpty(manager.GetPhoneNumber(User.Identity.GetUserId()));
+            this.HasPhoneNumber = string.IsNullOrEmpty(manager.GetPhoneNumber(User.Identity.GetUserId()));
 
             // Enable this after setting up two-factor authentientication
             // PhoneNumber.Text = manager.GetPhoneNumber(User.Identity.GetUserId()) ?? String.Empty;
 
-            TwoFactorEnabled = manager.GetTwoFactorEnabled(User.Identity.GetUserId());
+            this.TwoFactorEnabled = manager.GetTwoFactorEnabled(User.Identity.GetUserId());
 
-            LoginsCount = manager.GetLogins(User.Identity.GetUserId()).Count;
+            this.LoginsCount = manager.GetLogins(User.Identity.GetUserId()).Count;
 
             var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
 
-            if (!IsPostBack)
+            if (!this.Page.IsPostBack)
             {
                 this.WelcomeTextLiteral.Text = "Welcome back " + this.CurentUser.UserSettings.FirstName + "!";
 
@@ -85,7 +87,7 @@
                 if (message != null)
                 {
                     // Strip the query string from action
-                    Form.Action = ResolveUrl("~/Account/Manage");
+                    this.Form.Action = this.ResolveUrl("~/Account/Manage");
 
                     this.SuccessMessage =
                         message == "ChangePwdSuccess" ? "Your password has been changed!"
@@ -97,13 +99,6 @@
                     this.SuccessMessagePlaceHolder.Visible = !string.IsNullOrEmpty(this.SuccessMessage);
                 }
             }
-        }
-
-        public IEnumerable<Booking> UpcomingTripsRepeater_GetData()
-        {
-            return this.BookingsServices.GetAll()
-                .Where(b => b.UserId == this.CurentUser.Id && !b.IsDeleted && b.LegInstance.DepartureDateTime > DateTime.Now)
-                .ToList();
         }
 
         // Remove phonenumber from user
@@ -143,11 +138,16 @@
             Response.Redirect("/Account/Manage");
         }
 
+        private bool HasPassword(ApplicationUserManager manager)
+        {
+            return manager.HasPassword(User.Identity.GetUserId());
+        }
+
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError(string.Empty, error);
             }
         }
     }

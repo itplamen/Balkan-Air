@@ -58,8 +58,7 @@
         {
             if (!this.Page.IsPostBack)
             {
-                if (this.Booking == null || (this.Booking != null && this.Booking.LegInstanceId == 0 || 
-                    this.Booking.TravelClassId == 0))
+                if (this.Booking == null || (this.Booking != null && this.Booking.LegInstanceId == 0 || this.Booking.TravelClassId == 0))
                 {
                     this.Response.Redirect(Pages.HOME);
                 }

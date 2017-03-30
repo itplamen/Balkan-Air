@@ -62,7 +62,7 @@
                 signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
                 this.UsersServices.SetLastLogin(user.Email, DateTime.Now);
 
-                IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], this.Response);
             }
             else
             {

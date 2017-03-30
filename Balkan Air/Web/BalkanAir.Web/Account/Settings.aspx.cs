@@ -31,7 +31,7 @@
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (!this.Page.IsPostBack)
             {
                 if (this.CurrentUser != null && !this.CurrentUser.EmailConfirmed)
                 {

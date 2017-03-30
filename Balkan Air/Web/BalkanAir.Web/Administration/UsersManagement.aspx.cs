@@ -3,19 +3,19 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web;
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
+    using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.AspNet.Identity.Owin;
 
     using Ninject;
 
+    using Auth;
     using Data.Models;
     using Services.Data.Contracts;
-    using System.Web;
-    using Microsoft.AspNet.Identity.Owin;
-    using Microsoft.AspNet.Identity;
-    using Auth;
 
     public partial class UsersManagement : Page
     {
@@ -53,11 +53,11 @@
 
             if (user == null)
             {
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
+                this.ModelState.AddModelError(string.Empty, string.Format("Item with id {0} was not found", id));
                 return;
             }
 
-            TryUpdateModel(user);
+            this.TryUpdateModel(user);
             if (ModelState.IsValid)
             {
                 this.UsersServices.UpdateUser(id, user);
@@ -167,7 +167,6 @@
                 }
             }
         }
-
 
         protected void AddToUserRolesButton_Click(object sender, EventArgs e)
         {

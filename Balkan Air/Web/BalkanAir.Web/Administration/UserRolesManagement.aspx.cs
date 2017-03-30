@@ -30,7 +30,7 @@
 
             if (role == null)
             {
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
+                this.ModelState.AddModelError(string.Empty, string.Format("Item with id {0} was not found", id));
                 return;
             }
 
@@ -40,8 +40,8 @@
                 return;
             }
 
-            TryUpdateModel(role);
-            if (ModelState.IsValid)
+            this.TryUpdateModel(role);
+            if (this.ModelState.IsValid)
             {
                 this.UserRolesServices.UpdateRole(id, role);
             }
@@ -69,8 +69,7 @@
                 this.UserRolesServices.AddRole(role);
 
                 this.SuccessPanel.Visible = true;
-                this.AddedUserRoleNameLiteral.Text = "New user role " + "" + this.UserRoleNameTextBox.Text + 
-                    "" + "was added successfully!";
+                this.AddedUserRoleNameLiteral.Text = "New user role " + "" + this.UserRoleNameTextBox.Text + "" + "was added successfully!";
 
                 this.ClearFields();
             }

@@ -1,6 +1,7 @@
 ﻿namespace BalkanAir.Web
 {
     using System;
+    using System.Reflection;
     using System.Web;
     using System.Web.Http;
     using System.Web.Optimization;
@@ -8,7 +9,6 @@
 
     using App_Start;
     using Common;
-    using System.Reflection;
 
     public class Global : HttpApplication
     {

@@ -34,7 +34,7 @@
                 return;
             }
 
-            TryUpdateModel(travelClass);
+            this.TryUpdateModel(travelClass);
 
             if (ModelState.IsValid)
             {

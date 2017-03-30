@@ -37,13 +37,13 @@
             
             if (userNotification == null)
             {
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
+                this.ModelState.AddModelError(string.Empty, string.Format("Item with id {0} was not found", id));
                 return;
             }
 
-            TryUpdateModel(userNotification);
+            this.TryUpdateModel(userNotification);
 
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 this.UserNotificationsServices.UpdateUserNotification(id, userNotification);
             }

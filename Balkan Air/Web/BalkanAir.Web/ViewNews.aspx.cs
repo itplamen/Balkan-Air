@@ -2,8 +2,8 @@
 {
     using System;
     using System.Linq;
-    using System.Web.ModelBinding;
     using System.Web;
+    using System.Web.ModelBinding;
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
@@ -13,8 +13,8 @@
     using Ninject;
 
     using Auth;
-    using Common;
     using BalkanAir.Common;
+    using Common;
     using Data.Models;
     using Services.Data.Contracts;
 
@@ -68,14 +68,12 @@
                 if (!news.IsDeleted)
                 {
                     var comments = news.Comments
-                             .Where(c => !c.IsDeleted)
-                             .ToList();
-
+                        .Where(c => !c.IsDeleted)
+                        .ToList();
 
                     this.NumberOfComments = comments.Count;
 
-                    return comments
-                        .AsQueryable();
+                    return comments.AsQueryable();
                 }
             }
 
@@ -85,7 +83,7 @@
         public void CommentsListView_InsertItem()
         {
             var comment = new Comment();
-            TryUpdateModel(comment);
+            this.TryUpdateModel(comment);
 
             comment.DateOfComment = DateTime.Now;
             comment.NewsId = int.Parse(this.NewsIdHiddenField.Value);
@@ -101,7 +99,7 @@
         public void CommentsListView_UpdateItem(int id)
         {
             var comment = new Comment();
-            TryUpdateModel(comment);
+            this.TryUpdateModel(comment);
 
             this.CommentsServices.UpdateComment(id, comment);
         }

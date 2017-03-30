@@ -38,7 +38,7 @@
 
         protected void LogIn(object sender, EventArgs e)
         {
-            if (IsValid)
+            if (this.Page.IsValid)
             {
                 // Validate the user password
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
@@ -52,7 +52,7 @@
                 {
                     case SignInStatus.Success:
                         this.UsersServices.SetLastLogin(this.Email.Text, DateTime.Now);
-                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], this.Response);
                         break;
                     case SignInStatus.LockedOut:
                         Response.Redirect("/Account/Lockout");

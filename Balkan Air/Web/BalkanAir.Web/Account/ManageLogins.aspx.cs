@@ -21,7 +21,7 @@
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var accounts = manager.GetLogins(User.Identity.GetUserId());
-            CanRemoveExternalLogins = accounts.Count() > 1 || HasPassword(manager);
+            this.CanRemoveExternalLogins = accounts.Count() > 1 || this.HasPassword(manager);
             return accounts;
         }
 
@@ -30,7 +30,7 @@
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
             var result = manager.RemoveLogin(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
-            string msg = String.Empty;
+            string msg = string.Empty;
             if (result.Succeeded)
             {
                 var user = manager.FindById(User.Identity.GetUserId());
@@ -44,10 +44,10 @@
         protected void Page_Load(object sender, EventArgs e)
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            CanRemoveExternalLogins = manager.GetLogins(User.Identity.GetUserId()).Count() > 1;
+            this.CanRemoveExternalLogins = manager.GetLogins(User.Identity.GetUserId()).Count() > 1;
 
-            SuccessMessage = String.Empty;
-            successMessage.Visible = !String.IsNullOrEmpty(SuccessMessage);
+            this.SuccessMessage = string.Empty;
+            successMessage.Visible = !string.IsNullOrEmpty(this.SuccessMessage);
         }
 
         private bool HasPassword(ApplicationUserManager manager)

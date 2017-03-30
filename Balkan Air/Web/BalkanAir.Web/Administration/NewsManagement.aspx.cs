@@ -62,7 +62,7 @@
         public void NewsListView_UpdateItem(int id)
         {
             var news = new News();
-            TryUpdateModel(news);
+            this.TryUpdateModel(news);
 
             FileUpload editImage = (FileUpload)this.NewsListView.EditItem.FindControl("UploadImageEdit");
 
@@ -82,7 +82,7 @@
         public void NewsListView_InsertItem()
         {
             var news = new News();
-            TryUpdateModel(news);
+            this.TryUpdateModel(news);
 
             FileUpload editImage = (FileUpload)this.NewsListView.InsertItem.FindControl("UploadImage");
 

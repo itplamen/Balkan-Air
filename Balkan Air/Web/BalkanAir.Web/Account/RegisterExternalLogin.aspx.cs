@@ -15,39 +15,34 @@
     {
         protected string ProviderName
         {
-            get { return (string)ViewState["ProviderName"] ?? String.Empty; }
-            private set { ViewState["ProviderName"] = value; }
+            get { return (string)ViewState["ProviderName"] ?? string.Empty; }
+            private set { this.ViewState["ProviderName"] = value; }
         }
 
         protected string ProviderAccountKey
         {
-            get { return (string)ViewState["ProviderAccountKey"] ?? String.Empty; }
-            private set { ViewState["ProviderAccountKey"] = value; }
-        }
-
-        private void RedirectOnFail()
-        {
-            Response.Redirect((User.Identity.IsAuthenticated) ? "~/Account/Manage" : "~/Account/Login");
+            get { return (string)ViewState["ProviderAccountKey"] ?? string.Empty; }
+            private set { this.ViewState["ProviderAccountKey"] = value; }
         }
 
         protected void Page_Load()
         {
             // Process the result from an auth provider in the request
-            ProviderName = IdentityHelper.GetProviderNameFromRequest(Request);
-            if (String.IsNullOrEmpty(ProviderName))
+            this.ProviderName = IdentityHelper.GetProviderNameFromRequest(this.Request);
+            if (string.IsNullOrEmpty(this.ProviderName))
             {
-                RedirectOnFail();
+                this.RedirectOnFail();
                 return;
             }
 
-            if (!IsPostBack)
+            if (!this.Page.IsPostBack)
             {
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
                 var loginInfo = Context.GetOwinContext().Authentication.GetExternalLoginInfo();
                 if (loginInfo == null)
                 {
-                    RedirectOnFail();
+                    this.RedirectOnFail();
                     return;
                 }
 
@@ -55,7 +50,7 @@
                 if (user != null)
                 {
                     signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
-                    IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                    IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], this.Response);
                 }
                 else if (User.Identity.IsAuthenticated)
                 {
@@ -63,18 +58,18 @@
                     var verifiedloginInfo = Context.GetOwinContext().Authentication.GetExternalLoginInfo(IdentityHelper.XsrfKey, User.Identity.GetUserId());
                     if (verifiedloginInfo == null)
                     {
-                        RedirectOnFail();
+                        this.RedirectOnFail();
                         return;
                     }
 
                     var result = manager.AddLogin(User.Identity.GetUserId(), verifiedloginInfo.Login);
                     if (result.Succeeded)
                     {
-                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], this.Response);
                     }
                     else
                     {
-                        AddErrors(result);
+                        this.AddErrors(result);
                         return;
                     }
                 }
@@ -87,12 +82,17 @@
         
         protected void LogIn_Click(object sender, EventArgs e)
         {
-            CreateAndLoginUser();
+            this.CreateAndLoginUser();
+        }
+
+        private void RedirectOnFail()
+        {
+            this.Response.Redirect((User.Identity.IsAuthenticated) ? "~/Account/Manage" : "~/Account/Login");
         }
 
         private void CreateAndLoginUser()
         {
-            if (!IsValid)
+            if (!this.Page.IsValid)
             {
                 return;
             }
@@ -100,13 +100,15 @@
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
             var user = new User() { UserName = email.Text, Email = email.Text };
+
             IdentityResult result = manager.Create(user);
+
             if (result.Succeeded)
             {
                 var loginInfo = Context.GetOwinContext().Authentication.GetExternalLoginInfo();
                 if (loginInfo == null)
                 {
-                    RedirectOnFail();
+                    this.RedirectOnFail();
                     return;
                 }
 
@@ -119,19 +121,19 @@
                     // var code = manager.GenerateEmailConfirmationToken(user.Id);
                     // Send this link via email: IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id)
 
-                    IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                    IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], this.Response);
                     return;
                 }
             }
 
-            AddErrors(result);
+            this.AddErrors(result);
         }
 
         private void AddErrors(IdentityResult result) 
         {
             foreach (var error in result.Errors) 
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError(string.Empty, error);
             }
         }
     }

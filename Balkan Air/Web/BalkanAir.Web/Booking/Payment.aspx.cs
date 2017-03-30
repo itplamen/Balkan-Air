@@ -84,8 +84,7 @@ namespace BalkanAir.Web.Booking
         {
             if (!this.Page.IsPostBack)
             {
-                if (!this.IsBookingValid(this.OneWayRouteBooking) || this.ReturnRouteBooking != null && 
-                    !this.IsBookingValid(this.ReturnRouteBooking))
+                if (!this.IsBookingValid(this.OneWayRouteBooking) || this.ReturnRouteBooking != null && !this.IsBookingValid(this.ReturnRouteBooking))
                 {
                     this.Response.Redirect(Pages.HOME);
                 }

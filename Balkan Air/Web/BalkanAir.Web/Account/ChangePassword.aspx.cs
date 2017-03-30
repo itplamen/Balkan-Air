@@ -14,16 +14,11 @@
     {
         protected string SuccessMessage { get; private set; }
 
-        private bool HasPassword(ApplicationUserManager manager)
-        {
-            return manager.HasPassword(User.Identity.GetUserId());
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
-            if (!IsPostBack)
+            if (!this.IsPostBack)
             {
                 if (!this.Context.User.Identity.IsAuthenticated)
                 {
@@ -31,14 +26,14 @@
                 }
 
                 // Determine the sections to render
-                if (HasPassword(manager))
+                if (this.HasPassword(manager))
                 {
-                    changePasswordHolder.Visible = true;
+                    this.changePasswordHolder.Visible = true;
                 }
                 else
                 {
-                    setPassword.Visible = true;
-                    changePasswordHolder.Visible = false;
+                    this.setPassword.Visible = true;
+                    this.changePasswordHolder.Visible = false;
                 }
 
                 // Render success message
@@ -46,14 +41,14 @@
                 if (message != null)
                 {
                     // Strip the query string from action
-                    Form.Action = ResolveUrl("~/Account/Manage");
+                    Form.Action = this.ResolveUrl("~/Account/Manage");
                 }
             }
         }
 
         protected void ChangePassword_Click(object sender, EventArgs e)
         {
-            if (IsValid)
+            if (this.Page.IsValid)
             {
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
@@ -66,14 +61,14 @@
                 }
                 else
                 {
-                    AddErrors(result);
+                    this.AddErrors(result);
                 }
             }
         }
 
         protected void SetPassword_Click(object sender, EventArgs e)
         {
-            if (IsValid)
+            if (this.Page.IsValid)
             {
                 // Create the local login info and link the local account to the user
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
@@ -84,16 +79,21 @@
                 }
                 else
                 {
-                    AddErrors(result);
+                    this.AddErrors(result);
                 }
             }
+        }
+
+        private bool HasPassword(ApplicationUserManager manager)
+        {
+            return manager.HasPassword(User.Identity.GetUserId());
         }
 
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError(string.Empty, error);
             }
         }
     }

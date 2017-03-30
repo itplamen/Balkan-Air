@@ -47,6 +47,11 @@
         [Inject]
         public ITravelClassesServices TravelClassesServices { get; set; }
 
+        protected int NumberOfUnreadNotifications
+        {
+            get { return this.User.NumberOfUnreadNotifications; }
+        }
+
         private ApplicationUserManager Manager
         {
             get { return Context.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
@@ -73,11 +78,6 @@
             }
         }
 
-        protected int NumberOfUnreadNotifications
-        {
-            get { return this.User.NumberOfUnreadNotifications; }
-        }
-
         public IEnumerable<UserNotification> LatestNotificationsRepeater_GetData()
         {
             return this.UserNotificationsServices.GetAll()
@@ -96,19 +96,19 @@
             if (requestCookie != null && Guid.TryParse(requestCookie.Value, out requestCookieGuidValue))
             {
                 // Use the Anti-XSRF token from the cookie
-                _antiXsrfTokenValue = requestCookie.Value;
-                Page.ViewStateUserKey = _antiXsrfTokenValue;
+                this._antiXsrfTokenValue = requestCookie.Value;
+                this.Page.ViewStateUserKey = this._antiXsrfTokenValue;
             }
             else
             {
                 // Generate a new Anti-XSRF token and save to the cookie
-                _antiXsrfTokenValue = Guid.NewGuid().ToString("N");
-                Page.ViewStateUserKey = _antiXsrfTokenValue;
+                this._antiXsrfTokenValue = Guid.NewGuid().ToString("N");
+                this.Page.ViewStateUserKey = this._antiXsrfTokenValue;
 
                 var responseCookie = new HttpCookie(AntiXsrfTokenKey)
                 {
                     HttpOnly = true,
-                    Value = _antiXsrfTokenValue
+                    Value = this._antiXsrfTokenValue
                 };
 
                 if (FormsAuthentication.RequireSSL && Request.IsSecureConnection)
@@ -119,22 +119,22 @@
                 Response.Cookies.Set(responseCookie);
             }
 
-            Page.PreLoad += master_Page_PreLoad;
+            this.Page.PreLoad += this.master_Page_PreLoad;
         }
 
         protected void master_Page_PreLoad(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (!this.Page.IsPostBack)
             {
                 // Set Anti-XSRF token
-                ViewState[AntiXsrfTokenKey] = Page.ViewStateUserKey;
-                ViewState[AntiXsrfUserNameKey] = Context.User.Identity.Name ?? String.Empty;
+                this.ViewState[AntiXsrfTokenKey] = this.Page.ViewStateUserKey;
+                this.ViewState[AntiXsrfUserNameKey] = this.Context.User.Identity.Name ?? string.Empty;
             }
             else
             {
                 // Validate the Anti-XSRF token
-                if ((string)ViewState[AntiXsrfTokenKey] != _antiXsrfTokenValue
-                    || (string)ViewState[AntiXsrfUserNameKey] != (Context.User.Identity.Name ?? String.Empty))
+                if ((string)ViewState[AntiXsrfTokenKey] != this._antiXsrfTokenValue
+                    || (string)ViewState[AntiXsrfUserNameKey] != (Context.User.Identity.Name ?? string.Empty))
                 {
                     throw new InvalidOperationException("Validation of Anti-XSRF token failed.");
                 }
@@ -143,7 +143,6 @@
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (this.User != null && this.User.DoesAdminForcedLogoff)
             {
                 this.UsersServices.SetLogoffForUser(this.User.Id, false);
@@ -151,7 +150,7 @@
                 this.Response.Redirect(Pages.HOME);
             }
 
-            if (!IsPostBack)
+            if (!this.Page.IsPostBack)
             {
                 this.SiteMapPathBreadcrump.Visible = (SiteMap.CurrentNode != SiteMap.RootNode);
 
