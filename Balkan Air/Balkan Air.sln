@@ -45,6 +45,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{EBA44E1C-8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BalkanAir.Auth", "Auth\BalkanAir.Auth\BalkanAir.Auth.csproj", "{B43BFD68-93A3-4537-8A12-6BA4479C4021}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoverallsDependencies", "CoverallsDependencies\CoverallsDependencies.csproj", "{C495057E-F3A4-4101-B09B-84E23B1BF5B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +105,10 @@ Global
 		{B43BFD68-93A3-4537-8A12-6BA4479C4021}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B43BFD68-93A3-4537-8A12-6BA4479C4021}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B43BFD68-93A3-4537-8A12-6BA4479C4021}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C495057E-F3A4-4101-B09B-84E23B1BF5B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C495057E-F3A4-4101-B09B-84E23B1BF5B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C495057E-F3A4-4101-B09B-84E23B1BF5B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C495057E-F3A4-4101-B09B-84E23B1BF5B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -121,5 +127,6 @@ Global
 		{3D781EE7-EF41-45BA-99E4-6D21F0DE3B2E} = {5A157400-3519-4B9B-9829-C789459F5FBF}
 		{8787DBDD-5CD5-4AD6-8EFE-B7D7C7589DC5} = {00403DCB-67F8-4CDF-B957-150C686C4714}
 		{B43BFD68-93A3-4537-8A12-6BA4479C4021} = {EBA44E1C-89A4-44C7-86A9-1C3DB9C4F7F8}
+		{C495057E-F3A4-4101-B09B-84E23B1BF5B6} = {B24553AF-DDCE-4668-B924-FC3677BC26DD}
 	EndGlobalSection
 EndGlobal
