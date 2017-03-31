@@ -24,7 +24,7 @@ Airline Reservation System
 
 ## Screenshots
 
-![Home page](./Screenshots/Home/01. Home.png)
+![Home page](./Screenshots/Home/01.%20Home.png)
 
 ![Home page](./Screenshots/Home/02. Home.png)
 
