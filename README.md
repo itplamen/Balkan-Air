@@ -1,7 +1,7 @@
 # Balkan-Air
 This application simulates an online reservation system that allows users to search for the best flights available, book seats in different travel classes, receive emails and notifications for new flights and news, manage their personal profile, write comments on news and receive data via the open API. 
 
-The system automatically sends email with callback URL (account confirmation link) to every registered user, so it is important for users to provide **VALID** email, in order to be able to book flights later. Email with callback URL (flight confirmation link) is also send to user, when new flight is booked from him.
+The system automatically sends email with callback URL (account confirmation link) to every registered user, so it is important for users to provide a **VALID** email, in order to be able to book flights later. Email with callback URL (flight confirmation link) is also send to user, when new flight is booked from him.
 
 Check the **Developers** web page for API Overview.
 
