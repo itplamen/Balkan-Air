@@ -26,10 +26,10 @@ Airline Reservation System
 
 ![Home page](./Screenshots/Home/01.%20Home.png)
 
-![Home page](./Screenshots/Home/02. Home.png)
+![Home page](./Screenshots/Home/02.%20Home.png)
 
-![Booking page](./Screenshots/Booking/01. Select Flight.png)
+![Booking page](./Screenshots/Booking/01.%20Select%20Flight.png)
 
-![Booking page](./Screenshots/Booking/03. Select Seat.png)
+![Booking page](./Screenshots/Booking/03.%20Select%20Seat.png)
 
-![API page](./Screenshots/API/02. API Overview.png)
+![API page](./Screenshots/API/02.%20API%20Overview.png)
