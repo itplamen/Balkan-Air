@@ -69,7 +69,7 @@
                 if (this.Context.User.Identity.IsAuthenticated)
                 {
                     bool areAnyUpcomingTrips = this.BookingsServices.GetAll()
-                    .Where(b => b.UserId == this.CurentUser.Id && b.LegInstance.DepartureDateTime < DateTime.Now)
+                    .Where(b => b.UserId == this.CurentUser.Id && b.LegInstance.DepartureDateTime > DateTime.Now)
                    .Any();
 
                     if (areAnyUpcomingTrips)
