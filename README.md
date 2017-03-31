@@ -21,3 +21,15 @@ Airline Reservation System
 * ASP.NET AJAX Control Toolkit
 * Bootstrap
 * jQuery and jQuery UI
+
+## Screenshots
+
+![Home page](./Screenshots/Home/01. Home.png)
+
+![Home page](./Screenshots/Home/02. Home.png)
+
+![Booking page](./Screenshots/Booking/01. Select Flight.png)
+
+![Booking page](./Screenshots/Booking/03. Select Seat.png)
+
+![API page](./Screenshots/API/02. API Overview.png)
