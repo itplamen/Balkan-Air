@@ -3,6 +3,8 @@ This application simulates an online reservation system that allows users to sea
 
 The system automatically sends email with callback URL (account confirmation link) to every registered user, so it is important for users to provide **VALID** email, in order to be able to book flights later. Email with callback URL (flight confirmation link) is also send to user, when new flight is booked from him.
 
+Check the **Developers** web page for API Overview.
+
 [![Build status](https://ci.appveyor.com/api/projects/status/nb17l5bd48fp1h67?svg=true)](https://ci.appveyor.com/project/itplamen/balkan-air)
 
 ## Technologies
@@ -16,7 +18,7 @@ The system automatically sends email with callback URL (account confirmation lin
 ## Libraries
 
 * Ninject Dependency Injector - [link](https://github.com/ninject)
-* Automapper, a object-object mapper - [link](https://github.com/AutoMapper/AutoMapper)
+* Automapper, object-object mapper - [link](https://github.com/AutoMapper/AutoMapper)
 * Moq, mocking framework - [link](https://github.com/moq/moq4)
 * WebFormsMvp - [link](https://github.com/webformsmvp/webformsmvp)
 * MyTested.WebApi - [link](https://github.com/ivaylokenov/MyTested.WebApi) 
